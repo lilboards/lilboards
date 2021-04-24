@@ -1,10 +1,12 @@
 import { StrictMode } from 'react';
 import { render } from 'react-dom';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Home from './home';
 // import reportWebVitals from './reportWebVitals';
 
 render(
   <StrictMode>
+    <CssBaseline />
     <Home />
   </StrictMode>,
   document.getElementById('root')
