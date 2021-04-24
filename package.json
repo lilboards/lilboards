@@ -12,7 +12,8 @@
     "postinstall": "husky install",
     "release": "standard-version --no-verify",
     "start": "react-scripts start",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "test:ci": "CI=true yarn test --coverage"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.12.0",
