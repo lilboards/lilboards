@@ -1,11 +1,11 @@
 import { StrictMode } from 'react';
 import { render } from 'react-dom';
-import App from './App';
+import Home from './home';
 // import reportWebVitals from './reportWebVitals';
 
 render(
   <StrictMode>
-    <App />
+    <Home />
   </StrictMode>,
   document.getElementById('root')
 );
