@@ -8,6 +8,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "lint:fix": "yarn lint --fix",
+    "lint:tsc": "tsc --noEmit",
     "postinstall": "husky install",
     "release": "standard-version --no-verify",
     "start": "react-scripts start",
