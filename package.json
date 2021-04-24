@@ -43,5 +43,15 @@
     "yarn": ">=1"
   },
   "private": true,
-  "license": "MIT"
+  "license": "MIT",
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
+  }
 }
