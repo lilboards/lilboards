@@ -1,5 +1,5 @@
 import { unmountComponentAtNode } from 'react-dom';
-import { act } from 'react-dom/test-utils';
+import { act } from '@testing-library/react';
 
 let div: HTMLDivElement;
 let getElementByIdSpy: jest.SpyInstance;
@@ -14,7 +14,7 @@ beforeEach(() => {
 it('renders without crashing', () => {
   expect(getElementByIdSpy).not.toHaveBeenCalled();
   act(() => {
-    require('./');
+    require('.');
   });
   expect(getElementByIdSpy).toHaveBeenCalledTimes(1);
   expect(getElementByIdSpy).toHaveBeenCalledWith('root');
