@@ -19,10 +19,12 @@ exports[`renders correctly 1`] = `
           Lilboards
         </a>
       </div>
-      <button
+      <a
+        aria-disabled="false"
         class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-colorInherit"
+        href="/login"
+        role="button"
         tabindex="0"
-        type="button"
       >
         <span
           class="MuiButton-label"
@@ -32,7 +34,7 @@ exports[`renders correctly 1`] = `
         <span
           class="MuiTouchRipple-root"
         />
-      </button>
+      </a>
     </div>
   </header>
 </div>
