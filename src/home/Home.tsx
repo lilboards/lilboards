@@ -1,10 +1,6 @@
 import { RouteComponentProps } from '@reach/router';
-import Header from '../layout/Header';
+import Layout from '../layout';
 
 export default function Home(props: RouteComponentProps) {
-  return (
-    <>
-      <Header />
-    </>
-  );
+  return <Layout>Home</Layout>;
 }

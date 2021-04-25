@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import Home from './Home';
 
-it('renders header', () => {
+it('renders home', () => {
   render(<Home />);
-  expect(screen.getByRole('banner')).toBeInTheDocument();
+  expect(screen.getByText('Home')).toBeInTheDocument();
 });
