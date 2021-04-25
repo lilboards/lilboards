@@ -8,13 +8,17 @@ exports[`renders correctly 1`] = `
     <div
       class="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
     >
-      <h6
-        class="MuiTypography-root MuiTypography-h6"
+      <div
+        class="MuiBox-root MuiBox-root-1"
       >
-        Lilboards
-      </h6>
+        <h6
+          class="MuiTypography-root MuiTypography-h6"
+        >
+          Lilboards
+        </h6>
+      </div>
       <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
+        class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-colorInherit"
         tabindex="0"
         type="button"
       >

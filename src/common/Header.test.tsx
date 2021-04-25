@@ -12,3 +12,8 @@ it('renders header', () => {
   expect(headerElement).toBeInTheDocument();
   expect(headerElement).toHaveTextContent('Lilboards');
 });
+
+it('renders login button', () => {
+  render(<Header />);
+  expect(screen.getByText('Login')).toBeInTheDocument();
+});
