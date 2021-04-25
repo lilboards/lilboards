@@ -6,6 +6,7 @@
   "scripts": {
     "build": "react-scripts build",
     "eject": "react-scripts eject",
+    "firebase:login": "firebase login",
     "lint": "yarn lint:ts && yarn lint:tsc",
     "lint:fix": "yarn lint:ts --fix",
     "lint:ts": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
