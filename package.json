@@ -6,8 +6,9 @@
   "scripts": {
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
-    "lint:fix": "yarn lint --fix",
+    "lint": "yarn lint:ts && yarn lint:tsc",
+    "lint:fix": "yarn lint:ts --fix",
+    "lint:ts": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "lint:tsc": "tsc --noEmit",
     "postinstall": "husky install",
     "release": "standard-version --no-verify",
