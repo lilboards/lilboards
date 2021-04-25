@@ -1,4 +1,4 @@
-import { RouteComponentProps } from '@reach/router';
+import type { RouteComponentProps } from '@reach/router';
 import Layout from '../layout';
 
 export default function Home(props: RouteComponentProps) {
