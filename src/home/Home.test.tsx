@@ -3,5 +3,5 @@ import Home from './Home';
 
 it('renders home', () => {
   render(<Home />);
-  expect(screen.getByText('Home')).toBeInTheDocument();
+  expect(screen.getByText(/create boards and items/i)).toBeInTheDocument();
 });

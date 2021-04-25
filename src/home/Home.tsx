@@ -1,6 +1,11 @@
+import Typography from '@material-ui/core/Typography';
 import type { RouteComponentProps } from '@reach/router';
 import Layout from '../layout';
 
 export default function Home(props: RouteComponentProps) {
-  return <Layout>Home</Layout>;
+  return (
+    <Layout>
+      <Typography>Create boards and items.</Typography>
+    </Layout>
+  );
 }
