@@ -11,11 +11,13 @@ exports[`renders correctly 1`] = `
       <div
         class="MuiBox-root MuiBox-root-1"
       >
-        <h6
-          class="MuiTypography-root MuiTypography-h6"
+        <a
+          aria-current="page"
+          class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-h6 MuiTypography-colorInherit"
+          href="/"
         >
           Lilboards
-        </h6>
+        </a>
       </div>
       <button
         class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-colorInherit"
