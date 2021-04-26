@@ -7,14 +7,14 @@ type Props = {
   children: ReactNode;
 };
 
+const marginTopBottom = 4; // 8 * 4 = 32px
+
 export default function Layout(props: Props) {
   return (
     <>
       <Header />
       <Container component="main">
-        <Box marginTop={2} marginBottom={2}>
-          {props.children}
-        </Box>
+        <Box my={marginTopBottom}>{props.children}</Box>
       </Container>
     </>
   );
