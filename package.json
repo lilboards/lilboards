@@ -6,6 +6,7 @@
   "scripts": {
     "build": "react-scripts build",
     "eject": "react-scripts eject",
+    "firebase:init": "firebase init",
     "firebase:login": "firebase login",
     "firebase:logout": "firebase logout",
     "lint": "yarn lint:ts && yarn lint:tsc",
