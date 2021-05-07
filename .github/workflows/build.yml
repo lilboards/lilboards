@@ -1,0 +1,25 @@
+name: build
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Lint commit message
+        run: npx commitlint --from=HEAD~1
+
+      - name: Lint files
+        run: yarn lint
+
+      - name: Run tests
+        run: yarn test:ci
