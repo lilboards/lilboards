@@ -2,6 +2,27 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Install
+
+Clone the repository:
+
+```sh
+git clone https://github.com/lilboards/lilboards.git
+cd lilboards
+```
+
+Install the dependencies:
+
+```sh
+yarn
+```
+
+Start the [Firebase Emulators](https://firebase.google.com/docs/rules/emulator-setup):
+
+```sh
+yarn firebase:emulators
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
