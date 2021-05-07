@@ -1,4 +1,6 @@
-# Lilboards
+# [Lilboards](https://lilboards.web.app/)
+
+[![build](https://github.com/lilboards/lilboards/actions/workflows/build.yml/badge.svg)](https://github.com/lilboards/lilboards/actions/workflows/build.yml)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
