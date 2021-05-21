@@ -16,7 +16,7 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Lint commit message
-        run: npx commitlint --from=HEAD~1
+        run: yarn commitlint --from=HEAD~1
 
       - name: Lint files
         run: yarn lint
