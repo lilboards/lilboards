@@ -1,3 +1,4 @@
+# https://github.com/dependabot/dependabot-core/issues/3253#issuecomment-797125425
 name: PR check
 on: pull_request
 
@@ -6,7 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 1
 
-    # https://github.com/dependabot/dependabot-core/issues/3253#issuecomment-797125425
     if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.actor == 'dependabot[bot]' }}
     steps:
       - run: echo 'PR created by ${{ github.actor }}'
