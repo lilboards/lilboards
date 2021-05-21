@@ -41,7 +41,7 @@
     "web-vitals": "^1.1.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^12.1.1",
+    "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.1",
     "eslint-plugin-prettier": "^3.4.0",
     "firebase-tools": "^9.11.0",
