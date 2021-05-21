@@ -5,8 +5,8 @@ name: Deploy to Firebase Hosting on PR
 on:
   workflow_run:
     workflows: ['PR check']
-    types:
-      - completed
+    branches: ['**'] # matches every branch
+    types: [completed]
 
 jobs:
   build_and_preview:
