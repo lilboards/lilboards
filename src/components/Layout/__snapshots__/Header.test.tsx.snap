@@ -6,35 +6,39 @@ exports[`renders correctly 1`] = `
     class="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4"
   >
     <div
-      class="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
+      class="MuiContainer-root MuiContainer-maxWidthLg"
     >
       <div
-        class="MuiBox-root MuiBox-root-1"
+        class="MuiToolbar-root MuiToolbar-regular"
       >
-        <a
-          aria-current="page"
-          class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-h6 MuiTypography-colorInherit"
-          href="/"
+        <div
+          class="MuiBox-root MuiBox-root-1"
         >
-          Lilboards
+          <a
+            aria-current="page"
+            class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-h6 MuiTypography-colorInherit"
+            href="/"
+          >
+            Lilboards
+          </a>
+        </div>
+        <a
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-colorInherit"
+          href="/login"
+          role="button"
+          tabindex="0"
+        >
+          <span
+            class="MuiButton-label"
+          >
+            Login
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
         </a>
       </div>
-      <a
-        aria-disabled="false"
-        class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-colorInherit"
-        href="/login"
-        role="button"
-        tabindex="0"
-      >
-        <span
-          class="MuiButton-label"
-        >
-          Login
-        </span>
-        <span
-          class="MuiTouchRipple-root"
-        />
-      </a>
     </div>
   </header>
 </div>
