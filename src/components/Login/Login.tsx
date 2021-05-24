@@ -5,9 +5,9 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import type { RouteComponentProps } from '@reach/router';
-import Layout from '../layout';
-import { auth as firebaseAuth } from '../firebase';
-import uiConfig from './ui-config';
+import Layout from '../Layout';
+import { auth as firebaseAuth } from '../../firebase';
+import uiConfig from './uiConfig';
 
 function firebaseAuthSignOut() {
   firebaseAuth.signOut();
