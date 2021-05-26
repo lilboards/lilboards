@@ -6843,7 +6843,7 @@ firebase@^8.4.2:
     "@firebase/storage" "0.5.1"
     "@firebase/util" "1.0.0"
 
-firebaseui@^4.1.0:
+firebaseui@^4.8.0:
   version "4.8.0"
   resolved "https://registry.yarnpkg.com/firebaseui/-/firebaseui-4.8.0.tgz#74c10a30db17f2cbfe020c91b97d5e3c6e8efbbc"
   integrity sha512-DG8CD+969JHMailhOm8nKo+eJlumIHex0TH18eJeTo0Q2KEt5m/b61S1ky4bavK/nGmLJBRECJytq09/pwhZ0A==
@@ -12367,12 +12367,12 @@ react-error-overlay@^6.0.9:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.9.tgz#3c743010c9359608c375ecd6bc76f35d93995b0a"
   integrity sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==
 
-react-firebaseui@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/react-firebaseui/-/react-firebaseui-4.1.0.tgz#fbd8381432b53b58ce56ee86df81e2a6e40af7b6"
-  integrity sha512-Y5pAom+W6/R5xZeF4xdvYiP7tObo7GDGWra1Pf2td+FxhtXtGQXQTKdW5Rs4js5zIuN0A3fApZzO+3sa1MHl9Q==
+react-firebaseui@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/react-firebaseui/-/react-firebaseui-5.0.2.tgz#7496bc595454abdd3e1c10612bb3446cb125181a"
+  integrity sha512-ZfIWfRKlKAkMwEI+41rMPkwdNEQEfBLXV6TVaN5er3cdwMD0vQecWt6YOE4/v1ELziaj10NNRB8yB42V56QBMQ==
   dependencies:
-    firebaseui "^4.1.0"
+    firebaseui "^4.8.0"
 
 react-is@^16.13.1, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
