@@ -1,13 +1,17 @@
 import { StrictMode } from 'react';
 import { render } from 'react-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { Provider } from 'react-redux';
+import store from './store';
 import Routes from './components/Routes';
 // import reportWebVitals from './reportWebVitals';
 
 render(
   <StrictMode>
     <CssBaseline />
-    <Routes />
+    <Provider store={store}>
+      <Routes />
+    </Provider>
   </StrictMode>,
   document.getElementById('root')
 );
