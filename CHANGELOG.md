@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.1](https://www.github.com/lilboards/lilboards/compare/v1.0.0...v1.0.1) (2021-06-03)
+
+
+### Bug Fixes
+
+* **Login:** avoid redirect after sign-in ([9442cdc](https://www.github.com/lilboards/lilboards/commit/9442cdc36bfe9be70172ac44de10e63349e5bdf6))
+
 ## 1.0.0 (2021-06-03)
 
 
