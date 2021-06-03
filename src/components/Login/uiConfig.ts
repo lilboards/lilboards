@@ -1,16 +1,22 @@
 import firebase from 'firebase';
 
-const { auth } = firebase;
-
 /**
- * @see https://github.com/firebase/firebaseui-web-react
+ * Configure FirebaseUI.
+ *
+ * @see {@link https://github.com/firebase/firebaseui-web-react}
  */
 const uiConfig = {
+  // Popup sign-in flow rather than redirect flow.
   signInFlow: 'popup',
+  // Display auth providers.
   signInOptions: [
-    auth.GoogleAuthProvider.PROVIDER_ID,
-    auth.EmailAuthProvider.PROVIDER_ID,
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.EmailAuthProvider.PROVIDER_ID,
   ],
+  callbacks: {
+    // Avoid redirects after sign-in.
+    signInSuccessWithAuthResult: () => false,
+  },
 };
 
 export default uiConfig;

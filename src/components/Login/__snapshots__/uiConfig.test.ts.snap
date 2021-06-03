@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches FirebaseUI config 1`] = `
+Object {
+  "callbacks": Object {
+    "signInSuccessWithAuthResult": [Function],
+  },
+  "signInFlow": "popup",
+  "signInOptions": Array [
+    "google.com",
+    "password",
+  ],
+}
+`;
