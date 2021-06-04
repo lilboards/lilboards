@@ -1,36 +1,40 @@
 /* istanbul ignore file */
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import type { RouteComponentProps } from '@reach/router';
-import Layout from '../Layout';
-import { auth as firebaseAuth } from '../../firebase';
-import uiConfig from './uiConfig';
 
-function firebaseAuthSignOut() {
-  firebaseAuth.signOut();
-}
+import { auth as firebaseAuth } from '../../firebase';
+import { useDispatch, useSelector } from '../../hooks';
+import { actions } from '../../slices/userSlice';
+import uiConfig from './uiConfig';
+import Layout from '../Layout';
 
 export default function Login(props: RouteComponentProps) {
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const userId = useSelector((state) => state.user.id);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const unregisterAuthObserver = firebaseAuth.onAuthStateChanged((user) => {
-      setIsSignedIn(Boolean(user));
+      if (user) {
+        dispatch(actions.setUser(user.uid));
+      }
     });
-
     return unregisterAuthObserver;
-  }, []);
+  }, [dispatch]);
 
-  if (isSignedIn) {
+  if (userId) {
     return (
       <Layout>
         <Button
           color="primary"
           variant="contained"
-          onClick={firebaseAuthSignOut}
+          onClick={() => {
+            firebaseAuth.signOut();
+            dispatch(actions.setUser(''));
+          }}
         >
           Logout
         </Button>
@@ -40,7 +44,7 @@ export default function Login(props: RouteComponentProps) {
 
   return (
     <Layout>
-      <Typography align="center" component="h1" variant="h5">
+      <Typography align="center" component="h1" gutterBottom variant="h4">
         Sign In
       </Typography>
 
