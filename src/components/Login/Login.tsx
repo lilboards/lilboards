@@ -44,7 +44,7 @@ export default function Login(props: RouteComponentProps) {
 
   return (
     <Layout>
-      <Typography align="center" component="h1" variant="h5">
+      <Typography align="center" component="h1" gutterBottom variant="h4">
         Sign In
       </Typography>
 
