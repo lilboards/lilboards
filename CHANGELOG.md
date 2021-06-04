@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://www.github.com/lilboards/lilboards/compare/v1.1.0...v1.2.0) (2021-06-04)
+
+
+### Features
+
+* **components:** add NotFound ([0694958](https://www.github.com/lilboards/lilboards/commit/06949584d29b40ea5cf5a7a407f48e5b972afc37))
+* **Routes:** render NotFound as default route ([fcc890c](https://www.github.com/lilboards/lilboards/commit/fcc890c8261255281fd3efbe6967aeafebcfd604))
+
 ## [1.1.0](https://www.github.com/lilboards/lilboards/compare/v1.0.1...v1.1.0) (2021-06-04)
 
 
