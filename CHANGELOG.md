@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.1.0](https://www.github.com/lilboards/lilboards/compare/v1.0.1...v1.1.0) (2021-06-04)
+
+
+### Features
+
+* **hooks:** create useDispatch and useSelector ([1e8aab6](https://www.github.com/lilboards/lilboards/commit/1e8aab691e2ecbfcc35eb5713d1a7a118326302f))
+* **Login:** increase size of heading ([e13aaa7](https://www.github.com/lilboards/lilboards/commit/e13aaa74638b3be67a8694d91c5c2a180e1ca6b6))
+* render Provider in index ([2774f53](https://www.github.com/lilboards/lilboards/commit/2774f53e8ca207243305d45c6041c9f6b0274c17))
+* **slices:** add userSlice ([e1277aa](https://www.github.com/lilboards/lilboards/commit/e1277aa8f7f4b7ed5ec9378711348cfdd80764f1))
+* **store:** configure store ([eced73b](https://www.github.com/lilboards/lilboards/commit/eced73b42107b210f620258466fe6d696fd515e7))
+
 ### [1.0.1](https://www.github.com/lilboards/lilboards/compare/v1.0.0...v1.0.1) (2021-06-03)
 
 
