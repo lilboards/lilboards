@@ -11,7 +11,7 @@ export default function Logout(props: RouteComponentProps) {
 
   useEffect(() => {
     firebaseAuth.signOut();
-    dispatch(actions.setUser(''));
+    dispatch(actions.resetUser());
   }, [dispatch]);
 
   return <Redirect to="/login" noThrow />;
