@@ -1,9 +1,20 @@
-import { actions, reducer } from './userSlice';
+import { actions, initialState, reducer } from './userSlice';
 
 describe('setUser', () => {
-  it('returns state', () => {
-    const state = { id: '' };
-    const userId = 'user_id';
-    expect(reducer(state, actions.setUser(userId))).toEqual({ id: userId });
+  it('sets user id', () => {
+    const state = initialState;
+    const id = 'user_id';
+    expect(reducer(state, actions.setUser(id))).toEqual({
+      ...state,
+      id,
+    });
+  });
+});
+
+describe('resetUser', () => {
+  it('sets initialState', () => {
+    const id = 'user_id';
+    const state = { ...initialState, id };
+    expect(reducer(state, actions.resetUser())).toEqual(initialState);
   });
 });
