@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.3.0](https://www.github.com/lilboards/lilboards/compare/v1.2.0...v1.3.0) (2021-06-05)
+
+
+### Features
+
+* **components:** add Logout ([3e7c330](https://www.github.com/lilboards/lilboards/commit/3e7c330f9fffc6a69808e860f067288a809e80e2))
+* **components:** render Login in Routes ([4a3412a](https://www.github.com/lilboards/lilboards/commit/4a3412acf855dcaf8200817832963a27e3675ed3))
+* **slices:** add and use action `resetUser` ([eb8c951](https://www.github.com/lilboards/lilboards/commit/eb8c95172b9010f1d732793b571bcc2bd268d83c))
+* **utils:** add `resetStore` test helper ([df22583](https://www.github.com/lilboards/lilboards/commit/df22583b30d9b8df0cc38c5ef9f3ff29d60b4db6))
+* **utils:** add test helpers ([e75976a](https://www.github.com/lilboards/lilboards/commit/e75976ad0eeae739b3a2a594de3145960bcbe0f0))
+
 ## [1.2.0](https://www.github.com/lilboards/lilboards/compare/v1.1.0...v1.2.0) (2021-06-04)
 
 
