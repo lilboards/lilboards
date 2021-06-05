@@ -1,7 +1,9 @@
 import { render as reactTestingLibraryRender } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import type { ReactNode } from 'react';
+
 import store from '../store';
+import { actions as userActions } from '../slices/userSlice';
 
 type Props = {
   children?: ReactNode;
@@ -16,4 +18,8 @@ function StoreWrapper(props: Props) {
  */
 export function renderWithStore(ui: JSX.Element) {
   return reactTestingLibraryRender(ui, { wrapper: StoreWrapper });
+}
+
+export function resetStore() {
+  store.dispatch(userActions.resetUser());
 }
