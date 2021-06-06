@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { renderWithStore } from '../../utils/test';
 import NotFound from './NotFound';
 
 it('renders not found', () => {
-  render(<NotFound />);
+  renderWithStore(<NotFound />);
   expect(screen.getByText('Not Found')).toBeInTheDocument();
 });

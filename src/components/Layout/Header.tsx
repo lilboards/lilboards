@@ -5,8 +5,11 @@ import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import Toolbar from '@material-ui/core/Toolbar';
 import { Link as RouterLink } from '@reach/router';
+import { useSelector } from '../../hooks';
 
 export default function Header() {
+  const userId = useSelector((state) => state.user.id);
+
   return (
     <AppBar position="static">
       <Container>
@@ -20,10 +23,10 @@ export default function Header() {
           <Button
             color="inherit"
             component={RouterLink}
-            to="/login"
+            to={userId ? '/logout' : '/login'}
             variant="outlined"
           >
-            Login
+            {userId ? 'Logout' : 'Login'}
           </Button>
         </Toolbar>
       </Container>

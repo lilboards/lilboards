@@ -23,3 +23,9 @@ export function renderWithStore(ui: JSX.Element) {
 export function resetStore() {
   store.dispatch(userActions.resetUser());
 }
+
+export const updateStore = {
+  withUser() {
+    store.dispatch(userActions.setUser('user_id'));
+  },
+};

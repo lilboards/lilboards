@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { renderWithStore } from '../../utils/test';
 import Home from './Home';
 
 it('renders home', () => {
-  render(<Home />);
+  renderWithStore(<Home />);
   expect(screen.getByText(/create boards and items/i)).toBeInTheDocument();
 });
