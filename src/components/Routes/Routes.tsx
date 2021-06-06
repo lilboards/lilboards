@@ -4,6 +4,7 @@ import Home from '../Home';
 import Login from '../Login';
 import Logout from '../Logout';
 import NotFound from '../NotFound';
+import ProtectedRoute from './ProtectedRoute';
 
 export default function Routes() {
   return (
@@ -12,7 +13,7 @@ export default function Routes() {
       <Home path="/" />
       <Login path="/login" />
       <Logout path="/logout" />
-      <Boards path="/boards" />
+      <ProtectedRoute component={Boards} path="/boards" />
     </Router>
   );
 }

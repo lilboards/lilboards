@@ -1,8 +1,8 @@
 /* istanbul ignore file */
 
 import { useEffect } from 'react';
+import { Redirect } from '@reach/router';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import type { RouteComponentProps } from '@reach/router';
 
@@ -26,20 +26,7 @@ export default function Login(props: RouteComponentProps) {
   }, [dispatch]);
 
   if (userId) {
-    return (
-      <Layout>
-        <Button
-          color="primary"
-          variant="contained"
-          onClick={() => {
-            firebaseAuth.signOut();
-            dispatch(actions.setUser(''));
-          }}
-        >
-          Logout
-        </Button>
-      </Layout>
-    );
+    return <Redirect to="/boards" noThrow />;
   }
 
   return (
