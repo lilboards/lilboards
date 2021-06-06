@@ -2,7 +2,16 @@ import { screen } from '@testing-library/react';
 import { renderWithStore } from '../../utils/test';
 import Boards from './Boards';
 
-it('renders boards', () => {
+beforeEach(() => {
   renderWithStore(<Boards />);
-  expect(screen.getByText('Boards')).toBeInTheDocument();
+});
+
+it('renders heading', () => {
+  expect(screen.getByRole('heading', { level: 1 })).toBe(
+    screen.getByText('Boards')
+  );
+});
+
+it('renders create board button', () => {
+  expect(screen.getByLabelText('Create board')).toBeInTheDocument();
 });
