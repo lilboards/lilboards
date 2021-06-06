@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Redirect } from '@reach/router';
 import type { RouteComponentProps } from '@reach/router';
 
-import { auth as firebaseAuth } from '../../firebase';
+import { firebaseAuth } from '../../firebase';
 import { useDispatch } from '../../hooks';
 import actions from '../../actions';
 

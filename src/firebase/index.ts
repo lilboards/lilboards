@@ -1,3 +1,3 @@
-export { default as app } from './app';
-export { default as auth } from './auth';
-export { default as database } from './database';
+export { default as firebaseApp } from './app';
+export { default as firebaseAuth } from './auth';
+export { default as firebaseDatabase } from './database';

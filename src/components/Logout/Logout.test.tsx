@@ -1,9 +1,9 @@
-import { auth as firebaseAuth } from '../../firebase';
+import { firebaseAuth } from '../../firebase';
 import { getStoreState, renderWithStore, updateStore } from '../../utils/test';
 import Logout from './Logout';
 
 jest.mock('../../firebase', () => ({
-  auth: {
+  firebaseAuth: {
     signOut: jest.fn(),
   },
 }));

@@ -6,7 +6,7 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import Typography from '@material-ui/core/Typography';
 import type { RouteComponentProps } from '@reach/router';
 
-import { auth as firebaseAuth } from '../../firebase';
+import { firebaseAuth } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import actions from '../../actions';
 import uiConfig from './uiConfig';
