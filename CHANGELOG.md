@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.5.0](https://www.github.com/lilboards/lilboards/compare/v1.4.0...v1.5.0) (2021-06-06)
+
+
+### Features
+
+* **components:** add ProtectedRoute ([353e27f](https://www.github.com/lilboards/lilboards/commit/353e27f87e6cf1b37ec6dea8901cd5abcec7dab1))
+* **components:** make Boards a ProtectedRoute ([c50ef70](https://www.github.com/lilboards/lilboards/commit/c50ef704d6c1097b0140fbb9015ce8e43f05e626))
+* **components:** redirect to Boards when user is signed in ([88d29e2](https://www.github.com/lilboards/lilboards/commit/88d29e278f0fe41aad7e0fcfbe18bb3350a7f30b))
+
 ## [1.4.0](https://www.github.com/lilboards/lilboards/compare/v1.3.0...v1.4.0) (2021-06-06)
 
 
