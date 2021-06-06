@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { renderWithStore } from '../../utils/test';
 import Layout from './Layout';
 
 it('renders children', () => {
   const children = 'children';
-  render(<Layout>{children}</Layout>);
+  renderWithStore(<Layout>{children}</Layout>);
   expect(screen.getByText(children)).toBeInTheDocument();
 });
