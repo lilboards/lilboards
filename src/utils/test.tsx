@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import type { ReactNode } from 'react';
 
 import store from '../store';
-import { actions as userActions } from '../slices/userSlice';
+import { actions as userActions } from '../store/userSlice';
 
 type Props = {
   children?: ReactNode;
@@ -29,3 +29,5 @@ export const updateStore = {
     store.dispatch(userActions.setUser('user_id'));
   },
 };
+
+export const getStoreState = () => store.getState();
