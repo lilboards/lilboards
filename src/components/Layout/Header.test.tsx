@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react';
-import { renderWithStore } from '../../utils/test';
+import { renderWithStore, updateStore } from '../../utils/test';
 import Header from './Header';
 
 it('renders correctly', () => {
@@ -17,4 +17,10 @@ it('renders header', () => {
 it('renders login button', () => {
   renderWithStore(<Header />);
   expect(screen.getByText('Login')).toBeInTheDocument();
+});
+
+it('renders logout button', () => {
+  updateStore.withUser();
+  renderWithStore(<Header />);
+  expect(screen.getByText('Logout')).toBeInTheDocument();
 });
