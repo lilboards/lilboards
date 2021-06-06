@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://www.github.com/lilboards/lilboards/compare/v1.3.0...v1.4.0) (2021-06-06)
+
+
+### Features
+
+* **components:** show Logout button in Header when user's signed in ([840c261](https://www.github.com/lilboards/lilboards/commit/840c261325d12abd2e968f93df775c4535d32a16))
+
 ## [1.3.0](https://www.github.com/lilboards/lilboards/compare/v1.2.0...v1.3.0) (2021-06-05)
 
 
