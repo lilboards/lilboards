@@ -13,8 +13,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock', './yarn.lock') }}
+
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile --prefer-offline
 
       - name: Build app
         run: yarn build
