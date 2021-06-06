@@ -8,7 +8,7 @@ import type { RouteComponentProps } from '@reach/router';
 
 import { auth as firebaseAuth } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
-import { actions as userActions } from '../../store/userSlice';
+import actions from '../../actions';
 import uiConfig from './uiConfig';
 import Layout from '../Layout';
 
@@ -19,7 +19,7 @@ export default function Login(props: RouteComponentProps) {
   useEffect(() => {
     const unregisterAuthObserver = firebaseAuth.onAuthStateChanged((user) => {
       if (user) {
-        dispatch(userActions.setUser(user.uid));
+        dispatch(actions.setUser(user.uid));
       }
     });
     return unregisterAuthObserver;
