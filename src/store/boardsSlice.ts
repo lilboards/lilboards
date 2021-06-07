@@ -14,7 +14,7 @@ export const initialState: Boards = {};
 
 export const name = 'boards';
 
-const boardsRef = firebaseDatabase.ref(name);
+export const boardsRef = firebaseDatabase.ref(name);
 
 const slice = createSlice({
   name,
@@ -22,11 +22,14 @@ const slice = createSlice({
 
   reducers: {
     addBoard: (state) => {
-      const id = boardsRef.push().key as string;
-      state[id] = {
-        id,
+      const board = {
+        id: '',
         name: '',
       };
+      const boardRef = boardsRef.push();
+      board.id = boardRef.key as string;
+      boardRef.set(board);
+      state[board.id] = board;
     },
 
     editBoard: (state, action: PayloadAction<Board>) => {
