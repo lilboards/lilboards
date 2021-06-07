@@ -33,7 +33,10 @@ const slice = createSlice({
     },
 
     editBoard: (state, action: PayloadAction<Board>) => {
-      state[action.payload.id] = action.payload;
+      const { payload } = action;
+      const { id } = payload;
+      boardsRef.child(id).update(payload);
+      state[id] = payload;
     },
 
     resetBoards: () => {
