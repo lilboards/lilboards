@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { firebaseDatabase } from '../firebase';
+import { boardsRef } from '../firebase';
 
 type Board = {
   id: string;
@@ -13,8 +13,6 @@ type Boards = {
 export const initialState: Boards = {};
 
 export const name = 'boards';
-
-export const boardsRef = firebaseDatabase.ref(name);
 
 const slice = createSlice({
   name,
