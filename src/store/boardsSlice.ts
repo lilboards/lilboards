@@ -22,7 +22,7 @@ const slice = createSlice({
 
   reducers: {
     addBoard: (state) => {
-      const board = {
+      const board: Board = {
         id: '',
         name: '',
       };
@@ -34,8 +34,8 @@ const slice = createSlice({
 
     editBoard: (state, action: PayloadAction<Board>) => {
       const { payload } = action;
-      const { id } = payload;
-      boardsRef.child(id).update(payload);
+      const { id, ...restPayload } = payload;
+      boardsRef.child(id).update(restPayload);
       state[id] = payload;
     },
 
