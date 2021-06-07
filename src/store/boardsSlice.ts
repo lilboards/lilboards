@@ -1,26 +1,36 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { firebaseDatabase } from '../firebase';
 
 type Board = {
   id: string;
   name: string;
 };
 
-type State = {
+type Boards = {
   [id: string]: Board;
 };
 
-export const initialState: State = {};
+export const initialState: Boards = {};
 
 export const name = 'boards';
+
+const boardsRef = firebaseDatabase.ref(name);
 
 const slice = createSlice({
   name,
   initialState,
 
   reducers: {
-    addBoard: (state, action: PayloadAction<Board>) => {
-      const { id } = action.payload;
-      state[id] = action.payload;
+    addBoard: (state) => {
+      const id = boardsRef.push().key as string;
+      state[id] = {
+        id,
+        name: '',
+      };
+    },
+
+    editBoard: (state, action: PayloadAction<Board>) => {
+      state[action.payload.id] = action.payload;
     },
 
     resetBoards: () => {
