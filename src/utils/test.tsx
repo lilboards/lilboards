@@ -22,6 +22,7 @@ export function renderWithStore(ui: JSX.Element) {
 
 export function resetStore() {
   store.dispatch(actions.resetUser());
+  store.dispatch(actions.resetBoards());
 }
 
 export const updateStore = {
