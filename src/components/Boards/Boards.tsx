@@ -54,7 +54,7 @@ export default function Boards(props: RouteComponentProps) {
             <Box component={Card} height="100%">
               <CardContent>
                 <TextField
-                  autoFocus
+                  autoFocus={board.focus}
                   fullWidth
                   id={board.id}
                   label="Board Name"

@@ -20,7 +20,9 @@ it('creates board', async () => {
   fireEvent.click(screen.getByLabelText('Create board'));
   const boards = await screen.findAllByLabelText('Board Name');
   expect(boards).toHaveLength(1);
-  expect(screen.getByPlaceholderText('Untitled Board')).toBe(boards[0]);
+  const input = boards[0];
+  expect(screen.getByPlaceholderText('Untitled Board')).toBe(input);
+  expect(input).toHaveFocus();
 });
 
 it('edits board', async () => {
