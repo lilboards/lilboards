@@ -34,6 +34,24 @@ describe('editBoard', () => {
   });
 });
 
+describe('loadBoards', () => {
+  it('overrides boards', () => {
+    const state = {
+      board1: {
+        id: 'board1',
+        name: 'Board 1',
+      },
+    };
+    const boards = {
+      board2: {
+        id: 'board2',
+        name: 'Board 2',
+      },
+    };
+    expect(reducer(state, actions.loadBoards(boards))).toBe(boards);
+  });
+});
+
 describe('resetBoards', () => {
   it('sets initialState', () => {
     const state = {

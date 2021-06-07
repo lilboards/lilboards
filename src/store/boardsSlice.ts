@@ -40,6 +40,10 @@ const slice = createSlice({
       state[id] = payload;
     },
 
+    loadBoards: (state, action: PayloadAction<Boards>) => {
+      return action.payload;
+    },
+
     resetBoards: () => {
       return initialState;
     },
