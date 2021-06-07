@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import { renderWithStore } from '../../utils/test';
 import Boards from './Boards';
 
@@ -12,6 +12,12 @@ it('renders heading', () => {
   );
 });
 
-it('renders create board button', () => {
+it('renders "Create board" button', () => {
   expect(screen.getByLabelText('Create board')).toBeInTheDocument();
+});
+
+it('creates board', async () => {
+  fireEvent.click(screen.getByLabelText('Create board'));
+  const boards = await screen.findAllByText('Open board');
+  expect(boards).toHaveLength(1);
 });
