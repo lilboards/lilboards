@@ -1,22 +1,28 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithStore } from '../../utils/test';
+import { boardsRef } from '../../firebase';
 import Boards from './Boards';
 
-beforeEach(() => {
-  renderWithStore(<Boards />);
-});
+jest.mock('../../firebase', () => ({
+  boardsRef: {
+    once: jest.fn(),
+  },
+}));
 
 it('renders heading', () => {
+  renderWithStore(<Boards />);
   expect(screen.getByRole('heading', { level: 1 })).toBe(
     screen.getByText('Boards')
   );
 });
 
 it('renders "Create board" button', () => {
+  renderWithStore(<Boards />);
   expect(screen.getByLabelText('Create board')).toBeInTheDocument();
 });
 
 it('creates board', async () => {
+  renderWithStore(<Boards />);
   fireEvent.click(screen.getByLabelText('Create board'));
   const boards = await screen.findAllByLabelText('Board Name');
   expect(boards).toHaveLength(1);
@@ -26,9 +32,39 @@ it('creates board', async () => {
 });
 
 it('edits board', async () => {
+  renderWithStore(<Boards />);
   fireEvent.click(screen.getByLabelText('Create board'));
   const value = 'My Board Name';
   fireEvent.change(screen.getByLabelText('Board Name'), { target: { value } });
   const inputs = await screen.findAllByDisplayValue(value);
   expect(inputs).toHaveLength(1);
+});
+
+describe('mount', () => {
+  beforeAll(() => {
+    const dataSnapshot = {
+      val: () => ({
+        board1: {
+          id: 'board1',
+          name: 'Board 1',
+        },
+        board2: {
+          id: 'board2',
+          name: 'Board 2',
+        },
+      }),
+    };
+
+    (boardsRef.once as jest.Mock).mockImplementationOnce(
+      (eventType, successCallback) =>
+        eventType === 'value' && successCallback(dataSnapshot)
+    );
+
+    renderWithStore(<Boards />);
+  });
+
+  it('loads boards', async () => {
+    const boards = await screen.findAllByLabelText('Board Name');
+    expect(boards).toHaveLength(2);
+  });
 });

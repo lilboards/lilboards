@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import AddIcon from '@material-ui/icons/Add';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
@@ -14,12 +15,19 @@ import type { RouteComponentProps } from '@reach/router';
 
 import Layout from '../Layout';
 
+import { boardsRef } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import actions from '../../actions';
 
 export default function Boards(props: RouteComponentProps) {
   const boards = useSelector((state) => Object.values(state.boards));
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    boardsRef.once('value', (snapshot) => {
+      dispatch(actions.loadBoards(snapshot.val()));
+    });
+  }, [dispatch]);
 
   function addBoard() {
     dispatch(actions.addBoard());
