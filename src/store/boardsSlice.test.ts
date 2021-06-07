@@ -5,7 +5,8 @@ describe('addBoard', () => {
     const state = initialState;
     const newState = reducer(state, actions.addBoard());
     const board = Object.values(newState)[0];
-    expect(board).toMatchObject({
+    expect(board).toEqual({
+      focus: true,
       id: expect.any(String),
       name: '',
     });
@@ -18,6 +19,7 @@ describe('editBoard', () => {
     const id = 'board_id';
     const state = {
       [id]: {
+        focus: true,
         id,
         name: 'Board Name',
       },

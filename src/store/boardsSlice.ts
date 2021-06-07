@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { boardsRef } from '../firebase';
 
 type Board = {
+  focus?: boolean;
   id: string;
   name: string;
 };
@@ -27,11 +28,13 @@ const slice = createSlice({
       const boardRef = boardsRef.push();
       board.id = boardRef.key as string;
       boardRef.set(board);
+      board.focus = true;
       state[board.id] = board;
     },
 
     editBoard: (state, action: PayloadAction<Board>) => {
       const { payload } = action;
+      delete payload.focus;
       const { id, ...restPayload } = payload;
       boardsRef.child(id).update(restPayload);
       state[id] = payload;
