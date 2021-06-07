@@ -18,6 +18,15 @@ it('renders "Create board" button', () => {
 
 it('creates board', async () => {
   fireEvent.click(screen.getByLabelText('Create board'));
-  const boards = await screen.findAllByText('Open board');
+  const boards = await screen.findAllByLabelText('Board Name');
   expect(boards).toHaveLength(1);
+  expect(screen.getByPlaceholderText('Untitled Board')).toBe(boards[0]);
+});
+
+it('edits board', async () => {
+  fireEvent.click(screen.getByLabelText('Create board'));
+  const value = 'My Board Name';
+  fireEvent.change(screen.getByLabelText('Board Name'), { target: { value } });
+  const inputs = await screen.findAllByDisplayValue(value);
+  expect(inputs).toHaveLength(1);
 });
