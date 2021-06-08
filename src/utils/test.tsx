@@ -37,7 +37,12 @@ export const updateStore = {
   },
 
   withUser() {
-    store.dispatch(actions.setUser('user_id'));
+    store.dispatch(
+      actions.setUser({
+        email: 'user@example.com',
+        id: 'user_id',
+      })
+    );
   },
 };
 
