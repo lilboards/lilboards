@@ -6,4 +6,6 @@ const actions = {
   ...userActions,
 };
 
+export const resetActions = [actions.resetBoards, actions.resetUser];
+
 export default actions;
