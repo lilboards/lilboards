@@ -5,8 +5,10 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import CloseIcon from '@material-ui/icons/Close';
 import Fab from '@material-ui/core/Fab';
 import Grid from '@material-ui/core/Grid';
+import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
@@ -48,6 +50,10 @@ export default function Boards(props: RouteComponentProps) {
     );
   }
 
+  function deleteBoard(id: string) {
+    dispatch(actions.deleteBoard(id));
+  }
+
   return (
     <Layout>
       <Typography component="h1" gutterBottom variant="h4">
@@ -63,7 +69,16 @@ export default function Boards(props: RouteComponentProps) {
       <Grid container spacing={2}>
         {boards.reverse().map((board) => (
           <Grid item key={board.id} xs={12} sm={6} md={3}>
-            <Box component={Card} height="100%">
+            <Box component={Card} height="100%" position="relative">
+              <Box position="absolute" right={0} top={0}>
+                <IconButton
+                  aria-label="Delete board"
+                  onClick={() => deleteBoard(board.id)}
+                >
+                  <CloseIcon />
+                </IconButton>
+              </Box>
+
               <CardContent>
                 <TextField
                   autoFocus={board.focus}

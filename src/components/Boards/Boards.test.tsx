@@ -1,5 +1,5 @@
 import { fireEvent, screen } from '@testing-library/react';
-import { renderWithStore } from '../../utils/test';
+import { renderWithStore, updateStore } from '../../utils/test';
 import { boardsRef } from '../../firebase';
 import Boards from './Boards';
 
@@ -38,6 +38,13 @@ it('edits board', async () => {
   fireEvent.change(screen.getByLabelText('Board Name'), { target: { value } });
   const inputs = await screen.findAllByDisplayValue(value);
   expect(inputs).toHaveLength(1);
+});
+
+it('deletes board', () => {
+  updateStore.withBoard();
+  renderWithStore(<Boards />);
+  fireEvent.click(screen.getByLabelText('Delete board'));
+  expect(screen.queryByLabelText('Board Name')).not.toBeInTheDocument();
 });
 
 describe('mount', () => {
