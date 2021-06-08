@@ -38,13 +38,14 @@ describe('editBoard', () => {
 
 describe('deleteBoard', () => {
   it('deletes board', () => {
-    const id = 'board_id';
+    const boardId = 'board_id';
     const state = {
-      [id]: {
+      [boardId]: {
         name: 'Board Name',
       },
     };
-    expect(reducer(state, actions.deleteBoard(id))).toEqual({});
+    const payload = { boardId, userId: 'user_id' };
+    expect(reducer(state, actions.deleteBoard(payload))).toEqual({});
   });
 });
 

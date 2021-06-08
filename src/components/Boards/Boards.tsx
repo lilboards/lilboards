@@ -56,8 +56,13 @@ export default function Boards(props: RouteComponentProps) {
     );
   }
 
-  function deleteBoard(id: string) {
-    dispatch(actions.deleteBoard(id));
+  function deleteBoard(boardId: string) {
+    dispatch(
+      actions.deleteBoard({
+        boardId,
+        userId,
+      })
+    );
   }
 
   return (

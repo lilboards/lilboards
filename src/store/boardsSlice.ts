@@ -45,10 +45,14 @@ const slice = createSlice({
       state[id] = restPayload;
     },
 
-    deleteBoard: (state, action: PayloadAction<string>) => {
-      const id = action.payload;
-      boardsRef.child(id).remove();
-      delete state[id];
+    deleteBoard: (
+      state,
+      action: PayloadAction<{ boardId: string; userId: string }>
+    ) => {
+      const { boardId, userId } = action.payload;
+      boardsRef.child(boardId).remove();
+      usersRef.child(userId).child('boards').child(boardId).remove();
+      delete state[boardId];
     },
 
     loadBoards: (state, action: PayloadAction<Boards | null>) => {
