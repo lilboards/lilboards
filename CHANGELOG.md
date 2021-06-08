@@ -1,5 +1,51 @@
 # Changelog
 
+## [1.6.0](https://www.github.com/lilboards/lilboards/compare/v1.5.0...v1.6.0) (2021-06-08)
+
+
+### Features
+
+* **actions:** consolidate boards actions ([2200550](https://www.github.com/lilboards/lilboards/commit/2200550de8ded43374d03df6144f38c34694de56))
+* **component:** allow board name to be edited ([6a841e5](https://www.github.com/lilboards/lilboards/commit/6a841e53599b682f07f615569d08d519dd00c048))
+* **components:** add and render boards ([b5bdd49](https://www.github.com/lilboards/lilboards/commit/b5bdd49030ebcfe21b612efd0945fff593e6ce3e))
+* **components:** add Board ([ffcebdc](https://www.github.com/lilboards/lilboards/commit/ffcebdca1a06946ebfb9f2d4ca11c8aeeffc6d2a))
+* **components:** add Board to Routes ([37fde90](https://www.github.com/lilboards/lilboards/commit/37fde9049aa53cf1d2b535cc5fb21748c3efe176))
+* **components:** add create board button ([5dc2799](https://www.github.com/lilboards/lilboards/commit/5dc2799755844073ed9fdbfa9ce7a2ef1e2098c5))
+* **components:** add link to board in Boards ([f984754](https://www.github.com/lilboards/lilboards/commit/f9847542ae1cb3362eb9bebba747324f42644fdf))
+* **components:** allow board to be deleted ([8fbebf5](https://www.github.com/lilboards/lilboards/commit/8fbebf5a6a4861b70472857722cb10bc6be718d0))
+* **components:** autofocus new board input ([3d2cb8a](https://www.github.com/lilboards/lilboards/commit/3d2cb8a1b8ae93564dfa0c746bfd263098f2d27c))
+* **components:** load boards on mount ([328ae18](https://www.github.com/lilboards/lilboards/commit/328ae18cdc308293354af72970d7f83f6800fdf5))
+* **components:** stylize copy as heading in Boards ([3b150c3](https://www.github.com/lilboards/lilboards/commit/3b150c37006d930c732c32a1127a0ae949c101f6))
+* **firebase:** export database ref 'boards' ([0f8539e](https://www.github.com/lilboards/lilboards/commit/0f8539e7211d73f92af6a008151e8481ca155cbf))
+* **firebase:** export usersRef from database ([7c66233](https://www.github.com/lilboards/lilboards/commit/7c66233897ee153a5e7543fc9717a199b3ba81e2))
+* load boards owned by the user ([0259176](https://www.github.com/lilboards/lilboards/commit/0259176f16929ab39eeee902dc863d5575c80d16))
+* remove board id from users ref when board is deleted ([c8cf76f](https://www.github.com/lilboards/lilboards/commit/c8cf76f386a01de0d9e158d45321fb8cb344552a))
+* save board id to users ref ([b7e8bf6](https://www.github.com/lilboards/lilboards/commit/b7e8bf62a5989995a43b5da4af86b87cb07357cc))
+* **store:** add `deleteBoard` reducer to boardsSlice ([11e962c](https://www.github.com/lilboards/lilboards/commit/11e962caec147d38e2e15e309e465f3ee45437a8))
+* **store:** add boards slice reducer to store ([f2fc3e1](https://www.github.com/lilboards/lilboards/commit/f2fc3e1a074b7597801306fb3441f77b30819b84))
+* **store:** add boardsSlice ([9d9a3e6](https://www.github.com/lilboards/lilboards/commit/9d9a3e6f5ddcc92157ee711ec6134056900c5362))
+* **store:** add optional board property `focus` ([a1d0d6d](https://www.github.com/lilboards/lilboards/commit/a1d0d6d33b6d58c000994c9aadb93d6ab233bdbd))
+* **store:** add reducer `loadBoards` to boardsSlice ([5851a6f](https://www.github.com/lilboards/lilboards/commit/5851a6f6d189f79b8a19d915bdeab11608c5b529))
+* **store:** remove board from boardsRef in `deleteBoard` ([6855b2a](https://www.github.com/lilboards/lilboards/commit/6855b2a4bd48a04445780bd2d6d9a511c89b538f))
+* **store:** save name when editing board ([ac61a02](https://www.github.com/lilboards/lilboards/commit/ac61a024249aa03512cf651ddb39f7ae5df02177))
+* **store:** save new board to firebase database ([2a6af37](https://www.github.com/lilboards/lilboards/commit/2a6af37768c99ae30d4008139d82a0a744d3ed17))
+* **store:** update reducers in boardSlice ([6bc6325](https://www.github.com/lilboards/lilboards/commit/6bc6325d9cb7c279ca062010e424d4a6f77aa3a3))
+* update Login to save user email to store ([45b19e3](https://www.github.com/lilboards/lilboards/commit/45b19e30c7f1981d66dcea337d57a17d9d2127fe))
+
+
+### Bug Fixes
+
+* **components:** ensure aria-label is unique in Boards ([7eb3b18](https://www.github.com/lilboards/lilboards/commit/7eb3b185d1e6fc37e7437a9de0bf51dd66f978f3))
+* **components:** skip dispatch `loadBoards` if snapshot is null ([1b924fb](https://www.github.com/lilboards/lilboards/commit/1b924fb5535683274575c86f121fd48570ee7c5f))
+* reset store on Logout ([11a3ba6](https://www.github.com/lilboards/lilboards/commit/11a3ba65b2c8b6ea4e55813cf213ece4140e6b2a))
+* **store:** skip `loadBoards` if payload is null ([5d21466](https://www.github.com/lilboards/lilboards/commit/5d21466cf75a12ded101521868247955caa4e413))
+
+
+### Performance Improvements
+
+* remove redundant board id in store ([c74fceb](https://www.github.com/lilboards/lilboards/commit/c74fceb6b9cb1e7a53f99bc6535383e335bce121))
+* **store:** optimize payload update when board is edited ([8e447ab](https://www.github.com/lilboards/lilboards/commit/8e447abe2b1d7f5e6d623062230da024c12f122b))
+
 ## [1.5.0](https://www.github.com/lilboards/lilboards/compare/v1.4.0...v1.5.0) (2021-06-06)
 
 
