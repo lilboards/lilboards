@@ -43,7 +43,7 @@ it('edits board', async () => {
 it('deletes board', () => {
   updateStore.withBoard();
   renderWithStore(<Boards />);
-  fireEvent.click(screen.getByLabelText('Delete board'));
+  fireEvent.click(screen.getByLabelText(/Delete board/));
   expect(screen.queryByLabelText('Board Name')).not.toBeInTheDocument();
 });
 

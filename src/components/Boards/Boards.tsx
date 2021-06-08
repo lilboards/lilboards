@@ -72,7 +72,7 @@ export default function Boards(props: RouteComponentProps) {
             <Box component={Card} height="100%" position="relative">
               <Box position="absolute" right={0} top={0}>
                 <IconButton
-                  aria-label="Delete board"
+                  aria-label={`Delete board "${board.name || board.id}"`}
                   onClick={() => deleteBoard(board.id)}
                 >
                   <CloseIcon />
