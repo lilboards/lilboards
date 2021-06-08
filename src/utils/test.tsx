@@ -26,6 +26,17 @@ export function resetStore() {
 }
 
 export const updateStore = {
+  withBoard() {
+    store.dispatch(
+      actions.loadBoards({
+        board1: {
+          id: 'board1',
+          name: 'Board 1',
+        },
+      })
+    );
+  },
+
   withUser() {
     store.dispatch(actions.setUser('user_id'));
   },
