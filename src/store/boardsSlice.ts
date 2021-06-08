@@ -41,7 +41,9 @@ const slice = createSlice({
     },
 
     deleteBoard: (state, action: PayloadAction<string>) => {
-      delete state[action.payload];
+      const id = action.payload;
+      boardsRef.child(id).remove();
+      delete state[id];
     },
 
     loadBoards: (state, action: PayloadAction<Boards | null>) => {
