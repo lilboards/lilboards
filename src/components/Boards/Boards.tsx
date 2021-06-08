@@ -25,7 +25,11 @@ export default function Boards(props: RouteComponentProps) {
 
   useEffect(() => {
     boardsRef.once('value', (snapshot) => {
-      dispatch(actions.loadBoards(snapshot.val()));
+      const boards = snapshot.val();
+      /* istanbul ignore next */
+      if (boards) {
+        dispatch(actions.loadBoards(boards));
+      }
     });
   }, [dispatch]);
 
@@ -74,7 +78,7 @@ export default function Boards(props: RouteComponentProps) {
               </CardContent>
 
               <CardActions>
-                <Button>Open board</Button>
+                <Button color="primary">Open board</Button>
               </CardActions>
             </Box>
           </Grid>
