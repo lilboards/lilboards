@@ -9,6 +9,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Fab from '@material-ui/core/Fab';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
+import { Link as RouterLink } from '@reach/router';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
@@ -120,7 +121,13 @@ export default function Boards(props: RouteComponentProps) {
               </CardContent>
 
               <CardActions>
-                <Button color="primary">Open board</Button>
+                <Button
+                  color="primary"
+                  component={RouterLink}
+                  to={`/boards/${board.id}`}
+                >
+                  Open board
+                </Button>
               </CardActions>
             </Box>
           </Grid>

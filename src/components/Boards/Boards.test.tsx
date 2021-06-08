@@ -34,6 +34,15 @@ it('renders "Create board" button', () => {
   expect(screen.getByLabelText('Create board')).toBeInTheDocument();
 });
 
+it('renders "Open board" link', () => {
+  updateStore.withBoard();
+  renderWithStore(<Boards />);
+  expect(screen.getByText('Open board').closest('a')).toHaveAttribute(
+    'href',
+    '/boards/board1'
+  );
+});
+
 it('creates board', async () => {
   updateStore.withUser();
   renderWithStore(<Boards />);

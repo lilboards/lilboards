@@ -1,4 +1,5 @@
 import { Router } from '@reach/router';
+import Board from '../Board';
 import Boards from '../Boards';
 import Home from '../Home';
 import Login from '../Login';
@@ -14,6 +15,7 @@ export default function Routes() {
       <Login path="/login" />
       <Logout path="/logout" />
       <ProtectedRoute component={Boards} path="/boards" />
+      <ProtectedRoute component={Board} path="/boards/:boardId" />
     </Router>
   );
 }
