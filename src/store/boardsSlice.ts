@@ -40,6 +40,10 @@ const slice = createSlice({
       state[id] = payload;
     },
 
+    deleteBoard: (state, action: PayloadAction<string>) => {
+      delete state[action.payload];
+    },
+
     loadBoards: (state, action: PayloadAction<Boards | null>) => {
       if (action.payload) {
         return action.payload;

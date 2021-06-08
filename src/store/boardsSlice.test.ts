@@ -34,6 +34,19 @@ describe('editBoard', () => {
   });
 });
 
+describe('deleteBoard', () => {
+  it('deletes board', () => {
+    const id = 'board_id';
+    const state = {
+      [id]: {
+        id,
+        name: 'Board Name',
+      },
+    };
+    expect(reducer(state, actions.deleteBoard(id))).toEqual({});
+  });
+});
+
 describe('loadBoards', () => {
   it('does nothing if payload is null', () => {
     const state = initialState;
