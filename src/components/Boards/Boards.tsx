@@ -29,29 +29,28 @@ export default function Boards(props: RouteComponentProps) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    usersRef
-      .child(userId)
-      .child('boards')
-      .once('value', (snapshot) => {
-        const userBoards = snapshot.val();
-        /* istanbul ignore next */
-        if (!userBoards) {
+    (async () => {
+      const boardsSnapshot = await usersRef
+        .child(userId)
+        .child('boards')
+        .once('value');
+
+      const userBoards = boardsSnapshot.val();
+      if (!userBoards) {
+        return;
+      }
+
+      const boardIds = Object.keys(userBoards);
+      boardIds.forEach(async (boardId) => {
+        const boardSnapshot = await boardsRef.child(boardId).once('value');
+        const board = boardSnapshot.val();
+        if (!board) {
           return;
         }
-
-        const boardIds = Object.keys(userBoards);
-        boardIds.forEach((boardId) => {
-          boardsRef.child(boardId).once('value', (snapshot) => {
-            const board = snapshot.val();
-            /* istanbul ignore next */
-            if (!board) {
-              return;
-            }
-            board.id = boardId;
-            dispatch(actions.loadBoard(board));
-          });
-        });
+        board.id = boardId;
+        dispatch(actions.loadBoard(board));
       });
+    })();
   }, [userId, dispatch]);
 
   function addBoard() {

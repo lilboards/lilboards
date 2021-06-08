@@ -15,8 +15,11 @@ jest.mock('../../firebase', () => ({
 }));
 
 beforeEach(() => {
-  (usersRef.child as jest.Mock).mockReturnThis();
+  const snapshot = { val: () => null };
   (boardsRef.child as jest.Mock).mockReturnThis();
+  (boardsRef.once as jest.Mock).mockResolvedValue(snapshot);
+  (usersRef.child as jest.Mock).mockReturnThis();
+  (usersRef.once as jest.Mock).mockResolvedValue(snapshot);
 });
 
 it('renders heading', () => {
@@ -60,23 +63,14 @@ it('deletes board', () => {
 
 describe('mount', () => {
   beforeAll(() => {
-    (usersRef.once as jest.Mock).mockImplementationOnce(
-      (eventType, successCallback) =>
-        eventType === 'value' &&
-        successCallback({ val: () => ({ board1: true, board2: true }) })
-    );
+    (usersRef.once as jest.Mock).mockResolvedValueOnce({
+      val: () => ({ board1: true, board2: true, board3: false }),
+    });
 
     (boardsRef.once as jest.Mock)
-      .mockImplementationOnce(
-        (eventType, successCallback) =>
-          eventType === 'value' &&
-          successCallback({ val: () => ({ name: 'Board 1' }) })
-      )
-      .mockImplementationOnce(
-        (eventType, successCallback) =>
-          eventType === 'value' &&
-          successCallback({ val: () => ({ name: 'Board 2' }) })
-      );
+      .mockResolvedValueOnce({ val: () => ({ name: 'Board 1' }) })
+      .mockResolvedValueOnce({ val: () => ({ name: 'Board 2' }) })
+      .mockResolvedValueOnce({ val: () => null });
 
     updateStore.withUser();
     renderWithStore(<Boards />);
