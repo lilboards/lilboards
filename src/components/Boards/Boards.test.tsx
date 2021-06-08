@@ -22,18 +22,18 @@ it('renders "Create board" button', () => {
 });
 
 it('creates board', async () => {
+  updateStore.withUser();
   renderWithStore(<Boards />);
   fireEvent.click(screen.getByLabelText('Create board'));
   const boards = await screen.findAllByLabelText('Board Name');
   expect(boards).toHaveLength(1);
-  const input = boards[0];
-  expect(screen.getByPlaceholderText('Untitled Board')).toBe(input);
-  expect(input).toHaveFocus();
+  expect(screen.getByPlaceholderText('Untitled Board')).toBe(boards[0]);
+  expect(boards[0]).toHaveFocus();
 });
 
 it('edits board', async () => {
+  updateStore.withBoard();
   renderWithStore(<Boards />);
-  fireEvent.click(screen.getByLabelText('Create board'));
   const value = 'My Board Name';
   fireEvent.change(screen.getByLabelText('Board Name'), { target: { value } });
   const inputs = await screen.findAllByDisplayValue(value);
@@ -49,6 +49,7 @@ it('deletes board', () => {
 
 describe('mount', () => {
   beforeAll(() => {
+    updateStore.withUser();
     const dataSnapshot = {
       val: () => ({
         board1: {
@@ -61,12 +62,10 @@ describe('mount', () => {
         },
       }),
     };
-
     (boardsRef.once as jest.Mock).mockImplementationOnce(
       (eventType, successCallback) =>
         eventType === 'value' && successCallback(dataSnapshot)
     );
-
     renderWithStore(<Boards />);
   });
 

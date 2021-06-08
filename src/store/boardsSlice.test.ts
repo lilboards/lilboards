@@ -3,7 +3,8 @@ import { actions, initialState, reducer } from './boardsSlice';
 describe('addBoard', () => {
   it('adds board', () => {
     const state = initialState;
-    const newState = reducer(state, actions.addBoard());
+    const userId = 'user_id';
+    const newState = reducer(state, actions.addBoard(userId));
     const board = Object.values(newState)[0];
     expect(board).toEqual({
       focus: true,

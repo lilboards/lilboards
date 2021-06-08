@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { boardsRef } from '../firebase';
+import { boardsRef, usersRef } from '../firebase';
 
 type Board = {
   focus?: boolean;
@@ -19,14 +19,22 @@ const slice = createSlice({
   initialState,
 
   reducers: {
-    addBoard: (state) => {
+    addBoard: (state, action: PayloadAction<string>) => {
       const board: Board = {
         name: '',
       };
       const boardRef = boardsRef.push();
       boardRef.set(board);
+
+      const boardId = boardRef.key as string;
+      const userId = action.payload;
+      usersRef
+        .child(userId)
+        .child('boards')
+        .update({ [boardId]: true });
+
       board.focus = true;
-      state[boardRef.key as string] = board;
+      state[boardId] = board;
     },
 
     editBoard: (state, action: PayloadAction<Board & { id: string }>) => {

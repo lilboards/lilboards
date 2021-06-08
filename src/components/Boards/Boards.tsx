@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from '../../hooks';
 import actions from '../../actions';
 
 export default function Boards(props: RouteComponentProps) {
+  const userId = useSelector((state) => state.user.id);
   const boards = useSelector((state) =>
     Object.entries(state.boards).map(([id, board]) => ({
       ...board,
@@ -41,7 +42,7 @@ export default function Boards(props: RouteComponentProps) {
   }, [dispatch]);
 
   function addBoard() {
-    dispatch(actions.addBoard());
+    dispatch(actions.addBoard(userId));
   }
 
   function editBoard(
