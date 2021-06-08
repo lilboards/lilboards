@@ -49,26 +49,26 @@ describe('deleteBoard', () => {
   });
 });
 
-describe('loadBoards', () => {
+describe('loadBoard', () => {
   it('does nothing if payload is null', () => {
     const state = initialState;
-    const boards = null;
-    expect(reducer(state, actions.loadBoards(boards))).toBe(state);
+    expect(reducer(state, actions.loadBoard(null))).toBe(state);
   });
 
-  it('overrides boards', () => {
+  it('adds board', () => {
     const state = {
       board1: {
         name: 'Board 1',
       },
     };
-    const boards = {
-      ...state,
-      board2: {
-        name: 'Board 2',
-      },
+    const board = {
+      id: 'board2',
+      name: 'Board 2',
     };
-    expect(reducer(state, actions.loadBoards(boards))).toBe(boards);
+    expect(reducer(state, actions.loadBoard(board))).toEqual({
+      ...state,
+      [board.id]: { name: board.name },
+    });
   });
 });
 

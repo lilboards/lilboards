@@ -17,29 +17,42 @@ import type { RouteComponentProps } from '@reach/router';
 
 import Layout from '../Layout';
 
-import { boardsRef } from '../../firebase';
+import { boardsRef, usersRef } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import actions from '../../actions';
 
 export default function Boards(props: RouteComponentProps) {
   const userId = useSelector((state) => state.user.id);
   const boards = useSelector((state) =>
-    Object.entries(state.boards).map(([id, board]) => ({
-      ...board,
-      id,
-    }))
+    Object.entries(state.boards).map(([id, board]) => ({ ...board, id }))
   );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    boardsRef.once('value', (snapshot) => {
-      const boards = snapshot.val();
-      /* istanbul ignore next */
-      if (boards) {
-        dispatch(actions.loadBoards(boards));
-      }
-    });
-  }, [dispatch]);
+    usersRef
+      .child(userId)
+      .child('boards')
+      .once('value', (snapshot) => {
+        const userBoards = snapshot.val();
+        /* istanbul ignore next */
+        if (!userBoards) {
+          return;
+        }
+
+        const boardIds = Object.keys(userBoards);
+        boardIds.forEach((boardId) => {
+          boardsRef.child(boardId).once('value', (snapshot) => {
+            const board = snapshot.val();
+            /* istanbul ignore next */
+            if (!board) {
+              return;
+            }
+            board.id = boardId;
+            dispatch(actions.loadBoard(board));
+          });
+        });
+      });
+  }, [userId, dispatch]);
 
   function addBoard() {
     dispatch(actions.addBoard(userId));

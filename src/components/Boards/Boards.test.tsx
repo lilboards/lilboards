@@ -1,13 +1,23 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithStore, updateStore } from '../../utils/test';
-import { boardsRef } from '../../firebase';
+import { boardsRef, usersRef } from '../../firebase';
 import Boards from './Boards';
 
 jest.mock('../../firebase', () => ({
   boardsRef: {
+    child: jest.fn(),
+    once: jest.fn(),
+  },
+  usersRef: {
+    child: jest.fn(),
     once: jest.fn(),
   },
 }));
+
+beforeEach(() => {
+  (usersRef.child as jest.Mock).mockReturnThis();
+  (boardsRef.child as jest.Mock).mockReturnThis();
+});
 
 it('renders heading', () => {
   renderWithStore(<Boards />);
@@ -50,23 +60,25 @@ it('deletes board', () => {
 
 describe('mount', () => {
   beforeAll(() => {
-    updateStore.withUser();
-    const dataSnapshot = {
-      val: () => ({
-        board1: {
-          id: 'board1',
-          name: 'Board 1',
-        },
-        board2: {
-          id: 'board2',
-          name: 'Board 2',
-        },
-      }),
-    };
-    (boardsRef.once as jest.Mock).mockImplementationOnce(
+    (usersRef.once as jest.Mock).mockImplementationOnce(
       (eventType, successCallback) =>
-        eventType === 'value' && successCallback(dataSnapshot)
+        eventType === 'value' &&
+        successCallback({ val: () => ({ board1: true, board2: true }) })
     );
+
+    (boardsRef.once as jest.Mock)
+      .mockImplementationOnce(
+        (eventType, successCallback) =>
+          eventType === 'value' &&
+          successCallback({ val: () => ({ name: 'Board 1' }) })
+      )
+      .mockImplementationOnce(
+        (eventType, successCallback) =>
+          eventType === 'value' &&
+          successCallback({ val: () => ({ name: 'Board 2' }) })
+      );
+
+    updateStore.withUser();
     renderWithStore(<Boards />);
   });
 

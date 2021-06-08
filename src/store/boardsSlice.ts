@@ -55,9 +55,14 @@ const slice = createSlice({
       delete state[boardId];
     },
 
-    loadBoards: (state, action: PayloadAction<Boards | null>) => {
-      if (action.payload) {
-        return action.payload;
+    loadBoard: (
+      state,
+      action: PayloadAction<(Board & { id: string }) | null>
+    ) => {
+      const board = action.payload;
+      if (board) {
+        const { id, ...restBoard } = board;
+        state[id] = restBoard;
       }
     },
 

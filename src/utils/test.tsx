@@ -27,10 +27,9 @@ export function resetStore() {
 export const updateStore = {
   withBoard() {
     store.dispatch(
-      actions.loadBoards({
-        board1: {
-          name: 'Board 1',
-        },
+      actions.loadBoard({
+        id: 'board1',
+        name: 'Board 1',
       })
     );
   },
