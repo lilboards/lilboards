@@ -12,4 +12,7 @@ if (isDevelopment && isLocalhost) {
   firebaseDatabase.useEmulator(databaseUrl.hostname, Number(databaseUrl.port));
 }
 
+export const boardsRef = firebaseDatabase.ref('boards');
+export const usersRef = firebaseDatabase.ref('users');
+
 export default firebaseDatabase;

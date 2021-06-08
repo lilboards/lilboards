@@ -4,14 +4,14 @@ import type { RouteComponentProps } from '@reach/router';
 
 import { firebaseAuth } from '../../firebase';
 import { useDispatch } from '../../hooks';
-import actions from '../../actions';
+import { resetActions } from '../../actions';
 
 export default function Logout(props: RouteComponentProps) {
   const dispatch = useDispatch();
 
   useEffect(() => {
     firebaseAuth.signOut();
-    dispatch(actions.resetUser());
+    resetActions.forEach((resetAction) => dispatch(resetAction()));
   }, [dispatch]);
 
   return <Redirect to="/login" noThrow />;

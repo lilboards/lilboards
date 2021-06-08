@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import type { ReactNode } from 'react';
 
 import store from '../store';
-import actions from '../actions';
+import actions, { resetActions } from '../actions';
 
 type Props = {
   children?: ReactNode;
@@ -21,12 +21,26 @@ export function renderWithStore(ui: JSX.Element) {
 }
 
 export function resetStore() {
-  store.dispatch(actions.resetUser());
+  resetActions.forEach((resetAction) => store.dispatch(resetAction()));
 }
 
 export const updateStore = {
+  withBoard() {
+    store.dispatch(
+      actions.loadBoard({
+        id: 'board1',
+        name: 'Board 1',
+      })
+    );
+  },
+
   withUser() {
-    store.dispatch(actions.setUser('user_id'));
+    store.dispatch(
+      actions.setUser({
+        email: 'user@example.com',
+        id: 'user_id',
+      })
+    );
   },
 };
 

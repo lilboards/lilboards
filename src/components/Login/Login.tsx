@@ -13,19 +13,24 @@ import uiConfig from './uiConfig';
 import Layout from '../Layout';
 
 export default function Login(props: RouteComponentProps) {
-  const userId = useSelector((state) => state.user.id);
+  const email = useSelector((state) => state.user.email);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const unregisterAuthObserver = firebaseAuth.onAuthStateChanged((user) => {
       if (user) {
-        dispatch(actions.setUser(user.uid));
+        dispatch(
+          actions.setUser({
+            email: user.email,
+            id: user.uid,
+          })
+        );
       }
     });
     return unregisterAuthObserver;
   }, [dispatch]);
 
-  if (userId) {
+  if (email) {
     return <Redirect to="/boards" noThrow />;
   }
 

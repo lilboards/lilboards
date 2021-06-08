@@ -1,11 +1,14 @@
 import { actions, initialState, reducer } from './userSlice';
 
+const email = 'user@example.com';
+const id = 'user_id';
+
 describe('setUser', () => {
-  it('sets user id', () => {
+  it('sets user', () => {
     const state = initialState;
-    const id = 'user_id';
-    expect(reducer(state, actions.setUser(id))).toEqual({
+    expect(reducer(state, actions.setUser({ email, id }))).toEqual({
       ...state,
+      email,
       id,
     });
   });
@@ -13,8 +16,11 @@ describe('setUser', () => {
 
 describe('resetUser', () => {
   it('sets initialState', () => {
-    const id = 'user_id';
-    const state = { ...initialState, id };
-    expect(reducer(state, actions.resetUser())).toEqual(initialState);
+    const state = {
+      ...initialState,
+      email,
+      id,
+    };
+    expect(reducer(state, actions.resetUser())).toBe(initialState);
   });
 });
