@@ -30,7 +30,6 @@ export const updateStore = {
     store.dispatch(
       actions.loadBoards({
         board1: {
-          id: 'board1',
           name: 'Board 1',
         },
       })

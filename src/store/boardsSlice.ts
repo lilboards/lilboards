@@ -3,7 +3,6 @@ import { boardsRef } from '../firebase';
 
 type Board = {
   focus?: boolean;
-  id: string;
   name: string;
 };
 
@@ -22,22 +21,20 @@ const slice = createSlice({
   reducers: {
     addBoard: (state) => {
       const board: Board = {
-        id: '',
         name: '',
       };
       const boardRef = boardsRef.push();
-      board.id = boardRef.key as string;
       boardRef.set(board);
       board.focus = true;
-      state[board.id] = board;
+      state[boardRef.key as string] = board;
     },
 
-    editBoard: (state, action: PayloadAction<Board>) => {
+    editBoard: (state, action: PayloadAction<Board & { id: string }>) => {
       const { payload } = action;
       delete payload.focus;
       const { id, ...restPayload } = payload;
       boardsRef.child(id).update(restPayload);
-      state[id] = payload;
+      state[id] = restPayload;
     },
 
     deleteBoard: (state, action: PayloadAction<string>) => {

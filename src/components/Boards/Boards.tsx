@@ -22,7 +22,12 @@ import { useDispatch, useSelector } from '../../hooks';
 import actions from '../../actions';
 
 export default function Boards(props: RouteComponentProps) {
-  const boards = useSelector((state) => Object.values(state.boards));
+  const boards = useSelector((state) =>
+    Object.entries(state.boards).map(([id, board]) => ({
+      ...board,
+      id,
+    }))
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {

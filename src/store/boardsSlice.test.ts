@@ -7,10 +7,10 @@ describe('addBoard', () => {
     const board = Object.values(newState)[0];
     expect(board).toEqual({
       focus: true,
-      id: expect.any(String),
       name: '',
     });
-    expect(newState).toHaveProperty(board.id);
+    const id = Object.keys(newState)[0];
+    expect({ id }).toMatchObject({ id: expect.any(String) });
   });
 });
 
@@ -20,7 +20,6 @@ describe('editBoard', () => {
     const state = {
       [id]: {
         focus: true,
-        id,
         name: 'Board Name',
       },
     };
@@ -29,7 +28,9 @@ describe('editBoard', () => {
       name: 'Board Name Edited',
     };
     expect(reducer(state, actions.editBoard(board))).toEqual({
-      [id]: board,
+      [id]: {
+        name: board.name,
+      },
     });
   });
 });
@@ -39,7 +40,6 @@ describe('deleteBoard', () => {
     const id = 'board_id';
     const state = {
       [id]: {
-        id,
         name: 'Board Name',
       },
     };
@@ -57,14 +57,12 @@ describe('loadBoards', () => {
   it('overrides boards', () => {
     const state = {
       board1: {
-        id: 'board1',
         name: 'Board 1',
       },
     };
     const boards = {
       ...state,
       board2: {
-        id: 'board2',
         name: 'Board 2',
       },
     };
@@ -76,7 +74,6 @@ describe('resetBoards', () => {
   it('sets initialState', () => {
     const state = {
       board_id: {
-        id: 'board_id',
         name: 'Board Name',
       },
     };
