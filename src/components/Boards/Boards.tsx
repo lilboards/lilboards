@@ -41,15 +41,19 @@ export default function Boards(props: RouteComponentProps) {
       }
 
       const boardIds = Object.keys(userBoards);
-      boardIds.forEach(async (boardId) => {
-        const boardSnapshot = await boardsRef.child(boardId).once('value');
-        const board = boardSnapshot.val();
-        if (!board) {
-          return;
-        }
-        board.id = boardId;
-        dispatch(actions.loadBoard(board));
-      });
+      const boards = await Promise.all(
+        boardIds.map(async (boardId) => {
+          const boardSnapshot = await boardsRef.child(boardId).once('value');
+          const board = boardSnapshot.val();
+          if (!board) {
+            return;
+          }
+          board.id = boardId;
+          return board;
+        })
+      );
+
+      boards.forEach((board) => dispatch(actions.loadBoard(board)));
     })();
   }, [userId, dispatch]);
 
