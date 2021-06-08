@@ -35,6 +35,12 @@ describe('editBoard', () => {
 });
 
 describe('loadBoards', () => {
+  it('does nothing if payload is null', () => {
+    const state = initialState;
+    const boards = null;
+    expect(reducer(state, actions.loadBoards(boards))).toBe(state);
+  });
+
   it('overrides boards', () => {
     const state = {
       board1: {
@@ -43,6 +49,7 @@ describe('loadBoards', () => {
       },
     };
     const boards = {
+      ...state,
       board2: {
         id: 'board2',
         name: 'Board 2',
