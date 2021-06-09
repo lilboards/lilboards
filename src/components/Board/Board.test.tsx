@@ -6,35 +6,38 @@ import Board from './Board';
 jest.mock('../../firebase', () => ({
   boardsRef: {
     child: jest.fn(),
-    on: jest.fn(),
+    once: jest.fn(),
     off: jest.fn(),
   },
 }));
 
 beforeEach(() => {
+  const snapshot = { val: () => null };
+  (boardsRef.once as jest.Mock).mockResolvedValue(snapshot);
   (boardsRef.child as jest.Mock).mockReturnThis();
 });
 
-it('render null when boardId is empty', () => {
+it('renders nothing when there is no board id', () => {
   const { baseElement } = renderWithStore(<Board />);
-  expect(baseElement.firstChild).toBeEmptyDOMElement();
+  expect(baseElement.firstElementChild).toBeEmptyDOMElement();
 });
 
-it('render null when there are no boards', () => {
+it('renders nothing when there is no board', async () => {
   const { baseElement } = renderWithStore(<Board boardId="board1" />);
-  expect(baseElement.firstChild).toBeEmptyDOMElement();
+  await screen.findAllByText('');
+  expect(baseElement.firstElementChild).toBeEmptyDOMElement();
 });
 
-it('renders heading', () => {
+it('renders board name as heading', async () => {
   const { id, name } = updateStore.withBoard();
   renderWithStore(<Board boardId={id} />);
-  expect(screen.getByRole('heading', { level: 1 })).toBe(
-    screen.getByText(name)
+  expect(await screen.findByRole('heading', { level: 1 })).toBe(
+    await screen.findByText(name)
   );
 });
 
 describe('mount', () => {
-  beforeAll(() => {
+  beforeEach(async () => {
     const snapshot = {
       val: () => ({
         created: 0,
@@ -42,16 +45,13 @@ describe('mount', () => {
         updated: 0,
       }),
     };
-    (boardsRef.on as jest.Mock).mockImplementationOnce(
-      (eventType, successCallback) =>
-        eventType === 'value' && successCallback(snapshot)
-    );
-    renderWithStore(<Board boardId="board1" />);
+    (boardsRef.once as jest.Mock).mockResolvedValueOnce(snapshot);
   });
 
-  it('loads board', () => {
-    expect(screen.getByRole('heading', { level: 1 })).toBe(
-      screen.getByText('Board Name')
+  it('loads board', async () => {
+    renderWithStore(<Board boardId="board1" />);
+    expect(await screen.findByRole('heading', { level: 1 })).toBe(
+      await screen.findByText('Board Name')
     );
   });
 });
