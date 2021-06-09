@@ -33,10 +33,11 @@ describe('editBoard', () => {
       name: 'Board Name Edited',
     };
     const newState = reducer(state, actions.editBoard(board));
-    expect(newState).toEqual({
+    expect(newState).toMatchObject({
       [id]: {
         ...state[id],
         name: board.name,
+        updated: expect.any(Number),
       },
     });
     expect(newState).not.toHaveProperty('focus');
