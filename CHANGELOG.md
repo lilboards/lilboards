@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.7.1](https://www.github.com/lilboards/lilboards/compare/v1.7.0...v1.7.1) (2021-06-09)
+
+
+### Bug Fixes
+
+* **store:** ignore undefined board id in `loadBoard` ([84c9d66](https://www.github.com/lilboards/lilboards/commit/84c9d6645f4c1f2657019ecefaf53b6ce91c5656))
+
 ## [1.7.0](https://www.github.com/lilboards/lilboards/compare/v1.6.0...v1.7.0) (2021-06-09)
 
 
