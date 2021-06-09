@@ -1,16 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { boardsRef, usersRef } from '../firebase';
 
+import type { Id } from '../types';
+
 type Board = {
+  created: number;
   focus?: boolean;
   name: string;
+  updated: number;
 };
 
 type Boards = {
   [id: string]: Board;
 };
-
-type Id = string;
 
 export const initialState: Boards = {};
 
@@ -22,8 +24,11 @@ const slice = createSlice({
 
   reducers: {
     addBoard: (state, action: PayloadAction<Id>) => {
+      const now = Date.now();
       const board: Board = {
+        created: now,
         name: '',
+        updated: now,
       };
       const boardRef = boardsRef.push();
       boardRef.set(board);
@@ -39,32 +44,36 @@ const slice = createSlice({
       state[boardId] = board;
     },
 
-    editBoard: (state, action: PayloadAction<Board & { id: Id }>) => {
-      const board = action.payload;
-      /* istanbul ignore next */
-      if (board.focus) {
-        delete board.focus;
-      }
-      const { id, ...restBoard } = board;
-      boardsRef.child(id).update(restBoard);
-      state[id] = restBoard;
+    editBoard: (
+      state,
+      action: PayloadAction<Pick<Board, 'name'> & { id: Id }>
+    ) => {
+      const { id, name } = action.payload;
+      const board = {
+        name,
+        updated: Date.now(),
+      };
+      boardsRef.child(id).update(board);
+      state[id] = {
+        ...state[id],
+        ...board,
+      };
     },
 
-    deleteBoard: (
-      state,
-      action: PayloadAction<{ boardId: Id; userId: Id }>
-    ) => {
-      const { boardId, userId } = action.payload;
-      boardsRef.child(boardId).remove();
-      usersRef.child(userId).child('boards').child(boardId).remove();
-      delete state[boardId];
+    deleteBoard: (state, action: PayloadAction<{ id: Id; userId: Id }>) => {
+      const { id, userId } = action.payload;
+      boardsRef.child(id).remove();
+      usersRef.child(userId).child('boards').child(id).remove();
+      delete state[id];
     },
 
     loadBoard: (state, action: PayloadAction<(Board & { id: Id }) | null>) => {
-      const board = action.payload;
-      if (board) {
-        const { id, ...restBoard } = board;
-        state[id] = restBoard;
+      if (action.payload) {
+        const { id, ...board } = action.payload;
+        state[id] = {
+          ...state[id],
+          ...board,
+        };
       }
     },
 
