@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { Redirect } from '@reach/router';
 import Typography from '@material-ui/core/Typography';
 
 import { boardsRef } from '../../firebase';
@@ -14,6 +15,7 @@ type Props = {
 };
 
 export default function Board(props: RouteComponentProps<Props>) {
+  const [isLoaded, setIsLoaded] = useState(false);
   const board = useSelector((state) =>
     props.boardId ? state.boards[props.boardId] : null
   );
@@ -26,31 +28,43 @@ export default function Board(props: RouteComponentProps<Props>) {
 
     // subscribe on mount
     const boardRef = boardsRef.child(props.boardId);
-    boardRef.on('value', (snapshot) => {
-      const board = snapshot.val();
+    (async function subscribe() {
+      const boardSnapshot = await boardRef.once('value');
+      const board = boardSnapshot.val();
       /* istanbul ignore next */
-      if (!board) {
-        return;
+      if (board) {
+        board.id = props.boardId;
+        dispatch(actions.loadBoard(board));
       }
-      board.id = props.boardId;
-      dispatch(actions.loadBoard(board));
-    });
+      setIsLoaded(true);
+    })();
 
     // unsubscribe on unmount
-    return function subscribe() {
+    return function unsubscribe() {
       boardRef.off('value');
+      setIsLoaded(false);
     };
-  }, [props.boardId, dispatch]);
+  }, [props.boardId, setIsLoaded, dispatch]);
 
-  if (!props.boardId || !board) {
+  if (!props.boardId) {
+    return null;
+  }
+
+  if (props.boardId && !board && isLoaded) {
+    return <Redirect to="/404" noThrow />;
+  }
+
+  if (!board) {
     return null;
   }
 
   return (
     <Layout>
-      <Typography component="h1" gutterBottom variant="h4">
-        {board.name}
-      </Typography>
+      {board.name && (
+        <Typography component="h1" gutterBottom variant="h4">
+          {board.name}
+        </Typography>
+      )}
     </Layout>
   );
 }
