@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://www.github.com/lilboards/lilboards/compare/v1.7.1...v1.8.0) (2021-06-09)
+
+
+### Features
+
+* **components:** replace board placeholder with name ([da4aac0](https://www.github.com/lilboards/lilboards/commit/da4aac0f6e59b5ca210c483f92a4ccdaa82bd504))
+
 ### [1.7.1](https://www.github.com/lilboards/lilboards/compare/v1.7.0...v1.7.1) (2021-06-09)
 
 
