@@ -1,5 +1,18 @@
 # Changelog
 
+### [1.8.1](https://www.github.com/lilboards/lilboards/compare/v1.8.0...v1.8.1) (2021-06-09)
+
+
+### Bug Fixes
+
+* **components:** do not make Board a ProtectedRoute ([6485135](https://www.github.com/lilboards/lilboards/commit/6485135db96e124a80c5e9c7a209ce9f76fc155b))
+* **components:** redirect not found board to 404 page ([5734fa4](https://www.github.com/lilboards/lilboards/commit/5734fa4b5c3f426ce5d12913ff9ed2c07abbeb1b))
+
+
+### Performance Improvements
+
+* **components:** skip effect hook when board exists ([f10fc82](https://www.github.com/lilboards/lilboards/commit/f10fc827f68bdb85c29fd2382e2767620a6b1508))
+
 ## [1.8.0](https://www.github.com/lilboards/lilboards/compare/v1.7.1...v1.8.0) (2021-06-09)
 
 
