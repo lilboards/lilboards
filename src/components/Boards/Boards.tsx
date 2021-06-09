@@ -15,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 
 import type { ChangeEvent } from 'react';
 import type { RouteComponentProps } from '@reach/router';
+import type { Id } from '../../types';
 
 import Layout from '../Layout';
 
@@ -73,7 +74,7 @@ export default function Boards(props: RouteComponentProps) {
     );
   }
 
-  function deleteBoard(boardId: string) {
+  function deleteBoard(boardId: Id) {
     dispatch(
       actions.deleteBoard({
         boardId,

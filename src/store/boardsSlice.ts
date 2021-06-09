@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { boardsRef, usersRef } from '../firebase';
 
+import type { Id } from '../types';
+
 type Board = {
   focus?: boolean;
   name: string;
@@ -9,8 +11,6 @@ type Board = {
 type Boards = {
   [id: string]: Board;
 };
-
-type Id = string;
 
 export const initialState: Boards = {};
 
