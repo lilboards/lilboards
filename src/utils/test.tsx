@@ -28,8 +28,10 @@ export const updateStore = {
   withBoard() {
     store.dispatch(
       actions.loadBoard({
+        created: 0,
         id: 'board1',
         name: 'Board 1',
+        updated: 0,
       })
     );
   },

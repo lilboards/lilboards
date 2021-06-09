@@ -74,10 +74,10 @@ export default function Boards(props: RouteComponentProps) {
     );
   }
 
-  function deleteBoard(boardId: Id) {
+  function deleteBoard(id: Id) {
     dispatch(
       actions.deleteBoard({
-        boardId,
+        id,
         userId,
       })
     );
