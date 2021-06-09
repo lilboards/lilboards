@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://www.github.com/lilboards/lilboards/compare/v1.6.0...v1.7.0) (2021-06-09)
+
+
+### Features
+
+* save `created` and `updated` timestamp for board ([3a11513](https://www.github.com/lilboards/lilboards/commit/3a11513efe2704e7fd7d326f0bc57934edc23afb))
+
 ## [1.6.0](https://www.github.com/lilboards/lilboards/compare/v1.5.0...v1.6.0) (2021-06-08)
 
 
