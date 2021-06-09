@@ -29,7 +29,7 @@ export default function Board(props: RouteComponentProps<Props>) {
     // subscribe on mount
     const boardRef = boardsRef.child(props.boardId);
     (async function subscribe() {
-      const boardSnapshot = await boardRef.once('value');
+      const boardSnapshot = await boardRef.get();
       const board = boardSnapshot.val();
       /* istanbul ignore next */
       if (board) {

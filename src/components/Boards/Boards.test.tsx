@@ -6,20 +6,20 @@ import Boards from './Boards';
 jest.mock('../../firebase', () => ({
   boardsRef: {
     child: jest.fn(),
-    once: jest.fn(),
+    get: jest.fn(),
   },
   usersRef: {
     child: jest.fn(),
-    once: jest.fn(),
+    get: jest.fn(),
   },
 }));
 
 beforeEach(() => {
   const snapshot = { val: () => null };
   (boardsRef.child as jest.Mock).mockReturnThis();
-  (boardsRef.once as jest.Mock).mockResolvedValue(snapshot);
+  (boardsRef.get as jest.Mock).mockResolvedValue(snapshot);
   (usersRef.child as jest.Mock).mockReturnThis();
-  (usersRef.once as jest.Mock).mockResolvedValue(snapshot);
+  (usersRef.get as jest.Mock).mockResolvedValue(snapshot);
 });
 
 it('renders heading', () => {
@@ -71,21 +71,20 @@ it('deletes board', () => {
 });
 
 describe('mount', () => {
-  beforeAll(() => {
-    (usersRef.once as jest.Mock).mockResolvedValueOnce({
+  beforeEach(() => {
+    (usersRef.get as jest.Mock).mockResolvedValueOnce({
       val: () => ({ board1: true, board2: true, board3: false }),
     });
 
-    (boardsRef.once as jest.Mock)
+    (boardsRef.get as jest.Mock)
       .mockResolvedValueOnce({ val: () => ({ name: 'Board 1' }) })
       .mockResolvedValueOnce({ val: () => ({ name: 'Board 2' }) })
       .mockResolvedValueOnce({ val: () => null });
-
-    updateStore.withUser();
-    renderWithStore(<Boards />);
   });
 
   it('loads boards', async () => {
+    updateStore.withUser();
+    renderWithStore(<Boards />);
     const boards = await screen.findAllByLabelText('Board Name');
     expect(boards).toHaveLength(2);
   });

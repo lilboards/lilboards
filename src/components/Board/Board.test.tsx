@@ -6,14 +6,14 @@ import Board from './Board';
 jest.mock('../../firebase', () => ({
   boardsRef: {
     child: jest.fn(),
-    once: jest.fn(),
+    get: jest.fn(),
     off: jest.fn(),
   },
 }));
 
 beforeEach(() => {
   const snapshot = { val: () => null };
-  (boardsRef.once as jest.Mock).mockResolvedValue(snapshot);
+  (boardsRef.get as jest.Mock).mockResolvedValue(snapshot);
   (boardsRef.child as jest.Mock).mockReturnThis();
 });
 
@@ -45,7 +45,7 @@ describe('mount', () => {
         updated: 0,
       }),
     };
-    (boardsRef.once as jest.Mock).mockResolvedValueOnce(snapshot);
+    (boardsRef.get as jest.Mock).mockResolvedValueOnce(snapshot);
   });
 
   it('loads board', async () => {

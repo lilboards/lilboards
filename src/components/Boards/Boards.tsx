@@ -32,10 +32,7 @@ export default function Boards(props: RouteComponentProps) {
 
   useEffect(() => {
     (async () => {
-      const boardsSnapshot = await usersRef
-        .child(userId)
-        .child('boards')
-        .once('value');
+      const boardsSnapshot = await usersRef.child(userId).child('boards').get();
 
       const userBoards = boardsSnapshot.val();
       if (!userBoards) {
@@ -45,7 +42,7 @@ export default function Boards(props: RouteComponentProps) {
       const boardIds = Object.keys(userBoards);
       const boards = await Promise.all(
         boardIds.map(async (boardId) => {
-          const boardSnapshot = await boardsRef.child(boardId).once('value');
+          const boardSnapshot = await boardsRef.child(boardId).get();
           const board = boardSnapshot.val();
           if (!board) {
             return;
