@@ -67,13 +67,15 @@ const slice = createSlice({
       delete state[id];
     },
 
-    loadBoard: (state, action: PayloadAction<(Board & { id: Id }) | null>) => {
+    loadBoard: (state, action: PayloadAction<(Board & { id?: Id }) | null>) => {
       if (action.payload) {
         const { id, ...board } = action.payload;
-        state[id] = {
-          ...state[id],
-          ...board,
-        };
+        if (id) {
+          state[id] = {
+            ...state[id],
+            ...board,
+          };
+        }
       }
     },
 
