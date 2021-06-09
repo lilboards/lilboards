@@ -1,12 +1,10 @@
 import { useEffect } from 'react';
-import AddIcon from '@material-ui/icons/Add';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CloseIcon from '@material-ui/icons/Close';
-import Fab from '@material-ui/core/Fab';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import { Link as RouterLink } from '@reach/router';
@@ -17,6 +15,7 @@ import type { ChangeEvent } from 'react';
 import type { RouteComponentProps } from '@reach/router';
 import type { Id } from '../../types';
 
+import AddButton from '../AddButton';
 import Layout from '../Layout';
 
 import { boardsRef, usersRef } from '../../firebase';
@@ -87,9 +86,7 @@ export default function Boards(props: RouteComponentProps) {
       </Typography>
 
       <Box marginBottom={2}>
-        <Fab aria-label="Create board" color="primary" onClick={addBoard}>
-          <AddIcon />
-        </Fab>
+        <AddButton aria-label="Create board" onClick={addBoard} />
       </Box>
 
       <Grid container spacing={2}>
