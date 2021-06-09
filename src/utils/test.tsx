@@ -26,23 +26,23 @@ export function resetStore() {
 
 export const updateStore = {
   withBoard() {
-    store.dispatch(
-      actions.loadBoard({
-        created: 0,
-        id: 'board1',
-        name: 'Board 1',
-        updated: 0,
-      })
-    );
+    const board = {
+      created: 0,
+      id: 'board1',
+      name: 'Board 1',
+      updated: 0,
+    };
+    store.dispatch(actions.loadBoard(board));
+    return board;
   },
 
   withUser() {
-    store.dispatch(
-      actions.setUser({
-        email: 'user@example.com',
-        id: 'user_id',
-      })
-    );
+    const user = {
+      email: 'user@example.com',
+      id: 'user1',
+    };
+    store.dispatch(actions.setUser(user));
+    return user;
   },
 };
 
