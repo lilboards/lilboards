@@ -63,6 +63,18 @@ describe('loadBoard', () => {
     expect(reducer(initialState, actions.loadBoard(null))).toBe(initialState);
   });
 
+  it('does nothing if board id is undefined', () => {
+    const payload = {
+      created: Date.now(),
+      id: undefined,
+      name: 'Board',
+      updated: Date.now(),
+    };
+    expect(reducer(initialState, actions.loadBoard(payload))).toBe(
+      initialState
+    );
+  });
+
   it('loads board', () => {
     const state = {
       board1: {
