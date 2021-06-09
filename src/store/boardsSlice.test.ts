@@ -22,10 +22,10 @@ describe('editBoard', () => {
     const id = 'board_id';
     const state = {
       [id]: {
-        created: Date.now(),
+        created: 0,
         focus: true,
         name: 'Board Name',
-        updated: Date.now(),
+        updated: 0,
       },
     };
     const board = {
@@ -48,9 +48,9 @@ describe('deleteBoard', () => {
     const id = 'board_id';
     const state = {
       [id]: {
-        created: Date.now(),
+        created: 0,
         name: 'Board Name',
-        updated: Date.now(),
+        updated: 0,
       },
     };
     const payload = { id, userId };
@@ -65,10 +65,10 @@ describe('loadBoard', () => {
 
   it('does nothing if board id is undefined', () => {
     const payload = {
-      created: Date.now(),
+      created: 0,
       id: undefined,
       name: 'Board',
-      updated: Date.now(),
+      updated: 0,
     };
     expect(reducer(initialState, actions.loadBoard(payload))).toBe(
       initialState
@@ -78,16 +78,16 @@ describe('loadBoard', () => {
   it('loads board', () => {
     const state = {
       board1: {
-        created: Date.now(),
+        created: 0,
         name: 'Board 1',
-        updated: Date.now(),
+        updated: 0,
       },
     };
     const id = 'board_id';
     const board = {
-      created: Date.now(),
+      created: 0,
       name: 'Board 2',
-      updated: Date.now(),
+      updated: 0,
     };
     expect(reducer(state, actions.loadBoard({ id, ...board }))).toEqual({
       ...state,
@@ -100,9 +100,9 @@ describe('resetBoards', () => {
   it('sets initialState', () => {
     const state = {
       board_id: {
-        created: Date.now(),
+        created: 0,
         name: 'Board Name',
-        updated: Date.now(),
+        updated: 0,
       },
     };
     expect(reducer(state, actions.resetBoards())).toEqual(initialState);

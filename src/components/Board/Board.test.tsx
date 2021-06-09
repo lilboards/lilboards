@@ -37,9 +37,9 @@ describe('mount', () => {
   beforeAll(() => {
     const snapshot = {
       val: () => ({
-        created: Date.now(),
+        created: 0,
         name: 'Board Name',
-        updated: Date.now(),
+        updated: 0,
       }),
     };
     (boardsRef.on as jest.Mock).mockImplementationOnce(
