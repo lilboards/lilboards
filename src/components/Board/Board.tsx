@@ -22,7 +22,7 @@ export default function Board(props: RouteComponentProps<Props>) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!props.boardId) {
+    if (!props.boardId || board) {
       return;
     }
 
@@ -44,7 +44,7 @@ export default function Board(props: RouteComponentProps<Props>) {
       boardRef.off('value');
       setIsLoaded(false);
     };
-  }, [props.boardId, setIsLoaded, dispatch]);
+  }, [props.boardId, setIsLoaded, board, dispatch]);
 
   if (!props.boardId) {
     return null;
