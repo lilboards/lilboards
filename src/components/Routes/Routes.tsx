@@ -15,7 +15,7 @@ export default function Routes() {
       <Login path="/login" />
       <Logout path="/logout" />
       <ProtectedRoute component={Boards} path="/boards" />
-      <ProtectedRoute component={Board} path="/boards/:boardId" />
+      <Board path="/boards/:boardId" />
     </Router>
   );
 }
