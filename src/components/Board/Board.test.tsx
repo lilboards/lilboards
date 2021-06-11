@@ -17,8 +17,9 @@ beforeEach(() => {
   (boardsRef.child as jest.Mock).mockReturnThis();
 });
 
-it('renders nothing when there is no board id', () => {
+it('renders nothing when there is no board id', async () => {
   const { baseElement } = renderWithStore(<Board />);
+  await screen.findAllByText('');
   expect(baseElement.firstElementChild).toBeEmptyDOMElement();
 });
 
@@ -34,6 +35,13 @@ it('renders board name as heading', async () => {
   expect(await screen.findByRole('heading', { level: 1 })).toBe(
     await screen.findByText(name)
   );
+});
+
+it('renders "Add column" button', async () => {
+  const { id } = updateStore.withBoard();
+  renderWithStore(<Board boardId={id} />);
+  expect(await screen.findByLabelText('Add column')).toBeInTheDocument();
+  expect(await screen.findByText('Add column')).toBeInTheDocument();
 });
 
 describe('mount', () => {

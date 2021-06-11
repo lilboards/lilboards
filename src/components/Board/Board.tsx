@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
 import { Redirect } from '@reach/router';
+import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
+
+import AddButton from '../AddButton';
+import Layout from '../Layout';
 
 import { boardsRef } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import actions from '../../actions';
 
 import type { RouteComponentProps } from '@reach/router';
-
-import Layout from '../Layout';
 
 type Props = {
   boardId: string;
@@ -65,6 +67,12 @@ export default function Board(props: RouteComponentProps<Props>) {
           {board.name}
         </Typography>
       )}
+
+      <Box marginBottom={2}>
+        <AddButton aria-label="Add column" size="medium" variant="extended">
+          Add column
+        </AddButton>
+      </Box>
     </Layout>
   );
 }
