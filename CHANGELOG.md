@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.9.0](https://www.github.com/lilboards/lilboards/compare/v1.8.1...v1.9.0) (2021-06-12)
+
+
+### Features
+
+* **actions:** add columnsSlice actions ([c4a9dcd](https://www.github.com/lilboards/lilboards/commit/c4a9dcdaeb078c24be2af59e6651b8b473e6d221))
+* **components:** add column when button is clicked in Board ([30eb881](https://www.github.com/lilboards/lilboards/commit/30eb88120c3161c32b2545a5c5ce2b2def6fb259))
+* **components:** add Columns ([a89d72f](https://www.github.com/lilboards/lilboards/commit/a89d72f6982a01472b71cb0379722cb34fc42d53))
+* **components:** render "Add column" button in Board ([e9d4996](https://www.github.com/lilboards/lilboards/commit/e9d4996a3d4edf48fe42a40bd1d18e32956d568b))
+* **components:** render Columns in Board ([d442af1](https://www.github.com/lilboards/lilboards/commit/d442af1372c5843823d986fd7e2eb4389fd83d3a))
+* **store:** add columnsSlice ([013b9b7](https://www.github.com/lilboards/lilboards/commit/013b9b72b996c0f710d102e2949963c1b7935ad6))
+* **store:** add columnsSlice reducer to store ([270b063](https://www.github.com/lilboards/lilboards/commit/270b0634f1ca4f639da601c9b9b6b51e10633b62))
+* **store:** add reducer `loadColumns` to columnsSlice ([e1c8690](https://www.github.com/lilboards/lilboards/commit/e1c8690a6ceca9d3ec50f4305efbf7342d17fa90))
+
+
+### Bug Fixes
+
+* **components:** remove columns from store state on unmount ([818beb0](https://www.github.com/lilboards/lilboards/commit/818beb0275f61169559a51797b375bae9c0d04fc))
+
 ### [1.8.1](https://www.github.com/lilboards/lilboards/compare/v1.8.0...v1.8.1) (2021-06-09)
 
 
