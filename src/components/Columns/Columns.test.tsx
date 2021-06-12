@@ -60,4 +60,11 @@ describe('mount', () => {
     renderWithStore(<Columns boardId="board1" />);
     expect(await screen.findByText('Column 1')).toBeInTheDocument();
   });
+
+  it('removes columns on unmount', async () => {
+    const { unmount } = renderWithStore(<Columns boardId="board1" />);
+    expect(await screen.findAllByText('Column 1')).toHaveLength(1);
+    unmount();
+    expect(screen.queryAllByText('Column 1')).toHaveLength(0);
+  });
 });

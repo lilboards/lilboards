@@ -36,9 +36,10 @@ export default function Columns(props: Props) {
       }
     });
 
-    // unsubscribe on unmount
+    // unsubscribe and reset on unmount
     return function unsubscribe() {
       columnsRef.off('value');
+      dispatch(actions.resetColumns());
     };
   }, [props.boardId, dispatch]);
 
