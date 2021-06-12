@@ -15,6 +15,20 @@ describe('addColumn', () => {
   });
 });
 
+describe('loadColumns', () => {
+  it('loads columns', () => {
+    const payload = {
+      column1: {
+        created: Date.now(),
+        name: 'Column 1',
+        updated: Date.now(),
+      },
+    };
+    const newState = reducer(initialState, actions.loadColumns(payload));
+    expect(newState).toBe(payload);
+  });
+});
+
 describe('resetColumns', () => {
   it('sets initialState', () => {
     const state = {

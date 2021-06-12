@@ -39,6 +39,10 @@ const slice = createSlice({
       state[columnId] = column;
     },
 
+    loadColumns: (state, action: PayloadAction<Columns>) => {
+      return action.payload;
+    },
+
     resetColumns: () => {
       return initialState;
     },
