@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { render as reactTestingLibraryRender } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import type { ReactNode } from 'react';
@@ -34,6 +35,19 @@ export const updateStore = {
     };
     store.dispatch(actions.loadBoard(board));
     return board;
+  },
+
+  withBoardAndColumns() {
+    const board = this.withBoard();
+    const columns = {
+      column1: {
+        created: 0,
+        name: 'Column 1',
+        updated: 0,
+      },
+    };
+    store.dispatch(actions.loadColumns(columns));
+    return { board, columns };
   },
 
   withUser() {
