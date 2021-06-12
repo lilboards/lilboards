@@ -1,5 +1,5 @@
-import { screen } from '@testing-library/react';
-import { renderWithStore, updateStore } from '../../utils/test';
+import { fireEvent, screen } from '@testing-library/react';
+import { renderWithStore, getStoreState, updateStore } from '../../utils/test';
 import { boardsRef } from '../../firebase';
 import Board from './Board';
 
@@ -11,14 +11,17 @@ jest.mock('../../firebase', () => ({
   },
 }));
 
+jest.mock('../Columns', () => () => <>Columns</>);
+
 beforeEach(() => {
   const snapshot = { val: () => null };
   (boardsRef.get as jest.Mock).mockResolvedValue(snapshot);
   (boardsRef.child as jest.Mock).mockReturnThis();
 });
 
-it('renders nothing when there is no board id', () => {
+it('renders nothing when there is no board id', async () => {
   const { baseElement } = renderWithStore(<Board />);
+  await screen.findAllByText('');
   expect(baseElement.firstElementChild).toBeEmptyDOMElement();
 });
 
@@ -29,11 +32,31 @@ it('renders nothing when there is no board', async () => {
 });
 
 it('renders board name as heading', async () => {
-  const { id, name } = updateStore.withBoard();
-  renderWithStore(<Board boardId={id} />);
+  const board = updateStore.withBoard();
+  renderWithStore(<Board boardId={board.id} />);
   expect(await screen.findByRole('heading', { level: 1 })).toBe(
-    await screen.findByText(name)
+    await screen.findByText(board.name)
   );
+});
+
+it('renders columns', async () => {
+  const { id } = updateStore.withBoard();
+  renderWithStore(<Board boardId={id} />);
+  expect(await screen.findByText('Columns')).toBeInTheDocument();
+});
+
+it('renders "Add column" button', async () => {
+  const { id } = updateStore.withBoard();
+  renderWithStore(<Board boardId={id} />);
+  expect(await screen.findByLabelText('Add column')).toBeInTheDocument();
+  expect(await screen.findByText('Add column')).toBeInTheDocument();
+});
+
+it('adds column', async () => {
+  const { id } = updateStore.withBoard();
+  renderWithStore(<Board boardId={id} />);
+  fireEvent.click(await screen.findByText('Add column'));
+  expect(Object.keys(getStoreState().columns)).toHaveLength(1);
 });
 
 describe('mount', () => {
