@@ -4,6 +4,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 
 import AddButton from '../AddButton';
+import Columns from '../Columns';
 import Layout from '../Layout';
 
 import { boardsRef } from '../../firebase';
@@ -28,7 +29,6 @@ export default function Board(props: RouteComponentProps<Props>) {
       return;
     }
 
-    // subscribe on mount
     const boardRef = boardsRef.child(props.boardId);
     (async function subscribe() {
       const boardSnapshot = await boardRef.get();
@@ -41,11 +41,7 @@ export default function Board(props: RouteComponentProps<Props>) {
       setIsLoaded(true);
     })();
 
-    // unsubscribe on unmount
-    return function unsubscribe() {
-      boardRef.off('value');
-      setIsLoaded(false);
-    };
+    return () => setIsLoaded(false);
   }, [props.boardId, setIsLoaded, board, dispatch]);
 
   if (!props.boardId) {
@@ -75,7 +71,7 @@ export default function Board(props: RouteComponentProps<Props>) {
         </Typography>
       )}
 
-      <Box marginBottom={2}>
+      <Box marginBottom={4}>
         <AddButton
           aria-label="Add column"
           onClick={addColumn}
@@ -85,6 +81,8 @@ export default function Board(props: RouteComponentProps<Props>) {
           Add column
         </AddButton>
       </Box>
+
+      <Columns boardId={props.boardId} />
     </Layout>
   );
 }

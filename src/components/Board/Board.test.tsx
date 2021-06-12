@@ -11,6 +11,8 @@ jest.mock('../../firebase', () => ({
   },
 }));
 
+jest.mock('../Columns', () => () => <>Columns</>);
+
 beforeEach(() => {
   const snapshot = { val: () => null };
   (boardsRef.get as jest.Mock).mockResolvedValue(snapshot);
@@ -30,11 +32,17 @@ it('renders nothing when there is no board', async () => {
 });
 
 it('renders board name as heading', async () => {
-  const { id, name } = updateStore.withBoard();
-  renderWithStore(<Board boardId={id} />);
+  const board = updateStore.withBoard();
+  renderWithStore(<Board boardId={board.id} />);
   expect(await screen.findByRole('heading', { level: 1 })).toBe(
-    await screen.findByText(name)
+    await screen.findByText(board.name)
   );
+});
+
+it('renders columns', async () => {
+  const { id } = updateStore.withBoard();
+  renderWithStore(<Board boardId={id} />);
+  expect(await screen.findByText('Columns')).toBeInTheDocument();
 });
 
 it('renders "Add column" button', async () => {
@@ -44,10 +52,10 @@ it('renders "Add column" button', async () => {
   expect(await screen.findByText('Add column')).toBeInTheDocument();
 });
 
-it('adds column', () => {
+it('adds column', async () => {
   const { id } = updateStore.withBoard();
   renderWithStore(<Board boardId={id} />);
-  fireEvent.click(screen.getByText('Add column'));
+  fireEvent.click(await screen.findByText('Add column'));
   expect(Object.keys(getStoreState().columns)).toHaveLength(1);
 });
 
