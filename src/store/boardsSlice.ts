@@ -16,7 +16,8 @@ type Boards = {
 
 export const initialState: Boards = {};
 
-export const name = 'boards';
+const BOARDS = 'boards';
+export const name = BOARDS;
 
 const slice = createSlice({
   name,
@@ -37,7 +38,7 @@ const slice = createSlice({
       const userId = action.payload;
       usersRef
         .child(userId)
-        .child('boards')
+        .child(BOARDS)
         .update({ [boardId]: true });
 
       board.focus = true;
@@ -63,7 +64,7 @@ const slice = createSlice({
     deleteBoard: (state, action: PayloadAction<{ id: Id; userId: Id }>) => {
       const { id, userId } = action.payload;
       boardsRef.child(id).remove();
-      usersRef.child(userId).child('boards').child(id).remove();
+      usersRef.child(userId).child(BOARDS).child(id).remove();
       delete state[id];
     },
 
