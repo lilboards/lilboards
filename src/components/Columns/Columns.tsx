@@ -1,0 +1,60 @@
+import { useEffect } from 'react';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+
+import { boardsRef } from '../../firebase';
+import { useDispatch, useSelector } from '../../hooks';
+import actions from '../../actions';
+
+type Props = {
+  boardId: string;
+};
+
+export default function Columns(props: Props) {
+  const columns = useSelector((state) =>
+    Object.entries(state.columns).map(([id, column]) => ({
+      ...column,
+      id,
+    }))
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!props.boardId) {
+      return;
+    }
+
+    // subscribe on mount
+    const columnsRef = boardsRef.child(props.boardId).child('columns');
+    columnsRef.on('value', (columnsSnapshot) => {
+      const columns = columnsSnapshot.val();
+      /* istanbul ignore next */
+      if (columns) {
+        setTimeout(() => {
+          dispatch(actions.loadColumns(columns));
+        });
+      }
+    });
+
+    // unsubscribe on unmount
+    return function unsubscribe() {
+      columnsRef.off('value');
+    };
+  }, [props.boardId, dispatch]);
+
+  if (!props.boardId || !columns.length) {
+    return null;
+  }
+
+  return (
+    <Grid container spacing={2} wrap="nowrap">
+      {columns.map((column, index) => (
+        <Grid item key={column.id} xs={12} sm={3}>
+          <Typography color="primary" component="h2" gutterBottom variant="h5">
+            {column.name || `Column ${index + 1}`}
+          </Typography>
+        </Grid>
+      ))}
+    </Grid>
+  );
+}
