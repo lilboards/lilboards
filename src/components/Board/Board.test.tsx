@@ -1,5 +1,5 @@
-import { screen } from '@testing-library/react';
-import { renderWithStore, updateStore } from '../../utils/test';
+import { fireEvent, screen } from '@testing-library/react';
+import { renderWithStore, getStoreState, updateStore } from '../../utils/test';
 import { boardsRef } from '../../firebase';
 import Board from './Board';
 
@@ -42,6 +42,13 @@ it('renders "Add column" button', async () => {
   renderWithStore(<Board boardId={id} />);
   expect(await screen.findByLabelText('Add column')).toBeInTheDocument();
   expect(await screen.findByText('Add column')).toBeInTheDocument();
+});
+
+it('adds column', () => {
+  const { id } = updateStore.withBoard();
+  renderWithStore(<Board boardId={id} />);
+  fireEvent.click(screen.getByText('Add column'));
+  expect(Object.keys(getStoreState().columns)).toHaveLength(1);
 });
 
 describe('mount', () => {

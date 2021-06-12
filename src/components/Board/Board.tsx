@@ -60,6 +60,13 @@ export default function Board(props: RouteComponentProps<Props>) {
     return null;
   }
 
+  function addColumn() {
+    /* istanbul ignore next */
+    if (props.boardId) {
+      dispatch(actions.addColumn(props.boardId));
+    }
+  }
+
   return (
     <Layout>
       {board.name && (
@@ -69,7 +76,12 @@ export default function Board(props: RouteComponentProps<Props>) {
       )}
 
       <Box marginBottom={2}>
-        <AddButton aria-label="Add column" size="medium" variant="extended">
+        <AddButton
+          aria-label="Add column"
+          onClick={addColumn}
+          size="medium"
+          variant="extended"
+        >
           Add column
         </AddButton>
       </Box>
