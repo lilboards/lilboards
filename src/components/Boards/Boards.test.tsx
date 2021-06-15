@@ -1,21 +1,16 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithStore, updateStore } from '../../utils/test';
-import { getBoardVal, usersRef } from '../../firebase';
+import { getBoardVal, getUserBoardsVal } from '../../firebase';
 import Boards from './Boards';
 
 jest.mock('../../firebase', () => ({
   getBoardVal: jest.fn(),
-  usersRef: {
-    child: jest.fn(),
-    get: jest.fn(),
-  },
+  getUserBoardsVal: jest.fn(),
 }));
 
 beforeEach(() => {
-  const snapshot = { val: () => null };
   (getBoardVal as jest.Mock).mockResolvedValueOnce(null);
-  (usersRef.child as jest.Mock).mockReturnThis();
-  (usersRef.get as jest.Mock).mockResolvedValue(snapshot);
+  (getUserBoardsVal as jest.Mock).mockResolvedValueOnce(null);
 });
 
 it('renders heading', () => {
@@ -68,11 +63,14 @@ it('deletes board', () => {
 
 describe('mount', () => {
   beforeEach(() => {
-    (usersRef.get as jest.Mock).mockResolvedValueOnce({
-      val: () => ({ board1: true, board2: true, board3: false }),
+    (getUserBoardsVal as jest.Mock).mockReset().mockResolvedValueOnce({
+      board1: true,
+      board2: true,
+      board3: false,
     });
 
     (getBoardVal as jest.Mock)
+      .mockReset()
       .mockResolvedValueOnce({ name: 'Board 1' })
       .mockResolvedValueOnce({ name: 'Board 2' })
       .mockResolvedValueOnce(null);
