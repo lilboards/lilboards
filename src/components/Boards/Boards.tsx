@@ -21,6 +21,7 @@ import Layout from '../Layout';
 import { boardsRef, usersRef } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import actions from '../../actions';
+import { BOARDS } from '../../constants';
 
 export default function Boards(props: RouteComponentProps) {
   const userId = useSelector((state) => state.user.id);
@@ -31,7 +32,7 @@ export default function Boards(props: RouteComponentProps) {
 
   useEffect(() => {
     (async () => {
-      const boardsSnapshot = await usersRef.child(userId).child('boards').get();
+      const boardsSnapshot = await usersRef.child(userId).child(BOARDS).get();
 
       const userBoards = boardsSnapshot.val();
       if (!userBoards) {

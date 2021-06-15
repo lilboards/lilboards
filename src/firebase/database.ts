@@ -1,6 +1,8 @@
 import 'firebase/database';
+
 import firebaseApp from './app';
 import { isDevelopment, isLocalhost } from '../config';
+import { BOARDS } from '../constants';
 
 const firebaseDatabase = firebaseApp.database();
 
@@ -12,7 +14,7 @@ if (isDevelopment && isLocalhost) {
   firebaseDatabase.useEmulator(databaseUrl.hostname, Number(databaseUrl.port));
 }
 
-export const boardsRef = firebaseDatabase.ref('boards');
+export const boardsRef = firebaseDatabase.ref(BOARDS);
 export const usersRef = firebaseDatabase.ref('users');
 
 export default firebaseDatabase;
