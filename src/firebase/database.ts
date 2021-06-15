@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 import 'firebase/database';
 
-import firebaseApp from './app';
+import { firebaseApp } from './app';
 import { isDevelopment, isLocalhost } from '../config';
 import { BOARDS, COLUMNS } from '../constants';
 
