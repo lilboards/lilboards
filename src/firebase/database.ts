@@ -1,12 +1,14 @@
+/* istanbul ignore file */
 import 'firebase/database';
 
 import firebaseApp from './app';
 import { isDevelopment, isLocalhost } from '../config';
-import { BOARDS } from '../constants';
+import { BOARDS, COLUMNS } from '../constants';
+
+import type { Id } from '../types';
 
 const firebaseDatabase = firebaseApp.database();
 
-/* istanbul ignore next */
 if (isDevelopment && isLocalhost) {
   const databaseUrl = new URL(
     process.env.REACT_APP_FIREBASE_DATABASE_URL || ''
@@ -16,3 +18,6 @@ if (isDevelopment && isLocalhost) {
 
 export const boardsRef = firebaseDatabase.ref(BOARDS);
 export const usersRef = firebaseDatabase.ref('users');
+
+export const getColumnsRef = (boardId: Id) =>
+  boardsRef.child(boardId).child(COLUMNS);
