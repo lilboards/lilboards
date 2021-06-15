@@ -21,5 +21,8 @@ export const usersRef = firebaseDatabase.ref('users');
 
 export const getBoardRef = (boardId: Id) => boardsRef.child(boardId);
 
+export const getBoardVal = async (boardId: Id) =>
+  (await getBoardRef(boardId).get()).val();
+
 export const getColumnsRef = (boardId: Id) =>
   getBoardRef(boardId).child(COLUMNS);
