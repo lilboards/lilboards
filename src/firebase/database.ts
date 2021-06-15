@@ -16,5 +16,3 @@ if (isDevelopment && isLocalhost) {
 
 export const boardsRef = firebaseDatabase.ref(BOARDS);
 export const usersRef = firebaseDatabase.ref('users');
-
-export default firebaseDatabase;
