@@ -7,14 +7,15 @@ import AddButton from '../AddButton';
 import Columns from '../Columns';
 import Layout from '../Layout';
 
-import { getBoardRef } from '../../firebase';
+import { getBoardVal } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import actions from '../../actions';
 
 import type { RouteComponentProps } from '@reach/router';
+import type { Id } from '../../types';
 
 type Props = {
-  boardId: string;
+  boardId: Id;
 };
 
 export default function Board(props: RouteComponentProps<Props>) {
@@ -29,10 +30,8 @@ export default function Board(props: RouteComponentProps<Props>) {
       return;
     }
 
-    const boardRef = getBoardRef(props.boardId);
     (async function subscribe() {
-      const boardSnapshot = await boardRef.get();
-      const board = boardSnapshot.val();
+      const board = await getBoardVal(props.boardId as Id);
       /* istanbul ignore next */
       if (board) {
         board.id = props.boardId;

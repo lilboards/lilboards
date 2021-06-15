@@ -1,19 +1,16 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithStore, getStoreState, updateStore } from '../../utils/test';
-import { getBoardRef } from '../../firebase';
+import { getBoardVal } from '../../firebase';
 import Board from './Board';
 
 jest.mock('../../firebase', () => ({
-  getBoardRef: jest.fn(),
+  getBoardVal: jest.fn(),
 }));
 
 jest.mock('../Columns', () => () => <>Columns</>);
 
 beforeEach(() => {
-  const snapshot = { val: () => null };
-  (getBoardRef as jest.Mock).mockReturnValueOnce({
-    get: jest.fn().mockResolvedValueOnce(snapshot),
-  });
+  (getBoardVal as jest.Mock).mockResolvedValueOnce(null);
 });
 
 it('renders nothing when there is no board id', async () => {
@@ -58,16 +55,10 @@ it('adds column', async () => {
 
 describe('mount', () => {
   beforeEach(async () => {
-    const snapshot = {
-      val: () => ({
-        created: 0,
-        name: 'Board Name',
-        updated: 0,
-      }),
-    };
-
-    (getBoardRef as jest.Mock).mockReset().mockReturnValueOnce({
-      get: jest.fn().mockResolvedValueOnce(snapshot),
+    (getBoardVal as jest.Mock).mockReset().mockResolvedValueOnce({
+      created: 0,
+      name: 'Board Name',
+      updated: 0,
     });
   });
 
