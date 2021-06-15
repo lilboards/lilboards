@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import { boardsRef } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import actions from '../../actions';
+import { COLUMNS } from '../../constants';
 
 type Props = {
   boardId: string;
@@ -25,7 +26,7 @@ export default function Columns(props: Props) {
     }
 
     // subscribe on mount
-    const columnsRef = boardsRef.child(props.boardId).child('columns');
+    const columnsRef = boardsRef.child(props.boardId).child(COLUMNS);
     columnsRef.on('value', (columnsSnapshot) => {
       const columns = columnsSnapshot.val();
       /* istanbul ignore next */

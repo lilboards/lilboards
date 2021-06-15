@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { boardsRef } from '../firebase';
+import { COLUMNS } from '../constants';
 
 import type { Id } from '../types';
 
@@ -15,7 +17,6 @@ type Columns = {
 
 export const initialState: Columns = {};
 
-const COLUMNS = 'columns';
 export const name = COLUMNS;
 
 const slice = createSlice({
