@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.10.0](https://www.github.com/lilboards/lilboards/compare/v1.9.0...v1.10.0) (2021-06-15)
+
+
+### Features
+
+* **firebase:** add getBoardRef in database ([b8150d9](https://www.github.com/lilboards/lilboards/commit/b8150d9127421ddfbb7938f832725e5c152f989d))
+* **firebase:** add getBoardVal to database ([0e5a335](https://www.github.com/lilboards/lilboards/commit/0e5a3353aeeca0ab06e58a924199bd84847321d6))
+* **firebase:** add getColumnsRef in database ([9282609](https://www.github.com/lilboards/lilboards/commit/92826093a4380131455e6515d4768437fdde0e61))
+* **firebase:** add getUserRef and getUserBoardsVal to database ([20b4a7d](https://www.github.com/lilboards/lilboards/commit/20b4a7df918e26591e998ec88d7396e2ccffdba4))
+
 ## [1.9.0](https://www.github.com/lilboards/lilboards/compare/v1.8.1...v1.9.0) (2021-06-12)
 
 
