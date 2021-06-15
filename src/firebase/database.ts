@@ -19,5 +19,7 @@ if (isDevelopment && isLocalhost) {
 export const boardsRef = firebaseDatabase.ref(BOARDS);
 export const usersRef = firebaseDatabase.ref('users');
 
+export const getBoardRef = (boardId: Id) => boardsRef.child(boardId);
+
 export const getColumnsRef = (boardId: Id) =>
-  boardsRef.child(boardId).child(COLUMNS);
+  getBoardRef(boardId).child(COLUMNS);
