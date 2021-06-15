@@ -18,7 +18,7 @@ import type { Id } from '../../types';
 import AddButton from '../AddButton';
 import Layout from '../Layout';
 
-import { boardsRef, usersRef } from '../../firebase';
+import { getBoardVal, usersRef } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import actions from '../../actions';
 import { BOARDS } from '../../constants';
@@ -42,8 +42,7 @@ export default function Boards(props: RouteComponentProps) {
       const boardIds = Object.keys(userBoards);
       const boards = await Promise.all(
         boardIds.map(async (boardId) => {
-          const boardSnapshot = await boardsRef.child(boardId).get();
-          const board = boardSnapshot.val();
+          const board = await getBoardVal(boardId);
           if (!board) {
             return;
           }
