@@ -7,7 +7,7 @@ import AddButton from '../AddButton';
 import Columns from '../Columns';
 import Layout from '../Layout';
 
-import { boardsRef } from '../../firebase';
+import { getBoardRef } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import actions from '../../actions';
 
@@ -29,7 +29,7 @@ export default function Board(props: RouteComponentProps<Props>) {
       return;
     }
 
-    const boardRef = boardsRef.child(props.boardId);
+    const boardRef = getBoardRef(props.boardId);
     (async function subscribe() {
       const boardSnapshot = await boardRef.get();
       const board = boardSnapshot.val();
