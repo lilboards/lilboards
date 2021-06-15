@@ -1,18 +1,17 @@
 import { screen } from '@testing-library/react';
 import { renderWithStore, updateStore } from '../../utils/test';
-import { boardsRef } from '../../firebase';
+import { getColumnsRef } from '../../firebase';
 import Columns from './Columns';
 
 jest.mock('../../firebase', () => ({
-  boardsRef: {
-    child: jest.fn(),
-    off: jest.fn(),
-    on: jest.fn(),
-  },
+  getColumnsRef: jest.fn(),
 }));
 
 beforeEach(() => {
-  (boardsRef.child as jest.Mock).mockReturnThis();
+  (getColumnsRef as jest.Mock).mockImplementationOnce(() => ({
+    off: jest.fn(),
+    on: jest.fn(),
+  }));
 });
 
 it('renders nothing when there is no board id', () => {
@@ -45,10 +44,14 @@ describe('mount', () => {
         },
       }),
     };
-    (boardsRef.on as jest.Mock).mockImplementationOnce(
-      (eventType, successCallback) =>
-        eventType === 'value' && successCallback(snapshot)
-    );
+
+    (getColumnsRef as jest.Mock).mockReset().mockImplementationOnce(() => ({
+      off: jest.fn(),
+      on: jest.fn(
+        (eventType, successCallback) =>
+          eventType === 'value' && successCallback(snapshot)
+      ),
+    }));
   });
 
   it('loads columns', async () => {

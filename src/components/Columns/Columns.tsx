@@ -2,10 +2,9 @@ import { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-import { boardsRef } from '../../firebase';
+import { getColumnsRef } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import actions from '../../actions';
-import { COLUMNS } from '../../constants';
 
 type Props = {
   boardId: string;
@@ -26,7 +25,7 @@ export default function Columns(props: Props) {
     }
 
     // subscribe on mount
-    const columnsRef = boardsRef.child(props.boardId).child(COLUMNS);
+    const columnsRef = getColumnsRef(props.boardId);
     columnsRef.on('value', (columnsSnapshot) => {
       const columns = columnsSnapshot.val();
       /* istanbul ignore next */
