@@ -8,10 +8,10 @@ jest.mock('../../firebase', () => ({
 }));
 
 beforeEach(() => {
-  (getColumnsRef as jest.Mock).mockImplementationOnce(() => ({
+  (getColumnsRef as jest.Mock).mockReturnValueOnce({
     off: jest.fn(),
     on: jest.fn(),
-  }));
+  });
 });
 
 it('renders nothing when there is no board id', () => {
@@ -45,13 +45,13 @@ describe('mount', () => {
       }),
     };
 
-    (getColumnsRef as jest.Mock).mockReset().mockImplementationOnce(() => ({
+    (getColumnsRef as jest.Mock).mockReset().mockReturnValueOnce({
       off: jest.fn(),
       on: jest.fn(
         (eventType, successCallback) =>
           eventType === 'value' && successCallback(snapshot)
       ),
-    }));
+    });
   });
 
   it('loads columns', async () => {

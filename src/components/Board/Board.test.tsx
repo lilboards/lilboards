@@ -65,6 +65,7 @@ describe('mount', () => {
         updated: 0,
       }),
     };
+
     (getBoardRef as jest.Mock).mockReset().mockReturnValueOnce({
       get: jest.fn().mockResolvedValueOnce(snapshot),
     });

@@ -8,7 +8,7 @@ beforeEach(() => {
   div = document.createElement('div');
   getElementByIdSpy = jest
     .spyOn(document, 'getElementById')
-    .mockImplementationOnce(() => div);
+    .mockReturnValueOnce(div);
 });
 
 it('renders without crashing', () => {
