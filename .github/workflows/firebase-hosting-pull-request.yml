@@ -44,6 +44,6 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.DEV_FIREBASE_SERVICE_ACCOUNT_LILBOARDS }}'
           projectId: 'lilboards-dev'
-          expires: 30d
+          expires: 7d
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
