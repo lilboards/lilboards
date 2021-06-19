@@ -1,7 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { boardsRef, usersRef } from '../firebase';
 import { BOARDS } from '../constants';
 
+import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Id } from '../types';
 
 type Board = {
