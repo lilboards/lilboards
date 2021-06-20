@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { boardsRef, usersRef } from '../firebase';
+
+import {
+  boardsRef,
+  getBoardRef,
+  getUserBoardRef,
+  getUserBoardsRef,
+} from '../firebase';
 import { BOARDS } from '../constants';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
@@ -37,10 +43,7 @@ const slice = createSlice({
 
       const boardId = boardRef.key as Id;
       const userId = action.payload;
-      usersRef
-        .child(userId)
-        .child(BOARDS)
-        .update({ [boardId]: true });
+      getUserBoardsRef(userId).update({ [boardId]: true });
 
       board.focus = true;
       state[boardId] = board;
@@ -48,25 +51,28 @@ const slice = createSlice({
 
     editBoard: (
       state,
-      action: PayloadAction<Pick<Board, 'name'> & { id: Id }>
+      action: PayloadAction<Pick<Board, 'name'> & { boardId: Id }>
     ) => {
-      const { id, name } = action.payload;
+      const { boardId, name } = action.payload;
       const board = {
         name,
         updated: Date.now(),
       };
-      boardsRef.child(id).update(board);
-      state[id] = {
-        ...state[id],
+      getBoardRef(boardId).update(board);
+      state[boardId] = {
+        ...state[boardId],
         ...board,
       };
     },
 
-    deleteBoard: (state, action: PayloadAction<{ id: Id; userId: Id }>) => {
-      const { id, userId } = action.payload;
-      boardsRef.child(id).remove();
-      usersRef.child(userId).child(BOARDS).child(id).remove();
-      delete state[id];
+    deleteBoard: (
+      state,
+      action: PayloadAction<{ boardId: Id; userId: Id }>
+    ) => {
+      const { boardId, userId } = action.payload;
+      getBoardRef(boardId).remove();
+      getUserBoardRef(userId, boardId).remove();
+      delete state[boardId];
     },
 
     loadBoard: (state, action: PayloadAction<(Board & { id?: Id }) | null>) => {

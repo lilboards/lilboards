@@ -1,5 +1,6 @@
 import { actions, initialState, reducer } from './boardsSlice';
 
+const boardId = 'board_id';
 const userId = 'user_id';
 
 describe('addBoard', () => {
@@ -19,9 +20,8 @@ describe('addBoard', () => {
 
 describe('editBoard', () => {
   it('edits board', () => {
-    const id = 'board_id';
     const state = {
-      [id]: {
+      [boardId]: {
         created: 0,
         focus: true,
         name: 'Board Name',
@@ -29,13 +29,13 @@ describe('editBoard', () => {
       },
     };
     const board = {
-      id,
+      boardId,
       name: 'Board Name Edited',
     };
     const newState = reducer(state, actions.editBoard(board));
     expect(newState).toMatchObject({
-      [id]: {
-        ...state[id],
+      [boardId]: {
+        ...state[boardId],
         name: board.name,
         updated: expect.any(Number),
       },
@@ -46,15 +46,14 @@ describe('editBoard', () => {
 
 describe('deleteBoard', () => {
   it('deletes board', () => {
-    const id = 'board_id';
     const state = {
-      [id]: {
+      [boardId]: {
         created: 0,
         name: 'Board Name',
         updated: 0,
       },
     };
-    const payload = { id, userId };
+    const payload = { boardId, userId };
     expect(reducer(state, actions.deleteBoard(payload))).toEqual({});
   });
 });

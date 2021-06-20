@@ -60,16 +60,16 @@ export default function Boards(props: RouteComponentProps) {
   ) {
     dispatch(
       actions.editBoard({
-        id: event.target.id,
+        boardId: event.target.id,
         name: event.target.value,
       })
     );
   }
 
-  function deleteBoard(id: Id) {
+  function deleteBoard(boardId: Id) {
     dispatch(
       actions.deleteBoard({
-        id,
+        boardId,
         userId,
       })
     );
