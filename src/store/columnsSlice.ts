@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { boardsRef } from '../firebase';
+import { getColumnsRef } from '../firebase';
 import { COLUMNS } from '../constants';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
@@ -34,7 +34,7 @@ const slice = createSlice({
       };
 
       const boardId = action.payload;
-      const columnRef = boardsRef.child(boardId).child(COLUMNS).push();
+      const columnRef = getColumnsRef(boardId).push();
       const columnId = columnRef.key as Id;
       columnRef.set(column);
 
