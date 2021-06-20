@@ -1,8 +1,10 @@
 import { actions, initialState, reducer } from './columnsSlice';
 
+const boardId = 'board_id';
+const columnId = 'column_id';
+
 describe('addColumn', () => {
   it('adds column', () => {
-    const boardId = 'board_id';
     const newState = reducer(initialState, actions.addColumn(boardId));
     const column = Object.values(newState)[0];
     expect(column).toEqual({
@@ -15,13 +17,27 @@ describe('addColumn', () => {
   });
 });
 
+describe('deleteColumn', () => {
+  it('deletes column', () => {
+    const state = {
+      [columnId]: {
+        created: 0,
+        name: 'Column Name',
+        updated: 0,
+      },
+    };
+    const payload = { boardId, id: columnId };
+    expect(reducer(state, actions.deleteColumn(payload))).toEqual({});
+  });
+});
+
 describe('loadColumns', () => {
   it('loads columns', () => {
     const payload = {
-      column1: {
-        created: Date.now(),
-        name: 'Column 1',
-        updated: Date.now(),
+      [columnId]: {
+        created: 0,
+        name: 'Column Name',
+        updated: 0,
       },
     };
     const newState = reducer(initialState, actions.loadColumns(payload));
@@ -32,7 +48,7 @@ describe('loadColumns', () => {
 describe('resetColumns', () => {
   it('sets initialState', () => {
     const state = {
-      board_id: {
+      [columnId]: {
         created: 0,
         name: 'Column Name',
         updated: 0,
