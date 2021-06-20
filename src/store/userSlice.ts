@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
+import type { Id } from '../types';
 
 type User = {
   email: string | null;
-  id: string;
+  id: Id;
 };
 
 export const initialState: User = {
