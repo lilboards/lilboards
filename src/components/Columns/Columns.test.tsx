@@ -1,6 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithStore, updateStore } from '../../utils/test';
 import { getColumnsRef } from '../../firebase';
+import { BOARD_TEST_ID, COLUMN_TEST_ID } from '../../constants/test';
 import Columns from './Columns';
 
 jest.mock('../../firebase', () => ({
@@ -59,7 +60,7 @@ describe('mount', () => {
   beforeEach(async () => {
     const snapshot = {
       val: () => ({
-        column_id: {
+        [COLUMN_TEST_ID]: {
           created: 0,
           name: '',
           updated: 0,
@@ -77,17 +78,17 @@ describe('mount', () => {
   });
 
   it('loads columns', async () => {
-    renderWithStore(<Columns boardId="board1" />);
+    renderWithStore(<Columns boardId={BOARD_TEST_ID} />);
     expect(await screen.findAllByRole('textbox')).toHaveLength(1);
   });
 
   it('renders default column name', async () => {
-    renderWithStore(<Columns boardId="board1" />);
+    renderWithStore(<Columns boardId={BOARD_TEST_ID} />);
     expect(await screen.findByPlaceholderText('Column 1')).toBeInTheDocument();
   });
 
   it('removes columns on unmount', async () => {
-    const { unmount } = renderWithStore(<Columns boardId="board1" />);
+    const { unmount } = renderWithStore(<Columns boardId={BOARD_TEST_ID} />);
     expect(await screen.findAllByPlaceholderText('Column 1')).toHaveLength(1);
     unmount();
     expect(screen.queryAllByPlaceholderText('Column 1')).toHaveLength(0);
