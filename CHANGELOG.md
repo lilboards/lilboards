@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.13.0](https://www.github.com/lilboards/lilboards/compare/v1.12.0...v1.13.0) (2021-06-20)
+
+
+### Features
+
+* **components:** make column into an editable input in Columns ([a8b77ab](https://www.github.com/lilboards/lilboards/commit/a8b77ab5120eb72e176c175e18a938e214222e3f))
+* **store:** add editColumn reducer to columnsSlice ([495e50f](https://www.github.com/lilboards/lilboards/commit/495e50fc143caa0e37c1739502542bf9ce26bc19))
+
 ## [1.12.0](https://www.github.com/lilboards/lilboards/compare/v1.11.0...v1.12.0) (2021-06-20)
 
 
