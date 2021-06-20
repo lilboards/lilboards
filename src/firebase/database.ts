@@ -27,6 +27,9 @@ export const getBoardVal = async (boardId: Id) =>
 export const getColumnsRef = (boardId: Id) =>
   getBoardRef(boardId).child(COLUMNS);
 
+export const getColumnRef = (boardId: Id, columnId: Id) =>
+  getColumnsRef(boardId).child(columnId);
+
 export const getUserRef = (userId: Id) => usersRef.child(userId);
 
 export const getUserBoardsVal = async (userId: Id) =>

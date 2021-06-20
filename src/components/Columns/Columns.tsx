@@ -2,9 +2,13 @@ import { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
+import CloseButton from '../CloseButton';
+
 import { getColumnsRef } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import actions from '../../actions';
+
+import type { Id } from '../../types';
 
 type Props = {
   boardId: string;
@@ -47,15 +51,36 @@ export default function Columns(props: Props) {
     return null;
   }
 
+  function deleteColumn(id: Id) {
+    dispatch(
+      actions.deleteColumn({
+        boardId: props.boardId,
+        id,
+      })
+    );
+  }
+
   return (
     <Grid container spacing={2} wrap="nowrap">
-      {columns.map((column, index) => (
-        <Grid item key={column.id} xs={12} sm={3}>
-          <Typography color="primary" component="h2" gutterBottom variant="h5">
-            {column.name || `Column ${index + 1}`}
-          </Typography>
-        </Grid>
-      ))}
+      {columns.map((column, index) => {
+        const columnName = column.name || `Column ${index + 1}`;
+        return (
+          <Grid item key={column.id} xs={12} sm={3}>
+            <Typography
+              color="primary"
+              component="h2"
+              gutterBottom
+              variant="h5"
+            >
+              {columnName}
+              <CloseButton
+                aria-label={`Delete column "${columnName}"`}
+                onClick={() => deleteColumn(column.id)}
+              />
+            </Typography>
+          </Grid>
+        );
+      })}
     </Grid>
   );
 }

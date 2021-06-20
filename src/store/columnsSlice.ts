@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getColumnsRef } from '../firebase';
+import { getColumnRef, getColumnsRef } from '../firebase';
 import { COLUMNS } from '../constants';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
@@ -34,11 +34,18 @@ const slice = createSlice({
       };
 
       const boardId = action.payload;
-      const columnRef = getColumnsRef(boardId).push();
+      const columnsRef = getColumnsRef(boardId);
+      const columnRef = columnsRef.push();
       const columnId = columnRef.key as Id;
       columnRef.set(column);
 
       state[columnId] = column;
+    },
+
+    deleteColumn: (state, action: PayloadAction<{ boardId: Id; id: Id }>) => {
+      const { boardId, id } = action.payload;
+      getColumnRef(boardId, id).remove();
+      delete state[id];
     },
 
     loadColumns: (state, action: PayloadAction<Columns>) => {
