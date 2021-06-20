@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import { renderWithStore, updateStore } from '../../utils/test';
 import { getColumnsRef } from '../../firebase';
 import Columns from './Columns';
@@ -31,6 +31,13 @@ it('renders column name', () => {
   expect(screen.getByRole('heading', { level: 2 })).toBe(
     screen.getByText(columns.column1.name)
   );
+});
+
+it('deletes column', () => {
+  const { board, columns } = updateStore.withBoardAndColumns();
+  renderWithStore(<Columns boardId={board.id} />);
+  fireEvent.click(screen.getByLabelText(/Delete column/));
+  expect(screen.queryByText(columns.column1.name)).not.toBeInTheDocument();
 });
 
 describe('mount', () => {
