@@ -48,16 +48,16 @@ const slice = createSlice({
 
     editBoard: (
       state,
-      action: PayloadAction<Pick<Board, 'name'> & { id: Id }>
+      action: PayloadAction<Pick<Board, 'name'> & { boardId: Id }>
     ) => {
-      const { id, name } = action.payload;
+      const { boardId, name } = action.payload;
       const board = {
         name,
         updated: Date.now(),
       };
-      boardsRef.child(id).update(board);
-      state[id] = {
-        ...state[id],
+      boardsRef.child(boardId).update(board);
+      state[boardId] = {
+        ...state[boardId],
         ...board,
       };
     },
