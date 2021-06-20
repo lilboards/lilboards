@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Redirect } from '@reach/router';
-import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 
-import AddButton from '../AddButton';
 import Columns from '../Columns';
 import Layout from '../Layout';
 
@@ -55,13 +53,6 @@ export default function Board(props: RouteComponentProps<Props>) {
     return null;
   }
 
-  function addColumn() {
-    /* istanbul ignore next */
-    if (props.boardId) {
-      dispatch(actions.addColumn(props.boardId));
-    }
-  }
-
   return (
     <Layout>
       {board.name && (
@@ -69,18 +60,6 @@ export default function Board(props: RouteComponentProps<Props>) {
           {board.name}
         </Typography>
       )}
-
-      <Box marginBottom={4}>
-        <AddButton
-          aria-label="Add column"
-          onClick={addColumn}
-          size="medium"
-          variant="extended"
-        >
-          Add column
-        </AddButton>
-      </Box>
-
       <Columns boardId={props.boardId} />
     </Layout>
   );

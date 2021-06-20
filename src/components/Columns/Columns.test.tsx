@@ -19,10 +19,10 @@ it('renders nothing when there is no board id', () => {
   expect(baseElement.firstElementChild).toBeEmptyDOMElement();
 });
 
-it('renders nothing when there are no columns', () => {
+it('renders "Add column" button', () => {
   const board = updateStore.withBoard();
-  const { baseElement } = renderWithStore(<Columns boardId={board.id} />);
-  expect(baseElement.firstElementChild).toBeEmptyDOMElement();
+  renderWithStore(<Columns boardId={board.id} />);
+  expect(screen.getByText('Add column')).toBeInTheDocument();
 });
 
 it('renders column name', () => {
@@ -31,6 +31,13 @@ it('renders column name', () => {
   expect(screen.getByRole('heading', { level: 2 })).toBe(
     screen.getByText(columns.column1.name)
   );
+});
+
+it('adds column', () => {
+  const board = updateStore.withBoard();
+  renderWithStore(<Columns boardId={board.id} />);
+  fireEvent.click(screen.getByText('Add column'));
+  expect(screen.getByText('Column 1')).toBeInTheDocument();
 });
 
 it('deletes column', () => {
