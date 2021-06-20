@@ -28,8 +28,8 @@ it('renders "Add column" button', () => {
 it('renders column name', () => {
   const { board, columns } = updateStore.withBoardAndColumns();
   renderWithStore(<Columns boardId={board.id} />);
-  expect(screen.getByRole('heading', { level: 2 })).toBe(
-    screen.getByText(columns.column1.name)
+  expect(screen.getByLabelText('Column Name')).toBe(
+    screen.getByDisplayValue(columns.column1.name)
   );
 });
 
@@ -37,7 +37,15 @@ it('adds column', () => {
   const board = updateStore.withBoard();
   renderWithStore(<Columns boardId={board.id} />);
   fireEvent.click(screen.getByText('Add column'));
-  expect(screen.getByText('Column 1')).toBeInTheDocument();
+  expect(screen.getByPlaceholderText('Column 1')).toBeInTheDocument();
+});
+
+it('edits column', async () => {
+  const { board } = updateStore.withBoardAndColumns();
+  renderWithStore(<Columns boardId={board.id} />);
+  const value = 'My Column Name';
+  fireEvent.change(screen.getByLabelText('Column Name'), { target: { value } });
+  expect(await screen.findAllByDisplayValue(value)).toHaveLength(1);
 });
 
 it('deletes column', () => {
@@ -70,18 +78,18 @@ describe('mount', () => {
 
   it('loads columns', async () => {
     renderWithStore(<Columns boardId="board1" />);
-    expect(await screen.findAllByRole('heading', { level: 2 })).toHaveLength(1);
+    expect(await screen.findAllByRole('textbox')).toHaveLength(1);
   });
 
   it('renders default column name', async () => {
     renderWithStore(<Columns boardId="board1" />);
-    expect(await screen.findByText('Column 1')).toBeInTheDocument();
+    expect(await screen.findByPlaceholderText('Column 1')).toBeInTheDocument();
   });
 
   it('removes columns on unmount', async () => {
     const { unmount } = renderWithStore(<Columns boardId="board1" />);
-    expect(await screen.findAllByText('Column 1')).toHaveLength(1);
+    expect(await screen.findAllByPlaceholderText('Column 1')).toHaveLength(1);
     unmount();
-    expect(screen.queryAllByText('Column 1')).toHaveLength(0);
+    expect(screen.queryAllByPlaceholderText('Column 1')).toHaveLength(0);
   });
 });

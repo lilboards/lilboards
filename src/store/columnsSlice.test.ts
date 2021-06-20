@@ -17,6 +17,32 @@ describe('addColumn', () => {
   });
 });
 
+describe('editColumn', () => {
+  it('edits column', () => {
+    const state = {
+      [columnId]: {
+        created: 0,
+        name: 'Column Name',
+        updated: 0,
+      },
+    };
+    const column = {
+      boardId,
+      columnId,
+      name: 'Column Name Edited',
+    };
+    const newState = reducer(state, actions.editColumn(column));
+    expect(newState).toMatchObject({
+      [columnId]: {
+        ...state[columnId],
+        name: column.name,
+        updated: expect.any(Number),
+      },
+    });
+    expect(newState[columnId].updated).not.toBe(state[columnId].updated);
+  });
+});
+
 describe('deleteColumn', () => {
   it('deletes column', () => {
     const state = {
