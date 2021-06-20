@@ -1,6 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithStore, updateStore } from '../../utils/test';
 import { getBoardVal, getUserBoardsVal } from '../../firebase';
+import { BOARD_TEST_ID } from '../../constants/test';
 import Boards from './Boards';
 
 jest.mock('../../firebase', () => ({
@@ -30,7 +31,7 @@ it('renders "Open board" link', () => {
   renderWithStore(<Boards />);
   expect(screen.getByText('Open board').closest('a')).toHaveAttribute(
     'href',
-    '/boards/board1'
+    `/boards/${BOARD_TEST_ID}`
   );
 });
 

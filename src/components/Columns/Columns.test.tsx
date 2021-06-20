@@ -30,7 +30,7 @@ it('renders column name', () => {
   const { board, columns } = updateStore.withBoardAndColumns();
   renderWithStore(<Columns boardId={board.id} />);
   expect(screen.getByLabelText('Column Name')).toBe(
-    screen.getByDisplayValue(columns.column1.name)
+    screen.getByDisplayValue(columns[COLUMN_TEST_ID].name)
   );
 });
 
@@ -53,7 +53,9 @@ it('deletes column', () => {
   const { board, columns } = updateStore.withBoardAndColumns();
   renderWithStore(<Columns boardId={board.id} />);
   fireEvent.click(screen.getByLabelText(/Delete column/));
-  expect(screen.queryByText(columns.column1.name)).not.toBeInTheDocument();
+  expect(
+    screen.queryByText(columns[COLUMN_TEST_ID].name)
+  ).not.toBeInTheDocument();
 });
 
 describe('mount', () => {

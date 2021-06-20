@@ -3,8 +3,9 @@ import { render as reactTestingLibraryRender } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import type { ReactNode } from 'react';
 
-import store from '../store';
 import actions, { resetActions } from '../actions';
+import { BOARD_TEST_ID, COLUMN_TEST_ID } from '../constants/test';
+import store from '../store';
 
 type Props = {
   children?: ReactNode;
@@ -29,7 +30,7 @@ export const updateStore = {
   withBoard() {
     const board = {
       created: 0,
-      id: 'board1',
+      id: BOARD_TEST_ID,
       name: 'Board 1',
       updated: 0,
     };
@@ -40,7 +41,7 @@ export const updateStore = {
   withBoardAndColumns() {
     const board = this.withBoard();
     const columns = {
-      column1: {
+      [COLUMN_TEST_ID]: {
         created: 0,
         name: 'Column 1',
         updated: 0,
