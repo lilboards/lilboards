@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
 
 import AddButton from '../AddButton';
 import CloseButton from '../CloseButton';
@@ -57,6 +57,16 @@ export default function Columns(props: Props) {
     dispatch(actions.addColumn(props.boardId));
   }
 
+  function editColumn(columnId: Id, name: string) {
+    dispatch(
+      actions.editColumn({
+        boardId: props.boardId,
+        columnId,
+        name,
+      })
+    );
+  }
+
   function deleteColumn(id: Id) {
     dispatch(
       actions.deleteColumn({
@@ -76,21 +86,22 @@ export default function Columns(props: Props) {
 
       <Grid container spacing={2} wrap="nowrap">
         {columns.map((column, index) => {
-          const columnName = column.name || `Column ${index + 1}`;
+          const columnNameIndex = `Column ${index + 1}`;
+
           return (
             <Grid item key={column.id} xs={12} sm={3}>
-              <Typography
-                color="primary"
-                component="h2"
-                gutterBottom
-                variant="h5"
-              >
-                {columnName}
-                <CloseButton
-                  aria-label={`Delete column "${columnName}"`}
-                  onClick={() => deleteColumn(column.id)}
-                />
-              </Typography>
+              <TextField
+                inputProps={{ 'aria-label': 'Column Name' }}
+                placeholder={columnNameIndex}
+                onChange={(event) => editColumn(column.id, event.target.value)}
+                value={column.name}
+              />
+
+              <CloseButton
+                aria-label={`Delete column "${column.name || columnNameIndex}"`}
+                onClick={() => deleteColumn(column.id)}
+                size="small"
+              />
             </Grid>
           );
         })}
