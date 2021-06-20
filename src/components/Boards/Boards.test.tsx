@@ -65,9 +65,9 @@ it('deletes board', () => {
 describe('mount', () => {
   beforeEach(() => {
     (getUserBoardsVal as jest.Mock).mockReset().mockResolvedValueOnce({
-      board1: true,
-      board2: true,
-      board3: false,
+      [`${BOARD_TEST_ID}1`]: true,
+      [`${BOARD_TEST_ID}2`]: true,
+      [`${BOARD_TEST_ID}3`]: false,
     });
 
     (getBoardVal as jest.Mock)
