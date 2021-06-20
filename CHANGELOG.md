@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.12.0](https://www.github.com/lilboards/lilboards/compare/v1.11.0...v1.12.0) (2021-06-20)
+
+
+### Features
+
+* **components:** add delete column button to Columns ([befb96c](https://www.github.com/lilboards/lilboards/commit/befb96cab9da1296d55fb56e807a0bee110ef249))
+* **firebase:** add getColumnRef to database ([5170a1b](https://www.github.com/lilboards/lilboards/commit/5170a1b3f07088e9f0fb0196cd4f5d9d2536b6c7))
+* **store:** add deleteColumn reducer to columnsSlice ([e6b19cb](https://www.github.com/lilboards/lilboards/commit/e6b19cb4466d524b4f86aaf8c41063a17ff75f90))
+
 ## [1.11.0](https://www.github.com/lilboards/lilboards/compare/v1.10.0...v1.11.0) (2021-06-20)
 
 
