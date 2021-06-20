@@ -4,9 +4,7 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CloseIcon from '@material-ui/icons/Close';
 import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
 import { Link as RouterLink } from '@reach/router';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -16,6 +14,7 @@ import type { RouteComponentProps } from '@reach/router';
 import type { Id } from '../../types';
 
 import AddButton from '../AddButton';
+import CloseButton from '../CloseButton';
 import Layout from '../Layout';
 
 import { getBoardVal, getUserBoardsVal } from '../../firebase';
@@ -91,12 +90,10 @@ export default function Boards(props: RouteComponentProps) {
           <Grid item key={board.id} xs={12} sm={6} md={3}>
             <Box component={Card} height="100%" position="relative">
               <Box position="absolute" right={0} top={0}>
-                <IconButton
+                <CloseButton
                   aria-label={`Delete board "${board.name || board.id}"`}
                   onClick={() => deleteBoard(board.id)}
-                >
-                  <CloseIcon />
-                </IconButton>
+                />
               </Box>
 
               <CardContent>
