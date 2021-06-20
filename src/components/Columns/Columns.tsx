@@ -69,12 +69,7 @@ export default function Columns(props: Props) {
   return (
     <>
       <Box marginBottom={4}>
-        <AddButton
-          aria-label="Add column"
-          onClick={addColumn}
-          size="medium"
-          variant="extended"
-        >
+        <AddButton onClick={addColumn} size="medium" variant="extended">
           Add column
         </AddButton>
       </Box>
