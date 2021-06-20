@@ -1,7 +1,8 @@
+import { BOARD_TEST_ID, USER_TEST_ID } from '../constants/test';
 import { actions, initialState, reducer } from './boardsSlice';
 
-const boardId = 'board_id';
-const userId = 'user_id';
+const boardId = BOARD_TEST_ID;
+const userId = USER_TEST_ID;
 
 describe('addBoard', () => {
   it('adds board', () => {
@@ -40,6 +41,7 @@ describe('editBoard', () => {
         updated: expect.any(Number),
       },
     });
+    expect(newState[boardId].updated).not.toBe(state[boardId].updated);
     expect(newState).not.toHaveProperty('focus');
   });
 });
@@ -77,13 +79,13 @@ describe('loadBoard', () => {
 
   it('loads board', () => {
     const state = {
-      board1: {
+      [`${BOARD_TEST_ID}1`]: {
         created: 0,
         name: 'Board 1',
         updated: 0,
       },
     };
-    const id = 'board_id';
+    const id = `${BOARD_TEST_ID}2`;
     const board = {
       created: 0,
       name: 'Board 2',
