@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
+import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
+import AddButton from '../AddButton';
 import CloseButton from '../CloseButton';
 
 import { getColumnsRef } from '../../firebase';
@@ -47,8 +49,12 @@ export default function Columns(props: Props) {
     };
   }, [props.boardId, dispatch]);
 
-  if (!props.boardId || !columns.length) {
+  if (!props.boardId) {
     return null;
+  }
+
+  function addColumn() {
+    dispatch(actions.addColumn(props.boardId));
   }
 
   function deleteColumn(id: Id) {
@@ -61,26 +67,39 @@ export default function Columns(props: Props) {
   }
 
   return (
-    <Grid container spacing={2} wrap="nowrap">
-      {columns.map((column, index) => {
-        const columnName = column.name || `Column ${index + 1}`;
-        return (
-          <Grid item key={column.id} xs={12} sm={3}>
-            <Typography
-              color="primary"
-              component="h2"
-              gutterBottom
-              variant="h5"
-            >
-              {columnName}
-              <CloseButton
-                aria-label={`Delete column "${columnName}"`}
-                onClick={() => deleteColumn(column.id)}
-              />
-            </Typography>
-          </Grid>
-        );
-      })}
-    </Grid>
+    <>
+      <Box marginBottom={4}>
+        <AddButton
+          aria-label="Add column"
+          onClick={addColumn}
+          size="medium"
+          variant="extended"
+        >
+          Add column
+        </AddButton>
+      </Box>
+
+      <Grid container spacing={2} wrap="nowrap">
+        {columns.map((column, index) => {
+          const columnName = column.name || `Column ${index + 1}`;
+          return (
+            <Grid item key={column.id} xs={12} sm={3}>
+              <Typography
+                color="primary"
+                component="h2"
+                gutterBottom
+                variant="h5"
+              >
+                {columnName}
+                <CloseButton
+                  aria-label={`Delete column "${columnName}"`}
+                  onClick={() => deleteColumn(column.id)}
+                />
+              </Typography>
+            </Grid>
+          );
+        })}
+      </Grid>
+    </>
   );
 }
