@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.0](https://www.github.com/lilboards/lilboards/compare/v1.10.0...v1.11.0) (2021-06-20)
+
+
+### Features
+
+* **components:** add CloseButton ([96d5f05](https://www.github.com/lilboards/lilboards/commit/96d5f05ca4e786c29dd5ebf8602a63e0e7a46288))
+
 ## [1.10.0](https://www.github.com/lilboards/lilboards/compare/v1.9.0...v1.10.0) (2021-06-15)
 
 
