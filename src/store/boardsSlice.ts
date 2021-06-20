@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { boardsRef, usersRef } from '../firebase';
+
+import {
+  boardsRef,
+  getBoardRef,
+  getUserBoardRef,
+  getUserBoardsRef,
+} from '../firebase';
 import { BOARDS } from '../constants';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
@@ -37,10 +43,7 @@ const slice = createSlice({
 
       const boardId = boardRef.key as Id;
       const userId = action.payload;
-      usersRef
-        .child(userId)
-        .child(BOARDS)
-        .update({ [boardId]: true });
+      getUserBoardsRef(userId).update({ [boardId]: true });
 
       board.focus = true;
       state[boardId] = board;
@@ -55,7 +58,7 @@ const slice = createSlice({
         name,
         updated: Date.now(),
       };
-      boardsRef.child(boardId).update(board);
+      getBoardRef(boardId).update(board);
       state[boardId] = {
         ...state[boardId],
         ...board,
@@ -67,8 +70,8 @@ const slice = createSlice({
       action: PayloadAction<{ boardId: Id; userId: Id }>
     ) => {
       const { boardId, userId } = action.payload;
-      boardsRef.child(boardId).remove();
-      usersRef.child(userId).child(BOARDS).child(boardId).remove();
+      getBoardRef(boardId).remove();
+      getUserBoardRef(userId, boardId).remove();
       delete state[boardId];
     },
 
