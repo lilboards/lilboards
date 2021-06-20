@@ -42,6 +42,24 @@ const slice = createSlice({
       state[columnId] = column;
     },
 
+    editColumn: (
+      state,
+      action: PayloadAction<
+        Pick<Column, 'name'> & { boardId: Id; columnId: Id }
+      >
+    ) => {
+      const { boardId, columnId, name } = action.payload;
+      const column = {
+        name,
+        updated: Date.now(),
+      };
+      getColumnRef(boardId, columnId).update(column);
+      state[columnId] = {
+        ...state[columnId],
+        ...column,
+      };
+    },
+
     deleteColumn: (state, action: PayloadAction<{ boardId: Id; id: Id }>) => {
       const { boardId, id } = action.payload;
       getColumnRef(boardId, id).remove();
