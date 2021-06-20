@@ -62,11 +62,14 @@ const slice = createSlice({
       };
     },
 
-    deleteBoard: (state, action: PayloadAction<{ id: Id; userId: Id }>) => {
-      const { id, userId } = action.payload;
-      boardsRef.child(id).remove();
-      usersRef.child(userId).child(BOARDS).child(id).remove();
-      delete state[id];
+    deleteBoard: (
+      state,
+      action: PayloadAction<{ boardId: Id; userId: Id }>
+    ) => {
+      const { boardId, userId } = action.payload;
+      boardsRef.child(boardId).remove();
+      usersRef.child(userId).child(BOARDS).child(boardId).remove();
+      delete state[boardId];
     },
 
     loadBoard: (state, action: PayloadAction<(Board & { id?: Id }) | null>) => {

@@ -46,15 +46,14 @@ describe('editBoard', () => {
 
 describe('deleteBoard', () => {
   it('deletes board', () => {
-    const id = 'board_id';
     const state = {
-      [id]: {
+      [boardId]: {
         created: 0,
         name: 'Board Name',
         updated: 0,
       },
     };
-    const payload = { id, userId };
+    const payload = { boardId, userId };
     expect(reducer(state, actions.deleteBoard(payload))).toEqual({});
   });
 });
