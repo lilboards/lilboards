@@ -17,35 +17,43 @@ type Props = {
 };
 
 export default function Board(props: RouteComponentProps<Props>) {
+  const { boardId } = props;
+
   const [isLoaded, setIsLoaded] = useState(false);
   const board = useSelector((state) =>
-    props.boardId ? state.boards[props.boardId] : null
+    boardId ? state.boards[boardId] : null
   );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!props.boardId || board) {
+    if (!boardId || board) {
       return;
     }
 
-    (async function subscribe() {
-      const board = await getBoardVal(props.boardId as Id);
+    (async () => {
+      const board = await getBoardVal(boardId);
+
       /* istanbul ignore next */
       if (board) {
-        board.id = props.boardId;
-        dispatch(actions.loadBoard(board));
+        dispatch(
+          actions.loadBoard({
+            ...board,
+            id: boardId,
+          })
+        );
       }
+
       setIsLoaded(true);
     })();
 
     return () => setIsLoaded(false);
-  }, [props.boardId, setIsLoaded, board, dispatch]);
+  }, [boardId, setIsLoaded, board, dispatch]);
 
-  if (!props.boardId) {
+  if (!boardId) {
     return null;
   }
 
-  if (props.boardId && !board && isLoaded) {
+  if (boardId && !board && isLoaded) {
     return <Redirect to="/404" noThrow />;
   }
 
@@ -60,7 +68,7 @@ export default function Board(props: RouteComponentProps<Props>) {
           {board.name}
         </Typography>
       )}
-      <Columns boardId={props.boardId} />
+      <Columns boardId={boardId} />
     </Layout>
   );
 }
