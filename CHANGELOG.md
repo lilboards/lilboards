@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.13.1](https://www.github.com/lilboards/lilboards/compare/v1.13.0...v1.13.1) (2021-06-21)
+
+
+### Bug Fixes
+
+* **components:** don't dispatch action loadBoard for empty payload ([f3af015](https://www.github.com/lilboards/lilboards/commit/f3af0151bd828bdbd3e5092ee4f2e6c904bc784f))
+
 ## [1.13.0](https://www.github.com/lilboards/lilboards/compare/v1.12.0...v1.13.0) (2021-06-20)
 
 
