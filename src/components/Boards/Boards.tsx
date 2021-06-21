@@ -39,15 +39,16 @@ export default function Boards(props: RouteComponentProps) {
       const boards = await Promise.all(
         boardIds.map(async (boardId) => {
           const board = await getBoardVal(boardId);
-          if (!board) {
-            return;
+          if (board) {
+            return {
+              ...board,
+              id: boardId,
+            };
           }
-          board.id = boardId;
-          return board;
         })
       );
 
-      boards.forEach((board) => dispatch(actions.loadBoard(board)));
+      boards.forEach((board) => board && dispatch(actions.loadBoard(board)));
     })();
   }, [userId, dispatch]);
 
