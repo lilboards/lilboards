@@ -3,7 +3,7 @@ import 'firebase/database';
 
 import { firebaseApp } from './app';
 import { isDevelopment, isLocalhost } from '../config';
-import { BOARDS, COLUMNS } from '../constants';
+import { BOARDS, COLUMNS, USERS } from '../constants';
 
 import type { Board, Id } from '../types';
 
@@ -17,7 +17,7 @@ if (isDevelopment && isLocalhost) {
 }
 
 export const boardsRef = firebaseDatabase.ref(BOARDS);
-export const usersRef = firebaseDatabase.ref('users');
+export const usersRef = firebaseDatabase.ref(USERS);
 
 export const getBoardRef = (boardId: Id) => boardsRef.child(boardId);
 
