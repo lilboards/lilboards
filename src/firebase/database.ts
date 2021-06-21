@@ -21,7 +21,13 @@ export const usersRef = firebaseDatabase.ref('users');
 
 export const getBoardRef = (boardId: Id) => boardsRef.child(boardId);
 
-export const getBoardVal = async (boardId: Id) =>
+type Board = {
+  created: number;
+  name: string;
+  updated: number;
+};
+
+export const getBoardVal = async (boardId: Id): Promise<Board | null> =>
   (await getBoardRef(boardId).get()).val();
 
 export const getColumnsRef = (boardId: Id) =>
@@ -35,8 +41,10 @@ export const getUserRef = (userId: Id) => usersRef.child(userId);
 export const getUserBoardsRef = (userId: Id) =>
   getUserRef(userId).child(BOARDS);
 
+export const getUserBoardsVal = async (
+  userId: Id
+): Promise<{ [boardId: string]: boolean } | null> =>
+  (await getUserBoardsRef(userId).get()).val();
+
 export const getUserBoardRef = (userId: Id, boardId: Id) =>
   getUserRef(userId).child(BOARDS).child(boardId);
-
-export const getUserBoardsVal = async (userId: Id) =>
-  (await getUserBoardsRef(userId).get()).val();
