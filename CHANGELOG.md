@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.0.0](https://www.github.com/lilboards/lilboards/compare/v1.13.1...v2.0.0) (2021-06-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* board data is saved in ref "boards/:id/board"
+
+### Features
+
+* change location of where board data is saved in database ([2d960ca](https://www.github.com/lilboards/lilboards/commit/2d960cace1484c2a8b0f6a14de08ed84face62c5))
+
+
+### Bug Fixes
+
+* use correct database ref so board can be edited and deleted ([1692ca4](https://www.github.com/lilboards/lilboards/commit/1692ca4079f73df7b773011219c1f637c369c10f))
+
 ### [1.13.1](https://www.github.com/lilboards/lilboards/compare/v1.13.0...v1.13.1) (2021-06-21)
 
 
