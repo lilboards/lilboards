@@ -16,20 +16,36 @@ if (isDevelopment && isLocalhost) {
   firebaseDatabase.useEmulator(databaseUrl.hostname, Number(databaseUrl.port));
 }
 
+/**
+ * Boards.
+ */
 export const boardsRef = firebaseDatabase.ref(BOARDS);
-export const usersRef = firebaseDatabase.ref(USERS);
 
+/**
+ * Board.
+ */
 export const getBoardRef = (boardId: Id) => boardsRef.child(boardId);
 
 export const getBoardVal = async (boardId: Id): Promise<Board | null> =>
   (await getBoardRef(boardId).get()).val();
 
+/**
+ * Column.
+ */
 export const getColumnsRef = (boardId: Id) =>
   getBoardRef(boardId).child(COLUMNS);
 
 export const getColumnRef = (boardId: Id, columnId: Id) =>
   getColumnsRef(boardId).child(columnId);
 
+/**
+ * Users.
+ */
+export const usersRef = firebaseDatabase.ref(USERS);
+
+/**
+ * User.
+ */
 export const getUserRef = (userId: Id) => usersRef.child(userId);
 
 export const getUserBoardsRef = (userId: Id) =>
