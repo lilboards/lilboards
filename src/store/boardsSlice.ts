@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import {
   boardsRef,
-  getBoardRef,
+  getBoardDataRef,
   getUserBoardRef,
   getUserBoardsRef,
 } from '../firebase';
@@ -59,7 +59,7 @@ const slice = createSlice({
         name,
         updated: Date.now(),
       };
-      getBoardRef(boardId).update(board);
+      getBoardDataRef(boardId).update(board);
       state[boardId] = {
         ...state[boardId],
         ...board,
@@ -71,7 +71,7 @@ const slice = createSlice({
       action: PayloadAction<{ boardId: Id; userId: Id }>
     ) => {
       const { boardId, userId } = action.payload;
-      getBoardRef(boardId).remove();
+      getBoardDataRef(boardId).remove();
       getUserBoardRef(userId, boardId).remove();
       delete state[boardId];
     },
