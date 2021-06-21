@@ -3,7 +3,7 @@ import 'firebase/database';
 
 import { firebaseApp } from './app';
 import { isDevelopment, isLocalhost } from '../config';
-import { BOARDS, COLUMNS, USERS } from '../constants';
+import { BOARD, BOARDS, COLUMNS, USERS } from '../constants';
 
 import type { Board, Id } from '../types';
 
@@ -27,7 +27,7 @@ export const boardsRef = firebaseDatabase.ref(BOARDS);
 export const getBoardRef = (boardId: Id) => boardsRef.child(boardId);
 
 export const getBoardVal = async (boardId: Id): Promise<Board | null> =>
-  (await getBoardRef(boardId).get()).val();
+  (await getBoardRef(boardId).child(BOARD).get()).val();
 
 /**
  * Column.

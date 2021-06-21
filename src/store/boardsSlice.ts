@@ -6,16 +6,13 @@ import {
   getUserBoardRef,
   getUserBoardsRef,
 } from '../firebase';
-import { BOARDS } from '../constants';
+import { BOARD, BOARDS } from '../constants';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Id } from '../types';
+import type { Board as BoardData, Id } from '../types';
 
-type Board = {
-  created: number;
+type Board = BoardData & {
   focus?: boolean;
-  name: string;
-  updated: number;
 };
 
 type Boards = {
@@ -33,20 +30,24 @@ const slice = createSlice({
   reducers: {
     addBoard: (state, action: PayloadAction<Id>) => {
       const now = Date.now();
-      const board: Board = {
+      const board: BoardData = {
         created: now,
         name: '',
         updated: now,
       };
       const boardRef = boardsRef.push();
-      boardRef.set(board);
+      boardRef.child(BOARD).set(board);
 
       const boardId = boardRef.key as Id;
       const userId = action.payload;
-      getUserBoardsRef(userId).update({ [boardId]: true });
+      getUserBoardsRef(userId).update({
+        [boardId]: true,
+      });
 
-      board.focus = true;
-      state[boardId] = board;
+      state[boardId] = {
+        ...board,
+        focus: true,
+      };
     },
 
     editBoard: (
