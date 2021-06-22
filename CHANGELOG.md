@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.0](https://www.github.com/lilboards/lilboards/compare/v2.0.0...v2.1.0) (2021-06-22)
+
+
+### Features
+
+* **components:** add Items which renders "Add item" button ([158dfab](https://www.github.com/lilboards/lilboards/commit/158dfabf8994a4fbfabec442b2f7f014bc068126))
+* **components:** render Items in Columns and stylize column ([bd2f026](https://www.github.com/lilboards/lilboards/commit/bd2f026992f4cfed737cad99fa606e7ce6cdc075))
+
 ## [2.0.0](https://www.github.com/lilboards/lilboards/compare/v1.13.1...v2.0.0) (2021-06-21)
 
 
