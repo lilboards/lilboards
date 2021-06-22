@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 
 import AddButton from '../AddButton';
 import CloseButton from '../CloseButton';
+import Items from '../Items';
 
 import { getColumnsRef } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
@@ -13,7 +14,7 @@ import actions from '../../actions';
 import type { Id } from '../../types';
 
 type Props = {
-  boardId: string;
+  boardId: Id;
 };
 
 export default function Columns(props: Props) {
@@ -86,22 +87,33 @@ export default function Columns(props: Props) {
 
       <Grid container spacing={2} wrap="nowrap">
         {columns.map((column, index) => {
+          const columnId = column.id;
+          const columnName = column.name;
           const columnNameIndex = `Column ${index + 1}`;
 
           return (
-            <Grid item key={column.id} xs={12} sm={3}>
-              <TextField
-                inputProps={{ 'aria-label': 'Column Name' }}
-                placeholder={columnNameIndex}
-                onChange={(event) => editColumn(column.id, event.target.value)}
-                value={column.name}
-              />
+            <Grid item key={columnId} xs={12} sm={3}>
+              <Box marginBottom={2} position="relative">
+                <TextField
+                  fullWidth
+                  inputProps={{ 'aria-label': 'Column Name' }}
+                  placeholder={columnNameIndex}
+                  onChange={(event) => editColumn(columnId, event.target.value)}
+                  value={columnName}
+                />
 
-              <CloseButton
-                aria-label={`Delete column "${column.name || columnNameIndex}"`}
-                onClick={() => deleteColumn(column.id)}
-                size="small"
-              />
+                <Box position="absolute" right={0} top={0}>
+                  <CloseButton
+                    aria-label={`Delete column "${
+                      columnName || columnNameIndex
+                    }"`}
+                    onClick={() => deleteColumn(columnId)}
+                    size="small"
+                  />
+                </Box>
+              </Box>
+
+              <Items boardId={props.boardId} columnId={columnId} />
             </Grid>
           );
         })}
