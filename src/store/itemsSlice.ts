@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 import { createSlice } from '@reduxjs/toolkit';
 
 import { ITEMS } from '../constants';
