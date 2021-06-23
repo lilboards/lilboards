@@ -42,7 +42,7 @@ export const getColumnsRef = (boardId: Id) =>
 export const getColumnRef = (boardId: Id, columnId: Id) =>
   getColumnsRef(boardId).child(columnId);
 
-export const getColumnItemsRef = (boardId: Id, columnId: Id) =>
+export const getColumnItemIdsRef = (boardId: Id, columnId: Id) =>
   getColumnRef(boardId, columnId).child(ITEM_IDS);
 
 /**
