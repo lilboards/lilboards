@@ -54,7 +54,12 @@ describe('deleteColumn', () => {
         updated: 0,
       },
     };
-    const payload = { boardId, id: columnId };
+
+    const payload = {
+      boardId,
+      columnId,
+    };
+
     expect(reducer(state, actions.deleteColumn(payload))).toEqual({});
   });
 });

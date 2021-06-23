@@ -61,10 +61,13 @@ const slice = createSlice({
       };
     },
 
-    deleteColumn: (state, action: PayloadAction<{ boardId: Id; id: Id }>) => {
-      const { boardId, id } = action.payload;
-      getColumnRef(boardId, id).remove();
-      delete state[id];
+    deleteColumn: (
+      state,
+      action: PayloadAction<{ boardId: Id; columnId: Id }>
+    ) => {
+      const { boardId, columnId } = action.payload;
+      getColumnRef(boardId, columnId).remove();
+      delete state[columnId];
     },
 
     loadColumns: (state, action: PayloadAction<Columns>) => {

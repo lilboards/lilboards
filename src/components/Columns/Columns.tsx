@@ -69,11 +69,11 @@ export default function Columns(props: Props) {
     );
   }
 
-  function deleteColumn(id: Id) {
+  function deleteColumn(columnId: Id) {
     dispatch(
       actions.deleteColumn({
         boardId,
-        id,
+        columnId,
       })
     );
   }
