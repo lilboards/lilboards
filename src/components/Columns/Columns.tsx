@@ -18,6 +18,7 @@ type Props = {
 };
 
 export default function Columns(props: Props) {
+  const { boardId } = props;
   const columns = useSelector((state) =>
     Object.entries(state.columns).map(([id, column]) => ({
       ...column,
@@ -27,12 +28,12 @@ export default function Columns(props: Props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!props.boardId) {
+    if (!boardId) {
       return;
     }
 
     // subscribe on mount
-    const columnsRef = getColumnsRef(props.boardId);
+    const columnsRef = getColumnsRef(boardId);
     columnsRef.on('value', (columnsSnapshot) => {
       const columns = columnsSnapshot.val();
       /* istanbul ignore next */
@@ -48,20 +49,20 @@ export default function Columns(props: Props) {
       columnsRef.off('value');
       dispatch(actions.resetColumns());
     };
-  }, [props.boardId, dispatch]);
+  }, [boardId, dispatch]);
 
-  if (!props.boardId) {
+  if (!boardId) {
     return null;
   }
 
   function addColumn() {
-    dispatch(actions.addColumn(props.boardId));
+    dispatch(actions.addColumn(boardId));
   }
 
   function editColumn(columnId: Id, name: string) {
     dispatch(
       actions.editColumn({
-        boardId: props.boardId,
+        boardId,
         columnId,
         name,
       })
@@ -71,7 +72,7 @@ export default function Columns(props: Props) {
   function deleteColumn(id: Id) {
     dispatch(
       actions.deleteColumn({
-        boardId: props.boardId,
+        boardId,
         id,
       })
     );
@@ -113,7 +114,7 @@ export default function Columns(props: Props) {
                 </Box>
               </Box>
 
-              <Items boardId={props.boardId} columnId={columnId} />
+              <Items boardId={boardId} columnId={columnId} />
             </Grid>
           );
         })}
