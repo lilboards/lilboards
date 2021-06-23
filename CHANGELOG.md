@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.2.0](https://www.github.com/lilboards/lilboards/compare/v2.1.0...v2.2.0) (2021-06-23)
+
+
+### Features
+
+* **components:** add Item that renders a blank Card ([b04a013](https://www.github.com/lilboards/lilboards/commit/b04a0138619b5b5fd45df84eae8275c81ed5a9e5))
+* **components:** append itemId to columns store in addItem ([2e16a3e](https://www.github.com/lilboards/lilboards/commit/2e16a3ebd553d5c28ca8cae4633728b30b5ceac1))
+* **components:** render Item when it's added in Items ([9b5c462](https://www.github.com/lilboards/lilboards/commit/9b5c462d787f7653c84075a857b6da7342b3267b))
+
+
+### Bug Fixes
+
+* **components:** render the column items ([6572b99](https://www.github.com/lilboards/lilboards/commit/6572b9916add88a7cf981e52d10afb164709c6f9))
+
 ## [2.1.0](https://www.github.com/lilboards/lilboards/compare/v2.0.0...v2.1.0) (2021-06-22)
 
 
