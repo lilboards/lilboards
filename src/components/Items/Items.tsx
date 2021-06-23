@@ -28,9 +28,18 @@ export default function Items(props: Props) {
 
   function addItem() {
     const itemId = generateId();
+
     dispatch(
       actions.addItem({
         boardId,
+        itemId,
+      })
+    );
+
+    dispatch(
+      actions.addColumnItemId({
+        boardId,
+        columnId,
         itemId,
       })
     );
