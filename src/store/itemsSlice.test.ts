@@ -6,15 +6,18 @@ const itemId = ITEM_TEST_ID;
 
 describe('addItem', () => {
   it('adds item', () => {
-    const newState = reducer(initialState, actions.addItem(boardId));
+    const payload = {
+      boardId,
+      itemId,
+    };
+    const newState = reducer(initialState, actions.addItem(payload));
     const item = Object.values(newState)[0];
     expect(item).toEqual({
       created: expect.any(Number),
       text: '',
       updated: expect.any(Number),
     });
-    const id = Object.keys(newState)[0];
-    expect({ id }).toMatchObject({ id: expect.any(String) });
+    expect(Object.keys(newState)[0]).toBe(itemId);
   });
 });
 

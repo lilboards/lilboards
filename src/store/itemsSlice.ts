@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { ITEMS } from '../constants';
-import { getItemsRef } from '../firebase';
+import { getItemRef } from '../firebase';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Id } from '../types';
@@ -25,20 +25,15 @@ const slice = createSlice({
   initialState,
 
   reducers: {
-    addItem: (state, action: PayloadAction<Id>) => {
+    addItem: (state, action: PayloadAction<{ boardId: Id; itemId: Id }>) => {
       const now = Date.now();
       const item: Item = {
         created: now,
         text: '',
         updated: now,
       };
-
-      const boardId = action.payload;
-      const itemsRef = getItemsRef(boardId);
-      const itemRef = itemsRef.push();
-      const itemId = itemRef.key as Id;
-      itemRef.set(item);
-
+      const { boardId, itemId } = action.payload;
+      getItemRef(boardId, itemId).set(item);
       state[itemId] = item;
     },
 

@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import Item from '../Item';
 
 import actions from '../../actions';
+import { generateId } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 
 import type { Id } from '../../types';
@@ -26,7 +27,13 @@ export default function Items(props: Props) {
   );
 
   function addItem() {
-    dispatch(actions.addItem(boardId));
+    const itemId = generateId();
+    dispatch(
+      actions.addItem({
+        boardId,
+        itemId,
+      })
+    );
   }
 
   return (
