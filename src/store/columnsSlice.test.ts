@@ -1,8 +1,9 @@
-import { BOARD_TEST_ID, COLUMN_TEST_ID } from '../constants/test';
+import { BOARD_TEST_ID, COLUMN_TEST_ID, ITEM_TEST_ID } from '../constants/test';
 import { actions, initialState, reducer } from './columnsSlice';
 
 const boardId = BOARD_TEST_ID;
 const columnId = COLUMN_TEST_ID;
+const itemId = ITEM_TEST_ID;
 
 describe('addColumn', () => {
   it('adds column', () => {
@@ -69,6 +70,57 @@ describe('loadColumns', () => {
     };
     const newState = reducer(initialState, actions.loadColumns(payload));
     expect(newState).toBe(payload);
+  });
+});
+
+describe('addColumnItemId', () => {
+  it('appends item id to column', () => {
+    const state = {
+      [columnId]: {
+        created: 0,
+        name: 'Column 1',
+        updated: 0,
+      },
+    };
+
+    const payload = {
+      boardId,
+      columnId,
+      itemId,
+    };
+
+    const newState = reducer(state, actions.addColumnItemId(payload));
+    expect(newState).toEqual({
+      [columnId]: {
+        ...state[columnId],
+        itemIds: [itemId],
+      },
+    });
+  });
+
+  it('appends item id to column with item ids', () => {
+    const state = {
+      [columnId]: {
+        created: 0,
+        itemIds: [`${itemId}1`],
+        name: 'Column 1',
+        updated: 0,
+      },
+    };
+
+    const payload = {
+      boardId,
+      columnId,
+      itemId,
+    };
+
+    const newState = reducer(state, actions.addColumnItemId(payload));
+    expect(newState).toEqual({
+      [columnId]: {
+        ...state[columnId],
+        itemIds: state[columnId].itemIds.concat(itemId),
+      },
+    });
   });
 });
 
