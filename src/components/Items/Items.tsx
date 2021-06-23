@@ -1,5 +1,13 @@
+/* istanbul ignore file */
 import AddIcon from '@material-ui/icons/Add';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+
+import Item from '../Item';
+
+import actions from '../../actions';
+import { generateId } from '../../firebase';
+import { useDispatch, useSelector } from '../../hooks';
 
 import type { Id } from '../../types';
 
@@ -9,9 +17,53 @@ type Props = {
 };
 
 export default function Items(props: Props) {
+  const { boardId, columnId } = props;
+  const dispatch = useDispatch();
+
+  const items = useSelector((state) => {
+    const { columns, items } = state;
+    const column = columns[columnId];
+    if (!column || !column.itemIds) {
+      return [];
+    }
+    return column.itemIds.map((itemId) => ({
+      ...items[itemId],
+      id: itemId,
+    }));
+  });
+
+  function addItem() {
+    const itemId = generateId();
+
+    dispatch(
+      actions.addItem({
+        boardId,
+        itemId,
+      })
+    );
+
+    dispatch(
+      actions.addColumnItemId({
+        boardId,
+        columnId,
+        itemId,
+      })
+    );
+  }
+
   return (
-    <Button color="primary" fullWidth variant="contained">
-      <AddIcon /> Add item
-    </Button>
+    <>
+      <Box marginBottom={2}>
+        <Button color="primary" fullWidth onClick={addItem} variant="contained">
+          <AddIcon /> Add item
+        </Button>
+      </Box>
+
+      {items.map((item) => (
+        <Box key={item.id} marginBottom={2}>
+          <Item boardId={boardId} columnId={columnId} itemId={item.id} />
+        </Box>
+      ))}
+    </>
   );
 }
