@@ -16,6 +16,10 @@ if (isDevelopment && isLocalhost) {
   firebaseDatabase.useEmulator(databaseUrl.hostname, Number(databaseUrl.port));
 }
 
+const rootRef = firebaseDatabase.ref();
+
+export const generateId = () => rootRef.push().key as Id;
+
 /**
  * Boards.
  */
@@ -45,6 +49,9 @@ export const getColumnItemsRef = (boardId: Id, columnId: Id) =>
  * Items.
  */
 export const getItemsRef = (boardId: Id) => getBoardRef(boardId).child(ITEMS);
+
+export const getItemRef = (boardId: Id, itemId: Id) =>
+  getItemsRef(boardId).child(itemId);
 
 /**
  * Users.
