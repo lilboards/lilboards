@@ -3,7 +3,7 @@ import 'firebase/database';
 
 import { firebaseApp } from './app';
 import { isDevelopment, isLocalhost } from '../config';
-import { BOARD, BOARDS, COLUMNS, USERS } from '../constants';
+import { BOARD, BOARDS, COLUMNS, ITEM_IDS, ITEMS, USERS } from '../constants';
 
 import type { Board, Id } from '../types';
 
@@ -21,9 +21,6 @@ if (isDevelopment && isLocalhost) {
  */
 export const boardsRef = firebaseDatabase.ref(BOARDS);
 
-/**
- * Board.
- */
 export const getBoardRef = (boardId: Id) => boardsRef.child(boardId);
 
 export const getBoardDataRef = (boardId: Id) =>
@@ -33,7 +30,7 @@ export const getBoardVal = async (boardId: Id): Promise<Board | null> =>
   (await getBoardDataRef(boardId).get()).val();
 
 /**
- * Column.
+ * Columns.
  */
 export const getColumnsRef = (boardId: Id) =>
   getBoardRef(boardId).child(COLUMNS);
@@ -41,14 +38,19 @@ export const getColumnsRef = (boardId: Id) =>
 export const getColumnRef = (boardId: Id, columnId: Id) =>
   getColumnsRef(boardId).child(columnId);
 
+export const getColumnItemsRef = (boardId: Id, columnId: Id) =>
+  getColumnRef(boardId, columnId).child(ITEM_IDS);
+
+/**
+ * Items.
+ */
+export const getItemsRef = (boardId: Id) => getBoardRef(boardId).child(ITEMS);
+
 /**
  * Users.
  */
 export const usersRef = firebaseDatabase.ref(USERS);
 
-/**
- * User.
- */
 export const getUserRef = (userId: Id) => usersRef.child(userId);
 
 export const getUserBoardsRef = (userId: Id) =>
