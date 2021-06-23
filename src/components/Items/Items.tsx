@@ -19,12 +19,18 @@ type Props = {
 export default function Items(props: Props) {
   const { boardId, columnId } = props;
   const dispatch = useDispatch();
-  const items = useSelector((state) =>
-    Object.entries(state.items).map(([id, item]) => ({
-      ...item,
-      id,
-    }))
-  );
+
+  const items = useSelector((state) => {
+    const { columns, items } = state;
+    const column = columns[columnId];
+    if (!column || !column.itemIds) {
+      return [];
+    }
+    return column.itemIds.map((itemId) => ({
+      ...items[itemId],
+      id: itemId,
+    }));
+  });
 
   function addItem() {
     const itemId = generateId();
