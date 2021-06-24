@@ -1,14 +1,19 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithStore, updateStore } from '../../utils/test';
-import { getColumnsRef } from '../../firebase';
-import { BOARD_TEST_ID, COLUMN_TEST_ID } from '../../constants/test';
+import { generateId, getColumnsRef } from '../../firebase';
+import {
+  BOARD_TEST_ID as boardId,
+  COLUMN_TEST_ID as columnId,
+} from '../../constants/test';
 import Columns from './Columns';
 
 jest.mock('../../firebase', () => ({
+  generateId: jest.fn(),
   getColumnsRef: jest.fn(),
 }));
 
 beforeEach(() => {
+  (generateId as jest.Mock).mockReturnValue(columnId);
   (getColumnsRef as jest.Mock).mockReturnValueOnce({
     off: jest.fn(),
     on: jest.fn(),
@@ -30,7 +35,7 @@ it('renders column name', () => {
   const { board, columns } = updateStore.withBoardAndColumns();
   renderWithStore(<Columns boardId={board.id} />);
   expect(screen.getByLabelText('Column Name')).toBe(
-    screen.getByDisplayValue(columns[COLUMN_TEST_ID].name)
+    screen.getByDisplayValue(columns[columnId].name)
   );
 });
 
@@ -53,16 +58,14 @@ it('deletes column', () => {
   const { board, columns } = updateStore.withBoardAndColumns();
   renderWithStore(<Columns boardId={board.id} />);
   fireEvent.click(screen.getByLabelText(/Delete column/));
-  expect(
-    screen.queryByText(columns[COLUMN_TEST_ID].name)
-  ).not.toBeInTheDocument();
+  expect(screen.queryByText(columns[columnId].name)).not.toBeInTheDocument();
 });
 
 describe('mount', () => {
   beforeEach(async () => {
     const snapshot = {
       val: () => ({
-        [COLUMN_TEST_ID]: {
+        [columnId]: {
           created: 0,
           name: '',
           updated: 0,
@@ -80,17 +83,17 @@ describe('mount', () => {
   });
 
   it('loads columns', async () => {
-    renderWithStore(<Columns boardId={BOARD_TEST_ID} />);
+    renderWithStore(<Columns boardId={boardId} />);
     expect(await screen.findAllByRole('textbox')).toHaveLength(1);
   });
 
   it('renders default column name', async () => {
-    renderWithStore(<Columns boardId={BOARD_TEST_ID} />);
+    renderWithStore(<Columns boardId={boardId} />);
     expect(await screen.findByPlaceholderText('Column 1')).toBeInTheDocument();
   });
 
   it('removes columns on unmount', async () => {
-    const { unmount } = renderWithStore(<Columns boardId={BOARD_TEST_ID} />);
+    const { unmount } = renderWithStore(<Columns boardId={boardId} />);
     expect(await screen.findAllByPlaceholderText('Column 1')).toHaveLength(1);
     unmount();
     expect(screen.queryAllByPlaceholderText('Column 1')).toHaveLength(0);

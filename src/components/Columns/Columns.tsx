@@ -7,9 +7,9 @@ import AddButton from '../AddButton';
 import CloseButton from '../CloseButton';
 import Items from '../Items';
 
-import { getColumnsRef } from '../../firebase';
-import { useDispatch, useSelector } from '../../hooks';
 import actions from '../../actions';
+import { generateId, getColumnsRef } from '../../firebase';
+import { useDispatch, useSelector } from '../../hooks';
 
 import type { Id } from '../../types';
 
@@ -56,7 +56,13 @@ export default function Columns(props: Props) {
   }
 
   function addColumn() {
-    dispatch(actions.addColumn(boardId));
+    const columnId = generateId();
+    dispatch(
+      actions.addColumn({
+        boardId,
+        columnId,
+      })
+    );
   }
 
   function editColumn(columnId: Id, name: string) {

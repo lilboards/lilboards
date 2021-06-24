@@ -7,7 +7,13 @@ const itemId = ITEM_TEST_ID;
 
 describe('addColumn', () => {
   it('adds column', () => {
-    const newState = reducer(initialState, actions.addColumn(boardId));
+    const newState = reducer(
+      initialState,
+      actions.addColumn({
+        boardId,
+        columnId,
+      })
+    );
     const column = Object.values(newState)[0];
     expect(column).toEqual({
       created: expect.any(Number),
