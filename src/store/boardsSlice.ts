@@ -1,12 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
-  boardsRef,
   getBoardDataRef,
   getUserBoardRef,
   getUserBoardsRef,
 } from '../firebase';
-import { BOARD, BOARDS } from '../constants';
+import { BOARDS } from '../constants';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Board as BoardData, Id } from '../types';
@@ -16,7 +15,7 @@ type Board = BoardData & {
 };
 
 type Boards = {
-  [id: string]: Board;
+  [boardId: string]: Board;
 };
 
 export const initialState: Boards = {};
@@ -28,22 +27,18 @@ const slice = createSlice({
   initialState,
 
   reducers: {
-    addBoard: (state, action: PayloadAction<Id>) => {
+    addBoard: (state, action: PayloadAction<{ boardId: Id; userId: Id }>) => {
+      const { boardId, userId } = action.payload;
       const now = Date.now();
       const board: BoardData = {
         created: now,
         name: '',
         updated: now,
       };
-      const boardRef = boardsRef.push();
-      boardRef.child(BOARD).set(board);
-
-      const boardId = boardRef.key as Id;
-      const userId = action.payload;
+      getBoardDataRef(boardId).set(board);
       getUserBoardsRef(userId).update({
         [boardId]: true,
       });
-
       state[boardId] = {
         ...board,
         focus: true,

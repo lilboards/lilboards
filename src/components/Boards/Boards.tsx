@@ -17,9 +17,9 @@ import AddButton from '../AddButton';
 import CloseButton from '../CloseButton';
 import Layout from '../Layout';
 
-import { getBoardVal, getUserBoardsVal } from '../../firebase';
-import { useDispatch, useSelector } from '../../hooks';
 import actions from '../../actions';
+import { generateId, getBoardVal, getUserBoardsVal } from '../../firebase';
+import { useDispatch, useSelector } from '../../hooks';
 
 export default function Boards(props: RouteComponentProps) {
   const userId = useSelector((state) => state.user.id);
@@ -53,7 +53,13 @@ export default function Boards(props: RouteComponentProps) {
   }, [userId, dispatch]);
 
   function addBoard() {
-    dispatch(actions.addBoard(userId));
+    const boardId = generateId();
+    dispatch(
+      actions.addBoard({
+        boardId,
+        userId,
+      })
+    );
   }
 
   function editBoard(

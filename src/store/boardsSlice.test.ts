@@ -6,7 +6,13 @@ const userId = USER_TEST_ID;
 
 describe('addBoard', () => {
   it('adds board', () => {
-    const newState = reducer(initialState, actions.addBoard(userId));
+    const newState = reducer(
+      initialState,
+      actions.addBoard({
+        boardId,
+        userId,
+      })
+    );
     const board = Object.values(newState)[0];
     expect(board).toEqual({
       created: expect.any(Number),

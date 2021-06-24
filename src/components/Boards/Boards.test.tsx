@@ -1,15 +1,17 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithStore, updateStore } from '../../utils/test';
-import { getBoardVal, getUserBoardsVal } from '../../firebase';
-import { BOARD_TEST_ID } from '../../constants/test';
+import { generateId, getBoardVal, getUserBoardsVal } from '../../firebase';
+import { BOARD_TEST_ID as boardId } from '../../constants/test';
 import Boards from './Boards';
 
 jest.mock('../../firebase', () => ({
+  generateId: jest.fn(),
   getBoardVal: jest.fn(),
   getUserBoardsVal: jest.fn(),
 }));
 
 beforeEach(() => {
+  (generateId as jest.Mock).mockReturnValue(boardId);
   (getBoardVal as jest.Mock).mockResolvedValueOnce(null);
   (getUserBoardsVal as jest.Mock).mockResolvedValueOnce(null);
 });
@@ -31,7 +33,7 @@ it('renders "Open board" link', () => {
   renderWithStore(<Boards />);
   expect(screen.getByText('Open board').closest('a')).toHaveAttribute(
     'href',
-    `/boards/${BOARD_TEST_ID}`
+    `/boards/${boardId}`
   );
 });
 
@@ -65,9 +67,9 @@ it('deletes board', () => {
 describe('mount', () => {
   beforeEach(() => {
     (getUserBoardsVal as jest.Mock).mockReset().mockResolvedValueOnce({
-      [`${BOARD_TEST_ID}1`]: true,
-      [`${BOARD_TEST_ID}2`]: true,
-      [`${BOARD_TEST_ID}3`]: false,
+      [`${boardId}1`]: true,
+      [`${boardId}2`]: true,
+      [`${boardId}3`]: false,
     });
 
     (getBoardVal as jest.Mock)
