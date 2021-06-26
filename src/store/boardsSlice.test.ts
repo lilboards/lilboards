@@ -6,13 +6,11 @@ const userId = USER_TEST_ID;
 
 describe('addBoard', () => {
   it('adds board', () => {
-    const newState = reducer(
-      initialState,
-      actions.addBoard({
-        boardId,
-        userId,
-      })
-    );
+    const payload = {
+      boardId,
+      userId,
+    };
+    const newState = reducer(initialState, actions.addBoard(payload));
     const board = Object.values(newState)[0];
     expect(board).toEqual({
       created: expect.any(Number),
@@ -26,24 +24,26 @@ describe('addBoard', () => {
 });
 
 describe('editBoard', () => {
+  const state = {
+    [boardId]: {
+      created: 0,
+      focus: true,
+      name: 'Board Name',
+      updated: 0,
+    },
+  };
+
+  const payload = {
+    boardId,
+    name: 'Board Name Edited',
+  };
+
   it('edits board', () => {
-    const state = {
-      [boardId]: {
-        created: 0,
-        focus: true,
-        name: 'Board Name',
-        updated: 0,
-      },
-    };
-    const board = {
-      boardId,
-      name: 'Board Name Edited',
-    };
-    const newState = reducer(state, actions.editBoard(board));
+    const newState = reducer(state, actions.editBoard(payload));
     expect(newState).toMatchObject({
       [boardId]: {
         ...state[boardId],
-        name: board.name,
+        name: payload.name,
         updated: expect.any(Number),
       },
     });

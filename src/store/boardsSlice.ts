@@ -50,15 +50,10 @@ const slice = createSlice({
       action: PayloadAction<Pick<Board, 'name'> & { boardId: Id }>
     ) => {
       const { boardId, name } = action.payload;
-      const board = {
+      Object.assign(state[boardId], {
         name,
         updated: Date.now(),
-      };
-      getBoardDataRef(boardId).update(board);
-      state[boardId] = {
-        ...state[boardId],
-        ...board,
-      };
+      });
     },
 
     deleteBoard: (

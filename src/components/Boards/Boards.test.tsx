@@ -1,6 +1,11 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithStore, updateStore } from '../../utils/test';
-import { generateId, getBoardVal, getUserBoardsVal } from '../../firebase';
+import {
+  generateId,
+  getBoardVal,
+  getUserBoardsVal,
+  saveBoardData,
+} from '../../firebase';
 import { BOARD_TEST_ID as boardId } from '../../constants/test';
 import Boards from './Boards';
 
@@ -8,6 +13,7 @@ jest.mock('../../firebase', () => ({
   generateId: jest.fn(),
   getBoardVal: jest.fn(),
   getUserBoardsVal: jest.fn(),
+  saveBoardData: jest.fn(),
 }));
 
 beforeEach(() => {
@@ -47,13 +53,20 @@ it('creates board', async () => {
   expect(boards[0]).toHaveFocus();
 });
 
-it('edits board', async () => {
+it('edits board on change', async () => {
   updateStore.withBoard();
   renderWithStore(<Boards />);
   const value = 'My Board Name';
   fireEvent.change(screen.getByLabelText('Board Name'), { target: { value } });
   const inputs = await screen.findAllByDisplayValue(value);
   expect(inputs).toHaveLength(1);
+});
+
+it('saves board on blur', () => {
+  const board = updateStore.withBoard();
+  renderWithStore(<Boards />);
+  fireEvent.blur(screen.getByLabelText('Board Name'));
+  expect(saveBoardData).toBeCalledWith(board.id, board);
 });
 
 it('deletes board', () => {

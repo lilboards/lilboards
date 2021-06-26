@@ -18,7 +18,12 @@ import CloseButton from '../CloseButton';
 import Layout from '../Layout';
 
 import actions from '../../actions';
-import { generateId, getBoardVal, getUserBoardsVal } from '../../firebase';
+import {
+  generateId,
+  getBoardVal,
+  getUserBoardsVal,
+  saveBoardData,
+} from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 
 export default function Boards(props: RouteComponentProps) {
@@ -65,12 +70,32 @@ export default function Boards(props: RouteComponentProps) {
   function editBoard(
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
+    const boardId = event.target.id;
+    const name = event.target.value;
     dispatch(
       actions.editBoard({
-        boardId: event.target.id,
-        name: event.target.value,
+        boardId,
+        name,
       })
     );
+  }
+
+  function saveBoard(
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    const boardId = event.target.id as Id;
+    /* istanbul ignore next */
+    if (!boardId) {
+      return;
+    }
+    /* istanbul ignore next */
+    const { focus, ...board } =
+      boards.find((board) => board.id === boardId) || {};
+    /* istanbul ignore next */
+    if (!board) {
+      return;
+    }
+    saveBoardData(boardId, board);
   }
 
   function deleteBoard(boardId: Id) {
@@ -111,6 +136,7 @@ export default function Boards(props: RouteComponentProps) {
                   label="Board Name"
                   margin="normal"
                   placeholder="Untitled Board"
+                  onBlur={saveBoard}
                   onChange={editBoard}
                   value={board.name}
                 />

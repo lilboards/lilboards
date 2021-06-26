@@ -33,6 +33,9 @@ export const getBoardDataRef = (boardId: Id) =>
 export const getBoardVal = async (boardId: Id): Promise<Board | null> =>
   (await getBoardDataRef(boardId).get()).val();
 
+export const saveBoardData = (boardId: Id, board: any) =>
+  getBoardDataRef(boardId).update(board);
+
 /**
  * Columns.
  */
