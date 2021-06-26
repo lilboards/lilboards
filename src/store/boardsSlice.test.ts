@@ -14,7 +14,6 @@ describe('addBoard', () => {
     const board = Object.values(newState)[0];
     expect(board).toEqual({
       created: expect.any(Number),
-      focus: true,
       name: '',
       updated: expect.any(Number),
     });
@@ -27,7 +26,6 @@ describe('editBoard', () => {
   const state = {
     [boardId]: {
       created: 0,
-      focus: true,
       name: 'Board Name',
       updated: 0,
     },
@@ -48,7 +46,6 @@ describe('editBoard', () => {
       },
     });
     expect(newState[boardId].updated).not.toBe(state[boardId].updated);
-    expect(newState).not.toHaveProperty('focus');
   });
 });
 
@@ -107,7 +104,7 @@ describe('loadBoard', () => {
 describe('resetBoards', () => {
   it('sets initialState', () => {
     const state = {
-      board_id: {
+      [boardId]: {
         created: 0,
         name: 'Board Name',
         updated: 0,

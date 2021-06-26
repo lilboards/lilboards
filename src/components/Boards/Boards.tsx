@@ -27,11 +27,12 @@ import {
 import { useDispatch, useSelector } from '../../hooks';
 
 export default function Boards(props: RouteComponentProps) {
-  const userId = useSelector((state) => state.user.id);
+  const dispatch = useDispatch();
   const boards = useSelector((state) =>
     Object.entries(state.boards).map(([id, board]) => ({ ...board, id }))
   );
-  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const userId = user.id;
 
   useEffect(() => {
     (async () => {
@@ -55,7 +56,7 @@ export default function Boards(props: RouteComponentProps) {
 
       boards.forEach((board) => board && dispatch(actions.loadBoard(board)));
     })();
-  }, [userId, dispatch]);
+  }, [dispatch, userId]);
 
   function addBoard() {
     const boardId = generateId();
@@ -65,6 +66,7 @@ export default function Boards(props: RouteComponentProps) {
         userId,
       })
     );
+    dispatch(actions.toggleUserEditing({ boardId }));
   }
 
   function editBoard(
@@ -88,9 +90,7 @@ export default function Boards(props: RouteComponentProps) {
     if (!boardId) {
       return;
     }
-    /* istanbul ignore next */
-    const { focus, ...board } =
-      boards.find((board) => board.id === boardId) || {};
+    const board = boards.find((board) => board.id === boardId);
     /* istanbul ignore next */
     if (!board) {
       return;
@@ -130,7 +130,7 @@ export default function Boards(props: RouteComponentProps) {
 
               <CardContent>
                 <TextField
-                  autoFocus={board.focus}
+                  autoFocus={user.editing.boardId === board.id}
                   fullWidth
                   id={board.id}
                   label="Board Name"

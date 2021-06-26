@@ -8,11 +8,7 @@ import {
 import { BOARDS } from '../constants';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Board as BoardData, Id } from '../types';
-
-type Board = BoardData & {
-  focus?: boolean;
-};
+import type { Board, Id } from '../types';
 
 type Boards = {
   [boardId: string]: Board;
@@ -30,7 +26,7 @@ const slice = createSlice({
     addBoard: (state, action: PayloadAction<{ boardId: Id; userId: Id }>) => {
       const { boardId, userId } = action.payload;
       const now = Date.now();
-      const board: BoardData = {
+      const board: Board = {
         created: now,
         name: '',
         updated: now,
@@ -39,10 +35,7 @@ const slice = createSlice({
       getUserBoardsRef(userId).update({
         [boardId]: true,
       });
-      state[boardId] = {
-        ...board,
-        focus: true,
-      };
+      state[boardId] = board;
     },
 
     editBoard: (
