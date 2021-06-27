@@ -69,7 +69,7 @@ export default function Boards(props: RouteComponentProps) {
     dispatch(actions.toggleUserEditing({ boardId }));
   }
 
-  function editBoard(
+  function handleChange(
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     const boardId = event.target.id;
@@ -82,7 +82,7 @@ export default function Boards(props: RouteComponentProps) {
     );
   }
 
-  function saveBoard(
+  function handleBlur(
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     const boardId = event.target.id;
@@ -114,42 +114,47 @@ export default function Boards(props: RouteComponentProps) {
       </Box>
 
       <Grid container spacing={2}>
-        {boards.reverse().map((board) => (
-          <Grid item key={board.id} xs={12} sm={6} md={3}>
-            <Box component={Card} height="100%" position="relative">
-              <Box position="absolute" right={0} top={0}>
-                <CloseButton
-                  aria-label={`Delete board "${board.name || board.id}"`}
-                  onClick={() => deleteBoard(board.id)}
-                />
+        {boards.reverse().map((board) => {
+          const boardId = board.id;
+          const boardName = board.name;
+
+          return (
+            <Grid item key={boardId} xs={12} sm={6} md={3}>
+              <Box component={Card} height="100%" position="relative">
+                <Box position="absolute" right={0} top={0}>
+                  <CloseButton
+                    aria-label={`Delete board "${boardName || boardId}"`}
+                    onClick={() => deleteBoard(boardId)}
+                  />
+                </Box>
+
+                <CardContent>
+                  <TextField
+                    autoFocus={user.editing.boardId === boardId}
+                    fullWidth
+                    id={boardId}
+                    label="Board Name"
+                    margin="normal"
+                    placeholder="Untitled Board"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={boardName}
+                  />
+                </CardContent>
+
+                <CardActions>
+                  <Button
+                    color="primary"
+                    component={RouterLink}
+                    to={`/boards/${boardId}`}
+                  >
+                    Open board
+                  </Button>
+                </CardActions>
               </Box>
-
-              <CardContent>
-                <TextField
-                  autoFocus={user.editing.boardId === board.id}
-                  fullWidth
-                  id={board.id}
-                  label="Board Name"
-                  margin="normal"
-                  placeholder="Untitled Board"
-                  onBlur={saveBoard}
-                  onChange={editBoard}
-                  value={board.name}
-                />
-              </CardContent>
-
-              <CardActions>
-                <Button
-                  color="primary"
-                  component={RouterLink}
-                  to={`/boards/${board.id}`}
-                >
-                  Open board
-                </Button>
-              </CardActions>
-            </Box>
-          </Grid>
-        ))}
+            </Grid>
+          );
+        })}
       </Grid>
     </Layout>
   );
