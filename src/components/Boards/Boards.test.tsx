@@ -1,5 +1,5 @@
 import { fireEvent, screen } from '@testing-library/react';
-import { getStoreState, renderWithStore, updateStore } from '../../utils/test';
+import { renderWithStore, updateStore } from '../../utils/test';
 import {
   debouncedSaveBoardData,
   generateId,
@@ -41,15 +41,6 @@ it('renders "Create board" button', () => {
   expect(screen.getByLabelText('Create board')).toBeInTheDocument();
 });
 
-it('renders "Open board" link', () => {
-  updateStore.withBoard();
-  renderWithStore(<Boards />);
-  expect(screen.getByText('Open board').closest('a')).toHaveAttribute(
-    'href',
-    `/boards/${boardId}`
-  );
-});
-
 it('adds board', async () => {
   const user = updateStore.withUser();
   renderWithStore(<Boards />);
@@ -66,34 +57,6 @@ it('adds board', async () => {
   });
   expect(saveUserBoardId).toBeCalledTimes(1);
   expect(saveUserBoardId).toBeCalledWith(user.id, boardId);
-});
-
-it('edits and saves board on change', async () => {
-  const board = updateStore.withBoard();
-  renderWithStore(<Boards />);
-  const value = 'My Board Name';
-  fireEvent.change(screen.getByLabelText('Board Name'), { target: { value } });
-  const inputs = await screen.findAllByDisplayValue(value);
-  expect(inputs).toHaveLength(1);
-  expect(debouncedSaveBoardData).toBeCalledWith(board.id, {
-    name: value,
-    updated: expect.any(Number),
-  });
-});
-
-it('resets user editing board id on blur', () => {
-  const board = updateStore.withBoard();
-  renderWithStore(<Boards />);
-  fireEvent.blur(screen.getByLabelText('Board Name'));
-  expect(getStoreState().user.editing.boardId).toBe('');
-});
-
-it('deletes board', () => {
-  updateStore.withBoard();
-  updateStore.withUser();
-  renderWithStore(<Boards />);
-  fireEvent.click(screen.getByLabelText(/Delete board/));
-  expect(screen.queryByLabelText('Board Name')).not.toBeInTheDocument();
 });
 
 describe('mount', () => {

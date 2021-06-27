@@ -64,6 +64,14 @@ export const updateStore = {
     store.dispatch(actions.setUser(user));
     return user;
   },
+
+  withUserEditing() {
+    const userEditing = {
+      boardId: BOARD_TEST_ID,
+    };
+    store.dispatch(actions.toggleUserEditing(userEditing));
+    return userEditing;
+  },
 };
 
 export const getStoreState = () => store.getState();
