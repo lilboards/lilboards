@@ -1,9 +1,18 @@
 /* istanbul ignore file */
 import 'firebase/database';
+import { debounce } from 'debounce';
 
 import { firebaseApp } from './app';
 import { isDevelopment, isLocalhost } from '../config';
-import { BOARD, BOARDS, COLUMNS, ITEM_IDS, ITEMS, USERS } from '../constants';
+import {
+  BOARD,
+  BOARDS,
+  COLUMNS,
+  HALF_SECOND,
+  ITEM_IDS,
+  ITEMS,
+  USERS,
+} from '../constants';
 
 import type { Board, Id } from '../types';
 
@@ -33,8 +42,11 @@ export const getBoardDataRef = (boardId: Id) =>
 export const getBoardVal = async (boardId: Id): Promise<Board | null> =>
   (await getBoardDataRef(boardId).get()).val();
 
-export const saveBoardData = (boardId: Id, board: any) =>
+export const saveBoardData = (boardId: Id, board: Partial<Board>) => {
   getBoardDataRef(boardId).update(board);
+};
+
+export const debouncedSaveBoardData = debounce(saveBoardData, HALF_SECOND);
 
 /**
  * Columns.
