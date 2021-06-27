@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.0](https://www.github.com/lilboards/lilboards/compare/v2.3.0...v2.4.0) (2021-06-27)
+
+
+### Features
+
+* debounce save board to database on change instead of on blur ([f6ff028](https://www.github.com/lilboards/lilboards/commit/f6ff028b4019a4158276a0575b0d2c143fc3f7f6))
+
 ## [2.3.0](https://www.github.com/lilboards/lilboards/compare/v2.2.0...v2.3.0) (2021-06-27)
 
 
