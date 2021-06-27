@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.3.0](https://www.github.com/lilboards/lilboards/compare/v2.2.0...v2.3.0) (2021-06-27)
+
+
+### Features
+
+* save board to firebase database on blur ([08f2c81](https://www.github.com/lilboards/lilboards/commit/08f2c818fc31e7210dd52b7476f1fd4dfc7e9a39))
+
+
+### Bug Fixes
+
+* **components:** reset user editing board id on blur ([6c55307](https://www.github.com/lilboards/lilboards/commit/6c553076ef56c1cb24590af22ba6417b8015335a))
+
 ## [2.2.0](https://www.github.com/lilboards/lilboards/compare/v2.1.0...v2.2.0) (2021-06-23)
 
 
