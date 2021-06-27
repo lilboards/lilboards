@@ -1,27 +1,42 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { USER } from '../constants';
+
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Id } from '../types';
 
 type User = {
+  editing: {
+    boardId: Id;
+  };
   email: string | null;
   id: Id;
 };
 
 export const initialState: User = {
+  editing: {
+    boardId: '',
+  },
   email: null,
   id: '',
 };
 
-export const name = 'user';
+export const name = USER;
 
-const slice = createSlice({
+const userSlice = createSlice({
   name,
   initialState,
 
   reducers: {
-    setUser: (state, action: PayloadAction<User>) => {
-      return action.payload;
+    setUser: (state, action: PayloadAction<Pick<User, 'email' | 'id'>>) => {
+      Object.assign(state, action.payload);
+    },
+
+    toggleUserEditing: (
+      state,
+      action: PayloadAction<Partial<User['editing']>>
+    ) => {
+      Object.assign(state.editing, action.payload);
     },
 
     resetUser: () => {
@@ -30,4 +45,4 @@ const slice = createSlice({
   },
 });
 
-export const { actions, reducer } = slice;
+export const { actions, reducer } = userSlice;

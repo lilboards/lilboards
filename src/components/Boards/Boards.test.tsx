@@ -1,6 +1,12 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithStore, updateStore } from '../../utils/test';
-import { generateId, getBoardVal, getUserBoardsVal } from '../../firebase';
+import {
+  generateId,
+  getBoardVal,
+  getUserBoardsVal,
+  saveBoardData,
+  saveUserBoardId,
+} from '../../firebase';
 import { BOARD_TEST_ID as boardId } from '../../constants/test';
 import Boards from './Boards';
 
@@ -8,12 +14,16 @@ jest.mock('../../firebase', () => ({
   generateId: jest.fn(),
   getBoardVal: jest.fn(),
   getUserBoardsVal: jest.fn(),
+  saveBoardData: jest.fn(),
+  saveUserBoardId: jest.fn(),
 }));
 
 beforeEach(() => {
   (generateId as jest.Mock).mockReturnValue(boardId);
   (getBoardVal as jest.Mock).mockResolvedValueOnce(null);
   (getUserBoardsVal as jest.Mock).mockResolvedValueOnce(null);
+  (saveBoardData as jest.Mock).mockClear();
+  (saveUserBoardId as jest.Mock).mockClear();
 });
 
 it('renders heading', () => {
@@ -37,23 +47,39 @@ it('renders "Open board" link', () => {
   );
 });
 
-it('creates board', async () => {
-  updateStore.withUser();
+it('adds board', async () => {
+  const user = updateStore.withUser();
   renderWithStore(<Boards />);
   fireEvent.click(screen.getByLabelText('Create board'));
   const boards = await screen.findAllByLabelText('Board Name');
   expect(boards).toHaveLength(1);
   expect(screen.getByPlaceholderText('Untitled Board')).toBe(boards[0]);
   expect(boards[0]).toHaveFocus();
+  expect(saveBoardData).toBeCalledTimes(1);
+  expect(saveBoardData).toBeCalledWith(boardId, {
+    created: expect.any(Number),
+    name: '',
+    updated: expect.any(Number),
+  });
+  expect(saveUserBoardId).toBeCalledTimes(1);
+  expect(saveUserBoardId).toBeCalledWith(user.id, boardId);
 });
 
-it('edits board', async () => {
+it('edits board on change', async () => {
   updateStore.withBoard();
   renderWithStore(<Boards />);
   const value = 'My Board Name';
   fireEvent.change(screen.getByLabelText('Board Name'), { target: { value } });
   const inputs = await screen.findAllByDisplayValue(value);
   expect(inputs).toHaveLength(1);
+});
+
+it('saves board on blur', () => {
+  const board = updateStore.withBoard();
+  renderWithStore(<Boards />);
+  fireEvent.blur(screen.getByLabelText('Board Name'));
+  expect(saveBoardData).toBeCalledTimes(1);
+  expect(saveBoardData).toBeCalledWith(board.id, board);
 });
 
 it('deletes board', () => {

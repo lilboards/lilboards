@@ -4,51 +4,44 @@ import { actions, initialState, reducer } from './boardsSlice';
 const boardId = BOARD_TEST_ID;
 const userId = USER_TEST_ID;
 
-describe('addBoard', () => {
-  it('adds board', () => {
-    const newState = reducer(
-      initialState,
-      actions.addBoard({
-        boardId,
-        userId,
-      })
-    );
-    const board = Object.values(newState)[0];
-    expect(board).toEqual({
-      created: expect.any(Number),
-      focus: true,
-      name: '',
-      updated: expect.any(Number),
-    });
-    const id = Object.keys(newState)[0];
-    expect({ id }).toMatchObject({ id: expect.any(String) });
-  });
-});
-
 describe('editBoard', () => {
-  it('edits board', () => {
+  it('adds board', () => {
+    const board = {
+      created: Date.now(),
+      name: '',
+      updated: Date.now(),
+    };
+    const payload = {
+      ...board,
+      boardId,
+    };
+    const newState = reducer(initialState, actions.editBoard(payload));
+    expect(newState).toEqual({ [boardId]: board });
+  });
+
+  it('edits board name and updated', () => {
     const state = {
       [boardId]: {
-        created: 0,
-        focus: true,
+        created: Date.now(),
         name: 'Board Name',
-        updated: 0,
+        updated: Date.now(),
       },
     };
     const board = {
-      boardId,
       name: 'Board Name Edited',
+      updated: Date.now() + 1000,
     };
-    const newState = reducer(state, actions.editBoard(board));
-    expect(newState).toMatchObject({
+    const payload = {
+      ...board,
+      boardId,
+    };
+    const newState = reducer(state, actions.editBoard(payload));
+    expect(newState).toEqual({
       [boardId]: {
         ...state[boardId],
-        name: board.name,
-        updated: expect.any(Number),
+        ...board,
       },
     });
-    expect(newState[boardId].updated).not.toBe(state[boardId].updated);
-    expect(newState).not.toHaveProperty('focus');
   });
 });
 
@@ -107,7 +100,7 @@ describe('loadBoard', () => {
 describe('resetBoards', () => {
   it('sets initialState', () => {
     const state = {
-      board_id: {
+      [boardId]: {
         created: 0,
         name: 'Board Name',
         updated: 0,

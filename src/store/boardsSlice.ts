@@ -1,18 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import {
-  getBoardDataRef,
-  getUserBoardRef,
-  getUserBoardsRef,
-} from '../firebase';
+import { getBoardDataRef, getUserBoardRef } from '../firebase';
 import { BOARDS } from '../constants';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Board as BoardData, Id } from '../types';
-
-type Board = BoardData & {
-  focus?: boolean;
-};
+import type { Board, Id } from '../types';
 
 type Boards = {
   [boardId: string]: Board;
@@ -27,38 +19,13 @@ const slice = createSlice({
   initialState,
 
   reducers: {
-    addBoard: (state, action: PayloadAction<{ boardId: Id; userId: Id }>) => {
-      const { boardId, userId } = action.payload;
-      const now = Date.now();
-      const board: BoardData = {
-        created: now,
-        name: '',
-        updated: now,
-      };
-      getBoardDataRef(boardId).set(board);
-      getUserBoardsRef(userId).update({
-        [boardId]: true,
-      });
-      state[boardId] = {
-        ...board,
-        focus: true,
-      };
-    },
-
     editBoard: (
       state,
-      action: PayloadAction<Pick<Board, 'name'> & { boardId: Id }>
+      action: PayloadAction<Partial<Board> & { boardId: Id }>
     ) => {
-      const { boardId, name } = action.payload;
-      const board = {
-        name,
-        updated: Date.now(),
-      };
-      getBoardDataRef(boardId).update(board);
-      state[boardId] = {
-        ...state[boardId],
-        ...board,
-      };
+      const { boardId, ...board } = action.payload;
+      state[boardId] = state[boardId] || {};
+      Object.assign(state[boardId], board);
     },
 
     deleteBoard: (

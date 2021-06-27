@@ -18,15 +18,22 @@ import CloseButton from '../CloseButton';
 import Layout from '../Layout';
 
 import actions from '../../actions';
-import { generateId, getBoardVal, getUserBoardsVal } from '../../firebase';
+import {
+  generateId,
+  getBoardVal,
+  getUserBoardsVal,
+  saveBoardData,
+  saveUserBoardId,
+} from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 
 export default function Boards(props: RouteComponentProps) {
-  const userId = useSelector((state) => state.user.id);
+  const dispatch = useDispatch();
   const boards = useSelector((state) =>
     Object.entries(state.boards).map(([id, board]) => ({ ...board, id }))
   );
-  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const userId = user.id;
 
   useEffect(() => {
     (async () => {
@@ -50,27 +57,51 @@ export default function Boards(props: RouteComponentProps) {
 
       boards.forEach((board) => board && dispatch(actions.loadBoard(board)));
     })();
-  }, [userId, dispatch]);
+  }, [dispatch, userId]);
 
   function addBoard() {
     const boardId = generateId();
+    const now = Date.now();
+    const board = {
+      created: now,
+      name: '',
+      updated: now,
+    };
     dispatch(
-      actions.addBoard({
+      actions.editBoard({
+        ...board,
         boardId,
-        userId,
+      })
+    );
+    dispatch(actions.toggleUserEditing({ boardId }));
+    saveBoardData(boardId, board);
+    saveUserBoardId(userId, boardId);
+  }
+
+  function handleChange(
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    const boardId = event.target.id;
+    const name = event.target.value;
+    dispatch(
+      actions.editBoard({
+        boardId,
+        name,
+        updated: Date.now(),
       })
     );
   }
 
-  function editBoard(
+  function handleBlur(
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
-    dispatch(
-      actions.editBoard({
-        boardId: event.target.id,
-        name: event.target.value,
-      })
-    );
+    const boardId = event.target.id;
+    const board = boards.find((board) => board.id === boardId);
+    /* istanbul ignore next */
+    if (board) {
+      saveBoardData(boardId, board);
+    }
+    dispatch(actions.toggleUserEditing({ boardId: '' }));
   }
 
   function deleteBoard(boardId: Id) {
@@ -93,41 +124,47 @@ export default function Boards(props: RouteComponentProps) {
       </Box>
 
       <Grid container spacing={2}>
-        {boards.reverse().map((board) => (
-          <Grid item key={board.id} xs={12} sm={6} md={3}>
-            <Box component={Card} height="100%" position="relative">
-              <Box position="absolute" right={0} top={0}>
-                <CloseButton
-                  aria-label={`Delete board "${board.name || board.id}"`}
-                  onClick={() => deleteBoard(board.id)}
-                />
+        {boards.reverse().map((board) => {
+          const boardId = board.id;
+          const boardName = board.name;
+
+          return (
+            <Grid item key={boardId} xs={12} sm={6} md={3}>
+              <Box component={Card} height="100%" position="relative">
+                <Box position="absolute" right={0} top={0}>
+                  <CloseButton
+                    aria-label={`Delete board "${boardName || boardId}"`}
+                    onClick={() => deleteBoard(boardId)}
+                  />
+                </Box>
+
+                <CardContent>
+                  <TextField
+                    autoFocus={user.editing.boardId === boardId}
+                    fullWidth
+                    id={boardId}
+                    label="Board Name"
+                    margin="normal"
+                    placeholder="Untitled Board"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={boardName}
+                  />
+                </CardContent>
+
+                <CardActions>
+                  <Button
+                    color="primary"
+                    component={RouterLink}
+                    to={`/boards/${boardId}`}
+                  >
+                    Open board
+                  </Button>
+                </CardActions>
               </Box>
-
-              <CardContent>
-                <TextField
-                  autoFocus={board.focus}
-                  fullWidth
-                  id={board.id}
-                  label="Board Name"
-                  margin="normal"
-                  placeholder="Untitled Board"
-                  onChange={editBoard}
-                  value={board.name}
-                />
-              </CardContent>
-
-              <CardActions>
-                <Button
-                  color="primary"
-                  component={RouterLink}
-                  to={`/boards/${board.id}`}
-                >
-                  Open board
-                </Button>
-              </CardActions>
-            </Box>
-          </Grid>
-        ))}
+            </Grid>
+          );
+        })}
       </Grid>
     </Layout>
   );
