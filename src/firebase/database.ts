@@ -66,6 +66,9 @@ export const getUserRef = (userId: Id) => usersRef.child(userId);
 export const getUserBoardsRef = (userId: Id) =>
   getUserRef(userId).child(BOARDS);
 
+export const saveUserBoardId = (userId: Id, boardId: Id) =>
+  getUserBoardsRef(userId).update({ [boardId]: true });
+
 export const getUserBoardsVal = async (
   userId: Id
 ): Promise<{ [boardId: string]: boolean } | null> =>

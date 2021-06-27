@@ -4,48 +4,44 @@ import { actions, initialState, reducer } from './boardsSlice';
 const boardId = BOARD_TEST_ID;
 const userId = USER_TEST_ID;
 
-describe('addBoard', () => {
-  it('adds board', () => {
-    const payload = {
-      boardId,
-      userId,
-    };
-    const newState = reducer(initialState, actions.addBoard(payload));
-    const board = Object.values(newState)[0];
-    expect(board).toEqual({
-      created: expect.any(Number),
-      name: '',
-      updated: expect.any(Number),
-    });
-    const id = Object.keys(newState)[0];
-    expect({ id }).toMatchObject({ id: expect.any(String) });
-  });
-});
-
 describe('editBoard', () => {
-  const state = {
-    [boardId]: {
-      created: 0,
-      name: 'Board Name',
-      updated: 0,
-    },
-  };
+  it('adds board', () => {
+    const board = {
+      created: Date.now(),
+      name: '',
+      updated: Date.now(),
+    };
+    const payload = {
+      ...board,
+      boardId,
+    };
+    const newState = reducer(initialState, actions.editBoard(payload));
+    expect(newState).toEqual({ [boardId]: board });
+  });
 
-  const payload = {
-    boardId,
-    name: 'Board Name Edited',
-  };
-
-  it('edits board', () => {
+  it('edits board name and updated', () => {
+    const state = {
+      [boardId]: {
+        created: Date.now(),
+        name: 'Board Name',
+        updated: Date.now(),
+      },
+    };
+    const board = {
+      name: 'Board Name Edited',
+      updated: Date.now() + 1000,
+    };
+    const payload = {
+      ...board,
+      boardId,
+    };
     const newState = reducer(state, actions.editBoard(payload));
-    expect(newState).toMatchObject({
+    expect(newState).toEqual({
       [boardId]: {
         ...state[boardId],
-        name: payload.name,
-        updated: expect.any(Number),
+        ...board,
       },
     });
-    expect(newState[boardId].updated).not.toBe(state[boardId].updated);
   });
 });
 

@@ -23,6 +23,7 @@ import {
   getBoardVal,
   getUserBoardsVal,
   saveBoardData,
+  saveUserBoardId,
 } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 
@@ -60,13 +61,21 @@ export default function Boards(props: RouteComponentProps) {
 
   function addBoard() {
     const boardId = generateId();
+    const now = Date.now();
+    const board = {
+      created: now,
+      name: '',
+      updated: now,
+    };
     dispatch(
-      actions.addBoard({
+      actions.editBoard({
+        ...board,
         boardId,
-        userId,
       })
     );
     dispatch(actions.toggleUserEditing({ boardId }));
+    saveBoardData(boardId, board);
+    saveUserBoardId(userId, boardId);
   }
 
   function handleChange(
@@ -78,6 +87,7 @@ export default function Boards(props: RouteComponentProps) {
       actions.editBoard({
         boardId,
         name,
+        updated: Date.now(),
       })
     );
   }

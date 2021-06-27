@@ -4,7 +4,12 @@ import { Provider } from 'react-redux';
 import type { ReactNode } from 'react';
 
 import actions, { resetActions } from '../actions';
-import { BOARD_TEST_ID, COLUMN_TEST_ID } from '../constants/test';
+import {
+  BOARD_TEST_ID,
+  COLUMN_TEST_ID,
+  USER_TEST_EMAIL,
+  USER_TEST_ID,
+} from '../constants/test';
 import store from '../store';
 
 type Props = {
@@ -53,8 +58,8 @@ export const updateStore = {
 
   withUser() {
     const user = {
-      email: 'user@example.com',
-      id: 'user1',
+      email: USER_TEST_EMAIL,
+      id: USER_TEST_ID,
     };
     store.dispatch(actions.setUser(user));
     return user;
