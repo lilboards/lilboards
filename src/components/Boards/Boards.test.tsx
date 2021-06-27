@@ -1,6 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
-import { renderWithStore, updateStore } from '../../utils/test';
+import { getStoreState, renderWithStore, updateStore } from '../../utils/test';
 import {
+  debouncedSaveBoardData,
   generateId,
   getBoardVal,
   getUserBoardsVal,
@@ -11,6 +12,7 @@ import { BOARD_TEST_ID as boardId } from '../../constants/test';
 import Boards from './Boards';
 
 jest.mock('../../firebase', () => ({
+  debouncedSaveBoardData: jest.fn(),
   generateId: jest.fn(),
   getBoardVal: jest.fn(),
   getUserBoardsVal: jest.fn(),
@@ -19,6 +21,7 @@ jest.mock('../../firebase', () => ({
 }));
 
 beforeEach(() => {
+  (debouncedSaveBoardData as unknown as jest.Mock).mockClear();
   (generateId as jest.Mock).mockReturnValue(boardId);
   (getBoardVal as jest.Mock).mockResolvedValueOnce(null);
   (getUserBoardsVal as jest.Mock).mockResolvedValueOnce(null);
@@ -65,21 +68,24 @@ it('adds board', async () => {
   expect(saveUserBoardId).toBeCalledWith(user.id, boardId);
 });
 
-it('edits board on change', async () => {
-  updateStore.withBoard();
+it('edits and saves board on change', async () => {
+  const board = updateStore.withBoard();
   renderWithStore(<Boards />);
   const value = 'My Board Name';
   fireEvent.change(screen.getByLabelText('Board Name'), { target: { value } });
   const inputs = await screen.findAllByDisplayValue(value);
   expect(inputs).toHaveLength(1);
+  expect(debouncedSaveBoardData).toBeCalledWith(board.id, {
+    name: value,
+    updated: expect.any(Number),
+  });
 });
 
-it('saves board on blur', () => {
+it('resets user editing board id on blur', () => {
   const board = updateStore.withBoard();
   renderWithStore(<Boards />);
   fireEvent.blur(screen.getByLabelText('Board Name'));
-  expect(saveBoardData).toBeCalledTimes(1);
-  expect(saveBoardData).toBeCalledWith(board.id, board);
+  expect(getStoreState().user.editing.boardId).toBe('');
 });
 
 it('deletes board', () => {

@@ -19,6 +19,7 @@ import Layout from '../Layout';
 
 import actions from '../../actions';
 import {
+  debouncedSaveBoardData,
   generateId,
   getBoardVal,
   getUserBoardsVal,
@@ -82,25 +83,20 @@ export default function Boards(props: RouteComponentProps) {
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     const boardId = event.target.id;
-    const name = event.target.value;
+    const board = {
+      name: event.target.value,
+      updated: Date.now(),
+    };
     dispatch(
       actions.editBoard({
+        ...board,
         boardId,
-        name,
-        updated: Date.now(),
       })
     );
+    debouncedSaveBoardData(boardId, board);
   }
 
-  function handleBlur(
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
-    const boardId = event.target.id;
-    const board = boards.find((board) => board.id === boardId);
-    /* istanbul ignore next */
-    if (board) {
-      saveBoardData(boardId, board);
-    }
+  function handleBlur() {
     dispatch(actions.toggleUserEditing({ boardId: '' }));
   }
 
