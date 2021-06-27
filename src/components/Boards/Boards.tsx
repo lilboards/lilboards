@@ -85,17 +85,13 @@ export default function Boards(props: RouteComponentProps) {
   function saveBoard(
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
-    const boardId = event.target.id as Id;
-    /* istanbul ignore next */
-    if (!boardId) {
-      return;
-    }
+    const boardId = event.target.id;
     const board = boards.find((board) => board.id === boardId);
     /* istanbul ignore next */
-    if (!board) {
-      return;
+    if (board) {
+      saveBoardData(boardId, board);
     }
-    saveBoardData(boardId, board);
+    dispatch(actions.toggleUserEditing({ boardId: '' }));
   }
 
   function deleteBoard(boardId: Id) {
