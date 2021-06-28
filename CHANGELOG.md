@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.4.4](https://www.github.com/lilboards/lilboards/compare/v2.4.3...v2.4.4) (2021-06-28)
+
+
+### Bug Fixes
+
+* remove items when column is deleted ([89b5b04](https://www.github.com/lilboards/lilboards/commit/89b5b04604c4d2dee253430caec79671727bd263))
+
 ### [2.4.3](https://www.github.com/lilboards/lilboards/compare/v2.4.2...v2.4.3) (2021-06-28)
 
 
