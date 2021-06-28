@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.4.2](https://www.github.com/lilboards/lilboards/compare/v2.4.1...v2.4.2) (2021-06-28)
+
+
+### Performance Improvements
+
+* **firebase:** debounce edit column update database ([1e94142](https://www.github.com/lilboards/lilboards/commit/1e94142136b3dfc1c4cb13a7fb1d97a8178f0e87))
+
 ### [2.4.1](https://www.github.com/lilboards/lilboards/compare/v2.4.0...v2.4.1) (2021-06-28)
 
 
