@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.4.1](https://www.github.com/lilboards/lilboards/compare/v2.4.0...v2.4.1) (2021-06-28)
+
+
+### Performance Improvements
+
+* **hooks:** use `shallowEqual` as the `equalityFn` in `useSelector` ([25c838a](https://www.github.com/lilboards/lilboards/commit/25c838a9dd213a1e2e43afad75fa2e511f3d4fa0))
+
 ## [2.4.0](https://www.github.com/lilboards/lilboards/compare/v2.3.0...v2.4.0) (2021-06-27)
 
 
