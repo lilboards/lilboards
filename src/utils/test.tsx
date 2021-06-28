@@ -67,6 +67,7 @@ export const updateStore = {
   withUserEditing() {
     const userEditing = {
       boardId: BOARD_TEST_ID,
+      columnId: COLUMN_TEST_ID,
     };
     store.dispatch(actions.toggleUserEditing(userEditing));
     return userEditing;

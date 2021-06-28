@@ -1,5 +1,5 @@
 import { fireEvent, screen } from '@testing-library/react';
-import { renderWithStore, updateStore } from '../../utils/test';
+import { getStoreState, renderWithStore, updateStore } from '../../utils/test';
 import Column from './Column';
 
 it('renders nothing when there is no column', () => {
@@ -25,6 +25,15 @@ it('edits column', async () => {
   const value = 'My Column Name';
   fireEvent.change(screen.getByLabelText('Column Name'), { target: { value } });
   expect(await screen.findAllByDisplayValue(value)).toHaveLength(1);
+});
+
+it('resets user editing column id on blur', () => {
+  const board = updateStore.withBoard();
+  const column = updateStore.withColumn();
+  updateStore.withUserEditing();
+  renderWithStore(<Column boardId={board.id} columnId={column.id} index={0} />);
+  fireEvent.blur(screen.getByLabelText('Column Name'));
+  expect(getStoreState().user.editing.columnId).toBe('');
 });
 
 it('deletes column', () => {

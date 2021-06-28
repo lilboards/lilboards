@@ -41,22 +41,35 @@ it('renders "Create board" button', () => {
   expect(screen.getByLabelText('Create board')).toBeInTheDocument();
 });
 
-it('adds board', async () => {
-  const user = updateStore.withUser();
-  renderWithStore(<Boards />);
-  fireEvent.click(screen.getByLabelText('Create board'));
-  const boards = await screen.findAllByLabelText('Board Name');
-  expect(boards).toHaveLength(1);
-  expect(screen.getByPlaceholderText('Untitled Board')).toBe(boards[0]);
-  expect(boards[0]).toHaveFocus();
-  expect(saveBoardData).toBeCalledTimes(1);
-  expect(saveBoardData).toBeCalledWith(boardId, {
-    created: expect.any(Number),
-    name: '',
-    updated: expect.any(Number),
+describe('create board', () => {
+  it('renders new board', () => {
+    updateStore.withUser();
+    renderWithStore(<Boards />);
+    fireEvent.click(screen.getByLabelText('Create board'));
+    const boards = screen.getAllByLabelText('Board Name');
+    expect(boards).toHaveLength(1);
   });
-  expect(saveUserBoardId).toBeCalledTimes(1);
-  expect(saveUserBoardId).toBeCalledWith(user.id, boardId);
+
+  it('focuses on new board', () => {
+    updateStore.withUser();
+    renderWithStore(<Boards />);
+    fireEvent.click(screen.getByLabelText('Create board'));
+    expect(screen.getByPlaceholderText('Untitled Board')).toHaveFocus();
+  });
+
+  it('saves new board to database', () => {
+    const user = updateStore.withUser();
+    renderWithStore(<Boards />);
+    fireEvent.click(screen.getByLabelText('Create board'));
+    expect(saveBoardData).toBeCalledTimes(1);
+    expect(saveBoardData).toBeCalledWith(boardId, {
+      created: expect.any(Number),
+      name: '',
+      updated: expect.any(Number),
+    });
+    expect(saveUserBoardId).toBeCalledTimes(1);
+    expect(saveUserBoardId).toBeCalledWith(user.id, boardId);
+  });
 });
 
 describe('mount', () => {

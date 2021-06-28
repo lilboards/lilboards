@@ -61,6 +61,7 @@ export default function Columns(props: Props) {
         columnId,
       })
     );
+    dispatch(actions.toggleUserEditing({ columnId }));
     updateColumn(props.boardId, columnId, column);
   }
 

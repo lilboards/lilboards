@@ -21,6 +21,9 @@ type Props = {
 export default function Column(props: Props) {
   const dispatch = useDispatch();
   const column = useSelector((state) => state.columns[props.columnId]);
+  const userEditingColumnId = useSelector(
+    (state) => state.user.editing.columnId
+  );
 
   if (!column) {
     return null;
@@ -53,13 +56,19 @@ export default function Column(props: Props) {
     );
   }
 
+  function handleBlur() {
+    dispatch(actions.toggleUserEditing({ columnId: '' }));
+  }
+
   return (
     <Grid item xs={12} sm={3}>
       <Box marginBottom={2} position="relative">
         <TextField
+          autoFocus={userEditingColumnId === props.columnId}
           fullWidth
           inputProps={{ 'aria-label': 'Column Name' }}
           placeholder={columnIndex}
+          onBlur={handleBlur}
           onChange={handleChange}
           value={column.name}
         />

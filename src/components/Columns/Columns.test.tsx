@@ -42,17 +42,34 @@ it('renders column', () => {
   );
 });
 
-it('adds column', () => {
-  const board = updateStore.withBoard();
-  renderWithStore(<Columns boardId={board.id} />);
-  fireEvent.click(screen.getByText('Add column'));
-  expect(updateColumn).toBeCalledTimes(1);
-  expect(updateColumn).toBeCalledWith(board.id, columnId, {
-    created: expect.any(Number),
-    name: '',
-    updated: expect.any(Number),
+describe('add column', () => {
+  it('renders new column', () => {
+    const board = updateStore.withBoard();
+    renderWithStore(<Columns boardId={board.id} />);
+    fireEvent.click(screen.getByText('Add column'));
+    expect(screen.getByPlaceholderText('Column 1')).toBe(
+      screen.getByLabelText('Column Name')
+    );
   });
-  expect(screen.getByPlaceholderText('Column 1')).toBeInTheDocument();
+
+  it('focuses on new column', () => {
+    const board = updateStore.withBoard();
+    renderWithStore(<Columns boardId={board.id} />);
+    fireEvent.click(screen.getByText('Add column'));
+    expect(screen.getByPlaceholderText('Column 1')).toHaveFocus();
+  });
+
+  it('saves new column to database', () => {
+    const board = updateStore.withBoard();
+    renderWithStore(<Columns boardId={board.id} />);
+    fireEvent.click(screen.getByText('Add column'));
+    expect(updateColumn).toBeCalledTimes(1);
+    expect(updateColumn).toBeCalledWith(board.id, columnId, {
+      created: expect.any(Number),
+      name: '',
+      updated: expect.any(Number),
+    });
+  });
 });
 
 describe('mount', () => {
