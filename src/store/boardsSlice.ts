@@ -14,7 +14,7 @@ export const initialState: Boards = {};
 
 export const name = BOARDS;
 
-const slice = createSlice({
+const boardsSlice = createSlice({
   name,
   initialState,
 
@@ -42,10 +42,8 @@ const slice = createSlice({
       if (action.payload) {
         const { id, ...board } = action.payload;
         if (id) {
-          state[id] = {
-            ...state[id],
-            ...board,
-          };
+          state[id] = state[id] || {};
+          Object.assign(state[id], board);
         }
       }
     },
@@ -56,4 +54,4 @@ const slice = createSlice({
   },
 });
 
-export const { actions, reducer } = slice;
+export const { actions, reducer } = boardsSlice;
