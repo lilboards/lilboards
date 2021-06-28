@@ -56,6 +56,10 @@ export default function Column(props: Props) {
     );
   }
 
+  function handleBlur() {
+    dispatch(actions.toggleUserEditing({ columnId: '' }));
+  }
+
   return (
     <Grid item xs={12} sm={3}>
       <Box marginBottom={2} position="relative">
@@ -64,6 +68,7 @@ export default function Column(props: Props) {
           fullWidth
           inputProps={{ 'aria-label': 'Column Name' }}
           placeholder={columnIndex}
+          onBlur={handleBlur}
           onChange={handleChange}
           value={column.name}
         />
