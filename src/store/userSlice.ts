@@ -8,6 +8,7 @@ import type { Id } from '../types';
 type User = {
   editing: {
     boardId: Id;
+    columnId: Id;
   };
   email: string | null;
   id: Id;
@@ -16,6 +17,7 @@ type User = {
 export const initialState: User = {
   editing: {
     boardId: '',
+    columnId: '',
   },
   email: null,
   id: '',
