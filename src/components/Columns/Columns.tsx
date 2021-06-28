@@ -6,7 +6,7 @@ import AddButton from '../AddButton';
 import Column from '../Column';
 
 import actions from '../../actions';
-import { generateId, getColumnsRef } from '../../firebase';
+import { generateId, getColumnsRef, updateColumn } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 
 import type { Id } from '../../types';
@@ -49,12 +49,19 @@ export default function Columns(props: Props) {
 
   function addColumn() {
     const columnId = generateId();
+    const now = Date.now();
+    const column = {
+      created: now,
+      name: '',
+      updated: now,
+    };
     dispatch(
-      actions.addColumn({
-        boardId: props.boardId,
+      actions.editColumn({
+        ...column,
         columnId,
       })
     );
+    updateColumn(props.boardId, columnId, column);
   }
 
   return (

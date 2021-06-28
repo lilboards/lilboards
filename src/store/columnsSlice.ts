@@ -4,14 +4,7 @@ import { getColumnItemIdsRef, getColumnRef } from '../firebase';
 import { COLUMNS } from '../constants';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Id } from '../types';
-
-type Column = {
-  created: number;
-  itemIds?: Id[];
-  name: string;
-  updated: number;
-};
+import type { Column, Id } from '../types';
 
 type Columns = {
   [columnId: string]: Column;
@@ -21,42 +14,18 @@ export const initialState: Columns = {};
 
 export const name = COLUMNS;
 
-const slice = createSlice({
+const columnsSlice = createSlice({
   name,
   initialState,
 
   reducers: {
-    addColumn: (
-      state,
-      action: PayloadAction<{ boardId: Id; columnId: Id }>
-    ) => {
-      const { boardId, columnId } = action.payload;
-      const now = Date.now();
-      const column: Column = {
-        created: now,
-        name: '',
-        updated: now,
-      };
-      getColumnRef(boardId, columnId).set(column);
-      state[columnId] = column;
-    },
-
     editColumn: (
       state,
-      action: PayloadAction<
-        Pick<Column, 'name'> & { boardId: Id; columnId: Id }
-      >
+      action: PayloadAction<Partial<Column> & { columnId: Id }>
     ) => {
-      const { boardId, columnId, name } = action.payload;
-      const column = {
-        name,
-        updated: Date.now(),
-      };
-      getColumnRef(boardId, columnId).update(column);
-      state[columnId] = {
-        ...state[columnId],
-        ...column,
-      };
+      const { columnId, ...column } = action.payload;
+      state[columnId] = state[columnId] || {};
+      Object.assign(state[columnId], column);
     },
 
     deleteColumn: (
@@ -89,4 +58,4 @@ const slice = createSlice({
   },
 });
 
-export const { actions, reducer } = slice;
+export const { actions, reducer } = columnsSlice;

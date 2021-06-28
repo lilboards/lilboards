@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithStore, updateStore } from '../../utils/test';
-import { generateId, getColumnsRef } from '../../firebase';
+import { generateId, getColumnsRef, updateColumn } from '../../firebase';
 import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
@@ -10,6 +10,7 @@ import Columns from './Columns';
 jest.mock('../../firebase', () => ({
   generateId: jest.fn(),
   getColumnsRef: jest.fn(),
+  updateColumn: jest.fn(),
 }));
 
 beforeEach(() => {
@@ -18,9 +19,10 @@ beforeEach(() => {
     off: jest.fn(),
     on: jest.fn(),
   });
+  (updateColumn as jest.Mock).mockClear();
 });
 
-it('renders nothing when there is no board id', () => {
+it('renders nothing when there is no board', () => {
   const { baseElement } = renderWithStore(<Columns boardId="" />);
   expect(baseElement.firstElementChild).toBeEmptyDOMElement();
 });
@@ -44,6 +46,12 @@ it('adds column', () => {
   const board = updateStore.withBoard();
   renderWithStore(<Columns boardId={board.id} />);
   fireEvent.click(screen.getByText('Add column'));
+  expect(updateColumn).toBeCalledTimes(1);
+  expect(updateColumn).toBeCalledWith(board.id, columnId, {
+    created: expect.any(Number),
+    name: '',
+    updated: expect.any(Number),
+  });
   expect(screen.getByPlaceholderText('Column 1')).toBeInTheDocument();
 });
 

@@ -5,49 +5,44 @@ const boardId = BOARD_TEST_ID;
 const columnId = COLUMN_TEST_ID;
 const itemId = ITEM_TEST_ID;
 
-describe('addColumn', () => {
-  it('adds column', () => {
-    const newState = reducer(
-      initialState,
-      actions.addColumn({
-        boardId,
-        columnId,
-      })
-    );
-    const column = Object.values(newState)[0];
-    expect(column).toEqual({
-      created: expect.any(Number),
-      name: '',
-      updated: expect.any(Number),
-    });
-    const id = Object.keys(newState)[0];
-    expect({ id }).toMatchObject({ id: expect.any(String) });
-  });
-});
-
 describe('editColumn', () => {
+  it('adds column', () => {
+    const column = {
+      created: Date.now(),
+      name: '',
+      updated: Date.now(),
+    };
+    const payload = {
+      ...column,
+      columnId,
+    };
+    const newState = reducer(initialState, actions.editColumn(payload));
+    expect(newState).toEqual({ [columnId]: column });
+  });
+
   it('edits column', () => {
     const state = {
       [columnId]: {
-        created: 0,
+        created: Date.now(),
         name: 'Column Name',
-        updated: 0,
+        updated: Date.now(),
       },
     };
     const column = {
-      boardId,
-      columnId,
       name: 'Column Name Edited',
+      updated: Date.now() + 1000,
     };
-    const newState = reducer(state, actions.editColumn(column));
-    expect(newState).toMatchObject({
+    const payload = {
+      ...column,
+      columnId,
+    };
+    const newState = reducer(state, actions.editColumn(payload));
+    expect(newState).toEqual({
       [columnId]: {
         ...state[columnId],
-        name: column.name,
-        updated: expect.any(Number),
+        ...column,
       },
     });
-    expect(newState[columnId].updated).not.toBe(state[columnId].updated);
   });
 });
 

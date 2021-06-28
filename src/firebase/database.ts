@@ -60,6 +60,12 @@ export const getColumnRef = (boardId: Id, columnId: Id) =>
 export const getColumnItemIdsRef = (boardId: Id, columnId: Id) =>
   getColumnRef(boardId, columnId).child(ITEM_IDS);
 
+export const updateColumn = (boardId: Id, columnId: Id, column: any) => {
+  getColumnRef(boardId, columnId).update(column);
+};
+
+export const debouncedUpdateColumn = debounce(updateColumn, HALF_SECOND);
+
 /**
  * Items.
  */
