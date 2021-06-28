@@ -4,14 +4,7 @@ import { getColumnItemIdsRef, getColumnRef } from '../firebase';
 import { COLUMNS } from '../constants';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Id } from '../types';
-
-type Column = {
-  created: number;
-  itemIds?: Id[];
-  name: string;
-  updated: number;
-};
+import type { Column, Id } from '../types';
 
 type Columns = {
   [columnId: string]: Column;
@@ -21,7 +14,7 @@ export const initialState: Columns = {};
 
 export const name = COLUMNS;
 
-const slice = createSlice({
+const columnsSlice = createSlice({
   name,
   initialState,
 
@@ -89,4 +82,4 @@ const slice = createSlice({
   },
 });
 
-export const { actions, reducer } = slice;
+export const { actions, reducer } = columnsSlice;
