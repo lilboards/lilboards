@@ -1,4 +1,5 @@
 import {
+  shallowEqual,
   useDispatch as useReduxDispatch,
   useSelector as useReduxSelector,
 } from 'react-redux';
@@ -9,4 +10,7 @@ type AppDispatch = typeof store.dispatch;
 type RootState = ReturnType<typeof store.getState>;
 
 export const useDispatch = () => useReduxDispatch<AppDispatch>();
-export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
+export const useSelector: TypedUseSelectorHook<RootState> = (
+  selector,
+  equalityFn = shallowEqual
+) => useReduxSelector(selector, equalityFn);
