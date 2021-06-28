@@ -6,6 +6,7 @@ import CloseButton from '../CloseButton';
 import Items from '../Items';
 
 import actions from '../../actions';
+import { updateColumn } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 
 import type { ChangeEvent } from 'react';
@@ -30,13 +31,17 @@ export default function Column(props: Props) {
   function handleChange(
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
+    const column = {
+      name: event.target.value,
+      updated: Date.now(),
+    };
     dispatch(
       actions.editColumn({
-        boardId: props.boardId,
+        ...column,
         columnId: props.columnId,
-        name: event.target.value,
       })
     );
+    updateColumn(props.boardId, props.columnId, column);
   }
 
   function deleteColumn() {
