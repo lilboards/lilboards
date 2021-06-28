@@ -1,5 +1,13 @@
 # Changelog
 
+### [2.4.3](https://www.github.com/lilboards/lilboards/compare/v2.4.2...v2.4.3) (2021-06-28)
+
+
+### Bug Fixes
+
+* **components:** autofocus on newly added column ([5ffebd9](https://www.github.com/lilboards/lilboards/commit/5ffebd9217a5ca4123e323d09758dc8566b84f77))
+* **components:** reset user editing columnId on blur ([cde9adb](https://www.github.com/lilboards/lilboards/commit/cde9adb1bea98eb2e4b1b296972ef5987c17a285))
+
 ### [2.4.2](https://www.github.com/lilboards/lilboards/compare/v2.4.1...v2.4.2) (2021-06-28)
 
 
