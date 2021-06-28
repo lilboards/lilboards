@@ -12,12 +12,12 @@ beforeEach(() => {
 });
 
 it('renders without crashing', () => {
-  expect(getElementByIdSpy).not.toHaveBeenCalled();
+  expect(getElementByIdSpy).not.toBeCalled();
   act(() => {
     require('.');
   });
-  expect(getElementByIdSpy).toHaveBeenCalledTimes(1);
-  expect(getElementByIdSpy).toHaveBeenCalledWith('root');
+  expect(getElementByIdSpy).toBeCalledTimes(1);
+  expect(getElementByIdSpy).toBeCalledWith('root');
 });
 
 afterAll(() => {
