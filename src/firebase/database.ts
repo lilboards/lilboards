@@ -74,6 +74,10 @@ export const getItemsRef = (boardId: Id) => getBoardRef(boardId).child(ITEMS);
 export const getItemRef = (boardId: Id, itemId: Id) =>
   getItemsRef(boardId).child(itemId);
 
+export const removeItem = (boardId: Id, itemId: Id) => {
+  getItemRef(boardId, itemId).remove();
+};
+
 /**
  * Users.
  */
