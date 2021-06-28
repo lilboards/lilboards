@@ -6,7 +6,7 @@ import CloseButton from '../CloseButton';
 import Items from '../Items';
 
 import actions from '../../actions';
-import { updateColumn } from '../../firebase';
+import { debouncedUpdateColumn } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 
 import type { ChangeEvent } from 'react';
@@ -41,7 +41,7 @@ export default function Column(props: Props) {
         columnId: props.columnId,
       })
     );
-    updateColumn(props.boardId, props.columnId, column);
+    debouncedUpdateColumn(props.boardId, props.columnId, column);
   }
 
   function deleteColumn() {

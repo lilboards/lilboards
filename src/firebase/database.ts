@@ -64,6 +64,8 @@ export const updateColumn = (boardId: Id, columnId: Id, column: any) => {
   getColumnRef(boardId, columnId).update(column);
 };
 
+export const debouncedUpdateColumn = debounce(updateColumn, HALF_SECOND);
+
 /**
  * Items.
  */
