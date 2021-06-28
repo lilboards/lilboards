@@ -43,17 +43,16 @@ export const updateStore = {
     return board;
   },
 
-  withBoardAndColumns() {
-    const board = this.withBoard();
-    const columns = {
-      [COLUMN_TEST_ID]: {
-        created: 0,
-        name: 'Column 1',
-        updated: 0,
-      },
+  withColumn() {
+    const column = {
+      created: 0,
+      name: 'Column 1',
+      updated: 0,
     };
-    store.dispatch(actions.loadColumns(columns));
-    return { board, columns };
+    const id = COLUMN_TEST_ID;
+    const payload = { [id]: column };
+    store.dispatch(actions.loadColumns(payload));
+    return { ...column, id };
   },
 
   withUser() {

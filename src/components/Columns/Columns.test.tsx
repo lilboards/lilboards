@@ -31,11 +31,12 @@ it('renders "Add column" button', () => {
   expect(screen.getByText('Add column')).toBeInTheDocument();
 });
 
-it('renders column name', () => {
-  const { board, columns } = updateStore.withBoardAndColumns();
+it('renders column', () => {
+  const board = updateStore.withBoard();
+  const column = updateStore.withColumn();
   renderWithStore(<Columns boardId={board.id} />);
   expect(screen.getByLabelText('Column Name')).toBe(
-    screen.getByDisplayValue(columns[columnId].name)
+    screen.getByDisplayValue(column.name)
   );
 });
 
@@ -44,21 +45,6 @@ it('adds column', () => {
   renderWithStore(<Columns boardId={board.id} />);
   fireEvent.click(screen.getByText('Add column'));
   expect(screen.getByPlaceholderText('Column 1')).toBeInTheDocument();
-});
-
-it('edits column', async () => {
-  const { board } = updateStore.withBoardAndColumns();
-  renderWithStore(<Columns boardId={board.id} />);
-  const value = 'My Column Name';
-  fireEvent.change(screen.getByLabelText('Column Name'), { target: { value } });
-  expect(await screen.findAllByDisplayValue(value)).toHaveLength(1);
-});
-
-it('deletes column', () => {
-  const { board, columns } = updateStore.withBoardAndColumns();
-  renderWithStore(<Columns boardId={board.id} />);
-  fireEvent.click(screen.getByLabelText(/Delete column/));
-  expect(screen.queryByText(columns[columnId].name)).not.toBeInTheDocument();
 });
 
 describe('mount', () => {

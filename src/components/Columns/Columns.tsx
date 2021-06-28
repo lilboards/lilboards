@@ -1,11 +1,9 @@
 import { useEffect } from 'react';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 
 import AddButton from '../AddButton';
-import CloseButton from '../CloseButton';
-import Items from '../Items';
+import Column from '../Column';
 
 import actions from '../../actions';
 import { generateId, getColumnsRef } from '../../firebase';
@@ -18,22 +16,16 @@ type Props = {
 };
 
 export default function Columns(props: Props) {
-  const { boardId } = props;
-  const columns = useSelector((state) =>
-    Object.entries(state.columns).map(([id, column]) => ({
-      ...column,
-      id,
-    }))
-  );
   const dispatch = useDispatch();
+  const columnIds = useSelector((state) => Object.keys(state.columns));
 
   useEffect(() => {
-    if (!boardId) {
+    if (!props.boardId) {
       return;
     }
 
     // subscribe on mount
-    const columnsRef = getColumnsRef(boardId);
+    const columnsRef = getColumnsRef(props.boardId);
     columnsRef.on('value', (columnsSnapshot) => {
       const columns = columnsSnapshot.val();
       /* istanbul ignore next */
@@ -49,9 +41,9 @@ export default function Columns(props: Props) {
       columnsRef.off('value');
       dispatch(actions.resetColumns());
     };
-  }, [boardId, dispatch]);
+  }, [props.boardId, dispatch]);
 
-  if (!boardId) {
+  if (!props.boardId) {
     return null;
   }
 
@@ -59,26 +51,7 @@ export default function Columns(props: Props) {
     const columnId = generateId();
     dispatch(
       actions.addColumn({
-        boardId,
-        columnId,
-      })
-    );
-  }
-
-  function editColumn(columnId: Id, name: string) {
-    dispatch(
-      actions.editColumn({
-        boardId,
-        columnId,
-        name,
-      })
-    );
-  }
-
-  function deleteColumn(columnId: Id) {
-    dispatch(
-      actions.deleteColumn({
-        boardId,
+        boardId: props.boardId,
         columnId,
       })
     );
@@ -93,37 +66,14 @@ export default function Columns(props: Props) {
       </Box>
 
       <Grid container spacing={2} wrap="nowrap">
-        {columns.map((column, index) => {
-          const columnId = column.id;
-          const columnName = column.name;
-          const columnNameIndex = `Column ${index + 1}`;
-
-          return (
-            <Grid item key={columnId} xs={12} sm={3}>
-              <Box marginBottom={2} position="relative">
-                <TextField
-                  fullWidth
-                  inputProps={{ 'aria-label': 'Column Name' }}
-                  placeholder={columnNameIndex}
-                  onChange={(event) => editColumn(columnId, event.target.value)}
-                  value={columnName}
-                />
-
-                <Box position="absolute" right={0} top={0}>
-                  <CloseButton
-                    aria-label={`Delete column "${
-                      columnName || columnNameIndex
-                    }"`}
-                    onClick={() => deleteColumn(columnId)}
-                    size="small"
-                  />
-                </Box>
-              </Box>
-
-              <Items boardId={boardId} columnId={columnId} />
-            </Grid>
-          );
-        })}
+        {columnIds.map((columnId, index) => (
+          <Column
+            boardId={props.boardId}
+            columnId={columnId}
+            index={index}
+            key={columnId}
+          />
+        ))}
       </Grid>
     </>
   );
