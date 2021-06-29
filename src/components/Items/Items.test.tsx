@@ -18,6 +18,13 @@ describe('add item', () => {
     const column = updateStore.withColumn();
     renderWithStore(<Items boardId={boardId} columnId={column.id} />);
     fireEvent.click(screen.getByText('Add item'));
-    expect(screen.getByLabelText(/Delete item/)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Edit item/)).toBeInTheDocument();
+  });
+
+  it('focuses on new item', () => {
+    const column = updateStore.withColumn();
+    renderWithStore(<Items boardId={boardId} columnId={column.id} />);
+    fireEvent.click(screen.getByText('Add item'));
+    expect(screen.getByLabelText(/Edit item/)).toHaveFocus();
   });
 });

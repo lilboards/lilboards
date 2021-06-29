@@ -1,6 +1,7 @@
 import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
+  ITEM_TEST_ID as itemId,
   USER_TEST_EMAIL as email,
   USER_TEST_ID as id,
 } from '../constants/test';
@@ -21,7 +22,7 @@ describe('setUser', () => {
 });
 
 describe('setUserEditing', () => {
-  it('sets editing boardId', () => {
+  it('sets boardId', () => {
     const payload = { boardId };
     const newState = reducer(initialState, actions.setUserEditing(payload));
     expect(newState.editing).toEqual({
@@ -30,8 +31,17 @@ describe('setUserEditing', () => {
     });
   });
 
-  it('sets editing columnId', () => {
+  it('sets columnId', () => {
     const payload = { columnId };
+    const newState = reducer(initialState, actions.setUserEditing(payload));
+    expect(newState.editing).toEqual({
+      ...initialState.editing,
+      ...payload,
+    });
+  });
+
+  it('sets itemId', () => {
+    const payload = { itemId };
     const newState = reducer(initialState, actions.setUserEditing(payload));
     expect(newState.editing).toEqual({
       ...initialState.editing,
