@@ -83,6 +83,7 @@ export const updateStore = {
     const userEditing = {
       boardId,
       columnId,
+      itemId,
     };
     store.dispatch(actions.setUserEditing(userEditing));
     return userEditing;

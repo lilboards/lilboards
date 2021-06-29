@@ -9,6 +9,7 @@ type User = {
   editing: {
     boardId: Id;
     columnId: Id;
+    itemId: Id;
   };
   email: string | null;
   id: Id;
@@ -18,6 +19,7 @@ export const initialState: User = {
   editing: {
     boardId: '',
     columnId: '',
+    itemId: '',
   },
   email: null,
   id: '',
