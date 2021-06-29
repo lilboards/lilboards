@@ -17,12 +17,11 @@ type Props = {
 };
 
 export default function Items(props: Props) {
-  const { boardId, columnId } = props;
   const dispatch = useDispatch();
 
   const items = useSelector((state) => {
     const { columns, items } = state;
-    const column = columns[columnId];
+    const column = columns[props.columnId];
     if (!column || !column.itemIds) {
       return [];
     }
@@ -34,18 +33,16 @@ export default function Items(props: Props) {
 
   function addItem() {
     const itemId = generateId();
-
     dispatch(
       actions.addItem({
-        boardId,
+        boardId: props.boardId,
         itemId,
       })
     );
-
     dispatch(
       actions.addColumnItemId({
-        boardId,
-        columnId,
+        boardId: props.boardId,
+        columnId: props.columnId,
         itemId,
       })
     );
@@ -61,7 +58,11 @@ export default function Items(props: Props) {
 
       {items.map((item) => (
         <Box key={item.id} marginBottom={2}>
-          <Item boardId={boardId} columnId={columnId} itemId={item.id} />
+          <Item
+            boardId={props.boardId}
+            columnId={props.columnId}
+            itemId={item.id}
+          />
         </Box>
       ))}
     </>
