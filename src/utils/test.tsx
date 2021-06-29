@@ -4,9 +4,11 @@ import { Provider } from 'react-redux';
 import type { ReactNode } from 'react';
 
 import actions, { resetActions } from '../actions';
+import { ITEM_IDS } from '../constants';
 import {
   BOARD_TEST_ID,
   COLUMN_TEST_ID,
+  ITEM_TEST_ID,
   USER_TEST_EMAIL,
   USER_TEST_ID,
 } from '../constants/test';
@@ -34,10 +36,10 @@ export function resetStore() {
 export const updateStore = {
   withBoard() {
     const board = {
-      created: 0,
+      created: Date.now(),
       id: BOARD_TEST_ID,
       name: 'Board 1',
-      updated: 0,
+      updated: Date.now(),
     };
     store.dispatch(actions.loadBoard(board));
     return board;
@@ -45,14 +47,27 @@ export const updateStore = {
 
   withColumn() {
     const column = {
-      created: 0,
+      created: Date.now(),
       name: 'Column 1',
-      updated: 0,
+      [ITEM_IDS]: [ITEM_TEST_ID],
+      updated: Date.now(),
     };
     const id = COLUMN_TEST_ID;
     const payload = { [id]: column };
     store.dispatch(actions.loadColumns(payload));
     return { ...column, id };
+  },
+
+  withItem() {
+    const item = {
+      created: Date.now(),
+      text: 'Item 1',
+      updated: Date.now(),
+    };
+    const id = ITEM_TEST_ID;
+    const payload = { [id]: item };
+    store.dispatch(actions.loadItems(payload));
+    return { ...item, id };
   },
 
   withUser() {
