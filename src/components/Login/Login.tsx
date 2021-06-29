@@ -1,5 +1,3 @@
-/* istanbul ignore file */
-
 import { useEffect } from 'react';
 import { Redirect } from '@reach/router';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
