@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { ITEMS } from '../constants';
-import { getItemRef } from '../firebase';
+import { getItemRef, removeItem } from '../firebase';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Id } from '../types';
@@ -35,6 +35,16 @@ const slice = createSlice({
       const { boardId, itemId } = action.payload;
       getItemRef(boardId, itemId).set(item);
       state[itemId] = item;
+    },
+
+    loadItems: (state, action: PayloadAction<Items>) => {
+      return action.payload;
+    },
+
+    removeItem: (state, action: PayloadAction<{ boardId: Id; itemId: Id }>) => {
+      const { boardId, itemId } = action.payload;
+      removeItem(boardId, itemId);
+      delete state[itemId];
     },
 
     resetItems: () => {

@@ -6,10 +6,7 @@ const itemId = ITEM_TEST_ID;
 
 describe('addItem', () => {
   it('adds item', () => {
-    const payload = {
-      boardId,
-      itemId,
-    };
+    const payload = { boardId, itemId };
     const newState = reducer(initialState, actions.addItem(payload));
     const item = Object.values(newState)[0];
     expect(item).toEqual({
@@ -21,15 +18,40 @@ describe('addItem', () => {
   });
 });
 
+describe('loadItems', () => {
+  it('adds item', () => {
+    const item = {
+      created: Date.now(),
+      text: 'Item 1',
+      updated: Date.now(),
+    };
+    const payload = { [itemId]: item };
+    const newState = reducer(initialState, actions.loadItems(payload));
+    expect(newState).toBe(payload);
+  });
+});
+
+describe('removeItem', () => {
+  it('deletes item', () => {
+    const item = {
+      created: Date.now(),
+      text: 'Item Name',
+      updated: Date.now(),
+    };
+    const state = { [itemId]: item };
+    const payload = { boardId, itemId };
+    expect(reducer(state, actions.removeItem(payload))).toEqual({});
+  });
+});
+
 describe('resetItems', () => {
   it('sets initialState', () => {
-    const state = {
-      [itemId]: {
-        created: 0,
-        text: 'Item Name',
-        updated: 0,
-      },
+    const item = {
+      created: Date.now(),
+      text: 'Item Name',
+      updated: Date.now(),
     };
+    const state = { [itemId]: item };
     expect(reducer(state, actions.resetItems())).toEqual(initialState);
   });
 });

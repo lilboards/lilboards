@@ -1,6 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getColumnItemIdsRef, getColumnRef, removeItem } from '../firebase';
+import {
+  getColumnItemIdsRef,
+  getColumnRef,
+  removeItem,
+  setColumnItemIds,
+} from '../firebase';
 import { COLUMNS, ITEM_IDS } from '../constants';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
@@ -54,6 +59,19 @@ const columnsSlice = createSlice({
       column.itemIds = column.itemIds || [];
       column.itemIds.push(itemId);
       getColumnItemIdsRef(boardId, columnId).set(column.itemIds);
+    },
+
+    removeColumnItemId: (
+      state,
+      action: PayloadAction<{ boardId: Id; columnId: Id; itemId: Id }>
+    ) => {
+      const { boardId, columnId, itemId } = action.payload;
+      const column = state[columnId];
+      if (column) {
+        const itemIds = (column[ITEM_IDS] || []).filter((id) => id !== itemId);
+        column[ITEM_IDS] = itemIds;
+        setColumnItemIds(boardId, columnId, itemIds);
+      }
     },
 
     resetColumns: () => {
