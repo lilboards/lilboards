@@ -6,7 +6,12 @@ import AddButton from '../AddButton';
 import Column from '../Column';
 
 import actions from '../../actions';
-import { generateId, getColumnsRef, updateColumn } from '../../firebase';
+import {
+  generateId,
+  getColumnsRef,
+  getItemsRef,
+  updateColumn,
+} from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 
 import type { Id } from '../../types';
@@ -36,10 +41,23 @@ export default function Columns(props: Props) {
       }
     });
 
+    const itemsRef = getItemsRef(props.boardId);
+    itemsRef.on('value', (itemsSnapshot) => {
+      const items = itemsSnapshot.val();
+      /* istanbul ignore next */
+      if (items) {
+        setTimeout(() => {
+          dispatch(actions.loadItems(items));
+        });
+      }
+    });
+
     // unsubscribe and reset on unmount
     return function unsubscribe() {
       columnsRef.off('value');
+      itemsRef.off('value');
       dispatch(actions.resetColumns());
+      dispatch(actions.resetItems());
     };
   }, [props.boardId, dispatch]);
 
