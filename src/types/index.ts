@@ -9,3 +9,9 @@ export interface Column extends Board {
 }
 
 export type Id = string;
+
+export type Item = {
+  created: number;
+  text: string;
+  updated: number;
+};

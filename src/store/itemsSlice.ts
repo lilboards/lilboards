@@ -1,16 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { ITEMS } from '../constants';
-import { getItemRef, removeItem } from '../firebase';
+import { removeItem } from '../firebase';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Id } from '../types';
-
-type Item = {
-  created: number;
-  text: string;
-  updated: number;
-};
+import type { Id, Item } from '../types';
 
 type Items = {
   [itemId: string]: Item;
@@ -25,16 +19,13 @@ const slice = createSlice({
   initialState,
 
   reducers: {
-    addItem: (state, action: PayloadAction<{ boardId: Id; itemId: Id }>) => {
-      const now = Date.now();
-      const item: Item = {
-        created: now,
-        text: '',
-        updated: now,
-      };
-      const { boardId, itemId } = action.payload;
-      getItemRef(boardId, itemId).set(item);
-      state[itemId] = item;
+    updateItem: (
+      state,
+      action: PayloadAction<Partial<Item> & { itemId: Id }>
+    ) => {
+      const { itemId, ...item } = action.payload;
+      state[itemId] = state[itemId] || {};
+      Object.assign(state[itemId], item);
     },
 
     loadItems: (state, action: PayloadAction<Items>) => {

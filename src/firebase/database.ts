@@ -14,7 +14,7 @@ import {
   USERS,
 } from '../constants';
 
-import type { Board, Id } from '../types';
+import type { Board, Column, Id, Item } from '../types';
 
 const firebaseDatabase = firebaseApp.database();
 
@@ -68,7 +68,11 @@ export const setColumnItemIds = (boardId: Id, columnId: Id, itemIds: Id[]) => {
   getColumnItemIdsRef(boardId, columnId).set(itemIds);
 };
 
-export const updateColumn = (boardId: Id, columnId: Id, column: any) => {
+export const updateColumn = (
+  boardId: Id,
+  columnId: Id,
+  column: Partial<Column>
+) => {
   getColumnRef(boardId, columnId).update(column);
 };
 
@@ -84,6 +88,10 @@ export const getItemRef = (boardId: Id, itemId: Id) =>
 
 export const removeItem = (boardId: Id, itemId: Id) => {
   getItemRef(boardId, itemId).remove();
+};
+
+export const updateItem = (boardId: Id, itemId: Id, item: Partial<Item>) => {
+  getItemRef(boardId, itemId).update(item);
 };
 
 /**

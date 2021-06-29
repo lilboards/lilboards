@@ -4,17 +4,21 @@ import {
 } from '../constants/test';
 import { actions, initialState, reducer } from './itemsSlice';
 
-describe('addItem', () => {
+describe('updateItem', () => {
   it('adds item', () => {
-    const payload = { boardId, itemId };
-    const newState = reducer(initialState, actions.addItem(payload));
-    const item = Object.values(newState)[0];
-    expect(item).toEqual({
-      created: expect.any(Number),
+    const item = {
+      created: Date.now(),
       text: '',
-      updated: expect.any(Number),
+      updated: Date.now(),
+    };
+    const payload = {
+      ...item,
+      itemId,
+    };
+    const newState = reducer(initialState, actions.updateItem(payload));
+    expect(newState).toEqual({
+      [itemId]: item,
     });
-    expect(Object.keys(newState)[0]).toBe(itemId);
   });
 });
 
