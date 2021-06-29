@@ -21,6 +21,7 @@ type Props = {
 export default function Item(props: Props) {
   const dispatch = useDispatch();
   const item = useSelector((state) => state.items[props.itemId]);
+  const userEditingItemId = useSelector((state) => state.user.editing.itemId);
 
   if (!item) {
     return null;
@@ -56,6 +57,14 @@ export default function Item(props: Props) {
     debouncedUpdateItem(props.boardId, props.itemId, item);
   }
 
+  function handleFocus() {
+    dispatch(actions.setUserEditing({ itemId: props.itemId }));
+  }
+
+  function handleBlur() {
+    dispatch(actions.setUserEditing({ itemId: '' }));
+  }
+
   return (
     <Box height="100%" position="relative">
       <Card>
@@ -69,11 +78,13 @@ export default function Item(props: Props) {
 
         <CardContent>
           <InputBase
-            autoFocus
+            autoFocus={props.itemId === userEditingItemId}
             fullWidth
             inputProps={{ 'aria-label': `Edit item "${props.itemId}"` }}
             multiline
+            onBlur={handleBlur}
             onChange={handleChange}
+            onFocus={handleFocus}
             value={item.text}
           />
         </CardContent>

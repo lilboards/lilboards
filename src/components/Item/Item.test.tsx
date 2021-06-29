@@ -1,5 +1,5 @@
 import { fireEvent, screen } from '@testing-library/react';
-import { renderWithStore, updateStore } from '../../utils/test';
+import { getStoreState, renderWithStore, updateStore } from '../../utils/test';
 import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
@@ -47,5 +47,15 @@ describe('edit item', () => {
     const input = screen.getByLabelText(/Edit item/);
     fireEvent.change(input, event);
     expect(screen.getByDisplayValue(event.target.value)).toBe(input);
+  });
+
+  it('focuses on item', () => {
+    fireEvent.focus(screen.getByLabelText(/Edit item/));
+    expect(getStoreState().user.editing.itemId).toBe(itemId);
+  });
+
+  it('blurs on item', () => {
+    fireEvent.blur(screen.getByLabelText(/Edit item/));
+    expect(getStoreState().user.editing.itemId).toBe('');
   });
 });
