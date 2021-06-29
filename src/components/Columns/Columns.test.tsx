@@ -27,12 +27,6 @@ it('renders nothing when there is no board', () => {
   expect(baseElement.firstElementChild).toBeEmptyDOMElement();
 });
 
-it('renders "Add column" button', () => {
-  const board = updateStore.withBoard();
-  renderWithStore(<Columns boardId={board.id} />);
-  expect(screen.getByText('Add column')).toBeInTheDocument();
-});
-
 it('renders column', () => {
   const board = updateStore.withBoard();
   const column = updateStore.withColumn();
@@ -43,6 +37,14 @@ it('renders column', () => {
 });
 
 describe('add column', () => {
+  it('renders "Add column" button', () => {
+    const board = updateStore.withBoard();
+    renderWithStore(<Columns boardId={board.id} />);
+    expect(
+      screen.getByRole('button', { name: 'Add column' })
+    ).toBeInTheDocument();
+  });
+
   it('renders new column', () => {
     const board = updateStore.withBoard();
     renderWithStore(<Columns boardId={board.id} />);
