@@ -18,6 +18,19 @@ describe('addItem', () => {
   });
 });
 
+describe('loadItems', () => {
+  it('adds item', () => {
+    const item = {
+      created: Date.now(),
+      text: 'Item 1',
+      updated: Date.now(),
+    };
+    const payload = { [itemId]: item };
+    const newState = reducer(initialState, actions.loadItems(payload));
+    expect(newState).toBe(payload);
+  });
+});
+
 describe('removeItem', () => {
   it('deletes item', () => {
     const item = {

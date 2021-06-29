@@ -37,6 +37,10 @@ const slice = createSlice({
       state[itemId] = item;
     },
 
+    loadItems: (state, action: PayloadAction<Items>) => {
+      return action.payload;
+    },
+
     removeItem: (state, action: PayloadAction<{ boardId: Id; itemId: Id }>) => {
       const { boardId, itemId } = action.payload;
       removeItem(boardId, itemId);
