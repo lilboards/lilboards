@@ -18,7 +18,6 @@ describe('add item', () => {
     const column = updateStore.withColumn();
     renderWithStore(<Items boardId={boardId} columnId={column.id} />);
     fireEvent.click(screen.getByText('Add item'));
-    // TODO: uncomment when items can be loaded
-    // expect(screen.getByLabelText(/Delete item/)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Delete item/)).toBeInTheDocument();
   });
 });
