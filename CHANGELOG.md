@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.5.0](https://www.github.com/lilboards/lilboards/compare/v2.4.4...v2.5.0) (2021-06-29)
+
+
+### Features
+
+* **components:** add delete item button to Item ([7e19650](https://www.github.com/lilboards/lilboards/commit/7e19650ebd7b4eb4978f450e151fc45894687ad2))
+* **firebase:** add `setColumnItemIds` to database ([46f4989](https://www.github.com/lilboards/lilboards/commit/46f4989c517232f63f2229053d293d7b3b646903))
+* **store:** add reducer `loadItems` to itemsSlice ([26e7c07](https://www.github.com/lilboards/lilboards/commit/26e7c077a606359c88a1cc992921d0d631404639))
+* **store:** add reducer `removeColumnItemId` to columnsSlice ([7c0007c](https://www.github.com/lilboards/lilboards/commit/7c0007cb019ef431df1ab1e7c7703f77c9d93f1d))
+* **store:** add reducer `removeItem` to itemsSlice ([fd62ab5](https://www.github.com/lilboards/lilboards/commit/fd62ab5e8f8268f5cd5183c0c275666ded531f8e))
+
+
+### Bug Fixes
+
+* **components:** show placeholder item cards ([116f805](https://www.github.com/lilboards/lilboards/commit/116f8052893188c6ca0744aad1fa2b2aec46e677))
+* **store:** don't throw error when columnsSlice itemIds is undefined ([0b38bb2](https://www.github.com/lilboards/lilboards/commit/0b38bb266982bf0b395e7f081936e3f150ecffe0))
+
 ### [2.4.4](https://www.github.com/lilboards/lilboards/compare/v2.4.3...v2.4.4) (2021-06-28)
 
 
