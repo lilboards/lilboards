@@ -42,6 +42,10 @@ export const getBoardDataRef = (boardId: Id) =>
 export const getBoardVal = async (boardId: Id): Promise<Board | null> =>
   (await getBoardDataRef(boardId).get()).val();
 
+export const removeBoard = (boardId: Id) => {
+  getBoardRef(boardId).remove();
+};
+
 export const saveBoardData = (boardId: Id, board: Partial<Board>) => {
   getBoardDataRef(boardId).update(board);
 };
@@ -102,3 +106,7 @@ export const getUserBoardsVal = async (
 
 export const getUserBoardRef = (userId: Id, boardId: Id) =>
   getUserRef(userId).child(BOARDS).child(boardId);
+
+export const removeUserBoard = (userId: Id, boardId: Id) => {
+  getUserBoardRef(userId, boardId).remove();
+};

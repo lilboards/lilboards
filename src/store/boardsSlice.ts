@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getBoardDataRef, getUserBoardRef } from '../firebase';
+import { removeBoard, removeUserBoard } from '../firebase';
 import { BOARDS } from '../constants';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
@@ -33,8 +33,8 @@ const boardsSlice = createSlice({
       action: PayloadAction<{ boardId: Id; userId: Id }>
     ) => {
       const { boardId, userId } = action.payload;
-      getBoardDataRef(boardId).remove();
-      getUserBoardRef(userId, boardId).remove();
+      removeBoard(boardId);
+      removeUserBoard(userId, boardId);
       delete state[boardId];
     },
 
