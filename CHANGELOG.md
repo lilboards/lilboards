@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.6.0](https://www.github.com/lilboards/lilboards/compare/v2.5.0...v2.6.0) (2021-06-29)
+
+
+### Features
+
+* **components:** listen to items ref value in Columns ([1e87f3a](https://www.github.com/lilboards/lilboards/commit/1e87f3a7569b4b2a103660c2cb0a1438e882a9aa))
+* **components:** replace item placeholder with item from store ([a8e137d](https://www.github.com/lilboards/lilboards/commit/a8e137da15fa5e776762a36d80a6199baf3a6470))
+
 ## [2.5.0](https://www.github.com/lilboards/lilboards/compare/v2.4.4...v2.5.0) (2021-06-29)
 
 
