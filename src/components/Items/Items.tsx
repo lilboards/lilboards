@@ -17,18 +17,9 @@ type Props = {
 
 export default function Items(props: Props) {
   const dispatch = useDispatch();
-
-  const items = useSelector((state) => {
-    const { columns, items } = state;
-    const column = columns[props.columnId];
-    if (!column || !column.itemIds) {
-      return [];
-    }
-    return column.itemIds.map((itemId) => ({
-      ...items[itemId],
-      id: itemId,
-    }));
-  });
+  const itemIds = useSelector(
+    (state) => (state.columns[props.columnId] || {}).itemIds
+  );
 
   function addItem() {
     const itemId = generateId();
@@ -55,15 +46,16 @@ export default function Items(props: Props) {
         </Button>
       </Box>
 
-      {items.map((item) => (
-        <Box key={item.id} marginBottom={2}>
-          <Item
-            boardId={props.boardId}
-            columnId={props.columnId}
-            itemId={item.id}
-          />
-        </Box>
-      ))}
+      {itemIds &&
+        itemIds.map((itemId) => (
+          <Box key={itemId} marginBottom={2}>
+            <Item
+              boardId={props.boardId}
+              columnId={props.columnId}
+              itemId={itemId}
+            />
+          </Box>
+        ))}
     </>
   );
 }

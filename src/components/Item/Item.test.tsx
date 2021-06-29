@@ -17,8 +17,7 @@ const props = {
   itemId,
 };
 
-// TODO: enable when items can be loaded
-it.skip('renders nothing when item does not exist', () => {
+it('renders nothing when item does not exist', () => {
   const { baseElement } = renderWithStore(<Item {...props} />);
   expect(baseElement.firstElementChild).toBeEmptyDOMElement();
 });
@@ -35,7 +34,6 @@ describe('delete item', () => {
 
   it('deletes item', () => {
     fireEvent.click(screen.getByLabelText(/Delete item/));
-    // TODO: uncomment when items can be loaded
-    // expect(screen.queryByLabelText(/Delete item/)).not.toBeInTheDocument();
+    expect(screen.queryByLabelText(/Delete item/)).not.toBeInTheDocument();
   });
 });
