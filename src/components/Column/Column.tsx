@@ -57,7 +57,7 @@ export default function Column(props: Props) {
   }
 
   function handleBlur() {
-    dispatch(actions.toggleUserEditing({ columnId: '' }));
+    dispatch(actions.setUserEditing({ columnId: '' }));
   }
 
   return (

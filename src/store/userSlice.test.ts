@@ -20,10 +20,10 @@ describe('setUser', () => {
   });
 });
 
-describe('toggleUserEditing', () => {
+describe('setUserEditing', () => {
   it('sets editing boardId', () => {
     const payload = { boardId };
-    const newState = reducer(initialState, actions.toggleUserEditing(payload));
+    const newState = reducer(initialState, actions.setUserEditing(payload));
     expect(newState.editing).toEqual({
       ...initialState.editing,
       ...payload,
@@ -32,7 +32,7 @@ describe('toggleUserEditing', () => {
 
   it('sets editing columnId', () => {
     const payload = { columnId };
-    const newState = reducer(initialState, actions.toggleUserEditing(payload));
+    const newState = reducer(initialState, actions.setUserEditing(payload));
     expect(newState.editing).toEqual({
       ...initialState.editing,
       ...payload,

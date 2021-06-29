@@ -60,7 +60,7 @@ export default function Boards(props: RouteComponentProps) {
         boardId,
       })
     );
-    dispatch(actions.toggleUserEditing({ boardId }));
+    dispatch(actions.setUserEditing({ boardId }));
     saveBoardData(boardId, board);
     saveUserBoardId(userId, boardId);
   }

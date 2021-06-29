@@ -47,7 +47,7 @@ export default function BoardCard(props: Props) {
   }
 
   function handleBlur() {
-    dispatch(actions.toggleUserEditing({ boardId: '' }));
+    dispatch(actions.setUserEditing({ boardId: '' }));
   }
 
   function deleteBoard() {

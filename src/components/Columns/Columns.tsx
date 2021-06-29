@@ -79,7 +79,7 @@ export default function Columns(props: Props) {
         columnId,
       })
     );
-    dispatch(actions.toggleUserEditing({ columnId }));
+    dispatch(actions.setUserEditing({ columnId }));
     updateColumn(props.boardId, columnId, column);
   }
 

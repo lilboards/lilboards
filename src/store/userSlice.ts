@@ -34,7 +34,7 @@ const userSlice = createSlice({
       Object.assign(state, action.payload);
     },
 
-    toggleUserEditing: (
+    setUserEditing: (
       state,
       action: PayloadAction<Partial<User['editing']>>
     ) => {
