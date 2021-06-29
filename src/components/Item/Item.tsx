@@ -5,7 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CloseButton from '../CloseButton';
 
 import actions from '../../actions';
-import { useDispatch, useSelector } from '../../hooks';
+import { useDispatch } from '../../hooks';
 
 import type { Id } from '../../types';
 
@@ -17,11 +17,14 @@ type Props = {
 
 export default function Item(props: Props) {
   const dispatch = useDispatch();
+  // TODO: uncomment when items can be loaded
+  /*
   const item = useSelector((state) => state.items[props.itemId]);
 
   if (!item) {
     return null;
   }
+  */
 
   function deleteItem() {
     dispatch(
