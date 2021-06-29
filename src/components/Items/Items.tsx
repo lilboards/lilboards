@@ -42,6 +42,7 @@ export default function Items(props: Props) {
         itemId,
       })
     );
+    dispatch(actions.setUserEditing({ itemId }));
     updateItem(props.boardId, itemId, item);
   }
 
