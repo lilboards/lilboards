@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.7.0](https://www.github.com/lilboards/lilboards/compare/v2.6.1...v2.7.0) (2021-06-29)
+
+
+### Features
+
+* **components:** add focus and blur to Item ([b8d52e5](https://www.github.com/lilboards/lilboards/commit/b8d52e58e5abb0c8a03ac16028b887e36d10dada))
+* **components:** focus on newly added item in Items ([d35028f](https://www.github.com/lilboards/lilboards/commit/d35028f8d8a0409ddc28164ebb913d14e94b7bb1))
+* **components:** update item on change ([2570042](https://www.github.com/lilboards/lilboards/commit/2570042ef3e50a0114c131a89d4e98e25dab0ade))
+
 ### [2.6.1](https://www.github.com/lilboards/lilboards/compare/v2.6.0...v2.6.1) (2021-06-29)
 
 
