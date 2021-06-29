@@ -13,9 +13,11 @@ const props = {
   itemId,
 };
 
-it('renders nothing when item does not exist', () => {
-  const { baseElement } = renderWithStore(<Item {...props} />);
-  expect(baseElement.firstElementChild).toBeEmptyDOMElement();
+describe('invalid item', () => {
+  it('renders nothing', () => {
+    const { baseElement } = renderWithStore(<Item {...props} />);
+    expect(baseElement.firstElementChild).toBeEmptyDOMElement();
+  });
 });
 
 describe('delete item', () => {
@@ -31,5 +33,19 @@ describe('delete item', () => {
   it('deletes item', () => {
     fireEvent.click(screen.getByLabelText(/Delete item/));
     expect(screen.queryByLabelText(/Delete item/)).not.toBeInTheDocument();
+  });
+});
+
+describe('edit item', () => {
+  beforeEach(() => {
+    const item = updateStore.withItem();
+    renderWithStore(<Item {...props} itemId={item.id} />);
+  });
+
+  it('updates item on change', () => {
+    const event = { target: { value: 'Item text' } };
+    const input = screen.getByLabelText(/Edit item/);
+    fireEvent.change(input, event);
+    expect(screen.getByDisplayValue(event.target.value)).toBe(input);
   });
 });
