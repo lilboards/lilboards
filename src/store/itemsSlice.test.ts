@@ -1,8 +1,8 @@
-import { BOARD_TEST_ID, ITEM_TEST_ID } from '../constants/test';
+import {
+  BOARD_TEST_ID as boardId,
+  ITEM_TEST_ID as itemId,
+} from '../constants/test';
 import { actions, initialState, reducer } from './itemsSlice';
-
-const boardId = BOARD_TEST_ID;
-const itemId = ITEM_TEST_ID;
 
 describe('addItem', () => {
   it('adds item', () => {

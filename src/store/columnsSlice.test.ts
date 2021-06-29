@@ -1,10 +1,10 @@
-import { BOARD_TEST_ID, COLUMN_TEST_ID, ITEM_TEST_ID } from '../constants/test';
+import {
+  BOARD_TEST_ID as boardId,
+  COLUMN_TEST_ID as columnId,
+  ITEM_TEST_ID as itemId,
+} from '../constants/test';
 import { ITEM_IDS } from '../constants';
 import { actions, initialState, reducer } from './columnsSlice';
-
-const boardId = BOARD_TEST_ID;
-const columnId = COLUMN_TEST_ID;
-const itemId = ITEM_TEST_ID;
 
 describe('editColumn', () => {
   it('adds column', () => {

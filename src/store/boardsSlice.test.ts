@@ -1,8 +1,8 @@
-import { BOARD_TEST_ID, USER_TEST_ID } from '../constants/test';
+import {
+  BOARD_TEST_ID as boardId,
+  USER_TEST_ID as userId,
+} from '../constants/test';
 import { actions, initialState, reducer } from './boardsSlice';
-
-const boardId = BOARD_TEST_ID;
-const userId = USER_TEST_ID;
 
 describe('editBoard', () => {
   it('adds board', () => {
@@ -78,13 +78,13 @@ describe('loadBoard', () => {
 
   it('loads board', () => {
     const state = {
-      [`${BOARD_TEST_ID}1`]: {
+      [`${boardId}1`]: {
         created: 0,
         name: 'Board 1',
         updated: 0,
       },
     };
-    const id = `${BOARD_TEST_ID}2`;
+    const id = `${boardId}2`;
     const board = {
       created: 0,
       name: 'Board 2',

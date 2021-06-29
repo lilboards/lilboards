@@ -1,15 +1,10 @@
 import {
-  BOARD_TEST_ID,
-  COLUMN_TEST_ID,
-  USER_TEST_EMAIL,
-  USER_TEST_ID,
+  BOARD_TEST_ID as boardId,
+  COLUMN_TEST_ID as columnId,
+  USER_TEST_EMAIL as email,
+  USER_TEST_ID as id,
 } from '../constants/test';
 import { actions, initialState, reducer } from './userSlice';
-
-const boardId = BOARD_TEST_ID;
-const columnId = COLUMN_TEST_ID;
-const email = USER_TEST_EMAIL;
-const id = USER_TEST_ID;
 
 describe('setUser', () => {
   it('sets user', () => {
