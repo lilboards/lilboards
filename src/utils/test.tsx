@@ -1,18 +1,18 @@
-/* istanbul ignore file */
 import { render as reactTestingLibraryRender } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import type { ReactNode } from 'react';
 
 import actions, { resetActions } from '../actions';
 import { ITEM_IDS } from '../constants';
 import {
-  BOARD_TEST_ID,
-  COLUMN_TEST_ID,
-  ITEM_TEST_ID,
-  USER_TEST_EMAIL,
-  USER_TEST_ID,
+  BOARD_TEST_ID as boardId,
+  COLUMN_TEST_ID as columnId,
+  ITEM_TEST_ID as itemId,
+  USER_TEST_EMAIL as userEmail,
+  USER_TEST_ID as userId,
 } from '../constants/test';
 import store from '../store';
+
+import type { ReactNode } from 'react';
 
 type Props = {
   children?: ReactNode;
@@ -37,7 +37,7 @@ export const updateStore = {
   withBoard() {
     const board = {
       created: Date.now(),
-      id: BOARD_TEST_ID,
+      id: boardId,
       name: 'Board 1',
       updated: Date.now(),
     };
@@ -49,10 +49,10 @@ export const updateStore = {
     const column = {
       created: Date.now(),
       name: 'Column 1',
-      [ITEM_IDS]: [ITEM_TEST_ID],
+      [ITEM_IDS]: [itemId],
       updated: Date.now(),
     };
-    const id = COLUMN_TEST_ID;
+    const id = columnId;
     const payload = { [id]: column };
     store.dispatch(actions.loadColumns(payload));
     return { ...column, id };
@@ -64,7 +64,7 @@ export const updateStore = {
       text: 'Item 1',
       updated: Date.now(),
     };
-    const id = ITEM_TEST_ID;
+    const id = itemId;
     const payload = { [id]: item };
     store.dispatch(actions.loadItems(payload));
     return { ...item, id };
@@ -72,8 +72,8 @@ export const updateStore = {
 
   withUser() {
     const user = {
-      email: USER_TEST_EMAIL,
-      id: USER_TEST_ID,
+      email: userEmail,
+      id: userId,
     };
     store.dispatch(actions.setUser(user));
     return user;
@@ -81,8 +81,8 @@ export const updateStore = {
 
   withUserEditing() {
     const userEditing = {
-      boardId: BOARD_TEST_ID,
-      columnId: COLUMN_TEST_ID,
+      boardId,
+      columnId,
     };
     store.dispatch(actions.setUserEditing(userEditing));
     return userEditing;
