@@ -67,9 +67,11 @@ const columnsSlice = createSlice({
     ) => {
       const { boardId, columnId, itemId } = action.payload;
       const column = state[columnId];
-      const itemIds = (column[ITEM_IDS] || []).filter((id) => id !== itemId);
-      column[ITEM_IDS] = itemIds;
-      setColumnItemIds(boardId, columnId, itemIds);
+      if (column) {
+        const itemIds = (column[ITEM_IDS] || []).filter((id) => id !== itemId);
+        column[ITEM_IDS] = itemIds;
+        setColumnItemIds(boardId, columnId, itemIds);
+      }
     },
 
     resetColumns: () => {

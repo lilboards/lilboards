@@ -128,6 +128,16 @@ describe('addColumnItemId', () => {
 describe('removeColumnItemId', () => {
   const itemId2 = `${itemId}2`;
 
+  it('does not throw when column itemIds is undefined', () => {
+    const payload = {
+      boardId,
+      columnId,
+      itemId: itemId,
+    };
+    const newState = reducer(initialState, actions.removeColumnItemId(payload));
+    expect(newState).toEqual(initialState);
+  });
+
   it('does not remove invalid item id', () => {
     const column = {
       created: Date.now(),
