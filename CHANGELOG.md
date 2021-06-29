@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.6.1](https://www.github.com/lilboards/lilboards/compare/v2.6.0...v2.6.1) (2021-06-29)
+
+
+### Bug Fixes
+
+* remove correct board ref in database when board is deleted ([04ef55f](https://www.github.com/lilboards/lilboards/commit/04ef55f756357b3e58a33689e0fdb59859af2fb1))
+
 ## [2.6.0](https://www.github.com/lilboards/lilboards/compare/v2.5.0...v2.6.0) (2021-06-29)
 
 
