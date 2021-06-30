@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.8.1](https://www.github.com/lilboards/lilboards/compare/v2.8.0...v2.8.1) (2021-06-30)
+
+
+### Performance Improvements
+
+* do not import firebase in Login uiConfig ([c704d7a](https://www.github.com/lilboards/lilboards/commit/c704d7af4ce58a8e88e3e53df0c3634d29751d22))
+
 ## [2.8.0](https://www.github.com/lilboards/lilboards/compare/v2.7.0...v2.8.0) (2021-06-30)
 
 
