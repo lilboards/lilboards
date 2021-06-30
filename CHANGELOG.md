@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.8.0](https://www.github.com/lilboards/lilboards/compare/v2.7.0...v2.8.0) (2021-06-30)
+
+
+### Features
+
+* **components:** add Likes ([7b4404b](https://www.github.com/lilboards/lilboards/commit/7b4404bcba6fdda26eba79e4a16f5764da86ae3c))
+* **components:** render Likes in Item ([14aa223](https://www.github.com/lilboards/lilboards/commit/14aa223cc29648ae357c1b11ec04ebf67a8b977a))
+* **components:** toggle like and unlike with on click in Likes ([780e324](https://www.github.com/lilboards/lilboards/commit/780e3244d34b13916c7470ecf2b93970a651b6ff))
+* **firebase:** add database helpers `likeItem` and `unlikeItem` ([99dc0e9](https://www.github.com/lilboards/lilboards/commit/99dc0e9c3cec23efe18d35abb5522f0c1df56e6e))
+* **store:** add likes to itemsSlice ([1807753](https://www.github.com/lilboards/lilboards/commit/1807753cc4db877bc2e0c8387d252bdaf8d5be71))
+* **store:** add reducers `likeItem` and `unlikeItem` to itemsSlice ([7f0dfc2](https://www.github.com/lilboards/lilboards/commit/7f0dfc25f29d880059f88301f402344c59c92a37))
+
 ## [2.7.0](https://www.github.com/lilboards/lilboards/compare/v2.6.1...v2.7.0) (2021-06-29)
 
 
