@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.8.3](https://www.github.com/lilboards/lilboards/compare/v2.8.2...v2.8.3) (2021-06-30)
+
+
+### Bug Fixes
+
+* **components:** check user is logged in with email in ProtectedRoute ([88e61a6](https://www.github.com/lilboards/lilboards/commit/88e61a61721870e4e8b3748db11b979bedf48755))
+
 ### [2.8.2](https://www.github.com/lilboards/lilboards/compare/v2.8.1...v2.8.2) (2021-06-30)
 
 
