@@ -22,7 +22,9 @@ type Props = {
 export default function Item(props: Props) {
   const dispatch = useDispatch();
   const item = useSelector((state) => state.items[props.itemId]);
-  const userEditingItemId = useSelector((state) => state.user.editing.itemId);
+  const isEditing = useSelector(
+    (state) => state.user.editing.itemId === props.itemId
+  );
 
   if (!item) {
     return null;
@@ -68,7 +70,7 @@ export default function Item(props: Props) {
 
   return (
     <Box height="100%" position="relative">
-      <Card>
+      <Card raised={isEditing}>
         <Box position="absolute" right={0} top={0}>
           <CloseButton
             aria-label={`Delete item "${props.itemId}"`}
@@ -79,7 +81,7 @@ export default function Item(props: Props) {
 
         <Box component={CardContent} marginTop={1} marginBottom={1}>
           <InputBase
-            autoFocus={props.itemId === userEditingItemId}
+            autoFocus={isEditing}
             fullWidth
             inputProps={{ 'aria-label': `Edit item "${props.itemId}"` }}
             multiline

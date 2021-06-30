@@ -49,19 +49,19 @@ describe('edit item', () => {
     renderWithStore(<Item {...props} itemId={item.id} />);
   });
 
-  it('updates item on change', () => {
+  it('changes item', () => {
     const event = { target: { value: 'Item text' } };
     const input = screen.getByLabelText(/Edit item/);
     fireEvent.change(input, event);
     expect(screen.getByDisplayValue(event.target.value)).toBe(input);
   });
 
-  it('focuses on item', () => {
+  it('focuses item', () => {
     fireEvent.focus(screen.getByLabelText(/Edit item/));
     expect(getStoreState().user.editing.itemId).toBe(itemId);
   });
 
-  it('blurs on item', () => {
+  it('blurs item', () => {
     fireEvent.blur(screen.getByLabelText(/Edit item/));
     expect(getStoreState().user.editing.itemId).toBe('');
   });
