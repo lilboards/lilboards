@@ -23,7 +23,9 @@ type Props = {
 export default function BoardCard(props: Props) {
   const dispatch = useDispatch();
   const board = useSelector((state) => state.boards[props.boardId]);
-  const userEditingBoardId = useSelector((state) => state.user.editing.boardId);
+  const isEditing = useSelector(
+    (state) => state.user.editing.boardId === props.boardId
+  );
   const userId = useSelector((state) => state.user.id);
 
   if (!board) {
@@ -50,6 +52,10 @@ export default function BoardCard(props: Props) {
     dispatch(actions.setUserEditing({ boardId: '' }));
   }
 
+  function handleFocus() {
+    dispatch(actions.setUserEditing({ boardId: props.boardId }));
+  }
+
   function deleteBoard() {
     dispatch(
       actions.deleteBoard({
@@ -61,37 +67,40 @@ export default function BoardCard(props: Props) {
 
   return (
     <Grid item xs={12} sm={6} md={3}>
-      <Box component={Card} height="100%" position="relative">
-        <Box position="absolute" right={0} top={0}>
-          <CloseButton
-            aria-label={`Delete board "${board.name || props.boardId}"`}
-            onClick={deleteBoard}
-          />
-        </Box>
+      <Box height="100%" position="relative">
+        <Card raised={isEditing}>
+          <Box position="absolute" right={0} top={0}>
+            <CloseButton
+              aria-label={`Delete board "${board.name || props.boardId}"`}
+              onClick={deleteBoard}
+            />
+          </Box>
 
-        <CardContent>
-          <TextField
-            autoFocus={userEditingBoardId === props.boardId}
-            fullWidth
-            id={props.boardId}
-            label="Board Name"
-            margin="normal"
-            placeholder="Untitled Board"
-            onBlur={handleBlur}
-            onChange={handleChange}
-            value={board.name}
-          />
-        </CardContent>
+          <CardContent>
+            <TextField
+              autoFocus={isEditing}
+              fullWidth
+              id={props.boardId}
+              label="Board Name"
+              margin="normal"
+              placeholder="Untitled Board"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              value={board.name}
+            />
+          </CardContent>
 
-        <CardActions>
-          <Button
-            color="primary"
-            component={RouterLink}
-            to={`/boards/${props.boardId}`}
-          >
-            Open board
-          </Button>
-        </CardActions>
+          <CardActions>
+            <Button
+              color="primary"
+              component={RouterLink}
+              to={`/boards/${props.boardId}`}
+            >
+              Open board
+            </Button>
+          </CardActions>
+        </Card>
       </Box>
     </Grid>
   );
