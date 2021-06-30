@@ -1,18 +1,33 @@
 import { screen } from '@testing-library/react';
-
+import {
+  BOARD_TEST_ID as boardId,
+  USER_TEST_EMAIL as userEmail,
+  USER_TEST_ID as userId,
+} from '../../constants/test';
+import { firebaseAuth, getBoardVal } from '../../firebase';
+import { renderWithStore, updateStore } from '../../utils/test';
 import Board from './Board';
 
-import { BOARD_TEST_ID } from '../../constants/test';
-import { getBoardVal } from '../../firebase';
-import { renderWithStore, updateStore } from '../../utils/test';
-
 jest.mock('../../firebase', () => ({
+  firebaseAuth: {
+    onAuthStateChanged: jest.fn(),
+    signInAnonymously: jest.fn(),
+  },
   getBoardVal: jest.fn(),
 }));
 
 jest.mock('../Columns', () => () => <>Columns</>);
 
 beforeEach(() => {
+  (firebaseAuth.onAuthStateChanged as jest.Mock).mockImplementationOnce(
+    (callback) => {
+      const user = {
+        email: userEmail,
+        uid: userId,
+      };
+      callback(user);
+    }
+  );
   (getBoardVal as jest.Mock).mockResolvedValueOnce(null);
 });
 
@@ -23,7 +38,7 @@ it('renders nothing when there is no board id', async () => {
 });
 
 it('renders nothing when there is no board', async () => {
-  const { baseElement } = renderWithStore(<Board boardId={BOARD_TEST_ID} />);
+  const { baseElement } = renderWithStore(<Board boardId={boardId} />);
   await screen.findAllByText('');
   expect(baseElement.firstElementChild).toBeEmptyDOMElement();
 });
@@ -42,19 +57,29 @@ it('renders columns', async () => {
   expect(await screen.findByText('Columns')).toBeInTheDocument();
 });
 
-describe('mount', () => {
-  beforeEach(async () => {
-    (getBoardVal as jest.Mock).mockReset().mockResolvedValueOnce({
-      created: 0,
-      name: 'Board Name',
-      updated: 0,
-    });
+describe('with board and anonymous user', () => {
+  const board = {
+    created: Date.now(),
+    name: 'My Board',
+    updated: Date.now(),
+  };
+
+  beforeEach(() => {
+    (firebaseAuth.onAuthStateChanged as jest.Mock)
+      .mockReset()
+      .mockImplementationOnce((callback) => {
+        const user = null;
+        callback(user);
+      });
+    (getBoardVal as jest.Mock).mockReset().mockResolvedValueOnce(board);
   });
 
   it('loads board', async () => {
-    renderWithStore(<Board boardId={BOARD_TEST_ID} />);
-    expect(await screen.findByRole('heading', { level: 1 })).toBe(
-      await screen.findByText('Board Name')
-    );
+    renderWithStore(<Board boardId={boardId} />);
+    const heading = await screen.findByRole('heading', {
+      level: 1,
+      name: board.name,
+    });
+    expect(heading).toBeInTheDocument();
   });
 });
