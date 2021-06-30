@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.8.2](https://www.github.com/lilboards/lilboards/compare/v2.8.1...v2.8.2) (2021-06-30)
+
+
+### Bug Fixes
+
+* **components:** check user is logged in with email in Header ([df5a265](https://www.github.com/lilboards/lilboards/commit/df5a2650143fc5b2b94139df1c03d210c13e829b))
+
 ### [2.8.1](https://www.github.com/lilboards/lilboards/compare/v2.8.0...v2.8.1) (2021-06-30)
 
 
