@@ -91,7 +91,7 @@ export default function Item(props: Props) {
         </Box>
 
         <Box position="absolute" bottom={1} right={0}>
-          <Likes itemId={props.itemId} />
+          <Likes boardId={props.boardId} itemId={props.itemId} />
         </Box>
       </Card>
     </Box>

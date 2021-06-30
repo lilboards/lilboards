@@ -20,6 +20,13 @@ describe('invalid item', () => {
   });
 });
 
+it('renders like button and count', () => {
+  const item = updateStore.withItem();
+  renderWithStore(<Item {...props} itemId={item.id} />);
+  expect(screen.getByLabelText(/Like item/)).toBeInTheDocument();
+  expect(screen.getByLabelText(/0 likes/)).toBeInTheDocument();
+});
+
 describe('delete item', () => {
   beforeEach(() => {
     const item = updateStore.withItem();
