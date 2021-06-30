@@ -70,9 +70,9 @@ export const updateStore = {
     return { ...item, id };
   },
 
-  withUser() {
+  withUser(email = true) {
     const user = {
-      email: userEmail,
+      email: email ? userEmail : '',
       id: userId,
     };
     store.dispatch(actions.setUser(user));

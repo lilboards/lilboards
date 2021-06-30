@@ -9,18 +9,35 @@ it('renders correctly', () => {
 
 it('renders header', () => {
   renderWithStore(<Header />);
-  const headerElement = screen.getByRole('banner');
-  expect(headerElement).toBeInTheDocument();
-  expect(headerElement).toHaveTextContent('Lilboards');
+  expect(screen.getByRole('banner')).toHaveTextContent('Lilboards');
 });
 
-it('renders login button', () => {
+it('renders heading link', () => {
   renderWithStore(<Header />);
-  expect(screen.getByText('Login')).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: 'Lilboards' })).toHaveAttribute(
+    'href',
+    '/'
+  );
 });
 
-it('renders logout button', () => {
-  updateStore.withUser();
-  renderWithStore(<Header />);
-  expect(screen.getByText('Logout')).toBeInTheDocument();
+describe('without user email', () => {
+  it('renders login button', () => {
+    updateStore.withUser(false);
+    renderWithStore(<Header />);
+    expect(screen.getByRole('button', { name: 'Login' })).toHaveAttribute(
+      'href',
+      '/login'
+    );
+  });
+});
+
+describe('with user email', () => {
+  it('renders logout button', () => {
+    updateStore.withUser();
+    renderWithStore(<Header />);
+    expect(screen.getByRole('button', { name: 'Logout' })).toHaveAttribute(
+      'href',
+      '/logout'
+    );
+  });
 });
