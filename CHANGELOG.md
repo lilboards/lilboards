@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.8.4](https://www.github.com/lilboards/lilboards/compare/v2.8.3...v2.8.4) (2021-06-30)
+
+
+### Bug Fixes
+
+* **components:** prevent race condition with firebase in Logout ([9ac436c](https://www.github.com/lilboards/lilboards/commit/9ac436c10f348ace81dc141689007e8d63507e34))
+
 ### [2.8.3](https://www.github.com/lilboards/lilboards/compare/v2.8.2...v2.8.3) (2021-06-30)
 
 
