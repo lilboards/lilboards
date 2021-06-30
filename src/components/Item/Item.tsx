@@ -4,6 +4,7 @@ import CardContent from '@material-ui/core/CardContent';
 import InputBase from '@material-ui/core/InputBase';
 
 import CloseButton from '../CloseButton';
+import Likes from './Likes';
 
 import actions from '../../actions';
 import { debouncedUpdateItem } from '../../firebase';
@@ -76,7 +77,7 @@ export default function Item(props: Props) {
           />
         </Box>
 
-        <CardContent>
+        <Box component={CardContent} marginTop={1} marginBottom={1}>
           <InputBase
             autoFocus={props.itemId === userEditingItemId}
             fullWidth
@@ -87,7 +88,11 @@ export default function Item(props: Props) {
             onFocus={handleFocus}
             value={item.text}
           />
-        </CardContent>
+        </Box>
+
+        <Box position="absolute" bottom={1} right={0}>
+          <Likes boardId={props.boardId} itemId={props.itemId} />
+        </Box>
       </Card>
     </Box>
   );

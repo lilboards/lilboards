@@ -23,9 +23,30 @@ const slice = createSlice({
       state,
       action: PayloadAction<Partial<Item> & { itemId: Id }>
     ) => {
-      const { itemId, ...item } = action.payload;
+      const { itemId, likes, ...item } = action.payload;
       state[itemId] = state[itemId] || {};
       Object.assign(state[itemId], item);
+    },
+
+    likeItem: (state, action: PayloadAction<{ itemId: Id; userId: Id }>) => {
+      const { itemId, userId } = action.payload;
+      if (userId) {
+        const item = state[itemId];
+        if (item) {
+          item.likes = item.likes || {};
+          item.likes[userId] = true;
+        }
+      }
+    },
+
+    unlikeItem: (state, action: PayloadAction<{ itemId: Id; userId: Id }>) => {
+      const { itemId, userId } = action.payload;
+      if (userId) {
+        const item = state[itemId];
+        if (item && item.likes) {
+          delete item.likes[userId];
+        }
+      }
     },
 
     loadItems: (state, action: PayloadAction<Items>) => {

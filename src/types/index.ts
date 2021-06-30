@@ -12,6 +12,9 @@ export type Id = string;
 
 export type Item = {
   created: number;
+  likes?: {
+    [userId: string]: boolean;
+  };
   text: string;
   updated: number;
 };
