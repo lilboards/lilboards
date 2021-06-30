@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.9.0](https://www.github.com/lilboards/lilboards/compare/v2.8.5...v2.9.0) (2021-06-30)
+
+
+### Features
+
+* **components:** raise BoardCard on focus or edit ([4f96558](https://www.github.com/lilboards/lilboards/commit/4f9655892fdddfe494080e45dd807ce77650e07f))
+* **components:** raise Item Card on focus or edit ([087d9f7](https://www.github.com/lilboards/lilboards/commit/087d9f7a19eff3e7a5a087b808aa1c265dce09a4))
+
 ### [2.8.5](https://www.github.com/lilboards/lilboards/compare/v2.8.4...v2.8.5) (2021-06-30)
 
 
