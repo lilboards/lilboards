@@ -1,11 +1,22 @@
 import {
   BOARD_TEST_ID as boardId,
   ITEM_TEST_ID as itemId,
+  USER_TEST_ID as userId,
 } from '../constants/test';
 import { actions, initialState, reducer } from './itemsSlice';
 
 describe('updateItem', () => {
-  it('adds item', () => {
+  it('does nothing if no item in payload', () => {
+    const item = {};
+    const payload = {
+      ...item,
+      itemId,
+    };
+    const newState = reducer(initialState, actions.updateItem(payload));
+    expect(newState).toEqual({ [itemId]: item });
+  });
+
+  it('updates item', () => {
     const item = {
       created: Date.now(),
       text: '',
@@ -16,14 +27,26 @@ describe('updateItem', () => {
       itemId,
     };
     const newState = reducer(initialState, actions.updateItem(payload));
-    expect(newState).toEqual({
-      [itemId]: item,
-    });
+    expect(newState).toEqual({ [itemId]: item });
+  });
+
+  it('sets likes', () => {
+    const item = {
+      likes: {
+        [userId]: true,
+      },
+    };
+    const payload = {
+      ...item,
+      itemId,
+    };
+    const newState = reducer(initialState, actions.updateItem(payload));
+    expect(newState).toEqual({ [itemId]: item });
   });
 });
 
 describe('loadItems', () => {
-  it('adds item', () => {
+  it('sets items', () => {
     const item = {
       created: Date.now(),
       text: 'Item 1',

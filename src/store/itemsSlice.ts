@@ -23,8 +23,12 @@ const slice = createSlice({
       state,
       action: PayloadAction<Partial<Item> & { itemId: Id }>
     ) => {
-      const { itemId, ...item } = action.payload;
+      const { itemId, likes, ...item } = action.payload;
       state[itemId] = state[itemId] || {};
+      if (likes) {
+        state[itemId].likes = state[itemId].likes || {};
+        Object.assign(state[itemId].likes, likes);
+      }
       Object.assign(state[itemId], item);
     },
 
