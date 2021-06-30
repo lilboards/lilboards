@@ -6,7 +6,7 @@ import Columns from '../Columns';
 import Layout from '../Layout';
 
 import { getBoardVal } from '../../firebase';
-import { useDispatch, useSelector } from '../../hooks';
+import { useAuth, useDispatch, useSelector } from '../../hooks';
 import actions from '../../actions';
 
 import type { RouteComponentProps } from '@reach/router';
@@ -17,6 +17,7 @@ interface Props extends RouteComponentProps {
 }
 
 export default function Board(props: Props) {
+  useAuth(true);
   const dispatch = useDispatch();
   const board = useSelector((state) => state.boards[props.boardId || '']);
   const [isLoaded, setIsLoaded] = useState(false);

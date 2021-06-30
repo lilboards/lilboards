@@ -4,7 +4,7 @@ import actions from '../actions';
 import { firebaseAuth } from '../firebase';
 import { useDispatch } from '.';
 
-export function useAuth() {
+export function useAuth(signInAnonymously = false) {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,9 +16,11 @@ export function useAuth() {
             id: user.uid,
           })
         );
+      } else if (signInAnonymously) {
+        firebaseAuth.signInAnonymously();
       }
     });
 
     return unregisterAuthObserver;
-  }, [dispatch]);
+  }, [dispatch, signInAnonymously]);
 }
