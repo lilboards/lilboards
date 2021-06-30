@@ -8,7 +8,7 @@ import { Link as RouterLink } from '@reach/router';
 import { useSelector } from '../../hooks';
 
 export default function Header() {
-  const userId = useSelector((state) => state.user.id);
+  const isLoggedIn = useSelector((state) => Boolean(state.user.email));
 
   return (
     <AppBar position="static">
@@ -23,10 +23,10 @@ export default function Header() {
           <Button
             color="inherit"
             component={RouterLink}
-            to={userId ? '/logout' : '/login'}
+            to={isLoggedIn ? '/logout' : '/login'}
             variant="outlined"
           >
-            {userId ? 'Logout' : 'Login'}
+            {isLoggedIn ? 'Logout' : 'Login'}
           </Button>
         </Toolbar>
       </Container>
