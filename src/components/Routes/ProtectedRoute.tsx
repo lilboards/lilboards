@@ -1,17 +1,18 @@
 import { Redirect } from '@reach/router';
-import type { FC } from 'react';
-import type { RouteComponentProps } from '@reach/router';
 
 import { useSelector } from '../../hooks';
 
-type Props = RouteComponentProps & {
+import type { FC } from 'react';
+import type { RouteComponentProps } from '@reach/router';
+
+interface Props extends RouteComponentProps {
   component: FC<RouteComponentProps>;
-};
+}
 
 export default function ProtectedRoute(props: Props) {
-  const userId = useSelector((state) => state.user.id);
+  const isLoggedIn = useSelector((state) => Boolean(state.user.email));
 
-  if (!userId) {
+  if (!isLoggedIn) {
     return <Redirect to="/login" noThrow />;
   }
 

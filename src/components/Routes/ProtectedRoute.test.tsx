@@ -8,17 +8,31 @@ function ProtectedComponent() {
   return <>{protectedText}</>;
 }
 
-it('does not render protected component when user is not signed in', () => {
-  renderWithStore(
-    <ProtectedRoute component={ProtectedComponent} path="/protected" />
-  );
-  expect(screen.queryByText(protectedText)).not.toBeInTheDocument();
+describe('not signed in', () => {
+  it('does not render protected component', () => {
+    renderWithStore(
+      <ProtectedRoute component={ProtectedComponent} path="/protected" />
+    );
+    expect(screen.queryByText(protectedText)).not.toBeInTheDocument();
+  });
 });
 
-it('renders protected component when user is signed in', () => {
-  updateStore.withUser();
-  renderWithStore(
-    <ProtectedRoute component={ProtectedComponent} path="/protected" />
-  );
-  expect(screen.getByText(protectedText)).toBeInTheDocument();
+describe('signed in with email', () => {
+  it('renders protected component', () => {
+    updateStore.withUser();
+    renderWithStore(
+      <ProtectedRoute component={ProtectedComponent} path="/protected" />
+    );
+    expect(screen.getByText(protectedText)).toBeInTheDocument();
+  });
+});
+
+describe('signed in email', () => {
+  it('does not render protected component', () => {
+    updateStore.withUser(false);
+    renderWithStore(
+      <ProtectedRoute component={ProtectedComponent} path="/protected" />
+    );
+    expect(screen.queryByText(protectedText)).not.toBeInTheDocument();
+  });
 });
