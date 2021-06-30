@@ -12,48 +12,41 @@ import actions from '../../actions';
 import type { RouteComponentProps } from '@reach/router';
 import type { Id } from '../../types';
 
-type Props = {
-  boardId: Id;
-};
+interface Props extends RouteComponentProps {
+  boardId?: Id;
+}
 
-export default function Board(props: RouteComponentProps<Props>) {
-  const { boardId } = props;
-
-  const [isLoaded, setIsLoaded] = useState(false);
-  const board = useSelector((state) =>
-    boardId ? state.boards[boardId] : null
-  );
+export default function Board(props: Props) {
   const dispatch = useDispatch();
+  const board = useSelector((state) => state.boards[props.boardId || '']);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    if (!boardId || board) {
+    if (!props.boardId || board) {
       return;
     }
 
-    (async () => {
-      const board = await getBoardVal(boardId);
-
+    getBoardVal(props.boardId).then((board) => {
       /* istanbul ignore next */
       if (board) {
         dispatch(
           actions.loadBoard({
             ...board,
-            id: boardId,
+            id: props.boardId,
           })
         );
       }
-
       setIsLoaded(true);
-    })();
+    });
 
     return () => setIsLoaded(false);
-  }, [boardId, setIsLoaded, board, dispatch]);
+  }, [props.boardId, setIsLoaded, board, dispatch]);
 
-  if (!boardId) {
+  if (!props.boardId) {
     return null;
   }
 
-  if (boardId && !board && isLoaded) {
+  if (props.boardId && !board && isLoaded) {
     return <Redirect to="/404" noThrow />;
   }
 
@@ -68,7 +61,8 @@ export default function Board(props: RouteComponentProps<Props>) {
           {board.name}
         </Typography>
       )}
-      <Columns boardId={boardId} />
+
+      <Columns boardId={props.boardId} />
     </Layout>
   );
 }
