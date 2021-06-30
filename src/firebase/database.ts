@@ -11,6 +11,7 @@ import {
   HALF_SECOND,
   ITEM_IDS,
   ITEMS,
+  LIKES,
   USERS,
 } from '../constants';
 
@@ -86,8 +87,18 @@ export const getItemsRef = (boardId: Id) => getBoardRef(boardId).child(ITEMS);
 export const getItemRef = (boardId: Id, itemId: Id) =>
   getItemsRef(boardId).child(itemId);
 
+export const likeItem = (boardId: Id, itemId: Id, userId: Id) => {
+  getItemRef(boardId, itemId)
+    .child(LIKES)
+    .update({ [userId]: true });
+};
+
 export const removeItem = (boardId: Id, itemId: Id) => {
   getItemRef(boardId, itemId).remove();
+};
+
+export const unlikeItem = (boardId: Id, itemId: Id, userId: Id) => {
+  getItemRef(boardId, itemId).child(LIKES).child(userId).remove();
 };
 
 export const updateItem = (boardId: Id, itemId: Id, item: Partial<Item>) => {
