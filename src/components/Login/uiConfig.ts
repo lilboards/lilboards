@@ -1,5 +1,3 @@
-import firebase from 'firebase';
-
 /**
  * Configure FirebaseUI.
  *
@@ -10,8 +8,8 @@ const uiConfig = {
   signInFlow: 'popup',
   // Display auth providers.
   signInOptions: [
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    'google.com', // require('firebase').auth.GoogleAuthProvider.PROVIDER_ID
+    'password', // require('firebase').auth.EmailAuthProvider.PROVIDER_ID
   ],
   callbacks: {
     // Avoid redirects after sign-in.
