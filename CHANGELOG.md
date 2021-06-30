@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.8.5](https://www.github.com/lilboards/lilboards/compare/v2.8.4...v2.8.5) (2021-06-30)
+
+
+### Bug Fixes
+
+* **components:** add useAuth in Board so user signs in anonymously ([53dbc3f](https://www.github.com/lilboards/lilboards/commit/53dbc3f4f2f30bda6e3092c73cac00a55266e4ad))
+
 ### [2.8.4](https://www.github.com/lilboards/lilboards/compare/v2.8.3...v2.8.4) (2021-06-30)
 
 
