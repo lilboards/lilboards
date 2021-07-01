@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.10.0](https://www.github.com/lilboards/lilboards/compare/v2.9.0...v2.10.0) (2021-07-01)
+
+
+### Features
+
+* **components:** add link to boards in Header ([a0583c9](https://www.github.com/lilboards/lilboards/commit/a0583c954f154bfe25c9fdc5eb8eaee9142c7320))
+
 ## [2.9.0](https://www.github.com/lilboards/lilboards/compare/v2.8.5...v2.9.0) (2021-06-30)
 
 
