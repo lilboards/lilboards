@@ -20,6 +20,14 @@ it('renders heading link', () => {
   );
 });
 
+it('renders boards button', () => {
+  renderWithStore(<Header />);
+  expect(screen.getByRole('button', { name: 'Boards' })).toHaveAttribute(
+    'href',
+    '/boards'
+  );
+});
+
 describe('without user email', () => {
   it('renders login button', () => {
     updateStore.withUser(false);

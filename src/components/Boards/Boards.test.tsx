@@ -31,9 +31,8 @@ beforeEach(() => {
 
 it('renders heading', () => {
   renderWithStore(<Boards />);
-  expect(screen.getByRole('heading', { level: 1 })).toBe(
-    screen.getByText('Boards')
-  );
+  const heading = screen.getByRole('heading', { level: 1, name: 'Boards' });
+  expect(heading).toBeInTheDocument();
 });
 
 it('renders "Create board" button', () => {
