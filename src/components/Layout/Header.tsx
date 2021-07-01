@@ -20,6 +20,12 @@ export default function Header() {
             </Link>
           </Box>
 
+          <Box marginRight={1}>
+            <Button color="inherit" component={RouterLink} to="/boards">
+              Boards
+            </Button>
+          </Box>
+
           <Button
             color="inherit"
             component={RouterLink}
