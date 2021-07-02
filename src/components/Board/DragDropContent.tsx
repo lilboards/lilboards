@@ -8,7 +8,7 @@ type Props = {
   boardId: Id;
 };
 
-export default function Board(props: Props) {
+export default function DragDropContent(props: Props) {
   /* istanbul ignore next */
   function handleDragEnd() {}
 
