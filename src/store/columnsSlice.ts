@@ -65,6 +65,20 @@ const columnsSlice = createSlice({
       }
     },
 
+    setColumnItemIds: (
+      state,
+      action: PayloadAction<{
+        boardId: Id;
+        columnItemIds: { [columnId: string]: Id[] };
+      }>
+    ) => {
+      const { boardId, columnItemIds } = action.payload;
+      Object.entries(columnItemIds).forEach(([columnId, itemIds]) => {
+        state[columnId].itemIds = itemIds;
+        setColumnItemIds(boardId, columnId, itemIds);
+      });
+    },
+
     resetColumns: () => {
       return initialState;
     },
