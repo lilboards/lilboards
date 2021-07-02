@@ -1,22 +1,8 @@
 import { ITEM_IDS } from '../../constants';
-import { cloneArray } from '../../utils';
+import { cloneArray, reorderArray } from '../../utils';
 
 import type { DraggableLocation } from 'react-beautiful-dnd';
-import type { Columns, Id } from '../../types';
-
-export function reorderItems(
-  itemIds: Id[],
-  startIndex: number,
-  endIndex: number
-) {
-  if (startIndex === endIndex) {
-    return itemIds;
-  }
-  const reorderedItemIds = cloneArray(itemIds);
-  const [removedItemId] = reorderedItemIds.splice(startIndex, 1);
-  reorderedItemIds.splice(endIndex, 0, removedItemId);
-  return reorderedItemIds;
-}
+import type { Columns } from '../../types';
 
 export function reorderColumns(
   columns: Columns,
@@ -34,7 +20,7 @@ export function reorderColumns(
   // moving item to the same column
   if (sourceColumnId === destinationColumnId) {
     return {
-      [sourceColumnId]: reorderItems(
+      [sourceColumnId]: reorderArray(
         sourceItemIds,
         source.index,
         destination.index
