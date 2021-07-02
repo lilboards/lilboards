@@ -1,7 +1,7 @@
 import { Redirect } from '@reach/router';
 import Typography from '@material-ui/core/Typography';
 
-import DragDropContent from './DragDropContent';
+import Columns from '../Columns';
 import Layout from '../Layout';
 
 import { useAuth } from '../../hooks';
@@ -38,7 +38,7 @@ export default function Board(props: Props) {
         </Typography>
       )}
 
-      <DragDropContent boardId={props.boardId} />
+      <Columns boardId={props.boardId} />
     </Layout>
   );
 }

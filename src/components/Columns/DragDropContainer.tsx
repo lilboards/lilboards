@@ -1,20 +1,18 @@
 import { DragDropContext } from 'react-beautiful-dnd';
 
-import Columns from '../Columns';
-
-import type { Id } from '../../types';
+import type { ReactNode } from 'react';
 
 type Props = {
-  boardId: Id;
+  children: ReactNode;
 };
 
-export default function DragDropContent(props: Props) {
+export default function DragDropContainer(props: Props) {
   /* istanbul ignore next */
   function handleDragEnd() {}
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
-      <Columns boardId={props.boardId} />
+      {props.children}
     </DragDropContext>
   );
 }

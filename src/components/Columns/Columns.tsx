@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 
 import AddButton from '../AddButton';
 import Column from '../Column';
+import DragDropContainer from './DragDropContainer';
 
 import actions from '../../actions';
 import {
@@ -92,14 +93,16 @@ export default function Columns(props: Props) {
       </Box>
 
       <Grid container spacing={2} wrap="nowrap">
-        {columnIds.map((columnId, index) => (
-          <Column
-            boardId={props.boardId}
-            columnId={columnId}
-            index={index}
-            key={columnId}
-          />
-        ))}
+        <DragDropContainer>
+          {columnIds.map((columnId, index) => (
+            <Column
+              boardId={props.boardId}
+              columnId={columnId}
+              index={index}
+              key={columnId}
+            />
+          ))}
+        </DragDropContainer>
       </Grid>
     </>
   );
