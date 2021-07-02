@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.13.0](https://www.github.com/lilboards/lilboards/compare/v2.12.0...v2.13.0) (2021-07-02)
+
+
+### Features
+
+* **components:** move item from one column to another in reorder ([6e5c104](https://www.github.com/lilboards/lilboards/commit/6e5c104804c62b79af62f69ba18d75b33c3f1923))
+
 ## [2.12.0](https://www.github.com/lilboards/lilboards/compare/v2.11.0...v2.12.0) (2021-07-02)
 
 
