@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.11.0](https://www.github.com/lilboards/lilboards/compare/v2.10.0...v2.11.0) (2021-07-02)
+
+
+### Features
+
+* **components:** add drag and drop to Board and Items ([bac80bf](https://www.github.com/lilboards/lilboards/commit/bac80bf736ebf2c9d3e1f76971ad13c324b7b782))
+
 ## [2.10.0](https://www.github.com/lilboards/lilboards/compare/v2.9.0...v2.10.0) (2021-07-01)
 
 
