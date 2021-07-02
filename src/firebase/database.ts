@@ -65,6 +65,10 @@ export const getColumnRef = (boardId: Id, columnId: Id) =>
 export const getColumnItemIdsRef = (boardId: Id, columnId: Id) =>
   getColumnRef(boardId, columnId).child(ITEM_IDS);
 
+export const removeColumn = (boardId: Id, columnId: Id) => {
+  getColumnRef(boardId, columnId).remove();
+};
+
 export const setColumnItemIds = (boardId: Id, columnId: Id, itemIds: Id[]) => {
   getColumnItemIdsRef(boardId, columnId).set(itemIds);
 };
