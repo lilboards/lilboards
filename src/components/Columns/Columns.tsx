@@ -93,7 +93,7 @@ export default function Columns(props: Props) {
       </Box>
 
       <Grid container spacing={2} wrap="nowrap">
-        <DragDropContainer>
+        <DragDropContainer boardId={props.boardId}>
           {columnIds.map((columnId, index) => (
             <Column
               boardId={props.boardId}

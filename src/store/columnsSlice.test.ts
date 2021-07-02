@@ -6,13 +6,14 @@ import {
 import { ITEM_IDS } from '../constants';
 import { actions, initialState, reducer } from './columnsSlice';
 
+const column = {
+  created: Date.now(),
+  name: '',
+  updated: Date.now(),
+};
+
 describe('editColumn', () => {
   it('adds column', () => {
-    const column = {
-      created: Date.now(),
-      name: '',
-      updated: Date.now(),
-    };
     const payload = {
       ...column,
       columnId,
@@ -23,25 +24,21 @@ describe('editColumn', () => {
 
   it('edits column', () => {
     const state = {
-      [columnId]: {
-        created: Date.now(),
-        name: 'Column Name',
-        updated: Date.now(),
-      },
+      [columnId]: column,
     };
-    const column = {
+    const newColumn = {
       name: 'Column Name Edited',
       updated: Date.now() + 1000,
     };
     const payload = {
-      ...column,
+      ...newColumn,
       columnId,
     };
     const newState = reducer(state, actions.editColumn(payload));
     expect(newState).toEqual({
       [columnId]: {
         ...state[columnId],
-        ...column,
+        ...newColumn,
       },
     });
   });
@@ -139,12 +136,9 @@ describe('removeColumnItemId', () => {
   });
 
   it('does not remove invalid item id', () => {
-    const column = {
-      created: Date.now(),
-      name: 'Column 1',
-      updated: Date.now(),
+    const state = {
+      [columnId]: column,
     };
-    const state = { [columnId]: column };
     const payload = {
       boardId,
       columnId,
@@ -160,13 +154,12 @@ describe('removeColumnItemId', () => {
   });
 
   it('removes item id', () => {
-    const column = {
-      created: Date.now(),
-      [ITEM_IDS]: [itemId, itemId2],
-      name: 'Column 1',
-      updated: Date.now(),
+    const state = {
+      [columnId]: {
+        ...column,
+        [ITEM_IDS]: [itemId, itemId2],
+      },
     };
-    const state = { [columnId]: column };
     const payload = {
       boardId,
       columnId,
@@ -182,13 +175,12 @@ describe('removeColumnItemId', () => {
   });
 
   it('removes all item ids', () => {
-    const column = {
-      created: Date.now(),
-      [ITEM_IDS]: [itemId],
-      name: 'Column 1',
-      updated: Date.now(),
+    const state = {
+      [columnId]: {
+        ...column,
+        [ITEM_IDS]: [itemId],
+      },
     };
-    const state = { [columnId]: column };
     const payload = {
       boardId,
       columnId,
@@ -204,14 +196,68 @@ describe('removeColumnItemId', () => {
   });
 });
 
+describe('setColumnItemIds', () => {
+  it('does nothing if payload does not contain columnItemIds', () => {
+    const payload = {
+      boardId,
+      columnItemIds: {},
+    };
+    expect(reducer(initialState, actions.setColumnItemIds(payload))).toEqual(
+      initialState
+    );
+  });
+
+  it('sets itemIds for a column', () => {
+    const state = {
+      [columnId]: column,
+    };
+    const payload = {
+      boardId,
+      columnItemIds: {
+        [columnId]: [itemId],
+      },
+    };
+    expect(reducer(state, actions.setColumnItemIds(payload))).toEqual({
+      [columnId]: {
+        ...column,
+        [ITEM_IDS]: [itemId],
+      },
+    });
+  });
+
+  it('sets itemIds for columns', () => {
+    const columnId2 = `${columnId}2`;
+    const state = {
+      [columnId]: column,
+      [columnId2]: {
+        ...column,
+        [ITEM_IDS]: [itemId],
+      },
+    };
+    const payload = {
+      boardId,
+      columnItemIds: {
+        [columnId]: [itemId],
+        [columnId2]: [],
+      },
+    };
+    expect(reducer(state, actions.setColumnItemIds(payload))).toEqual({
+      [columnId]: {
+        ...column,
+        [ITEM_IDS]: [itemId],
+      },
+      [columnId2]: {
+        ...column,
+        [ITEM_IDS]: [],
+      },
+    });
+  });
+});
+
 describe('resetColumns', () => {
   it('sets initialState', () => {
     const state = {
-      [columnId]: {
-        created: Date.now(),
-        name: 'Column Name',
-        updated: Date.now(),
-      },
+      [columnId]: column,
     };
     expect(reducer(state, actions.resetColumns())).toEqual(initialState);
   });
