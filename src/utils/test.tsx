@@ -1,4 +1,5 @@
 import { render as reactTestingLibraryRender } from '@testing-library/react';
+import { DragDropContext } from 'react-beautiful-dnd';
 import { Provider } from 'react-redux';
 
 import actions, { resetActions } from '../actions';
@@ -14,12 +15,15 @@ import store from '../store';
 
 import type { ReactNode } from 'react';
 
-type Props = {
-  children?: ReactNode;
-};
+/* istanbul ignore next */
+function noop() {}
 
-function StoreWrapper(props: Props) {
-  return <Provider store={store}>{props.children}</Provider>;
+function StoreWrapper(props: { children?: ReactNode }) {
+  return (
+    <Provider store={store}>
+      <DragDropContext onDragEnd={noop}>{props.children}</DragDropContext>
+    </Provider>
+  );
 }
 
 /**
