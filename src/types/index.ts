@@ -8,6 +8,10 @@ export interface Column extends Board {
   itemIds?: Id[];
 }
 
+export type Columns = {
+  [columnId: string]: Column;
+};
+
 export type Id = string;
 
 export type Item = {

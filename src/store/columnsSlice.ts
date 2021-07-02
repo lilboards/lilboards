@@ -9,11 +9,7 @@ import {
 import { COLUMNS, ITEM_IDS } from '../constants';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Column, Id } from '../types';
-
-type Columns = {
-  [columnId: string]: Column;
-};
+import type { Column, Columns, Id } from '../types';
 
 export const initialState: Columns = {};
 
