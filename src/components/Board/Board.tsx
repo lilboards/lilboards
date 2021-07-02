@@ -1,5 +1,6 @@
 import { Redirect } from '@reach/router';
 import Typography from '@material-ui/core/Typography';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 import Columns from '../Columns';
 import Layout from '../Layout';
@@ -30,6 +31,9 @@ export default function Board(props: Props) {
     return null;
   }
 
+  /* istanbul ignore next */
+  function handleDragEnd() {}
+
   return (
     <Layout>
       {board.name && (
@@ -38,7 +42,9 @@ export default function Board(props: Props) {
         </Typography>
       )}
 
-      <Columns boardId={props.boardId} />
+      <DragDropContext onDragEnd={handleDragEnd}>
+        <Columns boardId={props.boardId} />
+      </DragDropContext>
     </Layout>
   );
 }

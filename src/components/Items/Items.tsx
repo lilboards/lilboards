@@ -1,6 +1,7 @@
 import AddIcon from '@material-ui/icons/Add';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 
 import Item from '../Item';
 
@@ -54,16 +55,44 @@ export default function Items(props: Props) {
         </Button>
       </Box>
 
-      {itemIds &&
-        itemIds.map((itemId) => (
-          <Box key={itemId} marginBottom={2}>
-            <Item
-              boardId={props.boardId}
-              columnId={props.columnId}
-              itemId={itemId}
-            />
-          </Box>
-        ))}
+      <Droppable droppableId={props.columnId}>
+        {(droppableProvided, droppableSnapshot) => (
+          <div
+            {...droppableProvided.droppableProps}
+            ref={droppableProvided.innerRef}
+          >
+            <Box
+              bgcolor={
+                /* istanbul ignore next */
+                droppableSnapshot.isDraggingOver ? 'grey.200' : undefined
+              }
+            >
+              {itemIds &&
+                itemIds.map((itemId, index) => (
+                  <Draggable draggableId={itemId} index={index} key={itemId}>
+                    {(draggableProvided, draggableSnapshot) => (
+                      <div
+                        {...draggableProvided.draggableProps}
+                        {...draggableProvided.dragHandleProps}
+                        ref={draggableProvided.innerRef}
+                      >
+                        <Box paddingBottom={2}>
+                          <Item
+                            boardId={props.boardId}
+                            columnId={props.columnId}
+                            itemId={itemId}
+                          />
+                        </Box>
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+
+              {droppableProvided.placeholder}
+            </Box>
+          </div>
+        )}
+      </Droppable>
     </>
   );
 }
