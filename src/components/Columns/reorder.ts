@@ -4,7 +4,7 @@ import { cloneArray, reorderArray } from '../../utils';
 import type { DraggableLocation } from 'react-beautiful-dnd';
 import type { Columns } from '../../types';
 
-export function reorderColumns(
+export default function reorder(
   columns: Columns,
   source: DraggableLocation,
   destination: DraggableLocation

@@ -2,7 +2,7 @@ import { DragDropContext } from 'react-beautiful-dnd';
 
 import actions from '../../actions';
 import { useDispatch, useSelector } from '../../hooks';
-import { reorderColumns } from './reorder';
+import reorder from './reorder';
 
 import type { ReactNode } from 'react';
 import type { DropResult } from 'react-beautiful-dnd';
@@ -37,7 +37,7 @@ export default function DragDropContainer(props: Props) {
     dispatch(
       actions.setColumnItemIds({
         boardId: props.boardId,
-        columnItemIds: reorderColumns(columns, source, destination),
+        columnItemIds: reorder(columns, source, destination),
       })
     );
   }
