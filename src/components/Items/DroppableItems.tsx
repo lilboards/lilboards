@@ -1,7 +1,7 @@
 import Box from '@material-ui/core/Box';
-import { Droppable, Draggable } from 'react-beautiful-dnd';
+import { Droppable } from 'react-beautiful-dnd';
 
-import Item from '../Item';
+import DraggableItem from './DraggableItem';
 
 import { useSelector } from '../../hooks';
 
@@ -14,7 +14,7 @@ type Props = {
 
 export default function DroppableItems(props: Props) {
   const itemIds = useSelector(
-    (state) => (state.columns[props.columnId] || {}).itemIds
+    (state) => (state.columns[props.columnId] || {}).itemIds || []
   );
 
   return (
@@ -30,26 +30,15 @@ export default function DroppableItems(props: Props) {
               droppableSnapshot.isDraggingOver ? 'grey.200' : undefined
             }
           >
-            {itemIds &&
-              itemIds.map((itemId, index) => (
-                <Draggable draggableId={itemId} index={index} key={itemId}>
-                  {(draggableProvided, draggableSnapshot) => (
-                    <div
-                      {...draggableProvided.draggableProps}
-                      {...draggableProvided.dragHandleProps}
-                      ref={draggableProvided.innerRef}
-                    >
-                      <Box paddingBottom={2}>
-                        <Item
-                          boardId={props.boardId}
-                          columnId={props.columnId}
-                          itemId={itemId}
-                        />
-                      </Box>
-                    </div>
-                  )}
-                </Draggable>
-              ))}
+            {itemIds.map((itemId, index) => (
+              <DraggableItem
+                boardId={props.boardId}
+                columnId={props.columnId}
+                key={itemId}
+                itemId={itemId}
+                itemIndex={index}
+              />
+            ))}
 
             {droppableProvided.placeholder}
           </Box>
