@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { removeColumn, removeItem, setColumnItemIds } from '../firebase';
+import { removeColumn, removeItem, saveColumnItemIds } from '../firebase';
 import { COLUMNS, ITEM_IDS } from '../constants';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
@@ -49,7 +49,7 @@ const columnsSlice = createSlice({
       const column = state[columnId];
       column.itemIds = column.itemIds || [];
       column.itemIds.push(itemId);
-      setColumnItemIds(boardId, columnId, column.itemIds);
+      saveColumnItemIds(boardId, { [columnId]: column.itemIds });
     },
 
     removeColumnItemId: (
@@ -61,7 +61,7 @@ const columnsSlice = createSlice({
       if (column) {
         const itemIds = (column[ITEM_IDS] || []).filter((id) => id !== itemId);
         column[ITEM_IDS] = itemIds;
-        setColumnItemIds(boardId, columnId, itemIds);
+        saveColumnItemIds(boardId, { [columnId]: itemIds });
       }
     },
 
@@ -75,8 +75,8 @@ const columnsSlice = createSlice({
       const { boardId, columnItemIds } = action.payload;
       Object.entries(columnItemIds).forEach(([columnId, itemIds]) => {
         state[columnId].itemIds = itemIds;
-        setColumnItemIds(boardId, columnId, itemIds);
       });
+      saveColumnItemIds(boardId, columnItemIds);
     },
 
     resetColumns: () => {

@@ -62,15 +62,34 @@ export const getColumnsRef = (boardId: Id) =>
 export const getColumnRef = (boardId: Id, columnId: Id) =>
   getColumnsRef(boardId).child(columnId);
 
-export const getColumnItemIdsRef = (boardId: Id, columnId: Id) =>
-  getColumnRef(boardId, columnId).child(ITEM_IDS);
-
 export const removeColumn = (boardId: Id, columnId: Id) => {
   getColumnRef(boardId, columnId).remove();
 };
 
-export const setColumnItemIds = (boardId: Id, columnId: Id, itemIds: Id[]) => {
-  getColumnItemIdsRef(boardId, columnId).set(itemIds);
+export const saveColumnItemIds = (
+  boardId: Id,
+  columnItemIds: { [columnId: string]: Id[] }
+) => {
+  const columnIds = Object.keys(columnItemIds);
+
+  if (columnIds.length === 1) {
+    const columnId = columnIds[0];
+    getColumnRef(boardId, columnId)
+      .child(ITEM_IDS)
+      .set(columnItemIds[columnId]);
+    return;
+  }
+
+  // https://firebase.google.com/docs/database/web/read-and-write#save_data_as_transactions
+  getColumnsRef(boardId).transaction((columns) => {
+    if (columns) {
+      Object.entries(columnItemIds).forEach(([columnId, itemIds]) => {
+        columns[columnId] = columns[columnId] || {};
+        columns[columnId][ITEM_IDS] = itemIds;
+      });
+      return columns;
+    }
+  });
 };
 
 export const updateColumn = (
