@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.12.0](https://www.github.com/lilboards/lilboards/compare/v2.11.0...v2.12.0) (2021-07-02)
+
+
+### Features
+
+* **components:** create reorderColumns helper ([ff9b725](https://www.github.com/lilboards/lilboards/commit/ff9b725610f76028f45a2a26db773551ef71b160))
+* **components:** create reorderItems helper ([9c06a61](https://www.github.com/lilboards/lilboards/commit/9c06a61ba2681cc1ddf692c9a0b1e1215c1e32c7))
+* **components:** reorder items on drag end in DragDropContainer ([88c715d](https://www.github.com/lilboards/lilboards/commit/88c715dd93dff2efa968abd0dc1b7590d50c9942))
+* **store:** add columnsSlice reducer setColumnItemIds ([b0e8d09](https://www.github.com/lilboards/lilboards/commit/b0e8d09093265e10bb7b77e7f5b87cd3845467d0))
+
 ## [2.11.0](https://www.github.com/lilboards/lilboards/compare/v2.10.0...v2.11.0) (2021-07-02)
 
 
