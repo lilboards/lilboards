@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.13.1](https://www.github.com/lilboards/lilboards/compare/v2.13.0...v2.13.1) (2021-07-02)
+
+
+### Performance Improvements
+
+* **firebase:** use transaction to save itemIds of columns ([5feebe0](https://www.github.com/lilboards/lilboards/commit/5feebe072e216e4bab24cee7433d559240c9a36b))
+
 ## [2.13.0](https://www.github.com/lilboards/lilboards/compare/v2.12.0...v2.13.0) (2021-07-02)
 
 
