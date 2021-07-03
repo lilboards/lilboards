@@ -1,7 +1,7 @@
 import Box from '@material-ui/core/Box';
 import { Droppable } from 'react-beautiful-dnd';
 
-import DraggableItem from './DraggableItem';
+import InnerList from './InnerList';
 
 import { useSelector } from '../../hooks';
 
@@ -30,15 +30,11 @@ export default function DroppableItems(props: Props) {
               droppableSnapshot.isDraggingOver ? 'grey.200' : undefined
             }
           >
-            {itemIds.map((itemId, index) => (
-              <DraggableItem
-                boardId={props.boardId}
-                columnId={props.columnId}
-                key={itemId}
-                itemId={itemId}
-                itemIndex={index}
-              />
-            ))}
+            <InnerList
+              boardId={props.boardId}
+              columnId={props.columnId}
+              itemIds={itemIds}
+            />
 
             {droppableProvided.placeholder}
           </Box>
