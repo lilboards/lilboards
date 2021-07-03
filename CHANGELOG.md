@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.14.0](https://www.github.com/lilboards/lilboards/compare/v2.13.2...v2.14.0) (2021-07-03)
+
+
+### Features
+
+* **components:** combine items with drag and drop ([b84ed90](https://www.github.com/lilboards/lilboards/commit/b84ed9019141b025964339d7de168252200c5dfa))
+
 ### [2.13.2](https://www.github.com/lilboards/lilboards/compare/v2.13.1...v2.13.2) (2021-07-03)
 
 
