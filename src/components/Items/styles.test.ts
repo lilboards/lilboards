@@ -14,6 +14,6 @@ describe('getBackgroundColor', () => {
       isDraggingOver: false,
       isUsingPlaceholder: false,
     };
-    expect(getBackgroundColor(snapshot)).toBe('');
+    expect(getBackgroundColor(snapshot)).toBe(null);
   });
 });
