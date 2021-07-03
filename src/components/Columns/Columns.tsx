@@ -55,7 +55,7 @@ export default function Columns(props: Props) {
             <Column
               boardId={props.boardId}
               columnId={columnId}
-              index={index}
+              columnIndex={index}
               key={columnId}
             />
           ))}

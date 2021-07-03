@@ -15,21 +15,19 @@ import type { Id } from '../../types';
 type Props = {
   boardId: Id;
   columnId: Id;
-  index: number;
+  columnIndex: number;
 };
 
 export default function Column(props: Props) {
   const dispatch = useDispatch();
   const column = useSelector((state) => state.columns[props.columnId]);
-  const userEditingColumnId = useSelector(
-    (state) => state.user.editing.columnId
+  const isEditing = useSelector(
+    (state) => state.user.editing.columnId === props.columnId
   );
 
   if (!column) {
     return null;
   }
-
-  const columnIndex = `Column ${props.index + 1}`;
 
   function handleChange(
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -60,14 +58,16 @@ export default function Column(props: Props) {
     dispatch(actions.setUserEditing({ columnId: '' }));
   }
 
+  const defaultName = `Column ${props.columnIndex + 1}`;
+
   return (
     <Grid item xs={12} sm={3}>
       <Box marginBottom={2} position="relative">
         <TextField
-          autoFocus={userEditingColumnId === props.columnId}
+          autoFocus={isEditing}
           fullWidth
           inputProps={{ 'aria-label': 'Column Name' }}
-          placeholder={columnIndex}
+          placeholder={defaultName}
           onBlur={handleBlur}
           onChange={handleChange}
           value={column.name}
@@ -75,7 +75,7 @@ export default function Column(props: Props) {
 
         <Box position="absolute" right={0} top={0}>
           <CloseButton
-            aria-label={`Delete column "${column.name || columnIndex}"`}
+            aria-label={`Delete column "${column.name || defaultName}"`}
             onClick={deleteColumn}
             size="small"
           />
