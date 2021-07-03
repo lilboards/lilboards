@@ -17,9 +17,9 @@ const slice = createSlice({
   reducers: {
     updateItem: (
       state,
-      action: PayloadAction<Partial<Item> & { itemId: Id }>
+      action: PayloadAction<{ item: Partial<Item>; itemId: Id }>
     ) => {
-      const { itemId, likes, ...item } = action.payload;
+      const { itemId, item } = action.payload;
       state[itemId] = state[itemId] || {};
       Object.assign(state[itemId], item);
     },

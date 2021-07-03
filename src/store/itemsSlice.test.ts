@@ -16,15 +16,15 @@ const state = {
 };
 
 describe('updateItem', () => {
-  it('does nothing if payload does not have item', () => {
-    const payload = { itemId };
+  it('does nothing if item payload is empty', () => {
+    const payload = { itemId, item: {} };
     const newState = reducer(state, actions.updateItem(payload));
     expect(newState).toBe(state);
   });
 
   it('updates item', () => {
     const payload = {
-      ...item,
+      item,
       itemId,
     };
     const newState = reducer(initialState, actions.updateItem(payload));

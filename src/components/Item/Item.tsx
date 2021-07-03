@@ -53,7 +53,7 @@ export default function Item(props: Props) {
     };
     dispatch(
       actions.updateItem({
-        ...item,
+        item,
         itemId: props.itemId,
       })
     );

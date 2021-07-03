@@ -28,7 +28,7 @@ export default function Items(props: Props) {
     };
     dispatch(
       actions.updateItem({
-        ...item,
+        item,
         itemId,
       })
     );
