@@ -13,9 +13,23 @@ const column = {
 };
 
 describe('updateColumn', () => {
+  it('does nothing if column payload is empty', () => {
+    const state = {
+      [columnId]: column,
+    };
+    const payload = {
+      boardId,
+      column: {},
+      columnId,
+    };
+    const newState = reducer(state, actions.updateColumn(payload));
+    expect(newState).toBe(state);
+  });
+
   it('adds column', () => {
     const payload = {
-      ...column,
+      boardId,
+      column,
       columnId,
     };
     const newState = reducer(initialState, actions.updateColumn(payload));
@@ -26,19 +40,20 @@ describe('updateColumn', () => {
     const state = {
       [columnId]: column,
     };
-    const newColumn = {
-      name: 'Column Name Edited',
-      updated: Date.now() + 1000,
-    };
     const payload = {
-      ...newColumn,
+      boardId,
+      column: {
+        name: 'Column Name Edited',
+        updated: Date.now() + 1000,
+      },
       columnId,
+      debounce: true,
     };
     const newState = reducer(state, actions.updateColumn(payload));
     expect(newState).toEqual({
       [columnId]: {
-        ...state[columnId],
-        ...newColumn,
+        ...column,
+        ...payload.column,
       },
     });
   });

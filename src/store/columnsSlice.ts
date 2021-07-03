@@ -1,6 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { removeColumn, removeItem, saveColumnItemIds } from '../firebase';
+import {
+  debouncedUpdateColumn,
+  removeColumn,
+  removeItem,
+  saveColumnItemIds,
+  updateColumn,
+} from '../firebase';
 import { COLUMNS, ITEM_IDS } from '../constants';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
@@ -17,11 +23,21 @@ const columnsSlice = createSlice({
   reducers: {
     updateColumn: (
       state,
-      action: PayloadAction<Partial<Column> & { columnId: Id }>
+      action: PayloadAction<{
+        boardId: Id;
+        column: Partial<Column>;
+        columnId: Id;
+        debounce?: boolean;
+      }>
     ) => {
-      const { columnId, ...column } = action.payload;
+      const { boardId, column, columnId, debounce } = action.payload;
       state[columnId] = state[columnId] || {};
       Object.assign(state[columnId], column);
+      if (debounce) {
+        debouncedUpdateColumn(boardId, columnId, column);
+      } else {
+        updateColumn(boardId, columnId, column);
+      }
     },
 
     deleteColumn: (

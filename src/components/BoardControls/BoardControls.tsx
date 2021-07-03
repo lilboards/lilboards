@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box';
 import AddButton from '../AddButton';
 
 import actions from '../../actions';
-import { generateId, updateColumn } from '../../firebase';
+import { generateId } from '../../firebase';
 import { useDispatch } from '../../hooks';
 
 import type { Id } from '../../types';
@@ -25,12 +25,12 @@ export default function BoardControls(props: Props) {
     };
     dispatch(
       actions.updateColumn({
-        ...column,
+        boardId: props.boardId,
+        column,
         columnId,
       })
     );
     dispatch(actions.setUserEditing({ columnId }));
-    updateColumn(props.boardId, columnId, column);
   }
 
   return (
