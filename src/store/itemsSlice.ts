@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { ITEMS } from '../constants';
-import { removeItem } from '../firebase';
+import { debouncedUpdateItem, removeItem, updateItem } from '../firebase';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Id, Item, Items } from '../types';
@@ -17,11 +17,21 @@ const slice = createSlice({
   reducers: {
     updateItem: (
       state,
-      action: PayloadAction<{ item: Partial<Item>; itemId: Id }>
+      action: PayloadAction<{
+        boardId: Id;
+        debounce?: boolean;
+        item: Partial<Item>;
+        itemId: Id;
+      }>
     ) => {
-      const { itemId, item } = action.payload;
+      const { boardId, debounce, itemId, item } = action.payload;
       state[itemId] = state[itemId] || {};
       Object.assign(state[itemId], item);
+      if (debounce) {
+        debouncedUpdateItem(boardId, itemId, item);
+      } else {
+        updateItem(boardId, itemId, item);
+      }
     },
 
     likeItem: (state, action: PayloadAction<{ itemId: Id; userId: Id }>) => {

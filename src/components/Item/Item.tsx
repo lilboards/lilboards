@@ -7,7 +7,6 @@ import CloseButton from '../CloseButton';
 import Likes from './Likes';
 
 import actions from '../../actions';
-import { debouncedUpdateItem } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 
 import type { ChangeEvent } from 'react';
@@ -47,17 +46,17 @@ export default function Item(props: Props) {
   }
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    const item = {
-      text: event.target.value,
-      updated: Date.now(),
-    };
     dispatch(
       actions.updateItem({
-        item,
+        boardId: props.boardId,
+        debounce: true,
+        item: {
+          text: event.target.value,
+          updated: Date.now(),
+        },
         itemId: props.itemId,
       })
     );
-    debouncedUpdateItem(props.boardId, props.itemId, item);
   }
 
   function handleFocus() {

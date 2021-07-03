@@ -17,13 +17,19 @@ const state = {
 
 describe('updateItem', () => {
   it('does nothing if item payload is empty', () => {
-    const payload = { itemId, item: {} };
+    const payload = {
+      boardId,
+      item: {},
+      itemId,
+    };
     const newState = reducer(state, actions.updateItem(payload));
     expect(newState).toBe(state);
   });
 
   it('updates item', () => {
     const payload = {
+      boardId,
+      debounce: true,
       item,
       itemId,
     };

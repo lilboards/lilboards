@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import DroppableItems from './DroppableItems';
 
 import actions from '../../actions';
-import { generateId, updateItem } from '../../firebase';
+import { generateId } from '../../firebase';
 import { useDispatch } from '../../hooks';
 
 import type { Id } from '../../types';
@@ -21,14 +21,14 @@ export default function Items(props: Props) {
   function addItem() {
     const itemId = generateId();
     const now = Date.now();
-    const item = {
-      created: now,
-      text: '',
-      updated: now,
-    };
     dispatch(
       actions.updateItem({
-        item,
+        boardId: props.boardId,
+        item: {
+          created: now,
+          text: '',
+          updated: now,
+        },
         itemId,
       })
     );
@@ -40,7 +40,6 @@ export default function Items(props: Props) {
       })
     );
     dispatch(actions.setUserEditing({ itemId }));
-    updateItem(props.boardId, itemId, item);
   }
 
   return (
