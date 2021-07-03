@@ -18,7 +18,7 @@ export default function DroppableItems(props: Props) {
   );
 
   return (
-    <Droppable droppableId={props.columnId}>
+    <Droppable droppableId={props.columnId} isCombineEnabled>
       {(droppableProvided, droppableSnapshot) => (
         <div
           {...droppableProvided.droppableProps}
