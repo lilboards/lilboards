@@ -15,7 +15,7 @@ const columnsSlice = createSlice({
   initialState,
 
   reducers: {
-    editColumn: (
+    updateColumn: (
       state,
       action: PayloadAction<Partial<Column> & { columnId: Id }>
     ) => {

@@ -24,7 +24,7 @@ export default function BoardControls(props: Props) {
       updated: now,
     };
     dispatch(
-      actions.editColumn({
+      actions.updateColumn({
         ...column,
         columnId,
       })

@@ -12,13 +12,13 @@ const column = {
   updated: Date.now(),
 };
 
-describe('editColumn', () => {
+describe('updateColumn', () => {
   it('adds column', () => {
     const payload = {
       ...column,
       columnId,
     };
-    const newState = reducer(initialState, actions.editColumn(payload));
+    const newState = reducer(initialState, actions.updateColumn(payload));
     expect(newState).toEqual({ [columnId]: column });
   });
 
@@ -34,7 +34,7 @@ describe('editColumn', () => {
       ...newColumn,
       columnId,
     };
-    const newState = reducer(state, actions.editColumn(payload));
+    const newState = reducer(state, actions.updateColumn(payload));
     expect(newState).toEqual({
       [columnId]: {
         ...state[columnId],

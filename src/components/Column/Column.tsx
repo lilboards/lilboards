@@ -37,7 +37,7 @@ export default function Column(props: Props) {
       updated: Date.now(),
     };
     dispatch(
-      actions.editColumn({
+      actions.updateColumn({
         ...column,
         columnId: props.columnId,
       })
