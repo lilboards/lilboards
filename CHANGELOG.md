@@ -1,5 +1,13 @@
 # Changelog
 
+### [2.14.1](https://www.github.com/lilboards/lilboards/compare/v2.14.0...v2.14.1) (2021-07-03)
+
+
+### Bug Fixes
+
+* **components:** return valid falsey value for getBackgroundColor ([782b83e](https://www.github.com/lilboards/lilboards/commit/782b83e861f7aab90d894e18df5f7e88e7d24eb5))
+* **components:** update Column Grid to have auto-layout ([37ef6b0](https://www.github.com/lilboards/lilboards/commit/37ef6b03d03ffb83225d0e4f302b83d22b2503b6))
+
 ## [2.14.0](https://www.github.com/lilboards/lilboards/compare/v2.13.2...v2.14.0) (2021-07-03)
 
 
