@@ -8,9 +8,7 @@ export interface Column extends Board {
   itemIds?: Id[];
 }
 
-export type Columns = {
-  [columnId: string]: Column;
-};
+export type Columns = Record<Id, Column>;
 
 export type Id = string;
 
@@ -22,3 +20,5 @@ export type Item = {
   text: string;
   updated: number;
 };
+
+export type Items = Record<Id, Item>;

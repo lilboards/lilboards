@@ -4,11 +4,7 @@ import { ITEMS } from '../constants';
 import { removeItem } from '../firebase';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Id, Item } from '../types';
-
-type Items = {
-  [itemId: string]: Item;
-};
+import type { Id, Item, Items } from '../types';
 
 export const initialState: Items = {};
 
