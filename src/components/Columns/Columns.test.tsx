@@ -33,11 +33,6 @@ beforeEach(() => {
   (updateColumn as jest.Mock).mockClear();
 });
 
-it('renders nothing when there is no board', () => {
-  const { baseElement } = renderWithStore(<Columns boardId="" />);
-  expect(baseElement.firstElementChild).toBeEmptyDOMElement();
-});
-
 it('renders column', () => {
   const board = updateStore.withBoard();
   const column = updateStore.withColumn();

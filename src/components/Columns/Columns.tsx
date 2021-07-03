@@ -26,10 +26,6 @@ export default function Columns(props: Props) {
   const columnIds = useSelector((state) => Object.keys(state.columns));
 
   useEffect(() => {
-    if (!props.boardId) {
-      return;
-    }
-
     // subscribe on mount
     const columnsRef = getColumnsRef(props.boardId);
     columnsRef.on('value', (columnsSnapshot) => {
@@ -61,10 +57,6 @@ export default function Columns(props: Props) {
       dispatch(actions.resetItems());
     };
   }, [props.boardId, dispatch]);
-
-  if (!props.boardId) {
-    return null;
-  }
 
   function addColumn() {
     const columnId = generateId();
