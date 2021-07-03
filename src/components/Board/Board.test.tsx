@@ -51,6 +51,14 @@ it('renders board name as heading', async () => {
   );
 });
 
+it('renders "Add column" button', () => {
+  const board = updateStore.withBoard();
+  renderWithStore(<Board boardId={board.id} />);
+  expect(
+    screen.getByRole('button', { name: 'Add column' })
+  ).toBeInTheDocument();
+});
+
 it('renders columns', async () => {
   const board = updateStore.withBoard();
   renderWithStore(<Board boardId={board.id} />);

@@ -1,11 +1,6 @@
-import { fireEvent, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { renderWithStore, updateStore } from '../../utils/test';
-import {
-  generateId,
-  getColumnsRef,
-  getItemsRef,
-  updateColumn,
-} from '../../firebase';
+import { getColumnsRef, getItemsRef } from '../../firebase';
 import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
@@ -14,14 +9,11 @@ import {
 import Columns from './Columns';
 
 jest.mock('../../firebase', () => ({
-  generateId: jest.fn(),
   getColumnsRef: jest.fn(),
   getItemsRef: jest.fn(),
-  updateColumn: jest.fn(),
 }));
 
 beforeEach(() => {
-  (generateId as jest.Mock).mockReturnValue(columnId);
   (getColumnsRef as jest.Mock).mockReturnValueOnce({
     off: jest.fn(),
     on: jest.fn(),
@@ -30,7 +22,6 @@ beforeEach(() => {
     off: jest.fn(),
     on: jest.fn(),
   });
-  (updateColumn as jest.Mock).mockClear();
 });
 
 it('renders column', () => {
@@ -40,44 +31,6 @@ it('renders column', () => {
   expect(screen.getByLabelText('Column Name')).toBe(
     screen.getByDisplayValue(column.name)
   );
-});
-
-describe('add column', () => {
-  it('renders "Add column" button', () => {
-    const board = updateStore.withBoard();
-    renderWithStore(<Columns boardId={board.id} />);
-    expect(
-      screen.getByRole('button', { name: 'Add column' })
-    ).toBeInTheDocument();
-  });
-
-  it('renders new column', () => {
-    const board = updateStore.withBoard();
-    renderWithStore(<Columns boardId={board.id} />);
-    fireEvent.click(screen.getByText('Add column'));
-    expect(screen.getByPlaceholderText('Column 1')).toBe(
-      screen.getByLabelText('Column Name')
-    );
-  });
-
-  it('focuses on new column', () => {
-    const board = updateStore.withBoard();
-    renderWithStore(<Columns boardId={board.id} />);
-    fireEvent.click(screen.getByText('Add column'));
-    expect(screen.getByPlaceholderText('Column 1')).toHaveFocus();
-  });
-
-  it('saves new column to database', () => {
-    const board = updateStore.withBoard();
-    renderWithStore(<Columns boardId={board.id} />);
-    fireEvent.click(screen.getByText('Add column'));
-    expect(updateColumn).toBeCalledTimes(1);
-    expect(updateColumn).toBeCalledWith(board.id, columnId, {
-      created: expect.any(Number),
-      name: '',
-      updated: expect.any(Number),
-    });
-  });
 });
 
 describe('mount', () => {

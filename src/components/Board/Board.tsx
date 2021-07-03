@@ -1,6 +1,7 @@
 import { Redirect } from '@reach/router';
 import Typography from '@material-ui/core/Typography';
 
+import BoardControls from '../BoardControls';
 import Columns from '../Columns';
 import Layout from '../Layout';
 
@@ -38,6 +39,7 @@ export default function Board(props: Props) {
         </Typography>
       )}
 
+      <BoardControls boardId={props.boardId} />
       <Columns boardId={props.boardId} />
     </Layout>
   );
