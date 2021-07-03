@@ -61,7 +61,7 @@ export default function Column(props: Props) {
   const defaultName = `Column ${props.columnIndex + 1}`;
 
   return (
-    <Grid item xs={12} sm={3}>
+    <Grid item xs>
       <Box marginBottom={2} position="relative">
         <TextField
           autoFocus={isEditing}
