@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 
@@ -7,13 +6,9 @@ import Column from '../Column';
 import DragDropContainer from './DragDropContainer';
 
 import actions from '../../actions';
-import {
-  generateId,
-  getColumnsRef,
-  getItemsRef,
-  updateColumn,
-} from '../../firebase';
+import { generateId, updateColumn } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
+import { useColumns } from './useColumns';
 
 import type { Id } from '../../types';
 
@@ -24,39 +19,7 @@ type Props = {
 export default function Columns(props: Props) {
   const dispatch = useDispatch();
   const columnIds = useSelector((state) => Object.keys(state.columns));
-
-  useEffect(() => {
-    // subscribe on mount
-    const columnsRef = getColumnsRef(props.boardId);
-    columnsRef.on('value', (columnsSnapshot) => {
-      const columns = columnsSnapshot.val();
-      /* istanbul ignore next */
-      if (columns) {
-        setTimeout(() => {
-          dispatch(actions.loadColumns(columns));
-        });
-      }
-    });
-
-    const itemsRef = getItemsRef(props.boardId);
-    itemsRef.on('value', (itemsSnapshot) => {
-      const items = itemsSnapshot.val();
-      /* istanbul ignore next */
-      if (items) {
-        setTimeout(() => {
-          dispatch(actions.loadItems(items));
-        });
-      }
-    });
-
-    // unsubscribe and reset on unmount
-    return function unsubscribe() {
-      columnsRef.off('value');
-      itemsRef.off('value');
-      dispatch(actions.resetColumns());
-      dispatch(actions.resetItems());
-    };
-  }, [props.boardId, dispatch]);
+  useColumns(props.boardId, dispatch);
 
   function addColumn() {
     const columnId = generateId();
