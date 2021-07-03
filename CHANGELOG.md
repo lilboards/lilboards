@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.13.2](https://www.github.com/lilboards/lilboards/compare/v2.13.1...v2.13.2) (2021-07-03)
+
+
+### Performance Improvements
+
+* **components:** memoize Droppable children to avoid re-render ([1643d15](https://www.github.com/lilboards/lilboards/commit/1643d155e8aa6313a4a12547e7c1e0ce55c4f605))
+
 ### [2.13.1](https://www.github.com/lilboards/lilboards/compare/v2.13.0...v2.13.1) (2021-07-02)
 
 
