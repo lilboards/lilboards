@@ -9,6 +9,7 @@ import actions from '../../actions';
 import { generateId, updateColumn } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import { useColumns } from './useColumns';
+import { useItems } from './useItems';
 
 import type { Id } from '../../types';
 
@@ -20,6 +21,7 @@ export default function Columns(props: Props) {
   const dispatch = useDispatch();
   const columnIds = useSelector((state) => Object.keys(state.columns));
   useColumns(props.boardId, dispatch);
+  useItems(props.boardId, dispatch);
 
   function addColumn() {
     const columnId = generateId();

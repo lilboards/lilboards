@@ -1,33 +1,33 @@
 import { useEffect } from 'react';
 
 import actions from '../../actions';
-import { getColumnsRef } from '../../firebase';
+import { getItemsRef } from '../../firebase';
 import { useDispatch } from '../../hooks';
 
 import type { Id } from '../../types';
 
-export function useColumns(
+export function useItems(
   boardId: Id,
   dispatch: ReturnType<typeof useDispatch>
 ) {
   useEffect(() => {
     // subscribe on mount
-    const columnsRef = getColumnsRef(boardId);
+    const itemsRef = getItemsRef(boardId);
 
-    columnsRef.on('value', (columnsSnapshot) => {
-      const columns = columnsSnapshot.val();
+    itemsRef.on('value', (itemsSnapshot) => {
+      const items = itemsSnapshot.val();
       /* istanbul ignore next */
-      if (columns) {
+      if (items) {
         setTimeout(() => {
-          dispatch(actions.loadColumns(columns));
+          dispatch(actions.loadItems(items));
         });
       }
     });
 
     // unsubscribe and reset on unmount
     return function unsubscribe() {
-      columnsRef.off('value');
-      dispatch(actions.resetColumns());
+      itemsRef.off('value');
+      dispatch(actions.resetItems());
     };
   }, [boardId, dispatch]);
 }
