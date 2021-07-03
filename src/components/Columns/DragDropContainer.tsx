@@ -2,8 +2,7 @@ import { DragDropContext } from 'react-beautiful-dnd';
 
 import actions from '../../actions';
 import { useDispatch, useSelector } from '../../hooks';
-import combine from './combine';
-import reorder from './reorder';
+import { combine, reorder } from './utils';
 
 import type { ReactNode } from 'react';
 import type { DropResult } from 'react-beautiful-dnd';

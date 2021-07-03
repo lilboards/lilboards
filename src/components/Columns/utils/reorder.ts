@@ -1,10 +1,10 @@
-import { ITEM_IDS } from '../../constants';
-import { cloneArray, reorderArray } from '../../utils';
+import { ITEM_IDS } from '../../../constants';
+import { cloneArray, reorderArray } from '../../../utils';
 
 import type { DraggableLocation } from 'react-beautiful-dnd';
-import type { Columns } from '../../types';
+import type { Columns } from '../../../types';
 
-export default function reorder(
+export function reorder(
   columns: Columns,
   source: DraggableLocation,
   destination: DraggableLocation

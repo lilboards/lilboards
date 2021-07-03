@@ -8,8 +8,7 @@ import DragDropContainer from './DragDropContainer';
 import actions from '../../actions';
 import { generateId, updateColumn } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
-import { useColumns } from './useColumns';
-import { useItems } from './useItems';
+import { useColumns, useItems } from './hooks';
 
 import type { Id } from '../../types';
 

@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 
-import actions from '../../actions';
-import { getColumnsRef } from '../../firebase';
-import { useDispatch } from '../../hooks';
+import actions from '../../../actions';
+import { getColumnsRef } from '../../../firebase';
+import { useDispatch } from '../../../hooks';
 
-import type { Id } from '../../types';
+import type { Id } from '../../../types';
 
 export function useColumns(
   boardId: Id,

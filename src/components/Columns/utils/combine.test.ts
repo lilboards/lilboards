@@ -1,8 +1,8 @@
 import {
   ITEM_TEST_ID as itemId,
   COLUMN_TEST_ID as columnId,
-} from '../../constants/test';
-import combine from './combine';
+} from '../../../constants/test';
+import { combine } from './combine';
 
 import type { DropResult } from 'react-beautiful-dnd';
 

@@ -1,6 +1,6 @@
-import { ITEM_IDS } from '../../constants';
-import { reorderArray } from '../../utils';
-import reorder from './reorder';
+import { ITEM_IDS } from '../../../constants';
+import { reorderArray } from '../../../utils';
+import { reorder } from './reorder';
 
 const column = {
   created: Date.now(),
