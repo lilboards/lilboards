@@ -1,0 +1,75 @@
+import Box from '@material-ui/core/Box';
+import TextField from '@material-ui/core/TextField';
+
+import CloseButton from '../CloseButton';
+
+import actions from '../../actions';
+import { useDispatch, useSelector } from '../../hooks';
+
+import type { ChangeEvent } from 'react';
+import type { Id } from '../../types';
+
+type Props = {
+  boardId: Id;
+  columnId: Id;
+  name: string;
+  placeholder: string;
+};
+
+export default function ColumnName(props: Props) {
+  const dispatch = useDispatch();
+  const isEditing = useSelector(
+    (state) => state.user.editing.columnId === props.columnId
+  );
+
+  function handleChange(
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    dispatch(
+      actions.updateColumn({
+        boardId: props.boardId,
+        column: {
+          name: event.target.value,
+          updated: Date.now(),
+        },
+        columnId: props.columnId,
+        debounce: true,
+      })
+    );
+  }
+
+  function deleteColumn() {
+    dispatch(
+      actions.deleteColumn({
+        boardId: props.boardId,
+        columnId: props.columnId,
+      })
+    );
+  }
+
+  function handleBlur() {
+    dispatch(actions.setUserEditing({ columnId: '' }));
+  }
+
+  return (
+    <>
+      <TextField
+        autoFocus={isEditing}
+        fullWidth
+        inputProps={{ 'aria-label': 'Column Name' }}
+        placeholder={props.placeholder}
+        onBlur={handleBlur}
+        onChange={handleChange}
+        value={props.name}
+      />
+
+      <Box position="absolute" right={0} top={0}>
+        <CloseButton
+          aria-label={`Delete column "${props.name || props.placeholder}"`}
+          onClick={deleteColumn}
+          size="small"
+        />
+      </Box>
+    </>
+  );
+}
