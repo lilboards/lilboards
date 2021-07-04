@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.16.0](https://www.github.com/lilboards/lilboards/compare/v2.15.0...v2.16.0) (2021-07-04)
+
+
+### Features
+
+* save board creator userId ([5e98c7f](https://www.github.com/lilboards/lilboards/commit/5e98c7fae7bbeec81fb8dc6d9435c381b3120b2c))
+
 ## [2.15.0](https://www.github.com/lilboards/lilboards/compare/v2.14.1...v2.15.0) (2021-07-04)
 
 
