@@ -42,6 +42,7 @@ export const updateStore = {
   withBoard() {
     const board = {
       created: Date.now(),
+      creator: userId,
       id: boardId,
       name: 'Board 1',
       updated: Date.now(),

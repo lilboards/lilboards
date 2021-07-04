@@ -1,5 +1,6 @@
 export interface Board {
   created: number;
+  creator: UserId;
   name: string;
   updated: number;
 }
@@ -39,3 +40,5 @@ type ItemId = Id;
 export interface Items {
   [itemId: string]: Item;
 }
+
+type UserId = Id;

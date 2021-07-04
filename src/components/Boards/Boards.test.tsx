@@ -6,7 +6,10 @@ import {
   getUserBoardsVal,
   saveUserBoardId,
 } from '../../firebase';
-import { BOARD_TEST_ID as boardId } from '../../constants/test';
+import {
+  BOARD_TEST_ID as boardId,
+  USER_TEST_ID as userId,
+} from '../../constants/test';
 import Boards from './Boards';
 import '../../store/boardsSlice';
 
@@ -58,6 +61,7 @@ describe('create board', () => {
     expect(getStoreState().boards).toEqual({
       [boardId]: {
         created: expect.any(Number),
+        creator: userId,
         name: '',
         updated: expect.any(Number),
       },

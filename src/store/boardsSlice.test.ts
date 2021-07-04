@@ -4,6 +4,13 @@ import {
 } from '../constants/test';
 import { actions, initialState, reducer } from './boardsSlice';
 
+const board = {
+  created: Date.now(),
+  creator: userId,
+  name: '',
+  updated: Date.now(),
+};
+
 describe('updateBoard', () => {
   it('defines property if board payload is empty', () => {
     const payload = {
@@ -17,11 +24,6 @@ describe('updateBoard', () => {
   });
 
   it('creates board', () => {
-    const board = {
-      created: Date.now(),
-      name: '',
-      updated: Date.now(),
-    };
     const payload = {
       board,
       boardId,
@@ -32,27 +34,22 @@ describe('updateBoard', () => {
     });
   });
 
-  it('edits board name and updated', () => {
+  it('edits board', () => {
     const state = {
-      [boardId]: {
-        created: Date.now(),
-        name: 'Board Name',
-        updated: Date.now(),
-      },
-    };
-    const board = {
-      name: 'Board Name Edited',
-      updated: Date.now() + 1000,
+      [boardId]: board,
     };
     const payload = {
-      board,
+      board: {
+        name: 'Board Name Edited',
+        updated: Date.now() + 1000,
+      },
       boardId,
     };
     const newState = reducer(state, actions.updateBoard(payload));
     expect(newState).toEqual({
       [boardId]: {
         ...state[boardId],
-        ...board,
+        ...payload.board,
       },
     });
   });
@@ -61,11 +58,7 @@ describe('updateBoard', () => {
 describe('deleteBoard', () => {
   it('deletes board', () => {
     const state = {
-      [boardId]: {
-        created: 0,
-        name: 'Board Name',
-        updated: 0,
-      },
+      [boardId]: board,
     };
     const payload = { boardId, userId };
     expect(reducer(state, actions.deleteBoard(payload))).toEqual({});
@@ -79,10 +72,8 @@ describe('loadBoard', () => {
 
   it('does nothing if board id is undefined', () => {
     const payload = {
-      created: 0,
+      ...board,
       id: undefined,
-      name: 'Board',
-      updated: 0,
     };
     expect(reducer(initialState, actions.loadBoard(payload))).toBe(
       initialState
@@ -91,21 +82,19 @@ describe('loadBoard', () => {
 
   it('loads board', () => {
     const state = {
-      [`${boardId}1`]: {
-        created: 0,
-        name: 'Board 1',
-        updated: 0,
-      },
+      [`${boardId}1`]: board,
     };
     const id = `${boardId}2`;
-    const board = {
-      created: 0,
+    const board2 = {
+      created: Date.now(),
+      creator: userId,
       name: 'Board 2',
-      updated: 0,
+      updated: Date.now(),
     };
-    expect(reducer(state, actions.loadBoard({ id, ...board }))).toEqual({
+    const newState = reducer(state, actions.loadBoard({ id, ...board2 }));
+    expect(newState).toEqual({
       ...state,
-      [id]: board,
+      [id]: board2,
     });
   });
 });
@@ -113,11 +102,7 @@ describe('loadBoard', () => {
 describe('resetBoards', () => {
   it('sets initialState', () => {
     const state = {
-      [boardId]: {
-        created: 0,
-        name: 'Board Name',
-        updated: 0,
-      },
+      [boardId]: board,
     };
     expect(reducer(state, actions.resetBoards())).toEqual(initialState);
   });
