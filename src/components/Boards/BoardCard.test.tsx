@@ -1,6 +1,9 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { getStoreState, renderWithStore, updateStore } from '../../utils/test';
-import { BOARD_TEST_ID as boardId } from '../../constants/test';
+import {
+  BOARD_TEST_ID as boardId,
+  USER_TEST_ID as userId,
+} from '../../constants/test';
 import BoardCard from './BoardCard';
 
 it('renders "Open board" button', () => {
@@ -30,6 +33,7 @@ describe('edit board', () => {
     fireEvent.change(screen.getByLabelText('Board Name'), event);
     expect(getStoreState().boards[boardId]).toEqual({
       created: expect.any(Number),
+      creator: userId,
       name: event.target.value,
       updated: expect.any(Number),
     });
