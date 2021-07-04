@@ -35,3 +35,13 @@ describe('add column', () => {
     });
   });
 });
+
+describe('sort items', () => {
+  it('renders "Sort by likes" button', () => {
+    const board = updateStore.withBoard();
+    renderWithStore(<BoardControls boardId={board.id} />);
+    expect(
+      screen.getByRole('button', { name: 'Sort by likes' })
+    ).toBeInTheDocument();
+  });
+});

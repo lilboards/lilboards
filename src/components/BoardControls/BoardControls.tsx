@@ -1,4 +1,5 @@
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 
 import AddButton from '../AddButton';
 
@@ -33,11 +34,20 @@ export default function BoardControls(props: Props) {
     dispatch(actions.setUserEditing({ columnId }));
   }
 
+  /* istanbul ignore next */
+  function sortByLikes() {}
+
   return (
-    <Box marginBottom={4}>
-      <AddButton onClick={addColumn} size="medium" variant="extended">
-        Add column
-      </AddButton>
+    <Box display="flex" marginBottom={4}>
+      <Box flexGrow={1}>
+        <AddButton onClick={addColumn} size="medium" variant="extended">
+          Add column
+        </AddButton>
+      </Box>
+
+      <Button color="primary" onClick={sortByLikes} variant="outlined">
+        Sort by likes
+      </Button>
     </Box>
   );
 }
