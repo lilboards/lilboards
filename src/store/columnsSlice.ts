@@ -10,7 +10,7 @@ import {
 import { COLUMNS, ITEM_IDS } from '../constants';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Column, Columns, Id } from '../types';
+import type { Column, ColumnItemIds, Columns, Id } from '../types';
 
 export const initialState: Columns = {};
 
@@ -85,7 +85,7 @@ const columnsSlice = createSlice({
       state,
       action: PayloadAction<{
         boardId: Id;
-        columnItemIds: { [columnId: string]: Id[] };
+        columnItemIds: ColumnItemIds;
       }>
     ) => {
       const { boardId, columnItemIds } = action.payload;

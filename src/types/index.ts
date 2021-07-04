@@ -5,10 +5,16 @@ export interface Board {
 }
 
 export interface Column extends Board {
-  itemIds?: Id[];
+  itemIds?: ItemId[];
 }
 
-export type Columns = Record<Id, Column>;
+export type Columns = {
+  [columnId: string]: Column;
+};
+
+export type ColumnItemIds = {
+  [columnId: string]: ItemId[];
+};
 
 export type Id = string;
 
@@ -21,4 +27,8 @@ export type Item = {
   updated: number;
 };
 
-export type Items = Record<Id, Item>;
+type ItemId = Id;
+
+export type Items = {
+  [itemId: string]: Item;
+};
