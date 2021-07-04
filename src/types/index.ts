@@ -4,31 +4,34 @@ export interface Board {
   updated: number;
 }
 
-export interface Column extends Board {
+export interface Column {
+  created: number;
   itemIds?: ItemId[];
+  name: string;
+  updated: number;
 }
 
-export type Columns = {
+export interface Columns {
   [columnId: string]: Column;
-};
+}
 
-export type ColumnItemIds = {
+export interface ColumnItemIds {
   [columnId: string]: ItemId[];
-};
+}
 
 export type Id = string;
 
-export type Item = {
+export interface Item {
   created: number;
   likes?: {
     [userId: string]: boolean;
   };
   text: string;
   updated: number;
-};
+}
 
 type ItemId = Id;
 
-export type Items = {
+export interface Items {
   [itemId: string]: Item;
-};
+}
