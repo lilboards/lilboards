@@ -13,7 +13,6 @@ import type { Id } from '../../types';
 import CloseButton from '../CloseButton';
 
 import actions from '../../actions';
-import { debouncedSaveBoardData } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 
 type Props = {
@@ -35,17 +34,16 @@ export default function BoardCard(props: Props) {
   function handleChange(
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
-    const board = {
-      name: event.target.value,
-      updated: Date.now(),
-    };
     dispatch(
       actions.updateBoard({
-        board,
+        board: {
+          name: event.target.value,
+          updated: Date.now(),
+        },
         boardId: props.boardId,
+        debounce: true,
       })
     );
-    debouncedSaveBoardData(props.boardId, board);
   }
 
   function handleBlur() {

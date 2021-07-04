@@ -1,31 +1,26 @@
 import { fireEvent, screen } from '@testing-library/react';
-import { renderWithStore, updateStore } from '../../utils/test';
+import { renderWithStore, getStoreState, updateStore } from '../../utils/test';
 import {
-  debouncedSaveBoardData,
   generateId,
   getBoardVal,
   getUserBoardsVal,
-  saveBoardData,
   saveUserBoardId,
 } from '../../firebase';
 import { BOARD_TEST_ID as boardId } from '../../constants/test';
 import Boards from './Boards';
+import '../../store/boardsSlice';
 
 jest.mock('../../firebase', () => ({
-  debouncedSaveBoardData: jest.fn(),
   generateId: jest.fn(),
   getBoardVal: jest.fn(),
   getUserBoardsVal: jest.fn(),
-  saveBoardData: jest.fn(),
   saveUserBoardId: jest.fn(),
 }));
 
 beforeEach(() => {
-  (debouncedSaveBoardData as unknown as jest.Mock).mockClear();
   (generateId as jest.Mock).mockReturnValue(boardId);
   (getBoardVal as jest.Mock).mockResolvedValueOnce(null);
   (getUserBoardsVal as jest.Mock).mockResolvedValueOnce(null);
-  (saveBoardData as jest.Mock).mockClear();
   (saveUserBoardId as jest.Mock).mockClear();
 });
 
@@ -56,15 +51,16 @@ describe('create board', () => {
     expect(screen.getByPlaceholderText('Untitled Board')).toHaveFocus();
   });
 
-  it('saves new board to database', () => {
+  it('saves new board to store and database', () => {
     const user = updateStore.withUser();
     renderWithStore(<Boards />);
     fireEvent.click(screen.getByLabelText('Create board'));
-    expect(saveBoardData).toBeCalledTimes(1);
-    expect(saveBoardData).toBeCalledWith(boardId, {
-      created: expect.any(Number),
-      name: '',
-      updated: expect.any(Number),
+    expect(getStoreState().boards).toEqual({
+      [boardId]: {
+        created: expect.any(Number),
+        name: '',
+        updated: expect.any(Number),
+      },
     });
     expect(saveUserBoardId).toBeCalledTimes(1);
     expect(saveUserBoardId).toBeCalledWith(user.id, boardId);

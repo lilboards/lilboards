@@ -1,16 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { getStoreState, renderWithStore, updateStore } from '../../utils/test';
-import { debouncedSaveBoardData } from '../../firebase';
 import { BOARD_TEST_ID as boardId } from '../../constants/test';
 import BoardCard from './BoardCard';
-
-jest.mock('../../firebase', () => ({
-  debouncedSaveBoardData: jest.fn(),
-}));
-
-beforeEach(() => {
-  (debouncedSaveBoardData as unknown as jest.Mock).mockClear();
-});
 
 it('renders "Open board" button', () => {
   const board = updateStore.withBoard();
@@ -39,10 +30,6 @@ describe('edit board', () => {
     fireEvent.change(screen.getByLabelText('Board Name'), event);
     expect(getStoreState().boards[boardId]).toEqual({
       created: expect.any(Number),
-      name: event.target.value,
-      updated: expect.any(Number),
-    });
-    expect(debouncedSaveBoardData).toBeCalledWith(board.id, {
       name: event.target.value,
       updated: expect.any(Number),
     });
