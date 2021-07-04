@@ -4,8 +4,8 @@ import {
 } from '../constants/test';
 import { actions, initialState, reducer } from './boardsSlice';
 
-describe('editBoard', () => {
-  it('adds board', () => {
+describe('updateBoard', () => {
+  it('creates board', () => {
     const board = {
       created: Date.now(),
       name: '',
@@ -15,7 +15,7 @@ describe('editBoard', () => {
       ...board,
       boardId,
     };
-    const newState = reducer(initialState, actions.editBoard(payload));
+    const newState = reducer(initialState, actions.updateBoard(payload));
     expect(newState).toEqual({ [boardId]: board });
   });
 
@@ -35,7 +35,7 @@ describe('editBoard', () => {
       ...board,
       boardId,
     };
-    const newState = reducer(state, actions.editBoard(payload));
+    const newState = reducer(state, actions.updateBoard(payload));
     expect(newState).toEqual({
       [boardId]: {
         ...state[boardId],

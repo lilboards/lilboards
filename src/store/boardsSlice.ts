@@ -19,7 +19,7 @@ const boardsSlice = createSlice({
   initialState,
 
   reducers: {
-    editBoard: (
+    updateBoard: (
       state,
       action: PayloadAction<Partial<Board> & { boardId: Id }>
     ) => {

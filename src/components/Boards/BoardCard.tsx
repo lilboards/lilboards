@@ -40,7 +40,7 @@ export default function BoardCard(props: Props) {
       updated: Date.now(),
     };
     dispatch(
-      actions.editBoard({
+      actions.updateBoard({
         ...board,
         boardId: props.boardId,
       })
