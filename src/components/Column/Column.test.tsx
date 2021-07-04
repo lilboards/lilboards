@@ -19,25 +19,25 @@ it('renders column name', () => {
   renderWithStore(
     <Column {...props} boardId={board.id} columnId={column.id} />
   );
-  expect(screen.getByLabelText('Column Name')).toBe(
-    screen.getByDisplayValue(column.name)
-  );
+  expect(screen.getByText(column.name)).toBeInTheDocument();
 });
 
-it('edits column', async () => {
+it('edits column', () => {
   const board = updateStore.withBoard();
   const column = updateStore.withColumn();
+  updateStore.withUser();
   renderWithStore(
     <Column {...props} boardId={board.id} columnId={column.id} />
   );
   const value = 'My Column Name';
   fireEvent.change(screen.getByLabelText('Column Name'), { target: { value } });
-  expect(await screen.findAllByDisplayValue(value)).toHaveLength(1);
+  expect(screen.getByDisplayValue(value)).toBeInTheDocument();
 });
 
 it('resets user editing column id on blur', () => {
   const board = updateStore.withBoard();
   const column = updateStore.withColumn();
+  updateStore.withUser();
   updateStore.withUserEditing();
   renderWithStore(
     <Column {...props} boardId={board.id} columnId={column.id} />
@@ -49,6 +49,7 @@ it('resets user editing column id on blur', () => {
 it('deletes column', () => {
   const board = updateStore.withBoard();
   const column = updateStore.withColumn();
+  updateStore.withUser();
   renderWithStore(
     <Column {...props} boardId={board.id} columnId={column.id} />
   );

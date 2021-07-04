@@ -1,5 +1,6 @@
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 
 import CloseButton from '../CloseButton';
 
@@ -21,6 +22,17 @@ export default function ColumnName(props: Props) {
   const isEditing = useSelector(
     (state) => state.user.editing.columnId === props.columnId
   );
+  const readOnly = useSelector(
+    (state) => (state.boards[props.boardId] || {}).creator !== state.user.id
+  );
+
+  if (readOnly) {
+    return (
+      <Typography component="h2" gutterBottom variant="h5">
+        {props.name || props.placeholder}
+      </Typography>
+    );
+  }
 
   function handleChange(
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

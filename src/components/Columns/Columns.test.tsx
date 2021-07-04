@@ -8,6 +8,8 @@ import {
 } from '../../constants/test';
 import Columns from './Columns';
 
+import type { Columns as ColumnsState, Items } from '../../types';
+
 jest.mock('../../firebase', () => ({
   getColumnsRef: jest.fn(),
   getItemsRef: jest.fn(),
@@ -18,6 +20,7 @@ beforeEach(() => {
     off: jest.fn(),
     on: jest.fn(),
   });
+
   (getItemsRef as jest.Mock).mockReturnValueOnce({
     off: jest.fn(),
     on: jest.fn(),
@@ -28,9 +31,7 @@ it('renders column', () => {
   const board = updateStore.withBoard();
   const column = updateStore.withColumn();
   renderWithStore(<Columns boardId={board.id} />);
-  expect(screen.getByLabelText('Column Name')).toBe(
-    screen.getByDisplayValue(column.name)
-  );
+  expect(screen.getByText(column.name)).toBeInTheDocument();
 });
 
 describe('mount', () => {
@@ -39,15 +40,20 @@ describe('mount', () => {
   let itemsRefOff: jest.Mock;
   let itemsRefOn: jest.Mock;
 
+  const columnName = 'My Column';
+  const itemText = 'My Item';
+
   beforeEach(() => {
     columnsRefOff = jest.fn();
+
     columnsRefOn = jest.fn((eventType, successCallback) => {
       if (eventType === 'value') {
         const snapshot = {
-          val: () => ({
+          val: (): ColumnsState => ({
             [columnId]: {
               created: Date.now(),
-              name: '',
+              itemIds: [itemId],
+              name: columnName,
               updated: Date.now(),
             },
           }),
@@ -55,26 +61,29 @@ describe('mount', () => {
         successCallback(snapshot);
       }
     });
+
     (getColumnsRef as jest.Mock).mockReset().mockReturnValueOnce({
       off: columnsRefOff,
       on: columnsRefOn,
     });
 
     itemsRefOff = jest.fn();
+
     itemsRefOn = jest.fn((eventType, successCallback) => {
       if (eventType === 'value') {
         const snapshot = {
-          val: () => ({
+          val: (): Items => ({
             [itemId]: {
-              created: 0,
-              name: '',
-              updated: 0,
+              created: Date.now(),
+              text: itemText,
+              updated: Date.now(),
             },
           }),
         };
         successCallback(snapshot);
       }
     });
+
     (getItemsRef as jest.Mock).mockReset().mockReturnValueOnce({
       off: itemsRefOff,
       on: itemsRefOn,
@@ -86,16 +95,27 @@ describe('mount', () => {
     expect(await screen.findAllByRole('textbox')).toHaveLength(1);
   });
 
-  it('renders default column name', async () => {
+  it('renders column name', async () => {
     renderWithStore(<Columns boardId={boardId} />);
-    expect(await screen.findByPlaceholderText('Column 1')).toBeInTheDocument();
+    expect(
+      await screen.findByRole('heading', {
+        level: 2,
+        name: columnName,
+      })
+    ).toBeInTheDocument();
+  });
+
+  it('renders item text', async () => {
+    renderWithStore(<Columns boardId={boardId} />);
+    expect(await screen.findByDisplayValue(itemText)).toBeInTheDocument();
   });
 
   it('removes columns on unmount', async () => {
     const { unmount } = renderWithStore(<Columns boardId={boardId} />);
-    expect(await screen.findAllByPlaceholderText('Column 1')).toHaveLength(1);
+    expect(await screen.findAllByText(columnName)).toHaveLength(1);
     unmount();
-    expect(screen.queryAllByPlaceholderText('Column 1')).toHaveLength(0);
+    expect(screen.queryAllByText(columnName)).toHaveLength(0);
+    expect(screen.queryAllByText('Column 1')).toHaveLength(0);
   });
 
   it('listens to columns and items from database', () => {
