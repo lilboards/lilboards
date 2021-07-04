@@ -14,6 +14,7 @@ import {
 import store from '../store';
 
 import type { ReactNode } from 'react';
+import type { Columns, Items } from '../types';
 
 /* istanbul ignore next */
 function noop() {}
@@ -62,6 +63,10 @@ export const updateStore = {
     return { ...column, id };
   },
 
+  withColumns(payload: Columns) {
+    store.dispatch(actions.loadColumns(payload));
+  },
+
   withItem() {
     const item = {
       created: Date.now(),
@@ -72,6 +77,10 @@ export const updateStore = {
     const payload = { [id]: item };
     store.dispatch(actions.loadItems(payload));
     return { ...item, id };
+  },
+
+  withItems(payload: Items) {
+    store.dispatch(actions.loadItems(payload));
   },
 
   withUser(email = true) {

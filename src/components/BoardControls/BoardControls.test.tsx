@@ -1,7 +1,11 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithStore, getStoreState, updateStore } from '../../utils/test';
 import { generateId } from '../../firebase';
-import { COLUMN_TEST_ID as columnId } from '../../constants/test';
+import {
+  COLUMN_TEST_ID as columnId,
+  ITEM_TEST_ID as itemId,
+  USER_TEST_ID as userId,
+} from '../../constants/test';
 import BoardControls from './BoardControls';
 
 jest.mock('../../firebase', () => ({
@@ -36,12 +40,48 @@ describe('add column', () => {
   });
 });
 
-describe('sort items', () => {
+describe('sort', () => {
   it('renders "Sort by likes" button', () => {
     const board = updateStore.withBoard();
     renderWithStore(<BoardControls boardId={board.id} />);
     expect(
       screen.getByRole('button', { name: 'Sort by likes' })
     ).toBeInTheDocument();
+  });
+
+  it('sorts column items by likes', () => {
+    const board = updateStore.withBoard();
+    const itemId1 = `${itemId}1`;
+    const itemId2 = `${itemId}2`;
+    const now = Date.now();
+    updateStore.withColumns({
+      [columnId]: {
+        created: now,
+        itemIds: [itemId1, itemId2],
+        name: '',
+        updated: now,
+      },
+    });
+    updateStore.withItems({
+      [itemId1]: {
+        created: now,
+        text: '',
+        updated: now,
+      },
+      [itemId2]: {
+        created: now,
+        likes: {
+          [userId]: true,
+        },
+        text: '',
+        updated: now,
+      },
+    });
+    renderWithStore(<BoardControls boardId={board.id} />);
+    fireEvent.click(screen.getByText('Sort by likes'));
+    expect(getStoreState().columns[columnId].itemIds).toEqual([
+      itemId2,
+      itemId1,
+    ]);
   });
 });

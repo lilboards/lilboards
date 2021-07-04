@@ -5,7 +5,8 @@ import AddButton from '../AddButton';
 
 import actions from '../../actions';
 import { generateId } from '../../firebase';
-import { useDispatch } from '../../hooks';
+import { useDispatch, useSelector } from '../../hooks';
+import { sortByLikes } from './utils';
 
 import type { Id } from '../../types';
 
@@ -15,6 +16,8 @@ type Props = {
 
 export default function BoardControls(props: Props) {
   const dispatch = useDispatch();
+  const columns = useSelector((state) => state.columns);
+  const items = useSelector((state) => state.items);
 
   function addColumn() {
     const columnId = generateId();
@@ -34,8 +37,14 @@ export default function BoardControls(props: Props) {
     dispatch(actions.setUserEditing({ columnId }));
   }
 
-  /* istanbul ignore next */
-  function sortByLikes() {}
+  function sortItems() {
+    dispatch(
+      actions.setColumnItemIds({
+        boardId: props.boardId,
+        columnItemIds: sortByLikes(columns, items),
+      })
+    );
+  }
 
   return (
     <Box display="flex" marginBottom={4}>
@@ -45,7 +54,7 @@ export default function BoardControls(props: Props) {
         </AddButton>
       </Box>
 
-      <Button color="primary" onClick={sortByLikes} variant="outlined">
+      <Button color="primary" onClick={sortItems} variant="outlined">
         Sort by likes
       </Button>
     </Box>
