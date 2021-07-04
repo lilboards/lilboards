@@ -16,17 +16,33 @@ beforeEach(() => {
   (generateId as jest.Mock).mockReturnValue(columnId);
 });
 
+it('does not throw error when board is invalid', () => {
+  expect(() => {
+    renderWithStore(<BoardControls boardId="" />);
+  }).not.toThrow();
+});
+
 describe('add column', () => {
-  it('renders "Add column" button', () => {
+  it('renders "Add column" button when user is creator', () => {
     const board = updateStore.withBoard();
+    updateStore.withUser();
     renderWithStore(<BoardControls boardId={board.id} />);
     expect(
       screen.getByRole('button', { name: 'Add column' })
     ).toBeInTheDocument();
   });
 
+  it('does not render "Add column" button when user is not creator', () => {
+    const board = updateStore.withBoard();
+    renderWithStore(<BoardControls boardId={board.id} />);
+    expect(
+      screen.queryByRole('button', { name: 'Add column' })
+    ).not.toBeInTheDocument();
+  });
+
   it('saves new column to store', () => {
     const board = updateStore.withBoard();
+    updateStore.withUser();
     renderWithStore(<BoardControls boardId={board.id} />);
     expect(getStoreState().columns).toEqual({});
     fireEvent.click(screen.getByText('Add column'));
