@@ -56,7 +56,7 @@ export default function Boards(props: RouteComponentProps) {
     };
     dispatch(
       actions.updateBoard({
-        ...board,
+        board,
         boardId,
       })
     );

@@ -5,6 +5,17 @@ import {
 import { actions, initialState, reducer } from './boardsSlice';
 
 describe('updateBoard', () => {
+  it('defines property if board payload is empty', () => {
+    const payload = {
+      boardId,
+      board: {},
+    };
+    const newState = reducer(initialState, actions.updateBoard(payload));
+    expect(newState).toEqual({
+      [boardId]: {},
+    });
+  });
+
   it('creates board', () => {
     const board = {
       created: Date.now(),
@@ -12,11 +23,13 @@ describe('updateBoard', () => {
       updated: Date.now(),
     };
     const payload = {
-      ...board,
+      board,
       boardId,
     };
     const newState = reducer(initialState, actions.updateBoard(payload));
-    expect(newState).toEqual({ [boardId]: board });
+    expect(newState).toEqual({
+      [boardId]: board,
+    });
   });
 
   it('edits board name and updated', () => {
@@ -32,7 +45,7 @@ describe('updateBoard', () => {
       updated: Date.now() + 1000,
     };
     const payload = {
-      ...board,
+      board,
       boardId,
     };
     const newState = reducer(state, actions.updateBoard(payload));

@@ -21,9 +21,9 @@ const boardsSlice = createSlice({
   reducers: {
     updateBoard: (
       state,
-      action: PayloadAction<Partial<Board> & { boardId: Id }>
+      action: PayloadAction<{ board: Partial<Board>; boardId: Id }>
     ) => {
-      const { boardId, ...board } = action.payload;
+      const { boardId, board } = action.payload;
       state[boardId] = state[boardId] || {};
       Object.assign(state[boardId], board);
     },

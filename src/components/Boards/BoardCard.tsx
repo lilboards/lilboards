@@ -41,7 +41,7 @@ export default function BoardCard(props: Props) {
     };
     dispatch(
       actions.updateBoard({
-        ...board,
+        board,
         boardId: props.boardId,
       })
     );
