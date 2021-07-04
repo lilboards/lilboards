@@ -9,11 +9,7 @@ import {
 import { BOARDS } from '../constants';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Board, Id } from '../types';
-
-type Boards = {
-  [boardId: string]: Board;
-};
+import type { Board, Boards, Id } from '../types';
 
 export const initialState: Boards = {};
 

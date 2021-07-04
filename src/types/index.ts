@@ -4,6 +4,10 @@ export interface Board {
   updated: number;
 }
 
+export interface Boards {
+  [boardId: string]: Board;
+}
+
 export interface Column {
   created: number;
   itemIds?: ItemId[];
