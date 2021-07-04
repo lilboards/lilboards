@@ -6,6 +6,7 @@ import ThumbUpFilledIcon from '@material-ui/icons/ThumbUp';
 import actions from '../../actions';
 import { likeItem, unlikeItem } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
+import { countObject } from '../../utils';
 
 import type { Id } from '../../types';
 
@@ -19,10 +20,10 @@ export default function Likes(props: Props) {
   const userId = useSelector((state) => state.user.id);
   const likes = useSelector((state) => {
     const item = state.items[props.itemId];
-    return item && item.likes ? item.likes : {};
+    return (item && item.likes) || {};
   });
 
-  const count = Object.keys(likes).length;
+  const count = countObject(likes);
   const isLikedByUser = likes[userId];
 
   function handleClick() {
