@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.15.0](https://www.github.com/lilboards/lilboards/compare/v2.14.1...v2.15.0) (2021-07-04)
+
+
+### Features
+
+* **components:** add sort by likes button to BoardControls ([35e84c2](https://www.github.com/lilboards/lilboards/commit/35e84c271ca3bab5e9034c5ed083ec373295060b))
+* **components:** sort column items by likes in BoardControls ([fe972c3](https://www.github.com/lilboards/lilboards/commit/fe972c34fde3f03128ae194ca105b6d9ae7fbf7b))
+
 ### [2.14.1](https://www.github.com/lilboards/lilboards/compare/v2.14.0...v2.14.1) (2021-07-03)
 
 
