@@ -51,10 +51,10 @@ export default function Boards(props: RouteComponentProps) {
     dispatch(
       actions.updateBoard({
         board: {
-          created: now,
-          creator: userId,
+          createdAt: now,
+          createdBy: userId,
           name: '',
-          updated: now,
+          updatedAt: now,
         },
         boardId,
       })

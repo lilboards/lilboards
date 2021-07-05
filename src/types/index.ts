@@ -1,8 +1,8 @@
 export interface Board {
-  created: number;
-  creator: UserId;
+  createdAt: number;
+  createdBy: UserId;
   name: string;
-  updated: number;
+  updatedAt: number;
 }
 
 export interface Boards {
@@ -10,10 +10,10 @@ export interface Boards {
 }
 
 export interface Column {
-  created: number;
+  createdAt: number;
   itemIds?: ItemId[];
   name: string;
-  updated: number;
+  updatedAt: number;
 }
 
 export interface Columns {
@@ -27,12 +27,12 @@ export interface ColumnItemIds {
 export type Id = string;
 
 export interface Item {
-  created: number;
+  createdAt: number;
   likes?: {
     [userId: string]: boolean;
   };
   text: string;
-  updated: number;
+  updatedAt: number;
 }
 
 type ItemId = Id;

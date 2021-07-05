@@ -41,11 +41,11 @@ export function resetStore() {
 export const updateStore = {
   withBoard() {
     const board = {
-      created: Date.now(),
-      creator: userId,
+      createdAt: Date.now(),
+      createdBy: userId,
       id: boardId,
       name: 'Board One',
-      updated: Date.now(),
+      updatedAt: Date.now(),
     };
     store.dispatch(actions.loadBoard(board));
     return board;
@@ -53,10 +53,10 @@ export const updateStore = {
 
   withColumn() {
     const column = {
-      created: Date.now(),
+      createdAt: Date.now(),
       name: 'Column One',
       [ITEM_IDS]: [itemId],
-      updated: Date.now(),
+      updatedAt: Date.now(),
     };
     const id = columnId;
     const payload = { [id]: column };
@@ -70,9 +70,9 @@ export const updateStore = {
 
   withItem() {
     const item = {
-      created: Date.now(),
+      createdAt: Date.now(),
       text: 'Item One',
-      updated: Date.now(),
+      updatedAt: Date.now(),
     };
     const id = itemId;
     const payload = { [id]: item };

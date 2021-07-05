@@ -32,10 +32,10 @@ describe('edit board', () => {
     const event = { target: { value: 'My Board Name' } };
     fireEvent.change(screen.getByLabelText('Board Name'), event);
     expect(getStoreState().boards[boardId]).toEqual({
-      created: expect.any(Number),
-      creator: userId,
+      createdAt: expect.any(Number),
+      createdBy: userId,
       name: event.target.value,
-      updated: expect.any(Number),
+      updatedAt: expect.any(Number),
     });
   });
 

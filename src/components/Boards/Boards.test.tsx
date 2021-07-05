@@ -60,10 +60,10 @@ describe('create board', () => {
     fireEvent.click(screen.getByLabelText('Create board'));
     expect(getStoreState().boards).toEqual({
       [boardId]: {
-        created: expect.any(Number),
-        creator: userId,
+        createdAt: expect.any(Number),
+        createdBy: userId,
         name: '',
-        updated: expect.any(Number),
+        updatedAt: expect.any(Number),
       },
     });
     expect(saveUserBoardId).toBeCalledTimes(1);

@@ -1,15 +1,15 @@
 import { sortByLikes } from './sortByLikes';
 
 const column = {
-  created: Date.now(),
+  createdAt: Date.now(),
   name: '',
-  updated: Date.now(),
+  updatedAt: Date.now(),
 };
 
 const item = {
-  created: Date.now(),
+  createdAt: Date.now(),
   text: '',
-  updated: Date.now(),
+  updatedAt: Date.now(),
 };
 
 it('returns column item id sorted by likes', () => {

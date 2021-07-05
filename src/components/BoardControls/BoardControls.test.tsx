@@ -23,7 +23,7 @@ it('does not throw error when board is invalid', () => {
 });
 
 describe('add column', () => {
-  it('renders "Add column" button when user is creator', () => {
+  it('renders "Add column" button when user can edit', () => {
     const board = updateStore.withBoard();
     updateStore.withUser();
     renderWithStore(<BoardControls boardId={board.id} />);
@@ -32,7 +32,7 @@ describe('add column', () => {
     ).toBeInTheDocument();
   });
 
-  it('does not render "Add column" button when user is not creator', () => {
+  it('does not render "Add column" button when user cannot edit', () => {
     const board = updateStore.withBoard();
     renderWithStore(<BoardControls boardId={board.id} />);
     expect(
@@ -48,9 +48,9 @@ describe('add column', () => {
     fireEvent.click(screen.getByText('Add column'));
     expect(getStoreState().columns).toEqual({
       [columnId]: {
-        created: expect.any(Number),
+        createdAt: expect.any(Number),
         name: '',
-        updated: expect.any(Number),
+        updatedAt: expect.any(Number),
       },
     });
   });
@@ -72,25 +72,25 @@ describe('sort', () => {
     const now = Date.now();
     updateStore.withColumns({
       [columnId]: {
-        created: now,
+        createdAt: now,
         itemIds: [itemId1, itemId2],
         name: '',
-        updated: now,
+        updatedAt: now,
       },
     });
     updateStore.withItems({
       [itemId1]: {
-        created: now,
+        createdAt: now,
         text: '',
-        updated: now,
+        updatedAt: now,
       },
       [itemId2]: {
-        created: now,
+        createdAt: now,
         likes: {
           [userId]: true,
         },
         text: '',
-        updated: now,
+        updatedAt: now,
       },
     });
     renderWithStore(<BoardControls boardId={board.id} />);

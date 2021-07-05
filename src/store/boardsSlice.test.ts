@@ -5,10 +5,10 @@ import {
 import { actions, initialState, reducer } from './boardsSlice';
 
 const board = {
-  created: Date.now(),
-  creator: userId,
+  createdAt: Date.now(),
+  createdBy: userId,
   name: '',
-  updated: Date.now(),
+  updatedAt: Date.now(),
 };
 
 describe('updateBoard', () => {
@@ -41,7 +41,7 @@ describe('updateBoard', () => {
     const payload = {
       board: {
         name: 'Board Name Edited',
-        updated: Date.now() + 1000,
+        updatedAt: Date.now() + 1000,
       },
       boardId,
     };
@@ -86,10 +86,10 @@ describe('loadBoard', () => {
     };
     const id = `${boardId}2`;
     const board2 = {
-      created: Date.now(),
-      creator: userId,
+      createdAt: Date.now(),
+      createdBy: userId,
       name: 'Board 2',
-      updated: Date.now(),
+      updatedAt: Date.now(),
     };
     const newState = reducer(state, actions.loadBoard({ id, ...board2 }));
     expect(newState).toEqual({
