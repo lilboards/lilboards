@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.17.0](https://www.github.com/lilboards/lilboards/compare/v2.16.0...v2.17.0) (2021-07-05)
+
+
+### Features
+
+* **components:** make column name readonly if user cannot edit ([ed9f6f1](https://www.github.com/lilboards/lilboards/commit/ed9f6f1a36d73f7635877f32fc003b7178448f50))
+* **components:** remove add column button if user cannot edit ([9d30b53](https://www.github.com/lilboards/lilboards/commit/9d30b539900b083c5af3fc4fae2ad74ab3beeb4b))
+
 ## [2.16.0](https://www.github.com/lilboards/lilboards/compare/v2.15.0...v2.16.0) (2021-07-04)
 
 
