@@ -7,7 +7,7 @@ import { ITEM_IDS } from '../constants';
 import { actions, initialState, reducer } from './columnsSlice';
 
 const column = {
-  created: Date.now(),
+  createdAt: Date.now(),
   name: '',
   updated: Date.now(),
 };
@@ -63,7 +63,7 @@ describe('deleteColumn', () => {
   it('deletes column', () => {
     const state = {
       [columnId]: {
-        created: Date.now(),
+        createdAt: Date.now(),
         name: 'Column Name',
         updated: Date.now(),
       },
@@ -80,7 +80,7 @@ describe('loadColumns', () => {
   it('loads columns', () => {
     const payload = {
       [columnId]: {
-        created: Date.now(),
+        createdAt: Date.now(),
         name: 'Column Name',
         updated: Date.now(),
       },
@@ -94,7 +94,7 @@ describe('addColumnItemId', () => {
   it('appends item id to column', () => {
     const state = {
       [columnId]: {
-        created: Date.now(),
+        createdAt: Date.now(),
         name: 'Column 1',
         updated: Date.now(),
       },
@@ -116,7 +116,7 @@ describe('addColumnItemId', () => {
   it('appends item id to column with item ids', () => {
     const state = {
       [columnId]: {
-        created: Date.now(),
+        createdAt: Date.now(),
         itemIds: [`${itemId}1`],
         name: 'Column 1',
         updated: Date.now(),

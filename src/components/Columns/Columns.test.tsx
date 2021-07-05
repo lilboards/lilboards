@@ -51,7 +51,7 @@ describe('mount', () => {
         const snapshot = {
           val: (): ColumnsState => ({
             [columnId]: {
-              created: Date.now(),
+              createdAt: Date.now(),
               itemIds: [itemId],
               name: columnName,
               updated: Date.now(),
@@ -74,7 +74,7 @@ describe('mount', () => {
         const snapshot = {
           val: (): Items => ({
             [itemId]: {
-              created: Date.now(),
+              createdAt: Date.now(),
               text: itemText,
               updated: Date.now(),
             },

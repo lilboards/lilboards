@@ -48,7 +48,7 @@ describe('add column', () => {
     fireEvent.click(screen.getByText('Add column'));
     expect(getStoreState().columns).toEqual({
       [columnId]: {
-        created: expect.any(Number),
+        createdAt: expect.any(Number),
         name: '',
         updated: expect.any(Number),
       },
@@ -72,7 +72,7 @@ describe('sort', () => {
     const now = Date.now();
     updateStore.withColumns({
       [columnId]: {
-        created: now,
+        createdAt: now,
         itemIds: [itemId1, itemId2],
         name: '',
         updated: now,
@@ -80,12 +80,12 @@ describe('sort', () => {
     });
     updateStore.withItems({
       [itemId1]: {
-        created: now,
+        createdAt: now,
         text: '',
         updated: now,
       },
       [itemId2]: {
-        created: now,
+        createdAt: now,
         likes: {
           [userId]: true,
         },

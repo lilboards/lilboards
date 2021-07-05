@@ -5,7 +5,7 @@ import {
 import { actions, initialState, reducer } from './boardsSlice';
 
 const board = {
-  created: Date.now(),
+  createdAt: Date.now(),
   creator: userId,
   name: '',
   updated: Date.now(),
@@ -86,7 +86,7 @@ describe('loadBoard', () => {
     };
     const id = `${boardId}2`;
     const board2 = {
-      created: Date.now(),
+      createdAt: Date.now(),
       creator: userId,
       name: 'Board 2',
       updated: Date.now(),

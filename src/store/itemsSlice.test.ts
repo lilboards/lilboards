@@ -6,7 +6,7 @@ import {
 import { actions, initialState, reducer } from './itemsSlice';
 
 const item = {
-  created: Date.now(),
+  createdAt: Date.now(),
   text: '',
   updated: Date.now(),
 };

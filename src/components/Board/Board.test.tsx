@@ -67,7 +67,7 @@ it('renders columns', async () => {
 
 describe('with board and anonymous user', () => {
   const board = {
-    created: Date.now(),
+    createdAt: Date.now(),
     name: 'My Board',
     updated: Date.now(),
   };

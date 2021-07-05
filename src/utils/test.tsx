@@ -41,7 +41,7 @@ export function resetStore() {
 export const updateStore = {
   withBoard() {
     const board = {
-      created: Date.now(),
+      createdAt: Date.now(),
       creator: userId,
       id: boardId,
       name: 'Board One',
@@ -53,7 +53,7 @@ export const updateStore = {
 
   withColumn() {
     const column = {
-      created: Date.now(),
+      createdAt: Date.now(),
       name: 'Column One',
       [ITEM_IDS]: [itemId],
       updated: Date.now(),
@@ -70,7 +70,7 @@ export const updateStore = {
 
   withItem() {
     const item = {
-      created: Date.now(),
+      createdAt: Date.now(),
       text: 'Item One',
       updated: Date.now(),
     };

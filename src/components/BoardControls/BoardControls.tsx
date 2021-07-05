@@ -26,7 +26,7 @@ export default function BoardControls(props: Props) {
     const columnId = generateId();
     const now = Date.now();
     const column = {
-      created: now,
+      createdAt: now,
       name: '',
       updated: now,
     };

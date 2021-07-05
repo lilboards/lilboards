@@ -3,7 +3,7 @@ import { reorderArray } from '../../../utils';
 import { reorder } from './reorder';
 
 const column = {
-  created: Date.now(),
+  createdAt: Date.now(),
   name: '',
   updated: Date.now(),
 };

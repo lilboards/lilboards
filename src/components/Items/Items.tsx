@@ -25,7 +25,7 @@ export default function Items(props: Props) {
       actions.updateItem({
         boardId: props.boardId,
         item: {
-          created: now,
+          createdAt: now,
           text: '',
           updated: now,
         },

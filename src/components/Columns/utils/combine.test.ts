@@ -10,13 +10,13 @@ const itemId1 = `${itemId}1`;
 const itemId2 = `${itemId}2`;
 
 const item1 = {
-  created: Date.now(),
+  createdAt: Date.now(),
   text: ' Item 1 text ',
   updated: Date.now(),
 };
 
 const item2 = {
-  created: Date.now(),
+  createdAt: Date.now(),
   text: '\nItem 2 text\n',
   updated: Date.now(),
 };
