@@ -18,6 +18,9 @@ export default function BoardControls(props: Props) {
   const dispatch = useDispatch();
   const columns = useSelector((state) => state.columns);
   const items = useSelector((state) => state.items);
+  const canEdit = useSelector(
+    (state) => (state.boards[props.boardId] || {}).creator === state.user.id
+  );
 
   function addColumn() {
     const columnId = generateId();
@@ -49,9 +52,11 @@ export default function BoardControls(props: Props) {
   return (
     <Box display="flex" marginBottom={4}>
       <Box flexGrow={1}>
-        <AddButton onClick={addColumn} size="medium" variant="extended">
-          Add column
-        </AddButton>
+        {canEdit && (
+          <AddButton onClick={addColumn} size="medium" variant="extended">
+            Add column
+          </AddButton>
+        )}
       </Box>
 
       <Button color="primary" onClick={sortItems} variant="outlined">
