@@ -8,7 +8,7 @@ import { generateId } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import { sortByLikes } from './utils';
 
-import type { Id } from '../../types';
+import type { Column, Id } from '../../types';
 
 type Props = {
   boardId: Id;
@@ -21,15 +21,15 @@ export default function BoardControls(props: Props) {
   const canEdit = useSelector(
     (state) => (state.boards[props.boardId] || {}).createdBy === state.user.id
   );
+  const userId = useSelector((state) => state.user.id);
 
   function addColumn() {
-    const columnId = generateId();
-    const now = Date.now();
-    const column = {
-      createdAt: now,
+    const column: Column = {
+      createdAt: Date.now(),
+      createdBy: userId,
       name: '',
-      updatedAt: now,
     };
+    const columnId = generateId();
     dispatch(
       actions.updateColumn({
         boardId: props.boardId,

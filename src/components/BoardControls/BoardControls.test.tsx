@@ -3,6 +3,7 @@ import { renderWithStore, getStoreState, updateStore } from '../../utils/test';
 import { generateId } from '../../firebase';
 import {
   COLUMN_TEST_ID as columnId,
+  DATE_NOW as dateNow,
   ITEM_TEST_ID as itemId,
   USER_TEST_ID as userId,
 } from '../../constants/test';
@@ -45,14 +46,18 @@ describe('add column', () => {
     updateStore.withUser();
     renderWithStore(<BoardControls boardId={board.id} />);
     expect(getStoreState().columns).toEqual({});
+    const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
     fireEvent.click(screen.getByText('Add column'));
-    expect(getStoreState().columns).toEqual({
-      [columnId]: {
-        createdAt: expect.any(Number),
-        name: '',
-        updatedAt: expect.any(Number),
-      },
-    });
+    expect(getStoreState().columns).toMatchInlineSnapshot(`
+      Object {
+        "column_test_id": Object {
+          "createdAt": 1234567890,
+          "createdBy": "user_test_id",
+          "name": "",
+        },
+      }
+    `);
+    dateNowSpy.mockRestore();
   });
 });
 
@@ -73,24 +78,24 @@ describe('sort', () => {
     updateStore.withColumns({
       [columnId]: {
         createdAt: now,
+        createdBy: userId,
         itemIds: [itemId1, itemId2],
         name: '',
-        updatedAt: now,
       },
     });
     updateStore.withItems({
       [itemId1]: {
         createdAt: now,
+        createdBy: userId,
         text: '',
-        updatedAt: now,
       },
       [itemId2]: {
         createdAt: now,
+        createdBy: userId,
         likes: {
           [userId]: true,
         },
         text: '',
-        updatedAt: now,
       },
     });
     renderWithStore(<BoardControls boardId={board.id} />);

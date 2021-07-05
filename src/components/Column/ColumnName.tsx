@@ -25,6 +25,7 @@ export default function ColumnName(props: Props) {
   const readOnly = useSelector(
     (state) => (state.boards[props.boardId] || {}).createdBy !== state.user.id
   );
+  const userId = useSelector((state) => state.user.id);
 
   if (readOnly) {
     return (
@@ -43,6 +44,7 @@ export default function ColumnName(props: Props) {
         column: {
           name: event.target.value,
           updatedAt: Date.now(),
+          updatedBy: userId,
         },
         columnId: props.columnId,
         debounce: true,

@@ -24,6 +24,7 @@ export default function Item(props: Props) {
   const isEditing = useSelector(
     (state) => state.user.editing.itemId === props.itemId
   );
+  const userId = useSelector((state) => state.user.id);
 
   if (!item) {
     return null;
@@ -53,6 +54,7 @@ export default function Item(props: Props) {
         item: {
           text: event.target.value,
           updatedAt: Date.now(),
+          updatedBy: userId,
         },
         itemId: props.itemId,
       })

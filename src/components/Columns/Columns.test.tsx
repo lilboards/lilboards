@@ -5,6 +5,7 @@ import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
   ITEM_TEST_ID as itemId,
+  USER_TEST_ID as userId,
 } from '../../constants/test';
 import Columns from './Columns';
 
@@ -52,9 +53,9 @@ describe('mount', () => {
           val: (): ColumnsState => ({
             [columnId]: {
               createdAt: Date.now(),
+              createdBy: userId,
               itemIds: [itemId],
               name: columnName,
-              updatedAt: Date.now(),
             },
           }),
         };
@@ -75,8 +76,8 @@ describe('mount', () => {
           val: (): Items => ({
             [itemId]: {
               createdAt: Date.now(),
+              createdBy: userId,
               text: itemText,
-              updatedAt: Date.now(),
             },
           }),
         };

@@ -2,14 +2,15 @@ import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
   ITEM_TEST_ID as itemId,
+  USER_TEST_ID as userId,
 } from '../constants/test';
 import { ITEM_IDS } from '../constants';
 import { actions, initialState, reducer } from './columnsSlice';
 
 const column = {
   createdAt: Date.now(),
+  createdBy: userId,
   name: '',
-  updatedAt: Date.now(),
 };
 
 describe('updateColumn', () => {
@@ -62,11 +63,7 @@ describe('updateColumn', () => {
 describe('deleteColumn', () => {
   it('deletes column', () => {
     const state = {
-      [columnId]: {
-        createdAt: Date.now(),
-        name: 'Column Name',
-        updatedAt: Date.now(),
-      },
+      [columnId]: column,
     };
     const payload = {
       boardId,
@@ -79,11 +76,7 @@ describe('deleteColumn', () => {
 describe('loadColumns', () => {
   it('loads columns', () => {
     const payload = {
-      [columnId]: {
-        createdAt: Date.now(),
-        name: 'Column Name',
-        updatedAt: Date.now(),
-      },
+      [columnId]: column,
     };
     const newState = reducer(initialState, actions.loadColumns(payload));
     expect(newState).toBe(payload);
@@ -93,11 +86,7 @@ describe('loadColumns', () => {
 describe('addColumnItemId', () => {
   it('appends item id to column', () => {
     const state = {
-      [columnId]: {
-        createdAt: Date.now(),
-        name: 'Column 1',
-        updatedAt: Date.now(),
-      },
+      [columnId]: column,
     };
     const payload = {
       boardId,
@@ -116,10 +105,9 @@ describe('addColumnItemId', () => {
   it('appends item id to column with item ids', () => {
     const state = {
       [columnId]: {
-        createdAt: Date.now(),
+        ...column,
         itemIds: [`${itemId}1`],
         name: 'Column 1',
-        updatedAt: Date.now(),
       },
     };
     const payload = {

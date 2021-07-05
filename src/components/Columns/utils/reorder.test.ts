@@ -1,11 +1,12 @@
 import { ITEM_IDS } from '../../../constants';
+import { USER_TEST_ID as userId } from '../../../constants/test';
 import { reorderArray } from '../../../utils';
 import { reorder } from './reorder';
 
 const column = {
   createdAt: Date.now(),
+  createdBy: userId,
   name: '',
-  updatedAt: Date.now(),
 };
 
 const columnId1 = 'column1';

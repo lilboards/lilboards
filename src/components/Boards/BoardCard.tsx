@@ -39,6 +39,7 @@ export default function BoardCard(props: Props) {
         board: {
           name: event.target.value,
           updatedAt: Date.now(),
+          updatedBy: userId,
         },
         boardId: props.boardId,
         debounce: true,

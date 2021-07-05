@@ -17,6 +17,7 @@ export default function DragDropContainer(props: Props) {
   const dispatch = useDispatch();
   const columns = useSelector((state) => state.columns);
   const items = useSelector((state) => state.items);
+  const userId = useSelector((state) => state.user.id);
 
   /* istanbul ignore next */
   function handleDragEnd(result: DropResult) {
@@ -30,6 +31,7 @@ export default function DragDropContainer(props: Props) {
           item: {
             text: update.text,
             updatedAt: Date.now(),
+            updatedBy: userId,
           },
           itemId: update.itemId,
         })

@@ -7,6 +7,7 @@ import { ITEM_IDS } from '../constants';
 import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
+  DATE_NOW as dateNow,
   ITEM_TEST_ID as itemId,
   USER_TEST_EMAIL as userEmail,
   USER_TEST_ID as userId,
@@ -41,11 +42,10 @@ export function resetStore() {
 export const updateStore = {
   withBoard() {
     const board = {
-      createdAt: Date.now(),
+      createdAt: dateNow,
       createdBy: userId,
       id: boardId,
       name: 'Board One',
-      updatedAt: Date.now(),
     };
     store.dispatch(actions.loadBoard(board));
     return board;
@@ -53,10 +53,10 @@ export const updateStore = {
 
   withColumn() {
     const column = {
-      createdAt: Date.now(),
+      createdAt: dateNow,
+      createdBy: userId,
       name: 'Column One',
       [ITEM_IDS]: [itemId],
-      updatedAt: Date.now(),
     };
     const id = columnId;
     const payload = { [id]: column };
@@ -70,9 +70,9 @@ export const updateStore = {
 
   withItem() {
     const item = {
-      createdAt: Date.now(),
+      createdAt: dateNow,
+      createdBy: userId,
       text: 'Item One',
-      updatedAt: Date.now(),
     };
     const id = itemId;
     const payload = { [id]: item };

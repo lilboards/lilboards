@@ -2,7 +2,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import { getStoreState, renderWithStore, updateStore } from '../../utils/test';
 import {
   BOARD_TEST_ID as boardId,
-  USER_TEST_ID as userId,
+  DATE_NOW as dateNow,
 } from '../../constants/test';
 import BoardCard from './BoardCard';
 
@@ -29,14 +29,22 @@ describe('edit board', () => {
   });
 
   it('edits and saves board name on change', async () => {
+    updateStore.withUser();
+    const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
     const event = { target: { value: 'My Board Name' } };
     fireEvent.change(screen.getByLabelText('Board Name'), event);
-    expect(getStoreState().boards[boardId]).toEqual({
-      createdAt: expect.any(Number),
-      createdBy: userId,
-      name: event.target.value,
-      updatedAt: expect.any(Number),
-    });
+    expect(getStoreState().boards).toMatchInlineSnapshot(`
+      Object {
+        "board_test_id": Object {
+          "createdAt": 1234567890,
+          "createdBy": "user_test_id",
+          "name": "My Board Name",
+          "updatedAt": 1234567890,
+          "updatedBy": "user_test_id",
+        },
+      }
+    `);
+    dateNowSpy.mockRestore();
   });
 
   it('resets user editing boardId on blur', () => {
