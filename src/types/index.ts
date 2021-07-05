@@ -1,6 +1,6 @@
 export interface Board {
   createdAt: number;
-  creator: UserId;
+  createdBy: UserId;
   name: string;
   updatedAt: number;
 }

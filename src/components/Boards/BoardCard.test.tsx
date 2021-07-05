@@ -33,7 +33,7 @@ describe('edit board', () => {
     fireEvent.change(screen.getByLabelText('Board Name'), event);
     expect(getStoreState().boards[boardId]).toEqual({
       createdAt: expect.any(Number),
-      creator: userId,
+      createdBy: userId,
       name: event.target.value,
       updatedAt: expect.any(Number),
     });

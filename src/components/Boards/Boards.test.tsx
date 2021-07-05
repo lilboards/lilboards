@@ -61,7 +61,7 @@ describe('create board', () => {
     expect(getStoreState().boards).toEqual({
       [boardId]: {
         createdAt: expect.any(Number),
-        creator: userId,
+        createdBy: userId,
         name: '',
         updatedAt: expect.any(Number),
       },

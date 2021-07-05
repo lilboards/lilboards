@@ -19,7 +19,7 @@ export default function BoardControls(props: Props) {
   const columns = useSelector((state) => state.columns);
   const items = useSelector((state) => state.items);
   const canEdit = useSelector(
-    (state) => (state.boards[props.boardId] || {}).creator === state.user.id
+    (state) => (state.boards[props.boardId] || {}).createdBy === state.user.id
   );
 
   function addColumn() {

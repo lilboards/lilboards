@@ -23,7 +23,7 @@ it('does not throw error when board is invalid', () => {
 });
 
 describe('add column', () => {
-  it('renders "Add column" button when user is creator', () => {
+  it('renders "Add column" button when user can edit', () => {
     const board = updateStore.withBoard();
     updateStore.withUser();
     renderWithStore(<BoardControls boardId={board.id} />);
@@ -32,7 +32,7 @@ describe('add column', () => {
     ).toBeInTheDocument();
   });
 
-  it('does not render "Add column" button when user is not creator', () => {
+  it('does not render "Add column" button when user cannot edit', () => {
     const board = updateStore.withBoard();
     renderWithStore(<BoardControls boardId={board.id} />);
     expect(

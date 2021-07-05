@@ -52,7 +52,7 @@ export default function Boards(props: RouteComponentProps) {
       actions.updateBoard({
         board: {
           createdAt: now,
-          creator: userId,
+          createdBy: userId,
           name: '',
           updatedAt: now,
         },

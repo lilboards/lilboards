@@ -23,7 +23,7 @@ export default function ColumnName(props: Props) {
     (state) => state.user.editing.columnId === props.columnId
   );
   const readOnly = useSelector(
-    (state) => (state.boards[props.boardId] || {}).creator !== state.user.id
+    (state) => (state.boards[props.boardId] || {}).createdBy !== state.user.id
   );
 
   if (readOnly) {
