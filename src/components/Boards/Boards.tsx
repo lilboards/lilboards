@@ -2,8 +2,6 @@ import { useEffect } from 'react';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 
-import type { RouteComponentProps } from '@reach/router';
-
 import AddButton from '../AddButton';
 import BoardCards from './BoardCards';
 import Layout from '../Layout';
@@ -16,6 +14,9 @@ import {
   saveUserBoardId,
 } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
+
+import type { RouteComponentProps } from '@reach/router';
+import type { Board } from '../../types';
 
 export default function Boards(props: RouteComponentProps) {
   const dispatch = useDispatch();
@@ -46,16 +47,15 @@ export default function Boards(props: RouteComponentProps) {
   }, [dispatch, userId]);
 
   function addBoard() {
+    const board: Board = {
+      createdAt: Date.now(),
+      createdBy: userId,
+      name: '',
+    };
     const boardId = generateId();
-    const now = Date.now();
     dispatch(
       actions.updateBoard({
-        board: {
-          createdAt: now,
-          createdBy: userId,
-          name: '',
-          updatedAt: now,
-        },
+        board,
         boardId,
       })
     );

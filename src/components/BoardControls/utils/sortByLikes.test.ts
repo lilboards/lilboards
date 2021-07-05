@@ -1,15 +1,16 @@
+import { USER_TEST_ID as userId } from '../../../constants/test';
 import { sortByLikes } from './sortByLikes';
 
 const column = {
   createdAt: Date.now(),
+  createdBy: userId,
   name: '',
-  updatedAt: Date.now(),
 };
 
 const item = {
   createdAt: Date.now(),
+  createdBy: userId,
   text: '',
-  updatedAt: Date.now(),
 };
 
 it('returns column item id sorted by likes', () => {
@@ -19,10 +20,9 @@ it('returns column item id sorted by likes', () => {
       itemIds: ['item1', 'item2'],
     },
   };
+
   const items = {
-    item1: {
-      ...item,
-    },
+    item1: item,
     item2: {
       ...item,
       likes: {
@@ -30,6 +30,7 @@ it('returns column item id sorted by likes', () => {
       },
     },
   };
+
   expect(sortByLikes(columns, items)).toEqual({
     column1: ['item2', 'item1'],
   });

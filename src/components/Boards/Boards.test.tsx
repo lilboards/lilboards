@@ -8,7 +8,7 @@ import {
 } from '../../firebase';
 import {
   BOARD_TEST_ID as boardId,
-  USER_TEST_ID as userId,
+  DATE_NOW as dateNow,
 } from '../../constants/test';
 import Boards from './Boards';
 import '../../store/boardsSlice';
@@ -57,17 +57,20 @@ describe('create board', () => {
   it('saves new board to store and database', () => {
     const user = updateStore.withUser();
     renderWithStore(<Boards />);
+    const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
     fireEvent.click(screen.getByLabelText('Create board'));
-    expect(getStoreState().boards).toEqual({
-      [boardId]: {
-        createdAt: expect.any(Number),
-        createdBy: userId,
-        name: '',
-        updatedAt: expect.any(Number),
-      },
-    });
+    expect(getStoreState().boards).toMatchInlineSnapshot(`
+      Object {
+        "board_test_id": Object {
+          "createdAt": 1234567890,
+          "createdBy": "user_test_id",
+          "name": "",
+        },
+      }
+    `);
     expect(saveUserBoardId).toBeCalledTimes(1);
     expect(saveUserBoardId).toBeCalledWith(user.id, boardId);
+    dateNowSpy.mockRestore();
   });
 });
 

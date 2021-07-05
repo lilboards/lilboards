@@ -1,6 +1,7 @@
 import {
   ITEM_TEST_ID as itemId,
   COLUMN_TEST_ID as columnId,
+  USER_TEST_ID as userId,
 } from '../../../constants/test';
 import { combine } from './combine';
 
@@ -11,14 +12,14 @@ const itemId2 = `${itemId}2`;
 
 const item1 = {
   createdAt: Date.now(),
+  createdBy: userId,
   text: ' Item 1 text ',
-  updatedAt: Date.now(),
 };
 
 const item2 = {
   createdAt: Date.now(),
+  createdBy: userId,
   text: '\nItem 2 text\n',
-  updatedAt: Date.now(),
 };
 
 const items = {

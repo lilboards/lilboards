@@ -6,9 +6,9 @@ import DroppableItems from './DroppableItems';
 
 import actions from '../../actions';
 import { generateId } from '../../firebase';
-import { useDispatch } from '../../hooks';
+import { useDispatch, useSelector } from '../../hooks';
 
-import type { Id } from '../../types';
+import type { Id, Item } from '../../types';
 
 type Props = {
   boardId: Id;
@@ -17,18 +17,19 @@ type Props = {
 
 export default function Items(props: Props) {
   const dispatch = useDispatch();
+  const userId = useSelector((state) => state.user.id);
 
   function addItem() {
+    const item: Item = {
+      createdAt: Date.now(),
+      createdBy: userId,
+      text: '',
+    };
     const itemId = generateId();
-    const now = Date.now();
     dispatch(
       actions.updateItem({
         boardId: props.boardId,
-        item: {
-          createdAt: now,
-          text: '',
-          updatedAt: now,
-        },
+        item,
         itemId,
       })
     );
