@@ -1,5 +1,20 @@
 # Changelog
 
+## [3.0.0](https://www.github.com/lilboards/lilboards/compare/v2.17.0...v3.0.0) (2021-07-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* `creator` has been renamed to `createdBy`
+* `updated` has been renamed to `updatedAt`
+* `created` has been renamed to `createdAt`
+
+### Code Refactoring
+
+* rename `created` to `createdAt` ([743c32f](https://www.github.com/lilboards/lilboards/commit/743c32f2c77d900de1b328dc7d6a7df2f73b0f0f))
+* rename `creator` to `createdBy` ([9be54cc](https://www.github.com/lilboards/lilboards/commit/9be54ccbad02d1bd8eceb2813f9b0d8fd507be8b))
+* rename `updated` to `updatedAt` ([4aa7a81](https://www.github.com/lilboards/lilboards/commit/4aa7a8185b64787ec60711f4001ecfc9f49c3917))
+
 ## [2.17.0](https://www.github.com/lilboards/lilboards/compare/v2.16.0...v2.17.0) (2021-07-05)
 
 
