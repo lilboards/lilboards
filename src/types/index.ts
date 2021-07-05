@@ -1,8 +1,8 @@
 export interface Board {
-  createdAt: number;
+  createdAt: Time;
   createdBy: UserId;
   name: string;
-  updatedAt: number;
+  updatedAt: Time;
 }
 
 export interface Boards {
@@ -10,10 +10,10 @@ export interface Boards {
 }
 
 export interface Column {
-  createdAt: number;
+  createdAt: Time;
   itemIds?: ItemId[];
   name: string;
-  updatedAt: number;
+  updatedAt: Time;
 }
 
 export interface Columns {
@@ -27,12 +27,12 @@ export interface ColumnItemIds {
 export type Id = string;
 
 export interface Item {
-  createdAt: number;
+  createdAt: Time;
   likes?: {
     [userId: string]: boolean;
   };
   text: string;
-  updatedAt: number;
+  updatedAt: Time;
 }
 
 type ItemId = Id;
@@ -40,5 +40,7 @@ type ItemId = Id;
 export interface Items {
   [itemId: string]: Item;
 }
+
+type Time = ReturnType<typeof Date.now>;
 
 type UserId = Id;
