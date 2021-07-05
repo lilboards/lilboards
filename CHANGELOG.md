@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://www.github.com/lilboards/lilboards/compare/v3.0.0...v3.1.0) (2021-07-05)
+
+
+### Features
+
+* save create* and update* data for board, column, and item ([feaf689](https://www.github.com/lilboards/lilboards/commit/feaf689193e5133afdf3d5c41d4220d4fc7526ba))
+
 ## [3.0.0](https://www.github.com/lilboards/lilboards/compare/v2.17.0...v3.0.0) (2021-07-05)
 
 
