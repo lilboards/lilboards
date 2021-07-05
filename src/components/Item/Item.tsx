@@ -52,7 +52,7 @@ export default function Item(props: Props) {
         debounce: true,
         item: {
           text: event.target.value,
-          updated: Date.now(),
+          updatedAt: Date.now(),
         },
         itemId: props.itemId,
       })

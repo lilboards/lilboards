@@ -2,7 +2,7 @@ export interface Board {
   createdAt: number;
   creator: UserId;
   name: string;
-  updated: number;
+  updatedAt: number;
 }
 
 export interface Boards {
@@ -13,7 +13,7 @@ export interface Column {
   createdAt: number;
   itemIds?: ItemId[];
   name: string;
-  updated: number;
+  updatedAt: number;
 }
 
 export interface Columns {
@@ -32,7 +32,7 @@ export interface Item {
     [userId: string]: boolean;
   };
   text: string;
-  updated: number;
+  updatedAt: number;
 }
 
 type ItemId = Id;

@@ -35,7 +35,7 @@ describe('edit board', () => {
       createdAt: expect.any(Number),
       creator: userId,
       name: event.target.value,
-      updated: expect.any(Number),
+      updatedAt: expect.any(Number),
     });
   });
 

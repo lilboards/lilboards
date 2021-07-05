@@ -27,7 +27,7 @@ export default function Items(props: Props) {
         item: {
           createdAt: now,
           text: '',
-          updated: now,
+          updatedAt: now,
         },
         itemId,
       })

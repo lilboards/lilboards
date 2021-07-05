@@ -45,7 +45,7 @@ export const updateStore = {
       creator: userId,
       id: boardId,
       name: 'Board One',
-      updated: Date.now(),
+      updatedAt: Date.now(),
     };
     store.dispatch(actions.loadBoard(board));
     return board;
@@ -56,7 +56,7 @@ export const updateStore = {
       createdAt: Date.now(),
       name: 'Column One',
       [ITEM_IDS]: [itemId],
-      updated: Date.now(),
+      updatedAt: Date.now(),
     };
     const id = columnId;
     const payload = { [id]: column };
@@ -72,7 +72,7 @@ export const updateStore = {
     const item = {
       createdAt: Date.now(),
       text: 'Item One',
-      updated: Date.now(),
+      updatedAt: Date.now(),
     };
     const id = itemId;
     const payload = { [id]: item };

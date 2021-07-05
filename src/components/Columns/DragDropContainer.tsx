@@ -29,7 +29,7 @@ export default function DragDropContainer(props: Props) {
           boardId: props.boardId,
           item: {
             text: update.text,
-            updated: Date.now(),
+            updatedAt: Date.now(),
           },
           itemId: update.itemId,
         })

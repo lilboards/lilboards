@@ -54,7 +54,7 @@ export default function Boards(props: RouteComponentProps) {
           createdAt: now,
           creator: userId,
           name: '',
-          updated: now,
+          updatedAt: now,
         },
         boardId,
       })

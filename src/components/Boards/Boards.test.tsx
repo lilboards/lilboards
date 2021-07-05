@@ -63,7 +63,7 @@ describe('create board', () => {
         createdAt: expect.any(Number),
         creator: userId,
         name: '',
-        updated: expect.any(Number),
+        updatedAt: expect.any(Number),
       },
     });
     expect(saveUserBoardId).toBeCalledTimes(1);

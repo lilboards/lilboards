@@ -50,7 +50,7 @@ describe('add column', () => {
       [columnId]: {
         createdAt: expect.any(Number),
         name: '',
-        updated: expect.any(Number),
+        updatedAt: expect.any(Number),
       },
     });
   });
@@ -75,14 +75,14 @@ describe('sort', () => {
         createdAt: now,
         itemIds: [itemId1, itemId2],
         name: '',
-        updated: now,
+        updatedAt: now,
       },
     });
     updateStore.withItems({
       [itemId1]: {
         createdAt: now,
         text: '',
-        updated: now,
+        updatedAt: now,
       },
       [itemId2]: {
         createdAt: now,
@@ -90,7 +90,7 @@ describe('sort', () => {
           [userId]: true,
         },
         text: '',
-        updated: now,
+        updatedAt: now,
       },
     });
     renderWithStore(<BoardControls boardId={board.id} />);

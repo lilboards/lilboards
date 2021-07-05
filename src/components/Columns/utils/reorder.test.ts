@@ -5,7 +5,7 @@ import { reorder } from './reorder';
 const column = {
   createdAt: Date.now(),
   name: '',
-  updated: Date.now(),
+  updatedAt: Date.now(),
 };
 
 const columnId1 = 'column1';

@@ -8,7 +8,7 @@ const board = {
   createdAt: Date.now(),
   creator: userId,
   name: '',
-  updated: Date.now(),
+  updatedAt: Date.now(),
 };
 
 describe('updateBoard', () => {
@@ -41,7 +41,7 @@ describe('updateBoard', () => {
     const payload = {
       board: {
         name: 'Board Name Edited',
-        updated: Date.now() + 1000,
+        updatedAt: Date.now() + 1000,
       },
       boardId,
     };
@@ -89,7 +89,7 @@ describe('loadBoard', () => {
       createdAt: Date.now(),
       creator: userId,
       name: 'Board 2',
-      updated: Date.now(),
+      updatedAt: Date.now(),
     };
     const newState = reducer(state, actions.loadBoard({ id, ...board2 }));
     expect(newState).toEqual({

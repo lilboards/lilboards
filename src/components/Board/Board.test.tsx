@@ -69,7 +69,7 @@ describe('with board and anonymous user', () => {
   const board = {
     createdAt: Date.now(),
     name: 'My Board',
-    updated: Date.now(),
+    updatedAt: Date.now(),
   };
 
   beforeEach(() => {

@@ -12,13 +12,13 @@ const itemId2 = `${itemId}2`;
 const item1 = {
   createdAt: Date.now(),
   text: ' Item 1 text ',
-  updated: Date.now(),
+  updatedAt: Date.now(),
 };
 
 const item2 = {
   createdAt: Date.now(),
   text: '\nItem 2 text\n',
-  updated: Date.now(),
+  updatedAt: Date.now(),
 };
 
 const items = {

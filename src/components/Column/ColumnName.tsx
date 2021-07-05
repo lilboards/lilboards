@@ -42,7 +42,7 @@ export default function ColumnName(props: Props) {
         boardId: props.boardId,
         column: {
           name: event.target.value,
-          updated: Date.now(),
+          updatedAt: Date.now(),
         },
         columnId: props.columnId,
         debounce: true,

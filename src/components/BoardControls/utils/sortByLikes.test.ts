@@ -3,13 +3,13 @@ import { sortByLikes } from './sortByLikes';
 const column = {
   createdAt: Date.now(),
   name: '',
-  updated: Date.now(),
+  updatedAt: Date.now(),
 };
 
 const item = {
   createdAt: Date.now(),
   text: '',
-  updated: Date.now(),
+  updatedAt: Date.now(),
 };
 
 it('returns column item id sorted by likes', () => {

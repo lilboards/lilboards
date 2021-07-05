@@ -54,7 +54,7 @@ describe('mount', () => {
               createdAt: Date.now(),
               itemIds: [itemId],
               name: columnName,
-              updated: Date.now(),
+              updatedAt: Date.now(),
             },
           }),
         };
@@ -76,7 +76,7 @@ describe('mount', () => {
             [itemId]: {
               createdAt: Date.now(),
               text: itemText,
-              updated: Date.now(),
+              updatedAt: Date.now(),
             },
           }),
         };

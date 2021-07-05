@@ -28,7 +28,7 @@ export default function BoardControls(props: Props) {
     const column = {
       createdAt: now,
       name: '',
-      updated: now,
+      updatedAt: now,
     };
     dispatch(
       actions.updateColumn({
