@@ -8,6 +8,7 @@ import Likes from './Likes';
 
 import actions from '../../actions';
 import { useDispatch, useSelector } from '../../hooks';
+import { firebaseAnalytics } from '../../firebase';
 
 import type { ChangeEvent } from 'react';
 import type { Id } from '../../types';
@@ -44,6 +45,7 @@ export default function Item(props: Props) {
         itemId: props.itemId,
       })
     );
+    firebaseAnalytics.logEvent('delete_item');
   }
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
