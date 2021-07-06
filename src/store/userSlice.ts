@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { USER } from '../constants';
+import { firebaseAnalytics } from '../firebase';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Id } from '../types';
@@ -32,8 +33,12 @@ const userSlice = createSlice({
   initialState,
 
   reducers: {
-    setUser: (state, action: PayloadAction<Pick<User, 'email' | 'id'>>) => {
-      Object.assign(state, action.payload);
+    setUser: (state, action: PayloadAction<Partial<User>>) => {
+      const user = action.payload;
+      Object.assign(state, user);
+      if (user.id) {
+        firebaseAnalytics.setUserId(user.id);
+      }
     },
 
     setUserEditing: (

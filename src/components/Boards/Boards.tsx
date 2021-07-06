@@ -8,6 +8,7 @@ import Layout from '../Layout';
 
 import actions from '../../actions';
 import {
+  firebaseAnalytics,
   generateId,
   getBoardVal,
   getUserBoardsVal,
@@ -61,6 +62,7 @@ export default function Boards(props: RouteComponentProps) {
     );
     dispatch(actions.setUserEditing({ boardId }));
     saveUserBoardId(userId, boardId);
+    firebaseAnalytics.logEvent('create_board');
   }
 
   return (

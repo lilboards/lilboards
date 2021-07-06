@@ -14,6 +14,9 @@ import Boards from './Boards';
 import '../../store/boardsSlice';
 
 jest.mock('../../firebase', () => ({
+  firebaseAnalytics: {
+    logEvent: jest.fn(),
+  },
   generateId: jest.fn(),
   getBoardVal: jest.fn(),
   getUserBoardsVal: jest.fn(),

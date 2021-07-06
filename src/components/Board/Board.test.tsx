@@ -9,6 +9,9 @@ import { renderWithStore, updateStore } from '../../utils/test';
 import Board from './Board';
 
 jest.mock('../../firebase', () => ({
+  firebaseAnalytics: {
+    logEvent: jest.fn(),
+  },
   firebaseAuth: {
     onAuthStateChanged: jest.fn(),
     signInAnonymously: jest.fn(),

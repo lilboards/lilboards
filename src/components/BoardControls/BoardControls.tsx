@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import AddButton from '../AddButton';
 
 import actions from '../../actions';
-import { generateId } from '../../firebase';
+import { firebaseAnalytics, generateId } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import { sortByLikes } from './utils';
 
@@ -38,6 +38,7 @@ export default function BoardControls(props: Props) {
       })
     );
     dispatch(actions.setUserEditing({ columnId }));
+    firebaseAnalytics.logEvent('create_column');
   }
 
   function sortItems() {

@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import DroppableItems from './DroppableItems';
 
 import actions from '../../actions';
-import { generateId } from '../../firebase';
+import { firebaseAnalytics, generateId } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 
 import type { Id, Item } from '../../types';
@@ -41,6 +41,7 @@ export default function Items(props: Props) {
       })
     );
     dispatch(actions.setUserEditing({ itemId }));
+    firebaseAnalytics.logEvent('create_item');
   }
 
   return (

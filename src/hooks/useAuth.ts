@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import actions from '../actions';
-import { firebaseAuth } from '../firebase';
+import { firebaseAnalytics, firebaseAuth } from '../firebase';
 import { useDispatch } from '.';
 
 export function useAuth(signInAnonymously = false) {
@@ -16,8 +16,16 @@ export function useAuth(signInAnonymously = false) {
             id: user.uid,
           })
         );
+
+        firebaseAnalytics.logEvent('login', {
+          type: 'authenticated',
+        });
       } else if (signInAnonymously) {
         firebaseAuth.signInAnonymously();
+
+        firebaseAnalytics.logEvent('logout', {
+          type: 'anonymous',
+        });
       }
     });
 

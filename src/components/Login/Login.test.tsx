@@ -8,6 +8,9 @@ import {
 import Login from './Login';
 
 jest.mock('../../firebase', () => ({
+  firebaseAnalytics: {
+    logEvent: jest.fn(),
+  },
   firebaseAuth: {
     onAuthStateChanged: jest.fn(),
   },
