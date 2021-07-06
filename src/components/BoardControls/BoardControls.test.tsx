@@ -10,6 +10,9 @@ import {
 import BoardControls from './BoardControls';
 
 jest.mock('../../firebase', () => ({
+  firebaseAnalytics: {
+    logEvent: jest.fn(),
+  },
   generateId: jest.fn(),
 }));
 

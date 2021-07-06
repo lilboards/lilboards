@@ -6,6 +6,7 @@ import CloseButton from '../CloseButton';
 
 import actions from '../../actions';
 import { useDispatch, useSelector } from '../../hooks';
+import { firebaseAnalytics } from '../../firebase';
 
 import type { ChangeEvent } from 'react';
 import type { Id } from '../../types';
@@ -59,6 +60,7 @@ export default function ColumnName(props: Props) {
         columnId: props.columnId,
       })
     );
+    firebaseAnalytics.logEvent('delete_column');
   }
 
   function handleBlur() {
