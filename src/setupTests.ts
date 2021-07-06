@@ -4,8 +4,8 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 
-import { BOARD_TEST_ID } from './constants/test';
-import { getBoardRef } from './firebase';
+import { BOARD_TEST_ID as boardId } from './constants/test';
+import { removeBoard } from './firebase';
 import { resetStore } from './utils/test';
 
 afterEach(() => {
@@ -13,5 +13,5 @@ afterEach(() => {
 });
 
 afterAll(() => {
-  getBoardRef(BOARD_TEST_ID).remove();
+  removeBoard(boardId);
 });
