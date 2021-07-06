@@ -4,6 +4,9 @@ import { getStoreState, renderWithStore, updateStore } from '../../utils/test';
 import Logout from './Logout';
 
 jest.mock('../../firebase', () => ({
+  firebaseAnalytics: {
+    logEvent: jest.fn(),
+  },
   firebaseAuth: {
     signOut: jest.fn(),
   },
