@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.2.0](https://www.github.com/lilboards/lilboards/compare/v3.1.0...v3.2.0) (2021-07-06)
+
+
+### Features
+
+* **firebase:** add analytics ([418f13e](https://www.github.com/lilboards/lilboards/commit/418f13ed7f1cc3f103ccd75be3ebd277fafde303))
+* log events 'create_board' and 'delete_board' with analytics ([84d1b71](https://www.github.com/lilboards/lilboards/commit/84d1b716497ef3ba729d6c932cdb255196ef6f4b))
+* log events 'create_column' and 'delete_column' with analytics ([8ba7175](https://www.github.com/lilboards/lilboards/commit/8ba71758b36f56da076ac9a7f259e63361a2bed2))
+* log events 'create_item' and 'delete_item' with analytics ([1571c48](https://www.github.com/lilboards/lilboards/commit/1571c48cf89bdf58655abfc2ce01816d2cdbf0e4))
+* log events 'login' and 'logout' with firebase analytics ([7f198dc](https://www.github.com/lilboards/lilboards/commit/7f198dc46db81be8a96a74ad050aae4865b33f0e))
+* set firebase analytics user id in userSlice reducer setUser ([ba28cf7](https://www.github.com/lilboards/lilboards/commit/ba28cf7d4b78448fcac827e125dca93ea9da8878))
+
 ## [3.1.0](https://www.github.com/lilboards/lilboards/compare/v3.0.0...v3.1.0) (2021-07-05)
 
 
