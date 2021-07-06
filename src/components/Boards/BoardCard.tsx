@@ -7,13 +7,14 @@ import Grid from '@material-ui/core/Grid';
 import { Link as RouterLink } from '@reach/router';
 import TextField from '@material-ui/core/TextField';
 
-import type { ChangeEvent } from 'react';
-import type { Id } from '../../types';
-
 import CloseButton from '../CloseButton';
 
 import actions from '../../actions';
 import { useDispatch, useSelector } from '../../hooks';
+import { firebaseAnalytics } from '../../firebase';
+
+import type { ChangeEvent } from 'react';
+import type { Id } from '../../types';
 
 type Props = {
   boardId: Id;
@@ -62,6 +63,7 @@ export default function BoardCard(props: Props) {
         userId,
       })
     );
+    firebaseAnalytics.logEvent('delete_board');
   }
 
   return (
