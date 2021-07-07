@@ -1,6 +1,29 @@
 {
   "rules": {
-    ".read": "now < 1621915200000", // 2021-5-25
-    ".write": "now < 1621915200000" // 2021-5-25
+    "boards": {
+      "$board_id": {
+        "board": {
+          ".read": "auth != null",
+          ".write": "auth.token.email_verified === true"
+        },
+
+        "columns": {
+          ".read": "auth.token.email_verified === true",
+          ".write": "auth != null"
+        },
+
+        "items": {
+          ".read": "auth != null",
+          ".write": "auth != null"
+        }
+      }
+    },
+
+    "users": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    }
   }
 }
