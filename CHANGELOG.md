@@ -1,5 +1,13 @@
 # Changelog
 
+### [3.2.1](https://www.github.com/lilboards/lilboards/compare/v3.2.0...v3.2.1) (2021-07-07)
+
+
+### Bug Fixes
+
+* secure read and write to firebase with database.rules.json ([14b246c](https://www.github.com/lilboards/lilboards/commit/14b246c162e4c72d72605dc9c175cac38dce6136))
+* update database.rules.json so anonymous users can edit board ([15844c7](https://www.github.com/lilboards/lilboards/commit/15844c7e82994e5c72796353d9db198ade6e3033))
+
 ## [3.2.0](https://www.github.com/lilboards/lilboards/compare/v3.1.0...v3.2.0) (2021-07-06)
 
 
