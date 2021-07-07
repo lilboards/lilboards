@@ -3,18 +3,18 @@
     "boards": {
       "$board_id": {
         "board": {
-          ".read": "auth != null",
+          ".read": "true",
           ".write": "auth.token.email_verified === true"
         },
 
         "columns": {
-          ".read": "auth.token.email_verified === true",
-          ".write": "auth != null"
+          ".read": "auth.uid !== null",
+          ".write": "auth.uid !== null"
         },
 
         "items": {
-          ".read": "auth != null",
-          ".write": "auth != null"
+          ".read": "auth.uid !== null",
+          ".write": "auth.uid !== null"
         }
       }
     },
