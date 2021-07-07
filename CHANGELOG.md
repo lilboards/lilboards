@@ -1,5 +1,12 @@
 # Changelog
 
+### [3.2.2](https://www.github.com/lilboards/lilboards/compare/v3.2.1...v3.2.2) (2021-07-07)
+
+
+### Bug Fixes
+
+* update database.rules.json so auth user can delete board ([9d0e5b9](https://www.github.com/lilboards/lilboards/commit/9d0e5b9289e9456bf1172d891a87abfc76eeb05e))
+
 ### [3.2.1](https://www.github.com/lilboards/lilboards/compare/v3.2.0...v3.2.1) (2021-07-07)
 
 
