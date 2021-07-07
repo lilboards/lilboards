@@ -6,6 +6,7 @@
   "scripts": {
     "build": "react-scripts build",
     "eject": "react-scripts eject",
+    "firebase:deploy:database": "firebase deploy --only database",
     "firebase:emulators": "firebase emulators:start",
     "firebase:init": "firebase init",
     "firebase:login": "firebase login",
