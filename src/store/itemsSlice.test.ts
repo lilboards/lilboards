@@ -36,6 +36,17 @@ describe('updateItem', () => {
     const newState = reducer(initialState, actions.updateItem(payload));
     expect(newState).toEqual({ [itemId]: item });
   });
+
+  it('updates item and skips save', () => {
+    const payload = {
+      boardId,
+      item,
+      itemId,
+      skipSave: true,
+    };
+    const newState = reducer(initialState, actions.updateItem(payload));
+    expect(newState).toEqual({ [itemId]: item });
+  });
 });
 
 describe('likeItem', () => {
