@@ -6,10 +6,9 @@ import { useDispatch } from '../../../hooks';
 
 import type { Id } from '../../../types';
 
-export function useColumns(
-  boardId: Id,
-  dispatch: ReturnType<typeof useDispatch>
-) {
+export function useColumns(boardId: Id) {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     // subscribe on mount
     const columnsRef = getColumnsRef(boardId);
