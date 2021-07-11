@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.3.0](https://www.github.com/lilboards/lilboards/compare/v3.2.2...v3.3.0) (2021-07-11)
+
+
+### Features
+
+* **components:** log event 'update_item' to firebase analytics ([c7d3609](https://www.github.com/lilboards/lilboards/commit/c7d3609caaec369c04eea151e1fd24a9e9625a4e))
+
+
+### Performance Improvements
+
+* don't save item to firebase database on change but on blur ([9fb8e20](https://www.github.com/lilboards/lilboards/commit/9fb8e20a61c4240649959016510e49b47d0a4a72))
+
 ### [3.2.2](https://www.github.com/lilboards/lilboards/compare/v3.2.1...v3.2.2) (2021-07-07)
 
 
