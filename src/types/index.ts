@@ -27,6 +27,17 @@ export interface ColumnItemIds {
   [columnId: string]: ItemId[];
 }
 
+/**
+ * @see https://firebase.google.com/docs/reference/node/firebase.database#eventtype
+ */
+export enum EventType {
+  value = 'value',
+  child_added = 'child_added',
+  child_changed = 'child_changed',
+  child_moved = 'child_moved',
+  child_removed = 'child_removed',
+}
+
 export type Id = string;
 
 export interface Item {

@@ -4,7 +4,7 @@ import actions from '../../../actions';
 import { getColumnsRef } from '../../../firebase';
 import { useDispatch } from '../../../hooks';
 
-import type { Id } from '../../../types';
+import { EventType, Id } from '../../../types';
 
 export function useColumns(boardId: Id) {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ export function useColumns(boardId: Id) {
     // subscribe on mount
     const columnsRef = getColumnsRef(boardId);
 
-    columnsRef.on('value', (columnsSnapshot) => {
+    columnsRef.on(EventType.value, (columnsSnapshot) => {
       const columns = columnsSnapshot.val();
       /* istanbul ignore next */
       if (columns) {
@@ -25,7 +25,7 @@ export function useColumns(boardId: Id) {
 
     // unsubscribe and reset on unmount
     return function unsubscribe() {
-      columnsRef.off('value');
+      columnsRef.off(EventType.value);
       dispatch(actions.resetColumns());
     };
   }, [boardId, dispatch]);

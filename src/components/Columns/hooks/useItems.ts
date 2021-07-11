@@ -4,7 +4,7 @@ import actions from '../../../actions';
 import { getItemsRef } from '../../../firebase';
 import { useDispatch } from '../../../hooks';
 
-import type { Id } from '../../../types';
+import { EventType, Id } from '../../../types';
 
 export function useItems(boardId: Id) {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ export function useItems(boardId: Id) {
     // subscribe on mount
     const itemsRef = getItemsRef(boardId);
 
-    itemsRef.on('value', (itemsSnapshot) => {
+    itemsRef.on(EventType.value, (itemsSnapshot) => {
       const items = itemsSnapshot.val();
       /* istanbul ignore next */
       if (items) {
@@ -25,7 +25,7 @@ export function useItems(boardId: Id) {
 
     // unsubscribe and reset on unmount
     return function unsubscribe() {
-      itemsRef.off('value');
+      itemsRef.off(EventType.value);
       dispatch(actions.resetItems());
     };
   }, [boardId, dispatch]);
