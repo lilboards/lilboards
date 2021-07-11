@@ -76,6 +76,7 @@ export default function Item(props: Props) {
         itemId: props.itemId,
       })
     );
+    firebaseAnalytics.logEvent('update_item');
   }
 
   return (
