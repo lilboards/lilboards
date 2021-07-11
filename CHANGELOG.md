@@ -1,5 +1,12 @@
 # Changelog
 
+### [3.3.1](https://www.github.com/lilboards/lilboards/compare/v3.3.0...v3.3.1) (2021-07-11)
+
+
+### Bug Fixes
+
+* replace itemsRef listener "value" with child listeners ([2af4a55](https://www.github.com/lilboards/lilboards/commit/2af4a55ce0eeddf9a6a7578a8260ddeee85ff030))
+
 ## [3.3.0](https://www.github.com/lilboards/lilboards/compare/v3.2.2...v3.3.0) (2021-07-11)
 
 
