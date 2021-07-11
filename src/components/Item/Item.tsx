@@ -52,13 +52,13 @@ export default function Item(props: Props) {
     dispatch(
       actions.updateItem({
         boardId: props.boardId,
-        debounce: true,
         item: {
           text: event.target.value,
           updatedAt: Date.now(),
           updatedBy: userId,
         },
         itemId: props.itemId,
+        skipSave: true,
       })
     );
   }
@@ -69,6 +69,14 @@ export default function Item(props: Props) {
 
   function handleBlur() {
     dispatch(actions.setUserEditing({ itemId: '' }));
+    dispatch(
+      actions.updateItem({
+        boardId: props.boardId,
+        item,
+        itemId: props.itemId,
+      })
+    );
+    firebaseAnalytics.logEvent('update_item');
   }
 
   return (
