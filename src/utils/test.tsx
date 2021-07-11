@@ -15,7 +15,7 @@ import {
 import store from '../store';
 
 import type { ReactNode } from 'react';
-import type { Columns, Items } from '../types';
+import type { Columns, Item, Items } from '../types';
 
 /* istanbul ignore next */
 function noop() {}
@@ -68,12 +68,15 @@ export const updateStore = {
     store.dispatch(actions.loadColumns(payload));
   },
 
-  withItem() {
-    const item = {
+  withItem(likes = false) {
+    const item: Item = {
       createdAt: dateNow,
       createdBy: userId,
       text: 'Item One',
     };
+    if (likes) {
+      item.likes = { [userId]: true };
+    }
     const payload = { item, itemId };
     store.dispatch(actions.updateItem(payload));
     return { ...item, id: itemId };
