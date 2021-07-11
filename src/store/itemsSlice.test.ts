@@ -28,7 +28,6 @@ describe('updateItem', () => {
 
   it('updates item', () => {
     const payload = {
-      boardId,
       item,
       itemId,
       skipSave: true,

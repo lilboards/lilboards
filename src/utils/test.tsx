@@ -74,14 +74,16 @@ export const updateStore = {
       createdBy: userId,
       text: 'Item One',
     };
-    const id = itemId;
-    const payload = { [id]: item };
-    store.dispatch(actions.loadItems(payload));
-    return { ...item, id };
+    const payload = { item, itemId };
+    store.dispatch(actions.updateItem(payload));
+    return { ...item, id: itemId };
   },
 
-  withItems(payload: Items) {
-    store.dispatch(actions.loadItems(payload));
+  withItems(items: Items) {
+    Object.entries(items).forEach(([itemId, item]) => {
+      const payload = { item, itemId };
+      store.dispatch(actions.updateItem(payload));
+    });
   },
 
   withUser(email = true) {
