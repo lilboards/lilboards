@@ -29,17 +29,6 @@ describe('updateItem', () => {
   it('updates item', () => {
     const payload = {
       boardId,
-      debounce: true,
-      item,
-      itemId,
-    };
-    const newState = reducer(initialState, actions.updateItem(payload));
-    expect(newState).toEqual({ [itemId]: item });
-  });
-
-  it('updates item and skips save', () => {
-    const payload = {
-      boardId,
       item,
       itemId,
       skipSave: true,

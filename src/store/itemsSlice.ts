@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { ITEMS } from '../constants';
-import { debouncedUpdateItem, removeItem, updateItem } from '../firebase';
+import { removeItem, updateItem } from '../firebase';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Id, Item, Items } from '../types';
@@ -19,19 +19,16 @@ const slice = createSlice({
       state,
       action: PayloadAction<{
         boardId: Id;
-        debounce?: boolean;
         item: Partial<Item>;
         itemId: Id;
         skipSave?: boolean;
       }>
     ) => {
-      const { boardId, debounce, itemId, item, skipSave } = action.payload;
+      const { boardId, itemId, item, skipSave } = action.payload;
       state[itemId] = state[itemId] || {};
       Object.assign(state[itemId], item);
       if (!skipSave) {
-        debounce
-          ? debouncedUpdateItem(boardId, itemId, item)
-          : updateItem(boardId, itemId, item);
+        updateItem(boardId, itemId, item);
       }
     },
 

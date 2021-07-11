@@ -128,8 +128,6 @@ export const updateItem = (boardId: Id, itemId: Id, item: Partial<Item>) => {
   getItemRef(boardId, itemId).update(item);
 };
 
-export const debouncedUpdateItem = debounce(updateItem, HALF_SECOND);
-
 /**
  * Users.
  */
