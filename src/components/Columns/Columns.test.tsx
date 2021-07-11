@@ -9,7 +9,7 @@ import {
 } from '../../constants/test';
 import Columns from './Columns';
 
-import type { Columns as ColumnsState, Items } from '../../types';
+import { Columns as ColumnsState, EventType, Item } from '../../types';
 
 jest.mock('../../firebase', () => ({
   getColumnsRef: jest.fn(),
@@ -48,8 +48,8 @@ describe('mount', () => {
     columnsRefOff = jest.fn();
 
     columnsRefOn = jest.fn((eventType, successCallback) => {
-      if (eventType === 'value') {
-        const snapshot = {
+      if (eventType === EventType.value) {
+        const columnsSnapshot = {
           val: (): ColumnsState => ({
             [columnId]: {
               createdAt: Date.now(),
@@ -59,7 +59,7 @@ describe('mount', () => {
             },
           }),
         };
-        successCallback(snapshot);
+        successCallback(columnsSnapshot);
       }
     });
 
@@ -71,17 +71,16 @@ describe('mount', () => {
     itemsRefOff = jest.fn();
 
     itemsRefOn = jest.fn((eventType, successCallback) => {
-      if (eventType === 'value') {
-        const snapshot = {
-          val: (): Items => ({
-            [itemId]: {
-              createdAt: Date.now(),
-              createdBy: userId,
-              text: itemText,
-            },
+      if (eventType === EventType.child_added) {
+        const itemSnapshot = {
+          val: (): Item => ({
+            createdAt: Date.now(),
+            createdBy: userId,
+            text: itemText,
           }),
+          key: itemId,
         };
-        successCallback(snapshot);
+        successCallback(itemSnapshot);
       }
     });
 
@@ -119,12 +118,13 @@ describe('mount', () => {
     expect(screen.queryAllByText('Column 1')).toHaveLength(0);
   });
 
-  it('listens to columns and items from database', () => {
+  it('attaches listeners to columns and items refs', () => {
     const { unmount } = renderWithStore(<Columns boardId={boardId} />);
-    expect(columnsRefOn).toHaveBeenCalledTimes(1);
-    expect(itemsRefOn).toHaveBeenCalledTimes(1);
+    expect(columnsRefOn).toBeCalledTimes(1);
+    expect(itemsRefOn).toBeCalledTimes(3);
+
     unmount();
-    expect(columnsRefOff).toHaveBeenCalledTimes(1);
-    expect(itemsRefOff).toHaveBeenCalledTimes(1);
+    expect(columnsRefOff).toBeCalledTimes(1);
+    expect(itemsRefOff).toBeCalledTimes(3);
   });
 });

@@ -83,18 +83,22 @@ describe('unlikeItem', () => {
   });
 });
 
-describe('loadItems', () => {
-  it('sets items', () => {
-    const payload = { [itemId]: item };
-    const newState = reducer(initialState, actions.loadItems(payload));
-    expect(newState).toBe(payload);
-  });
-});
-
 describe('removeItem', () => {
   it('deletes item', () => {
     const payload = { boardId, itemId };
     expect(reducer(state, actions.removeItem(payload))).toEqual({});
+  });
+
+  it('deletes item from items', () => {
+    const itemId2 = `${itemId}2`;
+    const state = {
+      [itemId]: item,
+      [itemId2]: item,
+    };
+    const payload = { itemId: itemId2, skipSave: true };
+    expect(reducer(state, actions.removeItem(payload))).toEqual({
+      [itemId]: item,
+    });
   });
 });
 
