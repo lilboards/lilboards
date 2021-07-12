@@ -10,17 +10,18 @@ export function useLikes(boardId: Id) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // subscribe on mount
     const likesRef = getLikesRef(boardId);
 
+    // subscribe on mount
     likesRef.on(EventType.value, (likesSnapshot) => {
       const likes = likesSnapshot.val();
-      /* istanbul ignore next */
-      if (likes) {
-        setTimeout(() => {
+      setTimeout(() => {
+        if (likes) {
           dispatch(actions.loadLikes(likes));
-        });
-      }
+        } else {
+          dispatch(actions.resetLikes());
+        }
+      });
     });
 
     // unsubscribe and reset on unmount
