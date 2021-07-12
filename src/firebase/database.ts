@@ -123,16 +123,16 @@ export const updateItem = (boardId: Id, itemId: Id, item: Partial<Item>) => {
  */
 export const getLikesRef = (boardId: Id) => getBoardRef(boardId).child(LIKES);
 
-const getItemLikesRef = (boardId: Id) => getLikesRef(boardId).child(ITEMS);
+const getLikesItemsRef = (boardId: Id) => getLikesRef(boardId).child(ITEMS);
 
 export const likeItem = (boardId: Id, itemId: Id, userId: Id) => {
-  getItemLikesRef(boardId)
+  getLikesItemsRef(boardId)
     .child(itemId)
     .update({ [userId]: true });
 };
 
 export const unlikeItem = (boardId: Id, itemId: Id, userId: Id) => {
-  getItemLikesRef(boardId).child(itemId).child(userId).remove();
+  getLikesItemsRef(boardId).child(itemId).child(userId).remove();
 };
 
 /**
