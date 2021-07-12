@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   debouncedUpdateColumn,
   removeColumn,
-  removeItem,
   saveColumnItemIds,
   updateColumn,
 } from '../firebase';
@@ -46,10 +45,6 @@ const columnsSlice = createSlice({
     ) => {
       const { boardId, columnId } = action.payload;
       removeColumn(boardId, columnId);
-      /* istanbul ignore next */
-      (state[columnId].itemIds || []).forEach((itemId) =>
-        removeItem(boardId, itemId)
-      );
       delete state[columnId];
     },
 

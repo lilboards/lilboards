@@ -26,6 +26,9 @@ export default function ColumnName(props: Props) {
   const readOnly = useSelector(
     (state) => (state.boards[props.boardId] || {}).createdBy !== state.user.id
   );
+  const itemIds = useSelector(
+    (state) => (state.columns[props.columnId] || {}).itemIds || []
+  );
   const userId = useSelector((state) => state.user.id);
 
   if (readOnly) {
@@ -60,6 +63,14 @@ export default function ColumnName(props: Props) {
         columnId: props.columnId,
       })
     );
+    itemIds.forEach((itemId) => {
+      dispatch(
+        actions.removeItem({
+          boardId: props.boardId,
+          itemId,
+        })
+      );
+    });
     firebaseAnalytics.logEvent('delete_column');
   }
 
