@@ -56,6 +56,14 @@ describe('loadLikes', () => {
   });
 });
 
+describe('removeLikesItem', () => {
+  it('deletes item', () => {
+    const payload = { boardId, itemId };
+    const newState = reducer(state, actions.removeLikesItem(payload));
+    expect(newState).toEqual({ items: {} });
+  });
+});
+
 describe('resetLikes', () => {
   it('sets initialState', () => {
     expect(reducer(state, actions.resetLikes())).toBe(initialState);

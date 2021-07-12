@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { LIKES } from '../constants';
-import { likeItem, unlikeItem } from '../firebase';
+import { likeItem, removeLikesItem, unlikeItem } from '../firebase';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Id, Likes } from '../types';
@@ -40,6 +40,15 @@ const likesSlice = createSlice({
 
     loadLikes: (state, action: PayloadAction<Likes>) => {
       return action.payload;
+    },
+
+    removeLikesItem: (
+      state,
+      action: PayloadAction<{ boardId: Id; itemId: Id }>
+    ) => {
+      const { boardId, itemId } = action.payload;
+      delete state.items[itemId];
+      removeLikesItem(boardId, itemId);
     },
 
     resetLikes: () => {

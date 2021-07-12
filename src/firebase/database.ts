@@ -131,6 +131,10 @@ export const likeItem = (boardId: Id, itemId: Id, userId: Id) => {
     .update({ [userId]: true });
 };
 
+export const removeLikesItem = (boardId: Id, itemId: Id) => {
+  getLikesItemsRef(boardId).child(itemId).remove();
+};
+
 export const unlikeItem = (boardId: Id, itemId: Id, userId: Id) => {
   getLikesItemsRef(boardId).child(itemId).child(userId).remove();
 };
