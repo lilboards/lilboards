@@ -7,7 +7,7 @@ import {
   saveColumnItemIds,
   updateColumn,
 } from '../firebase';
-import { COLUMNS, ITEM_IDS } from '../constants';
+import { COLUMNS } from '../constants';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Column, ColumnItemIds, Columns, Id } from '../types';
@@ -47,7 +47,7 @@ const columnsSlice = createSlice({
       const { boardId, columnId } = action.payload;
       removeColumn(boardId, columnId);
       /* istanbul ignore next */
-      (state[columnId][ITEM_IDS] || []).forEach((itemId) =>
+      (state[columnId].itemIds || []).forEach((itemId) =>
         removeItem(boardId, itemId)
       );
       delete state[columnId];
@@ -75,8 +75,8 @@ const columnsSlice = createSlice({
       const { boardId, columnId, itemId } = action.payload;
       const column = state[columnId];
       if (column) {
-        const itemIds = (column[ITEM_IDS] || []).filter((id) => id !== itemId);
-        column[ITEM_IDS] = itemIds;
+        const itemIds = (column.itemIds || []).filter((id) => id !== itemId);
+        column.itemIds = itemIds;
         saveColumnItemIds(boardId, { [columnId]: itemIds });
       }
     },
