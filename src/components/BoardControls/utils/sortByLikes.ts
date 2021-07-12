@@ -1,16 +1,16 @@
 import { cloneArray, countObject } from '../../../utils';
 
-import type { ColumnItemIds, Columns, Items } from '../../../types';
+import type { ColumnItemIds, Columns, Likes } from '../../../types';
 
-export function sortByLikes(columns: Columns, items: Items): ColumnItemIds {
+export function sortByLikes(columns: Columns, likes: Likes): ColumnItemIds {
   const columnItemIds: ColumnItemIds = {};
 
   for (const columnId in columns) {
     const { itemIds } = columns[columnId];
 
     columnItemIds[columnId] = cloneArray(itemIds).sort((itemId1, itemId2) => {
-      const likes1 = countObject(items[itemId1].likes);
-      const likes2 = countObject(items[itemId2].likes);
+      const likes1 = countObject(likes.items[itemId1]);
+      const likes2 = countObject(likes.items[itemId2]);
       return likes2 - likes1;
     });
   }

@@ -4,7 +4,6 @@ import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbUpFilledIcon from '@material-ui/icons/ThumbUp';
 
 import actions from '../../actions';
-import { likeItem, unlikeItem } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import { countObject } from '../../utils';
 
@@ -18,28 +17,21 @@ type Props = {
 export default function Likes(props: Props) {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user.id);
-  const likes = useSelector((state) => {
-    const item = state.items[props.itemId];
-    return (item && item.likes) || {};
-  });
+  const likes = useSelector((state) => state.likes.items[props.itemId] || {});
 
   const count = countObject(likes);
   const isLikedByUser = likes[userId];
 
   function handleClick() {
-    if (!userId) {
-      return;
-    }
     const payload = {
+      boardId: props.boardId,
       itemId: props.itemId,
       userId,
     };
     if (isLikedByUser) {
       dispatch(actions.unlikeItem(payload));
-      unlikeItem(props.boardId, props.itemId, userId);
     } else {
       dispatch(actions.likeItem(payload));
-      likeItem(props.boardId, props.itemId, userId);
     }
   }
 

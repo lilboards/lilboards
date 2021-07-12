@@ -29,7 +29,6 @@ export function useItems(boardId: Id) {
     itemsRef.on(EventType.child_changed, (itemSnapshot) => {
       setTimeout(() => {
         const item: Item = itemSnapshot.val();
-        item.likes = item.likes || {};
         dispatch(
           actions.updateItem({
             item,

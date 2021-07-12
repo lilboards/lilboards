@@ -114,7 +114,7 @@ describe(`${EventType.child_changed}`, () => {
   });
 
   it('updates item in store', (done) => {
-    updateStore.withItem(true);
+    updateStore.withItem();
     renderWithStore(<TestComponent />);
     setTimeout(() => {
       expect(getStoreState().items).toMatchInlineSnapshot(`
@@ -122,7 +122,6 @@ describe(`${EventType.child_changed}`, () => {
           "item_test_id": Object {
             "createdAt": 1234567890,
             "createdBy": "user_test_id",
-            "likes": Object {},
             "text": "Item text2",
             "updatedAt": 1234567892,
             "updatedBy": "user_test_id2",
