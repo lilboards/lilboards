@@ -70,6 +70,12 @@ export default function ColumnName(props: Props) {
           itemId,
         })
       );
+      dispatch(
+        actions.removeLikesItem({
+          boardId: props.boardId,
+          itemId,
+        })
+      );
     });
     firebaseAnalytics.logEvent('delete_column');
   }
