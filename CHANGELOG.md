@@ -1,5 +1,24 @@
 # Changelog
 
+## [4.0.0](https://www.github.com/lilboards/lilboards/compare/v3.3.1...v4.0.0) (2021-07-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* likes is saved in board instead of item in database
+
+### Bug Fixes
+
+* **database:** enable read/write permissions for likes (auth.uid) ([ce3b0d3](https://www.github.com/lilboards/lilboards/commit/ce3b0d399b14da362ad2d1dc9c4271aee444be8b))
+* **hooks:** reset likes store if likes snapshot value is null ([34a6c63](https://www.github.com/lilboards/lilboards/commit/34a6c63554784bb3edb839697d7cabfcfbb5e274))
+* remove likes item from database when item is deleted ([5144b2f](https://www.github.com/lilboards/lilboards/commit/5144b2f4d03a98a6c30ea675ababe4d364e5b033))
+* remove likes item(s) from database when column is deleted ([eae1082](https://www.github.com/lilboards/lilboards/commit/eae1082d7ae1c1f0a825726dbfd0028918bd9b16))
+
+
+### Code Refactoring
+
+* change where likes are saved in store and database ([8941630](https://www.github.com/lilboards/lilboards/commit/894163014f2e1113a29ddc084874fb4ca921cfb4))
+
 ### [3.3.1](https://www.github.com/lilboards/lilboards/compare/v3.3.0...v3.3.1) (2021-07-11)
 
 
