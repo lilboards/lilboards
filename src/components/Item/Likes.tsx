@@ -5,6 +5,7 @@ import ThumbUpFilledIcon from '@material-ui/icons/ThumbUp';
 
 import actions from '../../actions';
 import { useDispatch, useSelector } from '../../hooks';
+import { firebaseAnalytics } from '../../firebase';
 import { countObject } from '../../utils';
 
 import type { Id } from '../../types';
@@ -30,8 +31,10 @@ export default function Likes(props: Props) {
     };
     if (isLikedByUser) {
       dispatch(actions.unlikeItem(payload));
+      firebaseAnalytics.logEvent('unlike_item');
     } else {
       dispatch(actions.likeItem(payload));
+      firebaseAnalytics.logEvent('like_item');
     }
   }
 
