@@ -4,7 +4,7 @@ import Column from '../Column';
 import DragDropContainer from './DragDropContainer';
 
 import { useSelector } from '../../hooks';
-import { useColumns, useItems } from './hooks';
+import { useColumns, useItems, useLikes } from './hooks';
 
 import type { Id } from '../../types';
 
@@ -15,6 +15,7 @@ type Props = {
 export default function Columns(props: Props) {
   useColumns(props.boardId);
   useItems(props.boardId);
+  useLikes(props.boardId);
   const columnIds = useSelector((state) => Object.keys(state.columns));
 
   return (

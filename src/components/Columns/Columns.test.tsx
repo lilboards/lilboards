@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { renderWithStore, updateStore } from '../../utils/test';
-import { getColumnsRef, getItemsRef } from '../../firebase';
+import { getColumnsRef, getItemsRef, getLikesRef } from '../../firebase';
 import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
@@ -9,22 +9,26 @@ import {
 } from '../../constants/test';
 import Columns from './Columns';
 
-import { Columns as ColumnsState, EventType, Item } from '../../types';
+import { Columns as ColumnsState, EventType, Item, Likes } from '../../types';
 
 jest.mock('../../firebase', () => ({
   getColumnsRef: jest.fn(),
   getItemsRef: jest.fn(),
+  getLikesRef: jest.fn(),
 }));
 
 beforeEach(() => {
   (getColumnsRef as jest.Mock).mockReturnValueOnce({
-    off: jest.fn(),
     on: jest.fn(),
+    off: jest.fn(),
   });
-
   (getItemsRef as jest.Mock).mockReturnValueOnce({
-    off: jest.fn(),
     on: jest.fn(),
+    off: jest.fn(),
+  });
+  (getLikesRef as jest.Mock).mockReturnValueOnce({
+    on: jest.fn(),
+    off: jest.fn(),
   });
 });
 
@@ -36,17 +40,19 @@ it('renders column', () => {
 });
 
 describe('mount', () => {
-  let columnsRefOff: jest.Mock;
   let columnsRefOn: jest.Mock;
-  let itemsRefOff: jest.Mock;
+  let columnsRefOff: jest.Mock;
+
   let itemsRefOn: jest.Mock;
+  let itemsRefOff: jest.Mock;
+
+  let likesRefOn: jest.Mock;
+  let likesRefOff: jest.Mock;
 
   const columnName = 'My Column';
   const itemText = 'My Item';
 
   beforeEach(() => {
-    columnsRefOff = jest.fn();
-
     columnsRefOn = jest.fn((eventType, successCallback) => {
       if (eventType === EventType.value) {
         const columnsSnapshot = {
@@ -62,13 +68,11 @@ describe('mount', () => {
         successCallback(columnsSnapshot);
       }
     });
-
+    columnsRefOff = jest.fn();
     (getColumnsRef as jest.Mock).mockReset().mockReturnValueOnce({
-      off: columnsRefOff,
       on: columnsRefOn,
+      off: columnsRefOff,
     });
-
-    itemsRefOff = jest.fn();
 
     itemsRefOn = jest.fn((eventType, successCallback) => {
       if (eventType === EventType.child_added) {
@@ -83,10 +87,30 @@ describe('mount', () => {
         successCallback(itemSnapshot);
       }
     });
-
+    itemsRefOff = jest.fn();
     (getItemsRef as jest.Mock).mockReset().mockReturnValueOnce({
-      off: itemsRefOff,
       on: itemsRefOn,
+      off: itemsRefOff,
+    });
+
+    likesRefOn = jest.fn((eventType, successCallback) => {
+      if (eventType === EventType.value) {
+        const likesSnapshot = {
+          val: (): Likes => ({
+            items: {
+              [itemId]: {
+                [userId]: true,
+              },
+            },
+          }),
+        };
+        successCallback(likesSnapshot);
+      }
+    });
+    likesRefOff = jest.fn();
+    (getLikesRef as jest.Mock).mockReset().mockReturnValueOnce({
+      on: likesRefOn,
+      off: likesRefOff,
     });
   });
 
@@ -110,6 +134,12 @@ describe('mount', () => {
     expect(await screen.findByDisplayValue(itemText)).toBeInTheDocument();
   });
 
+  it('renders liked item', async () => {
+    updateStore.withUser();
+    renderWithStore(<Columns boardId={boardId} />);
+    expect(await screen.findByLabelText(/1 like for item/)).toBeInTheDocument();
+  });
+
   it('removes columns on unmount', async () => {
     const { unmount } = renderWithStore(<Columns boardId={boardId} />);
     expect(await screen.findAllByText(columnName)).toHaveLength(1);
@@ -118,13 +148,15 @@ describe('mount', () => {
     expect(screen.queryAllByText('Column 1')).toHaveLength(0);
   });
 
-  it('attaches listeners to columns and items refs', () => {
+  it('attaches ref listeners', () => {
     const { unmount } = renderWithStore(<Columns boardId={boardId} />);
     expect(columnsRefOn).toBeCalledTimes(1);
     expect(itemsRefOn).toBeCalledTimes(3);
+    expect(likesRefOn).toBeCalledTimes(1);
 
     unmount();
     expect(columnsRefOff).toBeCalledTimes(1);
     expect(itemsRefOff).toBeCalledTimes(3);
+    expect(likesRefOff).toBeCalledTimes(1);
   });
 });

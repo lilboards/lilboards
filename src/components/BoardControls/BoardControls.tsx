@@ -17,7 +17,7 @@ type Props = {
 export default function BoardControls(props: Props) {
   const dispatch = useDispatch();
   const columns = useSelector((state) => state.columns);
-  const items = useSelector((state) => state.items);
+  const likes = useSelector((state) => state.likes);
   const canEdit = useSelector(
     (state) => (state.boards[props.boardId] || {}).createdBy === state.user.id
   );
@@ -45,7 +45,7 @@ export default function BoardControls(props: Props) {
     dispatch(
       actions.setColumnItemIds({
         boardId: props.boardId,
-        columnItemIds: sortByLikes(columns, items),
+        columnItemIds: sortByLikes(columns, likes),
       })
     );
   }

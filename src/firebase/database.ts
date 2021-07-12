@@ -110,22 +110,33 @@ export const getItemsRef = (boardId: Id) => getBoardRef(boardId).child(ITEMS);
 export const getItemRef = (boardId: Id, itemId: Id) =>
   getItemsRef(boardId).child(itemId);
 
-export const likeItem = (boardId: Id, itemId: Id, userId: Id) => {
-  getItemRef(boardId, itemId)
-    .child(LIKES)
-    .update({ [userId]: true });
-};
-
 export const removeItem = (boardId: Id, itemId: Id) => {
   getItemRef(boardId, itemId).remove();
 };
 
-export const unlikeItem = (boardId: Id, itemId: Id, userId: Id) => {
-  getItemRef(boardId, itemId).child(LIKES).child(userId).remove();
-};
-
 export const updateItem = (boardId: Id, itemId: Id, item: Partial<Item>) => {
   getItemRef(boardId, itemId).update(item);
+};
+
+/**
+ * Likes.
+ */
+export const getLikesRef = (boardId: Id) => getBoardRef(boardId).child(LIKES);
+
+const getLikesItemsRef = (boardId: Id) => getLikesRef(boardId).child(ITEMS);
+
+export const likeItem = (boardId: Id, itemId: Id, userId: Id) => {
+  getLikesItemsRef(boardId)
+    .child(itemId)
+    .update({ [userId]: true });
+};
+
+export const removeLikesItem = (boardId: Id, itemId: Id) => {
+  getLikesItemsRef(boardId).child(itemId).remove();
+};
+
+export const unlikeItem = (boardId: Id, itemId: Id, userId: Id) => {
+  getLikesItemsRef(boardId).child(itemId).child(userId).remove();
 };
 
 /**

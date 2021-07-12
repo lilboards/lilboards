@@ -45,6 +45,12 @@ export default function Item(props: Props) {
         itemId: props.itemId,
       })
     );
+    dispatch(
+      actions.removeLikesItem({
+        boardId: props.boardId,
+        itemId: props.itemId,
+      })
+    );
     firebaseAnalytics.logEvent('delete_item');
   }
 

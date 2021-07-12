@@ -33,27 +33,6 @@ const slice = createSlice({
       }
     },
 
-    likeItem: (state, action: PayloadAction<{ itemId: Id; userId: Id }>) => {
-      const { itemId, userId } = action.payload;
-      if (userId) {
-        const item = state[itemId];
-        if (item) {
-          item.likes = item.likes || {};
-          item.likes[userId] = true;
-        }
-      }
-    },
-
-    unlikeItem: (state, action: PayloadAction<{ itemId: Id; userId: Id }>) => {
-      const { itemId, userId } = action.payload;
-      if (userId) {
-        const item = state[itemId];
-        if (item && item.likes) {
-          delete item.likes[userId];
-        }
-      }
-    },
-
     removeItem: (
       state,
       action: PayloadAction<{ boardId?: Id; itemId: Id; skipSave?: boolean }>

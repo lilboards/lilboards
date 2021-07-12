@@ -43,9 +43,6 @@ export type Id = string;
 export interface Item {
   createdAt: Time;
   createdBy: UserId;
-  likes?: {
-    [userId: string]: boolean;
-  };
   text: string;
   updatedAt?: Time;
   updatedBy?: UserId;
@@ -55,6 +52,14 @@ type ItemId = Id;
 
 export interface Items {
   [itemId: string]: Item;
+}
+
+export interface Likes {
+  items: {
+    [itemId: string]: {
+      [userId: string]: boolean;
+    };
+  };
 }
 
 type Time = ReturnType<typeof Date.now>;

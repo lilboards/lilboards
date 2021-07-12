@@ -75,37 +75,21 @@ describe('sort', () => {
 
   it('sorts column items by likes', () => {
     const board = updateStore.withBoard();
-    const itemId1 = `${itemId}1`;
     const itemId2 = `${itemId}2`;
-    const now = Date.now();
     updateStore.withColumns({
       [columnId]: {
-        createdAt: now,
+        createdAt: dateNow,
         createdBy: userId,
-        itemIds: [itemId1, itemId2],
+        itemIds: [itemId2, itemId],
         name: '',
       },
     });
-    updateStore.withItems({
-      [itemId1]: {
-        createdAt: now,
-        createdBy: userId,
-        text: '',
-      },
-      [itemId2]: {
-        createdAt: now,
-        createdBy: userId,
-        likes: {
-          [userId]: true,
-        },
-        text: '',
-      },
-    });
+    updateStore.withLike();
     renderWithStore(<BoardControls boardId={board.id} />);
     fireEvent.click(screen.getByText('Sort by likes'));
     expect(getStoreState().columns[columnId].itemIds).toEqual([
+      itemId,
       itemId2,
-      itemId1,
     ]);
   });
 });

@@ -13,7 +13,7 @@ const props = {
 
 describe('without user and item', () => {
   beforeEach(() => {
-    renderWithStore(<Likes {...props} />);
+    renderWithStore(<Likes boardId={boardId} itemId="" />);
   });
 
   it('renders like button', () => {
@@ -21,12 +21,6 @@ describe('without user and item', () => {
   });
 
   it('renders like count', () => {
-    expect(screen.getByText('0')).toBeInTheDocument();
-    expect(screen.getByLabelText(/0 likes/)).toBeInTheDocument();
-  });
-
-  it('does nothing when button is clicked', () => {
-    fireEvent.click(screen.getByLabelText(/Like item/));
     expect(screen.getByText('0')).toBeInTheDocument();
     expect(screen.getByLabelText(/0 likes/)).toBeInTheDocument();
   });

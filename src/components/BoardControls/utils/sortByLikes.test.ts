@@ -7,12 +7,6 @@ const column = {
   name: '',
 };
 
-const item = {
-  createdAt: Date.now(),
-  createdBy: userId,
-  text: '',
-};
-
 it('returns column item id sorted by likes', () => {
   const columns = {
     column1: {
@@ -21,17 +15,16 @@ it('returns column item id sorted by likes', () => {
     },
   };
 
-  const items = {
-    item1: item,
-    item2: {
-      ...item,
-      likes: {
+  const likes = {
+    items: {
+      item1: {},
+      item2: {
         user1: true,
       },
     },
   };
 
-  expect(sortByLikes(columns, items)).toEqual({
+  expect(sortByLikes(columns, likes)).toEqual({
     column1: ['item2', 'item1'],
   });
 });

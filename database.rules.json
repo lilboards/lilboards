@@ -17,6 +17,11 @@
         "items": {
           ".read": "auth.uid !== null",
           ".write": "auth.uid !== null"
+        },
+
+        "likes": {
+          ".read": "auth.uid !== null",
+          ".write": "auth.uid !== null"
         }
       }
     },
