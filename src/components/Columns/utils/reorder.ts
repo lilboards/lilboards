@@ -5,9 +5,9 @@ import type { DraggableLocation } from 'react-beautiful-dnd';
 import type { Columns } from '../../../types';
 
 export function reorder(
-  columns: Columns,
   source: DraggableLocation,
-  destination: DraggableLocation
+  destination: DraggableLocation,
+  columns: Columns
 ) {
   const sourceColumnId = source.droppableId;
   const sourceColumn = columns[sourceColumnId] || {};

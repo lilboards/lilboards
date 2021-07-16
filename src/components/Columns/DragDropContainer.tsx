@@ -72,7 +72,7 @@ export default function DragDropContainer(props: Props) {
     dispatch(
       actions.setColumnItemIds({
         boardId: props.boardId,
-        columnItemIds: reorder(columns, source, destination),
+        columnItemIds: reorder(source, destination, columns),
       })
     );
   }

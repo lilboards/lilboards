@@ -31,7 +31,7 @@ it('does not throw when columns is empty', () => {
     droppableId,
     index: 0,
   };
-  expect(reorder(columns, source, destination)).toEqual({
+  expect(reorder(source, destination, columns)).toEqual({
     [columnId1]: [],
   });
 });
@@ -49,7 +49,7 @@ it('does not throw when column itemIds is missing', () => {
     droppableId,
     index: 0,
   };
-  expect(reorder(columns, source, destination)).toEqual({
+  expect(reorder(source, destination, columns)).toEqual({
     [columnId1]: [],
   });
 });
@@ -64,7 +64,7 @@ describe('dropped in the same column', () => {
         index,
       };
       const destination = source;
-      expect(reorder(columns, source, destination)).toEqual({
+      expect(reorder(source, destination, columns)).toEqual({
         [columnId1]: itemIds,
       });
     });
@@ -79,7 +79,7 @@ describe('dropped in the same column', () => {
       droppableId,
       index: 0,
     };
-    expect(reorder(columns, source, destination)).toEqual({
+    expect(reorder(source, destination, columns)).toEqual({
       [columnId1]: reorderArray(itemIds, source.index, destination.index),
     });
   });
@@ -95,7 +95,7 @@ describe('dropped in a different column', () => {
       droppableId: columnId2,
       index: 0,
     };
-    expect(reorder(columns, source, destination)).toEqual({
+    expect(reorder(source, destination, columns)).toEqual({
       [columnId1]: itemIds.slice(1, 3),
       [columnId2]: itemIds.slice(0, 1),
     });
