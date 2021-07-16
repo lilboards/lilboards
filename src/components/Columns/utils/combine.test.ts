@@ -43,7 +43,7 @@ it('returns items to update and remove', () => {
     type: 'DEFAULT',
   };
 
-  expect(combine(items, result)).toEqual({
+  expect(combine(result, items)).toEqual({
     remove: {
       columnId,
       itemId: itemId1,

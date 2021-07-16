@@ -22,7 +22,7 @@ export default function DragDropContainer(props: Props) {
   /* istanbul ignore next */
   function handleDragEnd(result: DropResult) {
     if (result.combine) {
-      const { remove, update } = combine(items, result);
+      const { remove, update } = combine(result, items);
 
       // update item
       dispatch(
