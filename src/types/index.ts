@@ -54,10 +54,12 @@ export interface Items {
   [itemId: string]: Item;
 }
 
+export interface LikeItem {
+  [userId: string]: boolean;
+}
+
 export interface LikeItems {
-  [itemId: string]: {
-    [userId: string]: boolean;
-  };
+  [itemId: string]: LikeItem;
 }
 
 export interface Likes {
