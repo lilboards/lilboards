@@ -9,7 +9,7 @@ import {
 } from '../firebase';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Id, LikeItem, Likes } from '../types';
+import type { Id, Likes, LikesItem } from '../types';
 
 export const initialState: Likes = {
   items: {},
@@ -62,7 +62,7 @@ const likesSlice = createSlice({
 
     setLikesItem: (
       state,
-      action: PayloadAction<{ boardId: Id; itemId: Id; likes: LikeItem }>
+      action: PayloadAction<{ boardId: Id; itemId: Id; likes: LikesItem }>
     ) => {
       const { boardId, itemId, likes } = action.payload;
       state.items[itemId] = likes;
