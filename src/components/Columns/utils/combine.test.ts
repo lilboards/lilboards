@@ -1,6 +1,7 @@
 import {
-  ITEM_TEST_ID as itemId,
   COLUMN_TEST_ID as columnId,
+  DATE_NOW as dateNow,
+  ITEM_TEST_ID as itemId,
   USER_TEST_ID as userId,
 } from '../../../constants/test';
 import { combine } from './combine';
@@ -11,13 +12,13 @@ const itemId1 = `${itemId}1`;
 const itemId2 = `${itemId}2`;
 
 const item1 = {
-  createdAt: Date.now(),
+  createdAt: dateNow,
   createdBy: userId,
   text: ' Item 1 text ',
 };
 
 const item2 = {
-  createdAt: Date.now(),
+  createdAt: dateNow,
   createdBy: userId,
   text: '\nItem 2 text\n',
 };
@@ -43,18 +44,20 @@ it('returns items to update and remove', () => {
     type: 'DEFAULT',
   };
 
-  expect(combine(result, items)).toEqual({
-    remove: {
-      columnId,
-      itemId: itemId1,
-    },
-    update: {
-      itemId: itemId2,
-      text: `${item2.text.trim()}
+  expect(combine(result, items)).toMatchInlineSnapshot(`
+    Object {
+      "remove": Object {
+        "columnId": "column_test_id",
+        "itemId": "item_test_id1",
+      },
+      "update": Object {
+        "itemId": "item_test_id2",
+        "text": "Item 2 text
 
----
+    ---
 
-${item1.text.trim()}`,
-    },
-  });
+    Item 1 text",
+      },
+    }
+  `);
 });
