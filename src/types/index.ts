@@ -54,12 +54,14 @@ export interface Items {
   [itemId: string]: Item;
 }
 
-export interface Likes {
-  items: {
-    [itemId: string]: {
-      [userId: string]: boolean;
-    };
+export interface LikeItems {
+  [itemId: string]: {
+    [userId: string]: boolean;
   };
+}
+
+export interface Likes {
+  items: LikeItems;
 }
 
 type Time = ReturnType<typeof Date.now>;
