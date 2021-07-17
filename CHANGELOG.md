@@ -1,5 +1,12 @@
 # Changelog
 
+### [4.0.1](https://www.github.com/lilboards/lilboards/compare/v4.0.0...v4.0.1) (2021-07-17)
+
+
+### Bug Fixes
+
+* update likes on combine items ([24e2bdf](https://www.github.com/lilboards/lilboards/commit/24e2bdfcafea778d6cb96235c8865b10989003e9))
+
 ## [4.0.0](https://www.github.com/lilboards/lilboards/compare/v3.3.1...v4.0.0) (2021-07-12)
 
 
