@@ -69,3 +69,25 @@ describe('resetLikes', () => {
     expect(reducer(state, actions.resetLikes())).toBe(initialState);
   });
 });
+
+describe('setLikesItem', () => {
+  it('overrides item likes', () => {
+    const payload = {
+      boardId,
+      itemId,
+      likes: {
+        [`${userId}2`]: true,
+      },
+    };
+    const newState = reducer(state, actions.setLikesItem(payload));
+    expect(newState).toMatchInlineSnapshot(`
+      Object {
+        "items": Object {
+          "item_test_id": Object {
+            "user_test_id2": true,
+          },
+        },
+      }
+    `);
+  });
+});

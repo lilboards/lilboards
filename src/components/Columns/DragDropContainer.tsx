@@ -17,12 +17,13 @@ export default function DragDropContainer(props: Props) {
   const dispatch = useDispatch();
   const columns = useSelector((state) => state.columns);
   const items = useSelector((state) => state.items);
+  const likes = useSelector((state) => state.likes.items);
   const userId = useSelector((state) => state.user.id);
 
   /* istanbul ignore next */
   function handleDragEnd(result: DropResult) {
     if (result.combine) {
-      const { remove, update } = combine(result, items);
+      const { remove, update } = combine(result, items, likes);
 
       // update item
       dispatch(
@@ -34,6 +35,22 @@ export default function DragDropContainer(props: Props) {
             updatedBy: userId,
           },
           itemId: update.itemId,
+        })
+      );
+
+      // update likes
+      dispatch(
+        actions.setLikesItem({
+          boardId: props.boardId,
+          itemId: update.itemId,
+          likes: update.likes,
+        })
+      );
+
+      dispatch(
+        actions.removeLikesItem({
+          boardId: props.boardId,
+          itemId: remove.itemId,
         })
       );
 

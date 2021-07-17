@@ -28,6 +28,16 @@ const items = {
   [itemId2]: item2,
 };
 
+const likes = {
+  [itemId1]: {
+    [userId]: true,
+  },
+  [itemId2]: {
+    [userId]: true,
+    [`${userId}2`]: true,
+  },
+};
+
 it('returns items to update and remove', () => {
   const result: DropResult = {
     combine: {
@@ -44,7 +54,7 @@ it('returns items to update and remove', () => {
     type: 'DEFAULT',
   };
 
-  expect(combine(result, items)).toMatchInlineSnapshot(`
+  expect(combine(result, items, likes)).toMatchInlineSnapshot(`
     Object {
       "remove": Object {
         "columnId": "column_test_id",
@@ -52,6 +62,10 @@ it('returns items to update and remove', () => {
       },
       "update": Object {
         "itemId": "item_test_id2",
+        "likes": Object {
+          "user_test_id": true,
+          "user_test_id2": true,
+        },
         "text": "Item 2 text
 
     ---

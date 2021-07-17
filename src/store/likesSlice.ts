@@ -1,10 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { LIKES } from '../constants';
-import { likeItem, removeLikesItem, unlikeItem } from '../firebase';
+import {
+  likeItem,
+  removeLikesItem,
+  setLikesItem,
+  unlikeItem,
+} from '../firebase';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Id, Likes } from '../types';
+import type { Id, LikeItem, Likes } from '../types';
 
 export const initialState: Likes = {
   items: {},
@@ -53,6 +58,15 @@ const likesSlice = createSlice({
 
     resetLikes: () => {
       return initialState;
+    },
+
+    setLikesItem: (
+      state,
+      action: PayloadAction<{ boardId: Id; itemId: Id; likes: LikeItem }>
+    ) => {
+      const { boardId, itemId, likes } = action.payload;
+      state.items[itemId] = likes;
+      setLikesItem(boardId, itemId, likes);
     },
   },
 });
