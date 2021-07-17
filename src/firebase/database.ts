@@ -15,7 +15,7 @@ import {
   USERS,
 } from '../constants';
 
-import type { Board, Column, Id, Item } from '../types';
+import type { Board, Column, Id, Item, LikeItem } from '../types';
 
 const firebaseDatabase = firebaseApp.database();
 
@@ -129,6 +129,10 @@ export const likeItem = (boardId: Id, itemId: Id, userId: Id) => {
   getLikesItemsRef(boardId)
     .child(itemId)
     .update({ [userId]: true });
+};
+
+export const setLikesItem = (boardId: Id, itemId: Id, likeItem: LikeItem) => {
+  getLikesItemsRef(boardId).child(itemId).set(likeItem);
 };
 
 export const removeLikesItem = (boardId: Id, itemId: Id) => {
