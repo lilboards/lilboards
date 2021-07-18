@@ -6,7 +6,7 @@ import Columns from '../Columns';
 import Layout from '../Layout';
 
 import { useAuth } from '../../hooks';
-import { useBoard } from './useBoard';
+import { useBoard } from './hooks/useBoard';
 
 import type { RouteComponentProps } from '@reach/router';
 import type { Id } from '../../types';

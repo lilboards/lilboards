@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import actions from '../../actions';
-import { getBoardVal } from '../../firebase';
-import { useDispatch, useSelector } from '../../hooks';
+import actions from '../../../actions';
+import { getBoardVal } from '../../../firebase';
+import { useDispatch, useSelector } from '../../../hooks';
 
-import type { Id } from '../../types';
+import type { Id } from '../../../types';
 
 export function useBoard(boardId?: Id) {
   const dispatch = useDispatch();
