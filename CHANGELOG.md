@@ -1,5 +1,12 @@
 # Changelog
 
+### [4.0.2](https://www.github.com/lilboards/lilboards/compare/v4.0.1...v4.0.2) (2021-07-18)
+
+
+### Bug Fixes
+
+* sort boards by created at date descending ([ac76f1d](https://www.github.com/lilboards/lilboards/commit/ac76f1df2747a9ac45e23d5cb88ce5f93036b979))
+
 ### [4.0.1](https://www.github.com/lilboards/lilboards/compare/v4.0.0...v4.0.1) (2021-07-17)
 
 
