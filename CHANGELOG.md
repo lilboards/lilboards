@@ -1,5 +1,12 @@
 # Changelog
 
+### [4.0.3](https://www.github.com/lilboards/lilboards/compare/v4.0.2...v4.0.3) (2021-07-18)
+
+
+### Bug Fixes
+
+* **components:** don't render boards link in header unless logged in ([7dcf08f](https://www.github.com/lilboards/lilboards/commit/7dcf08fed9f283feb1646382d7aaba8118b94a49))
+
 ### [4.0.2](https://www.github.com/lilboards/lilboards/compare/v4.0.1...v4.0.2) (2021-07-18)
 
 
