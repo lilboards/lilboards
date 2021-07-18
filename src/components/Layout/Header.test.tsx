@@ -20,16 +20,8 @@ it('renders heading link', () => {
   );
 });
 
-it('renders boards button', () => {
-  renderWithStore(<Header />);
-  expect(screen.getByRole('button', { name: 'Boards' })).toHaveAttribute(
-    'href',
-    '/boards'
-  );
-});
-
-describe('without user email', () => {
-  it('renders login button', () => {
+describe('when not logged in', () => {
+  it('renders login button link', () => {
     updateStore.withUser(false);
     renderWithStore(<Header />);
     expect(screen.getByRole('button', { name: 'Login' })).toHaveAttribute(
@@ -37,15 +29,32 @@ describe('without user email', () => {
       '/login'
     );
   });
+
+  it('does not render boards button link', () => {
+    updateStore.withUser(false);
+    renderWithStore(<Header />);
+    expect(
+      screen.queryByRole('button', { name: 'Boards' })
+    ).not.toBeInTheDocument();
+  });
 });
 
-describe('with user email', () => {
-  it('renders logout button', () => {
+describe('when logged in', () => {
+  it('renders logout button link', () => {
     updateStore.withUser();
     renderWithStore(<Header />);
     expect(screen.getByRole('button', { name: 'Logout' })).toHaveAttribute(
       'href',
       '/logout'
+    );
+  });
+
+  it('renders boards button link', () => {
+    updateStore.withUser();
+    renderWithStore(<Header />);
+    expect(screen.getByRole('button', { name: 'Boards' })).toHaveAttribute(
+      'href',
+      '/boards'
     );
   });
 });
