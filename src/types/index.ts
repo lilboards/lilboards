@@ -66,6 +66,15 @@ export interface Likes {
   items: LikesItems;
 }
 
+export enum SortBy {
+  createdAt = 'createdAt',
+}
+
+export enum SortOrder {
+  Ascending,
+  Descending,
+}
+
 type Time = ReturnType<typeof Date.now>;
 
 type UserId = Id;
