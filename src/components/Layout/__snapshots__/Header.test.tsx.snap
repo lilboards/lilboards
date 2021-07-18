@@ -22,26 +22,6 @@ exports[`renders correctly 1`] = `
             Lilboards
           </a>
         </div>
-        <div
-          class="MuiBox-root MuiBox-root-2"
-        >
-          <a
-            aria-disabled="false"
-            class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
-            href="/boards"
-            role="button"
-            tabindex="0"
-          >
-            <span
-              class="MuiButton-label"
-            >
-              Boards
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </a>
-        </div>
         <a
           aria-disabled="false"
           class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-colorInherit"
