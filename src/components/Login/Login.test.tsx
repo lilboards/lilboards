@@ -67,13 +67,15 @@ describe('logged in', () => {
     expect(screen.queryAllByText('Sign In')).toHaveLength(0);
   });
 
-  it('redirects to "/boards"', async () => {
-    const location = { state: {} } as Location;
-    renderWithStore(<Login location={location} />);
-    // wait for redirect
-    await screen.findAllByText('');
-    expect(history.location.pathname).toBe('/boards');
-  });
+  it.each([undefined, { state: {} }, { state: { [REDIRECT_TO]: '/' } }])(
+    'redirects to "/boards" when props.location=%p',
+    async (location) => {
+      renderWithStore(<Login location={location as Location} />);
+      // wait for redirect
+      await screen.findAllByText('');
+      expect(history.location.pathname).toBe('/boards');
+    }
+  );
 
   it(`redirects to location.state.${REDIRECT_TO}`, async () => {
     renderWithStore(<Login location={location} />);
