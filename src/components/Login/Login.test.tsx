@@ -1,11 +1,14 @@
 import { screen } from '@testing-library/react';
-import { renderWithStore } from '../../utils/test';
+import { history, renderWithStore } from '../../utils/test';
 import { firebaseAuth } from '../../firebase';
+import { REDIRECT_TO } from '../../constants';
 import {
   USER_TEST_EMAIL as userEmail,
   USER_TEST_ID as userId,
 } from '../../constants/test';
 import Login from './Login';
+
+import type { WindowLocation as Location } from '@reach/router';
 
 jest.mock('../../firebase', () => ({
   firebaseAnalytics: {
@@ -39,7 +42,14 @@ describe('not logged in', () => {
   });
 });
 
-describe('logged in user', () => {
+describe('logged in', () => {
+  const redirectTo = '/boards/abc123';
+  const location = {
+    state: {
+      [REDIRECT_TO]: redirectTo,
+    },
+  } as Location;
+
   beforeEach(() => {
     (firebaseAuth.onAuthStateChanged as jest.Mock).mockImplementationOnce(
       (callback) => {
@@ -53,7 +63,24 @@ describe('logged in user', () => {
   });
 
   it('does not render "Sign In"', () => {
-    renderWithStore(<Login />);
+    renderWithStore(<Login location={location} />);
     expect(screen.queryAllByText('Sign In')).toHaveLength(0);
+  });
+
+  it.each([undefined, { state: {} }, { state: { [REDIRECT_TO]: '/' } }])(
+    'redirects to "/boards" when props.location=%p',
+    async (location) => {
+      renderWithStore(<Login location={location as Location} />);
+      // wait for redirect
+      await screen.findAllByText('');
+      expect(history.location.pathname).toBe('/boards');
+    }
+  );
+
+  it(`redirects to location.state.${REDIRECT_TO}`, async () => {
+    renderWithStore(<Login location={location} />);
+    // wait for redirect
+    await screen.findAllByText('');
+    expect(history.location.pathname).toBe(redirectTo);
   });
 });

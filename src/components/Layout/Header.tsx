@@ -4,11 +4,15 @@ import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import Toolbar from '@material-ui/core/Toolbar';
-import { Link as RouterLink } from '@reach/router';
+
+import { Link as RouterLink, useLocation } from '@reach/router';
+
+import { REDIRECT_TO } from '../../constants';
 import { useSelector } from '../../hooks';
 
 export default function Header() {
   const isLoggedIn = useSelector((state) => Boolean(state.user.email));
+  const location = useLocation();
 
   return (
     <AppBar position="static">
@@ -31,6 +35,7 @@ export default function Header() {
           <Button
             color="inherit"
             component={RouterLink}
+            state={{ [REDIRECT_TO]: location.pathname }}
             to={isLoggedIn ? '/logout' : '/login'}
             variant="outlined"
           >
