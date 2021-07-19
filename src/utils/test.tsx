@@ -1,3 +1,8 @@
+import {
+  createHistory,
+  createMemorySource,
+  LocationProvider,
+} from '@reach/router';
 import { render as reactTestingLibraryRender } from '@testing-library/react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { Provider } from 'react-redux';
@@ -20,10 +25,14 @@ import type { Columns, Item } from '../types';
 /* istanbul ignore next */
 function noop() {}
 
+export const history = createHistory(createMemorySource('/'));
+
 function StoreWrapper(props: { children?: ReactNode }) {
   return (
     <Provider store={store}>
-      <DragDropContext onDragEnd={noop}>{props.children}</DragDropContext>
+      <LocationProvider history={history}>
+        <DragDropContext onDragEnd={noop}>{props.children}</DragDropContext>
+      </LocationProvider>
     </Provider>
   );
 }

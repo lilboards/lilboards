@@ -1,19 +1,26 @@
 import { Redirect } from '@reach/router';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import Typography from '@material-ui/core/Typography';
-import type { RouteComponentProps } from '@reach/router';
 
+import { REDIRECT_TO } from '../../constants';
 import { firebaseAuth } from '../../firebase';
 import { useAuth, useSelector } from '../../hooks';
 import uiConfig from './uiConfig';
 import Layout from '../Layout';
+
+import type { RouteComponentProps } from '@reach/router';
 
 export default function Login(props: RouteComponentProps) {
   useAuth();
   const email = useSelector((state) => state.user.email);
 
   if (email) {
-    return <Redirect to="/boards" noThrow />;
+    return (
+      <Redirect
+        to={(props.location?.state as any)[REDIRECT_TO] || '/boards'}
+        noThrow
+      />
+    );
   }
 
   return (

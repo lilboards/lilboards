@@ -5,5 +5,6 @@ export const HALF_SECOND = 500;
 export const ITEMS = 'items';
 export const ITEM_IDS = 'itemIds';
 export const LIKES = 'likes';
+export const REDIRECT_TO = 'redirectTo';
 export const USER = 'user';
 export const USERS = 'users';
