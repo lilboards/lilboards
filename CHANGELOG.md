@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.1.0](https://www.github.com/lilboards/lilboards/compare/v4.0.3...v4.1.0) (2021-07-19)
+
+
+### Features
+
+* redirect to previous route if applicable on login ([705f292](https://www.github.com/lilboards/lilboards/commit/705f2929ca7a1de04f5e78a4f0524ddf03460f1a))
+
+
+### Bug Fixes
+
+* **components:** redirect to "/boards" when location state is "/" ([afdd8b7](https://www.github.com/lilboards/lilboards/commit/afdd8b7870131d738fec22e7bb03f61764ef11af))
+
 ### [4.0.3](https://www.github.com/lilboards/lilboards/compare/v4.0.2...v4.0.3) (2021-07-18)
 
 
