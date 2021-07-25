@@ -1,5 +1,12 @@
 # Changelog
 
+### [4.1.2](https://www.github.com/lilboards/lilboards/compare/v4.1.1...v4.1.2) (2021-07-25)
+
+
+### Bug Fixes
+
+* **hooks:** set is loaded to true as else condition in useAuth ([49d4946](https://www.github.com/lilboards/lilboards/commit/49d494636a2cca754defe3134c06ffb38cec8573))
+
 ### [4.1.1](https://www.github.com/lilboards/lilboards/compare/v4.1.0...v4.1.1) (2021-07-25)
 
 
