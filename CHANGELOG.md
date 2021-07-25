@@ -1,5 +1,14 @@
 # Changelog
 
+### [4.1.1](https://www.github.com/lilboards/lilboards/compare/v4.1.0...v4.1.1) (2021-07-25)
+
+
+### Bug Fixes
+
+* **components:** wrap Board in Auth so anonymous user sees board ([e6ef2b8](https://www.github.com/lilboards/lilboards/commit/e6ef2b876b42b3302e41c9f8229e7f43f972c0d7))
+* **hooks:** don't set state until anonymous sign in is successful ([dfb1574](https://www.github.com/lilboards/lilboards/commit/dfb15745ef332c6dffc137fa320f3b838c9a9d3f))
+* **hooks:** log 'login' event and return loaded state in useAuth ([0344a6d](https://www.github.com/lilboards/lilboards/commit/0344a6d36e38c8c46133e4aa965cda1efc5dd30e))
+
 ## [4.1.0](https://www.github.com/lilboards/lilboards/compare/v4.0.3...v4.1.0) (2021-07-19)
 
 
