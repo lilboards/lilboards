@@ -28,6 +28,8 @@ export function useAuth(signInAnonymously = false) {
         firebaseAnalytics.logEvent('login', {
           type: 'anonymous',
         });
+      } else {
+        setIsLoaded(true);
       }
     });
 
