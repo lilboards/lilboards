@@ -1,36 +1,16 @@
 import { screen } from '@testing-library/react';
-import {
-  BOARD_TEST_ID as boardId,
-  USER_TEST_EMAIL as userEmail,
-  USER_TEST_ID as userId,
-} from '../../constants/test';
-import { firebaseAuth, getBoardVal } from '../../firebase';
+import { BOARD_TEST_ID as boardId } from '../../constants/test';
+import { getBoardVal } from '../../firebase';
 import { renderWithStore, updateStore } from '../../utils/test';
 import Board from './Board';
 
 jest.mock('../../firebase', () => ({
-  firebaseAnalytics: {
-    logEvent: jest.fn(),
-  },
-  firebaseAuth: {
-    onAuthStateChanged: jest.fn(),
-    signInAnonymously: jest.fn(),
-  },
   getBoardVal: jest.fn(),
 }));
 
 jest.mock('../Columns', () => () => <>Columns</>);
 
 beforeEach(() => {
-  (firebaseAuth.onAuthStateChanged as jest.Mock).mockImplementationOnce(
-    (callback) => {
-      const user = {
-        email: userEmail,
-        uid: userId,
-      };
-      callback(user);
-    }
-  );
   (getBoardVal as jest.Mock).mockResolvedValueOnce(null);
 });
 
@@ -55,6 +35,7 @@ it('renders board name as heading', async () => {
 });
 
 it('renders "Add column" button', () => {
+  updateStore.withUser();
   const board = updateStore.withBoard();
   renderWithStore(<Board boardId={board.id} />);
   expect(
@@ -76,12 +57,6 @@ describe('with board and anonymous user', () => {
   };
 
   beforeEach(() => {
-    (firebaseAuth.onAuthStateChanged as jest.Mock)
-      .mockReset()
-      .mockImplementationOnce((callback) => {
-        const user = null;
-        callback(user);
-      });
     (getBoardVal as jest.Mock).mockReset().mockResolvedValueOnce(board);
   });
 

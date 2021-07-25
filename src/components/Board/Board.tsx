@@ -5,18 +5,15 @@ import BoardControls from '../BoardControls';
 import Columns from '../Columns';
 import Layout from '../Layout';
 
-import { useAuth } from '../../hooks';
 import { useBoard } from './hooks/useBoard';
 
-import type { RouteComponentProps } from '@reach/router';
 import type { Id } from '../../types';
 
-interface Props extends RouteComponentProps {
+interface Props {
   boardId?: Id;
 }
 
 export default function Board(props: Props) {
-  useAuth(true);
   const { board, isLoaded } = useBoard(props.boardId);
 
   if (!props.boardId) {
