@@ -1,1 +1,1 @@
-export { default } from './BoardAuth';
+export { default } from './Board';
