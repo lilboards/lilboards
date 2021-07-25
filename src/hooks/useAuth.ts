@@ -24,7 +24,6 @@ export function useAuth(signInAnonymously = false) {
         });
       } else if (signInAnonymously) {
         firebaseAuth.signInAnonymously();
-        setIsLoaded(true);
 
         firebaseAnalytics.logEvent('login', {
           type: 'anonymous',

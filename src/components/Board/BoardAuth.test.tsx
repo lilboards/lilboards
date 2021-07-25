@@ -60,8 +60,8 @@ describe('with anonymous user', () => {
       });
   });
 
-  it('renders board', async () => {
+  it('signs user in anonymously', async () => {
     renderWithStore(<BoardAuth boardId={boardId} />);
-    expect(await screen.findByText('Board')).toBeInTheDocument();
+    expect(firebaseAuth.signInAnonymously).toBeCalledTimes(1);
   });
 });
