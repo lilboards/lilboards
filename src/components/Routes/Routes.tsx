@@ -1,11 +1,12 @@
 import { Router } from '@reach/router';
+
 import Board from '../Board';
 import Boards from '../Boards';
 import Home from '../Home';
 import Login from '../Login';
 import Logout from '../Logout';
 import NotFound from '../NotFound';
-import ProtectedRoute from './ProtectedRoute';
+import Protected from './Protected';
 
 export default function Routes() {
   return (
@@ -14,8 +15,8 @@ export default function Routes() {
       <Home path="/" />
       <Login path="/login" />
       <Logout path="/logout" />
-      <ProtectedRoute component={Boards} path="/boards" />
-      <Board path="/boards/:boardId" />
+      <Protected check="email" component={Boards} path="/boards" />
+      <Protected component={Board} path="/boards/:boardId" signInAnonymously />
     </Router>
   );
 }

@@ -7,9 +7,10 @@ import Layout from '../Layout';
 
 import { useBoard } from './hooks/useBoard';
 
+import type { RouteComponentProps } from '@reach/router';
 import type { Id } from '../../types';
 
-interface Props {
+interface Props extends RouteComponentProps {
   boardId?: Id;
 }
 
