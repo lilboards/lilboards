@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import actions from '../actions';
 import { firebaseAnalytics, firebaseAuth } from '../firebase';
@@ -6,6 +6,7 @@ import { useDispatch } from '.';
 
 export function useAuth(signInAnonymously = false) {
   const dispatch = useDispatch();
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const unregisterAuthObserver = firebaseAuth.onAuthStateChanged((user) => {
@@ -16,14 +17,16 @@ export function useAuth(signInAnonymously = false) {
             id: user.uid,
           })
         );
+        setIsLoaded(true);
 
         firebaseAnalytics.logEvent('login', {
           type: 'authenticated',
         });
       } else if (signInAnonymously) {
         firebaseAuth.signInAnonymously();
+        setIsLoaded(true);
 
-        firebaseAnalytics.logEvent('logout', {
+        firebaseAnalytics.logEvent('login', {
           type: 'anonymous',
         });
       }
@@ -31,4 +34,6 @@ export function useAuth(signInAnonymously = false) {
 
     return unregisterAuthObserver;
   }, [dispatch, signInAnonymously]);
+
+  return isLoaded;
 }
