@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
-    "@commitlint/config-conventional": "^12.1.4",
+    "@commitlint/config-conventional": "^13.1.0",
     "eslint-plugin-prettier": "^3.4.0",
     "firebase-tools": "^9.16.0",
     "husky": "^7.0.1",
