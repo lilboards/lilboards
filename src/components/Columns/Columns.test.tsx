@@ -9,7 +9,7 @@ import {
 } from '../../constants/test';
 import Columns from './Columns';
 
-import { Columns as ColumnsState, EventType, Item, Likes } from '../../types';
+import { Column, EventType, Item, Likes } from '../../types';
 
 jest.mock('../../firebase', () => ({
   getColumnsRef: jest.fn(),
@@ -53,47 +53,46 @@ describe('mount', () => {
   const itemText = 'My Item';
 
   beforeEach(() => {
-    columnsRefOn = jest.fn((eventType, successCallback) => {
-      if (eventType === EventType.value) {
-        const columnsSnapshot = {
-          val: (): ColumnsState => ({
-            [columnId]: {
-              createdAt: Date.now(),
-              createdBy: userId,
-              itemIds: [itemId],
-              name: columnName,
-            },
+    columnsRefOn = jest.fn((eventType, callback) => {
+      if (eventType === EventType.child_added) {
+        const columnSnapshot = {
+          key: columnId,
+          val: (): Column => ({
+            createdAt: Date.now(),
+            createdBy: userId,
+            itemIds: [itemId],
+            name: columnName,
           }),
         };
-        successCallback(columnsSnapshot);
+        callback(columnSnapshot);
       }
     });
-    columnsRefOff = jest.fn();
+
     (getColumnsRef as jest.Mock).mockReset().mockReturnValueOnce({
       on: columnsRefOn,
-      off: columnsRefOff,
+      off: (columnsRefOff = jest.fn()),
     });
 
-    itemsRefOn = jest.fn((eventType, successCallback) => {
+    itemsRefOn = jest.fn((eventType, callback) => {
       if (eventType === EventType.child_added) {
         const itemSnapshot = {
+          key: itemId,
           val: (): Item => ({
             createdAt: Date.now(),
             createdBy: userId,
             text: itemText,
           }),
-          key: itemId,
         };
-        successCallback(itemSnapshot);
+        callback(itemSnapshot);
       }
     });
-    itemsRefOff = jest.fn();
+
     (getItemsRef as jest.Mock).mockReset().mockReturnValueOnce({
       on: itemsRefOn,
-      off: itemsRefOff,
+      off: (itemsRefOff = jest.fn()),
     });
 
-    likesRefOn = jest.fn((eventType, successCallback) => {
+    likesRefOn = jest.fn((eventType, callback) => {
       if (eventType === EventType.value) {
         const likesSnapshot = {
           val: (): Likes => ({
@@ -104,13 +103,13 @@ describe('mount', () => {
             },
           }),
         };
-        successCallback(likesSnapshot);
+        callback(likesSnapshot);
       }
     });
-    likesRefOff = jest.fn();
+
     (getLikesRef as jest.Mock).mockReset().mockReturnValueOnce({
       on: likesRefOn,
-      off: likesRefOff,
+      off: (likesRefOff = jest.fn()),
     });
   });
 
@@ -149,14 +148,30 @@ describe('mount', () => {
   });
 
   it('attaches ref listeners', () => {
+    const eventTypes = [
+      EventType.child_added,
+      EventType.child_changed,
+      EventType.child_removed,
+    ];
+
     const { unmount } = renderWithStore(<Columns boardId={boardId} />);
-    expect(columnsRefOn).toBeCalledTimes(1);
-    expect(itemsRefOn).toBeCalledTimes(3);
+    [columnsRefOn, itemsRefOn].forEach((refOn) => {
+      expect(refOn).toBeCalledTimes(eventTypes.length);
+      eventTypes.forEach((eventType) => {
+        expect(refOn).toBeCalledWith(eventType, expect.any(Function));
+      });
+    });
     expect(likesRefOn).toBeCalledTimes(1);
+    expect(likesRefOn).toBeCalledWith(EventType.value, expect.any(Function));
 
     unmount();
-    expect(columnsRefOff).toBeCalledTimes(1);
-    expect(itemsRefOff).toBeCalledTimes(3);
+    [columnsRefOff, itemsRefOff].forEach((refOff) => {
+      expect(refOff).toBeCalledTimes(eventTypes.length);
+      eventTypes.forEach((eventType) => {
+        expect(refOff).toBeCalledWith(eventType);
+      });
+    });
     expect(likesRefOff).toBeCalledTimes(1);
+    expect(likesRefOff).toBeCalledWith(EventType.value);
   });
 });

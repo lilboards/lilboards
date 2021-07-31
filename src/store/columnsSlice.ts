@@ -27,25 +27,31 @@ const columnsSlice = createSlice({
         column: Partial<Column>;
         columnId: Id;
         debounce?: boolean;
+        skipSave?: boolean;
       }>
     ) => {
-      const { boardId, column, columnId, debounce } = action.payload;
+      const { boardId, column, columnId, debounce, skipSave } = action.payload;
       state[columnId] = state[columnId] || {};
       Object.assign(state[columnId], column);
-      if (debounce) {
-        debouncedUpdateColumn(boardId, columnId, column);
-      } else {
-        updateColumn(boardId, columnId, column);
+
+      if (!skipSave) {
+        if (debounce) {
+          debouncedUpdateColumn(boardId, columnId, column);
+        } else {
+          updateColumn(boardId, columnId, column);
+        }
       }
     },
 
     deleteColumn: (
       state,
-      action: PayloadAction<{ boardId: Id; columnId: Id }>
+      action: PayloadAction<{ boardId: Id; columnId: Id; skipSave?: boolean }>
     ) => {
-      const { boardId, columnId } = action.payload;
-      removeColumn(boardId, columnId);
+      const { boardId, columnId, skipSave } = action.payload;
       delete state[columnId];
+      if (!skipSave) {
+        removeColumn(boardId, columnId);
+      }
     },
 
     loadColumns: (state, action: PayloadAction<Columns>) => {

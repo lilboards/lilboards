@@ -49,6 +49,7 @@ describe('updateColumn', () => {
       },
       columnId,
       debounce: true,
+      skipSave: true,
     };
     const newState = reducer(state, actions.updateColumn(payload));
     expect(newState).toEqual({
@@ -70,6 +71,21 @@ describe('deleteColumn', () => {
       columnId,
     };
     expect(reducer(state, actions.deleteColumn(payload))).toEqual({});
+  });
+
+  it('deletes column with skip save', () => {
+    const state = {
+      [columnId]: column,
+      [`${columnId}2`]: column,
+    };
+    const payload = {
+      boardId,
+      columnId,
+      skipSave: true,
+    };
+    expect(reducer(state, actions.deleteColumn(payload))).toEqual({
+      [`${columnId}2`]: column,
+    });
   });
 });
 
