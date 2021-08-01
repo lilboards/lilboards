@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.2.0](https://www.github.com/lilboards/lilboards/compare/v4.1.3...v4.2.0) (2021-08-01)
+
+
+### Features
+
+* **public:** add favicon and app icons ([10c0ce6](https://www.github.com/lilboards/lilboards/commit/10c0ce66c24da9c5984a7e4368cb02ff42641f40))
+
 ### [4.1.3](https://www.github.com/lilboards/lilboards/compare/v4.1.2...v4.1.3) (2021-07-31)
 
 
