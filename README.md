@@ -1,10 +1,10 @@
 <div align="center">
-  <a href="https://lilboards.web.app/" target="_blank" rel="noopener noreferrer">
+  <a href="https://lilboards.web.app/">
     <img src="public/android-chrome-192x192.png" alt="Lilboards logo: Create boards, columns, and items.">
   </a>
   <p><strong>Create boards, columns, and items.</strong></p>
   <p>
-    <a href="https://github.com/lilboards/lilboards/actions/workflows/build.yml" target="_blank" rel="noopener noreferrer">
+    <a href="https://github.com/lilboards/lilboards/actions/workflows/build.yml">
       <img src="https://github.com/lilboards/lilboards/actions/workflows/build.yml/badge.svg" alt="Lilboards build status badge">
     </a>
   </p>
