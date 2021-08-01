@@ -68,13 +68,24 @@ export const updateStore = {
       [ITEM_IDS]: [itemId],
     };
     const id = columnId;
-    const payload = { [id]: column };
-    store.dispatch(actions.loadColumns(payload));
+    const payload = {
+      column,
+      columnId,
+      skipSave: true,
+    };
+    store.dispatch(actions.updateColumn(payload));
     return { ...column, id };
   },
 
-  withColumns(payload: Columns) {
-    store.dispatch(actions.loadColumns(payload));
+  withColumns(columns: Columns) {
+    Object.entries(columns).forEach(([columnId, column]) => {
+      const payload = {
+        column,
+        columnId,
+        skipSave: true,
+      };
+      store.dispatch(actions.updateColumn(payload));
+    });
   },
 
   withItem() {

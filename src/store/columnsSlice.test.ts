@@ -89,16 +89,6 @@ describe('deleteColumn', () => {
   });
 });
 
-describe('loadColumns', () => {
-  it('loads columns', () => {
-    const payload = {
-      [columnId]: column,
-    };
-    const newState = reducer(initialState, actions.loadColumns(payload));
-    expect(newState).toBe(payload);
-  });
-});
-
 describe('addColumnItemId', () => {
   it('appends item id to column', () => {
     const state = {
