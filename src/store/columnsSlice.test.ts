@@ -61,7 +61,7 @@ describe('updateColumn', () => {
   });
 });
 
-describe('deleteColumn', () => {
+describe('removeColumn', () => {
   it('deletes column', () => {
     const state = {
       [columnId]: column,
@@ -70,7 +70,7 @@ describe('deleteColumn', () => {
       boardId,
       columnId,
     };
-    expect(reducer(state, actions.deleteColumn(payload))).toEqual({});
+    expect(reducer(state, actions.removeColumn(payload))).toEqual({});
   });
 
   it('deletes column with skip save', () => {
@@ -83,7 +83,7 @@ describe('deleteColumn', () => {
       columnId,
       skipSave: true,
     };
-    expect(reducer(state, actions.deleteColumn(payload))).toEqual({
+    expect(reducer(state, actions.removeColumn(payload))).toEqual({
       [`${columnId}2`]: column,
     });
   });

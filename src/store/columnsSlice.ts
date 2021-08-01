@@ -43,7 +43,7 @@ const columnsSlice = createSlice({
       }
     },
 
-    deleteColumn: (
+    removeColumn: (
       state,
       action: PayloadAction<{ boardId: Id; columnId: Id; skipSave?: boolean }>
     ) => {

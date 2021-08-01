@@ -58,7 +58,7 @@ export default function ColumnName(props: Props) {
 
   function deleteColumn() {
     dispatch(
-      actions.deleteColumn({
+      actions.removeColumn({
         boardId: props.boardId,
         columnId: props.columnId,
       })

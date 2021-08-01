@@ -45,7 +45,7 @@ export function useColumns(boardId: Id) {
     columnsRef.on(EventType.child_removed, (columnSnapshot) => {
       setTimeout(() => {
         dispatch(
-          actions.deleteColumn({
+          actions.removeColumn({
             boardId,
             columnId: columnSnapshot.key as Id,
             skipSave: true,
