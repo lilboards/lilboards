@@ -1,8 +1,20 @@
-# [Lilboards](https://lilboards.web.app/)
+<div align="center">
+  <a href="https://lilboards.web.app/" target="_blank" rel="noopener noreferrer">
+    <img src="public/android-chrome-192x192.png" alt="Lilboards logo: Create boards, columns, and items.">
+  </a>
+  <p><strong>Create boards, columns, and items.</strong></p>
+  <p>
+    <a href="https://github.com/lilboards/lilboards/actions/workflows/build.yml" target="_blank" rel="noopener noreferrer">
+      <img src="https://github.com/lilboards/lilboards/actions/workflows/build.yml/badge.svg" alt="Lilboards build status badge">
+    </a>
+  </p>
+</div>
 
-[![build](https://github.com/lilboards/lilboards/actions/workflows/build.yml/badge.svg)](https://github.com/lilboards/lilboards/actions/workflows/build.yml)
+## Try It
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Go to [lilboards.web.app](https://lilboards.web.app/) to create boards, columns, and items.
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and hosted on [Firebase](https://firebase.google.com/).
 
 ## Install
 
@@ -56,11 +68,9 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Learn More
+## Assets
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [Logo](https://excalidraw.com/#json=5123776568098816,InQI3in09fDMlrMULQDmSQ)
 
 ## License
 
