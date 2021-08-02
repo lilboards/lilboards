@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.3.0](https://www.github.com/lilboards/lilboards/compare/v4.2.0...v4.3.0) (2021-08-02)
+
+
+### Features
+
+* **components:** render GitHub link in Header ([35e4b5a](https://www.github.com/lilboards/lilboards/commit/35e4b5ab12abfb88623a7ea738e25dca96b13d67))
+* update description in package.json, index.html, and Home ([f04f9d7](https://www.github.com/lilboards/lilboards/commit/f04f9d779e6785769124b477e14ea049e463d049))
+
 ## [4.2.0](https://www.github.com/lilboards/lilboards/compare/v4.1.3...v4.2.0) (2021-08-01)
 
 
