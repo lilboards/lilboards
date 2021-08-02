@@ -2,11 +2,6 @@ import { screen } from '@testing-library/react';
 import { renderWithStore, updateStore } from '../../utils/test';
 import Header from './Header';
 
-it('renders correctly', () => {
-  const { container } = renderWithStore(<Header />);
-  expect(container).toMatchSnapshot();
-});
-
 it('renders header', () => {
   renderWithStore(<Header />);
   expect(screen.getByRole('banner')).toHaveTextContent('Lilboards');
@@ -17,6 +12,14 @@ it('renders heading link', () => {
   expect(screen.getByRole('link', { name: 'Lilboards' })).toHaveAttribute(
     'href',
     '/'
+  );
+});
+
+it('renders GitHub link', () => {
+  renderWithStore(<Header />);
+  expect(screen.getByLabelText('Open GitHub repository')).toHaveAttribute(
+    'href',
+    'https://github.com/lilboards/lilboards'
   );
 });
 

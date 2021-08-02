@@ -2,6 +2,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import IconButton from '@material-ui/core/IconButton';
 import Link from '@material-ui/core/Link';
 import Toolbar from '@material-ui/core/Toolbar';
 
@@ -24,23 +26,34 @@ export default function Header() {
             </Link>
           </Box>
 
+          <IconButton
+            aria-label="Open GitHub repository"
+            color="inherit"
+            component={Link}
+            href="https://github.com/lilboards/lilboards"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <GitHubIcon />
+          </IconButton>
+
           {isLoggedIn && (
-            <Box marginRight={1}>
-              <Button color="inherit" component={RouterLink} to="/boards">
-                Boards
-              </Button>
-            </Box>
+            <Button color="inherit" component={RouterLink} to="/boards">
+              Boards
+            </Button>
           )}
 
-          <Button
-            color="inherit"
-            component={RouterLink}
-            state={{ [REDIRECT_TO]: location.pathname }}
-            to={isLoggedIn ? '/logout' : '/login'}
-            variant="outlined"
-          >
-            {isLoggedIn ? 'Logout' : 'Login'}
-          </Button>
+          <Box marginLeft={1}>
+            <Button
+              color="inherit"
+              component={RouterLink}
+              state={{ [REDIRECT_TO]: location.pathname }}
+              to={isLoggedIn ? '/logout' : '/login'}
+              variant="outlined"
+            >
+              {isLoggedIn ? 'Logout' : 'Login'}
+            </Button>
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>
