@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://lilboards.web.app/">
+  <a href="https://lilboards.org/">
     <img src="public/android-chrome-192x192.png" alt="Lilboards logo: Create boards, columns, and items.">
   </a>
   <p><strong>Create boards, columns, and items.</strong></p>
@@ -12,7 +12,7 @@
 
 ## Try It
 
-Go to [lilboards.web.app](https://lilboards.web.app/) to create boards, columns, and items.
+Go to [lilboards.org](https://lilboards.org/) to create boards, columns, and items.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and hosted on [Firebase](https://firebase.google.com/).
 
