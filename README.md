@@ -14,7 +14,13 @@
 
 Go to [lilboards.org](https://lilboards.org/) to create boards, columns, and items.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and hosted on [Firebase](https://firebase.google.com/).
+This project is built with:
+
+- [Create React App](https://github.com/facebook/create-react-app)
+- [Firebase](https://firebase.google.com/)
+- [Material-UI](https://material-ui.com/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)
 
 ## Install
 
@@ -70,7 +76,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Assets
 
-- [Logo](https://excalidraw.com/#json=5123776568098816,InQI3in09fDMlrMULQDmSQ)
+[Logo](https://excalidraw.com/#json=5123776568098816,InQI3in09fDMlrMULQDmSQ)
 
 ## License
 
