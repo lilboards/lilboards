@@ -14,6 +14,7 @@ export function useAuth(signInAnonymously = false) {
         dispatch(
           actions.setUser({
             email: user.email,
+            emailVerified: user.emailVerified,
             id: user.uid,
           })
         );
@@ -21,6 +22,7 @@ export function useAuth(signInAnonymously = false) {
 
         firebaseAnalytics.logEvent('login', {
           type: 'authenticated',
+          email_verified: user.emailVerified,
         });
       } else if (signInAnonymously) {
         firebaseAuth.signInAnonymously();

@@ -77,4 +77,15 @@ export enum SortOrder {
 
 type Time = ReturnType<typeof Date.now>;
 
+export interface User {
+  editing: {
+    boardId: Id;
+    columnId: Id;
+    itemId: Id;
+  };
+  email: string | null;
+  emailVerified: boolean;
+  id: UserId;
+}
+
 type UserId = Id;

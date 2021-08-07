@@ -4,17 +4,7 @@ import { USER } from '../constants';
 import { firebaseAnalytics } from '../firebase';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Id } from '../types';
-
-type User = {
-  editing: {
-    boardId: Id;
-    columnId: Id;
-    itemId: Id;
-  };
-  email: string | null;
-  id: Id;
-};
+import type { User } from '../types';
 
 export const initialState: User = {
   editing: {
@@ -23,6 +13,7 @@ export const initialState: User = {
     itemId: '',
   },
   email: null,
+  emailVerified: false,
   id: '',
 };
 

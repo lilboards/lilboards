@@ -20,7 +20,7 @@ import {
 import store from '../store';
 
 import type { ReactNode } from 'react';
-import type { Columns, Item } from '../types';
+import type { Columns, Item, User } from '../types';
 
 /* istanbul ignore next */
 function noop() {}
@@ -105,10 +105,13 @@ export const updateStore = {
   },
 
   withUser(email = true) {
-    const user = {
-      email: email ? userEmail : '',
+    const user: Partial<User> = {
       id: userId,
     };
+    if (email) {
+      user.email = userEmail;
+      user.emailVerified = true;
+    }
     store.dispatch(actions.setUser(user));
     return user;
   },
