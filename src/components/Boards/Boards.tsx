@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 
@@ -7,14 +6,9 @@ import BoardCards from './BoardCards';
 import Layout from '../Layout';
 
 import actions from '../../actions';
-import {
-  firebaseAnalytics,
-  generateId,
-  getBoardVal,
-  getUserBoardsVal,
-  saveUserBoardId,
-} from '../../firebase';
+import { firebaseAnalytics, generateId, saveUserBoardId } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
+import { useBoards } from './hooks';
 
 import type { RouteComponentProps } from '@reach/router';
 import type { Board } from '../../types';
@@ -22,30 +16,7 @@ import type { Board } from '../../types';
 export default function Boards(props: RouteComponentProps) {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user.id);
-
-  useEffect(() => {
-    (async () => {
-      const userBoards = await getUserBoardsVal(userId);
-      if (!userBoards) {
-        return;
-      }
-
-      const boardIds = Object.keys(userBoards);
-      const boards = await Promise.all(
-        boardIds.map(async (boardId) => {
-          const board = await getBoardVal(boardId);
-          if (board) {
-            return {
-              ...board,
-              id: boardId,
-            };
-          }
-        })
-      );
-
-      boards.forEach((board) => board && dispatch(actions.loadBoard(board)));
-    })();
-  }, [dispatch, userId]);
+  useBoards(dispatch, userId);
 
   function addBoard() {
     const board: Board = {
