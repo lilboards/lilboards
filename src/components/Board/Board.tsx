@@ -3,7 +3,6 @@ import Typography from '@material-ui/core/Typography';
 
 import BoardControls from '../BoardControls';
 import Columns from '../Columns';
-import Layout from '../Layout';
 
 import { useBoard } from './hooks/useBoard';
 
@@ -30,7 +29,7 @@ export default function Board(props: Props) {
   }
 
   return (
-    <Layout>
+    <>
       {board.name && (
         <Typography component="h1" gutterBottom variant="h4">
           {board.name}
@@ -39,6 +38,6 @@ export default function Board(props: Props) {
 
       <BoardControls boardId={props.boardId} />
       <Columns boardId={props.boardId} />
-    </Layout>
+    </>
   );
 }

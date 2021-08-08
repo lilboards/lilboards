@@ -3,7 +3,6 @@ import Typography from '@material-ui/core/Typography';
 
 import AddButton from '../AddButton';
 import BoardCards from './BoardCards';
-import Layout from '../Layout';
 
 import actions from '../../actions';
 import { firebaseAnalytics, generateId, saveUserBoardId } from '../../firebase';
@@ -37,7 +36,7 @@ export default function Boards(props: RouteComponentProps) {
   }
 
   return (
-    <Layout>
+    <>
       <Typography component="h1" gutterBottom variant="h4">
         Boards
       </Typography>
@@ -47,6 +46,6 @@ export default function Boards(props: RouteComponentProps) {
       </Box>
 
       <BoardCards />
-    </Layout>
+    </>
   );
 }
