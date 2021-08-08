@@ -30,14 +30,12 @@ describe('send verification email', () => {
   });
 });
 
-describe('reload page', () => {
+describe('logout', () => {
   beforeEach(() => {
     renderWithStore(<VerifyEmail />);
   });
 
   it('renders button', () => {
-    expect(
-      screen.getByRole('button', { name: 'Reload page' })
-    ).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Logout' })).toBeInTheDocument();
   });
 });
