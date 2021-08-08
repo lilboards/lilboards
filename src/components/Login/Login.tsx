@@ -6,7 +6,6 @@ import { REDIRECT_TO } from '../../constants';
 import { firebaseAuth } from '../../firebase';
 import { useAuth, useSelector } from '../../hooks';
 import uiConfig from './uiConfig';
-import Layout from '../Layout';
 
 import type { RouteComponentProps } from '@reach/router';
 
@@ -24,12 +23,12 @@ export default function Login(props: RouteComponentProps) {
   }
 
   return (
-    <Layout>
+    <>
       <Typography align="center" component="h1" gutterBottom variant="h4">
         Sign In
       </Typography>
 
       <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebaseAuth} />
-    </Layout>
+    </>
   );
 }

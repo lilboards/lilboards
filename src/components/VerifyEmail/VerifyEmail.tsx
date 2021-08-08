@@ -2,8 +2,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link } from '@reach/router';
 
-import Layout from '../Layout';
-
 import { REDIRECT_TO } from '../../constants';
 import { firebaseAuth } from '../../firebase';
 
@@ -13,7 +11,7 @@ function sendEmailVerification() {
 
 export default function VerifyEmail() {
   return (
-    <Layout>
+    <>
       <Typography paragraph>
         To use Lilboards, please verify your email:
       </Typography>
@@ -35,6 +33,6 @@ export default function VerifyEmail() {
           Logout
         </Button>
       </Typography>
-    </Layout>
+    </>
   );
 }

@@ -1,5 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react';
-import { renderWithStore } from '../../utils/test';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { firebaseAuth } from '../../firebase';
 import VerifyEmail from './VerifyEmail';
 
@@ -13,7 +12,7 @@ jest.mock('../../firebase', () => ({
 
 describe('send verification email', () => {
   beforeEach(() => {
-    renderWithStore(<VerifyEmail />);
+    render(<VerifyEmail />);
   });
 
   it('renders button', () => {
@@ -32,7 +31,7 @@ describe('send verification email', () => {
 
 describe('logout', () => {
   beforeEach(() => {
-    renderWithStore(<VerifyEmail />);
+    render(<VerifyEmail />);
   });
 
   it('renders button', () => {
