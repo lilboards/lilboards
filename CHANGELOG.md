@@ -1,5 +1,12 @@
 # Changelog
 
+### [4.3.2](https://www.github.com/lilboards/lilboards/compare/v4.3.1...v4.3.2) (2021-08-08)
+
+
+### Bug Fixes
+
+* **database:** read and write to users if email is verified ([9b25f95](https://www.github.com/lilboards/lilboards/commit/9b25f955e98d04019a373bc2b057aee61a81f00d))
+
 ### [4.3.1](https://www.github.com/lilboards/lilboards/compare/v4.3.0...v4.3.1) (2021-08-08)
 
 
