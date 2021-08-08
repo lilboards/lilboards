@@ -1,5 +1,13 @@
 # Changelog
 
+### [4.3.1](https://www.github.com/lilboards/lilboards/compare/v4.3.0...v4.3.1) (2021-08-08)
+
+
+### Bug Fixes
+
+* **components:** remind user to log out after email is verified ([6fcc6a3](https://www.github.com/lilboards/lilboards/commit/6fcc6a32b23d50237b3c86bb46970257a6259d7b))
+* **components:** render VerifyEmail if email is unverified in Protected ([2137d9b](https://www.github.com/lilboards/lilboards/commit/2137d9b444af2c8660d09b7959529fa23f443580)), closes [#233](https://www.github.com/lilboards/lilboards/issues/233)
+
 ## [4.3.0](https://www.github.com/lilboards/lilboards/compare/v4.2.0...v4.3.0) (2021-08-02)
 
 
