@@ -27,7 +27,7 @@ function noop() {}
 
 export const history = createHistory(createMemorySource('/'));
 
-function StoreWrapper(props: { children?: ReactNode }) {
+function ContextWrapper(props: { children?: ReactNode }) {
   return (
     <Provider store={store}>
       <LocationProvider history={history}>
@@ -40,8 +40,8 @@ function StoreWrapper(props: { children?: ReactNode }) {
 /**
  * @see {@link https://redux.js.org/recipes/writing-tests#components}
  */
-export function renderWithStore(ui: JSX.Element) {
-  return reactTestingLibraryRender(ui, { wrapper: StoreWrapper });
+export function renderWithContext(ui: JSX.Element) {
+  return reactTestingLibraryRender(ui, { wrapper: ContextWrapper });
 }
 
 export function resetStore() {

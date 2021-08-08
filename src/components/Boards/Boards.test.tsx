@@ -1,5 +1,9 @@
 import { fireEvent, screen } from '@testing-library/react';
-import { renderWithStore, getStoreState, updateStore } from '../../utils/test';
+import {
+  renderWithContext,
+  getStoreState,
+  updateStore,
+} from '../../utils/test';
 import {
   generateId,
   getBoardVal,
@@ -31,20 +35,20 @@ beforeEach(() => {
 });
 
 it('renders heading', () => {
-  renderWithStore(<Boards />);
+  renderWithContext(<Boards />);
   const heading = screen.getByRole('heading', { level: 1, name: 'Boards' });
   expect(heading).toBeInTheDocument();
 });
 
 it('renders "Create board" button', () => {
-  renderWithStore(<Boards />);
+  renderWithContext(<Boards />);
   expect(screen.getByLabelText('Create board')).toBeInTheDocument();
 });
 
 describe('create board', () => {
   it('renders new board', () => {
     updateStore.withUser();
-    renderWithStore(<Boards />);
+    renderWithContext(<Boards />);
     fireEvent.click(screen.getByLabelText('Create board'));
     const boards = screen.getAllByLabelText('Board Name');
     expect(boards).toHaveLength(1);
@@ -52,14 +56,14 @@ describe('create board', () => {
 
   it('focuses on new board', () => {
     updateStore.withUser();
-    renderWithStore(<Boards />);
+    renderWithContext(<Boards />);
     fireEvent.click(screen.getByLabelText('Create board'));
     expect(screen.getByPlaceholderText('Untitled Board')).toHaveFocus();
   });
 
   it('saves new board to store and database', () => {
     const user = updateStore.withUser();
-    renderWithStore(<Boards />);
+    renderWithContext(<Boards />);
     const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
     fireEvent.click(screen.getByLabelText('Create board'));
     expect(getStoreState().boards).toMatchInlineSnapshot(`
@@ -94,7 +98,7 @@ describe('mount', () => {
 
   it('loads boards', async () => {
     updateStore.withUser();
-    renderWithStore(<Boards />);
+    renderWithContext(<Boards />);
     const boards = await screen.findAllByLabelText('Board Name');
     expect(boards).toHaveLength(2);
   });

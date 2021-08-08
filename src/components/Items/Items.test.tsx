@@ -1,5 +1,5 @@
 import { fireEvent, screen } from '@testing-library/react';
-import { renderWithStore, updateStore } from '../../utils/test';
+import { renderWithContext, updateStore } from '../../utils/test';
 import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
@@ -8,7 +8,7 @@ import Items from './Items';
 
 describe('add item', () => {
   it('renders "Add item" button', () => {
-    renderWithStore(<Items boardId={boardId} columnId={columnId} />);
+    renderWithContext(<Items boardId={boardId} columnId={columnId} />);
     expect(
       screen.getByRole('button', { name: 'Add item' })
     ).toBeInTheDocument();
@@ -16,14 +16,14 @@ describe('add item', () => {
 
   it('renders new item', () => {
     const column = updateStore.withColumn();
-    renderWithStore(<Items boardId={boardId} columnId={column.id} />);
+    renderWithContext(<Items boardId={boardId} columnId={column.id} />);
     fireEvent.click(screen.getByText('Add item'));
     expect(screen.getByLabelText(/Edit item/)).toBeInTheDocument();
   });
 
   it('focuses on new item', () => {
     const column = updateStore.withColumn();
-    renderWithStore(<Items boardId={boardId} columnId={column.id} />);
+    renderWithContext(<Items boardId={boardId} columnId={column.id} />);
     fireEvent.click(screen.getByText('Add item'));
     expect(screen.getByLabelText(/Edit item/)).toHaveFocus();
   });

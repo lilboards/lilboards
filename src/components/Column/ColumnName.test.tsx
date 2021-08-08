@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react';
-import { renderWithStore, updateStore } from '../../utils/test';
+import { renderWithContext, updateStore } from '../../utils/test';
 import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
@@ -15,7 +15,7 @@ const props = {
 
 describe('user cannot edit', () => {
   it('renders name', () => {
-    renderWithStore(<ColumnName {...props} />);
+    renderWithContext(<ColumnName {...props} />);
     expect(
       screen.getByRole('heading', {
         level: 2,
@@ -25,7 +25,7 @@ describe('user cannot edit', () => {
   });
 
   it('renders placeholder', () => {
-    renderWithStore(<ColumnName {...props} name="" />);
+    renderWithContext(<ColumnName {...props} name="" />);
     expect(
       screen.getByRole('heading', {
         level: 2,
@@ -39,7 +39,7 @@ describe('user can edit', () => {
   it('renders delete button with name', () => {
     const board = updateStore.withBoard();
     updateStore.withUser();
-    renderWithStore(<ColumnName {...props} boardId={board.id} />);
+    renderWithContext(<ColumnName {...props} boardId={board.id} />);
     expect(
       screen.getByLabelText(`Delete column "${props.name}"`)
     ).toBeInTheDocument();
@@ -48,7 +48,7 @@ describe('user can edit', () => {
   it('renders delete button with placeholder', () => {
     const board = updateStore.withBoard();
     updateStore.withUser();
-    renderWithStore(<ColumnName {...props} boardId={board.id} name="" />);
+    renderWithContext(<ColumnName {...props} boardId={board.id} name="" />);
     expect(
       screen.getByLabelText(`Delete column "${props.placeholder}"`)
     ).toBeInTheDocument();

@@ -1,5 +1,9 @@
 import { fireEvent, screen } from '@testing-library/react';
-import { renderWithStore, getStoreState, updateStore } from '../../utils/test';
+import {
+  renderWithContext,
+  getStoreState,
+  updateStore,
+} from '../../utils/test';
 import { generateId } from '../../firebase';
 import {
   COLUMN_TEST_ID as columnId,
@@ -22,7 +26,7 @@ beforeEach(() => {
 
 it('does not throw error when board is invalid', () => {
   expect(() => {
-    renderWithStore(<BoardControls boardId="" />);
+    renderWithContext(<BoardControls boardId="" />);
   }).not.toThrow();
 });
 
@@ -30,7 +34,7 @@ describe('add column', () => {
   it('renders "Add column" button when user can edit', () => {
     const board = updateStore.withBoard();
     updateStore.withUser();
-    renderWithStore(<BoardControls boardId={board.id} />);
+    renderWithContext(<BoardControls boardId={board.id} />);
     expect(
       screen.getByRole('button', { name: 'Add column' })
     ).toBeInTheDocument();
@@ -38,7 +42,7 @@ describe('add column', () => {
 
   it('does not render "Add column" button when user cannot edit', () => {
     const board = updateStore.withBoard();
-    renderWithStore(<BoardControls boardId={board.id} />);
+    renderWithContext(<BoardControls boardId={board.id} />);
     expect(
       screen.queryByRole('button', { name: 'Add column' })
     ).not.toBeInTheDocument();
@@ -47,7 +51,7 @@ describe('add column', () => {
   it('saves new column to store', () => {
     const board = updateStore.withBoard();
     updateStore.withUser();
-    renderWithStore(<BoardControls boardId={board.id} />);
+    renderWithContext(<BoardControls boardId={board.id} />);
     expect(getStoreState().columns).toEqual({});
     const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
     fireEvent.click(screen.getByText('Add column'));
@@ -67,7 +71,7 @@ describe('add column', () => {
 describe('sort', () => {
   it('renders "Sort by likes" button', () => {
     const board = updateStore.withBoard();
-    renderWithStore(<BoardControls boardId={board.id} />);
+    renderWithContext(<BoardControls boardId={board.id} />);
     expect(
       screen.getByRole('button', { name: 'Sort by likes' })
     ).toBeInTheDocument();
@@ -85,7 +89,7 @@ describe('sort', () => {
       },
     });
     updateStore.withLike();
-    renderWithStore(<BoardControls boardId={board.id} />);
+    renderWithContext(<BoardControls boardId={board.id} />);
     fireEvent.click(screen.getByText('Sort by likes'));
     expect(getStoreState().columns[columnId].itemIds).toEqual([
       itemId,

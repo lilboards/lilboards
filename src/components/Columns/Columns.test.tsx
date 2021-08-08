@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react';
-import { renderWithStore, updateStore } from '../../utils/test';
+import { renderWithContext, updateStore } from '../../utils/test';
 import { getColumnsRef, getItemsRef, getLikesRef } from '../../firebase';
 import {
   BOARD_TEST_ID as boardId,
@@ -35,7 +35,7 @@ beforeEach(() => {
 it('renders column', () => {
   const board = updateStore.withBoard();
   const column = updateStore.withColumn();
-  renderWithStore(<Columns boardId={board.id} />);
+  renderWithContext(<Columns boardId={board.id} />);
   expect(screen.getByText(column.name)).toBeInTheDocument();
 });
 
@@ -114,12 +114,12 @@ describe('mount', () => {
   });
 
   it('loads columns', async () => {
-    renderWithStore(<Columns boardId={boardId} />);
+    renderWithContext(<Columns boardId={boardId} />);
     expect(await screen.findAllByRole('textbox')).toHaveLength(1);
   });
 
   it('renders column name', async () => {
-    renderWithStore(<Columns boardId={boardId} />);
+    renderWithContext(<Columns boardId={boardId} />);
     expect(
       await screen.findByRole('heading', {
         level: 2,
@@ -129,18 +129,18 @@ describe('mount', () => {
   });
 
   it('renders item text', async () => {
-    renderWithStore(<Columns boardId={boardId} />);
+    renderWithContext(<Columns boardId={boardId} />);
     expect(await screen.findByDisplayValue(itemText)).toBeInTheDocument();
   });
 
   it('renders liked item', async () => {
     updateStore.withUser();
-    renderWithStore(<Columns boardId={boardId} />);
+    renderWithContext(<Columns boardId={boardId} />);
     expect(await screen.findByLabelText(/1 like for item/)).toBeInTheDocument();
   });
 
   it('removes columns on unmount', async () => {
-    const { unmount } = renderWithStore(<Columns boardId={boardId} />);
+    const { unmount } = renderWithContext(<Columns boardId={boardId} />);
     expect(await screen.findAllByText(columnName)).toHaveLength(1);
     unmount();
     expect(screen.queryAllByText(columnName)).toHaveLength(0);
@@ -154,7 +154,7 @@ describe('mount', () => {
       EventType.child_removed,
     ];
 
-    const { unmount } = renderWithStore(<Columns boardId={boardId} />);
+    const { unmount } = renderWithContext(<Columns boardId={boardId} />);
     [columnsRefOn, itemsRefOn].forEach((refOn) => {
       expect(refOn).toBeCalledTimes(eventTypes.length);
       eventTypes.forEach((eventType) => {

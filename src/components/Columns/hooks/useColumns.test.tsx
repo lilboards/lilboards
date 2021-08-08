@@ -1,6 +1,6 @@
 import {
   getStoreState,
-  renderWithStore,
+  renderWithContext,
   updateStore,
 } from '../../../utils/test';
 import { getColumnsRef } from '../../../firebase';
@@ -43,7 +43,7 @@ describe('mount', () => {
     EventType.child_changed,
     EventType.child_removed,
   ])('listens to columnsRef %j', (eventType) => {
-    renderWithStore(<TestComponent />);
+    renderWithContext(<TestComponent />);
     expect(columnsRefOn).toBeCalledWith(eventType, expect.any(Function));
   });
 });
@@ -54,7 +54,7 @@ describe('unmount', () => {
     EventType.child_changed,
     EventType.child_removed,
   ])('unlistens to columnsRef %j', (eventType) => {
-    const { unmount } = renderWithStore(<TestComponent />);
+    const { unmount } = renderWithContext(<TestComponent />);
     unmount();
     expect(columnsRefOff).toBeCalledWith(eventType);
   });
@@ -79,7 +79,7 @@ describe(`${EventType.child_added}`, () => {
   });
 
   it('adds column to store', (done) => {
-    renderWithStore(<TestComponent />);
+    renderWithContext(<TestComponent />);
     setTimeout(() => {
       expect(getStoreState().columns).toMatchInlineSnapshot(`
         Object {
@@ -115,7 +115,7 @@ describe(`${EventType.child_changed}`, () => {
 
   it('updates column in store', (done) => {
     updateStore.withColumn();
-    renderWithStore(<TestComponent />);
+    renderWithContext(<TestComponent />);
     setTimeout(() => {
       expect(getStoreState().columns).toMatchInlineSnapshot(`
         Object {
@@ -149,7 +149,7 @@ describe(`${EventType.child_removed}`, () => {
 
   it('removes column from store', (done) => {
     updateStore.withColumn();
-    renderWithStore(<TestComponent />);
+    renderWithContext(<TestComponent />);
     setTimeout(() => {
       expect(getStoreState().columns).toEqual({});
       done();

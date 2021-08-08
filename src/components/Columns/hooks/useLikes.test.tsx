@@ -1,6 +1,6 @@
 import {
   getStoreState,
-  renderWithStore,
+  renderWithContext,
   updateStore,
 } from '../../../utils/test';
 import { getLikesRef } from '../../../firebase';
@@ -55,7 +55,7 @@ describe('likes snapshot value is valid', () => {
 
   it('adds like to store', (done) => {
     updateStore.withUser();
-    renderWithStore(<TestComponent />);
+    renderWithContext(<TestComponent />);
     setTimeout(() => {
       expect(getStoreState().likes).toMatchInlineSnapshot(`
         Object {
@@ -86,7 +86,7 @@ describe('likes snapshot value is null', () => {
 
   it('resets likes in store', (done) => {
     updateStore.withUser();
-    renderWithStore(<TestComponent />);
+    renderWithContext(<TestComponent />);
     setTimeout(() => {
       expect(getStoreState().likes).toMatchInlineSnapshot(`
         Object {

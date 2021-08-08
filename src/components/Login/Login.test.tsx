@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react';
-import { history, renderWithStore } from '../../utils/test';
+import { history, renderWithContext } from '../../utils/test';
 import { firebaseAuth } from '../../firebase';
 import { REDIRECT_TO } from '../../constants';
 import {
@@ -32,7 +32,7 @@ describe('not logged in', () => {
   });
 
   it('renders "Sign In"', () => {
-    renderWithStore(<Login />);
+    renderWithContext(<Login />);
     expect(
       screen.getByRole('heading', {
         level: 1,
@@ -63,14 +63,14 @@ describe('logged in', () => {
   });
 
   it('does not render "Sign In"', () => {
-    renderWithStore(<Login location={location} />);
+    renderWithContext(<Login location={location} />);
     expect(screen.queryAllByText('Sign In')).toHaveLength(0);
   });
 
   it.each([undefined, { state: {} }, { state: { [REDIRECT_TO]: '/' } }])(
     'redirects to "/boards" when props.location=%p',
     async (location) => {
-      renderWithStore(<Login location={location as Location} />);
+      renderWithContext(<Login location={location as Location} />);
       // wait for redirect
       await screen.findAllByText('');
       expect(history.location.pathname).toBe('/boards');
@@ -78,7 +78,7 @@ describe('logged in', () => {
   );
 
   it(`redirects to location.state.${REDIRECT_TO}`, async () => {
-    renderWithStore(<Login location={location} />);
+    renderWithContext(<Login location={location} />);
     // wait for redirect
     await screen.findAllByText('');
     expect(history.location.pathname).toBe(redirectTo);

@@ -1,5 +1,5 @@
 import { fireEvent, screen } from '@testing-library/react';
-import { renderWithStore, updateStore } from '../../utils/test';
+import { renderWithContext, updateStore } from '../../utils/test';
 import {
   BOARD_TEST_ID as boardId,
   ITEM_TEST_ID as itemId,
@@ -13,7 +13,7 @@ const props = {
 
 describe('without user and item', () => {
   beforeEach(() => {
-    renderWithStore(<Likes boardId={boardId} itemId="" />);
+    renderWithContext(<Likes boardId={boardId} itemId="" />);
   });
 
   it('renders like button', () => {
@@ -30,7 +30,7 @@ describe('with user and item', () => {
   beforeEach(() => {
     updateStore.withUser();
     const item = updateStore.withItem();
-    renderWithStore(<Likes {...props} itemId={item.id} />);
+    renderWithContext(<Likes {...props} itemId={item.id} />);
   });
 
   it('increments like count on click', () => {

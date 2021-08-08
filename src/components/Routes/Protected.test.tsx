@@ -4,7 +4,7 @@ import {
   USER_TEST_ID as userId,
 } from '../../constants/test';
 import { firebaseAuth } from '../../firebase';
-import { history, renderWithStore } from '../../utils/test';
+import { history, renderWithContext } from '../../utils/test';
 import Protected from './Protected';
 
 jest.mock('../../firebase', () => ({
@@ -32,12 +32,12 @@ describe('not signed in', () => {
   });
 
   it('does not render protected component', () => {
-    renderWithStore(<Protected {...props} />);
+    renderWithContext(<Protected {...props} />);
     expect(screen.queryByText(text)).not.toBeInTheDocument();
   });
 
   it('redirects to "/login"', async () => {
-    renderWithStore(<Protected {...props} />);
+    renderWithContext(<Protected {...props} />);
     await screen.findAllByText('');
     expect(history.location.pathname).toBe('/login');
   });
@@ -58,12 +58,12 @@ describe('signed in with unverified email', () => {
   });
 
   it('does not render protected component when email is checked', () => {
-    renderWithStore(<Protected {...props} check="email" />);
+    renderWithContext(<Protected {...props} check="email" />);
     expect(screen.queryByText(text)).not.toBeInTheDocument();
   });
 
   it('renders "Send verification email" button', () => {
-    renderWithStore(<Protected {...props} check="email" />);
+    renderWithContext(<Protected {...props} check="email" />);
     expect(
       screen.getByRole('button', { name: 'Send verification email' })
     ).toBeInTheDocument();
@@ -85,7 +85,7 @@ describe('signed in with verified email', () => {
   });
 
   it('renders protected component when email is checked', () => {
-    renderWithStore(<Protected {...props} check="email" />);
+    renderWithContext(<Protected {...props} check="email" />);
     expect(screen.getByText(text)).toBeInTheDocument();
   });
 });
@@ -103,12 +103,12 @@ describe('signed in with uid', () => {
   });
 
   it('does not render protected component when email is checked', () => {
-    renderWithStore(<Protected {...props} check="email" />);
+    renderWithContext(<Protected {...props} check="email" />);
     expect(screen.queryByText(text)).not.toBeInTheDocument();
   });
 
   it('renders protected component when id is checked', () => {
-    renderWithStore(<Protected {...props} check="id" />);
+    renderWithContext(<Protected {...props} check="id" />);
     expect(screen.getByText(text)).toBeInTheDocument();
   });
 });
@@ -121,7 +121,7 @@ describe('with sign-in anonymously', () => {
   });
 
   it('signs in anonymously', () => {
-    renderWithStore(<Protected {...props} signInAnonymously />);
+    renderWithContext(<Protected {...props} signInAnonymously />);
     expect(firebaseAuth.signInAnonymously).toBeCalledTimes(1);
   });
 });

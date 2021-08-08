@@ -1,5 +1,9 @@
 import { fireEvent, screen } from '@testing-library/react';
-import { getStoreState, renderWithStore, updateStore } from '../../utils/test';
+import {
+  getStoreState,
+  renderWithContext,
+  updateStore,
+} from '../../utils/test';
 import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
@@ -15,14 +19,14 @@ const props = {
 
 describe('invalid item', () => {
   it('renders nothing', () => {
-    const { baseElement } = renderWithStore(<Item {...props} />);
+    const { baseElement } = renderWithContext(<Item {...props} />);
     expect(baseElement.firstElementChild).toBeEmptyDOMElement();
   });
 });
 
 it('renders like button and count', () => {
   const item = updateStore.withItem();
-  renderWithStore(<Item {...props} itemId={item.id} />);
+  renderWithContext(<Item {...props} itemId={item.id} />);
   expect(screen.getByLabelText(/Like item/)).toBeInTheDocument();
   expect(screen.getByLabelText(/0 likes/)).toBeInTheDocument();
 });
@@ -30,7 +34,7 @@ it('renders like button and count', () => {
 describe('delete item', () => {
   beforeEach(() => {
     const item = updateStore.withItem();
-    renderWithStore(<Item {...props} itemId={item.id} />);
+    renderWithContext(<Item {...props} itemId={item.id} />);
   });
 
   it('renders close button', () => {
@@ -46,7 +50,7 @@ describe('delete item', () => {
 describe('edit item', () => {
   beforeEach(() => {
     const item = updateStore.withItem();
-    renderWithStore(<Item {...props} itemId={item.id} />);
+    renderWithContext(<Item {...props} itemId={item.id} />);
   });
 
   it('changes item', () => {

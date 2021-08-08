@@ -1,5 +1,9 @@
 import { fireEvent, screen } from '@testing-library/react';
-import { getStoreState, renderWithStore, updateStore } from '../../utils/test';
+import {
+  getStoreState,
+  renderWithContext,
+  updateStore,
+} from '../../utils/test';
 import Column from './Column';
 
 const props = {
@@ -9,14 +13,14 @@ const props = {
 };
 
 it('renders nothing when there is no column', () => {
-  const { baseElement } = renderWithStore(<Column {...props} />);
+  const { baseElement } = renderWithContext(<Column {...props} />);
   expect(baseElement.firstElementChild).toBeEmptyDOMElement();
 });
 
 it('renders column name', () => {
   const board = updateStore.withBoard();
   const column = updateStore.withColumn();
-  renderWithStore(
+  renderWithContext(
     <Column {...props} boardId={board.id} columnId={column.id} />
   );
   expect(screen.getByText(column.name)).toBeInTheDocument();
@@ -26,7 +30,7 @@ it('edits column', () => {
   const board = updateStore.withBoard();
   const column = updateStore.withColumn();
   updateStore.withUser();
-  renderWithStore(
+  renderWithContext(
     <Column {...props} boardId={board.id} columnId={column.id} />
   );
   const value = 'My Column Name';
@@ -39,7 +43,7 @@ it('resets user editing column id on blur', () => {
   const column = updateStore.withColumn();
   updateStore.withUser();
   updateStore.withUserEditing();
-  renderWithStore(
+  renderWithContext(
     <Column {...props} boardId={board.id} columnId={column.id} />
   );
   fireEvent.blur(screen.getByLabelText('Column Name'));
@@ -50,7 +54,7 @@ it('deletes column', () => {
   const board = updateStore.withBoard();
   const column = updateStore.withColumn();
   updateStore.withUser();
-  renderWithStore(
+  renderWithContext(
     <Column {...props} boardId={board.id} columnId={column.id} />
   );
   fireEvent.click(screen.getByLabelText(/Delete column/));

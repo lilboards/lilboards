@@ -1,5 +1,9 @@
 import { fireEvent, screen } from '@testing-library/react';
-import { getStoreState, renderWithStore, updateStore } from '../../utils/test';
+import {
+  getStoreState,
+  renderWithContext,
+  updateStore,
+} from '../../utils/test';
 import {
   BOARD_TEST_ID as boardId,
   DATE_NOW as dateNow,
@@ -8,7 +12,7 @@ import BoardCard from './BoardCard';
 
 it('renders "Open board" button', () => {
   const board = updateStore.withBoard();
-  renderWithStore(<BoardCard boardId={board.id} />);
+  renderWithContext(<BoardCard boardId={board.id} />);
   expect(screen.getByRole('button', { name: 'Open board' })).toHaveAttribute(
     'href',
     `/boards/${boardId}`
@@ -20,7 +24,7 @@ describe('edit board', () => {
 
   beforeEach(() => {
     board = updateStore.withBoard();
-    renderWithStore(<BoardCard boardId={board.id} />);
+    renderWithContext(<BoardCard boardId={board.id} />);
   });
 
   it('sets user editing boardId when input is focused', () => {
@@ -57,7 +61,7 @@ describe('delete board', () => {
   it('deletes board', () => {
     const board = updateStore.withBoard();
     updateStore.withUser();
-    renderWithStore(<BoardCard boardId={board.id} />);
+    renderWithContext(<BoardCard boardId={board.id} />);
     fireEvent.click(screen.getByLabelText(/Delete board/));
     expect(screen.queryByLabelText('Board Name')).not.toBeInTheDocument();
   });

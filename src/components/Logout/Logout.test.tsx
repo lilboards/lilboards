@@ -1,6 +1,10 @@
 import { screen } from '@testing-library/react';
 import { firebaseAuth } from '../../firebase';
-import { getStoreState, renderWithStore, updateStore } from '../../utils/test';
+import {
+  getStoreState,
+  renderWithContext,
+  updateStore,
+} from '../../utils/test';
 import Logout from './Logout';
 
 jest.mock('../../firebase', () => ({
@@ -18,7 +22,7 @@ beforeEach(() => {
 
 it('signs user out', async () => {
   updateStore.withUser();
-  const { baseElement } = renderWithStore(<Logout />);
+  const { baseElement } = renderWithContext(<Logout />);
   expect(firebaseAuth.signOut).toBeCalledTimes(1);
   expect(getStoreState().user.id).toBe('');
   await screen.findAllByText('');
