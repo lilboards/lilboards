@@ -43,12 +43,40 @@ describe('not signed in', () => {
   });
 });
 
-describe('signed in with email', () => {
+describe('signed in with unverified email', () => {
   beforeEach(() => {
     (firebaseAuth.onAuthStateChanged as jest.Mock).mockImplementationOnce(
       (callback) => {
         const user = {
           email: userEmail,
+          emailVerified: false,
+          uid: userId,
+        };
+        callback(user);
+      }
+    );
+  });
+
+  it('does not render protected component when email is checked', () => {
+    renderWithStore(<Protected {...props} check="email" />);
+    expect(screen.queryByText(text)).not.toBeInTheDocument();
+  });
+
+  it('renders "Send verification email" button', () => {
+    renderWithStore(<Protected {...props} check="email" />);
+    expect(
+      screen.getByRole('button', { name: 'Send verification email' })
+    ).toBeInTheDocument();
+  });
+});
+
+describe('signed in with verified email', () => {
+  beforeEach(() => {
+    (firebaseAuth.onAuthStateChanged as jest.Mock).mockImplementationOnce(
+      (callback) => {
+        const user = {
+          email: userEmail,
+          emailVerified: true,
           uid: userId,
         };
         callback(user);
