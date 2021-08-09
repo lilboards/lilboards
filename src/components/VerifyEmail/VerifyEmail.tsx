@@ -1,17 +1,25 @@
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link } from '@reach/router';
+import { useState } from 'react';
+
+import Snackbar from '../Snackbar';
 
 import { REDIRECT_TO } from '../../constants';
 import { firebaseAuth } from '../../firebase';
 
-function sendEmailVerification() {
-  firebaseAuth.currentUser!.sendEmailVerification();
-}
-
 export default function VerifyEmail() {
+  const [emailSentTime, setEmailSentTime] = useState(0);
+
+  function sendEmail() {
+    firebaseAuth.currentUser!.sendEmailVerification();
+    setEmailSentTime(Date.now());
+  }
+
   return (
     <>
+      <Snackbar message="Email sent" lastOpened={emailSentTime} />
+
       <Typography paragraph>
         To use Lilboards, please verify your email:
       </Typography>

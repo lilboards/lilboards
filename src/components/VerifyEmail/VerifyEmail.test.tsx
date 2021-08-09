@@ -26,6 +26,7 @@ describe('send verification email', () => {
       screen.getByRole('button', { name: 'Send verification email' })
     );
     expect(firebaseAuth.currentUser!.sendEmailVerification).toBeCalled();
+    expect(screen.getByText('Email sent')).toBeInTheDocument();
   });
 });
 
