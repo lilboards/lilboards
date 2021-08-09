@@ -17,7 +17,9 @@ export default function VerifyEmail() {
       </Typography>
 
       <Typography paragraph>
-        <Button onClick={sendEmailVerification}>Send verification email</Button>
+        <Button color="primary" onClick={sendEmail} variant="outlined">
+          Send verification email
+        </Button>
       </Typography>
 
       <Typography paragraph>
@@ -26,9 +28,11 @@ export default function VerifyEmail() {
 
       <Typography paragraph>
         <Button
+          color="secondary"
           component={Link}
           state={{ [REDIRECT_TO]: window.location.pathname }}
           to="/logout"
+          variant="outlined"
         >
           Logout
         </Button>
