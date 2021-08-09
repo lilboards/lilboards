@@ -1,23 +1,33 @@
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link } from '@reach/router';
+import { useState } from 'react';
+
+import Snackbar from '../Snackbar';
 
 import { REDIRECT_TO } from '../../constants';
 import { firebaseAuth } from '../../firebase';
 
-function sendEmailVerification() {
-  firebaseAuth.currentUser!.sendEmailVerification();
-}
-
 export default function VerifyEmail() {
+  const [emailSentTime, setEmailSentTime] = useState(0);
+
+  function sendEmail() {
+    firebaseAuth.currentUser!.sendEmailVerification();
+    setEmailSentTime(Date.now());
+  }
+
   return (
     <>
+      <Snackbar message="Email sent" lastOpened={emailSentTime} />
+
       <Typography paragraph>
         To use Lilboards, please verify your email:
       </Typography>
 
       <Typography paragraph>
-        <Button onClick={sendEmailVerification}>Send verification email</Button>
+        <Button color="primary" onClick={sendEmail} variant="outlined">
+          Send verification email
+        </Button>
       </Typography>
 
       <Typography paragraph>
@@ -26,9 +36,11 @@ export default function VerifyEmail() {
 
       <Typography paragraph>
         <Button
+          color="secondary"
           component={Link}
           state={{ [REDIRECT_TO]: window.location.pathname }}
           to="/logout"
+          variant="outlined"
         >
           Logout
         </Button>
