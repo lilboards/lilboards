@@ -1,5 +1,14 @@
 # Changelog
 
+## [4.4.0](https://www.github.com/lilboards/lilboards/compare/v4.3.2...v4.4.0) (2021-08-09)
+
+
+### Features
+
+* **components:** add Snackbar ([576c459](https://www.github.com/lilboards/lilboards/commit/576c45924816e58bf1f93640686bdd360126c5ec))
+* **components:** render Snackbar in VerifyEmail ([ed6d8e9](https://www.github.com/lilboards/lilboards/commit/ed6d8e9cac8c4591630e0433cec18ff5e50030b9))
+* **components:** set button color and outline in VerifyEmail ([a217091](https://www.github.com/lilboards/lilboards/commit/a2170916299387d94c61d0822e0a0d7c911faaeb))
+
 ### [4.3.2](https://www.github.com/lilboards/lilboards/compare/v4.3.1...v4.3.2) (2021-08-08)
 
 
