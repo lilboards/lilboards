@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.5.0](https://www.github.com/lilboards/lilboards/compare/v4.4.0...v4.5.0) (2021-08-14)
+
+
+### Features
+
+* **components:** add GitHub as auth provider in Login ([737f589](https://www.github.com/lilboards/lilboards/commit/737f5891985ea621ac156d6855cc288967adb457))
+
 ## [4.4.0](https://www.github.com/lilboards/lilboards/compare/v4.3.2...v4.4.0) (2021-08-09)
 
 
