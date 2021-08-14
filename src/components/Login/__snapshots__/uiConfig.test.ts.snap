@@ -8,6 +8,7 @@ Object {
   "signInFlow": "popup",
   "signInOptions": Array [
     "google.com",
+    "github.com",
     "password",
   ],
 }
