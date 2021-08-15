@@ -14,13 +14,14 @@ interface Props extends RouteComponentProps {
 }
 
 export default function Board(props: Props) {
-  const { board, isLoaded } = useBoard(props.boardId);
+  const boardId = props.boardId || '';
+  const { board, isLoaded } = useBoard(boardId);
 
-  if (!props.boardId) {
+  if (!boardId) {
     return null;
   }
 
-  if (props.boardId && !board && isLoaded) {
+  if (boardId && !board && isLoaded) {
     return <Redirect to="/404" noThrow />;
   }
 
@@ -36,8 +37,8 @@ export default function Board(props: Props) {
         </Typography>
       )}
 
-      <BoardControls boardId={props.boardId} />
-      <Columns boardId={props.boardId} />
+      <BoardControls boardId={boardId} />
+      <Columns boardId={boardId} />
     </>
   );
 }
