@@ -25,8 +25,8 @@ export function useBoard(boardId: Id) {
       if (board) {
         dispatch(
           actions.loadBoard({
-            ...board,
-            id: boardId,
+            board,
+            boardId,
           })
         );
       }
