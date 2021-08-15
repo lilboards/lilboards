@@ -1,22 +1,27 @@
 import { useEffect, useState } from 'react';
 
 import actions from '../../../actions';
-import { getBoardVal } from '../../../firebase';
+import { getBoardDataRef } from '../../../firebase';
 import { useDispatch, useSelector } from '../../../hooks';
 
-import type { Id } from '../../../types';
+import { EventType, Id } from '../../../types';
 
-export function useBoard(boardId?: Id) {
+export function useBoard(boardId: Id) {
   const dispatch = useDispatch();
-  const board = useSelector((state) => state.boards[boardId || '']);
+  const board = useSelector((state) => state.boards[boardId]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    if (!boardId || board) {
+    if (!boardId) {
       return;
     }
 
-    getBoardVal(boardId).then((board) => {
+    const boardRef = getBoardDataRef(boardId);
+
+    // subscribe to board value
+    boardRef.on(EventType.value, (boardSnapshot) => {
+      const board = boardSnapshot.val();
+      /* istanbul ignore else */
       if (board) {
         dispatch(
           actions.loadBoard({
@@ -28,8 +33,12 @@ export function useBoard(boardId?: Id) {
       setIsLoaded(true);
     });
 
-    return () => setIsLoaded(false);
-  }, [boardId, setIsLoaded, board, dispatch]);
+    // unsubscribe on unmount
+    return () => {
+      boardRef.off(EventType.value);
+      setIsLoaded(false);
+    };
+  }, [boardId, dispatch, setIsLoaded]);
 
   return {
     board,
