@@ -1,5 +1,12 @@
 # Changelog
 
+### [4.5.1](https://www.github.com/lilboards/lilboards/compare/v4.5.0...v4.5.1) (2021-08-16)
+
+
+### Bug Fixes
+
+* **components:** ensure GitHub icon button link displays in Header ([15b885b](https://www.github.com/lilboards/lilboards/commit/15b885b5310823a2eab6461ee5e191e2aaa6377c))
+
 ## [4.5.0](https://www.github.com/lilboards/lilboards/compare/v4.4.0...v4.5.0) (2021-08-14)
 
 
