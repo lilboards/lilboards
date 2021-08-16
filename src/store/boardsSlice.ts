@@ -48,14 +48,13 @@ const boardsSlice = createSlice({
       delete state[boardId];
     },
 
-    loadBoard: (state, action: PayloadAction<(Board & { id?: Id }) | null>) => {
-      if (action.payload) {
-        const { id, ...board } = action.payload;
-        if (id) {
-          state[id] = state[id] || {};
-          Object.assign(state[id], board);
-        }
-      }
+    loadBoard: (
+      state,
+      action: PayloadAction<{ board: Board; boardId: Id }>
+    ) => {
+      const { board, boardId } = action.payload;
+      state[boardId] = state[boardId] || {};
+      Object.assign(state[boardId], board);
     },
 
     resetBoards: () => {

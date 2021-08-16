@@ -53,11 +53,17 @@ export const updateStore = {
     const board = {
       createdAt: dateNow,
       createdBy: userId,
-      id: boardId,
       name: 'Board One',
     };
-    store.dispatch(actions.loadBoard(board));
-    return board;
+    const payload = {
+      board,
+      boardId,
+    };
+    store.dispatch(actions.loadBoard(payload));
+    return {
+      ...board,
+      id: boardId,
+    };
   },
 
   withColumn() {
@@ -74,7 +80,10 @@ export const updateStore = {
       skipSave: true,
     };
     store.dispatch(actions.updateColumn(payload));
-    return { ...column, id };
+    return {
+      ...column,
+      id,
+    };
   },
 
   withColumns(columns: Columns) {
@@ -94,13 +103,23 @@ export const updateStore = {
       createdBy: userId,
       text: 'Item One',
     };
-    const payload = { item, itemId };
+    const payload = {
+      item,
+      itemId,
+    };
     store.dispatch(actions.updateItem(payload));
-    return { ...item, id: itemId };
+    return {
+      ...item,
+      id: itemId,
+    };
   },
 
   withLike() {
-    const payload = { boardId, itemId, userId };
+    const payload = {
+      boardId,
+      itemId,
+      userId,
+    };
     store.dispatch(actions.likeItem(payload));
   },
 

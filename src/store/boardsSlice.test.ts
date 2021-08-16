@@ -66,35 +66,57 @@ describe('deleteBoard', () => {
 });
 
 describe('loadBoard', () => {
-  it('does nothing if payload is null', () => {
-    expect(reducer(initialState, actions.loadBoard(null))).toBe(initialState);
-  });
-
-  it('does nothing if board id is undefined', () => {
+  it('loads board into empty state', () => {
+    const state = {};
     const payload = {
-      ...board,
-      id: undefined,
+      board,
+      boardId,
     };
-    expect(reducer(initialState, actions.loadBoard(payload))).toBe(
-      initialState
-    );
+    const newState = reducer(state, actions.loadBoard(payload));
+    expect(newState).toEqual({
+      [boardId]: board,
+    });
   });
 
-  it('loads board', () => {
+  it('loads board into existing state', () => {
     const state = {
       [`${boardId}1`]: board,
     };
-    const id = `${boardId}2`;
+    const id2 = `${boardId}2`;
     const board2 = {
       createdAt: Date.now(),
       createdBy: userId,
       name: 'Board 2',
       updatedAt: Date.now(),
     };
-    const newState = reducer(state, actions.loadBoard({ id, ...board2 }));
+    const payload = {
+      board: board2,
+      boardId: id2,
+    };
+    const newState = reducer(state, actions.loadBoard(payload));
     expect(newState).toEqual({
       ...state,
-      [id]: board2,
+      [id2]: board2,
+    });
+  });
+
+  it('overrides board', () => {
+    const state = {
+      [boardId]: board,
+    };
+    const board2 = {
+      createdAt: Date.now(),
+      createdBy: userId,
+      name: 'Board 2',
+      updatedAt: Date.now(),
+    };
+    const payload = {
+      board: board2,
+      boardId,
+    };
+    const newState = reducer(state, actions.loadBoard(payload));
+    expect(newState).toEqual({
+      [boardId]: board2,
     });
   });
 });

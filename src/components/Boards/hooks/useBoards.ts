@@ -23,8 +23,8 @@ export function useBoards(
           const board = await getBoardVal(boardId);
           if (board) {
             return {
-              ...board,
-              id: boardId,
+              board,
+              boardId,
             };
           }
         })
