@@ -48,6 +48,11 @@ export default function BoardControls(props: Props) {
         columnItemIds: sortByLikes(columns, likes),
       })
     );
+    firebaseAnalytics.logEvent('sort', {
+      type: 'items',
+      by: 'likes',
+      order: 'descending',
+    });
   }
 
   return (
