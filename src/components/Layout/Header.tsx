@@ -25,16 +25,16 @@ export default function Header() {
             </Link>
           </Box>
 
-          <IconButton
+          <Link
             aria-label="Open GitHub repository"
             color="inherit"
-            component={Link}
+            component={IconButton}
             href="https://github.com/lilboards/lilboards"
             target="_blank"
             rel="noopener noreferrer"
           >
             <GitHubIcon />
-          </IconButton>
+          </Link>
 
           {isLoggedIn && (
             <Button color="inherit" component={RouterLink} to="/boards">
