@@ -1,5 +1,12 @@
 # Changelog
 
+### [4.5.2](https://www.github.com/lilboards/lilboards/compare/v4.5.1...v4.5.2) (2021-08-17)
+
+
+### Bug Fixes
+
+* **components:** change card bgcolor when dragging over combine ([196d994](https://www.github.com/lilboards/lilboards/commit/196d9945d1fa4c3f9a184c4c713bc1ec89027f92))
+
 ### [4.5.1](https://www.github.com/lilboards/lilboards/compare/v4.5.0...v4.5.1) (2021-08-16)
 
 
