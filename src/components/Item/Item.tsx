@@ -10,14 +10,15 @@ import actions from '../../actions';
 import { useDispatch, useSelector } from '../../hooks';
 import { firebaseAnalytics } from '../../firebase';
 
-import type { ChangeEvent } from 'react';
+import type { ChangeEvent, CSSProperties } from 'react';
 import type { Id } from '../../types';
 
-type Props = {
+interface Props {
   boardId: Id;
+  cardStyle?: CSSProperties;
   columnId: Id;
   itemId: Id;
-};
+}
 
 export default function Item(props: Props) {
   const dispatch = useDispatch();
@@ -87,7 +88,7 @@ export default function Item(props: Props) {
 
   return (
     <Box height="100%" position="relative">
-      <Card raised={isEditing}>
+      <Card raised={isEditing} style={props.cardStyle}>
         <Box position="absolute" right={0} top={0}>
           <CloseButton
             aria-label={`Delete item "${props.itemId}"`}

@@ -17,11 +17,21 @@ const props = {
   itemId,
 };
 
-describe('invalid item', () => {
-  it('renders nothing', () => {
-    const { baseElement } = renderWithContext(<Item {...props} />);
-    expect(baseElement.firstElementChild).toBeEmptyDOMElement();
-  });
+it('does not render for undefined item', () => {
+  const { baseElement } = renderWithContext(<Item {...props} />);
+  expect(baseElement.firstElementChild).toBeEmptyDOMElement();
+});
+
+it('renders card style', () => {
+  const item = updateStore.withItem();
+  renderWithContext(
+    <Item
+      {...props}
+      cardStyle={{ backgroundColor: '#64b5f6' }}
+      itemId={item.id}
+    />
+  );
+  expect(screen.getByText(item.text)).toBeInTheDocument();
 });
 
 it('renders like button and count', () => {

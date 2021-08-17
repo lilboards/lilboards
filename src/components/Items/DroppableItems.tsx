@@ -4,7 +4,7 @@ import { Droppable } from 'react-beautiful-dnd';
 import InnerList from './InnerList';
 
 import { useSelector } from '../../hooks';
-import { getBackgroundColor } from './styles';
+import { getDroppableBackgroundColor } from './styles';
 
 import type { Id } from '../../types';
 
@@ -25,7 +25,7 @@ export default function DroppableItems(props: Props) {
           {...droppableProvided.droppableProps}
           ref={droppableProvided.innerRef}
         >
-          <Box bgcolor={getBackgroundColor(droppableSnapshot)}>
+          <Box bgcolor={getDroppableBackgroundColor(droppableSnapshot)}>
             <InnerList
               boardId={props.boardId}
               columnId={props.columnId}
