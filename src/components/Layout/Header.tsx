@@ -29,7 +29,7 @@ export default function Header() {
             aria-label="Open GitHub repository"
             color="inherit"
             component={IconButton}
-            href="https://github.com/lilboards/lilboards"
+            href="https://b.remarkabl.org/lilboards"
             target="_blank"
             rel="noopener noreferrer"
           >
