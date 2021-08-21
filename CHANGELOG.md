@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.6.0](https://www.github.com/lilboards/lilboards/compare/v4.5.2...v4.6.0) (2021-08-21)
+
+
+### Features
+
+* **components:** add GitHub, remarkablemark, & version links in Home ([1f50fcd](https://www.github.com/lilboards/lilboards/commit/1f50fcd10b9e26c089a678c21e2e67f882f29bc0))
+* **components:** replace Header GitHub link with Bitly link ([7dd3c0a](https://www.github.com/lilboards/lilboards/commit/7dd3c0ab81f71c20b6e8252827c14494e7369d21))
+
 ### [4.5.2](https://www.github.com/lilboards/lilboards/compare/v4.5.1...v4.5.2) (2021-08-17)
 
 
