@@ -1,23 +1,20 @@
 import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
 
 import AddButton from '../AddButton';
+import Sort from './Sort';
 
 import actions from '../../actions';
 import { firebaseAnalytics, generateId } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
-import { sortByLikes } from './utils';
 
 import type { Column, Id } from '../../types';
 
-type Props = {
+interface Props {
   boardId: Id;
-};
+}
 
 export default function BoardControls(props: Props) {
   const dispatch = useDispatch();
-  const columns = useSelector((state) => state.columns);
-  const likes = useSelector((state) => state.likes);
   const canEdit = useSelector(
     (state) => (state.boards[props.boardId] || {}).createdBy === state.user.id
   );
@@ -41,20 +38,6 @@ export default function BoardControls(props: Props) {
     firebaseAnalytics.logEvent('create_column');
   }
 
-  function sortItems() {
-    dispatch(
-      actions.setColumnItemIds({
-        boardId: props.boardId,
-        columnItemIds: sortByLikes(columns, likes),
-      })
-    );
-    firebaseAnalytics.logEvent('sort', {
-      type: 'items',
-      by: 'likes',
-      order: 'descending',
-    });
-  }
-
   return (
     <Box display="flex" marginBottom={4}>
       <Box flexGrow={1}>
@@ -65,9 +48,7 @@ export default function BoardControls(props: Props) {
         )}
       </Box>
 
-      <Button color="primary" onClick={sortItems} variant="outlined">
-        Sort by likes
-      </Button>
+      <Sort boardId={props.boardId} />
     </Box>
   );
 }

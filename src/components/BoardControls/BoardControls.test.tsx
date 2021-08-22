@@ -8,8 +8,6 @@ import { generateId } from '../../firebase';
 import {
   COLUMN_TEST_ID as columnId,
   DATE_NOW as dateNow,
-  ITEM_TEST_ID as itemId,
-  USER_TEST_ID as userId,
 } from '../../constants/test';
 import BoardControls from './BoardControls';
 
@@ -68,32 +66,10 @@ describe('add column', () => {
   });
 });
 
-describe('sort', () => {
-  it('renders "Sort by likes" button', () => {
-    const board = updateStore.withBoard();
-    renderWithContext(<BoardControls boardId={board.id} />);
-    expect(
-      screen.getByRole('button', { name: 'Sort by likes' })
-    ).toBeInTheDocument();
-  });
-
-  it('sorts column items by likes', () => {
-    const board = updateStore.withBoard();
-    const itemId2 = `${itemId}2`;
-    updateStore.withColumns({
-      [columnId]: {
-        createdAt: dateNow,
-        createdBy: userId,
-        itemIds: [itemId2, itemId],
-        name: '',
-      },
-    });
-    updateStore.withLike();
-    renderWithContext(<BoardControls boardId={board.id} />);
-    fireEvent.click(screen.getByText('Sort by likes'));
-    expect(getStoreState().columns[columnId].itemIds).toEqual([
-      itemId,
-      itemId2,
-    ]);
-  });
+it('renders "Sort by likes" button', () => {
+  const board = updateStore.withBoard();
+  renderWithContext(<BoardControls boardId={board.id} />);
+  expect(
+    screen.getByRole('button', { name: 'Sort by likes' })
+  ).toBeInTheDocument();
 });
