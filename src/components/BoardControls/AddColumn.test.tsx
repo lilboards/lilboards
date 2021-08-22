@@ -4,7 +4,7 @@ import {
   getStoreState,
   updateStore,
 } from '../../utils/test';
-import { generateId } from '../../firebase';
+import { firebaseAnalytics, generateId } from '../../firebase';
 import {
   COLUMN_TEST_ID as columnId,
   DATE_NOW as dateNow,
@@ -55,5 +55,7 @@ it('adds new column', () => {
         },
       }
     `);
+  expect(firebaseAnalytics.logEvent).toBeCalledTimes(1);
+  expect(firebaseAnalytics.logEvent).toBeCalledWith('create_column');
   dateNowSpy.mockRestore();
 });
