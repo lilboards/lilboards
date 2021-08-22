@@ -15,6 +15,7 @@ export const initialState: User = {
   email: null,
   emailVerified: false,
   id: '',
+  presenting: false,
 };
 
 export const name = USER;
@@ -24,6 +25,10 @@ const userSlice = createSlice({
   initialState,
 
   reducers: {
+    resetUser: () => {
+      return initialState;
+    },
+
     setUser: (state, action: PayloadAction<Partial<User>>) => {
       const user = action.payload;
       Object.assign(state, user);
@@ -39,8 +44,8 @@ const userSlice = createSlice({
       Object.assign(state.editing, action.payload);
     },
 
-    resetUser: () => {
-      return initialState;
+    toggleUserPresenting: (state) => {
+      state.presenting = !state.presenting;
     },
   },
 });
