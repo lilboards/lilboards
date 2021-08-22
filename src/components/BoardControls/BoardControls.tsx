@@ -1,6 +1,7 @@
 import Box from '@material-ui/core/Box';
 
 import AddColumn from './AddColumn';
+import Present from './Present';
 import Sort from './Sort';
 
 import type { Id } from '../../types';
@@ -15,6 +16,8 @@ export default function BoardControls(props: Props) {
       <Box flexGrow={1}>
         <AddColumn boardId={props.boardId} />
       </Box>
+
+      <Present />
 
       <Sort boardId={props.boardId} />
     </Box>
