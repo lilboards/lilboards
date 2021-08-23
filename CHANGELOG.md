@@ -1,5 +1,15 @@
 # Changelog
 
+## [4.7.0](https://www.github.com/lilboards/lilboards/compare/v4.6.0...v4.7.0) (2021-08-23)
+
+
+### Features
+
+* **components:** create Present ([666fd0e](https://www.github.com/lilboards/lilboards/commit/666fd0e88f056ee62b4a0ef4ba2148b44be397aa))
+* **components:** don't show filled LikeButton when user's presenting ([a8e7dc1](https://www.github.com/lilboards/lilboards/commit/a8e7dc1345ee7e260f1bb8d145b3cda936401379))
+* **components:** render Present in BoardControls ([089e4df](https://www.github.com/lilboards/lilboards/commit/089e4dfd8ac37d5dda5b356b830789f98b537166))
+* **store:** add toggleUserPresenting to userSlice ([8d7bf10](https://www.github.com/lilboards/lilboards/commit/8d7bf1065a2581a0c3bc58caf2fa2f4abb6f286c))
+
 ## [4.6.0](https://www.github.com/lilboards/lilboards/compare/v4.5.2...v4.6.0) (2021-08-21)
 
 
