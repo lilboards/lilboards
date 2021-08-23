@@ -86,6 +86,7 @@ export interface User {
   email: string | null;
   emailVerified: boolean;
   id: UserId;
+  presenting: boolean;
 }
 
 type UserId = Id;

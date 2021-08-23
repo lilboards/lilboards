@@ -24,6 +24,13 @@ it('renders "Add column" button', () => {
   ).toBeInTheDocument();
 });
 
+it('renders "Present" switch', () => {
+  const board = updateStore.withBoard();
+  updateStore.withUser();
+  renderWithContext(<BoardControls boardId={board.id} />);
+  expect(screen.getByLabelText('Present')).toBeInTheDocument();
+});
+
 it('renders "Sort by likes" button', () => {
   const board = updateStore.withBoard();
   renderWithContext(<BoardControls boardId={board.id} />);
