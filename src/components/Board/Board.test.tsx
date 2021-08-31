@@ -13,7 +13,8 @@ jest.mock('../../firebase', () => ({
   getBoardDataRef: jest.fn(),
 }));
 
-jest.mock('../Columns', () => () => <>Columns</>);
+jest.mock('../BoardControls', () => () => <p>BoardControls</p>);
+jest.mock('../Columns', () => () => <p>Columns</p>);
 
 beforeEach(() => {
   (getBoardDataRef as jest.Mock).mockReturnValueOnce({
@@ -36,13 +37,13 @@ it('renders nothing when there is no board id', async () => {
 });
 
 it('renders nothing when there is no board', async () => {
-  const { baseElement } = renderWithContext(<Board boardId={boardId} />);
+  const { baseElement } = renderWithContext(<Board boardId="invalid" />);
   await screen.findAllByText('');
   expect(baseElement.firstElementChild).toBeEmptyDOMElement();
 });
 
 it('redirects to "/404" when board is not found', async () => {
-  renderWithContext(<Board boardId={boardId} />);
+  renderWithContext(<Board boardId="invalid" />);
   // wait for redirect
   await screen.findAllByText('');
   expect(history.location.pathname).toBe('/404');
@@ -56,16 +57,13 @@ it('renders board name as heading', async () => {
   );
 });
 
-it('renders "Add column" button', () => {
-  updateStore.withUser();
+it('renders <BoardControls>', async () => {
   const board = updateStore.withBoard();
   renderWithContext(<Board boardId={board.id} />);
-  expect(
-    screen.getByRole('button', { name: 'Add column' })
-  ).toBeInTheDocument();
+  expect(await screen.findByText('BoardControls')).toBeInTheDocument();
 });
 
-it('renders columns', async () => {
+it('renders <Columns>', async () => {
   const board = updateStore.withBoard();
   renderWithContext(<Board boardId={board.id} />);
   expect(await screen.findByText('Columns')).toBeInTheDocument();
