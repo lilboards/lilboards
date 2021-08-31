@@ -28,6 +28,7 @@ describe('timer', () => {
 
   beforeEach(() => {
     const board = updateStore.withBoard();
+    updateStore.withUser();
     renderWithContext(<Timer boardId={board.id} />);
     input = screen.getByLabelText('Timer in minutes');
     button = screen.getByLabelText('Start timer');
@@ -79,44 +80,74 @@ describe('timer', () => {
   });
 });
 
-it('renders "Timer" input', () => {
-  renderWithContext(<Timer boardId={boardId} />);
-  const input = screen.getByRole('spinbutton', { name: 'Timer in minutes' });
-  expect(input).toHaveValue(5);
-  expect(input).toHaveProperty('placeholder', 'Minutes');
-  expect(input).toHaveProperty('type', 'number');
-  expect(input).not.toBeDisabled();
+describe('when user can edit', () => {
+  beforeEach(() => {
+    const board = updateStore.withBoard();
+    updateStore.withUser();
+    renderWithContext(<Timer boardId={board.id} />);
+  });
+
+  it('renders "Timer" input', () => {
+    const input = screen.getByRole('spinbutton', { name: 'Timer in minutes' });
+    expect(input).toHaveValue(5);
+    expect(input).toHaveProperty('placeholder', 'Minutes');
+    expect(input).toHaveProperty('type', 'number');
+    expect(input).not.toBeDisabled();
+  });
+
+  it('renders "Start" button', () => {
+    const button = screen.getByRole('button', { name: 'Start timer' });
+    expect(button).toHaveTextContent('Start');
+    expect(button).not.toBeDisabled();
+  });
 });
 
-it('renders "Start" button', () => {
-  renderWithContext(<Timer boardId={boardId} />);
-  expect(screen.getByRole('button', { name: 'Start timer' })).toHaveTextContent(
-    'Start'
+describe('when user cannot edit', () => {
+  beforeEach(() => {
+    renderWithContext(<Timer boardId={boardId} />);
+  });
+
+  it('renders "Timer" input', () => {
+    expect(screen.getByLabelText('Timer in minutes')).toBeDisabled();
+  });
+
+  it('renders "Start" button', () => {
+    expect(screen.getByRole('button', { name: 'Start timer' })).toBeDisabled();
+  });
+});
+
+describe('input onChange', () => {
+  it.each([undefined, '', -1, 0, 0.1, 1, 2, 3.14, 42])(
+    'changes value to %j',
+    (value) => {
+      renderWithContext(<Timer boardId={boardId} />);
+      const input = screen.getByLabelText('Timer in minutes');
+      const event = { target: { value } };
+      fireEvent.change(input, event);
+      expect(input).toHaveValue(value === '' ? null : value);
+    }
   );
 });
 
-it.each([undefined, '', -1, 0, 0.1, 1, 2, 3.14, 42])(
-  'changes input value to %j',
-  (value) => {
-    renderWithContext(<Timer boardId={boardId} />);
-    const input = screen.getByLabelText('Timer in minutes');
-    const event = { target: { value } };
+describe('when minutes is not greater than 0', () => {
+  let button: HTMLElement;
+  let input: HTMLElement;
+
+  beforeAll(() => {
+    const board = updateStore.withBoard();
+    updateStore.withUser();
+    renderWithContext(<Timer boardId={board.id} />);
+    input = screen.getByLabelText('Timer in minutes');
+    const event = { target: { value: 0 } };
     fireEvent.change(input, event);
-    expect(input).toHaveValue(value === '' ? null : value);
-  }
-);
-
-it('does not start timer if minutes is not greater than 0', () => {
-  const board = updateStore.withBoard();
-  renderWithContext(<Timer boardId={board.id} />);
-  const input = screen.getByLabelText('Timer in minutes');
-  const event = { target: { value: 0 } };
-  fireEvent.change(input, event);
-  const button = screen.getByLabelText('Start timer');
-
-  act(() => {
-    fireEvent.click(button);
+    button = screen.getByLabelText('Start timer');
   });
-  expect(button).toHaveTextContent('Start');
-  expect(input).not.toBeDisabled();
+
+  it('does not start timer', () => {
+    act(() => {
+      fireEvent.click(button);
+    });
+    expect(button).toHaveTextContent('Start');
+    expect(input).not.toBeDisabled();
+  });
 });

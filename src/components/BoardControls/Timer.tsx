@@ -25,6 +25,9 @@ export default function Timer(props: Props) {
   const { boardId } = props;
 
   const dispatch = useDispatch();
+  const canEdit = useSelector(
+    (state) => (state.boards[props.boardId] || {}).createdBy === state.user.id
+  );
   const timerEnd = useSelector(
     (state) => (state.boards[boardId] || {}).timerEnd
   );
@@ -79,7 +82,7 @@ export default function Timer(props: Props) {
   }
 
   function startTimer() {
-    if (state.minutes > 0) {
+    if (canEdit && state.minutes > 0) {
       dispatch(
         actions.updateBoard({
           boardId,
@@ -95,7 +98,7 @@ export default function Timer(props: Props) {
     <Box display="flex" alignItems="flex-end">
       <Box marginRight={1}>
         <TextField
-          disabled={Boolean(timerEnd)}
+          disabled={!canEdit || Boolean(timerEnd)}
           inputProps={{
             'aria-label': 'Timer in minutes',
             min: 1,
@@ -113,6 +116,7 @@ export default function Timer(props: Props) {
 
       <Button
         aria-label={timerEnd ? 'Stop timer' : 'Start timer'}
+        disabled={!canEdit}
         onClick={timerEnd ? stopTimer : startTimer}
         variant="outlined"
       >
