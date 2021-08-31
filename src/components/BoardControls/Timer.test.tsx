@@ -1,4 +1,6 @@
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, screen } from '@testing-library/react';
+import { renderWithContext, updateStore } from '../../utils/test';
+import { BOARD_TEST_ID as boardId } from '../../constants/test';
 import {
   DEFAULT_MINUTES,
   MINUTE_IN_SECONDS,
@@ -25,7 +27,8 @@ describe('timer', () => {
   });
 
   beforeEach(() => {
-    render(<Timer />);
+    const board = updateStore.withBoard();
+    renderWithContext(<Timer boardId={board.id} />);
     input = screen.getByLabelText('Timer in minutes');
     button = screen.getByLabelText('Start timer');
   });
@@ -77,7 +80,7 @@ describe('timer', () => {
 });
 
 it('renders "Timer" input', () => {
-  render(<Timer />);
+  renderWithContext(<Timer boardId={boardId} />);
   const input = screen.getByRole('spinbutton', { name: 'Timer in minutes' });
   expect(input).toHaveValue(5);
   expect(input).toHaveProperty('placeholder', 'Minutes');
@@ -86,7 +89,7 @@ it('renders "Timer" input', () => {
 });
 
 it('renders "Start" button', () => {
-  render(<Timer />);
+  renderWithContext(<Timer boardId={boardId} />);
   expect(screen.getByRole('button', { name: 'Start timer' })).toHaveTextContent(
     'Start'
   );
@@ -95,7 +98,7 @@ it('renders "Start" button', () => {
 it.each([undefined, '', -1, 0, 0.1, 1, 2, 3.14, 42])(
   'changes input value to %j',
   (value) => {
-    render(<Timer />);
+    renderWithContext(<Timer boardId={boardId} />);
     const input = screen.getByLabelText('Timer in minutes');
     const event = { target: { value } };
     fireEvent.change(input, event);
@@ -104,7 +107,8 @@ it.each([undefined, '', -1, 0, 0.1, 1, 2, 3.14, 42])(
 );
 
 it('does not start timer if minutes is not greater than 0', () => {
-  render(<Timer />);
+  const board = updateStore.withBoard();
+  renderWithContext(<Timer boardId={board.id} />);
   const input = screen.getByLabelText('Timer in minutes');
   const event = { target: { value: 0 } };
   fireEvent.change(input, event);

@@ -3,44 +3,64 @@ import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
+import actions from '../../actions';
+import { useDispatch, useSelector } from '../../hooks';
+
 import { DEFAULT_MINUTES, SECOND_IN_MILLISECONDS } from './constants';
 import { formatTimeRemaining, minutesToMilliseconds } from './utils';
 
 import type { ChangeEvent } from 'react';
+import type { Id } from '../../types';
 
 const initialState = {
   minutes: DEFAULT_MINUTES,
-  stopped: true,
-  timerEnd: 0, // milliseconds
   value: String(DEFAULT_MINUTES),
 };
 
-export default function Timer() {
+interface Props {
+  boardId: Id;
+}
+
+export default function Timer(props: Props) {
+  const { boardId } = props;
+
+  const dispatch = useDispatch();
+  const timerEnd = useSelector(
+    (state) => (state.boards[boardId] || {}).timerEnd
+  );
   const [state, setState] = useState(initialState);
 
   const stopTimer = useCallback(() => {
+    // setState comes before dispatch action to prevent race condition
     setState({
-      ...initialState,
       minutes: state.minutes,
       value: String(state.minutes),
     });
-  }, [state.minutes]);
+    dispatch(
+      actions.updateBoard({
+        boardId,
+        board: {
+          timerEnd: 0,
+        },
+      })
+    );
+  }, [dispatch, boardId, setState, state.minutes]);
 
   useEffect(() => {
-    if (state.stopped || !state.timerEnd) {
+    if (!timerEnd) {
       return;
     }
 
     const interval = setInterval(() => {
       const now = Date.now();
-      if (now >= state.timerEnd) {
+      if (now >= timerEnd) {
         clearInterval(interval);
         stopTimer();
         alert("⏰ Time's up!");
       } else {
         setState({
           ...state,
-          value: formatTimeRemaining(state.timerEnd - now),
+          value: formatTimeRemaining(timerEnd - now),
         });
       }
     }, SECOND_IN_MILLISECONDS);
@@ -48,12 +68,11 @@ export default function Timer() {
     return () => {
       clearInterval(interval);
     };
-  }, [state, setState, stopTimer]);
+  }, [setState, state, stopTimer, timerEnd]);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const { value } = event.target;
     setState({
-      ...initialState,
       minutes: Number(value),
       value,
     });
@@ -61,11 +80,14 @@ export default function Timer() {
 
   function startTimer() {
     if (state.minutes > 0) {
-      setState({
-        ...state,
-        stopped: false,
-        timerEnd: Date.now() + minutesToMilliseconds(state.minutes),
-      });
+      dispatch(
+        actions.updateBoard({
+          boardId,
+          board: {
+            timerEnd: Date.now() + minutesToMilliseconds(state.minutes),
+          },
+        })
+      );
     }
   }
 
@@ -73,7 +95,7 @@ export default function Timer() {
     <Box display="flex" alignItems="flex-end">
       <Box marginRight={1}>
         <TextField
-          disabled={!state.stopped}
+          disabled={Boolean(timerEnd)}
           inputProps={{
             'aria-label': 'Timer in minutes',
             min: 1,
@@ -84,17 +106,17 @@ export default function Timer() {
           onChange={handleChange}
           placeholder="Minutes"
           size="small"
-          type={state.stopped ? 'number' : 'text'}
+          type={timerEnd ? 'text' : 'number'}
           value={state.value}
         />
       </Box>
 
       <Button
-        aria-label={state.stopped ? 'Start timer' : 'Stop timer'}
-        onClick={state.stopped ? startTimer : stopTimer}
+        aria-label={timerEnd ? 'Stop timer' : 'Start timer'}
+        onClick={timerEnd ? stopTimer : startTimer}
         variant="outlined"
       >
-        {state.stopped ? 'Start' : 'Stop'}
+        {timerEnd ? 'Stop' : 'Start'}
       </Button>
     </Box>
   );

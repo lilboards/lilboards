@@ -19,7 +19,7 @@ export default function BoardControls(props: Props) {
       </Box>
 
       <Box marginRight={3}>
-        <Timer />
+        <Timer boardId={props.boardId} />
       </Box>
 
       <Present />
