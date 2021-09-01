@@ -11,6 +11,7 @@ import Timer from './Timer';
 const defaultMilliseconds =
   DEFAULT_MINUTES * MINUTE_IN_SECONDS * SECOND_IN_MILLISECONDS;
 
+// for some reason, the 'timer' test suite must run first or else it will fail (race condition?)
 describe('timer', () => {
   let alertSpy: jest.SpyInstance;
   let button: HTMLElement;
@@ -79,6 +80,11 @@ describe('timer', () => {
     expect(input).not.toBeDisabled();
     expect(input).toHaveValue(5);
   });
+});
+
+it('renders nothing when user cannot edit and timer is not running', () => {
+  const { baseElement } = renderWithContext(<Timer boardId={boardId} />);
+  expect(baseElement.firstElementChild).toBeEmptyDOMElement();
 });
 
 describe('when user can edit', () => {
