@@ -26,6 +26,7 @@ it('renders "Add column" button', () => {
 
 it('renders "Timer" input and "Start" button', () => {
   const board = updateStore.withBoard();
+  updateStore.withUser();
   renderWithContext(<BoardControls boardId={board.id} />);
   expect(screen.getByLabelText('Timer in minutes')).toBeInTheDocument();
   expect(screen.getByLabelText('Start timer')).toBeInTheDocument();

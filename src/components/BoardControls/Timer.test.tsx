@@ -38,7 +38,7 @@ describe('timer', () => {
     alertSpy.mockReset();
   });
 
-  it('starts and stops the timer', () => {
+  it('starts and stops the timer', async () => {
     // start
     act(() => {
       fireEvent.click(button);
@@ -53,8 +53,9 @@ describe('timer', () => {
     expect(input).toHaveValue('4:58');
 
     // stop
-    act(() => {
+    await act(async () => {
       fireEvent.click(button);
+      await screen.findByLabelText('Start timer');
     });
 
     expect(button).toHaveAttribute('aria-label', 'Start timer');
@@ -100,6 +101,18 @@ describe('when user can edit', () => {
     expect(button).toHaveTextContent('Start');
     expect(button).not.toBeDisabled();
   });
+
+  describe('input onChange', () => {
+    it.each([undefined, '', -1, 0, 0.1, 1, 2, 3.14, 42])(
+      'changes value to %j',
+      (value) => {
+        const input = screen.getByLabelText('Timer in minutes');
+        const event = { target: { value } };
+        fireEvent.change(input, event);
+        expect(input).toHaveValue(value === '' ? null : value);
+      }
+    );
+  });
 });
 
 describe('when user cannot edit', () => {
@@ -107,26 +120,15 @@ describe('when user cannot edit', () => {
     renderWithContext(<Timer boardId={boardId} />);
   });
 
-  it('renders "Timer" input', () => {
-    expect(screen.getByLabelText('Timer in minutes')).toBeDisabled();
+  it('does not render the "Timer" input', () => {
+    expect(screen.queryByLabelText('Timer in minutes')).not.toBeInTheDocument();
   });
 
-  it('renders "Start" button', () => {
-    expect(screen.getByRole('button', { name: 'Start timer' })).toBeDisabled();
+  it('does not render the "Start" button', () => {
+    expect(
+      screen.queryByRole('button', { name: 'Start timer' })
+    ).not.toBeInTheDocument();
   });
-});
-
-describe('input onChange', () => {
-  it.each([undefined, '', -1, 0, 0.1, 1, 2, 3.14, 42])(
-    'changes value to %j',
-    (value) => {
-      renderWithContext(<Timer boardId={boardId} />);
-      const input = screen.getByLabelText('Timer in minutes');
-      const event = { target: { value } };
-      fireEvent.change(input, event);
-      expect(input).toHaveValue(value === '' ? null : value);
-    }
-  );
 });
 
 describe('when minutes is not greater than 0', () => {

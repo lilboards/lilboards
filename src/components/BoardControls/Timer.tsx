@@ -39,14 +39,16 @@ export default function Timer(props: Props) {
       minutes: state.minutes,
       value: String(state.minutes),
     });
-    dispatch(
-      actions.updateBoard({
-        boardId,
-        board: {
-          timerEnd: 0,
-        },
-      })
-    );
+    setTimeout(() => {
+      dispatch(
+        actions.updateBoard({
+          boardId,
+          board: {
+            timerEnd: 0,
+          },
+        })
+      );
+    });
   }, [dispatch, boardId, setState, state.minutes]);
 
   useEffect(() => {
@@ -94,34 +96,39 @@ export default function Timer(props: Props) {
     }
   }
 
+  if (!canEdit && !timerEnd) {
+    return null;
+  }
+
   return (
     <Box display="flex" alignItems="flex-end">
-      <Box marginRight={1}>
-        <TextField
-          disabled={!canEdit || Boolean(timerEnd)}
-          inputProps={{
-            'aria-label': 'Timer in minutes',
-            min: 1,
-            max: 1e6,
-            size: 9,
-          }}
-          label="Timer"
-          onChange={handleChange}
-          placeholder="Minutes"
-          size="small"
-          type={timerEnd ? 'text' : 'number'}
-          value={state.value}
-        />
-      </Box>
+      <TextField
+        disabled={Boolean(timerEnd)}
+        inputProps={{
+          'aria-label': 'Timer in minutes',
+          min: 1,
+          max: 1e6,
+          size: 9,
+        }}
+        label="Timer"
+        onChange={handleChange}
+        placeholder="Minutes"
+        size="small"
+        type={timerEnd ? 'text' : 'number'}
+        value={state.value}
+      />
 
-      <Button
-        aria-label={timerEnd ? 'Stop timer' : 'Start timer'}
-        disabled={!canEdit}
-        onClick={timerEnd ? stopTimer : startTimer}
-        variant="outlined"
-      >
-        {timerEnd ? 'Stop' : 'Start'}
-      </Button>
+      {canEdit && (
+        <Box marginLeft={1}>
+          <Button
+            aria-label={timerEnd ? 'Stop timer' : 'Start timer'}
+            onClick={timerEnd ? stopTimer : startTimer}
+            variant="outlined"
+          >
+            {timerEnd ? 'Stop' : 'Start'}
+          </Button>
+        </Box>
+      )}
     </Box>
   );
 }
