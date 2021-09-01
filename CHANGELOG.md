@@ -1,5 +1,22 @@
 # Changelog
 
+## [4.8.0](https://www.github.com/lilboards/lilboards/compare/v4.7.0...v4.8.0) (2021-09-01)
+
+
+### Features
+
+* **components:** only allow board creator to edit Timer ([5e93b64](https://www.github.com/lilboards/lilboards/commit/5e93b644b40a8dedea0d0f647c0dd57a749aa348))
+* **components:** render Timer in BoardControls ([ad3234c](https://www.github.com/lilboards/lilboards/commit/ad3234c73947e2b9e2c82aefa68ca9571a5739f3))
+* **components:** save timerEnd to store and firebase in Timer ([09319cb](https://www.github.com/lilboards/lilboards/commit/09319cbf35f46df2e79380aeb91172576411d673))
+* **components:** start and stop Timer and show alert at timer end ([68f1b55](https://www.github.com/lilboards/lilboards/commit/68f1b556f01c3f32b36aeef0a9e25941e9102efe))
+* **utils:** add timer helper methods and constants ([ebeda56](https://www.github.com/lilboards/lilboards/commit/ebeda5686aa503aba8c44544249b50e6b334e2c3))
+
+
+### Bug Fixes
+
+* **components:** render editable Timer for board creator ([9a47bb0](https://www.github.com/lilboards/lilboards/commit/9a47bb0c366924257fc2adc1c8675a4261d345a7))
+* **hooks:** update useBoard to dispatch action in setTimeout ([df99119](https://www.github.com/lilboards/lilboards/commit/df99119773a8738ea657be37ba7375e824050af3))
+
 ## [4.7.0](https://www.github.com/lilboards/lilboards/compare/v4.6.0...v4.7.0) (2021-08-23)
 
 
