@@ -21,16 +21,20 @@ export function useBoard(boardId: Id) {
     // subscribe to board value
     boardRef.on(EventType.value, (boardSnapshot) => {
       const board = boardSnapshot.val();
-      /* istanbul ignore else */
       if (board) {
-        dispatch(
-          actions.loadBoard({
-            board,
-            boardId,
-          })
-        );
+        // prevent race condition with redux reducer
+        setTimeout(() => {
+          dispatch(
+            actions.loadBoard({
+              board,
+              boardId,
+            })
+          );
+          setIsLoaded(true);
+        });
+      } else {
+        setIsLoaded(true);
       }
-      setIsLoaded(true);
     });
 
     // unsubscribe on unmount

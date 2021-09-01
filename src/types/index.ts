@@ -2,6 +2,7 @@ export interface Board {
   createdAt: Time;
   createdBy: UserId;
   name: string;
+  timerEnd?: number;
   updatedAt?: Time;
   updatedBy?: UserId;
 }
