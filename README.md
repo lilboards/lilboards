@@ -7,6 +7,9 @@
     <a href="https://github.com/lilboards/lilboards/actions/workflows/build.yml">
       <img src="https://github.com/lilboards/lilboards/actions/workflows/build.yml/badge.svg" alt="Lilboards build status badge">
     </a>
+    <a href="https://codecov.io/gh/lilboards/lilboards">
+      <img src="https://codecov.io/gh/lilboards/lilboards/branch/master/graph/badge.svg?token=G6U7W4ZJUN" alt="Codecov coverage status">
+    </a>
   </p>
 </div>
 
