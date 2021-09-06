@@ -32,3 +32,6 @@ jobs:
 
       - name: Run tests
         run: yarn test:ci
+
+      - name: Codecov
+        uses: codecov/codecov-action@v2
