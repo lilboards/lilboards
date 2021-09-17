@@ -2,7 +2,14 @@ name: automerge
 on:
   pull_request:
     types:
-      - dependencies
+      - labeled
+      - unlabeled
+      - synchronize
+      - opened
+      - edited
+      - ready_for_review
+      - reopened
+      - unlocked
   pull_request_review:
     types:
       - submitted
@@ -19,3 +26,4 @@ jobs:
         uses: pascalgn/automerge-action@v0.14.3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_LABELS: 'dependencies'
