@@ -4,7 +4,6 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -37,3 +36,13 @@ jobs:
 
       - name: Codecov
         uses: codecov/codecov-action@v2
+
+  auto-approve:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auto Approve
+        uses: hmarr/auto-approve-action@v2
+        if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
