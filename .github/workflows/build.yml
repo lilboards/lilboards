@@ -1,5 +1,7 @@
 name: build
-on: [push, pull_request]
+on:
+  - push
+  - pull_request_target
 
 jobs:
   build:
@@ -38,6 +40,7 @@ jobs:
         uses: codecov/codecov-action@v2
 
   auto-approve:
+    if: github.event_name == 'pull_request_target'
     needs: build
     runs-on: ubuntu-latest
     steps:
