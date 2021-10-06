@@ -1,8 +1,5 @@
 name: build
-on:
-  pull_request_target:
-    types: [labeled]
-  push:
+on: [push, pull_request]
 
 jobs:
   build:
@@ -39,14 +36,3 @@ jobs:
 
       - name: Codecov
         uses: codecov/codecov-action@v2
-
-  auto-approve:
-    if: github.event_name == 'pull_request_target' && contains(github.event.pull_request.labels.*.name, 'dependencies')
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Auto Approve
-        uses: hmarr/auto-approve-action@v2
-        if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
