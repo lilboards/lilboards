@@ -52,7 +52,7 @@
     "@commitlint/config-conventional": "^13.2.0",
     "eslint-plugin-prettier": "^3.4.1",
     "firebase-tools": "^9.20.0",
-    "husky": "^7.0.2",
+    "husky": "^7.0.4",
     "lint-staged": "^11.2.3",
     "prettier": "^2.4.1"
   },
