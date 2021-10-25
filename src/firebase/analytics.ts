@@ -6,18 +6,17 @@ import type firebase from 'firebase';
 import { firebaseApp } from './app';
 import { isProduction } from '../config';
 import { noop } from '../utils';
+import { getAnalytics } from './helpers';
 
-type Analytics = ReturnType<typeof firebase.analytics>;
-
-let firebaseAnalytics: Analytics;
+let firebaseAnalytics: firebase.analytics.Analytics;
 
 if (isProduction) {
-  firebaseAnalytics = firebaseApp.analytics();
+  firebaseAnalytics = getAnalytics(firebaseApp);
 } else {
   firebaseAnalytics = {
     logEvent: noop,
     setUserId: noop,
-  } as unknown as Analytics;
+  } as unknown as firebase.analytics.Analytics;
 }
 
 export { firebaseAnalytics };
