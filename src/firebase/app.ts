@@ -9,6 +9,17 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
-};
+} as const;
 
-export const firebaseApp = firebase.initializeApp(firebaseConfig);
+/**
+ * Initializes Firebase app.
+ *
+ * @param app - The Firebase config.
+ *
+ * @deprecated Remove after Firebase v9 migration.
+ */
+function initializeApp(config: typeof firebaseConfig) {
+  return firebase.initializeApp(config);
+}
+
+export const firebaseApp = initializeApp(firebaseConfig);

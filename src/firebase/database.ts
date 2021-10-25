@@ -14,58 +14,122 @@ import {
   LIKES,
   USERS,
 } from '../constants';
+import {
+  getDatabase,
+  child,
+  get,
+  push,
+  ref,
+  remove,
+  runTransaction,
+  set,
+  update,
+} from './helpers';
 
 import type { Board, Column, Id, Item, LikesItem } from '../types';
 
-const firebaseDatabase = firebaseApp.database();
+const database = getDatabase(firebaseApp);
 
 if (isDevelopment && isLocalhost) {
   const databaseUrl = new URL(
-    process.env.REACT_APP_FIREBASE_DATABASE_URL || ''
+    process.env.REACT_APP_FIREBASE_DATABASE_URL || 'localhost'
   );
-  firebaseDatabase.useEmulator(databaseUrl.hostname, Number(databaseUrl.port));
+  database.useEmulator(databaseUrl.hostname, Number(databaseUrl.port) || 9000);
 }
 
-const rootRef = firebaseDatabase.ref();
-
-export const generateId = () => rootRef.push().key as Id;
+const rootRef = ref(database);
 
 /**
- * Boards.
+ * Generates database reference key.
  */
-export const boardsRef = firebaseDatabase.ref(BOARDS);
+export function generateId(): Id {
+  const ref = push(rootRef);
+  return ref.key!;
+}
 
-export const getBoardRef = (boardId: Id) => boardsRef.child(boardId);
+export const boardsRef = ref(database, BOARDS);
 
+/**
+ * Gets board ref.
+ *
+ * @param boardId - The board id.
+ */
+export const getBoardRef = (boardId: Id) => child(boardsRef, boardId);
+
+/**
+ * Gets board data ref.
+ *
+ * @param boardId - The board id.
+ */
 export const getBoardDataRef = (boardId: Id) =>
-  getBoardRef(boardId).child(BOARD);
+  child(getBoardRef(boardId), BOARD);
 
+/**
+ * Gets board value.
+ *
+ * @param boardId - The board id.
+ */
 export const getBoardVal = async (boardId: Id): Promise<Board | null> =>
-  (await getBoardDataRef(boardId).get()).val();
+  (await get(getBoardDataRef(boardId))).val();
 
+/**
+ * Removes board.
+ *
+ * @param boardId - The board id.
+ */
 export const removeBoard = (boardId: Id) => {
-  getBoardRef(boardId).remove();
+  remove(getBoardRef(boardId));
 };
 
+/**
+ * Updates board data.
+ *
+ * @param boardId - The board id.
+ */
 export const saveBoardData = (boardId: Id, board: Partial<Board>) => {
-  getBoardDataRef(boardId).update(board);
+  update(getBoardDataRef(boardId), board);
 };
 
+/**
+ * Updates board data with debounce.
+ *
+ * @param boardId - The board id.
+ */
 export const debouncedSaveBoardData = debounce(saveBoardData, HALF_SECOND);
 
 /**
- * Columns.
+ * Gets columns ref.
+ *
+ * @param boardId - The board id.
  */
 export const getColumnsRef = (boardId: Id) =>
-  getBoardRef(boardId).child(COLUMNS);
+  child(getBoardRef(boardId), COLUMNS);
 
+/**
+ * Gets column ref.
+ *
+ * @param boardId - The board id.
+ * @param columnId - The column id.
+ */
 export const getColumnRef = (boardId: Id, columnId: Id) =>
-  getColumnsRef(boardId).child(columnId);
+  child(getColumnsRef(boardId), columnId);
 
+/**
+ * Removes column.
+ *
+ * @param boardId - The board id.
+ * @param columnId - The column id.
+ */
 export const removeColumn = (boardId: Id, columnId: Id) => {
-  getColumnRef(boardId, columnId).remove();
+  remove(getColumnRef(boardId, columnId));
 };
 
+/**
+ * Updates column item ids.
+ *
+ * @param boardId - The board id.
+ * @param columnItemIds - The column item ids.
+ */
 export const saveColumnItemIds = (
   boardId: Id,
   columnItemIds: { [columnId: string]: Id[] }
@@ -74,14 +138,13 @@ export const saveColumnItemIds = (
 
   if (columnIds.length === 1) {
     const columnId = columnIds[0];
-    getColumnRef(boardId, columnId)
-      .child(ITEM_IDS)
-      .set(columnItemIds[columnId]);
+    const columnItemIdsRef = child(getColumnRef(boardId, columnId), ITEM_IDS);
+    set(columnItemIdsRef, columnItemIds[columnId]);
     return;
   }
 
   // https://firebase.google.com/docs/database/web/read-and-write#save_data_as_transactions
-  getColumnsRef(boardId).transaction((columns) => {
+  runTransaction(getColumnsRef(boardId), (columns) => {
     if (columns) {
       Object.entries(columnItemIds).forEach(([columnId, itemIds]) => {
         columns[columnId] = columns[columnId] || {};
@@ -92,78 +155,186 @@ export const saveColumnItemIds = (
   });
 };
 
+/**
+ * Updates column.
+ *
+ * @param boardId - The board id.
+ * @param columnId - The column id.
+ * @param column - The column data.
+ */
 export const updateColumn = (
   boardId: Id,
   columnId: Id,
   column: Partial<Column>
 ) => {
-  getColumnRef(boardId, columnId).update(column);
+  update(getColumnRef(boardId, columnId), column);
 };
 
+/**
+ * Updates column with debounce.
+ *
+ * @param boardId - The board id.
+ * @param columnId - The column id.
+ * @param column - The column data.
+ */
 export const debouncedUpdateColumn = debounce(updateColumn, HALF_SECOND);
 
 /**
- * Items.
+ * Gets items ref.
+ *
+ * @param boardId - The board id.
  */
-export const getItemsRef = (boardId: Id) => getBoardRef(boardId).child(ITEMS);
+export const getItemsRef = (boardId: Id) => child(getBoardRef(boardId), ITEMS);
 
+/**
+ * Gets item ref.
+ *
+ * @param boardId - The board id.
+ * @param itemId - The item id.
+ */
 export const getItemRef = (boardId: Id, itemId: Id) =>
-  getItemsRef(boardId).child(itemId);
+  child(getItemsRef(boardId), itemId);
 
+/**
+ * Removes item.
+ *
+ * @param boardId - The board id.
+ * @param itemId - The item id.
+ */
 export const removeItem = (boardId: Id, itemId: Id) => {
-  getItemRef(boardId, itemId).remove();
+  remove(getItemRef(boardId, itemId));
 };
 
+/**
+ * Updates item.
+ *
+ * @param boardId - The board id.
+ * @param itemId - The item id.
+ * @param item - The item data.
+ */
 export const updateItem = (boardId: Id, itemId: Id, item: Partial<Item>) => {
-  getItemRef(boardId, itemId).update(item);
+  update(getItemRef(boardId, itemId), item);
 };
 
 /**
- * Likes.
+ * Get likes ref.
+ *
+ * @param boardId - The board id.
  */
-export const getLikesRef = (boardId: Id) => getBoardRef(boardId).child(LIKES);
+export const getLikesRef = (boardId: Id) => child(getBoardRef(boardId), LIKES);
 
-const getLikesItemsRef = (boardId: Id) => getLikesRef(boardId).child(ITEMS);
+/**
+ * Get likes items ref.
+ *
+ * @param boardId - The board id.
+ */
+const getLikesItemsRef = (boardId: Id) => child(getLikesRef(boardId), ITEMS);
 
+/**
+ * Get likes item ref.
+ *
+ * @param boardId - The board id.
+ * @param itemId - The item id.
+ */
+const getLikesItemRef = (boardId: Id, itemId: Id) =>
+  child(getLikesItemsRef(boardId), itemId);
+
+/**
+ * Likes item.
+ *
+ * @param boardId - The board id.
+ * @param itemId - The item id.
+ * @param userId - The user id.
+ */
 export const likeItem = (boardId: Id, itemId: Id, userId: Id) => {
-  getLikesItemsRef(boardId)
-    .child(itemId)
-    .update({ [userId]: true });
-};
-
-export const setLikesItem = (boardId: Id, itemId: Id, likes: LikesItem) => {
-  getLikesItemsRef(boardId).child(itemId).set(likes);
-};
-
-export const removeLikesItem = (boardId: Id, itemId: Id) => {
-  getLikesItemsRef(boardId).child(itemId).remove();
-};
-
-export const unlikeItem = (boardId: Id, itemId: Id, userId: Id) => {
-  getLikesItemsRef(boardId).child(itemId).child(userId).remove();
+  update(getLikesItemRef(boardId, itemId), { [userId]: true });
 };
 
 /**
- * Users.
+ * Sets likes item.
+ *
+ * @param boardId - The board id.
+ * @param itemId - The item id.
+ * @param likes - The likes data.
  */
-export const usersRef = firebaseDatabase.ref(USERS);
+export const setLikesItem = (boardId: Id, itemId: Id, likes: LikesItem) => {
+  set(getLikesItemRef(boardId, itemId), likes);
+};
 
-export const getUserRef = (userId: Id) => usersRef.child(userId);
+/**
+ * Removes likes item.
+ *
+ * @param boardId - The board id.
+ * @param itemId - The item id.
+ */
+export const removeLikesItem = (boardId: Id, itemId: Id) => {
+  remove(getLikesItemRef(boardId, itemId));
+};
 
+/**
+ * Unlikes item.
+ *
+ * @param boardId - The board id.
+ * @param itemId - The item id.
+ * @param userId - The user id.
+ */
+export const unlikeItem = (boardId: Id, itemId: Id, userId: Id) => {
+  const ref = child(getLikesItemRef(boardId, itemId), userId);
+  remove(ref);
+};
+
+export const usersRef = ref(database, USERS);
+
+/**
+ * Gets user ref.
+ *
+ * @param userId - The user id.
+ */
+export const getUserRef = (userId: Id) => child(usersRef, userId);
+
+/**
+ * Gets user boards ref.
+ *
+ * @param userId - The user id.
+ */
 export const getUserBoardsRef = (userId: Id) =>
-  getUserRef(userId).child(BOARDS);
+  child(getUserRef(userId), BOARDS);
 
-export const saveUserBoardId = (userId: Id, boardId: Id) =>
-  getUserBoardsRef(userId).update({ [boardId]: true });
+/**
+ * Updates user board id.
+ *
+ * @param userId - The user id.
+ * @param boardId - The board id.
+ */
+export const saveUserBoardId = (userId: Id, boardId: Id) => {
+  update(getUserBoardsRef(userId), { [boardId]: true });
+};
 
+/**
+ * Gets user boards value.
+ *
+ * @param userId - The user id.
+ */
 export const getUserBoardsVal = async (
   userId: Id
 ): Promise<{ [boardId: string]: boolean } | null> =>
-  (await getUserBoardsRef(userId).get()).val();
+  (await get(getUserBoardsRef(userId))).val();
 
+/**
+ * Gets user board ref.
+ *
+ * @param userId - The user id.
+ * @param boardId - The board id.
+ */
 export const getUserBoardRef = (userId: Id, boardId: Id) =>
-  getUserRef(userId).child(BOARDS).child(boardId);
+  child(child(getUserRef(userId), BOARDS), boardId);
 
+/**
+ * Removes user board.
+ *
+ * @param userId - The user id.
+ * @param boardId - The board id.
+ */
 export const removeUserBoard = (userId: Id, boardId: Id) => {
-  getUserBoardRef(userId, boardId).remove();
+  remove(getUserBoardRef(userId, boardId));
 };
