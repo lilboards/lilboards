@@ -1,8 +1,9 @@
 import 'firebase/auth';
 import { firebaseApp } from './app';
 import { isDevelopment, isLocalhost } from '../config';
+import { getAuth } from './helpers';
 
-export const firebaseAuth = firebaseApp.auth();
+export const firebaseAuth = getAuth(firebaseApp);
 
 /* istanbul ignore next */
 if (isDevelopment && isLocalhost) {

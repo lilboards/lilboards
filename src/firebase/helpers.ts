@@ -8,6 +8,13 @@ import type firebase from 'firebase';
  *
  * @deprecated Remove after Firebase v9 migration.
  */
-export function getAnalytics(app: firebase.app.App) {
-  return app.analytics();
-}
+export const getAnalytics = (app: firebase.app.App) => app.analytics();
+
+/**
+ * Gets Firebase auth.
+ *
+ * @param app - The Firebase app.
+ *
+ * @deprecated Remove during Firebase v9 migration.
+ */
+export const getAuth = (app: firebase.app.App) => app.auth();
