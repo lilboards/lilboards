@@ -16,6 +16,7 @@
     "lint:ts": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "lint:tsc": "tsc --noEmit",
     "postinstall": "husky install",
+    "size": "size-limit",
     "start": "react-scripts start",
     "test": "react-scripts test",
     "test:ci": "CI=true yarn test --coverage --colors"
