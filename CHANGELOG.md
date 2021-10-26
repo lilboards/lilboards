@@ -1,5 +1,12 @@
 # Changelog
 
+### [4.8.1](https://www.github.com/lilboards/lilboards/compare/v4.8.0...v4.8.1) (2021-10-26)
+
+
+### Bug Fixes
+
+* **components:** rename "Present" to "Hide Likes" in board controls ([c59034a](https://www.github.com/lilboards/lilboards/commit/c59034a0955f7780da556e5530c0d7de1276cf4a))
+
 ## [4.8.0](https://www.github.com/lilboards/lilboards/compare/v4.7.0...v4.8.0) (2021-09-01)
 
 
