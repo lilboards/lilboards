@@ -1,18 +1,17 @@
 import {
-  getStoreState,
-  renderWithContext,
-  updateStore,
-} from '../../../utils/test';
-import { getItemsRef } from '../../../firebase';
-import {
   BOARD_TEST_ID as boardId,
   DATE_NOW as dateNow,
   ITEM_TEST_ID as itemId,
   USER_TEST_ID as userId,
 } from '../../../constants/test';
-import { useItems } from './useItems';
-
+import { getItemsRef } from '../../../firebase';
 import { EventType, Item } from '../../../types';
+import {
+  getStoreState,
+  renderWithContext,
+  updateStore,
+} from '../../../utils/test';
+import { useItems } from './useItems';
 
 jest.mock('../../../firebase', () => ({
   getItemsRef: jest.fn(),

@@ -1,10 +1,8 @@
-import AddButton from '../AddButton';
-
 import actions from '../../actions';
 import { firebaseAnalytics, generateId } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
-
 import type { Column, Id } from '../../types';
+import AddButton from '../AddButton';
 
 interface Props {
   boardId: Id;

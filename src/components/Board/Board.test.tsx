@@ -1,13 +1,13 @@
 import { screen } from '@testing-library/react';
+
 import {
   BOARD_TEST_ID as boardId,
   USER_TEST_ID as userId,
 } from '../../constants/test';
 import { getBoardDataRef } from '../../firebase';
+import { Board as BoardType, EventType } from '../../types';
 import { history, renderWithContext, updateStore } from '../../utils/test';
 import Board from './Board';
-
-import { Board as BoardType, EventType } from '../../types';
 
 jest.mock('../../firebase', () => ({
   getBoardDataRef: jest.fn(),

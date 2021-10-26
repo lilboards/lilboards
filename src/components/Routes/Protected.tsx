@@ -1,13 +1,11 @@
+import type { RouteComponentProps } from '@reach/router';
 import { Redirect } from '@reach/router';
-
-import VerifyEmail from '../VerifyEmail';
+import type { FC } from 'react';
 
 import { REDIRECT_TO } from '../../constants';
 import { useAuth, useSelector } from '../../hooks';
-
-import type { FC } from 'react';
-import type { RouteComponentProps } from '@reach/router';
 import type { User } from '../../types';
+import VerifyEmail from '../VerifyEmail';
 
 interface Props extends RouteComponentProps {
   check: Extract<keyof User, 'id' | 'email'>;

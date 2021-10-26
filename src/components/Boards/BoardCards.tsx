@@ -1,11 +1,9 @@
 import Grid from '@material-ui/core/Grid';
 
-import BoardCard from './BoardCard';
-
 import { useSelector } from '../../hooks';
-import { sort } from '../../utils';
-
 import { SortBy, SortOrder } from '../../types';
+import { sort } from '../../utils';
+import BoardCard from './BoardCard';
 
 export default function BoardCards() {
   const boardIds = useSelector((state) => {

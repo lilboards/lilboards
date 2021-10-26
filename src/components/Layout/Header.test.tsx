@@ -1,4 +1,5 @@
 import { screen } from '@testing-library/react';
+
 import { renderWithContext, updateStore } from '../../utils/test';
 import Header from './Header';
 

@@ -1,15 +1,15 @@
 import { screen } from '@testing-library/react';
-import { renderWithContext, updateStore } from '../../utils/test';
-import { getColumnsRef, getItemsRef, getLikesRef } from '../../firebase';
+
 import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
   ITEM_TEST_ID as itemId,
   USER_TEST_ID as userId,
 } from '../../constants/test';
-import Columns from './Columns';
-
+import { getColumnsRef, getItemsRef, getLikesRef } from '../../firebase';
 import { Column, EventType, Item, Likes } from '../../types';
+import { renderWithContext, updateStore } from '../../utils/test';
+import Columns from './Columns';
 
 jest.mock('../../firebase', () => ({
   getColumnsRef: jest.fn(),

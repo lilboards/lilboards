@@ -1,16 +1,14 @@
-import { useCallback, useEffect, useState } from 'react';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import type { ChangeEvent } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import actions from '../../actions';
 import { useDispatch, useSelector } from '../../hooks';
-
+import type { Id } from '../../types';
 import { DEFAULT_MINUTES, SECOND_IN_MILLISECONDS } from './constants';
 import { formatTimeRemaining, minutesToMilliseconds } from './utils';
-
-import type { ChangeEvent } from 'react';
-import type { Id } from '../../types';
 
 const initialState = {
   minutes: DEFAULT_MINUTES,

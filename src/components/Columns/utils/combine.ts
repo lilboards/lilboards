@@ -1,4 +1,5 @@
 import type { DropResult } from 'react-beautiful-dnd';
+
 import type { Items, LikesItems } from '../../../types';
 
 const separator = '\n\n---\n\n';

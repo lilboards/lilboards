@@ -1,4 +1,5 @@
 import { useDispatch as useReactReduxDispatch } from 'react-redux';
+
 import { useDispatch } from './useDispatch';
 
 jest.mock('react-redux', () => ({

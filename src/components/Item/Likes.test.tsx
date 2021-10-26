@@ -1,9 +1,10 @@
 import { fireEvent, screen } from '@testing-library/react';
-import { renderWithContext, updateStore } from '../../utils/test';
+
 import {
   BOARD_TEST_ID as boardId,
   ITEM_TEST_ID as itemId,
 } from '../../constants/test';
+import { renderWithContext, updateStore } from '../../utils/test';
 import Likes from './Likes';
 
 const props = {

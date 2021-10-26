@@ -1,6 +1,7 @@
 import 'firebase/auth';
-import { firebaseApp } from './app';
+
 import { isDevelopment, isLocalhost } from '../config';
+import { firebaseApp } from './app';
 import { getAuth } from './helpers';
 
 export const firebaseAuth = getAuth(firebaseApp);

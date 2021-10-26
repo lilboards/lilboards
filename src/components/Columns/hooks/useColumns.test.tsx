@@ -1,18 +1,17 @@
 import {
+  BOARD_TEST_ID as boardId,
+  COLUMN_TEST_ID as columnId,
+  DATE_NOW as dateNow,
+  USER_TEST_ID as userId,
+} from '../../../constants/test';
+import { getColumnsRef } from '../../../firebase';
+import { Column, EventType } from '../../../types';
+import {
   getStoreState,
   renderWithContext,
   updateStore,
 } from '../../../utils/test';
-import { getColumnsRef } from '../../../firebase';
-import {
-  BOARD_TEST_ID as boardId,
-  DATE_NOW as dateNow,
-  COLUMN_TEST_ID as columnId,
-  USER_TEST_ID as userId,
-} from '../../../constants/test';
 import { useColumns } from './useColumns';
-
-import { EventType, Column } from '../../../types';
 
 jest.mock('../../../firebase', () => ({
   getColumnsRef: jest.fn(),

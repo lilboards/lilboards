@@ -1,16 +1,14 @@
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-
-import AddButton from '../AddButton';
-import BoardCards from './BoardCards';
+import type { RouteComponentProps } from '@reach/router';
 
 import actions from '../../actions';
 import { firebaseAnalytics, generateId, saveUserBoardId } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
-import { useBoards } from './hooks';
-
-import type { RouteComponentProps } from '@reach/router';
 import type { Board } from '../../types';
+import AddButton from '../AddButton';
+import BoardCards from './BoardCards';
+import { useBoards } from './hooks';
 
 export default function Boards(props: RouteComponentProps) {
   const dispatch = useDispatch();

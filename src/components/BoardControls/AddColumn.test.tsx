@@ -1,14 +1,15 @@
 import { fireEvent, screen } from '@testing-library/react';
-import {
-  renderWithContext,
-  getStoreState,
-  updateStore,
-} from '../../utils/test';
-import { firebaseAnalytics, generateId } from '../../firebase';
+
 import {
   COLUMN_TEST_ID as columnId,
   DATE_NOW as dateNow,
 } from '../../constants/test';
+import { firebaseAnalytics, generateId } from '../../firebase';
+import {
+  getStoreState,
+  renderWithContext,
+  updateStore,
+} from '../../utils/test';
 import AddColumn from './AddColumn';
 
 jest.mock('../../firebase', () => ({

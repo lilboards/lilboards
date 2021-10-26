@@ -2,6 +2,7 @@ import {
   shallowEqual,
   useSelector as useReactReduxSelector,
 } from 'react-redux';
+
 import { useSelector } from './useSelector';
 
 jest.mock('react-redux', () => ({

@@ -1,4 +1,5 @@
 import Typography from '@material-ui/core/Typography';
+import type { RouteComponentProps } from '@reach/router';
 import { Redirect } from '@reach/router';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
@@ -6,8 +7,6 @@ import { REDIRECT_TO } from '../../constants';
 import { firebaseAuth } from '../../firebase';
 import { useAuth, useSelector } from '../../hooks';
 import uiConfig from './uiConfig';
-
-import type { RouteComponentProps } from '@reach/router';
 
 export default function Login(props: RouteComponentProps) {
   useAuth();

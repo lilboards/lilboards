@@ -1,8 +1,7 @@
 import { memo } from 'react';
 
-import DraggableItem from './DraggableItem';
-
 import type { Id } from '../../types';
+import DraggableItem from './DraggableItem';
 
 type Props = {
   boardId: Id;

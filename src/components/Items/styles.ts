@@ -1,8 +1,8 @@
+import type { Theme } from '@material-ui/core/styles';
 import type {
   DraggableStateSnapshot,
   DroppableStateSnapshot,
 } from 'react-beautiful-dnd';
-import type { Theme } from '@material-ui/core/styles';
 
 /**
  * Gets draggable card style.

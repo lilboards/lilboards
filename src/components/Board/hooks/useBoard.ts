@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import actions from '../../../actions';
 import { getBoardDataRef } from '../../../firebase';
 import { useDispatch, useSelector } from '../../../hooks';
-
 import { EventType, Id } from '../../../types';
 
 export function useBoard(boardId: Id) {

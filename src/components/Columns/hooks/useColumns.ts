@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import actions from '../../../actions';
 import { getColumnsRef } from '../../../firebase';
 import { useDispatch } from '../../../hooks';
-
 import { Column, EventType, Id } from '../../../types';
 
 export function useColumns(boardId: Id) {

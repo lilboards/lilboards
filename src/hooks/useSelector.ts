@@ -1,11 +1,10 @@
+import type { TypedUseSelectorHook } from 'react-redux';
 import {
   shallowEqual,
   useSelector as useReactReduxSelector,
 } from 'react-redux';
 
 import store from '../store';
-
-import type { TypedUseSelectorHook } from 'react-redux';
 
 type RootState = ReturnType<typeof store.getState>;
 

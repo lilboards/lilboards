@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
+import type { RouteComponentProps } from '@reach/router';
 import { Redirect } from '@reach/router';
+import { useEffect, useState } from 'react';
 
+import { resetActions } from '../../actions';
 import { firebaseAnalytics, firebaseAuth } from '../../firebase';
 import { useDispatch } from '../../hooks';
-import { resetActions } from '../../actions';
-
-import type { RouteComponentProps } from '@reach/router';
 
 export default function Logout(props: RouteComponentProps) {
   const dispatch = useDispatch();

@@ -1,12 +1,11 @@
+import type { ReactNode } from 'react';
+import type { DropResult } from 'react-beautiful-dnd';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import actions from '../../actions';
 import { useDispatch, useSelector } from '../../hooks';
-import { combine, reorder } from './utils';
-
-import type { ReactNode } from 'react';
-import type { DropResult } from 'react-beautiful-dnd';
 import type { Id } from '../../types';
+import { combine, reorder } from './utils';
 
 type Props = {
   boardId: Id;

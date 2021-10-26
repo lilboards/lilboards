@@ -3,9 +3,8 @@ import Button from '@material-ui/core/Button';
 import actions from '../../actions';
 import { firebaseAnalytics } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
-import { sortByLikes } from './utils';
-
 import type { Id } from '../../types';
+import { sortByLikes } from './utils';
 
 interface Props {
   boardId: Id;
