@@ -32,11 +32,11 @@ it('renders "Timer" input and "Start" button', () => {
   expect(screen.getByLabelText('Start timer')).toBeInTheDocument();
 });
 
-it('renders "Present" switch', () => {
+it('renders "Hide Likes" switch', () => {
   const board = updateStore.withBoard();
   updateStore.withUser();
   renderWithContext(<BoardControls boardId={board.id} />);
-  expect(screen.getByLabelText('Present')).toBeInTheDocument();
+  expect(screen.getByLabelText('Hide Likes')).toBeInTheDocument();
 });
 
 it('renders "Sort by likes" button', () => {
