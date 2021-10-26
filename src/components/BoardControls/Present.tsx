@@ -21,7 +21,7 @@ export default function Present() {
       control={
         <Switch checked={presenting} color="primary" onChange={handleChange} />
       }
-      label="Present"
+      label="Hide Likes"
     />
   );
 }

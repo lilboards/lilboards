@@ -13,11 +13,11 @@ jest.mock('../../firebase', () => ({
   },
 }));
 
-it('toggles "Present" mode', () => {
+it('toggles present mode', () => {
   updateStore.withUser();
   renderWithContext(<Present />);
   expect(getStoreState().user.presenting).toEqual(false);
-  fireEvent.click(screen.getByLabelText('Present'));
+  fireEvent.click(screen.getByLabelText('Hide Likes'));
   expect(getStoreState().user.presenting).toBe(true);
   expect(firebaseAnalytics.logEvent).toBeCalledTimes(1);
   expect(firebaseAnalytics.logEvent).toBeCalledWith('user_presenting', {
