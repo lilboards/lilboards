@@ -1,9 +1,10 @@
 {
   "extends": ["react-app", "react-app/jest"],
-  "plugins": ["prettier", "simple-import-sort"],
+  "plugins": ["prettier", "simple-import-sort", "tsdoc"],
   "rules": {
     "prettier/prettier": "error",
     "simple-import-sort/exports": "error",
-    "simple-import-sort/imports": "error"
+    "simple-import-sort/imports": "error",
+    "tsdoc/syntax": "error"
   }
 }
