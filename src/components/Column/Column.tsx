@@ -1,12 +1,10 @@
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 
+import { useSelector } from '../../hooks';
+import type { Id } from '../../types';
 import Items from '../Items';
 import ColumnName from './ColumnName';
-
-import { useSelector } from '../../hooks';
-
-import type { Id } from '../../types';
 
 type Props = {
   boardId: Id;

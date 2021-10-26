@@ -1,13 +1,11 @@
-import { Redirect } from '@reach/router';
 import Typography from '@material-ui/core/Typography';
+import type { RouteComponentProps } from '@reach/router';
+import { Redirect } from '@reach/router';
 
+import type { Id } from '../../types';
 import BoardControls from '../BoardControls';
 import Columns from '../Columns';
-
 import { useBoard } from './hooks/useBoard';
-
-import type { RouteComponentProps } from '@reach/router';
-import type { Id } from '../../types';
 
 interface Props extends RouteComponentProps {
   boardId?: Id;

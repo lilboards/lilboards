@@ -1,10 +1,11 @@
 import { fireEvent, screen } from '@testing-library/react';
+
+import { firebaseAnalytics } from '../../firebase';
 import {
-  renderWithContext,
   getStoreState,
+  renderWithContext,
   updateStore,
 } from '../../utils/test';
-import { firebaseAnalytics } from '../../firebase';
 import Present from './Present';
 
 jest.mock('../../firebase', () => ({

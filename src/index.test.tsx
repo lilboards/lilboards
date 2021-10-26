@@ -1,5 +1,5 @@
-import { unmountComponentAtNode } from 'react-dom';
 import { act } from '@testing-library/react';
+import { unmountComponentAtNode } from 'react-dom';
 
 let div: HTMLDivElement;
 let getElementByIdSpy: jest.SpyInstance;

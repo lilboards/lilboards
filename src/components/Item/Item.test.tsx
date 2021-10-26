@@ -1,14 +1,15 @@
 import { fireEvent, screen } from '@testing-library/react';
-import {
-  getStoreState,
-  renderWithContext,
-  updateStore,
-} from '../../utils/test';
+
 import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
   ITEM_TEST_ID as itemId,
 } from '../../constants/test';
+import {
+  getStoreState,
+  renderWithContext,
+  updateStore,
+} from '../../utils/test';
 import Item from './Item';
 
 const props = {

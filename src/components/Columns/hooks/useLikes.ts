@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import actions from '../../../actions';
 import { getLikesRef } from '../../../firebase';
 import { useDispatch } from '../../../hooks';
-
 import { EventType, Id } from '../../../types';
 
 export function useLikes(boardId: Id) {

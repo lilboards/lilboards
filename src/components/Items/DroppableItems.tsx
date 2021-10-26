@@ -1,12 +1,10 @@
 import Box from '@material-ui/core/Box';
 import { Droppable } from 'react-beautiful-dnd';
 
-import InnerList from './InnerList';
-
 import { useSelector } from '../../hooks';
-import { getDroppableBackgroundColor } from './styles';
-
 import type { Id } from '../../types';
+import InnerList from './InnerList';
+import { getDroppableBackgroundColor } from './styles';
 
 type Props = {
   boardId: Id;

@@ -1,4 +1,5 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+
 import Snackbar from './Snackbar';
 
 const message = 'message';

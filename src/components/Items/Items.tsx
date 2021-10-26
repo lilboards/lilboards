@@ -1,14 +1,12 @@
-import AddIcon from '@material-ui/icons/Add';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-
-import DroppableItems from './DroppableItems';
+import AddIcon from '@material-ui/icons/Add';
 
 import actions from '../../actions';
 import { firebaseAnalytics, generateId } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
-
 import type { Id, Item } from '../../types';
+import DroppableItems from './DroppableItems';
 
 type Props = {
   boardId: Id;

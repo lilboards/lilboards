@@ -1,9 +1,8 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
 import { USER } from '../constants';
 import { firebaseAnalytics } from '../firebase';
-
-import type { PayloadAction } from '@reduxjs/toolkit';
 import type { User } from '../types';
 
 export const initialState: User = {

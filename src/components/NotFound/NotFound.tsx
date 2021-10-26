@@ -1,8 +1,7 @@
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import { Link as RouterLink } from '@reach/router';
-
 import type { RouteComponentProps } from '@reach/router';
+import { Link as RouterLink } from '@reach/router';
 
 export default function NotFound(props: RouteComponentProps) {
   return (

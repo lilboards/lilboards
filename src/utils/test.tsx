@@ -4,6 +4,7 @@ import {
   LocationProvider,
 } from '@reach/router';
 import { render as reactTestingLibraryRender } from '@testing-library/react';
+import type { ReactNode } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { Provider } from 'react-redux';
 
@@ -18,8 +19,6 @@ import {
   USER_TEST_ID as userId,
 } from '../constants/test';
 import store from '../store';
-
-import type { ReactNode } from 'react';
 import type { Columns, Item, User } from '../types';
 
 /* istanbul ignore next */

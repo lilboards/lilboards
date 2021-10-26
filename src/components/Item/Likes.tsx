@@ -1,11 +1,9 @@
 import Box from '@material-ui/core/Box';
 
-import LikeButton from './LikeButton';
-
 import { useSelector } from '../../hooks';
-import { countObject } from '../../utils';
-
 import type { Id } from '../../types';
+import { countObject } from '../../utils';
+import LikeButton from './LikeButton';
 
 interface Props {
   boardId: Id;

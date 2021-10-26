@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import actions from '../../../actions';
 import { getItemsRef } from '../../../firebase';
 import { useDispatch } from '../../../hooks';
-
 import { EventType, Id, Item } from '../../../types';
 
 export function useItems(boardId: Id) {

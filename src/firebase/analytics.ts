@@ -3,9 +3,9 @@ import 'firebase/analytics';
 
 import type firebase from 'firebase';
 
-import { firebaseApp } from './app';
 import { isProduction } from '../config';
 import { noop } from '../utils';
+import { firebaseApp } from './app';
 import { getAnalytics } from './helpers';
 
 let firebaseAnalytics: firebase.analytics.Analytics;

@@ -1,11 +1,10 @@
 import Box from '@material-ui/core/Box';
 
+import type { Id } from '../../types';
 import AddColumn from './AddColumn';
 import Present from './Present';
 import Sort from './Sort';
 import Timer from './Timer';
-
-import type { Id } from '../../types';
 
 interface Props {
   boardId: Id;

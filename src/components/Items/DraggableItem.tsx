@@ -1,11 +1,10 @@
-import { useTheme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
+import { useTheme } from '@material-ui/core/styles';
 import { Draggable } from 'react-beautiful-dnd';
 
+import type { Id } from '../../types';
 import Item from '../Item';
 import { getDraggableCardStyle } from './styles';
-
-import type { Id } from '../../types';
 
 interface Props {
   boardId: Id;

@@ -1,8 +1,8 @@
 /* istanbul ignore file */
 import 'firebase/database';
+
 import { debounce } from 'debounce';
 
-import { firebaseApp } from './app';
 import { isDevelopment, isLocalhost } from '../config';
 import {
   BOARD,
@@ -14,10 +14,12 @@ import {
   LIKES,
   USERS,
 } from '../constants';
+import type { Board, Column, Id, Item, LikesItem } from '../types';
+import { firebaseApp } from './app';
 import {
-  getDatabase,
   child,
   get,
+  getDatabase,
   push,
   ref,
   remove,
@@ -25,8 +27,6 @@ import {
   set,
   update,
 } from './helpers';
-
-import type { Board, Column, Id, Item, LikesItem } from '../types';
 
 const database = getDatabase(firebaseApp);
 

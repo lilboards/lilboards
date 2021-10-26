@@ -1,17 +1,16 @@
 import {
-  getStoreState,
-  renderWithContext,
-  updateStore,
-} from '../../../utils/test';
-import { getLikesRef } from '../../../firebase';
-import {
   BOARD_TEST_ID as boardId,
   ITEM_TEST_ID as itemId,
   USER_TEST_ID as userId,
 } from '../../../constants/test';
-import { useLikes } from './useLikes';
-
+import { getLikesRef } from '../../../firebase';
 import { EventType, Likes } from '../../../types';
+import {
+  getStoreState,
+  renderWithContext,
+  updateStore,
+} from '../../../utils/test';
+import { useLikes } from './useLikes';
 
 jest.mock('../../../firebase', () => ({
   getLikesRef: jest.fn(),

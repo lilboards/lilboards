@@ -4,17 +4,15 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
-import { Link as RouterLink } from '@reach/router';
 import TextField from '@material-ui/core/TextField';
-
-import CloseButton from '../CloseButton';
+import { Link as RouterLink } from '@reach/router';
+import type { ChangeEvent } from 'react';
 
 import actions from '../../actions';
-import { useDispatch, useSelector } from '../../hooks';
 import { firebaseAnalytics } from '../../firebase';
-
-import type { ChangeEvent } from 'react';
+import { useDispatch, useSelector } from '../../hooks';
 import type { Id } from '../../types';
+import CloseButton from '../CloseButton';
 
 type Props = {
   boardId: Id;

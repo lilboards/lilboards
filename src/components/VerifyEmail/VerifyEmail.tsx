@@ -3,10 +3,9 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from '@reach/router';
 import { useState } from 'react';
 
-import Snackbar from '../Snackbar';
-
 import { REDIRECT_TO } from '../../constants';
 import { firebaseAuth } from '../../firebase';
+import Snackbar from '../Snackbar';
 
 export default function VerifyEmail() {
   const [emailSentTime, setEmailSentTime] = useState(0);

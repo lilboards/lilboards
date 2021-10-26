@@ -1,3 +1,5 @@
+import type { DropResult } from 'react-beautiful-dnd';
+
 import {
   COLUMN_TEST_ID as columnId,
   DATE_NOW as dateNow,
@@ -5,8 +7,6 @@ import {
   USER_TEST_ID as userId,
 } from '../../../constants/test';
 import { combine } from './combine';
-
-import type { DropResult } from 'react-beautiful-dnd';
 
 const itemId1 = `${itemId}1`;
 const itemId2 = `${itemId}2`;

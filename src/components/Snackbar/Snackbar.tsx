@@ -1,10 +1,9 @@
-import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
-import Snackbar from '@material-ui/core/Snackbar';
-import { useEffect, useState } from 'react';
-
 import type { SnackbarProps } from '@material-ui/core/Snackbar';
+import Snackbar from '@material-ui/core/Snackbar';
+import CloseIcon from '@material-ui/icons/Close';
 import type { FC, SyntheticEvent } from 'react';
+import { useEffect, useState } from 'react';
 
 interface Props extends SnackbarProps {
   lastOpened?: number;

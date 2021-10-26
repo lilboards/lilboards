@@ -2,16 +2,14 @@ import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import InputBase from '@material-ui/core/InputBase';
-
-import CloseButton from '../CloseButton';
-import Likes from './Likes';
+import type { ChangeEvent, CSSProperties } from 'react';
 
 import actions from '../../actions';
-import { useDispatch, useSelector } from '../../hooks';
 import { firebaseAnalytics } from '../../firebase';
-
-import type { ChangeEvent, CSSProperties } from 'react';
+import { useDispatch, useSelector } from '../../hooks';
 import type { Id } from '../../types';
+import CloseButton from '../CloseButton';
+import Likes from './Likes';
 
 interface Props {
   boardId: Id;

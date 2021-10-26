@@ -1,11 +1,10 @@
 import IconButton from '@material-ui/core/IconButton';
-import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbUpFilledIcon from '@material-ui/icons/ThumbUp';
+import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 
 import actions from '../../actions';
-import { useDispatch, useSelector } from '../../hooks';
 import { firebaseAnalytics } from '../../firebase';
-
+import { useDispatch, useSelector } from '../../hooks';
 import type { Id } from '../../types';
 
 interface Props {

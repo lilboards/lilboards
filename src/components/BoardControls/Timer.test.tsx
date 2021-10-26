@@ -1,6 +1,7 @@
 import { act, fireEvent, screen } from '@testing-library/react';
-import { renderWithContext, updateStore } from '../../utils/test';
+
 import { BOARD_TEST_ID as boardId } from '../../constants/test';
+import { renderWithContext, updateStore } from '../../utils/test';
 import {
   DEFAULT_MINUTES,
   MINUTE_IN_SECONDS,

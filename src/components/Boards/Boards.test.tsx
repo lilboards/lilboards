@@ -1,9 +1,11 @@
+import '../../store/boardsSlice';
+
 import { fireEvent, screen } from '@testing-library/react';
+
 import {
-  renderWithContext,
-  getStoreState,
-  updateStore,
-} from '../../utils/test';
+  BOARD_TEST_ID as boardId,
+  DATE_NOW as dateNow,
+} from '../../constants/test';
 import {
   generateId,
   getBoardVal,
@@ -11,11 +13,11 @@ import {
   saveUserBoardId,
 } from '../../firebase';
 import {
-  BOARD_TEST_ID as boardId,
-  DATE_NOW as dateNow,
-} from '../../constants/test';
+  getStoreState,
+  renderWithContext,
+  updateStore,
+} from '../../utils/test';
 import Boards from './Boards';
-import '../../store/boardsSlice';
 
 jest.mock('../../firebase', () => ({
   firebaseAnalytics: {

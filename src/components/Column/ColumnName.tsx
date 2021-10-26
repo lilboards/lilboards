@@ -1,15 +1,13 @@
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-
-import CloseButton from '../CloseButton';
+import type { ChangeEvent } from 'react';
 
 import actions from '../../actions';
-import { useDispatch, useSelector } from '../../hooks';
 import { firebaseAnalytics } from '../../firebase';
-
-import type { ChangeEvent } from 'react';
+import { useDispatch, useSelector } from '../../hooks';
 import type { Id } from '../../types';
+import CloseButton from '../CloseButton';
 
 type Props = {
   boardId: Id;

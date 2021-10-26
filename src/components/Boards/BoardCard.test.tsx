@@ -1,13 +1,14 @@
 import { fireEvent, screen } from '@testing-library/react';
+
+import {
+  BOARD_TEST_ID as boardId,
+  DATE_NOW as dateNow,
+} from '../../constants/test';
 import {
   getStoreState,
   renderWithContext,
   updateStore,
 } from '../../utils/test';
-import {
-  BOARD_TEST_ID as boardId,
-  DATE_NOW as dateNow,
-} from '../../constants/test';
 import BoardCard from './BoardCard';
 
 it('renders "Open board" button', () => {

@@ -1,14 +1,14 @@
+import type { WindowLocation as Location } from '@reach/router';
 import { screen } from '@testing-library/react';
-import { history, renderWithContext } from '../../utils/test';
-import { firebaseAuth } from '../../firebase';
+
 import { REDIRECT_TO } from '../../constants';
 import {
   USER_TEST_EMAIL as userEmail,
   USER_TEST_ID as userId,
 } from '../../constants/test';
+import { firebaseAuth } from '../../firebase';
+import { history, renderWithContext } from '../../utils/test';
 import Login from './Login';
-
-import type { WindowLocation as Location } from '@reach/router';
 
 jest.mock('../../firebase', () => ({
   firebaseAnalytics: {

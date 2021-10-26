@@ -1,6 +1,6 @@
-import { getDraggableCardStyle, getDroppableBackgroundColor } from './styles';
-
 import type { Theme } from '@material-ui/core/styles';
+
+import { getDraggableCardStyle, getDroppableBackgroundColor } from './styles';
 
 describe('getDraggableCardStyle', () => {
   const theme = {
