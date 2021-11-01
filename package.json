@@ -59,7 +59,7 @@
     "husky": "^7.0.4",
     "lint-staged": "^11.2.6",
     "prettier": "^2.4.1",
-    "size-limit": "^6.0.3"
+    "size-limit": "^6.0.4"
   },
   "engines": {
     "node": ">=10",
