@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
-    "@commitlint/config-conventional": "^13.2.0",
+    "@commitlint/config-conventional": "^14.1.0",
     "@size-limit/preset-app": "^6.0.3",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
