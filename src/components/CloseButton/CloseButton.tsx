@@ -1,10 +1,10 @@
-import type { IconButtonProps } from '@material-ui/core/IconButton';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
+import CloseIcon from '@mui/icons-material/Close';
+import type { IconButtonProps } from '@mui/material/IconButton';
+import IconButton from '@mui/material/IconButton';
 
 export default function CloseButton(props: IconButtonProps) {
   return (
-    <IconButton {...props}>
+    <IconButton {...props} size="large">
       <CloseIcon />
     </IconButton>
   );

@@ -1,11 +1,11 @@
-import AppBar from '@material-ui/core/AppBar';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import IconButton from '@material-ui/core/IconButton';
-import Link from '@material-ui/core/Link';
-import Toolbar from '@material-ui/core/Toolbar';
-import GitHubIcon from '@material-ui/icons/GitHub';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import IconButton from '@mui/material/IconButton';
+import Link from '@mui/material/Link';
+import Toolbar from '@mui/material/Toolbar';
 import { Link as RouterLink } from '@reach/router';
 
 import { REDIRECT_TO } from '../../constants';

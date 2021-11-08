@@ -25,38 +25,38 @@ it('renders GitHub link', () => {
 });
 
 describe('when not logged in', () => {
-  it('renders login button link', () => {
+  it('renders login link', () => {
     updateStore.withUser(false);
     renderWithContext(<Header />);
-    expect(screen.getByRole('button', { name: 'Login' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: 'Login' })).toHaveAttribute(
       'href',
       '/login'
     );
   });
 
-  it('does not render boards button link', () => {
+  it('does not render boards link', () => {
     updateStore.withUser(false);
     renderWithContext(<Header />);
     expect(
-      screen.queryByRole('button', { name: 'Boards' })
+      screen.queryByRole('link', { name: 'Boards' })
     ).not.toBeInTheDocument();
   });
 });
 
 describe('when logged in', () => {
-  it('renders logout button link', () => {
+  it('renders logout link', () => {
     updateStore.withUser();
     renderWithContext(<Header />);
-    expect(screen.getByRole('button', { name: 'Logout' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: 'Logout' })).toHaveAttribute(
       'href',
       '/logout'
     );
   });
 
-  it('renders boards button link', () => {
+  it('renders boards link', () => {
     updateStore.withUser();
     renderWithContext(<Header />);
-    expect(screen.getByRole('button', { name: 'Boards' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: 'Boards' })).toHaveAttribute(
       'href',
       '/boards'
     );

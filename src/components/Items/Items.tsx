@@ -1,6 +1,6 @@
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from '@mui/icons-material/Add';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 
 import actions from '../../actions';
 import { firebaseAnalytics, generateId } from '../../firebase';

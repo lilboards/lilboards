@@ -1,4 +1,4 @@
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 import type { RouteComponentProps } from '@reach/router';
 import { Redirect } from '@reach/router';
 

@@ -1,4 +1,4 @@
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 
 import { useSelector } from '../../hooks';
 import type { Id } from '../../types';

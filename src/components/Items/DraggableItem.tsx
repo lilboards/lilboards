@@ -1,5 +1,5 @@
-import Box from '@material-ui/core/Box';
-import { useTheme } from '@material-ui/core/styles';
+import Box from '@mui/material/Box';
+import { useTheme } from '@mui/material/styles';
 import { Draggable } from 'react-beautiful-dnd';
 
 import type { Id } from '../../types';
