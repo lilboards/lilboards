@@ -1,6 +1,6 @@
-import type { FabProps } from '@material-ui/core/Fab';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from '@mui/icons-material/Add';
+import type { FabProps } from '@mui/material/Fab';
+import Fab from '@mui/material/Fab';
 import type { ReactNode } from 'react';
 
 type Props = Omit<FabProps, 'children'> & { children?: ReactNode };

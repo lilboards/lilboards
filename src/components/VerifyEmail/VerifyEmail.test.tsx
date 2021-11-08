@@ -16,7 +16,7 @@ describe('send verification email', () => {
     render(<VerifyEmail />);
   });
 
-  it('renders button', () => {
+  it('renders link', () => {
     expect(
       screen.getByRole('button', { name: 'Send verification email' })
     ).toBeInTheDocument();
@@ -37,6 +37,6 @@ describe('logout', () => {
   });
 
   it('renders button', () => {
-    expect(screen.getByRole('button', { name: 'Logout' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Logout' })).toBeInTheDocument();
   });
 });

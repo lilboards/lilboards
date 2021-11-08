@@ -1,7 +1,7 @@
-import Box from '@material-ui/core/Box';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import InputBase from '@material-ui/core/InputBase';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import InputBase from '@mui/material/InputBase';
 import type { ChangeEvent, CSSProperties } from 'react';
 
 import actions from '../../actions';

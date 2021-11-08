@@ -1,7 +1,7 @@
-import IconButton from '@material-ui/core/IconButton';
-import type { SnackbarProps } from '@material-ui/core/Snackbar';
-import Snackbar from '@material-ui/core/Snackbar';
-import CloseIcon from '@material-ui/icons/Close';
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
+import type { SnackbarProps } from '@mui/material/Snackbar';
+import Snackbar from '@mui/material/Snackbar';
 import type { FC, SyntheticEvent } from 'react';
 import { useEffect, useState } from 'react';
 

@@ -1,6 +1,6 @@
-import IconButton from '@material-ui/core/IconButton';
-import ThumbUpFilledIcon from '@material-ui/icons/ThumbUp';
-import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
+import ThumbUpFilledIcon from '@mui/icons-material/ThumbUp';
+import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
+import IconButton from '@mui/material/IconButton';
 
 import actions from '../../actions';
 import { firebaseAnalytics } from '../../firebase';

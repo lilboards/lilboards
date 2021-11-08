@@ -11,10 +11,10 @@ import {
 } from '../../utils/test';
 import BoardCard from './BoardCard';
 
-it('renders "Open board" button', () => {
+it('renders "Open board" link', () => {
   const board = updateStore.withBoard();
   renderWithContext(<BoardCard boardId={board.id} />);
-  expect(screen.getByRole('button', { name: 'Open board' })).toHaveAttribute(
+  expect(screen.getByRole('link', { name: 'Open board' })).toHaveAttribute(
     'href',
     `/boards/${boardId}`
   );

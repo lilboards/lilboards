@@ -1,12 +1,12 @@
-import type { Theme } from '@material-ui/core/styles';
+import type { Theme } from '@mui/material/styles';
 
 import { getDraggableCardStyle, getDroppableBackgroundColor } from './styles';
 
 describe('getDraggableCardStyle', () => {
   const theme = {
     palette: {
-      info: {
-        light: '#64b5f6',
+      primary: {
+        light: '#42a5f5',
       },
     },
   } as Theme;
@@ -18,7 +18,7 @@ describe('getDraggableCardStyle', () => {
       isDropAnimating: true,
     };
     expect(getDraggableCardStyle(draggableSnapshot, theme)).toEqual({
-      backgroundColor: theme.palette.info.light,
+      backgroundColor: theme.palette.primary.light,
     });
   });
 
@@ -37,7 +37,9 @@ describe('getDroppableBackgroundColor', () => {
       isDraggingOver: true,
       isUsingPlaceholder: true,
     };
-    expect(getDroppableBackgroundColor(droppableSnapshot)).toBe('action.hover');
+    expect(
+      getDroppableBackgroundColor(droppableSnapshot)
+    ).toMatchInlineSnapshot(`"#eee"`);
   });
 
   it('returns no color when not dragging over', () => {
@@ -45,6 +47,6 @@ describe('getDroppableBackgroundColor', () => {
       isDraggingOver: false,
       isUsingPlaceholder: false,
     };
-    expect(getDroppableBackgroundColor(droppableSnapshot)).toBe(null);
+    expect(getDroppableBackgroundColor(droppableSnapshot)).toBe(undefined);
   });
 });

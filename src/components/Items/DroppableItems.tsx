@@ -1,4 +1,4 @@
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 import { Droppable } from 'react-beautiful-dnd';
 
 import { useSelector } from '../../hooks';

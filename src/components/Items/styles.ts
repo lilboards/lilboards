@@ -1,4 +1,4 @@
-import type { Theme } from '@material-ui/core/styles';
+import type { Theme } from '@mui/material/styles';
 import type {
   DraggableStateSnapshot,
   DroppableStateSnapshot,
@@ -8,7 +8,7 @@ import type {
  * Gets draggable card style.
  *
  * @see {@link https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/guides/drop-animation.md}
- * @see {@link https://material-ui.com/customization/palette/}
+ * @see {@link https://mui.com/customization/palette/}
  */
 export const getDraggableCardStyle = (
   draggableSnapshot: DraggableStateSnapshot,
@@ -16,7 +16,7 @@ export const getDraggableCardStyle = (
 ) => {
   if (draggableSnapshot.combineWith) {
     return {
-      backgroundColor: theme.palette.info.light,
+      backgroundColor: theme.palette.primary.light,
     };
   }
 };
@@ -25,13 +25,11 @@ export const getDraggableCardStyle = (
  * Gets droppable background color.
  *
  * @see {@link https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/api/droppable.md#recommended--home-list-styling}
- * @see {@link https://material-ui.com/customization/palette/}
  */
 export const getDroppableBackgroundColor = (
   droppableSnapshot: DroppableStateSnapshot
 ) => {
   if (droppableSnapshot.isDraggingOver) {
-    return 'action.hover';
+    return '#eee';
   }
-  return null; // 'background.default'
 };
