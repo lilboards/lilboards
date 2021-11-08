@@ -19,7 +19,13 @@ export default function Header() {
       <Container>
         <Toolbar disableGutters>
           <Box flexGrow={1}>
-            <Link color="inherit" component={RouterLink} to="/" variant="h6">
+            <Link
+              color="inherit"
+              component={RouterLink}
+              to="/"
+              underline="hover"
+              variant="h6"
+            >
               Lilboards
             </Link>
           </Box>
