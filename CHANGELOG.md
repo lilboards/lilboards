@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.9.0](https://www.github.com/lilboards/lilboards/compare/v4.8.1...v4.9.0) (2021-11-08)
+
+
+### Features
+
+* migrate MUI from v4 to v5 ([18983e0](https://www.github.com/lilboards/lilboards/commit/18983e0d9f520e2b49b755201df2d727c260213e))
+
+
+### Bug Fixes
+
+* **components:** underline Header homepage link on hover ([a4ead31](https://www.github.com/lilboards/lilboards/commit/a4ead31a0bb79fff73aae89929c60fe8a4f347cf))
+
 ### [4.8.1](https://www.github.com/lilboards/lilboards/compare/v4.8.0...v4.8.1) (2021-10-26)
 
 
