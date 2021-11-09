@@ -19,9 +19,9 @@ Go to [lilboards.org](https://lilboards.org/) to create boards, columns, and ite
 
 This project is built with:
 
-- [Create React App](https://github.com/facebook/create-react-app)
+- [Create React App](https://create-react-app.dev/)
 - [Firebase](https://firebase.google.com/)
-- [Material-UI](https://material-ui.com/)
+- [MUI](https://mui.com/)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
 - [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)
 
