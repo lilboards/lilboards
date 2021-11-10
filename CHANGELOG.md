@@ -1,5 +1,12 @@
 # Changelog
 
+### [4.9.1](https://www.github.com/lilboards/lilboards/compare/v4.9.0...v4.9.1) (2021-11-10)
+
+
+### Bug Fixes
+
+* **components:** move delete button to BoardCard bottom ([caf86ac](https://www.github.com/lilboards/lilboards/commit/caf86ac7c8c2a45350ff08e4054f060752db56b9))
+
 ## [4.9.0](https://www.github.com/lilboards/lilboards/compare/v4.8.1...v4.9.0) (2021-11-08)
 
 
