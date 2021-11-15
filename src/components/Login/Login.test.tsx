@@ -6,29 +6,23 @@ import {
   USER_TEST_EMAIL as userEmail,
   USER_TEST_ID as userId,
 } from '../../constants/test';
-import { firebaseAuth } from '../../firebase';
+import { onAuthStateChanged } from '../../firebase';
 import { history, renderWithContext } from '../../utils/test';
 import Login from './Login';
 
 jest.mock('../../firebase', () => ({
-  firebaseAnalytics: {
-    logEvent: jest.fn(),
-  },
-  firebaseAuth: {
-    onAuthStateChanged: jest.fn(),
-  },
+  logEvent: jest.fn(),
+  onAuthStateChanged: jest.fn(),
 }));
 
 jest.mock('react-firebaseui/StyledFirebaseAuth', () => () => <></>);
 
 describe('not logged in', () => {
   beforeEach(() => {
-    (firebaseAuth.onAuthStateChanged as jest.Mock).mockImplementationOnce(
-      (callback) => {
-        const user = null;
-        callback(user);
-      }
-    );
+    (onAuthStateChanged as jest.Mock).mockImplementationOnce((callback) => {
+      const user = null;
+      callback(user);
+    });
   });
 
   it('renders "Sign In"', () => {
@@ -51,15 +45,13 @@ describe('logged in', () => {
   } as Location;
 
   beforeEach(() => {
-    (firebaseAuth.onAuthStateChanged as jest.Mock).mockImplementationOnce(
-      (callback) => {
-        const user = {
-          email: userEmail,
-          id: userId,
-        };
-        callback(user);
-      }
-    );
+    (onAuthStateChanged as jest.Mock).mockImplementationOnce((callback) => {
+      const user = {
+        email: userEmail,
+        id: userId,
+      };
+      callback(user);
+    });
   });
 
   it('does not render "Sign In"', () => {

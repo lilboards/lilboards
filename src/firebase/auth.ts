@@ -1,13 +1,56 @@
-import 'firebase/auth';
+/* istanbul ignore file */
+import type { User } from 'firebase/auth';
+import {
+  getAuth,
+  onAuthStateChanged as firebaseOnAuthStateChanged,
+  sendEmailVerification as firebaseSendEmailVerification,
+  signInAnonymously as firebaseSignInAnonymously,
+  signOut as firebaseSignOut,
+} from 'firebase/auth';
 
 import { isDevelopment, isLocalhost } from '../config';
 import { firebaseApp } from './app';
-import { getAuth } from './helpers';
 
 export const firebaseAuth = getAuth(firebaseApp);
 
-/* istanbul ignore next */
 if (isDevelopment && isLocalhost) {
-  const emulatorHost = process.env.REACT_APP_FIREBASE_AUTH_DOMAIN || '';
-  firebaseAuth.useEmulator(emulatorHost);
+  /**
+   * {@link https://firebase.google.com/docs/emulator-suite/connect_auth#web-version-9}
+   */
+  const emulatorHost = 'http://localhost:9099';
+  const { connectAuthEmulator } = require('firebase/auth');
+  connectAuthEmulator(firebaseAuth, emulatorHost);
+}
+
+/**
+ * Observer registered on authentication state change.
+ *
+ * @param callback - Callback containing user account data.
+ */
+export function onAuthStateChanged(callback: (user: User | null) => void) {
+  return firebaseOnAuthStateChanged(firebaseAuth, callback);
+}
+
+/**
+ * Authenticates with Firebase anonymously.
+ */
+export function signInAnonymously() {
+  return firebaseSignInAnonymously(firebaseAuth);
+}
+
+/**
+ * Signs user out.
+ */
+export function signOut() {
+  return firebaseSignOut(firebaseAuth);
+}
+
+/**
+ * Sends email verification to user.
+ */
+export function sendEmailVerification() {
+  const { currentUser } = firebaseAuth;
+  if (currentUser) {
+    firebaseSendEmailVerification(currentUser);
+  }
 }

@@ -1,15 +1,20 @@
 import { useEffect, useState } from 'react';
 
 import actions from '../actions';
-import { firebaseAnalytics, firebaseAuth } from '../firebase';
+import { logEvent, onAuthStateChanged, signInAnonymously } from '../firebase';
 import { useDispatch } from '.';
 
-export function useAuth(signInAnonymously = false) {
+/**
+ * User authentication hook.
+ *
+ * @param shouldSignInAnonymously - Should user sign in anonymously.
+ */
+export function useAuth(shouldSignInAnonymously = false) {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const unregisterAuthObserver = firebaseAuth.onAuthStateChanged((user) => {
+    const unregisterAuthObserver = onAuthStateChanged((user) => {
       if (user) {
         dispatch(
           actions.setUser({
@@ -20,14 +25,14 @@ export function useAuth(signInAnonymously = false) {
         );
         setIsLoaded(true);
 
-        firebaseAnalytics.logEvent('login', {
+        logEvent('login', {
           type: 'authenticated',
           email_verified: user.emailVerified,
         });
-      } else if (signInAnonymously) {
-        firebaseAuth.signInAnonymously();
+      } else if (shouldSignInAnonymously) {
+        signInAnonymously();
 
-        firebaseAnalytics.logEvent('login', {
+        logEvent('login', {
           type: 'anonymous',
         });
       } else {
@@ -36,7 +41,7 @@ export function useAuth(signInAnonymously = false) {
     });
 
     return unregisterAuthObserver;
-  }, [dispatch, signInAnonymously]);
+  }, [dispatch, shouldSignInAnonymously]);
 
   return isLoaded;
 }

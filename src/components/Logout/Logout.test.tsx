@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 
-import { firebaseAuth } from '../../firebase';
+import { logEvent, signOut } from '../../firebase';
 import {
   getStoreState,
   renderWithContext,
@@ -9,23 +9,23 @@ import {
 import Logout from './Logout';
 
 jest.mock('../../firebase', () => ({
-  firebaseAnalytics: {
-    logEvent: jest.fn(),
-  },
-  firebaseAuth: {
-    signOut: jest.fn(),
-  },
+  logEvent: jest.fn(),
+  signOut: jest.fn(),
 }));
 
 beforeEach(() => {
-  (firebaseAuth.signOut as jest.Mock).mockResolvedValueOnce(undefined);
+  (signOut as jest.Mock).mockResolvedValueOnce(undefined);
 });
 
 it('signs user out', async () => {
   updateStore.withUser();
   const { baseElement } = renderWithContext(<Logout />);
-  expect(firebaseAuth.signOut).toBeCalledTimes(1);
+
+  expect(signOut).toBeCalledTimes(1);
   expect(getStoreState().user.id).toBe('');
+
   await screen.findAllByText('');
+  expect(logEvent).toBeCalledTimes(1);
+  expect(logEvent).toBeCalledWith('logout');
   expect(baseElement.firstElementChild).toBeEmptyDOMElement();
 });

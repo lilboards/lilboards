@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button';
 
 import actions from '../../actions';
-import { firebaseAnalytics } from '../../firebase';
+import { logEvent } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import type { Id } from '../../types';
 import { sortByLikes } from './utils';
@@ -22,7 +22,7 @@ export default function Sort(props: Props) {
         columnItemIds: sortByLikes(columns, likes),
       })
     );
-    firebaseAnalytics.logEvent('sort_items', {
+    logEvent('sort_items', {
       by: 'likes',
       order: 'descending',
     });

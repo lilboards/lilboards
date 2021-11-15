@@ -2,7 +2,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
 import actions from '../../actions';
-import { firebaseAnalytics } from '../../firebase';
+import { logEvent } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 
 export default function Present() {
@@ -11,7 +11,7 @@ export default function Present() {
 
   function handleChange() {
     dispatch(actions.toggleUserPresenting());
-    firebaseAnalytics.logEvent('user_presenting', {
+    logEvent('user_presenting', {
       checked: !presenting,
     });
   }

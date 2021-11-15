@@ -1,13 +1,18 @@
 import { screen } from '@testing-library/react';
+import { onValue } from 'firebase/database';
 
 import {
   BOARD_TEST_ID as boardId,
   USER_TEST_ID as userId,
 } from '../../constants/test';
 import { getBoardDataRef } from '../../firebase';
-import { Board as BoardType, EventType } from '../../types';
+import { Board as BoardType } from '../../types';
 import { history, renderWithContext, updateStore } from '../../utils/test';
 import Board from './Board';
+
+jest.mock('firebase/database', () => ({
+  onValue: jest.fn(),
+}));
 
 jest.mock('../../firebase', () => ({
   getBoardDataRef: jest.fn(),
@@ -16,18 +21,17 @@ jest.mock('../../firebase', () => ({
 jest.mock('../BoardControls', () => () => <p>BoardControls</p>);
 jest.mock('../Columns', () => () => <p>Columns</p>);
 
+const unsubscribe = jest.fn();
+
 beforeEach(() => {
-  (getBoardDataRef as jest.Mock).mockReturnValueOnce({
-    on: jest.fn((eventType, callback) => {
-      if (eventType === EventType.value) {
-        const boardSnapshot = {
-          val: () => null,
-        };
-        callback(boardSnapshot);
-      }
-    }),
-    off: jest.fn(),
+  (onValue as jest.Mock).mockImplementationOnce((query, callback) => {
+    callback({
+      val: () => null,
+    });
+    return unsubscribe;
   });
+
+  unsubscribe.mockClear();
 });
 
 it('renders nothing when there is no board id', async () => {
@@ -76,24 +80,19 @@ describe('with board and anonymous user', () => {
     name: 'Board Name',
     updatedAt: Date.now(),
   };
-
-  let boardRefOn: jest.Mock;
-  let boardRefOff: jest.Mock;
+  const boardDataRef = 'boardDataRef';
 
   beforeEach(() => {
-    boardRefOn = jest.fn((eventType, callback) => {
-      if (eventType === EventType.value) {
-        const boardSnapshot = {
-          val: (): BoardType => board,
-        };
-        callback(boardSnapshot);
-      }
-    });
+    (getBoardDataRef as jest.Mock).mockReturnValueOnce(boardDataRef);
 
-    (getBoardDataRef as jest.Mock).mockReset().mockReturnValueOnce({
-      on: boardRefOn,
-      off: (boardRefOff = jest.fn()),
-    });
+    (onValue as jest.Mock)
+      .mockReset()
+      .mockImplementationOnce((query, callback) => {
+        callback({
+          val: (): BoardType => board,
+        });
+        return unsubscribe;
+      });
   });
 
   it('loads board', async () => {
@@ -107,11 +106,12 @@ describe('with board and anonymous user', () => {
 
   it('attaches ref listeners', () => {
     const { unmount } = renderWithContext(<Board boardId={boardId} />);
-    expect(boardRefOn).toBeCalledTimes(1);
-    expect(boardRefOn).toBeCalledWith(EventType.value, expect.any(Function));
+    expect(getBoardDataRef).toBeCalledTimes(1);
+    expect(getBoardDataRef).toBeCalledWith(boardId);
+    expect(onValue).toBeCalledTimes(1);
+    expect(onValue).toBeCalledWith(boardDataRef, expect.any(Function));
 
     unmount();
-    expect(boardRefOff).toBeCalledTimes(1);
-    expect(boardRefOff).toBeCalledWith(EventType.value);
+    expect(unsubscribe).toBeCalledTimes(1);
   });
 });

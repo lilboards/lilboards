@@ -8,7 +8,7 @@ import { Link as RouterLink } from '@reach/router';
 import type { ChangeEvent } from 'react';
 
 import actions from '../../actions';
-import { firebaseAnalytics } from '../../firebase';
+import { logEvent } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import type { Id } from '../../types';
 
@@ -59,7 +59,7 @@ export default function BoardCard(props: Props) {
         userId,
       })
     );
-    firebaseAnalytics.logEvent('delete_board');
+    logEvent('delete_board');
   }
 
   return (

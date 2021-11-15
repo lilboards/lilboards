@@ -1,60 +1,87 @@
+import type { Unsubscribe } from 'firebase/database';
+import {
+  onChildAdded,
+  onChildChanged,
+  onChildRemoved,
+} from 'firebase/database';
 import { useEffect } from 'react';
 
 import actions from '../../../actions';
 import { getItemsRef } from '../../../firebase';
 import { useDispatch } from '../../../hooks';
-import { EventType, Id, Item } from '../../../types';
+import { Id } from '../../../types';
 
+/**
+ * Listens to item changes.
+ *
+ * @param boardId - Board id.
+ */
 export function useItems(boardId: Id) {
   const dispatch = useDispatch();
 
   useEffect(() => {
     const itemsRef = getItemsRef(boardId);
+    const unsubscribes: Unsubscribe[] = [];
 
     // item added
-    itemsRef.on(EventType.child_added, (itemSnapshot) => {
-      setTimeout(() => {
-        dispatch(
-          actions.updateItem({
-            item: itemSnapshot.val(),
-            itemId: itemSnapshot.key as Id,
-            skipSave: true,
-          })
-        );
-      });
-    });
+    unsubscribes.push(
+      onChildAdded(itemsRef, (itemSnapshot) => {
+        const itemId = itemSnapshot.key;
+        if (!itemId) {
+          return;
+        }
+        setTimeout(() => {
+          dispatch(
+            actions.updateItem({
+              item: itemSnapshot.val(),
+              itemId,
+              skipSave: true,
+            })
+          );
+        });
+      })
+    );
 
     // item changed
-    itemsRef.on(EventType.child_changed, (itemSnapshot) => {
-      setTimeout(() => {
-        const item: Item = itemSnapshot.val();
-        dispatch(
-          actions.updateItem({
-            item,
-            itemId: itemSnapshot.key as Id,
-            skipSave: true,
-          })
-        );
-      });
-    });
+    unsubscribes.push(
+      onChildChanged(itemsRef, (itemSnapshot) => {
+        const itemId = itemSnapshot.key;
+        if (!itemId) {
+          return;
+        }
+        setTimeout(() => {
+          dispatch(
+            actions.updateItem({
+              item: itemSnapshot.val(),
+              itemId,
+              skipSave: true,
+            })
+          );
+        });
+      })
+    );
 
     // item removed
-    itemsRef.on(EventType.child_removed, (itemSnapshot) => {
-      setTimeout(() => {
-        dispatch(
-          actions.removeItem({
-            itemId: itemSnapshot.key as Id,
-            skipSave: true,
-          })
-        );
-      });
-    });
+    unsubscribes.push(
+      onChildRemoved(itemsRef, (itemSnapshot) => {
+        const itemId = itemSnapshot.key;
+        if (!itemId) {
+          return;
+        }
+        setTimeout(() => {
+          dispatch(
+            actions.removeItem({
+              itemId,
+              skipSave: true,
+            })
+          );
+        });
+      })
+    );
 
     // unsubscribe and reset on unmount
     return () => {
-      itemsRef.off(EventType.child_added);
-      itemsRef.off(EventType.child_changed);
-      itemsRef.off(EventType.child_removed);
+      unsubscribes.forEach((unsubscribe) => unsubscribe());
       dispatch(actions.resetItems());
     };
   }, [boardId, dispatch]);

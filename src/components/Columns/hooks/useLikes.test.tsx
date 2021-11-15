@@ -1,16 +1,22 @@
+import { onValue } from 'firebase/database';
+
 import {
   BOARD_TEST_ID as boardId,
   ITEM_TEST_ID as itemId,
   USER_TEST_ID as userId,
 } from '../../../constants/test';
 import { getLikesRef } from '../../../firebase';
-import { EventType, Likes } from '../../../types';
+import { Likes } from '../../../types';
 import {
   getStoreState,
   renderWithContext,
   updateStore,
 } from '../../../utils/test';
 import { useLikes } from './useLikes';
+
+jest.mock('firebase/database', () => ({
+  onValue: jest.fn(),
+}));
 
 jest.mock('../../../firebase', () => ({
   getLikesRef: jest.fn(),
@@ -21,78 +27,84 @@ function TestComponent() {
   return null;
 }
 
-const likesRefOn = jest.fn();
-const likesRefOff = jest.fn();
+const unsubscribe = jest.fn();
 
 beforeEach(() => {
-  likesRefOn.mockClear();
-  likesRefOff.mockClear();
-  (getLikesRef as jest.Mock).mockReturnValueOnce({
-    on: likesRefOn,
-    off: likesRefOff,
-  });
+  jest.useFakeTimers();
+  unsubscribe.mockClear();
+});
+
+afterAll(() => {
+  jest.useRealTimers();
 });
 
 describe('likes snapshot value is valid', () => {
   beforeEach(() => {
-    (getLikesRef as jest.Mock).mockReturnValueOnce({
-      on: likesRefOn.mockImplementation((eventType, callback) => {
-        if (eventType === EventType.value) {
-          callback({
-            val: (): Likes => ({
-              items: {
-                [itemId]: {
-                  [userId]: true,
-                },
-              },
-            }),
-          });
-        }
-      }),
+    (onValue as jest.Mock).mockImplementationOnce((query, callback) => {
+      callback({
+        val: (): Likes => ({
+          items: {
+            [itemId]: {
+              [userId]: true,
+            },
+          },
+        }),
+      });
+      return unsubscribe;
     });
   });
 
-  it('adds like to store', (done) => {
+  it('adds like to store', () => {
     updateStore.withUser();
-    renderWithContext(<TestComponent />);
-    setTimeout(() => {
-      expect(getStoreState().likes).toMatchInlineSnapshot(`
-        Object {
-          "items": Object {
-            "item_test_id": Object {
-              "user_test_id": true,
-            },
+    const { unmount } = renderWithContext(<TestComponent />);
+
+    expect(getLikesRef).toBeCalledTimes(1);
+    expect(getLikesRef).toBeCalledWith(boardId);
+
+    jest.runAllTimers();
+    expect(onValue).toBeCalledTimes(1);
+    expect(onValue).toBeCalledWith(undefined, expect.any(Function));
+
+    expect(getStoreState().likes).toMatchInlineSnapshot(`
+      Object {
+        "items": Object {
+          "item_test_id": Object {
+            "user_test_id": true,
           },
-        }
-      `);
-      done();
-    });
+        },
+      }
+    `);
+
+    unmount();
+    expect(unsubscribe).toBeCalledTimes(1);
   });
 });
 
 describe('likes snapshot value is null', () => {
   beforeEach(() => {
-    (getLikesRef as jest.Mock).mockReturnValueOnce({
-      on: likesRefOn.mockImplementation((eventType, callback) => {
-        if (eventType === EventType.value) {
-          callback({
-            val: () => null,
-          });
-        }
-      }),
+    (onValue as jest.Mock).mockImplementationOnce((query, callback) => {
+      callback({
+        val: () => null,
+      });
+      return unsubscribe;
     });
   });
 
-  it('resets likes in store', (done) => {
+  it('resets likes in store', () => {
     updateStore.withUser();
-    renderWithContext(<TestComponent />);
-    setTimeout(() => {
-      expect(getStoreState().likes).toMatchInlineSnapshot(`
-        Object {
-          "items": Object {},
-        }
-      `);
-      done();
+    const { unmount } = renderWithContext(<TestComponent />);
+
+    expect(getLikesRef).toBeCalledTimes(1);
+    expect(getLikesRef).toBeCalledWith(boardId);
+
+    jest.runAllTimers();
+    expect(onValue).toBeCalledTimes(1);
+    expect(onValue).toBeCalledWith(undefined, expect.any(Function));
+    expect(getStoreState().likes).toEqual({
+      items: {},
     });
+
+    unmount();
+    expect(unsubscribe).toBeCalledTimes(1);
   });
 });

@@ -1,14 +1,10 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import { firebaseAuth } from '../../firebase';
+import { sendEmailVerification } from '../../firebase';
 import VerifyEmail from './VerifyEmail';
 
 jest.mock('../../firebase', () => ({
-  firebaseAuth: {
-    currentUser: {
-      sendEmailVerification: jest.fn(),
-    },
-  },
+  sendEmailVerification: jest.fn(),
 }));
 
 describe('send verification email', () => {
@@ -26,7 +22,7 @@ describe('send verification email', () => {
     fireEvent.click(
       screen.getByRole('button', { name: 'Send verification email' })
     );
-    expect(firebaseAuth.currentUser!.sendEmailVerification).toBeCalled();
+    expect(sendEmailVerification).toBeCalled();
     expect(screen.getByText('Email sent')).toBeInTheDocument();
   });
 });

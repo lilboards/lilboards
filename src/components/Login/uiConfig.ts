@@ -8,9 +8,9 @@ const uiConfig = {
   signInFlow: 'popup',
   // Display auth providers.
   signInOptions: [
-    'google.com', // require('firebase').auth.GoogleAuthProvider.PROVIDER_ID
-    'github.com', // require('firebase').auth.GithubAuthProvider.PROVIDER_ID
-    'password', // require('firebase').auth.EmailAuthProvider.PROVIDER_ID
+    'google.com', // require('firebase/auth').GoogleAuthProvider.PROVIDER_ID
+    'github.com', // require('firebase/auth').GithubAuthProvider.PROVIDER_ID
+    'password', // require('firebase/auth').EmailAuthProvider.PROVIDER_ID
   ],
   callbacks: {
     // Avoid redirects after sign-in.

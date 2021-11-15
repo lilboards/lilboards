@@ -4,14 +4,14 @@ import { Link } from '@reach/router';
 import { useState } from 'react';
 
 import { REDIRECT_TO } from '../../constants';
-import { firebaseAuth } from '../../firebase';
+import { sendEmailVerification } from '../../firebase';
 import Snackbar from '../Snackbar';
 
 export default function VerifyEmail() {
   const [emailSentTime, setEmailSentTime] = useState(0);
 
   function sendEmail() {
-    firebaseAuth.currentUser!.sendEmailVerification();
+    sendEmailVerification();
     setEmailSentTime(Date.now());
   }
 

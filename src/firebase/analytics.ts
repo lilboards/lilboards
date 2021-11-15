@@ -1,22 +1,39 @@
 /* istanbul ignore file */
-import 'firebase/analytics';
-
-import type firebase from 'firebase';
+import type { Analytics } from 'firebase/analytics';
+import {
+  getAnalytics,
+  logEvent as firebaseLogEvent,
+  setUserId as firebaseSetUserId,
+} from 'firebase/analytics';
 
 import { isProduction } from '../config';
-import { noop } from '../utils';
 import { firebaseApp } from './app';
-import { getAnalytics } from './helpers';
 
-let firebaseAnalytics: firebase.analytics.Analytics;
+let analytics: Analytics;
 
 if (isProduction) {
-  firebaseAnalytics = getAnalytics(firebaseApp);
-} else {
-  firebaseAnalytics = {
-    logEvent: noop,
-    setUserId: noop,
-  } as unknown as firebase.analytics.Analytics;
+  analytics = getAnalytics(firebaseApp);
 }
 
-export { firebaseAnalytics };
+/**
+ * Sends event to Google Analytics.
+ *
+ * @param event - Event name.
+ * @param parameters - Event parameters.
+ */
+export function logEvent(event: string, parameters?: Record<string, any>) {
+  if (isProduction) {
+    firebaseLogEvent(analytics, event, parameters);
+  }
+}
+
+/**
+ * Sets user id in Google Analytics.
+ *
+ * @param userId - User id.
+ */
+export function setUserId(userId: string) {
+  if (isProduction) {
+    firebaseSetUserId(analytics, userId);
+  }
+}

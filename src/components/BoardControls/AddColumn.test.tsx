@@ -4,7 +4,7 @@ import {
   COLUMN_TEST_ID as columnId,
   DATE_NOW as dateNow,
 } from '../../constants/test';
-import { firebaseAnalytics, generateId } from '../../firebase';
+import { generateId, logEvent } from '../../firebase';
 import {
   getStoreState,
   renderWithContext,
@@ -13,9 +13,7 @@ import {
 import AddColumn from './AddColumn';
 
 jest.mock('../../firebase', () => ({
-  firebaseAnalytics: {
-    logEvent: jest.fn(),
-  },
+  logEvent: jest.fn(),
   generateId: jest.fn(),
 }));
 
@@ -56,7 +54,7 @@ it('adds new column', () => {
         },
       }
     `);
-  expect(firebaseAnalytics.logEvent).toBeCalledTimes(1);
-  expect(firebaseAnalytics.logEvent).toBeCalledWith('create_column');
+  expect(logEvent).toBeCalledTimes(1);
+  expect(logEvent).toBeCalledWith('create_column');
   dateNowSpy.mockRestore();
 });

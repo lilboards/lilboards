@@ -6,7 +6,7 @@ import {
   ITEM_TEST_ID as itemId,
   USER_TEST_ID as userId,
 } from '../../constants/test';
-import { firebaseAnalytics } from '../../firebase';
+import { logEvent } from '../../firebase';
 import {
   getStoreState,
   renderWithContext,
@@ -15,17 +15,15 @@ import {
 import Sort from './Sort';
 
 jest.mock('../../firebase', () => ({
-  firebaseAnalytics: {
-    logEvent: jest.fn(),
-  },
+  logEvent: jest.fn(),
 }));
 
 it('logs event when "Sort by likes" button is clicked', () => {
   const board = updateStore.withBoard();
   renderWithContext(<Sort boardId={board.id} />);
   fireEvent.click(screen.getByRole('button', { name: 'Sort by likes' }));
-  expect(firebaseAnalytics.logEvent).toBeCalledTimes(1);
-  expect(firebaseAnalytics.logEvent).toBeCalledWith('sort_items', {
+  expect(logEvent).toBeCalledTimes(1);
+  expect(logEvent).toBeCalledWith('sort_items', {
     by: 'likes',
     order: 'descending',
   });

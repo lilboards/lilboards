@@ -2,7 +2,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
 import { USER } from '../constants';
-import { firebaseAnalytics } from '../firebase';
+import { setUserId } from '../firebase';
 import type { User } from '../types';
 
 export const initialState: User = {
@@ -32,7 +32,7 @@ const userSlice = createSlice({
       const user = action.payload;
       Object.assign(state, user);
       if (user.id) {
-        firebaseAnalytics.setUserId(user.id);
+        setUserId(user.id);
       }
     },
 

@@ -1,10 +1,16 @@
+import { onValue } from 'firebase/database';
 import { useEffect } from 'react';
 
 import actions from '../../../actions';
 import { getLikesRef } from '../../../firebase';
 import { useDispatch } from '../../../hooks';
-import { EventType, Id } from '../../../types';
+import { Id } from '../../../types';
 
+/**
+ * Listens to like changes.
+ *
+ * @param boardId - Board id.
+ */
 export function useLikes(boardId: Id) {
   const dispatch = useDispatch();
 
@@ -12,7 +18,7 @@ export function useLikes(boardId: Id) {
     const likesRef = getLikesRef(boardId);
 
     // subscribe on mount
-    likesRef.on(EventType.value, (likesSnapshot) => {
+    const unsubscribe = onValue(likesRef, (likesSnapshot) => {
       const likes = likesSnapshot.val();
       setTimeout(() => {
         if (likes) {
@@ -24,8 +30,8 @@ export function useLikes(boardId: Id) {
     });
 
     // unsubscribe and reset on unmount
-    return function unsubscribe() {
-      likesRef.off(EventType.value);
+    return () => {
+      unsubscribe();
       dispatch(actions.resetLikes());
     };
   }, [boardId, dispatch]);

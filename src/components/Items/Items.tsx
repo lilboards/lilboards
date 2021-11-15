@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
 import actions from '../../actions';
-import { firebaseAnalytics, generateId } from '../../firebase';
+import { generateId, logEvent } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import type { Id, Item } from '../../types';
 import DroppableItems from './DroppableItems';
@@ -39,7 +39,7 @@ export default function Items(props: Props) {
       })
     );
     dispatch(actions.setUserEditing({ itemId }));
-    firebaseAnalytics.logEvent('create_item');
+    logEvent('create_item');
   }
 
   return (
