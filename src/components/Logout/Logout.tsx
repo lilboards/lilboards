@@ -3,7 +3,7 @@ import { Redirect } from '@reach/router';
 import { useEffect, useState } from 'react';
 
 import { resetActions } from '../../actions';
-import { firebaseAnalytics, firebaseAuth } from '../../firebase';
+import { logEvent, signOut } from '../../firebase';
 import { useDispatch } from '../../hooks';
 
 export default function Logout(props: RouteComponentProps) {
@@ -13,9 +13,9 @@ export default function Logout(props: RouteComponentProps) {
   useEffect(() => {
     resetActions.forEach((resetAction) => dispatch(resetAction()));
 
-    firebaseAuth.signOut().then(() => {
+    signOut().then(() => {
       setIsSignedOut(true);
-      firebaseAnalytics.logEvent('logout');
+      logEvent('logout');
     });
   }, [dispatch]);
 

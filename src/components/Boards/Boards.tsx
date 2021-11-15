@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import type { RouteComponentProps } from '@reach/router';
 
 import actions from '../../actions';
-import { firebaseAnalytics, generateId, saveUserBoardId } from '../../firebase';
+import { generateId, logEvent, saveUserBoardId } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import type { Board } from '../../types';
 import AddButton from '../AddButton';
@@ -30,7 +30,7 @@ export default function Boards(props: RouteComponentProps) {
     );
     dispatch(actions.setUserEditing({ boardId }));
     saveUserBoardId(userId, boardId);
-    firebaseAnalytics.logEvent('create_board');
+    logEvent('create_board');
   }
 
   return (

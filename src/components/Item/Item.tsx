@@ -5,7 +5,7 @@ import InputBase from '@mui/material/InputBase';
 import type { ChangeEvent, CSSProperties } from 'react';
 
 import actions from '../../actions';
-import { firebaseAnalytics } from '../../firebase';
+import { logEvent } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import type { Id } from '../../types';
 import CloseButton from '../CloseButton';
@@ -50,7 +50,7 @@ export default function Item(props: Props) {
         itemId: props.itemId,
       })
     );
-    firebaseAnalytics.logEvent('delete_item');
+    logEvent('delete_item');
   }
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
@@ -81,7 +81,7 @@ export default function Item(props: Props) {
         itemId: props.itemId,
       })
     );
-    firebaseAnalytics.logEvent('update_item');
+    logEvent('update_item');
   }
 
   return (

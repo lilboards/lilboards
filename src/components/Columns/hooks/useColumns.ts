@@ -1,63 +1,90 @@
+import type { Unsubscribe } from 'firebase/database';
+import {
+  onChildAdded,
+  onChildChanged,
+  onChildRemoved,
+} from 'firebase/database';
 import { useEffect } from 'react';
 
 import actions from '../../../actions';
 import { getColumnsRef } from '../../../firebase';
 import { useDispatch } from '../../../hooks';
-import { Column, EventType, Id } from '../../../types';
+import { Id } from '../../../types';
 
+/**
+ * Listens to column changes.
+ *
+ * @param boardId - Board id.
+ */
 export function useColumns(boardId: Id) {
   const dispatch = useDispatch();
 
   useEffect(() => {
     const columnsRef = getColumnsRef(boardId);
+    const unsubscribes: Unsubscribe[] = [];
 
     // column added
-    columnsRef.on(EventType.child_added, (columnSnapshot) => {
-      setTimeout(() => {
-        dispatch(
-          actions.updateColumn({
-            boardId,
-            column: columnSnapshot.val(),
-            columnId: columnSnapshot.key as Id,
-            skipSave: true,
-          })
-        );
-      });
-    });
+    unsubscribes.push(
+      onChildAdded(columnsRef, (columnSnapshot) => {
+        const columnId = columnSnapshot.key;
+        if (!columnId) {
+          return;
+        }
+        setTimeout(() => {
+          dispatch(
+            actions.updateColumn({
+              boardId,
+              column: columnSnapshot.val(),
+              columnId,
+              skipSave: true,
+            })
+          );
+        });
+      })
+    );
 
     // column changed
-    columnsRef.on(EventType.child_changed, (columnSnapshot) => {
-      setTimeout(() => {
-        const column: Column = columnSnapshot.val();
-        dispatch(
-          actions.updateColumn({
-            boardId,
-            column,
-            columnId: columnSnapshot.key as Id,
-            skipSave: true,
-          })
-        );
-      });
-    });
+    unsubscribes.push(
+      onChildChanged(columnsRef, (columnSnapshot) => {
+        const columnId = columnSnapshot.key;
+        if (!columnId) {
+          return;
+        }
+        setTimeout(() => {
+          dispatch(
+            actions.updateColumn({
+              boardId,
+              column: columnSnapshot.val(),
+              columnId: columnSnapshot.key as Id,
+              skipSave: true,
+            })
+          );
+        });
+      })
+    );
 
     // column removed
-    columnsRef.on(EventType.child_removed, (columnSnapshot) => {
-      setTimeout(() => {
-        dispatch(
-          actions.removeColumn({
-            boardId,
-            columnId: columnSnapshot.key as Id,
-            skipSave: true,
-          })
-        );
-      });
-    });
+    unsubscribes.push(
+      onChildRemoved(columnsRef, (columnSnapshot) => {
+        const columnId = columnSnapshot.key;
+        if (!columnId) {
+          return;
+        }
+        setTimeout(() => {
+          dispatch(
+            actions.removeColumn({
+              boardId,
+              columnId,
+              skipSave: true,
+            })
+          );
+        });
+      })
+    );
 
     // unsubscribe and reset on unmount
     return () => {
-      columnsRef.off(EventType.child_added);
-      columnsRef.off(EventType.child_changed);
-      columnsRef.off(EventType.child_removed);
+      unsubscribes.forEach((unsubscribe) => unsubscribe());
       dispatch(actions.resetColumns());
     };
   }, [boardId, dispatch]);

@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import type { ChangeEvent } from 'react';
 
 import actions from '../../actions';
-import { firebaseAnalytics } from '../../firebase';
+import { logEvent } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import type { Id } from '../../types';
 import CloseButton from '../CloseButton';
@@ -75,7 +75,7 @@ export default function ColumnName(props: Props) {
         })
       );
     });
-    firebaseAnalytics.logEvent('delete_column');
+    logEvent('delete_column');
   }
 
   function handleBlur() {

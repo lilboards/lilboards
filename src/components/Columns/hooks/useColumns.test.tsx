@@ -1,17 +1,29 @@
 import {
+  onChildAdded,
+  onChildChanged,
+  onChildRemoved,
+} from 'firebase/database';
+
+import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
   DATE_NOW as dateNow,
   USER_TEST_ID as userId,
 } from '../../../constants/test';
 import { getColumnsRef } from '../../../firebase';
-import { Column, EventType } from '../../../types';
+import { Column } from '../../../types';
 import {
   getStoreState,
   renderWithContext,
   updateStore,
 } from '../../../utils/test';
 import { useColumns } from './useColumns';
+
+jest.mock('firebase/database', () => ({
+  onChildAdded: jest.fn(),
+  onChildChanged: jest.fn(),
+  onChildRemoved: jest.fn(),
+}));
 
 jest.mock('../../../firebase', () => ({
   getColumnsRef: jest.fn(),
@@ -22,136 +34,185 @@ function TestComponent() {
   return null;
 }
 
+const columnsRef = 'columnsRef';
 const columnName = 'Column name';
 
-const columnsRefOn = jest.fn();
-const columnsRefOff = jest.fn();
+const unsubscribeOnChildAdded = jest.fn();
+const unsubscribeOnChildChanged = jest.fn();
+const unsubscribeOnChildRemoved = jest.fn();
+
+afterAll(() => {
+  jest.useRealTimers();
+});
 
 beforeEach(() => {
-  columnsRefOn.mockClear();
-  columnsRefOff.mockClear();
-  (getColumnsRef as jest.Mock).mockReturnValueOnce({
-    on: columnsRefOn,
-    off: columnsRefOff,
+  jest.useFakeTimers();
+  (getColumnsRef as jest.Mock).mockReturnValueOnce(columnsRef);
+  (onChildAdded as jest.Mock).mockImplementationOnce((query, callback) => {
+    callback({ val: () => null });
+    return unsubscribeOnChildAdded;
   });
+  (onChildChanged as jest.Mock).mockImplementationOnce((query, callback) => {
+    callback({ val: () => null });
+    return unsubscribeOnChildChanged;
+  });
+  (onChildRemoved as jest.Mock).mockImplementationOnce((query, callback) => {
+    callback({});
+    return unsubscribeOnChildRemoved;
+  });
+  [
+    unsubscribeOnChildAdded,
+    unsubscribeOnChildChanged,
+    unsubscribeOnChildRemoved,
+  ].forEach((mock) => mock.mockClear());
 });
 
-describe('mount', () => {
-  it.each([
-    EventType.child_added,
-    EventType.child_changed,
-    EventType.child_removed,
-  ])('listens to columnsRef %j', (eventType) => {
-    renderWithContext(<TestComponent />);
-    expect(columnsRefOn).toBeCalledWith(eventType, expect.any(Function));
+describe('onChildAdded', () => {
+  beforeEach(() => {
+    (onChildAdded as jest.Mock)
+      .mockReset()
+      .mockImplementationOnce((query, callback) => {
+        callback({
+          val: (): Column => ({
+            createdAt: dateNow,
+            createdBy: userId,
+            name: columnName,
+          }),
+          key: columnId,
+        });
+        return unsubscribeOnChildAdded;
+      });
   });
-});
 
-describe('unmount', () => {
-  it.each([
-    EventType.child_added,
-    EventType.child_changed,
-    EventType.child_removed,
-  ])('unlistens to columnsRef %j', (eventType) => {
+  it('subscribes and unsubscribes to listener', () => {
     const { unmount } = renderWithContext(<TestComponent />);
+    expect(getColumnsRef).toBeCalledTimes(1);
+    expect(getColumnsRef).toBeCalledWith(boardId);
+    expect(onChildAdded).toBeCalledTimes(1);
+    expect(onChildAdded).toBeCalledWith(columnsRef, expect.any(Function));
     unmount();
-    expect(columnsRefOff).toBeCalledWith(eventType);
-  });
-});
-
-describe(`${EventType.child_added}`, () => {
-  beforeEach(() => {
-    (getColumnsRef as jest.Mock).mockReturnValueOnce({
-      on: columnsRefOn.mockImplementation((eventType, callback) => {
-        if (eventType === EventType.child_added) {
-          callback({
-            val: (): Column => ({
-              createdAt: dateNow,
-              createdBy: userId,
-              name: columnName,
-            }),
-            key: columnId,
-          });
-        }
-      }),
-    });
+    expect(unsubscribeOnChildAdded).toBeCalledTimes(1);
   });
 
-  it('adds column to store', (done) => {
+  it('adds column to store', () => {
     renderWithContext(<TestComponent />);
-    setTimeout(() => {
-      expect(getStoreState().columns).toMatchInlineSnapshot(`
-        Object {
-          "column_test_id": Object {
-            "createdAt": 1234567890,
-            "createdBy": "user_test_id",
-            "name": "Column name",
-          },
-        }
-      `);
-      done();
-    });
+    jest.runAllTimers();
+    expect(getStoreState().columns).toMatchInlineSnapshot(`
+      Object {
+        "column_test_id": Object {
+          "createdAt": 1234567890,
+          "createdBy": "user_test_id",
+          "name": "Column name",
+        },
+      }
+    `);
+  });
+
+  it('does not add column when columnId is invalid', () => {
+    (onChildAdded as jest.Mock)
+      .mockReset()
+      .mockImplementationOnce((query, callback) => {
+        callback({
+          val: () => null,
+          key: null,
+        });
+        return unsubscribeOnChildAdded;
+      });
+    renderWithContext(<TestComponent />);
+    jest.runAllTimers();
+    expect(getStoreState().columns).toEqual({});
   });
 });
 
-describe(`${EventType.child_changed}`, () => {
+describe('onChildChanged', () => {
   beforeEach(() => {
-    (getColumnsRef as jest.Mock).mockReturnValueOnce({
-      on: columnsRefOn.mockImplementation((eventType, callback) => {
-        if (eventType === EventType.child_changed) {
-          callback({
-            val: (): Partial<Column> => ({
-              name: columnName + 2,
-              updatedAt: dateNow + 2,
-              updatedBy: userId + 2,
-            }),
-            key: columnId,
-          });
-        }
-      }),
-    });
+    (onChildChanged as jest.Mock)
+      .mockReset()
+      .mockImplementationOnce((query, callback) => {
+        callback({
+          val: (): Partial<Column> => ({
+            name: columnName + 2,
+            updatedAt: dateNow + 2,
+            updatedBy: userId + 2,
+          }),
+          key: columnId,
+        });
+        return unsubscribeOnChildChanged;
+      });
   });
 
-  it('updates column in store', (done) => {
+  it('subscribes and unsubscribes to listener', () => {
+    const { unmount } = renderWithContext(<TestComponent />);
+    expect(getColumnsRef).toBeCalledTimes(1);
+    expect(getColumnsRef).toBeCalledWith(boardId);
+    expect(onChildChanged).toBeCalledTimes(1);
+    expect(onChildChanged).toBeCalledWith(columnsRef, expect.any(Function));
+    unmount();
+    expect(unsubscribeOnChildChanged).toBeCalledTimes(1);
+  });
+
+  it('updates column in store', () => {
     updateStore.withColumn();
     renderWithContext(<TestComponent />);
-    setTimeout(() => {
-      expect(getStoreState().columns).toMatchInlineSnapshot(`
-        Object {
-          "column_test_id": Object {
-            "createdAt": 1234567890,
-            "createdBy": "user_test_id",
-            "itemIds": Array [
-              "item_test_id",
-            ],
-            "name": "Column name2",
-            "updatedAt": 1234567892,
-            "updatedBy": "user_test_id2",
-          },
-        }
-      `);
-      done();
-    });
+    jest.runAllTimers();
+    expect(getStoreState().columns).toMatchInlineSnapshot(`
+      Object {
+        "column_test_id": Object {
+          "createdAt": 1234567890,
+          "createdBy": "user_test_id",
+          "itemIds": Array [
+            "item_test_id",
+          ],
+          "name": "Column name2",
+          "updatedAt": 1234567892,
+          "updatedBy": "user_test_id2",
+        },
+      }
+    `);
+  });
+
+  it('does not update column when columnId is invalid', () => {
+    (onChildChanged as jest.Mock)
+      .mockReset()
+      .mockImplementationOnce((query, callback) => {
+        callback({
+          val: () => null,
+          key: null,
+        });
+        return unsubscribeOnChildChanged;
+      });
+    renderWithContext(<TestComponent />);
+    jest.runAllTimers();
+    expect(getStoreState().columns).toEqual({});
   });
 });
 
-describe(`${EventType.child_removed}`, () => {
+describe('onChildRemoved', () => {
   beforeEach(() => {
-    (getColumnsRef as jest.Mock).mockReturnValueOnce({
-      on: columnsRefOn.mockImplementation((eventType, callback) => {
-        if (eventType === EventType.child_removed) {
-          callback({ key: columnId });
-        }
-      }),
-    });
+    (onChildRemoved as jest.Mock)
+      .mockReset()
+      .mockImplementationOnce((query, callback) => {
+        callback({
+          key: columnId,
+        });
+        return unsubscribeOnChildRemoved;
+      });
   });
 
-  it('removes column from store', (done) => {
+  it('subscribes and unsubscribes to listener', () => {
+    const { unmount } = renderWithContext(<TestComponent />);
+    expect(getColumnsRef).toBeCalledTimes(1);
+    expect(getColumnsRef).toBeCalledWith(boardId);
+    expect(onChildChanged).toBeCalledTimes(1);
+    expect(onChildChanged).toBeCalledWith(columnsRef, expect.any(Function));
+    unmount();
+    expect(unsubscribeOnChildChanged).toBeCalledTimes(1);
+  });
+
+  it('removes column from store', () => {
     updateStore.withColumn();
     renderWithContext(<TestComponent />);
-    setTimeout(() => {
-      expect(getStoreState().columns).toEqual({});
-      done();
-    });
+    jest.runAllTimers();
+    expect(getStoreState().columns).toEqual({});
   });
 });

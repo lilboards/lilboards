@@ -3,7 +3,7 @@ import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import IconButton from '@mui/material/IconButton';
 
 import actions from '../../actions';
-import { firebaseAnalytics } from '../../firebase';
+import { logEvent } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import type { Id } from '../../types';
 
@@ -27,10 +27,10 @@ export default function LikeButton(props: Props) {
     };
     if (isLikedByUser) {
       dispatch(actions.unlikeItem(payload));
-      firebaseAnalytics.logEvent('unlike_item');
+      logEvent('unlike_item');
     } else {
       dispatch(actions.likeItem(payload));
-      firebaseAnalytics.logEvent('like_item');
+      logEvent('like_item');
     }
   }
 

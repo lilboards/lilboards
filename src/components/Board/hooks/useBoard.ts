@@ -1,9 +1,10 @@
+import { onValue } from 'firebase/database';
 import { useEffect, useState } from 'react';
 
 import actions from '../../../actions';
 import { getBoardDataRef } from '../../../firebase';
 import { useDispatch, useSelector } from '../../../hooks';
-import { EventType, Id } from '../../../types';
+import { Id } from '../../../types';
 
 export function useBoard(boardId: Id) {
   const dispatch = useDispatch();
@@ -15,30 +16,31 @@ export function useBoard(boardId: Id) {
       return;
     }
 
-    const boardRef = getBoardDataRef(boardId);
-
     // subscribe to board value
-    boardRef.on(EventType.value, (boardSnapshot) => {
-      const board = boardSnapshot.val();
-      if (board) {
-        // prevent race condition with redux reducer
-        setTimeout(() => {
-          dispatch(
-            actions.loadBoard({
-              board,
-              boardId,
-            })
-          );
+    const unsubscribeOnValue = onValue(
+      getBoardDataRef(boardId),
+      (boardSnapshot) => {
+        const board = boardSnapshot.val();
+        if (board) {
+          // prevent race condition with redux reducer
+          setTimeout(() => {
+            dispatch(
+              actions.loadBoard({
+                board,
+                boardId,
+              })
+            );
+            setIsLoaded(true);
+          });
+        } else {
           setIsLoaded(true);
-        });
-      } else {
-        setIsLoaded(true);
+        }
       }
-    });
+    );
 
     // unsubscribe on unmount
     return () => {
-      boardRef.off(EventType.value);
+      unsubscribeOnValue();
       setIsLoaded(false);
     };
   }, [boardId, dispatch, setIsLoaded]);

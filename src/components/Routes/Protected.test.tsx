@@ -4,18 +4,18 @@ import {
   USER_TEST_EMAIL as userEmail,
   USER_TEST_ID as userId,
 } from '../../constants/test';
-import { firebaseAuth } from '../../firebase';
+import {
+  logEvent,
+  onAuthStateChanged,
+  signInAnonymously,
+} from '../../firebase';
 import { history, renderWithContext } from '../../utils/test';
 import Protected from './Protected';
 
 jest.mock('../../firebase', () => ({
-  firebaseAnalytics: {
-    logEvent: jest.fn(),
-  },
-  firebaseAuth: {
-    onAuthStateChanged: jest.fn(),
-    signInAnonymously: jest.fn(),
-  },
+  logEvent: jest.fn(),
+  onAuthStateChanged: jest.fn(),
+  signInAnonymously: jest.fn(),
 }));
 
 const text = 'Protected';
@@ -25,16 +25,22 @@ const props = {
   path: '/protected',
 };
 
+beforeEach(() => {
+  (logEvent as jest.Mock).mockClear();
+});
+
 describe('not signed in', () => {
   beforeEach(() => {
-    (firebaseAuth.onAuthStateChanged as jest.Mock).mockImplementationOnce(
-      (callback) => callback(null)
+    const user = null;
+    (onAuthStateChanged as jest.Mock).mockImplementationOnce((callback) =>
+      callback(user)
     );
   });
 
   it('does not render protected component', () => {
     renderWithContext(<Protected {...props} />);
     expect(screen.queryByText(text)).not.toBeInTheDocument();
+    expect(logEvent).not.toBeCalled();
   });
 
   it('redirects to "/login"', async () => {
@@ -46,21 +52,24 @@ describe('not signed in', () => {
 
 describe('signed in with unverified email', () => {
   beforeEach(() => {
-    (firebaseAuth.onAuthStateChanged as jest.Mock).mockImplementationOnce(
-      (callback) => {
-        const user = {
-          email: userEmail,
-          emailVerified: false,
-          uid: userId,
-        };
-        callback(user);
-      }
+    const user = {
+      email: userEmail,
+      emailVerified: false,
+      uid: userId,
+    };
+    (onAuthStateChanged as jest.Mock).mockImplementationOnce((callback) =>
+      callback(user)
     );
   });
 
   it('does not render protected component when email is checked', () => {
     renderWithContext(<Protected {...props} check="email" />);
     expect(screen.queryByText(text)).not.toBeInTheDocument();
+    expect(logEvent).toBeCalledTimes(1);
+    expect(logEvent).toBeCalledWith('login', {
+      type: 'authenticated',
+      email_verified: false,
+    });
   });
 
   it('renders "Send verification email" button', () => {
@@ -73,56 +82,72 @@ describe('signed in with unverified email', () => {
 
 describe('signed in with verified email', () => {
   beforeEach(() => {
-    (firebaseAuth.onAuthStateChanged as jest.Mock).mockImplementationOnce(
-      (callback) => {
-        const user = {
-          email: userEmail,
-          emailVerified: true,
-          uid: userId,
-        };
-        callback(user);
-      }
+    const user = {
+      email: userEmail,
+      emailVerified: true,
+      uid: userId,
+    };
+    (onAuthStateChanged as jest.Mock).mockImplementationOnce((callback) =>
+      callback(user)
     );
   });
 
   it('renders protected component when email is checked', () => {
     renderWithContext(<Protected {...props} check="email" />);
     expect(screen.getByText(text)).toBeInTheDocument();
+    expect(logEvent).toBeCalledTimes(1);
+    expect(logEvent).toBeCalledWith('login', {
+      type: 'authenticated',
+      email_verified: true,
+    });
   });
 });
 
 describe('signed in with uid', () => {
   beforeEach(() => {
-    (firebaseAuth.onAuthStateChanged as jest.Mock).mockImplementationOnce(
-      (callback) => {
-        const user = {
-          uid: userId,
-        };
-        callback(user);
-      }
+    const user = {
+      uid: userId,
+    };
+    (onAuthStateChanged as jest.Mock).mockImplementationOnce((callback) =>
+      callback(user)
     );
   });
 
   it('does not render protected component when email is checked', () => {
     renderWithContext(<Protected {...props} check="email" />);
     expect(screen.queryByText(text)).not.toBeInTheDocument();
+    expect(logEvent).toBeCalledTimes(1);
+    expect(logEvent).toBeCalledWith('login', {
+      type: 'authenticated',
+      email_verified: undefined,
+    });
   });
 
   it('renders protected component when id is checked', () => {
     renderWithContext(<Protected {...props} check="id" />);
     expect(screen.getByText(text)).toBeInTheDocument();
+    expect(logEvent).toBeCalledTimes(1);
+    expect(logEvent).toBeCalledWith('login', {
+      type: 'authenticated',
+      email_verified: undefined,
+    });
   });
 });
 
 describe('with sign-in anonymously', () => {
   beforeEach(() => {
-    (firebaseAuth.onAuthStateChanged as jest.Mock)
-      .mockReset()
-      .mockImplementationOnce((callback) => callback(null));
+    const user = null;
+    (onAuthStateChanged as jest.Mock).mockImplementationOnce((callback) =>
+      callback(user)
+    );
   });
 
   it('signs in anonymously', () => {
     renderWithContext(<Protected {...props} signInAnonymously />);
-    expect(firebaseAuth.signInAnonymously).toBeCalledTimes(1);
+    expect(signInAnonymously).toBeCalledTimes(1);
+    expect(logEvent).toBeCalledTimes(1);
+    expect(logEvent).toBeCalledWith('login', {
+      type: 'anonymous',
+    });
   });
 });

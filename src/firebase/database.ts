@@ -1,7 +1,16 @@
 /* istanbul ignore file */
-import 'firebase/database';
-
 import { debounce } from 'debounce';
+import {
+  child,
+  get,
+  getDatabase,
+  push,
+  ref,
+  remove,
+  runTransaction,
+  set,
+  update,
+} from 'firebase/database';
 
 import { isDevelopment, isLocalhost } from '../config';
 import {
@@ -16,17 +25,6 @@ import {
 } from '../constants';
 import type { Board, Column, Id, Item, LikesItem } from '../types';
 import { firebaseApp } from './app';
-import {
-  child,
-  get,
-  getDatabase,
-  push,
-  ref,
-  remove,
-  runTransaction,
-  set,
-  update,
-} from './helpers';
 
 const database = getDatabase(firebaseApp);
 
@@ -34,7 +32,12 @@ if (isDevelopment && isLocalhost) {
   const databaseUrl = new URL(
     process.env.REACT_APP_FIREBASE_DATABASE_URL || 'localhost'
   );
-  database.useEmulator(databaseUrl.hostname, Number(databaseUrl.port) || 9000);
+  const { connectDatabaseEmulator } = require('firebase/database');
+  connectDatabaseEmulator(
+    database,
+    databaseUrl.hostname,
+    Number(databaseUrl.port) || 9000
+  );
 }
 
 const rootRef = ref(database);
@@ -143,8 +146,10 @@ export const saveColumnItemIds = (
     return;
   }
 
+  const columnsRef = getColumnsRef(boardId);
+
   // https://firebase.google.com/docs/database/web/read-and-write#save_data_as_transactions
-  runTransaction(getColumnsRef(boardId), (columns) => {
+  runTransaction(columnsRef, (columns) => {
     if (columns) {
       Object.entries(columnItemIds).forEach(([columnId, itemIds]) => {
         columns[columnId] = columns[columnId] || {};

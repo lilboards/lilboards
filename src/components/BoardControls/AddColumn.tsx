@@ -1,5 +1,5 @@
 import actions from '../../actions';
-import { firebaseAnalytics, generateId } from '../../firebase';
+import { generateId, logEvent } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import type { Column, Id } from '../../types';
 import AddButton from '../AddButton';
@@ -34,7 +34,7 @@ export default function AddColumn(props: Props) {
       })
     );
     dispatch(actions.setUserEditing({ columnId }));
-    firebaseAnalytics.logEvent('create_column');
+    logEvent('create_column');
   }
 
   return (
