@@ -1,5 +1,12 @@
 # Changelog
 
+### [4.9.2](https://www.github.com/lilboards/lilboards/compare/v4.9.1...v4.9.2) (2021-11-15)
+
+
+### Performance Improvements
+
+* upgrade firebase from v8 to v9 ([87a8860](https://www.github.com/lilboards/lilboards/commit/87a88604f59fd8b7f281dd79d7ab7eb58abe58ba))
+
 ### [4.9.1](https://www.github.com/lilboards/lilboards/compare/v4.9.0...v4.9.1) (2021-11-10)
 
 
