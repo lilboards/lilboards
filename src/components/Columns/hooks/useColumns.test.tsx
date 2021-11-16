@@ -160,9 +160,6 @@ describe('onChildChanged', () => {
         "column_test_id": Object {
           "createdAt": 1234567890,
           "createdBy": "user_test_id",
-          "itemIds": Array [
-            "item_test_id",
-          ],
           "name": "Column name2",
           "updatedAt": 1234567892,
           "updatedBy": "user_test_id2",
