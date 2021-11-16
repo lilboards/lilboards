@@ -32,6 +32,9 @@ const columnsSlice = createSlice({
       const { boardId, column, columnId, debounce, skipSave } = action.payload;
       state[columnId] = state[columnId] || {};
       Object.assign(state[columnId], column);
+      if (!column.itemIds) {
+        delete state[columnId].itemIds;
+      }
 
       if (!skipSave && boardId) {
         if (debounce) {

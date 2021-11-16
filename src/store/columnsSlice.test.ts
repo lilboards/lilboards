@@ -37,7 +37,7 @@ describe('updateColumn', () => {
     expect(newState).toEqual({ [columnId]: column });
   });
 
-  it('edits column', () => {
+  it('updates column', () => {
     const state = {
       [columnId]: column,
     };
@@ -57,6 +57,51 @@ describe('updateColumn', () => {
         ...column,
         ...payload.column,
       },
+    });
+  });
+
+  it('replaces itemIds with payload itemIds', () => {
+    const state = {
+      [columnId]: {
+        ...column,
+        itemIds: ['foo', 'bar'],
+      },
+    };
+    const payload = {
+      boardId,
+      column: {
+        itemIds: [itemId],
+      },
+      columnId,
+      debounce: true,
+      skipSave: true,
+    };
+    const newState = reducer(state, actions.updateColumn(payload));
+    expect(newState).toEqual({
+      [columnId]: {
+        ...column,
+        ...payload.column,
+      },
+    });
+  });
+
+  it('deletes itemIds when itemIds is empty in payload', () => {
+    const state = {
+      [columnId]: {
+        ...column,
+        itemIds: [itemId],
+      },
+    };
+    const payload = {
+      boardId,
+      column: {},
+      columnId,
+      debounce: true,
+      skipSave: true,
+    };
+    const newState = reducer(state, actions.updateColumn(payload));
+    expect(newState).toEqual({
+      [columnId]: column,
     });
   });
 });
