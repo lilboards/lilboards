@@ -3,6 +3,7 @@
 The following [sign-in options](/src/components/Login/uiConfig.ts) are displayed:
 
 - [Email](#email)
+- [GitHub](#github)
 - [Google](#google)
 
 ## Email
