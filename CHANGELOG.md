@@ -1,5 +1,12 @@
 # Changelog
 
+### [4.9.3](https://www.github.com/lilboards/lilboards/compare/v4.9.2...v4.9.3) (2021-11-16)
+
+
+### Bug Fixes
+
+* **store:** delete column itemIds when payload itemIds is empty ([9be779d](https://www.github.com/lilboards/lilboards/commit/9be779d2bcbd50be3a364f0efedd64eb24167a60))
+
 ### [4.9.2](https://www.github.com/lilboards/lilboards/compare/v4.9.1...v4.9.2) (2021-11-15)
 
 
