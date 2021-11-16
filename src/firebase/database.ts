@@ -148,7 +148,9 @@ export const saveColumnItemIds = (
 
   const columnsRef = getColumnsRef(boardId);
 
-  // https://firebase.google.com/docs/database/web/read-and-write#save_data_as_transactions
+  /**
+   * {@link https://firebase.google.com/docs/database/web/read-and-write#save_data_as_transactions}
+   */
   runTransaction(columnsRef, (columns) => {
     if (columns) {
       Object.entries(columnItemIds).forEach(([columnId, itemIds]) => {
