@@ -20,7 +20,7 @@ const SimpleSnackbar: FC<Props> = (props) => {
     }
   }, [lastOpened, props.autoHideDuration]);
 
-  function handleClose(event: SyntheticEvent, reason?: string) {
+  function handleClose(event: Event | SyntheticEvent, reason?: string) {
     /* istanbul ignore else */
     if (reason !== 'clickaway') {
       setOpen(false);
