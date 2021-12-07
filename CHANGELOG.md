@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.10.0](https://www.github.com/lilboards/lilboards/compare/v4.9.3...v4.10.0) (2021-12-07)
+
+
+### Features
+
+* **components:** decrease Timer input max and size ([d2af6d4](https://www.github.com/lilboards/lilboards/commit/d2af6d4a7fd8acf2b0192f0caef2eeff09512138))
+
 ### [4.9.3](https://www.github.com/lilboards/lilboards/compare/v4.9.2...v4.9.3) (2021-11-16)
 
 
