@@ -17,9 +17,7 @@ export default function BoardControls(props: Props) {
         <AddColumn boardId={props.boardId} />
       </Box>
 
-      <Box marginRight={3}>
-        <Timer boardId={props.boardId} />
-      </Box>
+      <Timer boardId={props.boardId} />
 
       <Present />
 

@@ -99,14 +99,14 @@ export default function Timer(props: Props) {
   }
 
   return (
-    <Box display="flex" alignItems="flex-end">
+    <Box display="flex" alignItems="flex-end" marginRight={3}>
       <TextField
         disabled={Boolean(timerEnd)}
         inputProps={{
           'aria-label': 'Timer in minutes',
           min: 1,
-          max: 1e6,
-          size: 9,
+          max: 100,
+          size: 5,
         }}
         label="Timer"
         onChange={handleChange}
@@ -117,15 +117,14 @@ export default function Timer(props: Props) {
       />
 
       {canEdit && (
-        <Box marginLeft={1}>
-          <Button
-            aria-label={timerEnd ? 'Stop timer' : 'Start timer'}
-            onClick={timerEnd ? stopTimer : startTimer}
-            variant="outlined"
-          >
-            {timerEnd ? 'Stop' : 'Start'}
-          </Button>
-        </Box>
+        <Button
+          aria-label={timerEnd ? 'Stop timer' : 'Start timer'}
+          onClick={timerEnd ? stopTimer : startTimer}
+          sx={{ marginLeft: 1 }}
+          variant="outlined"
+        >
+          {timerEnd ? 'Stop' : 'Start'}
+        </Button>
       )}
     </Box>
   );
