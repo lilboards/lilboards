@@ -5,11 +5,7 @@ import {
   DATE_NOW as dateNow,
 } from '../../constants/test';
 import { generateId, logEvent } from '../../firebase';
-import {
-  getStoreState,
-  renderWithContext,
-  updateStore,
-} from '../../utils/test';
+import { renderWithContext, store, updateStore } from '../../utils/test';
 import AddColumn from './AddColumn';
 
 jest.mock('../../firebase', () => ({
@@ -42,10 +38,10 @@ it('adds new column', () => {
   const board = updateStore.withBoard();
   updateStore.withUser();
   renderWithContext(<AddColumn boardId={board.id} />);
-  expect(getStoreState().columns).toEqual({});
+  expect(store.getState().columns).toEqual({});
   const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
   fireEvent.click(screen.getByText('Add column'));
-  expect(getStoreState().columns).toMatchInlineSnapshot(`
+  expect(store.getState().columns).toMatchInlineSnapshot(`
       Object {
         "column_test_id": Object {
           "createdAt": 1234567890,

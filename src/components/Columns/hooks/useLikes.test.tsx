@@ -7,11 +7,7 @@ import {
 } from '../../../constants/test';
 import { getLikesRef } from '../../../firebase';
 import { Likes } from '../../../types';
-import {
-  getStoreState,
-  renderWithContext,
-  updateStore,
-} from '../../../utils/test';
+import { renderWithContext, store, updateStore } from '../../../utils/test';
 import { useLikes } from './useLikes';
 
 jest.mock('firebase/database', () => ({
@@ -65,7 +61,7 @@ describe('likes snapshot value is valid', () => {
     expect(onValue).toBeCalledTimes(1);
     expect(onValue).toBeCalledWith(undefined, expect.any(Function));
 
-    expect(getStoreState().likes).toMatchInlineSnapshot(`
+    expect(store.getState().likes).toMatchInlineSnapshot(`
       Object {
         "items": Object {
           "item_test_id": Object {
@@ -100,7 +96,7 @@ describe('likes snapshot value is null', () => {
     jest.runAllTimers();
     expect(onValue).toBeCalledTimes(1);
     expect(onValue).toBeCalledWith(undefined, expect.any(Function));
-    expect(getStoreState().likes).toEqual({
+    expect(store.getState().likes).toEqual({
       items: {},
     });
 

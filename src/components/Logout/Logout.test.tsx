@@ -1,11 +1,7 @@
 import { screen } from '@testing-library/react';
 
 import { logEvent, signOut } from '../../firebase';
-import {
-  getStoreState,
-  renderWithContext,
-  updateStore,
-} from '../../utils/test';
+import { renderWithContext, store, updateStore } from '../../utils/test';
 import Logout from './Logout';
 
 jest.mock('../../firebase', () => ({
@@ -22,7 +18,7 @@ it('signs user out', async () => {
   const { baseElement } = renderWithContext(<Logout />);
 
   expect(signOut).toBeCalledTimes(1);
-  expect(getStoreState().user.id).toBe('');
+  expect(store.getState().user.id).toBe('');
 
   await screen.findAllByText('');
   expect(logEvent).toBeCalledTimes(1);

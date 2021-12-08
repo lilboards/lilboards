@@ -145,4 +145,4 @@ export const updateStore = {
   },
 };
 
-export const getStoreState = () => store.getState();
+export { store };

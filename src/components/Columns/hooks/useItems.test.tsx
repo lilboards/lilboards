@@ -12,11 +12,7 @@ import {
 } from '../../../constants/test';
 import { getItemsRef } from '../../../firebase';
 import { Item } from '../../../types';
-import {
-  getStoreState,
-  renderWithContext,
-  updateStore,
-} from '../../../utils/test';
+import { renderWithContext, store, updateStore } from '../../../utils/test';
 import { useItems } from './useItems';
 
 jest.mock('firebase/database', () => ({
@@ -97,7 +93,7 @@ describe('onChildAdded', () => {
   it('adds item to store', () => {
     renderWithContext(<TestComponent />);
     jest.runAllTimers();
-    expect(getStoreState().items).toMatchInlineSnapshot(`
+    expect(store.getState().items).toMatchInlineSnapshot(`
       Object {
         "item_test_id": Object {
           "createdAt": 1234567890,
@@ -120,7 +116,7 @@ describe('onChildAdded', () => {
       });
     renderWithContext(<TestComponent />);
     jest.runAllTimers();
-    expect(getStoreState().items).toEqual({});
+    expect(store.getState().items).toEqual({});
   });
 });
 
@@ -155,7 +151,7 @@ describe('onChildChanged', () => {
     updateStore.withItem();
     renderWithContext(<TestComponent />);
     jest.runAllTimers();
-    expect(getStoreState().items).toMatchInlineSnapshot(`
+    expect(store.getState().items).toMatchInlineSnapshot(`
       Object {
         "item_test_id": Object {
           "createdAt": 1234567890,
@@ -180,7 +176,7 @@ describe('onChildChanged', () => {
       });
     renderWithContext(<TestComponent />);
     jest.runAllTimers();
-    expect(getStoreState().items).toEqual({});
+    expect(store.getState().items).toEqual({});
   });
 });
 
@@ -210,6 +206,6 @@ describe('onChildRemoved', () => {
     updateStore.withItem();
     renderWithContext(<TestComponent />);
     jest.runAllTimers();
-    expect(getStoreState().items).toEqual({});
+    expect(store.getState().items).toEqual({});
   });
 });

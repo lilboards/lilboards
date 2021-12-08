@@ -12,11 +12,7 @@ import {
   getUserBoardsVal,
   saveUserBoardId,
 } from '../../firebase';
-import {
-  getStoreState,
-  renderWithContext,
-  updateStore,
-} from '../../utils/test';
+import { renderWithContext, store, updateStore } from '../../utils/test';
 import Boards from './Boards';
 
 jest.mock('../../firebase', () => ({
@@ -68,7 +64,7 @@ describe('create board', () => {
     renderWithContext(<Boards />);
     const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
     fireEvent.click(screen.getByLabelText('Create board'));
-    expect(getStoreState().boards).toMatchInlineSnapshot(`
+    expect(store.getState().boards).toMatchInlineSnapshot(`
       Object {
         "board_test_id": Object {
           "createdAt": 1234567890,

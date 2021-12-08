@@ -1,11 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 
 import { logEvent } from '../../firebase';
-import {
-  getStoreState,
-  renderWithContext,
-  updateStore,
-} from '../../utils/test';
+import { renderWithContext, store, updateStore } from '../../utils/test';
 import Present from './Present';
 
 jest.mock('../../firebase', () => ({
@@ -15,9 +11,9 @@ jest.mock('../../firebase', () => ({
 it('toggles present mode', () => {
   updateStore.withUser();
   renderWithContext(<Present />);
-  expect(getStoreState().user.presenting).toEqual(false);
+  expect(store.getState().user.presenting).toEqual(false);
   fireEvent.click(screen.getByLabelText('Hide Likes'));
-  expect(getStoreState().user.presenting).toBe(true);
+  expect(store.getState().user.presenting).toBe(true);
   expect(logEvent).toBeCalledTimes(1);
   expect(logEvent).toBeCalledWith('user_presenting', {
     checked: true,
