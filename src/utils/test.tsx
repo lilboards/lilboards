@@ -19,7 +19,7 @@ import {
   USER_TEST_ID as userId,
 } from '../constants/test';
 import store from '../store';
-import type { Columns, Item, User } from '../types';
+import type { Board, Columns, Item, User } from '../types';
 
 /* istanbul ignore next */
 function noop() {}
@@ -48,19 +48,19 @@ export function resetStore() {
 }
 
 export const updateStore = {
-  withBoard() {
-    const board = {
-      createdAt: dateNow,
-      createdBy: userId,
-      name: 'Board One',
-    };
+  withBoard(board?: Partial<Board>) {
     const payload = {
-      board,
+      board: {
+        createdAt: dateNow,
+        createdBy: userId,
+        name: 'Board One',
+        ...board,
+      },
       boardId,
     };
     store.dispatch(actions.loadBoard(payload));
     return {
-      ...board,
+      ...payload.board,
       id: boardId,
     };
   },
