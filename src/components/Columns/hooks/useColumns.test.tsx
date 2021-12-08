@@ -12,11 +12,7 @@ import {
 } from '../../../constants/test';
 import { getColumnsRef } from '../../../firebase';
 import { Column } from '../../../types';
-import {
-  getStoreState,
-  renderWithContext,
-  updateStore,
-} from '../../../utils/test';
+import { renderWithContext, store, updateStore } from '../../../utils/test';
 import { useColumns } from './useColumns';
 
 jest.mock('firebase/database', () => ({
@@ -97,7 +93,7 @@ describe('onChildAdded', () => {
   it('adds column to store', () => {
     renderWithContext(<TestComponent />);
     jest.runAllTimers();
-    expect(getStoreState().columns).toMatchInlineSnapshot(`
+    expect(store.getState().columns).toMatchInlineSnapshot(`
       Object {
         "column_test_id": Object {
           "createdAt": 1234567890,
@@ -120,7 +116,7 @@ describe('onChildAdded', () => {
       });
     renderWithContext(<TestComponent />);
     jest.runAllTimers();
-    expect(getStoreState().columns).toEqual({});
+    expect(store.getState().columns).toEqual({});
   });
 });
 
@@ -155,7 +151,7 @@ describe('onChildChanged', () => {
     updateStore.withColumn();
     renderWithContext(<TestComponent />);
     jest.runAllTimers();
-    expect(getStoreState().columns).toMatchInlineSnapshot(`
+    expect(store.getState().columns).toMatchInlineSnapshot(`
       Object {
         "column_test_id": Object {
           "createdAt": 1234567890,
@@ -180,7 +176,7 @@ describe('onChildChanged', () => {
       });
     renderWithContext(<TestComponent />);
     jest.runAllTimers();
-    expect(getStoreState().columns).toEqual({});
+    expect(store.getState().columns).toEqual({});
   });
 });
 
@@ -210,6 +206,6 @@ describe('onChildRemoved', () => {
     updateStore.withColumn();
     renderWithContext(<TestComponent />);
     jest.runAllTimers();
-    expect(getStoreState().columns).toEqual({});
+    expect(store.getState().columns).toEqual({});
   });
 });

@@ -1,10 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 
-import {
-  getStoreState,
-  renderWithContext,
-  updateStore,
-} from '../../utils/test';
+import { renderWithContext, store, updateStore } from '../../utils/test';
 import Column from './Column';
 
 const props = {
@@ -48,7 +44,7 @@ it('resets user editing column id on blur', () => {
     <Column {...props} boardId={board.id} columnId={column.id} />
   );
   fireEvent.blur(screen.getByLabelText('Column Name'));
-  expect(getStoreState().user.editing.columnId).toBe('');
+  expect(store.getState().user.editing.columnId).toBe('');
 });
 
 it('deletes column', () => {

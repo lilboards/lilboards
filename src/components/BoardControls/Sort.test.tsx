@@ -7,11 +7,7 @@ import {
   USER_TEST_ID as userId,
 } from '../../constants/test';
 import { logEvent } from '../../firebase';
-import {
-  getStoreState,
-  renderWithContext,
-  updateStore,
-} from '../../utils/test';
+import { renderWithContext, store, updateStore } from '../../utils/test';
 import Sort from './Sort';
 
 jest.mock('../../firebase', () => ({
@@ -43,5 +39,5 @@ it('sorts column items by likes', () => {
   updateStore.withLike();
   renderWithContext(<Sort boardId={board.id} />);
   fireEvent.click(screen.getByRole('button', { name: 'Sort by likes' }));
-  expect(getStoreState().columns[columnId].itemIds).toEqual([itemId, itemId2]);
+  expect(store.getState().columns[columnId].itemIds).toEqual([itemId, itemId2]);
 });

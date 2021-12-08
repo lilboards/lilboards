@@ -4,11 +4,7 @@ import {
   BOARD_TEST_ID as boardId,
   DATE_NOW as dateNow,
 } from '../../constants/test';
-import {
-  getStoreState,
-  renderWithContext,
-  updateStore,
-} from '../../utils/test';
+import { renderWithContext, store, updateStore } from '../../utils/test';
 import BoardCard from './BoardCard';
 
 it('renders "Open board" link', () => {
@@ -30,7 +26,7 @@ describe('edit board', () => {
 
   it('sets user editing boardId when input is focused', () => {
     fireEvent.focus(screen.getByPlaceholderText('Untitled Board'));
-    expect(getStoreState().user.editing.boardId).toBe(board.id);
+    expect(store.getState().user.editing.boardId).toBe(board.id);
   });
 
   it('edits and saves board name on change', async () => {
@@ -38,7 +34,7 @@ describe('edit board', () => {
     const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
     const event = { target: { value: 'My Board Name' } };
     fireEvent.change(screen.getByLabelText('Board Name'), event);
-    expect(getStoreState().boards).toMatchInlineSnapshot(`
+    expect(store.getState().boards).toMatchInlineSnapshot(`
       Object {
         "board_test_id": Object {
           "createdAt": 1234567890,
@@ -54,7 +50,7 @@ describe('edit board', () => {
 
   it('resets user editing boardId on blur', () => {
     fireEvent.blur(screen.getByLabelText('Board Name'));
-    expect(getStoreState().user.editing.boardId).toBe('');
+    expect(store.getState().user.editing.boardId).toBe('');
   });
 });
 

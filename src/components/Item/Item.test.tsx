@@ -5,11 +5,7 @@ import {
   COLUMN_TEST_ID as columnId,
   ITEM_TEST_ID as itemId,
 } from '../../constants/test';
-import {
-  getStoreState,
-  renderWithContext,
-  updateStore,
-} from '../../utils/test';
+import { renderWithContext, store, updateStore } from '../../utils/test';
 import Item from './Item';
 
 const props = {
@@ -73,11 +69,11 @@ describe('edit item', () => {
 
   it('focuses item', () => {
     fireEvent.focus(screen.getByLabelText(/Edit item/));
-    expect(getStoreState().user.editing.itemId).toBe(itemId);
+    expect(store.getState().user.editing.itemId).toBe(itemId);
   });
 
   it('blurs item', () => {
     fireEvent.blur(screen.getByLabelText(/Edit item/));
-    expect(getStoreState().user.editing.itemId).toBe('');
+    expect(store.getState().user.editing.itemId).toBe('');
   });
 });
