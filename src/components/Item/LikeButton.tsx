@@ -37,7 +37,7 @@ export default function LikeButton(props: Props) {
   return (
     <IconButton
       size="small"
-      aria-label={`${isLikedByUser ? 'Unlike' : 'Like'} item "${props.itemId}"`}
+      aria-label={`${isLikedByUser ? 'Unlike' : 'Like'} item`}
       onClick={handleClick}
     >
       {isLikedByUser && !isUserPresenting ? (
