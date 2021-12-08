@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.11.0](https://www.github.com/lilboards/lilboards/compare/v4.10.0...v4.11.0) (2021-12-08)
+
+
+### Features
+
+* **components:** add MaxLikes ([8464e54](https://www.github.com/lilboards/lilboards/commit/8464e542d2c43daeb690d43a1b4c9ce602e8a45d))
+* **components:** check maxLikes in LikeButton ([2535ae5](https://www.github.com/lilboards/lilboards/commit/2535ae5fea3006b6225f944d04050b40778b7500))
+* **components:** remove item id from aria-label for Likes & LikeButton ([11d381a](https://www.github.com/lilboards/lilboards/commit/11d381a2c651cdffa00c486764ead6abaf8790c1))
+* **components:** render MaxLikes in BoardControls ([0ce1151](https://www.github.com/lilboards/lilboards/commit/0ce1151a1b2d12aa00fb46906c87e27e250c30db))
+* **hooks:** add useMaxLikes ([63c2c40](https://www.github.com/lilboards/lilboards/commit/63c2c40a09002532179f47d4b07851bb6d534729))
+
 ## [4.10.0](https://www.github.com/lilboards/lilboards/compare/v4.9.3...v4.10.0) (2021-12-07)
 
 ### Features
