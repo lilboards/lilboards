@@ -1,6 +1,7 @@
 export interface Board {
   createdAt: Time;
   createdBy: UserId;
+  maxLikes?: number;
   name: string;
   timerEnd?: number;
   updatedAt?: Time;
