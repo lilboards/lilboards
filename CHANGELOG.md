@@ -1,5 +1,14 @@
 # Changelog
 
+## [4.12.0](https://www.github.com/lilboards/lilboards/compare/v4.11.0...v4.12.0) (2021-12-09)
+
+
+### Features
+
+* **components:** add home Features ([cb6cc4d](https://www.github.com/lilboards/lilboards/commit/cb6cc4d17d82e8e441d2f4019c2f1b2d368aa887))
+* **components:** add home Hero ([fd117f9](https://www.github.com/lilboards/lilboards/commit/fd117f9298af3388b440d43fc65d8f734fc27f38))
+* **components:** render Hero and Features in Home; modularize Footer ([6c097fe](https://www.github.com/lilboards/lilboards/commit/6c097fef6ea133236c47ff8a0044561e07878606))
+
 ## [4.11.0](https://www.github.com/lilboards/lilboards/compare/v4.10.0...v4.11.0) (2021-12-08)
 
 
