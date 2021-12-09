@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://lilboards.org/">
-    <img src="public/android-chrome-192x192.png" alt="Lilboards logo: Create boards, columns, and items.">
+    <img src="public/android-chrome-192x192.png" alt="Lilboards">
   </a>
   <p><strong>Create boards, columns, and items.</strong></p>
   <p>
