@@ -21,15 +21,16 @@ describe('edit board', () => {
 
   beforeEach(() => {
     board = updateStore.withBoard();
-    renderWithContext(<BoardCard boardId={board.id} />);
   });
 
   it('sets user editing boardId when input is focused', () => {
+    renderWithContext(<BoardCard boardId={board.id} />);
     fireEvent.focus(screen.getByPlaceholderText('Untitled Board'));
     expect(store.getState().user.editing.boardId).toBe(board.id);
   });
 
   it('edits and saves board name on change', async () => {
+    renderWithContext(<BoardCard boardId={board.id} />);
     updateStore.withUser();
     const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
     const event = { target: { value: 'My Board Name' } };
@@ -49,15 +50,21 @@ describe('edit board', () => {
   });
 
   it('resets user editing boardId on blur', () => {
+    renderWithContext(<BoardCard boardId={board.id} />);
     fireEvent.blur(screen.getByLabelText('Board Name'));
     expect(store.getState().user.editing.boardId).toBe('');
   });
 });
 
 describe('delete board', () => {
-  it('deletes board', () => {
-    const board = updateStore.withBoard();
+  let board: ReturnType<typeof updateStore.withBoard>;
+
+  beforeEach(() => {
+    board = updateStore.withBoard();
     updateStore.withUser();
+  });
+
+  it('deletes board', () => {
     renderWithContext(<BoardCard boardId={board.id} />);
     fireEvent.click(screen.getByLabelText(/Delete board/));
     expect(screen.queryByLabelText('Board Name')).not.toBeInTheDocument();

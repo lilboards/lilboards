@@ -14,9 +14,11 @@ const props = {
   itemId,
 };
 
+let item: ReturnType<typeof updateStore.withItem>;
+
 it('does not render for undefined item', () => {
-  const { baseElement } = renderWithContext(<Item {...props} />);
-  expect(baseElement.firstElementChild).toBeEmptyDOMElement();
+  renderWithContext(<Item {...props} />);
+  expect(screen.queryByLabelText(/item/)).toBe(null);
 });
 
 it('renders card style', () => {
@@ -40,15 +42,16 @@ it('renders like button and count', () => {
 
 describe('delete item', () => {
   beforeEach(() => {
-    const item = updateStore.withItem();
-    renderWithContext(<Item {...props} itemId={item.id} />);
+    item = updateStore.withItem();
   });
 
   it('renders close button', () => {
+    renderWithContext(<Item {...props} itemId={item.id} />);
     expect(screen.getByLabelText(/Delete item/)).toBeInTheDocument();
   });
 
   it('deletes item', () => {
+    renderWithContext(<Item {...props} itemId={item.id} />);
     fireEvent.click(screen.getByLabelText(/Delete item/));
     expect(screen.queryByLabelText(/Delete item/)).not.toBeInTheDocument();
   });
@@ -56,11 +59,11 @@ describe('delete item', () => {
 
 describe('edit item', () => {
   beforeEach(() => {
-    const item = updateStore.withItem();
-    renderWithContext(<Item {...props} itemId={item.id} />);
+    item = updateStore.withItem();
   });
 
   it('changes item', () => {
+    renderWithContext(<Item {...props} itemId={item.id} />);
     const event = { target: { value: 'Item text' } };
     const input = screen.getByLabelText(/Edit item/);
     fireEvent.change(input, event);
@@ -68,11 +71,13 @@ describe('edit item', () => {
   });
 
   it('focuses item', () => {
+    renderWithContext(<Item {...props} itemId={item.id} />);
     fireEvent.focus(screen.getByLabelText(/Edit item/));
     expect(store.getState().user.editing.itemId).toBe(itemId);
   });
 
   it('blurs item', () => {
+    renderWithContext(<Item {...props} itemId={item.id} />);
     fireEvent.blur(screen.getByLabelText(/Edit item/));
     expect(store.getState().user.editing.itemId).toBe('');
   });

@@ -13,34 +13,35 @@ const props = {
 };
 
 describe('without user and item', () => {
-  beforeEach(() => {
-    renderWithContext(<Likes boardId={boardId} itemId="" />);
-  });
-
   it('renders like button', () => {
+    renderWithContext(<Likes boardId={boardId} itemId="" />);
     expect(screen.getByRole('button')).toBe(screen.getByLabelText(/Like item/));
   });
 
   it('renders like count', () => {
+    renderWithContext(<Likes boardId={boardId} itemId="" />);
     expect(screen.getByText('0')).toBeInTheDocument();
     expect(screen.getByLabelText(/0 likes/)).toBeInTheDocument();
   });
 });
 
 describe('with user and item', () => {
+  let item: ReturnType<typeof updateStore.withItem>;
+
   beforeEach(() => {
     updateStore.withUser();
-    const item = updateStore.withItem();
-    renderWithContext(<Likes {...props} itemId={item.id} />);
+    item = updateStore.withItem();
   });
 
   it('increments like count on click', () => {
+    renderWithContext(<Likes {...props} itemId={item.id} />);
     fireEvent.click(screen.getByLabelText(/Like item/));
     expect(screen.getByText('1')).toBeInTheDocument();
     expect(screen.getByLabelText(/1 like for item/)).toBeInTheDocument();
   });
 
   it('decrements like count on click', () => {
+    renderWithContext(<Likes {...props} itemId={item.id} />);
     fireEvent.click(screen.getByLabelText(/Like item/));
     fireEvent.click(screen.getByLabelText(/Unlike item/));
     expect(screen.getByText('0')).toBeInTheDocument();

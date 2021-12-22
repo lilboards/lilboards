@@ -10,8 +10,8 @@ const props = {
 };
 
 it('renders nothing when there is no column', () => {
-  const { baseElement } = renderWithContext(<Column {...props} />);
-  expect(baseElement.firstElementChild).toBeEmptyDOMElement();
+  renderWithContext(<Column {...props} />);
+  expect(screen.queryByPlaceholderText(/Column/)).toBe(null);
 });
 
 it('renders column name', () => {
