@@ -18,8 +18,11 @@ jest.mock('../../firebase', () => ({
   getBoardDataRef: jest.fn(),
 }));
 
-jest.mock('../BoardControls', () => () => <p>BoardControls</p>);
+jest.mock('../BoardControls', () => () => <p>Board Controls</p>);
 jest.mock('../Columns', () => () => <p>Columns</p>);
+
+const boardControls = 'Board Controls';
+const columns = 'Columns';
 
 const unsubscribe = jest.fn();
 
@@ -35,15 +38,16 @@ beforeEach(() => {
 });
 
 it('renders nothing when there is no board id', async () => {
-  const { baseElement } = renderWithContext(<Board />);
+  renderWithContext(<Board />);
   await screen.findAllByText('');
-  expect(baseElement.firstElementChild).toBeEmptyDOMElement();
+  expect(screen.queryByText(boardControls)).toBe(null);
+  expect(screen.queryByText(columns)).toBe(null);
 });
 
 it('renders nothing when there is no board', async () => {
-  const { baseElement } = renderWithContext(<Board boardId="invalid" />);
+  renderWithContext(<Board boardId="invalid" />);
   await screen.findAllByText('');
-  expect(baseElement.firstElementChild).toBeEmptyDOMElement();
+  expect(screen.queryByText(columns)).toBe(null);
 });
 
 it('redirects to "/404" when board is not found', async () => {
@@ -64,13 +68,13 @@ it('renders board name as heading', async () => {
 it('renders <BoardControls>', async () => {
   const board = updateStore.withBoard();
   renderWithContext(<Board boardId={board.id} />);
-  expect(await screen.findByText('BoardControls')).toBeInTheDocument();
+  expect(await screen.findByText(boardControls)).toBeInTheDocument();
 });
 
 it('renders <Columns>', async () => {
   const board = updateStore.withBoard();
   renderWithContext(<Board boardId={board.id} />);
-  expect(await screen.findByText('Columns')).toBeInTheDocument();
+  expect(await screen.findByText(columns)).toBeInTheDocument();
 });
 
 describe('with board and anonymous user', () => {

@@ -16,12 +16,10 @@ import { renderWithContext, store, updateStore } from '../../utils/test';
 import Boards from './Boards';
 
 jest.mock('../../firebase', () => ({
-  firebaseAnalytics: {
-    logEvent: jest.fn(),
-  },
   generateId: jest.fn(),
   getBoardVal: jest.fn(),
   getUserBoardsVal: jest.fn(),
+  logEvent: jest.fn(),
   saveUserBoardId: jest.fn(),
 }));
 

@@ -8,17 +8,15 @@ jest.mock('../../firebase', () => ({
 }));
 
 describe('send verification email', () => {
-  beforeEach(() => {
-    render(<VerifyEmail />);
-  });
-
   it('renders link', () => {
+    render(<VerifyEmail />);
     expect(
       screen.getByRole('button', { name: 'Send verification email' })
     ).toBeInTheDocument();
   });
 
   it('sends email verification when button is clicked', () => {
+    render(<VerifyEmail />);
     fireEvent.click(
       screen.getByRole('button', { name: 'Send verification email' })
     );
@@ -28,11 +26,8 @@ describe('send verification email', () => {
 });
 
 describe('logout', () => {
-  beforeEach(() => {
-    render(<VerifyEmail />);
-  });
-
   it('renders button', () => {
+    render(<VerifyEmail />);
     expect(screen.getByRole('link', { name: 'Logout' })).toBeInTheDocument();
   });
 });

@@ -18,15 +18,13 @@ it('renders default max likes value', () => {
 });
 
 describe('when user cannot edit', () => {
-  beforeEach(() => {
-    renderWithContext(<MaxLikes boardId={boardId} />);
-  });
-
   it('renders disabled input', () => {
+    renderWithContext(<MaxLikes boardId={boardId} />);
     expect(screen.getByLabelText('Max Likes')).toBeDisabled();
   });
 
   it('does not change max likes value', () => {
+    renderWithContext(<MaxLikes boardId={boardId} />);
     const input = screen.getByLabelText('Max Likes');
     const event = { target: { value: DEFAULT_MAX_LIKES + 1 } };
     fireEvent.change(input, event);
@@ -41,10 +39,10 @@ describe('when user can edit', () => {
   beforeEach(() => {
     board = updateStore.withBoard();
     updateStore.withUser();
-    renderWithContext(<MaxLikes boardId={board.id} />);
   });
 
   it('changes max likes value', () => {
+    renderWithContext(<MaxLikes boardId={board.id} />);
     const input = screen.getByLabelText('Max Likes');
     const event = { target: { value: '0' } };
     fireEvent.change(input, event);
@@ -52,6 +50,7 @@ describe('when user can edit', () => {
   });
 
   it('logs event', () => {
+    renderWithContext(<MaxLikes boardId={board.id} />);
     const input = screen.getByLabelText('Max Likes');
     const event = { target: { value: '3.14' } };
     fireEvent.change(input, event);
