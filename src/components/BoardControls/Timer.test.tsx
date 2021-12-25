@@ -22,7 +22,7 @@ describe('timer', () => {
 
   beforeAll(() => {
     alertSpy = jest.spyOn(window, 'alert');
-    jest.useFakeTimers('modern');
+    jest.useFakeTimers();
   });
 
   afterAll(() => {
@@ -37,6 +37,7 @@ describe('timer', () => {
 
   afterEach(() => {
     alertSpy.mockReset();
+    jest.runOnlyPendingTimers();
   });
 
   it('starts and stops the timer', async () => {

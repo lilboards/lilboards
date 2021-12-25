@@ -37,10 +37,6 @@ const unsubscribeOnChildAdded = jest.fn();
 const unsubscribeOnChildChanged = jest.fn();
 const unsubscribeOnChildRemoved = jest.fn();
 
-afterAll(() => {
-  jest.useRealTimers();
-});
-
 beforeEach(() => {
   jest.useFakeTimers();
   (getColumnsRef as jest.Mock).mockReturnValueOnce(columnsRef);
@@ -61,6 +57,11 @@ beforeEach(() => {
     unsubscribeOnChildChanged,
     unsubscribeOnChildRemoved,
   ].forEach((mock) => mock.mockClear());
+});
+
+afterEach(() => {
+  jest.runOnlyPendingTimers();
+  jest.useRealTimers();
 });
 
 describe('onChildAdded', () => {

@@ -30,7 +30,8 @@ beforeEach(() => {
   unsubscribe.mockClear();
 });
 
-afterAll(() => {
+afterEach(() => {
+  jest.runOnlyPendingTimers();
   jest.useRealTimers();
 });
 
