@@ -5,7 +5,7 @@ import type { ChangeEvent } from 'react';
 import { useCallback, useEffect, useState } from 'react';
 
 import actions from '../../actions';
-import { useDispatch, useSelector } from '../../hooks';
+import { useDispatch, useIsAdmin, useSelector } from '../../hooks';
 import type { Id } from '../../types';
 import { DEFAULT_MINUTES, SECOND_IN_MILLISECONDS } from './constants';
 import { formatTimeRemaining, minutesToMilliseconds } from './utils';
@@ -23,9 +23,7 @@ export default function Timer(props: Props) {
   const { boardId } = props;
 
   const dispatch = useDispatch();
-  const canEdit = useSelector(
-    (state) => (state.boards[props.boardId] || {}).createdBy === state.user.id
-  );
+  const canEdit = useIsAdmin(boardId);
   const timerEnd = useSelector(
     (state) => (state.boards[boardId] || {}).timerEnd
   );

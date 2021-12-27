@@ -3,7 +3,7 @@ import type { ChangeEvent } from 'react';
 
 import actions from '../../actions';
 import { logEvent } from '../../firebase';
-import { useDispatch, useMaxLikes, useSelector } from '../../hooks';
+import { useDispatch, useIsAdmin, useMaxLikes } from '../../hooks';
 import type { Id } from '../../types';
 
 interface Props {
@@ -14,9 +14,7 @@ export default function MaxLikes(props: Props) {
   const { boardId } = props;
 
   const dispatch = useDispatch();
-  const canEdit = useSelector(
-    (state) => (state.boards[boardId] || {}).createdBy === state.user.id
-  );
+  const canEdit = useIsAdmin(boardId);
   const maxLikes = useMaxLikes(boardId);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {

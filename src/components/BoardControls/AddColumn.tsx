@@ -1,6 +1,6 @@
 import actions from '../../actions';
 import { generateId, logEvent } from '../../firebase';
-import { useDispatch, useSelector } from '../../hooks';
+import { useDispatch, useIsAdmin, useSelector } from '../../hooks';
 import type { Column, Id } from '../../types';
 import AddButton from '../AddButton';
 
@@ -10,9 +10,7 @@ interface Props {
 
 export default function AddColumn(props: Props) {
   const dispatch = useDispatch();
-  const canEdit = useSelector(
-    (state) => (state.boards[props.boardId] || {}).createdBy === state.user.id
-  );
+  const canEdit = useIsAdmin(props.boardId);
   const userId = useSelector((state) => state.user.id);
 
   if (!canEdit) {
