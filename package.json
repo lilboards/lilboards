@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^16.0.0",
-    "@commitlint/config-conventional": "^15.0.0",
+    "@commitlint/config-conventional": "^16.0.0",
     "@size-limit/preset-app": "^7.0.5",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
