@@ -7,6 +7,7 @@ import { useCallback, useEffect, useState } from 'react';
 import actions from '../../actions';
 import { useDispatch, useIsAdmin, useSelector } from '../../hooks';
 import type { Id } from '../../types';
+import { loadAlarm, playAlarm } from './audio';
 import { DEFAULT_MINUTES, SECOND_IN_MILLISECONDS } from './constants';
 import { formatTimeRemaining, minutesToMilliseconds } from './utils';
 
@@ -57,6 +58,7 @@ export default function Timer(props: Props) {
       if (now >= timerEnd) {
         clearInterval(interval);
         stopTimer();
+        playAlarm();
         alert("⏰ Time's up!");
       } else {
         setState({
@@ -81,6 +83,7 @@ export default function Timer(props: Props) {
 
   function startTimer() {
     if (canEdit && state.minutes > 0) {
+      loadAlarm();
       dispatch(
         actions.updateBoard({
           boardId,
