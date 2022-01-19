@@ -2,7 +2,7 @@ import Button from '@mui/material/Button';
 
 import actions from '../../actions';
 import { logEvent } from '../../firebase';
-import { useDispatch, useSelector } from '../../hooks';
+import { useDispatch, useIsAdmin, useSelector } from '../../hooks';
 import type { Id } from '../../types';
 import { sortByLikes } from './utils';
 
@@ -14,6 +14,11 @@ export default function Sort(props: Props) {
   const dispatch = useDispatch();
   const columns = useSelector((state) => state.columns);
   const likes = useSelector((state) => state.likes);
+  const isAdmin = useIsAdmin(props.boardId);
+
+  if (!isAdmin) {
+    return null;
+  }
 
   function sortItems() {
     dispatch(

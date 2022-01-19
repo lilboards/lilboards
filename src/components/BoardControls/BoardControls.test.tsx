@@ -42,6 +42,7 @@ it('renders "Hide Likes" switch', () => {
 
 it('renders "Sort by likes" button', () => {
   const board = updateStore.withBoard();
+  updateStore.withUser();
   renderWithContext(<BoardControls boardId={board.id} />);
   expect(
     screen.getByRole('button', { name: 'Sort by likes' })
