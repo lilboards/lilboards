@@ -9,6 +9,11 @@ import {
 } from './constants';
 import Timer from './Timer';
 
+jest.mock('./audio', () => ({
+  loadAlarm: jest.fn(),
+  playAlarm: jest.fn(),
+}));
+
 const defaultMilliseconds =
   DEFAULT_MINUTES * MINUTE_IN_SECONDS * SECOND_IN_MILLISECONDS;
 
