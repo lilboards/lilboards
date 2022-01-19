@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.13.0](https://www.github.com/lilboards/lilboards/compare/v4.12.0...v4.13.0) (2022-01-19)
+
+
+### Features
+
+* **components:** play alarm audio on timer end ([c845db3](https://www.github.com/lilboards/lilboards/commit/c845db3af27d5d1cf160cbd1fcf9921df6239e09))
+
 ## [4.12.0](https://www.github.com/lilboards/lilboards/compare/v4.11.0...v4.12.0) (2021-12-09)
 
 
