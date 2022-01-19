@@ -14,8 +14,26 @@ jest.mock('../../firebase', () => ({
   logEvent: jest.fn(),
 }));
 
+it('renders "Sort by likes" button when user is admin', () => {
+  const board = updateStore.withBoard();
+  updateStore.withUser();
+  renderWithContext(<Sort boardId={board.id} />);
+  expect(
+    screen.getByRole('button', { name: 'Sort by likes' })
+  ).toBeInTheDocument();
+});
+
+it('does not render "Sort by likes" button when user is not admin', () => {
+  const board = updateStore.withBoard();
+  renderWithContext(<Sort boardId={board.id} />);
+  expect(
+    screen.queryByRole('button', { name: 'Sort by likes' })
+  ).not.toBeInTheDocument();
+});
+
 it('logs event when "Sort by likes" button is clicked', () => {
   const board = updateStore.withBoard();
+  updateStore.withUser();
   renderWithContext(<Sort boardId={board.id} />);
   fireEvent.click(screen.getByRole('button', { name: 'Sort by likes' }));
   expect(logEvent).toBeCalledTimes(1);
@@ -27,6 +45,7 @@ it('logs event when "Sort by likes" button is clicked', () => {
 
 it('sorts column items by likes', () => {
   const board = updateStore.withBoard();
+  updateStore.withUser();
   const itemId2 = `${itemId}2`;
   updateStore.withColumns({
     [columnId]: {
