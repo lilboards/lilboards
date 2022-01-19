@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.14.0](https://www.github.com/lilboards/lilboards/compare/v4.13.0...v4.14.0) (2022-01-19)
+
+
+### Features
+
+* **components:** don't render "Sort by likes" for non-admin user ([10e72ea](https://www.github.com/lilboards/lilboards/commit/10e72eac341207408755bf285912ef9976cf55c7))
+
 ## [4.13.0](https://www.github.com/lilboards/lilboards/compare/v4.12.0...v4.13.0) (2022-01-19)
 
 
