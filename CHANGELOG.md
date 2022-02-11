@@ -1,5 +1,12 @@
 # Changelog
 
+### [4.14.1](https://www.github.com/lilboards/lilboards/compare/v4.14.0...v4.14.1) (2022-02-11)
+
+
+### Bug Fixes
+
+* don't save board to database if user is not admin ([5ef385a](https://www.github.com/lilboards/lilboards/commit/5ef385ac7c3f8f04a04ff194f3af18bb9e3b752c))
+
 ## [4.14.0](https://www.github.com/lilboards/lilboards/compare/v4.13.0...v4.14.0) (2022-01-19)
 
 
