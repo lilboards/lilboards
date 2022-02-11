@@ -24,7 +24,7 @@ export default function Timer(props: Props) {
   const { boardId } = props;
 
   const dispatch = useDispatch();
-  const canEdit = useIsAdmin(boardId);
+  const isAdmin = useIsAdmin(boardId);
   const timerEnd = useSelector(
     (state) => (state.boards[boardId] || {}).timerEnd
   );
@@ -36,6 +36,7 @@ export default function Timer(props: Props) {
       minutes: state.minutes,
       value: String(state.minutes),
     });
+
     setTimeout(() => {
       dispatch(
         actions.updateBoard({
@@ -43,10 +44,11 @@ export default function Timer(props: Props) {
           board: {
             timerEnd: 0,
           },
+          skipSave: !isAdmin,
         })
       );
     });
-  }, [dispatch, boardId, setState, state.minutes]);
+  }, [boardId, dispatch, isAdmin, setState, state.minutes]);
 
   useEffect(() => {
     if (!timerEnd) {
@@ -82,7 +84,7 @@ export default function Timer(props: Props) {
   }
 
   function startTimer() {
-    if (canEdit && state.minutes > 0) {
+    if (isAdmin && state.minutes > 0) {
       loadAlarm();
       dispatch(
         actions.updateBoard({
@@ -95,7 +97,7 @@ export default function Timer(props: Props) {
     }
   }
 
-  if (!canEdit && !timerEnd) {
+  if (!isAdmin && !timerEnd) {
     return null;
   }
 
@@ -117,7 +119,7 @@ export default function Timer(props: Props) {
         value={state.value}
       />
 
-      {canEdit && (
+      {isAdmin && (
         <Button
           aria-label={timerEnd ? 'Stop timer' : 'Start timer'}
           onClick={timerEnd ? stopTimer : startTimer}
