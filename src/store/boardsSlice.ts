@@ -25,15 +25,20 @@ const boardsSlice = createSlice({
         board: Partial<Board>;
         boardId: Id;
         debounce?: boolean;
+        skipSave?: boolean;
       }>
     ) => {
-      const { board, boardId, debounce } = action.payload;
+      const { board, boardId, debounce, skipSave } = action.payload;
       state[boardId] = state[boardId] || {};
       Object.assign(state[boardId], board);
-      if (debounce) {
-        debouncedSaveBoardData(boardId, board);
-      } else {
-        saveBoardData(boardId, board);
+      const saveToDatabase = !skipSave;
+
+      if (saveToDatabase) {
+        if (debounce) {
+          debouncedSaveBoardData(boardId, board);
+        } else {
+          saveBoardData(boardId, board);
+        }
       }
     },
 

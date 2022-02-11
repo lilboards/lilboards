@@ -34,16 +34,37 @@ describe('updateBoard', () => {
     });
   });
 
-  it('edits board', () => {
+  it('updates board', () => {
     const state = {
       [boardId]: board,
     };
     const payload = {
       board: {
-        name: 'Board Name Edited',
+        name: 'Board Name Updated',
         updatedAt: Date.now() + 1000,
       },
       boardId,
+    };
+    const newState = reducer(state, actions.updateBoard(payload));
+    expect(newState).toEqual({
+      [boardId]: {
+        ...state[boardId],
+        ...payload.board,
+      },
+    });
+  });
+
+  it('updates board when skipSave is true', () => {
+    const state = {
+      [boardId]: board,
+    };
+    const payload = {
+      board: {
+        name: 'Board Name Updated',
+        updatedAt: Date.now() + 1000,
+      },
+      boardId,
+      skipSave: true,
     };
     const newState = reducer(state, actions.updateBoard(payload));
     expect(newState).toEqual({
