@@ -48,3 +48,10 @@ it('renders "Sort by likes" button', () => {
     screen.getByRole('button', { name: 'Sort by likes' })
   ).toBeInTheDocument();
 });
+
+it('renders "Export" button', () => {
+  const board = updateStore.withBoard();
+  updateStore.withUser();
+  renderWithContext(<BoardControls boardId={board.id} />);
+  expect(screen.getByRole('button', { name: 'Export' })).toBeInTheDocument();
+});
