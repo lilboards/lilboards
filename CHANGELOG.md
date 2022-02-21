@@ -1,5 +1,14 @@
 # Changelog
 
+## [4.15.0](https://www.github.com/lilboards/lilboards/compare/v4.14.1...v4.15.0) (2022-02-21)
+
+
+### Features
+
+* **components:** add Export that copies Markdown to clipboard ([2a8461d](https://www.github.com/lilboards/lilboards/commit/2a8461ddf0524d767a4e400613a8e7ebff7a9d9a))
+* **components:** render Export button in BoardControls ([39abf47](https://www.github.com/lilboards/lilboards/commit/39abf47dd04097332e7beee520a504445aa01920))
+* **components:** show tooltip when Export button is clicked ([34ab654](https://www.github.com/lilboards/lilboards/commit/34ab654d1bce0750cddff1bbc7dc5da12d3e3198))
+
 ### [4.14.1](https://www.github.com/lilboards/lilboards/compare/v4.14.0...v4.14.1) (2022-02-11)
 
 
