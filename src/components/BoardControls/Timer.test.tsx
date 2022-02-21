@@ -42,7 +42,7 @@ describe('timer', () => {
 
   afterEach(() => {
     alertSpy.mockReset();
-    jest.runOnlyPendingTimers();
+    jest.clearAllTimers();
   });
 
   it('starts and stops the timer', async () => {
@@ -51,9 +51,8 @@ describe('timer', () => {
     button = screen.getByLabelText('Start timer');
 
     // start
-    // eslint-disable-next-line testing-library/no-unnecessary-act
+    fireEvent.click(button);
     act(() => {
-      fireEvent.click(button);
       jest.setSystemTime(Date.now() + SECOND_IN_MILLISECONDS);
       jest.advanceTimersByTime(SECOND_IN_MILLISECONDS);
     });
@@ -65,11 +64,8 @@ describe('timer', () => {
     expect(input).toHaveValue('4:58');
 
     // stop
-    // eslint-disable-next-line testing-library/no-unnecessary-act
-    await act(async () => {
-      fireEvent.click(button);
-      await screen.findByLabelText('Start timer');
-    });
+    fireEvent.click(button);
+    await screen.findByLabelText('Start timer');
 
     expect(button).toHaveAttribute('aria-label', 'Start timer');
     expect(button).toHaveTextContent('Start');
@@ -83,9 +79,8 @@ describe('timer', () => {
     input = screen.getByLabelText('Timer in minutes');
     button = screen.getByLabelText('Start timer');
 
-    // eslint-disable-next-line testing-library/no-unnecessary-act
+    fireEvent.click(button);
     act(() => {
-      fireEvent.click(button);
       jest.setSystemTime(Date.now() + defaultMilliseconds);
       jest.advanceTimersByTime(defaultMilliseconds);
     });
@@ -170,10 +165,7 @@ describe('when minutes is not greater than 0', () => {
     fireEvent.change(input, event);
     button = screen.getByLabelText('Start timer');
 
-    // eslint-disable-next-line testing-library/no-unnecessary-act
-    act(() => {
-      fireEvent.click(button);
-    });
+    fireEvent.click(button);
 
     expect(button).toHaveTextContent('Start');
     expect(input).not.toBeDisabled();
