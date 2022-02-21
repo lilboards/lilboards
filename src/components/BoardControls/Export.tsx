@@ -21,12 +21,7 @@ export default function Export() {
 
   return (
     <Tooltip arrow open={open} title="Copied Markdown">
-      <Button
-        color="info"
-        onClick={copyToClipboard}
-        variant="contained"
-        sx={{ marginLeft: 2 }}
-      >
+      <Button color="info" onClick={copyToClipboard} variant="contained">
         Export
       </Button>
     </Tooltip>

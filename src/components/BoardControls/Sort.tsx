@@ -34,7 +34,12 @@ export default function Sort(props: Props) {
   }
 
   return (
-    <Button color="primary" onClick={sortItems} variant="outlined">
+    <Button
+      color="primary"
+      onClick={sortItems}
+      variant="outlined"
+      sx={{ marginRight: 2 }}
+    >
       Sort by likes
     </Button>
   );
