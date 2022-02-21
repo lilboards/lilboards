@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 
 import type { Id } from '../../types';
 import AddColumn from './AddColumn';
+import Export from './Export';
 import MaxLikes from './MaxLikes';
 import Present from './Present';
 import Sort from './Sort';
@@ -25,6 +26,8 @@ export default function BoardControls(props: Props) {
       <Present />
 
       <Sort boardId={props.boardId} />
+
+      <Export />
     </Box>
   );
 }
