@@ -53,5 +53,7 @@ it('renders "Export" button', () => {
   const board = updateStore.withBoard();
   updateStore.withUser();
   renderWithContext(<BoardControls boardId={board.id} />);
-  expect(screen.getByRole('button', { name: 'Export' })).toBeInTheDocument();
+  expect(screen.getByText('Export')).toBe(
+    screen.getByRole('button', { name: 'Copied Markdown' })
+  );
 });
