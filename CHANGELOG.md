@@ -1,5 +1,12 @@
 # Changelog
 
+### [4.15.1](https://www.github.com/lilboards/lilboards/compare/v4.15.0...v4.15.1) (2022-02-26)
+
+
+### Bug Fixes
+
+* **utils:** replace newline with <br> when exporting board to markdown ([973f438](https://www.github.com/lilboards/lilboards/commit/973f4389259e11288c119052640f40ed5ebc2956))
+
 ## [4.15.0](https://www.github.com/lilboards/lilboards/compare/v4.14.1...v4.15.0) (2022-02-21)
 
 
