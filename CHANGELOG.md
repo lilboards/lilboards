@@ -1,61 +1,54 @@
 # Changelog
 
-### [4.15.1](https://www.github.com/lilboards/lilboards/compare/v4.15.0...v4.15.1) (2022-02-26)
-
+## [4.15.1](https://www.github.com/lilboards/lilboards/compare/v4.15.0...v4.15.1) (2022-02-26)
 
 ### Bug Fixes
 
-* **utils:** replace newline with <br> when exporting board to markdown ([973f438](https://www.github.com/lilboards/lilboards/commit/973f4389259e11288c119052640f40ed5ebc2956))
+- **utils:** replace newline with `<br>` when exporting board to markdown ([973f438](https://www.github.com/lilboards/lilboards/commit/973f4389259e11288c119052640f40ed5ebc2956))
 
 ## [4.15.0](https://www.github.com/lilboards/lilboards/compare/v4.14.1...v4.15.0) (2022-02-21)
 
-
 ### Features
 
-* **components:** add Export that copies Markdown to clipboard ([2a8461d](https://www.github.com/lilboards/lilboards/commit/2a8461ddf0524d767a4e400613a8e7ebff7a9d9a))
-* **components:** render Export button in BoardControls ([39abf47](https://www.github.com/lilboards/lilboards/commit/39abf47dd04097332e7beee520a504445aa01920))
-* **components:** show tooltip when Export button is clicked ([34ab654](https://www.github.com/lilboards/lilboards/commit/34ab654d1bce0750cddff1bbc7dc5da12d3e3198))
+- **components:** add Export that copies Markdown to clipboard ([2a8461d](https://www.github.com/lilboards/lilboards/commit/2a8461ddf0524d767a4e400613a8e7ebff7a9d9a))
+- **components:** render Export button in BoardControls ([39abf47](https://www.github.com/lilboards/lilboards/commit/39abf47dd04097332e7beee520a504445aa01920))
+- **components:** show tooltip when Export button is clicked ([34ab654](https://www.github.com/lilboards/lilboards/commit/34ab654d1bce0750cddff1bbc7dc5da12d3e3198))
 
-### [4.14.1](https://www.github.com/lilboards/lilboards/compare/v4.14.0...v4.14.1) (2022-02-11)
-
+## [4.14.1](https://www.github.com/lilboards/lilboards/compare/v4.14.0...v4.14.1) (2022-02-11)
 
 ### Bug Fixes
 
-* don't save board to database if user is not admin ([5ef385a](https://www.github.com/lilboards/lilboards/commit/5ef385ac7c3f8f04a04ff194f3af18bb9e3b752c))
+- don't save board to database if user is not admin ([5ef385a](https://www.github.com/lilboards/lilboards/commit/5ef385ac7c3f8f04a04ff194f3af18bb9e3b752c))
 
 ## [4.14.0](https://www.github.com/lilboards/lilboards/compare/v4.13.0...v4.14.0) (2022-01-19)
 
-
 ### Features
 
-* **components:** don't render "Sort by likes" for non-admin user ([10e72ea](https://www.github.com/lilboards/lilboards/commit/10e72eac341207408755bf285912ef9976cf55c7))
+- **components:** don't render "Sort by likes" for non-admin user ([10e72ea](https://www.github.com/lilboards/lilboards/commit/10e72eac341207408755bf285912ef9976cf55c7))
 
 ## [4.13.0](https://www.github.com/lilboards/lilboards/compare/v4.12.0...v4.13.0) (2022-01-19)
 
-
 ### Features
 
-* **components:** play alarm audio on timer end ([c845db3](https://www.github.com/lilboards/lilboards/commit/c845db3af27d5d1cf160cbd1fcf9921df6239e09))
+- **components:** play alarm audio on timer end ([c845db3](https://www.github.com/lilboards/lilboards/commit/c845db3af27d5d1cf160cbd1fcf9921df6239e09))
 
 ## [4.12.0](https://www.github.com/lilboards/lilboards/compare/v4.11.0...v4.12.0) (2021-12-09)
 
-
 ### Features
 
-* **components:** add home Features ([cb6cc4d](https://www.github.com/lilboards/lilboards/commit/cb6cc4d17d82e8e441d2f4019c2f1b2d368aa887))
-* **components:** add home Hero ([fd117f9](https://www.github.com/lilboards/lilboards/commit/fd117f9298af3388b440d43fc65d8f734fc27f38))
-* **components:** render Hero and Features in Home; modularize Footer ([6c097fe](https://www.github.com/lilboards/lilboards/commit/6c097fef6ea133236c47ff8a0044561e07878606))
+- **components:** add home Features ([cb6cc4d](https://www.github.com/lilboards/lilboards/commit/cb6cc4d17d82e8e441d2f4019c2f1b2d368aa887))
+- **components:** add home Hero ([fd117f9](https://www.github.com/lilboards/lilboards/commit/fd117f9298af3388b440d43fc65d8f734fc27f38))
+- **components:** render Hero and Features in Home; modularize Footer ([6c097fe](https://www.github.com/lilboards/lilboards/commit/6c097fef6ea133236c47ff8a0044561e07878606))
 
 ## [4.11.0](https://www.github.com/lilboards/lilboards/compare/v4.10.0...v4.11.0) (2021-12-08)
 
-
 ### Features
 
-* **components:** add MaxLikes ([8464e54](https://www.github.com/lilboards/lilboards/commit/8464e542d2c43daeb690d43a1b4c9ce602e8a45d))
-* **components:** check maxLikes in LikeButton ([2535ae5](https://www.github.com/lilboards/lilboards/commit/2535ae5fea3006b6225f944d04050b40778b7500))
-* **components:** remove item id from aria-label for Likes & LikeButton ([11d381a](https://www.github.com/lilboards/lilboards/commit/11d381a2c651cdffa00c486764ead6abaf8790c1))
-* **components:** render MaxLikes in BoardControls ([0ce1151](https://www.github.com/lilboards/lilboards/commit/0ce1151a1b2d12aa00fb46906c87e27e250c30db))
-* **hooks:** add useMaxLikes ([63c2c40](https://www.github.com/lilboards/lilboards/commit/63c2c40a09002532179f47d4b07851bb6d534729))
+- **components:** add MaxLikes ([8464e54](https://www.github.com/lilboards/lilboards/commit/8464e542d2c43daeb690d43a1b4c9ce602e8a45d))
+- **components:** check maxLikes in LikeButton ([2535ae5](https://www.github.com/lilboards/lilboards/commit/2535ae5fea3006b6225f944d04050b40778b7500))
+- **components:** remove item id from aria-label for Likes & LikeButton ([11d381a](https://www.github.com/lilboards/lilboards/commit/11d381a2c651cdffa00c486764ead6abaf8790c1))
+- **components:** render MaxLikes in BoardControls ([0ce1151](https://www.github.com/lilboards/lilboards/commit/0ce1151a1b2d12aa00fb46906c87e27e250c30db))
+- **hooks:** add useMaxLikes ([63c2c40](https://www.github.com/lilboards/lilboards/commit/63c2c40a09002532179f47d4b07851bb6d534729))
 
 ## [4.10.0](https://www.github.com/lilboards/lilboards/compare/v4.9.3...v4.10.0) (2021-12-07)
 
