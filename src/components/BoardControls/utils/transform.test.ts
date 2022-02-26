@@ -211,6 +211,34 @@ describe('transformToMarkdown', () => {
     `);
   });
 
+  it('transforms column with item with newlines', () => {
+    expect(
+      transformToMarkdown(
+        {
+          column1: {
+            createdAt: Date.now(),
+            createdBy: 'user1',
+            itemIds: ['item1'],
+            name: 'Column Name',
+          },
+        },
+
+        {
+          item1: {
+            createdAt: Date.now(),
+            createdBy: 'user1',
+            text: 'Item\n\n1',
+          },
+        }
+      )
+    ).toMatchInlineSnapshot(`
+      "| Column Name |
+      | --- |
+      | Item<br><br>1 |
+      "
+    `);
+  });
+
   it('transforms column with items', () => {
     expect(
       transformToMarkdown(

@@ -46,7 +46,11 @@ export function transformToMarkdown(columns: Columns, items: Items): string {
   markdown += '\n';
 
   rows.forEach((row) => {
-    markdown += `| ${row.join(' | ')} |`;
+    markdown += `| ${row
+      .map((text) =>
+        typeof text === 'string' ? text.replaceAll('\n', '<br>') : text
+      )
+      .join(' | ')} |`;
     markdown += '\n';
   });
 
