@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.16.0](https://www.github.com/lilboards/lilboards/compare/v4.15.1...v4.16.0) (2022-03-11)
+
+
+### Features
+
+* **Item:** save item to firebase onChange instead of onBlur ([106061e](https://www.github.com/lilboards/lilboards/commit/106061e8a9ba860a2c2e5bb8d1079144f10767ec))
+* **Login:** add Twitter as an auth provider ([f8bce55](https://www.github.com/lilboards/lilboards/commit/f8bce552a6bf761a4948d13e7e8ec85bb68ba134))
+
 ## [4.15.1](https://www.github.com/lilboards/lilboards/compare/v4.15.0...v4.15.1) (2022-02-26)
 
 ### Bug Fixes
