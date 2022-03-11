@@ -63,7 +63,6 @@ export default function Item(props: Props) {
           updatedBy: userId,
         },
         itemId: props.itemId,
-        skipSave: true,
       })
     );
   }
