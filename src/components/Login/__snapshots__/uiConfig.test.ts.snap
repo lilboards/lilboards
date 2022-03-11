@@ -9,6 +9,7 @@ Object {
   "signInOptions": Array [
     "google.com",
     "github.com",
+    "twitter.com",
     "password",
   ],
 }
