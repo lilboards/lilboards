@@ -59,7 +59,7 @@
     "eslint-plugin-tsdoc": "^0.2.14",
     "firebase-tools": "^10.4.0",
     "husky": "^7.0.4",
-    "lint-staged": "^12.3.6",
+    "lint-staged": "^12.3.7",
     "prettier": "^2.6.0",
     "size-limit": "^7.0.8"
   },
