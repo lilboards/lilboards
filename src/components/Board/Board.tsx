@@ -1,6 +1,7 @@
 import type { RouteComponentProps } from '@reach/router';
 import { Redirect } from '@reach/router';
 
+import { useSetDocumentTitle } from '../../hooks';
 import type { Id } from '../../types';
 import BoardControls from '../BoardControls';
 import Columns from '../Columns';
@@ -14,6 +15,7 @@ interface Props extends RouteComponentProps {
 export default function Board(props: Props) {
   const boardId = props.boardId || '';
   const { board, isLoaded } = useBoard(boardId);
+  useSetDocumentTitle(board?.name || 'Untitled Board');
 
   if (!boardId) {
     return null;

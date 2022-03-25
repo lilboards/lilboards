@@ -4,11 +4,12 @@ import { useEffect, useState } from 'react';
 
 import { resetActions } from '../../actions';
 import { logEvent, signOut } from '../../firebase';
-import { useDispatch } from '../../hooks';
+import { useDispatch, useSetDocumentTitle } from '../../hooks';
 
 export default function Logout(props: RouteComponentProps) {
   const dispatch = useDispatch();
   const [isSignedOut, setIsSignedOut] = useState(false);
+  useSetDocumentTitle('Logout');
 
   useEffect(() => {
     resetActions.forEach((resetAction) => dispatch(resetAction()));

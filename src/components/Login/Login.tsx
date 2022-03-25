@@ -5,7 +5,7 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 import { REDIRECT_TO } from '../../constants';
 import { firebaseAuth } from '../../firebase';
-import { useAuth, useSelector } from '../../hooks';
+import { useAuth, useSelector, useSetDocumentTitle } from '../../hooks';
 import uiConfig from './uiConfig';
 
 /**
@@ -13,6 +13,7 @@ import uiConfig from './uiConfig';
  */
 export default function Login(props: RouteComponentProps) {
   useAuth();
+  useSetDocumentTitle('Login');
   const email = useSelector((state) => state.user.email);
 
   if (email) {
