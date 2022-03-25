@@ -1,5 +1,14 @@
 # Changelog
 
+## [4.17.0](https://www.github.com/lilboards/lilboards/compare/v4.16.0...v4.17.0) (2022-03-25)
+
+
+### Features
+
+* **components:** set document title for all routes ([d8ef8ad](https://www.github.com/lilboards/lilboards/commit/d8ef8ad1819864403e68ca00b8ed65a1b2ccfeaa))
+* **hooks:** create set document title helper ([34bdee4](https://www.github.com/lilboards/lilboards/commit/34bdee4bfa62910989b0174bb0584c02fb4ca5f9))
+* **public:** update document title ([8219a4b](https://www.github.com/lilboards/lilboards/commit/8219a4bdbee79014e254c438b8b6930430dc5da7))
+
 ## [4.16.0](https://www.github.com/lilboards/lilboards/compare/v4.15.1...v4.16.0) (2022-03-11)
 
 
