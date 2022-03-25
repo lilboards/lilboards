@@ -4,7 +4,7 @@ import type { RouteComponentProps } from '@reach/router';
 
 import actions from '../../actions';
 import { generateId, logEvent, saveUserBoardId } from '../../firebase';
-import { useDispatch, useSelector } from '../../hooks';
+import { useDispatch, useSelector, useSetDocumentTitle } from '../../hooks';
 import type { Board } from '../../types';
 import AddButton from '../AddButton';
 import BoardCards from './BoardCards';
@@ -14,6 +14,7 @@ export default function Boards(props: RouteComponentProps) {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user.id);
   useBoards(dispatch, userId);
+  useSetDocumentTitle('Boards');
 
   function addBoard() {
     const board: Board = {
