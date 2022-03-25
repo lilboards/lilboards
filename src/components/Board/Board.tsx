@@ -1,10 +1,10 @@
-import Typography from '@mui/material/Typography';
 import type { RouteComponentProps } from '@reach/router';
 import { Redirect } from '@reach/router';
 
 import type { Id } from '../../types';
 import BoardControls from '../BoardControls';
 import Columns from '../Columns';
+import BoardName from './BoardName';
 import { useBoard } from './hooks/useBoard';
 
 interface Props extends RouteComponentProps {
@@ -29,12 +29,7 @@ export default function Board(props: Props) {
 
   return (
     <>
-      {board.name && (
-        <Typography component="h1" gutterBottom variant="h4">
-          {board.name}
-        </Typography>
-      )}
-
+      <BoardName name={board.name} />
       <BoardControls boardId={boardId} />
       <Columns boardId={boardId} />
     </>
