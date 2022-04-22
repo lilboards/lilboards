@@ -30,8 +30,8 @@ describe('edit board', () => {
   });
 
   it('edits and saves board name on change', async () => {
-    renderWithContext(<BoardCard boardId={board.id} />);
     updateStore.withUser();
+    renderWithContext(<BoardCard boardId={board.id} />);
     const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
     const event = { target: { value: 'My Board Name' } };
     fireEvent.change(screen.getByLabelText('Board Name'), event);

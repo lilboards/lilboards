@@ -1,5 +1,5 @@
 import type { WindowLocation as Location } from '@reach/router';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 
 import { REDIRECT_TO } from '../../constants';
 import {
@@ -63,16 +63,12 @@ describe('logged in', () => {
     'redirects to "/boards" when props.location=%p',
     async (location) => {
       renderWithContext(<Login location={location as Location} />);
-      // wait for redirect
-      await screen.findAllByText('');
-      expect(history.location.pathname).toBe('/boards');
+      await waitFor(() => expect(history.location.pathname).toBe('/boards'));
     }
   );
 
   it(`redirects to location.state.${REDIRECT_TO}`, async () => {
     renderWithContext(<Login location={location} />);
-    // wait for redirect
-    await screen.findAllByText('');
-    expect(history.location.pathname).toBe(redirectTo);
+    await waitFor(() => expect(history.location.pathname).toBe(redirectTo));
   });
 });

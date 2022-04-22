@@ -1,7 +1,7 @@
 import { act, fireEvent, screen } from '@testing-library/react';
 
 import { renderWithContext, updateStore } from '../../utils/test';
-import Export from './Export';
+import Export, { TOOLTIP_TIMEOUT } from './Export';
 
 const { clipboard } = navigator;
 const writeText = jest.fn();
@@ -26,9 +26,6 @@ it('copies empty markdown to clipboard', async () => {
   expect(await screen.findAllByText('Copied Markdown')).toHaveLength(1);
   expect(writeText).toBeCalledTimes(1);
   expect(writeText).toBeCalledWith('');
-  act(() => {
-    jest.runOnlyPendingTimers();
-  });
 });
 
 it('copies markdown to clipboard', async () => {
@@ -44,17 +41,15 @@ it('copies markdown to clipboard', async () => {
     | Item One |
     "
   `);
-  act(() => {
-    jest.runOnlyPendingTimers();
-  });
 });
 
 it('shows and hides tooltip', async () => {
   renderWithContext(<Export />);
+  expect(screen.queryAllByText('Copied Markdown')).toHaveLength(0);
   fireEvent.click(screen.getByText('Export'));
   expect(await screen.findAllByText('Copied Markdown')).toHaveLength(1);
   act(() => {
-    jest.advanceTimersByTime(5000);
+    jest.advanceTimersByTime(TOOLTIP_TIMEOUT);
   });
-  expect(screen.queryAllByText('Copied Markdown')).toHaveLength(0);
+  expect(screen.queryByText('Copied Markdown')).not.toBeVisible();
 });

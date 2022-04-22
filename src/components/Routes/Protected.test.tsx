@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 
 import {
   USER_TEST_EMAIL as userEmail,
@@ -45,8 +45,7 @@ describe('not signed in', () => {
 
   it('redirects to "/login"', async () => {
     renderWithContext(<Protected {...props} />);
-    await screen.findAllByText('');
-    expect(history.location.pathname).toBe('/login');
+    await waitFor(() => expect(history.location.pathname).toBe('/login'));
   });
 });
 
