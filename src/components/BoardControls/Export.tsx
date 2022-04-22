@@ -6,6 +6,8 @@ import { logEvent } from '../../firebase';
 import { useSelector } from '../../hooks';
 import { transformToMarkdown } from './utils';
 
+export const TOOLTIP_TIMEOUT = 3000;
+
 export default function Export() {
   const [open, setOpen] = useState(false);
   const columns = useSelector((state) => state.columns);
@@ -15,7 +17,9 @@ export default function Export() {
     const markdown = transformToMarkdown(columns, items);
     await navigator.clipboard.writeText(markdown);
     setOpen(true);
-    setTimeout(() => setOpen(false), 3000);
+    setTimeout(() => {
+      setOpen(false);
+    }, TOOLTIP_TIMEOUT);
     logEvent('export', { as: 'markdown' });
   }
 
