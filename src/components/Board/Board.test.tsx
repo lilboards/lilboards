@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import { onValue } from 'firebase/database';
 
 import {
@@ -39,22 +39,18 @@ beforeEach(() => {
 
 it('renders nothing when there is no board id', async () => {
   renderWithContext(<Board />);
-  await screen.findAllByText('');
-  expect(screen.queryByText(boardControls)).toBe(null);
+  await waitFor(() => expect(screen.queryByText(boardControls)).toBe(null));
   expect(screen.queryByText(columns)).toBe(null);
 });
 
 it('renders nothing when there is no board', async () => {
   renderWithContext(<Board boardId="invalid" />);
-  await screen.findAllByText('');
-  expect(screen.queryByText(columns)).toBe(null);
+  await waitFor(() => expect(screen.queryByText(columns)).toBe(null));
 });
 
 it('redirects to "/404" when board is not found', async () => {
   renderWithContext(<Board boardId="invalid" />);
-  // wait for redirect
-  await screen.findAllByText('');
-  expect(history.location.pathname).toBe('/404');
+  await waitFor(() => expect(history.location.pathname).toBe('/404'));
 });
 
 it('renders board name as heading', async () => {
