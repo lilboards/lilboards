@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.18.0](https://www.github.com/lilboards/lilboards/compare/v4.17.0...v4.18.0) (2022-05-06)
+
+
+### Features
+
+* **Board:** add icon button to copy board link to clipboard ([7ac6b89](https://www.github.com/lilboards/lilboards/commit/7ac6b89310bb0f72a72cfa61b3a63e8c69529aca))
+
 ## [4.17.0](https://www.github.com/lilboards/lilboards/compare/v4.16.0...v4.17.0) (2022-03-25)
 
 
