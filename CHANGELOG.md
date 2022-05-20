@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.19.0](https://www.github.com/lilboards/lilboards/compare/v4.18.0...v4.19.0) (2022-05-20)
+
+
+### Features
+
+* **BoardControls:** change copy & tooltip for export board button ([f90acc1](https://www.github.com/lilboards/lilboards/commit/f90acc15b3dbd47fbe7f34cd22e3670f3547699f))
+* **BoardControls:** replace "Export" text with icon button ([d378895](https://www.github.com/lilboards/lilboards/commit/d378895c98cca8dc0f442bcfcb29ad26cd13cef8))
+
 ## [4.18.0](https://www.github.com/lilboards/lilboards/compare/v4.17.0...v4.18.0) (2022-05-06)
 
 
