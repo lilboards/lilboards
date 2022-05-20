@@ -7,6 +7,7 @@ import { useCallback, useEffect, useState } from 'react';
 import actions from '../../actions';
 import { useDispatch, useIsAdmin, useSelector } from '../../hooks';
 import type { Id } from '../../types';
+import Snackbar from '../Snackbar';
 import { loadAlarm, playAlarm } from './audio';
 import { DEFAULT_MINUTES, SECOND_IN_MILLISECONDS } from './constants';
 import { formatTimeRemaining, minutesToMilliseconds } from './utils';
@@ -14,6 +15,7 @@ import { formatTimeRemaining, minutesToMilliseconds } from './utils';
 const initialState = {
   minutes: DEFAULT_MINUTES,
   value: String(DEFAULT_MINUTES),
+  lastOpened: 0,
 };
 
 interface Props {
@@ -35,6 +37,7 @@ export default function Timer(props: Props) {
     setState({
       minutes: state.minutes,
       value: String(state.minutes),
+      lastOpened: Date.now(),
     });
 
     setTimeout(() => {
@@ -61,7 +64,6 @@ export default function Timer(props: Props) {
         clearInterval(interval);
         stopTimer();
         playAlarm();
-        alert("⏰ Time's up!");
       } else {
         setState({
           ...state,
@@ -80,6 +82,7 @@ export default function Timer(props: Props) {
     setState({
       minutes: Number(value),
       value,
+      lastOpened: state.lastOpened,
     });
   }
 
@@ -103,6 +106,7 @@ export default function Timer(props: Props) {
 
   return (
     <Box display="flex" alignItems="flex-end" marginRight={3}>
+      <Snackbar message="⏰ Time's up!" lastOpened={state.lastOpened} />
       <TextField
         disabled={Boolean(timerEnd)}
         inputProps={{
@@ -118,7 +122,6 @@ export default function Timer(props: Props) {
         type={timerEnd ? 'text' : 'number'}
         value={state.value}
       />
-
       {isAdmin && (
         <Button
           aria-label={timerEnd ? 'Stop timer' : 'Start timer'}
