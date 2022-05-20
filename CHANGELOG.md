@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.20.0](https://www.github.com/lilboards/lilboards/compare/v4.19.0...v4.20.0) (2022-05-20)
+
+
+### Features
+
+* **BoardControls:** replace alert with snackbar in Timer ([0cc2725](https://www.github.com/lilboards/lilboards/commit/0cc272502401be3db5a8d098be94aa8b0052d34c))
+
 ## [4.19.0](https://www.github.com/lilboards/lilboards/compare/v4.18.0...v4.19.0) (2022-05-20)
 
 
