@@ -1,4 +1,5 @@
-import Button from '@mui/material/Button';
+import CopyIcon from '@mui/icons-material/ContentCopy';
+import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
 import { logEvent } from '../../firebase';
@@ -17,13 +18,9 @@ export default function Export() {
 
   return (
     <Tooltip arrow title="Copy board as Markdown">
-      <Button
-        color="info"
-        onClick={copyBoardMarkdownToClipboard}
-        variant="contained"
-      >
-        Export
-      </Button>
+      <IconButton color="info" onClick={copyBoardMarkdownToClipboard}>
+        <CopyIcon />
+      </IconButton>
     </Tooltip>
   );
 }

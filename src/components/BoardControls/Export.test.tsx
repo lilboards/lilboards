@@ -22,8 +22,7 @@ afterAll(() => {
 
 it('copies empty markdown to clipboard', () => {
   renderWithContext(<Export />);
-  fireEvent.click(screen.getByText('Export'));
-  expect(screen.getAllByLabelText('Copy board as Markdown')).toHaveLength(1);
+  fireEvent.click(screen.getByLabelText('Copy board as Markdown'));
   expect(writeText).toBeCalledTimes(1);
   expect(writeText).toBeCalledWith('');
 });
@@ -32,8 +31,7 @@ it('copies markdown to clipboard', () => {
   updateStore.withColumn();
   updateStore.withItem();
   renderWithContext(<Export />);
-  fireEvent.click(screen.getByText('Export'));
-  expect(screen.getAllByLabelText('Copy board as Markdown')).toHaveLength(1);
+  fireEvent.click(screen.getByLabelText('Copy board as Markdown'));
   expect(writeText).toBeCalledTimes(1);
   expect(writeText.mock.calls[0][0]).toMatchInlineSnapshot(`
     "| Column One |

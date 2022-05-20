@@ -49,11 +49,11 @@ it('renders "Sort by likes" button', () => {
   ).toBeInTheDocument();
 });
 
-it('renders "Export" button', () => {
+it('renders copy board icon button', () => {
   const board = updateStore.withBoard();
   updateStore.withUser();
   renderWithContext(<BoardControls boardId={board.id} />);
-  expect(screen.getByText('Export')).toBe(
+  expect(screen.getByLabelText('Copy board as Markdown')).toBe(
     screen.getByRole('button', { name: 'Copy board as Markdown' })
   );
 });
