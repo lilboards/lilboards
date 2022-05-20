@@ -2,6 +2,7 @@ import { act, fireEvent, screen } from '@testing-library/react';
 
 import { BOARD_TEST_ID as boardId } from '../../constants/test';
 import { renderWithContext, updateStore } from '../../utils/test';
+import { playAlarm } from './audio';
 import {
   DEFAULT_MINUTES,
   MINUTE_IN_SECONDS,
@@ -19,21 +20,13 @@ const defaultMilliseconds =
 
 let board: ReturnType<typeof updateStore.withBoard>;
 
-// for some reason, the 'timer' test suite must run first or else it will fail (race condition?)
+beforeAll(() => {
+  jest.useFakeTimers();
+});
+
 describe('timer', () => {
-  let alertSpy: jest.SpyInstance;
   let button: HTMLElement;
   let input: HTMLElement;
-
-  beforeAll(() => {
-    alertSpy = jest.spyOn(window, 'alert');
-    jest.useFakeTimers();
-  });
-
-  afterAll(() => {
-    alertSpy.mockRestore();
-    jest.useRealTimers();
-  });
 
   beforeEach(() => {
     board = updateStore.withBoard();
@@ -41,7 +34,7 @@ describe('timer', () => {
   });
 
   afterEach(() => {
-    alertSpy.mockReset();
+    jest.clearAllMocks();
     jest.clearAllTimers();
   });
 
@@ -85,7 +78,8 @@ describe('timer', () => {
       jest.advanceTimersByTime(defaultMilliseconds);
     });
 
-    expect(alertSpy).toBeCalledTimes(1);
+    expect(screen.getByText("⏰ Time's up!")).toBeInTheDocument();
+    expect(playAlarm).toBeCalledTimes(1);
     expect(button).toHaveAttribute('aria-label', 'Start timer');
     expect(button).toHaveTextContent('Start');
     expect(input).toHaveProperty('type', 'number');
@@ -154,7 +148,7 @@ describe('when minutes is not greater than 0', () => {
   let input: HTMLElement;
   const event = { target: { value: 0 } };
 
-  beforeAll(() => {
+  beforeEach(() => {
     board = updateStore.withBoard();
     updateStore.withUser();
   });
