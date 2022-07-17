@@ -34,22 +34,23 @@ describe('updateColumn', () => {
       columnId,
     };
     const newState = reducer(initialState, actions.updateColumn(payload));
-    expect(newState).toEqual({ [columnId]: column });
+    expect(newState).toEqual({
+      [columnId]: column,
+    });
   });
 
-  it('updates column', () => {
+  it.each([true, false])('updates column with debounce=%p', (debounce) => {
     const state = {
       [columnId]: column,
     };
     const payload = {
       boardId,
       column: {
-        name: 'Column Name Edited',
+        name: 'Edited Column',
         updatedAt: Date.now() + 1000,
       },
       columnId,
       debounce: true,
-      skipSave: true,
     };
     const newState = reducer(state, actions.updateColumn(payload));
     expect(newState).toEqual({
@@ -102,6 +103,46 @@ describe('updateColumn', () => {
     const newState = reducer(state, actions.updateColumn(payload));
     expect(newState).toEqual({
       [columnId]: column,
+    });
+  });
+});
+
+describe('renameColumn', () => {
+  it('sets column name', () => {
+    const payload = {
+      boardId,
+      columnId,
+      columnName: 'New Column',
+      userId,
+    };
+    const newState = reducer(initialState, actions.renameColumn(payload));
+    expect(newState).toEqual({
+      [columnId]: {
+        name: payload.columnName,
+        updatedAt: expect.any(Number),
+        updatedBy: payload.userId,
+      },
+    });
+  });
+
+  it.each([true, false])('updates column name with debounce=%p', (debounce) => {
+    const state = {
+      [columnId]: column,
+    };
+    const payload = {
+      boardId,
+      columnId,
+      columnName: 'Updated Column',
+      debounce,
+      userId: `${userId}_2`,
+    };
+    expect(reducer(state, actions.renameColumn(payload))).toEqual({
+      [columnId]: {
+        ...column,
+        name: payload.columnName,
+        updatedAt: expect.any(Number),
+        updatedBy: payload.userId,
+      },
     });
   });
 });
