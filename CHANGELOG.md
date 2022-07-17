@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.20.1](https://github.com/lilboards/lilboards/compare/v4.20.0...v4.20.1) (2022-07-17)
+
+
+### Bug Fixes
+
+* don't make column items temporarily disappear during rename ([47e1cec](https://github.com/lilboards/lilboards/commit/47e1cec9c7af3c80611bc14d9ddd515613c65b48))
+
 ## [4.20.0](https://github.com/lilboards/lilboards/compare/v4.19.0...v4.20.0) (2022-05-20)
 
 
