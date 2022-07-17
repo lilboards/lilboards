@@ -41,15 +41,12 @@ export default function ColumnName(props: Props) {
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     dispatch(
-      actions.updateColumn({
+      actions.renameColumn({
         boardId: props.boardId,
-        column: {
-          name: event.target.value,
-          updatedAt: Date.now(),
-          updatedBy: userId,
-        },
         columnId: props.columnId,
+        columnName: event.target.value,
         debounce: true,
+        userId,
       })
     );
   }

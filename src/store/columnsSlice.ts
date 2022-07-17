@@ -32,6 +32,7 @@ const columnsSlice = createSlice({
       const { boardId, column, columnId, debounce, skipSave } = action.payload;
       state[columnId] = state[columnId] || {};
       Object.assign(state[columnId], column);
+
       if (!column.itemIds) {
         delete state[columnId].itemIds;
       }
@@ -42,6 +43,33 @@ const columnsSlice = createSlice({
         } else {
           updateColumn(boardId, columnId, column);
         }
+      }
+    },
+
+    renameColumn: (
+      state,
+      action: PayloadAction<{
+        boardId: Id;
+        columnId: Id;
+        columnName: Column['name'];
+        debounce?: boolean;
+        userId: Column['updatedBy'];
+      }>
+    ) => {
+      const { boardId, columnId, columnName, debounce, userId } =
+        action.payload;
+      state[columnId] = state[columnId] || {};
+      const column = {
+        name: columnName,
+        updatedAt: Date.now(),
+        updatedBy: userId,
+      };
+      Object.assign(state[columnId], column);
+
+      if (debounce) {
+        debouncedUpdateColumn(boardId, columnId, column);
+      } else {
+        updateColumn(boardId, columnId, column);
       }
     },
 
