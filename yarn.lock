@@ -5402,15 +5402,10 @@ commander@^8.3.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-8.3.0.tgz#4837ea1b2da67b9c616a67afbb0fafee567bca66"
   integrity sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==
 
-commander@^9.1.0:
+commander@^9.1.0, commander@^9.2.0, commander@^9.3.0:
   version "9.4.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-9.4.0.tgz#bc4a40918fefe52e22450c111ecd6b7acce6f11c"
   integrity sha512-sRPT+umqkz90UA8M1yqYfnHlZA7fF6nSphDtxeywPZ49ysjxDQybzk13CL+mXekDRG92skbcqCLVovuCusNmFw==
-
-commander@^9.2.0, commander@^9.3.0:
-  version "9.3.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-9.3.0.tgz#f619114a5a2d2054e0d9ff1b31d5ccf89255e26b"
-  integrity sha512-hv95iU5uXPbK83mjrJKuZyFM/LBAoCV/XhVGkS5Je6tl7sxr6A0ITMw5WoRV46/UaJ46Nllm3Xt7IaJhXTIkzw==
 
 common-path-prefix@^3.0.0:
   version "3.0.0"
@@ -7345,10 +7340,10 @@ firebase-frameworks@^0.4.2:
     semver "^7.3.7"
     tslib "^2.3.1"
 
-firebase-tools@^11.4.1:
-  version "11.4.1"
-  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-11.4.1.tgz#ea582abf98e9b97d7d3e7c24a92e438bc188f307"
-  integrity sha512-jz9DaLw8JXRCfkj3/1XfNG1r3RBBoDTviuRq/cB5L2nT1SJFg/AvnBCLTPJ0d4fCVGgE8hWiVnODc02BrhEd9A==
+firebase-tools@^11.4.2:
+  version "11.4.2"
+  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-11.4.2.tgz#8770dd563039227715f592925bb89cde1711e993"
+  integrity sha512-qNFFDwyzRe8kwJwYIOjfV1OIa2+DbJ6jXfAXEhmEx2fgQZ0EwVjkJB5kWo+K4Mt+Qc0SItLyFvz8GSYWSg+mpQ==
   dependencies:
     "@google-cloud/pubsub" "^3.0.1"
     abort-controller "^3.0.0"
@@ -14693,15 +14688,10 @@ write-file-atomic@^3.0.0:
     signal-exit "^3.0.2"
     typedarray-to-buffer "^3.1.5"
 
-ws@8.5.0:
+ws@8.5.0, ws@>=7.4.6, ws@^8.1.0:
   version "8.5.0"
   resolved "https://registry.yarnpkg.com/ws/-/ws-8.5.0.tgz#bfb4be96600757fe5382de12c670dab984a1ed4f"
   integrity sha512-BWX0SWVgLPzYwF8lTzEy1egjhS4S4OEAHfsO8o65WOVsrnSRGaSiUaa9e0ggGlkMTtBlmOpEXiie9RUcBO86qg==
-
-ws@>=7.4.6, ws@^8.1.0:
-  version "8.4.0"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-8.4.0.tgz#f05e982a0a88c604080e8581576e2a063802bed6"
-  integrity sha512-IHVsKe2pjajSUIl4KYMQOdlyliovpEPquKkqbwswulszzI7r0SfQrxnXdWAEqOlDCLrVSJzo+O1hAwdog2sKSQ==
 
 ws@^7.2.3, ws@^7.4.6:
   version "7.5.5"
