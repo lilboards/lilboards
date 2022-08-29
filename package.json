@@ -51,7 +51,7 @@
     "web-vitals": "^3.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.0.3",
+    "@commitlint/cli": "^17.1.1",
     "@commitlint/config-conventional": "^17.1.0",
     "@size-limit/preset-app": "^8.0.1",
     "eslint-plugin-prettier": "^4.2.1",
