@@ -57,7 +57,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-simple-import-sort": "^8.0.0",
     "eslint-plugin-tsdoc": "^0.2.17",
-    "firebase-tools": "^11.14.2",
+    "firebase-tools": "^11.14.3",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
