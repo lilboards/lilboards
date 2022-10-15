@@ -1,4 +1,5 @@
 import CssBaseline from '@mui/material/CssBaseline';
+import { LocationProvider } from '@reach/router';
 import { StrictMode } from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
@@ -11,11 +12,13 @@ import store from './store';
 render(
   <StrictMode>
     <CssBaseline />
-    <Provider store={store}>
-      <Layout>
-        <Routes />
-      </Layout>
-    </Provider>
+    <LocationProvider>
+      <Provider store={store}>
+        <Layout>
+          <Routes />
+        </Layout>
+      </Provider>
+    </LocationProvider>
   </StrictMode>,
   document.getElementById('root')
 );
