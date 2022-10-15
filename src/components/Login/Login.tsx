@@ -1,6 +1,6 @@
 import Typography from '@mui/material/Typography';
 import type { RouteComponentProps } from '@reach/router';
-import { Redirect } from '@reach/router';
+import { Redirect, useLocation } from '@reach/router';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 import { REDIRECT_TO } from '../../constants';
@@ -15,9 +15,10 @@ export default function Login(props: RouteComponentProps) {
   useAuth();
   useSetDocumentTitle('Login');
   const email = useSelector((state) => state.user.email);
+  const location = useLocation();
 
   if (email) {
-    const state = (props.location?.state || {}) as Record<string, string>;
+    const state = (location?.state || {}) as Record<string, string>;
     let redirectTo = state[REDIRECT_TO];
     if (!redirectTo || redirectTo === '/') {
       redirectTo = '/boards';
