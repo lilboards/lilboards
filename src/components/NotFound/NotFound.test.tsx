@@ -1,9 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
+import { renderWithContext } from '../../utils/test';
 import NotFound from './NotFound';
 
 it('renders not found', () => {
-  render(<NotFound />);
+  renderWithContext(<NotFound />);
   expect(
     screen.getByRole('heading', {
       level: 1,
@@ -13,7 +14,7 @@ it('renders not found', () => {
 });
 
 it('renders home link', () => {
-  render(<NotFound />);
+  renderWithContext(<NotFound />);
   expect(
     screen.getByRole('link', {
       name: 'home',

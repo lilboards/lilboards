@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Link } from '@reach/router';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { REDIRECT_TO } from '../../constants';
 import { sendEmailVerification } from '../../firebase';

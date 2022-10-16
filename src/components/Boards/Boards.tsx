@@ -1,6 +1,5 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import type { RouteComponentProps } from '@reach/router';
 
 import actions from '../../actions';
 import { generateId, logEvent, saveUserBoardId } from '../../firebase';
@@ -10,7 +9,7 @@ import AddButton from '../AddButton';
 import BoardCards from './BoardCards';
 import { useBoards } from './hooks';
 
-export default function Boards(props: RouteComponentProps) {
+export default function Boards() {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user.id);
   useBoards(dispatch, userId);

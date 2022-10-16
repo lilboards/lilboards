@@ -4,8 +4,8 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import { Link as RouterLink } from '@reach/router';
 import type { ChangeEvent } from 'react';
+import { Link } from 'react-router-dom';
 
 import actions from '../../actions';
 import { logEvent } from '../../firebase';
@@ -89,7 +89,7 @@ export default function BoardCard(props: Props) {
         >
           <Button
             aria-label="Open board"
-            component={RouterLink}
+            component={Link}
             to={`/boards/${props.boardId}`}
           >
             Open

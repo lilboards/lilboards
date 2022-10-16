@@ -1,11 +1,10 @@
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import type { RouteComponentProps } from '@reach/router';
-import { Link as RouterLink } from '@reach/router';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { useSetDocumentTitle } from '../../hooks';
 
-export default function NotFound(props: RouteComponentProps) {
+export default function NotFound() {
   useSetDocumentTitle('404 Not Found');
 
   return (

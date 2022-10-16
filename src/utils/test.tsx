@@ -1,12 +1,8 @@
-import {
-  createHistory,
-  createMemorySource,
-  LocationProvider,
-} from '@reach/router';
 import { render as reactTestingLibraryRender } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { Provider } from 'react-redux';
+import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 
 import actions, { resetActions } from '../actions';
 import { ITEM_IDS } from '../constants';
@@ -24,14 +20,27 @@ import type { Board, Columns, Item, User } from '../types';
 /* istanbul ignore next */
 function noop() {}
 
-export const history = createHistory(createMemorySource('/'));
+export let router: ReturnType<typeof createMemoryRouter>;
 
 function ContextWrapper(props: { children?: ReactNode }) {
+  const routes = [
+    {
+      path: '/',
+      element: (
+        <DragDropContext onDragEnd={noop}>{props.children}</DragDropContext>
+      ),
+    },
+    {
+      path: '*',
+      element: <></>,
+    },
+  ];
+
+  router = createMemoryRouter(routes);
+
   return (
     <Provider store={store}>
-      <LocationProvider history={history}>
-        <DragDropContext onDragEnd={noop}>{props.children}</DragDropContext>
-      </LocationProvider>
+      <RouterProvider router={router} />
     </Provider>
   );
 }
@@ -122,7 +131,7 @@ export const updateStore = {
     store.dispatch(actions.likeItem(payload));
   },
 
-  withUser(email = true) {
+  withUser(email = true, override?: Partial<User>) {
     const user: Partial<User> = {
       id: userId,
     };
@@ -130,7 +139,12 @@ export const updateStore = {
       user.email = userEmail;
       user.emailVerified = true;
     }
-    store.dispatch(actions.setUser(user));
+    store.dispatch(
+      actions.setUser({
+        ...user,
+        ...override,
+      })
+    );
     return user;
   },
 
