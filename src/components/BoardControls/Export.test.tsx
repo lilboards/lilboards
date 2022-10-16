@@ -12,7 +12,7 @@ beforeAll(() => {
 });
 
 beforeEach(() => {
-  writeText.mockClear();
+  jest.clearAllMocks();
 });
 
 afterAll(() => {

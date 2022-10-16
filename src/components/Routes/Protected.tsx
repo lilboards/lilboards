@@ -1,15 +1,15 @@
-import type { RouteComponentProps } from '@reach/router';
-import { Redirect } from '@reach/router';
-import type { FC } from 'react';
+import type { ReactElement } from 'react';
+import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { REDIRECT_TO } from '../../constants';
 import { useAuth, useSelector } from '../../hooks';
 import type { User } from '../../types';
 import VerifyEmail from '../VerifyEmail';
 
-interface Props extends RouteComponentProps {
+interface Props {
   check: Extract<keyof User, 'id' | 'email'>;
-  component: FC<RouteComponentProps>;
+  children: ReactElement;
   signInAnonymously?: boolean;
 }
 
@@ -17,23 +17,28 @@ export default function Protected(props: Props) {
   const isLoaded = useAuth(props.signInAnonymously);
   const isLoggedIn = useSelector((state) => Boolean(state.user[props.check]));
   const emailVerified = useSelector((state) => state.user.emailVerified);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn && !props.signInAnonymously) {
+      navigate('/login', {
+        state: {
+          [REDIRECT_TO]: location.pathname,
+        },
+      });
+    }
+  }, [isLoggedIn, location, navigate, props.signInAnonymously]);
 
   if (!isLoaded) {
     return null;
-  }
-
-  if (!isLoggedIn) {
-    return (
-      <Redirect to="/login" state={{ [REDIRECT_TO]: props.uri }} noThrow />
-    );
   }
 
   if (props.check === 'email' && !emailVerified) {
     return <VerifyEmail />;
   }
 
-  const { component: Component, ...restProps } = props;
-  return <Component {...restProps} />;
+  return props.children;
 }
 
 Protected.defaultProps = {

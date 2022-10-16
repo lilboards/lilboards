@@ -1,7 +1,7 @@
 import Typography from '@mui/material/Typography';
-import type { RouteComponentProps } from '@reach/router';
-import { Redirect, useLocation } from '@reach/router';
+import { useEffect } from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { REDIRECT_TO } from '../../constants';
 import { firebaseAuth } from '../../firebase';
@@ -11,20 +11,25 @@ import uiConfig from './uiConfig';
 /**
  * {@link https://github.com/firebase/firebaseui-web-react}
  */
-export default function Login(props: RouteComponentProps) {
+export default function Login() {
   useAuth();
   useSetDocumentTitle('Login');
   const email = useSelector((state) => state.user.email);
   const location = useLocation();
+  const navigate = useNavigate();
 
-  if (email) {
-    const state = (location?.state || {}) as Record<string, string>;
-    let redirectTo = state[REDIRECT_TO];
-    if (!redirectTo || redirectTo === '/') {
-      redirectTo = '/boards';
+  useEffect(() => {
+    if (email) {
+      const state = (location?.state || {}) as Record<string, string>;
+      let redirectTo = state[REDIRECT_TO];
+
+      if (!redirectTo || redirectTo === '/' || redirectTo === '/logout') {
+        redirectTo = '/boards';
+      }
+
+      navigate(redirectTo);
     }
-    return <Redirect to={redirectTo} noThrow />;
-  }
+  }, [email, location, navigate]);
 
   return (
     <>

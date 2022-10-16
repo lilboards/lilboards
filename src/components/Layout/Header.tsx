@@ -6,7 +6,7 @@ import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
 import Toolbar from '@mui/material/Toolbar';
-import { Link as RouterLink } from '@reach/router';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { REDIRECT_TO } from '../../constants';
 import { useSelector } from '../../hooks';

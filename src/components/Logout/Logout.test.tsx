@@ -2,8 +2,8 @@ import { waitFor } from '@testing-library/react';
 
 import { logEvent, signOut } from '../../firebase';
 import {
-  history,
   renderWithContext,
+  router,
   store,
   updateStore,
 } from '../../utils/test';
@@ -22,7 +22,7 @@ it('signs user out', async () => {
   updateStore.withUser();
   const { baseElement } = renderWithContext(<Logout />);
 
-  await waitFor(() => expect(history.location.pathname).toBe('/login'));
+  await waitFor(() => expect(router.state.location.pathname).toBe('/login'));
   expect(signOut).toBeCalledTimes(1);
   expect(store.getState().user.id).toBe('');
 

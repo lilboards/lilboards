@@ -1,28 +1,23 @@
-import type { RouteComponentProps } from '@reach/router';
-import { Redirect } from '@reach/router';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { resetActions } from '../../actions';
 import { logEvent, signOut } from '../../firebase';
 import { useDispatch, useSetDocumentTitle } from '../../hooks';
 
-export default function Logout(props: RouteComponentProps) {
+export default function Logout() {
   const dispatch = useDispatch();
-  const [isSignedOut, setIsSignedOut] = useState(false);
   useSetDocumentTitle('Logout');
+  const navigate = useNavigate();
 
   useEffect(() => {
     resetActions.forEach((resetAction) => dispatch(resetAction()));
 
     signOut().then(() => {
-      setIsSignedOut(true);
+      navigate('/login');
       logEvent('logout');
     });
-  }, [dispatch]);
-
-  if (isSignedOut) {
-    return <Redirect to="/login" noThrow />;
-  }
+  }, [dispatch, navigate]);
 
   return null;
 }

@@ -1,4 +1,4 @@
-import { Router } from '@reach/router';
+import { Route, Routes as Router } from 'react-router-dom';
 
 import Board from '../Board';
 import Boards from '../Boards';
@@ -11,12 +11,31 @@ import Protected from './Protected';
 export default function Routes() {
   return (
     <Router>
-      <NotFound default />
-      <Home path="/" />
-      <Login path="/login" />
-      <Logout path="/logout" />
-      <Protected check="email" component={Boards} path="/boards" />
-      <Protected component={Board} path="/boards/:boardId" signInAnonymously />
+      <Route index element={<Home />} />
+
+      <Route path="/login" element={<Login />} />
+
+      <Route path="/logout" element={<Logout />} />
+
+      <Route
+        path="/boards"
+        element={
+          <Protected check="email">
+            <Boards />
+          </Protected>
+        }
+      />
+
+      <Route
+        path="/boards/:boardId"
+        element={
+          <Protected signInAnonymously>
+            <Board />
+          </Protected>
+        }
+      />
+
+      <Route path="*" element={<NotFound />} />
     </Router>
   );
 }

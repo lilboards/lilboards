@@ -1,16 +1,17 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
+import { renderWithContext } from '../../utils/test';
 import Home from './Home';
 
 it('renders home', () => {
-  render(<Home />);
+  renderWithContext(<Home />);
   expect(
     screen.getByText('Create boards, columns, and items.')
   ).toBeInTheDocument();
 });
 
 it('renders hero call-to-action', () => {
-  render(<Home />);
+  renderWithContext(<Home />);
   expect(screen.getByRole('link', { name: 'Get started' })).toHaveAttribute(
     'href',
     '/boards'
@@ -18,7 +19,7 @@ it('renders hero call-to-action', () => {
 });
 
 it('renders GitHub link', () => {
-  render(<Home />);
+  renderWithContext(<Home />);
   expect(screen.getByText(/open source/i)).toHaveAttribute(
     'href',
     'https://b.remarkabl.org/lilboards'
@@ -26,7 +27,7 @@ it('renders GitHub link', () => {
 });
 
 it('renders remarkablemark link', () => {
-  render(<Home />);
+  renderWithContext(<Home />);
   expect(screen.getByText('remarkablemark')).toHaveAttribute(
     'href',
     'https://b.remarkabl.org/mark'
@@ -35,7 +36,7 @@ it('renders remarkablemark link', () => {
 
 it('renders version link', () => {
   const version = process.env.REACT_APP_PROJECT_VERSION as string;
-  render(<Home />);
+  renderWithContext(<Home />);
   expect(screen.getByText(version)).toHaveAttribute(
     'href',
     `https://github.com/lilboards/lilboards/releases/tag/v${version}`

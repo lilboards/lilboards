@@ -1,8 +1,8 @@
 import CssBaseline from '@mui/material/CssBaseline';
-import { LocationProvider } from '@reach/router';
 import { StrictMode } from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
 // import reportWebVitals from './reportWebVitals';
 import Layout from './components/Layout';
@@ -12,13 +12,13 @@ import store from './store';
 render(
   <StrictMode>
     <CssBaseline />
-    <LocationProvider>
+    <BrowserRouter>
       <Provider store={store}>
         <Layout>
           <Routes />
         </Layout>
       </Provider>
-    </LocationProvider>
+    </BrowserRouter>
   </StrictMode>,
   document.getElementById('root')
 );

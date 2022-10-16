@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import CardMedia from '@mui/material/CardMedia';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import { Link } from '@reach/router';
+import { Link } from 'react-router-dom';
 
 import heroImage from './hero.png';
 

@@ -23,6 +23,7 @@ export function useAuth(shouldSignInAnonymously = false) {
             id: user.uid,
           })
         );
+
         setIsLoaded(true);
 
         logEvent('login', {

@@ -1,5 +1,5 @@
-import type { RouteComponentProps } from '@reach/router';
-import { Redirect } from '@reach/router';
+import { useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useSetDocumentTitle } from '../../hooks';
 import type { Id } from '../../types';
@@ -8,23 +8,31 @@ import Columns from '../Columns';
 import BoardName from './BoardName';
 import { useBoard } from './hooks/useBoard';
 
-interface Props extends RouteComponentProps {
-  boardId?: Id;
-}
-
-export default function Board(props: Props) {
-  const boardId = props.boardId || '';
+export default function Board() {
+  const params = useParams<{ boardId: Id }>();
+  const boardId = params.boardId || '';
   const { board, isLoaded } = useBoard(boardId);
   useSetDocumentTitle(board?.name || 'Untitled Board');
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    // board not found
+    if (boardId && !board && isLoaded) {
+      navigate('/404');
+    }
+  }, [boardId, board, isLoaded, navigate]);
+
+  // no board id
   if (!boardId) {
     return null;
   }
 
+  // board not found
   if (boardId && !board && isLoaded) {
-    return <Redirect to="/404" noThrow />;
+    return null;
   }
 
+  // no board
   if (!board) {
     return null;
   }

@@ -1,5 +1,6 @@
 import { screen, waitFor } from '@testing-library/react';
 import { onValue } from 'firebase/database';
+import { useParams } from 'react-router-dom';
 
 import {
   BOARD_TEST_ID as boardId,
@@ -7,12 +8,19 @@ import {
 } from '../../constants/test';
 import { getBoardDataRef } from '../../firebase';
 import { Board as BoardType } from '../../types';
-import { history, renderWithContext, updateStore } from '../../utils/test';
+import { renderWithContext, router, updateStore } from '../../utils/test';
 import Board from './Board';
 
 jest.mock('firebase/database', () => ({
   onValue: jest.fn(),
 }));
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useParams: jest.fn(),
+}));
+
+const mockedUseParams = jest.mocked(useParams);
 
 jest.mock('../../firebase', () => ({
   getBoardDataRef: jest.fn(),
@@ -33,29 +41,32 @@ beforeEach(() => {
     });
     return unsubscribe;
   });
-
-  unsubscribe.mockClear();
+  jest.clearAllMocks();
 });
 
 it('renders nothing when there is no board id', async () => {
+  mockedUseParams.mockReturnValue({});
   renderWithContext(<Board />);
   await waitFor(() => expect(screen.queryByText(boardControls)).toBe(null));
   expect(screen.queryByText(columns)).toBe(null);
 });
 
 it('renders nothing when there is no board', async () => {
-  renderWithContext(<Board boardId="invalid" />);
+  mockedUseParams.mockReturnValue({ boardId: 'invalid' });
+  renderWithContext(<Board />);
   await waitFor(() => expect(screen.queryByText(columns)).toBe(null));
 });
 
 it('redirects to "/404" when board is not found', async () => {
-  renderWithContext(<Board boardId="invalid" />);
-  await waitFor(() => expect(history.location.pathname).toBe('/404'));
+  mockedUseParams.mockReturnValue({ boardId: 'invalid' });
+  renderWithContext(<Board />);
+  await waitFor(() => expect(router.state.location.pathname).toBe('/404'));
 });
 
 it('renders board name as heading', async () => {
   const board = updateStore.withBoard();
-  renderWithContext(<Board boardId={board.id} />);
+  mockedUseParams.mockReturnValue({ boardId: board.id });
+  renderWithContext(<Board />);
   expect(await screen.findByRole('heading', { level: 1 })).toBe(
     await screen.findByText(board.name)
   );
@@ -63,13 +74,15 @@ it('renders board name as heading', async () => {
 
 it('renders <BoardControls>', async () => {
   const board = updateStore.withBoard();
-  renderWithContext(<Board boardId={board.id} />);
+  mockedUseParams.mockReturnValue({ boardId: board.id });
+  renderWithContext(<Board />);
   expect(await screen.findByText(boardControls)).toBeInTheDocument();
 });
 
 it('renders <Columns>', async () => {
   const board = updateStore.withBoard();
-  renderWithContext(<Board boardId={board.id} />);
+  mockedUseParams.mockReturnValue({ boardId: board.id });
+  renderWithContext(<Board />);
   expect(await screen.findByText(columns)).toBeInTheDocument();
 });
 
@@ -96,7 +109,8 @@ describe('with board and anonymous user', () => {
   });
 
   it('loads board', async () => {
-    renderWithContext(<Board boardId={boardId} />);
+    mockedUseParams.mockReturnValue({ boardId });
+    renderWithContext(<Board />);
     const heading = await screen.findByRole('heading', {
       level: 1,
       name: board.name,
@@ -105,7 +119,8 @@ describe('with board and anonymous user', () => {
   });
 
   it('attaches ref listeners', () => {
-    const { unmount } = renderWithContext(<Board boardId={boardId} />);
+    mockedUseParams.mockReturnValue({ boardId });
+    const { unmount } = renderWithContext(<Board />);
     expect(getBoardDataRef).toBeCalledTimes(1);
     expect(getBoardDataRef).toBeCalledWith(boardId);
     expect(onValue).toBeCalledTimes(1);

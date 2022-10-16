@@ -1,6 +1,6 @@
-import type { WindowLocation } from '@reach/router';
-import { useLocation } from '@reach/router';
 import { screen, waitFor } from '@testing-library/react';
+import type { Location } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import { REDIRECT_TO } from '../../constants';
 import {
@@ -8,11 +8,11 @@ import {
   USER_TEST_ID as userId,
 } from '../../constants/test';
 import { onAuthStateChanged } from '../../firebase';
-import { history, renderWithContext } from '../../utils/test';
+import { renderWithContext, router } from '../../utils/test';
 import Login from './Login';
 
-jest.mock('@reach/router', () => ({
-  ...jest.requireActual('@reach/router'),
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
   useLocation: jest.fn(),
 }));
 
@@ -50,7 +50,7 @@ describe('logged in', () => {
     state: {
       [REDIRECT_TO]: redirectTo,
     },
-  };
+  } as Location;
 
   beforeEach(() => {
     (onAuthStateChanged as jest.Mock).mockImplementationOnce((callback) => {
@@ -64,7 +64,7 @@ describe('logged in', () => {
   });
 
   it('does not render "Sign In"', () => {
-    mockedUseLocation.mockReturnValueOnce(location as WindowLocation);
+    mockedUseLocation.mockReturnValueOnce(location);
     renderWithContext(<Login />);
     expect(screen.queryAllByText('Sign In')).toHaveLength(0);
   });
@@ -72,15 +72,19 @@ describe('logged in', () => {
   it.each([undefined, { state: {} }, { state: { [REDIRECT_TO]: '/' } }])(
     'redirects to "/boards" when location=%p',
     async (location) => {
-      mockedUseLocation.mockReturnValueOnce(location as WindowLocation);
+      mockedUseLocation.mockReturnValueOnce(location as Location);
       renderWithContext(<Login />);
-      await waitFor(() => expect(history.location.pathname).toBe('/boards'));
+      await waitFor(() =>
+        expect(router.state.location.pathname).toBe('/boards')
+      );
     }
   );
 
   it(`redirects to location.state.${REDIRECT_TO}`, async () => {
-    mockedUseLocation.mockReturnValue(location as WindowLocation);
+    mockedUseLocation.mockReturnValue(location);
     renderWithContext(<Login />);
-    await waitFor(() => expect(history.location.pathname).toBe(redirectTo));
+    await waitFor(() =>
+      expect(router.state.location.pathname).toBe(redirectTo)
+    );
   });
 });
