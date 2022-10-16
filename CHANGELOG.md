@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.20.2](https://github.com/lilboards/lilboards/compare/v4.20.1...v4.20.2) (2022-10-16)
+
+
+### Bug Fixes
+
+* **utils:** change `replaceAll` to `replace` in transform.ts ([9860027](https://github.com/lilboards/lilboards/commit/9860027b4c8f8971f729433f356a0aa2629a447a))
+
 ## [4.20.1](https://github.com/lilboards/lilboards/compare/v4.20.0...v4.20.1) (2022-07-17)
 
 
