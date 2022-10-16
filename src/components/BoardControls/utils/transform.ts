@@ -1,5 +1,7 @@
 import type { Columns, Items } from '../../../types';
 
+const NEWLINE = '\n';
+
 /**
  * Transforms board data to a multidimensional array.
  */
@@ -41,17 +43,17 @@ export function transformToMarkdown(columns: Columns, items: Items): string {
   let markdown = '';
   const headers = rows.shift()!;
   markdown += `| ${headers.join(' | ')} |`;
-  markdown += '\n';
+  markdown += NEWLINE;
   markdown += `|${headers.map(() => ' --- |').join('')}`;
-  markdown += '\n';
+  markdown += NEWLINE;
 
   rows.forEach((row) => {
     markdown += `| ${row
       .map((text) =>
-        typeof text === 'string' ? text.replaceAll('\n', '<br>') : text
+        typeof text === 'string' ? text.replace(/\n/g, '<br>') : text
       )
       .join(' | ')} |`;
-    markdown += '\n';
+    markdown += NEWLINE;
   });
 
   return markdown;
