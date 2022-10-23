@@ -1,6 +1,5 @@
 import GitHubIcon from '@mui/icons-material/GitHub';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
@@ -18,17 +17,16 @@ export default function Header() {
     <AppBar position="static">
       <Container>
         <Toolbar disableGutters>
-          <Box flexGrow={1}>
-            <Link
-              color="inherit"
-              component={RouterLink}
-              to="/"
-              underline="hover"
-              variant="h6"
-            >
-              Lilboards
-            </Link>
-          </Box>
+          <Link
+            color="inherit"
+            component={RouterLink}
+            sx={{ flexGrow: 1 }}
+            to="/"
+            underline="hover"
+            variant="h6"
+          >
+            Lilboards
+          </Link>
 
           <Link
             aria-label="Open GitHub repository"
@@ -47,17 +45,16 @@ export default function Header() {
             </Button>
           )}
 
-          <Box marginLeft={1}>
-            <Button
-              color="inherit"
-              component={RouterLink}
-              state={{ [REDIRECT_TO]: window.location.pathname }}
-              to={isLoggedIn ? '/logout' : '/login'}
-              variant="outlined"
-            >
-              {isLoggedIn ? 'Logout' : 'Login'}
-            </Button>
-          </Box>
+          <Button
+            color="inherit"
+            component={RouterLink}
+            state={{ [REDIRECT_TO]: window.location.pathname }}
+            sx={{ marginLeft: 1 }}
+            to={isLoggedIn ? '/logout' : '/login'}
+            variant="outlined"
+          >
+            {isLoggedIn ? 'Logout' : 'Login'}
+          </Button>
         </Toolbar>
       </Container>
     </AppBar>
