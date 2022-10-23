@@ -1,6 +1,6 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import { StrictMode } from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -9,7 +9,9 @@ import Layout from './components/Layout';
 import Routes from './components/Routes';
 import store from './store';
 
-render(
+export const root = createRoot(document.getElementById('root')!);
+
+root.render(
   <StrictMode>
     <CssBaseline />
     <BrowserRouter>
@@ -19,8 +21,7 @@ render(
         </Layout>
       </Provider>
     </BrowserRouter>
-  </StrictMode>,
-  document.getElementById('root')
+  </StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

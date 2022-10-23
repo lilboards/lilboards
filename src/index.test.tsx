@@ -1,8 +1,9 @@
 import { act } from '@testing-library/react';
-import { unmountComponentAtNode } from 'react-dom';
+import type { Root } from 'react-dom/client';
 
 let div: HTMLDivElement;
 let getElementByIdSpy: jest.SpyInstance;
+let root: Root;
 
 beforeEach(() => {
   div = document.createElement('div');
@@ -14,7 +15,7 @@ beforeEach(() => {
 it('renders without crashing', () => {
   expect(getElementByIdSpy).not.toBeCalled();
   act(() => {
-    require('.');
+    root = require('.').root;
   });
   expect(getElementByIdSpy).toBeCalledTimes(1);
   expect(getElementByIdSpy).toBeCalledWith('root');
@@ -22,5 +23,5 @@ it('renders without crashing', () => {
 
 afterAll(() => {
   getElementByIdSpy.mockRestore();
-  unmountComponentAtNode(div);
+  root.unmount();
 });
