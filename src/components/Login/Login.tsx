@@ -1,12 +1,10 @@
 import Typography from '@mui/material/Typography';
 import { useEffect } from 'react';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { REDIRECT_TO } from '../../constants';
-import { firebaseAuth } from '../../firebase';
 import { useAuth, useSelector, useSetDocumentTitle } from '../../hooks';
-import uiConfig from './uiConfig';
+import StyledFirebaseAuth from './StyledFirebaseAuth';
 
 /**
  * {@link https://github.com/firebase/firebaseui-web-react}
@@ -36,7 +34,7 @@ export default function Login() {
       <Typography align="center" component="h1" gutterBottom variant="h4">
         Sign In
       </Typography>
-      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebaseAuth} />
+      <StyledFirebaseAuth />
     </>
   );
 }
