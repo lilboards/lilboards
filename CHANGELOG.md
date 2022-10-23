@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.20.3](https://github.com/lilboards/lilboards/compare/v4.20.2...v4.20.3) (2022-10-23)
+
+
+### Code Refactoring
+
+* **components:** replace firebaseui-web-react with firebaseui ([c18c6df](https://github.com/lilboards/lilboards/commit/c18c6df1da6d675a748590a74a75376eaca6b15c))
+
 ## [4.20.2](https://github.com/lilboards/lilboards/compare/v4.20.1...v4.20.2) (2022-10-16)
 
 
