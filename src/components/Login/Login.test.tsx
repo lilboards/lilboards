@@ -18,7 +18,7 @@ jest.mock('react-router-dom', () => ({
 
 const mockedUseLocation = jest.mocked(useLocation);
 
-jest.mock('react-firebaseui/StyledFirebaseAuth', () => () => <></>);
+jest.mock('./StyledFirebaseAuth', () => () => <>StyledFirebaseAuth</>);
 
 jest.mock('../../firebase', () => ({
   logEvent: jest.fn(),
@@ -41,6 +41,11 @@ describe('not logged in', () => {
         name: 'Sign In',
       })
     ).toBeInTheDocument();
+  });
+
+  it('renders StyledFirebaseAuth', () => {
+    renderWithContext(<Login />);
+    expect(screen.getByText('StyledFirebaseAuth')).toBeInTheDocument();
   });
 });
 
