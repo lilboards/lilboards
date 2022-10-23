@@ -25,12 +25,18 @@ This project is built with:
 - [Redux Toolkit](https://redux-toolkit.js.org/)
 - [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)
 
+## Prerequisites
+
+- [Node.js](https://nodejs.org/)
+- [Yarn 1](https://classic.yarnpkg.com/)
+
 ## Install
 
 Clone the repository:
 
 ```sh
-git clone https://github.com/lilboards/lilboards.git && cd lilboards
+git clone https://github.com/lilboards/lilboards.git
+cd lilboards
 ```
 
 Install the dependencies:
@@ -58,6 +64,18 @@ You will also see any lint errors in the console.
 Starts the [Firebase Emulators](https://firebase.google.com/docs/rules/emulator-setup).
 
 Open [http://localhost:4000](http://localhost:4000) to view it in the browser.
+
+If you get the error:
+
+```
+Could not start Database Emulator, port taken.
+```
+
+Then run:
+
+```sh
+kill $(lsof -ti :9000) && yarn firebase:emulators
+```
 
 ### `yarn test`
 
