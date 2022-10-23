@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.20.4](https://github.com/lilboards/lilboards/compare/v4.20.3...v4.20.4) (2022-10-23)
+
+
+### Performance Improvements
+
+* replace react-dom with react-dom/client and use React 18 ([c88774d](https://github.com/lilboards/lilboards/commit/c88774d8ee6f93269dd13e8d5096c602491d121f))
+
 ## [4.20.3](https://github.com/lilboards/lilboards/compare/v4.20.2...v4.20.3) (2022-10-23)
 
 
