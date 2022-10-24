@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 import 'firebaseui/dist/firebaseui.css';
 
 import * as firebaseui from 'firebaseui';
@@ -16,28 +15,30 @@ export default function StyledFirebaseAuth() {
 
   useEffect(() => {
     // get or create a FirebaseUI instance
-    const firebaseUiWidget =
+    const authUI =
       firebaseui.auth.AuthUI.getInstance() ||
+      /* istanbul ignore next */
       new firebaseui.auth.AuthUI(firebaseAuth);
 
+    /* istanbul ignore else */
     if (uiConfig.signInFlow === 'popup') {
-      firebaseUiWidget.reset();
+      authUI.reset();
     }
 
     // track the auth state to reset FirebaseUI if the user signs out
     const unregisterAuthObserver = onAuthStateChanged((user) => {
       if (!user && userSignedIn) {
-        firebaseUiWidget.reset();
+        authUI.reset();
       }
       setUserSignedIn(Boolean(user));
     });
 
-    // Render the firebaseUi Widget.
-    firebaseUiWidget.start(ref.current!, uiConfig);
+    // render the FirebaseUI widget
+    authUI.start(ref.current!, uiConfig);
 
     return () => {
       unregisterAuthObserver();
-      firebaseUiWidget.reset();
+      authUI.reset();
     };
   }, [userSignedIn]);
 
