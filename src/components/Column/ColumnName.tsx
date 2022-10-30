@@ -1,4 +1,3 @@
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import type { ChangeEvent } from 'react';
@@ -91,13 +90,16 @@ export default function ColumnName(props: Props) {
         value={props.name}
       />
 
-      <Box position="absolute" right={0} top={0}>
-        <CloseButton
-          aria-label={`Delete column "${props.name || props.placeholder}"`}
-          onClick={deleteColumn}
-          size="small"
-        />
-      </Box>
+      <CloseButton
+        aria-label={`Delete column "${props.name || props.placeholder}"`}
+        onClick={deleteColumn}
+        size="small"
+        sx={{
+          position: 'absolute',
+          right: 0,
+          top: 0,
+        }}
+      />
     </>
   );
 }

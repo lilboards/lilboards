@@ -1,4 +1,3 @@
-import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import type { ReactNode } from 'react';
 
@@ -14,8 +13,8 @@ export default function Layout(props: Props) {
   return (
     <>
       <Header />
-      <Container component="main">
-        <Box my={marginTopBottom}>{props.children}</Box>
+      <Container component="main" sx={{ my: marginTopBottom }}>
+        {props.children}
       </Container>
     </>
   );

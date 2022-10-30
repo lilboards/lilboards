@@ -1,4 +1,3 @@
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 import actions from '../../actions';
@@ -39,9 +38,11 @@ export default function Boards() {
         Boards
       </Typography>
 
-      <Box marginBottom={2}>
-        <AddButton aria-label="Create board" onClick={addBoard} />
-      </Box>
+      <AddButton
+        aria-label="Create board"
+        onClick={addBoard}
+        sx={{ marginBottom: 2 }}
+      />
 
       <BoardCards />
     </>
