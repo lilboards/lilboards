@@ -6,11 +6,11 @@ import type { Id } from '../../types';
 import Items from '../Items';
 import ColumnName from './ColumnName';
 
-type Props = {
+interface Props {
   boardId: Id;
   columnId: Id;
   columnIndex: number;
-};
+}
 
 export default function Column(props: Props) {
   const column = useSelector((state) => state.columns[props.columnId]);

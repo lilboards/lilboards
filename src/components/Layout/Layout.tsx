@@ -3,9 +3,9 @@ import type { ReactNode } from 'react';
 
 import Header from './Header';
 
-type Props = {
+interface Props {
   children: ReactNode;
-};
+}
 
 const marginTopBottom = 4; // 8 * 4 = 32px
 

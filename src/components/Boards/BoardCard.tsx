@@ -12,9 +12,9 @@ import { logEvent } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import type { Id } from '../../types';
 
-type Props = {
+interface Props {
   boardId: Id;
-};
+}
 
 export default function BoardCard(props: Props) {
   const dispatch = useDispatch();

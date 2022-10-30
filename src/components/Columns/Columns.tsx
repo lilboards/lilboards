@@ -6,9 +6,9 @@ import Column from '../Column';
 import DragDropContainer from './DragDropContainer';
 import { useColumns, useItems, useLikes } from './hooks';
 
-type Props = {
+interface Props {
   boardId: Id;
-};
+}
 
 export default function Columns(props: Props) {
   useColumns(props.boardId);

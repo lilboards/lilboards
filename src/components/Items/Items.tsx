@@ -7,10 +7,10 @@ import { useDispatch, useSelector } from '../../hooks';
 import type { Id, Item } from '../../types';
 import DroppableItems from './DroppableItems';
 
-type Props = {
+interface Props {
   boardId: Id;
   columnId: Id;
-};
+}
 
 export default function Items(props: Props) {
   const dispatch = useDispatch();

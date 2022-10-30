@@ -3,11 +3,11 @@ import { memo } from 'react';
 import type { Id } from '../../types';
 import DraggableItem from './DraggableItem';
 
-type Props = {
+interface Props {
   boardId: Id;
   columnId: Id;
   itemIds: Id[];
-};
+}
 
 function InnerList(props: Props) {
   return (

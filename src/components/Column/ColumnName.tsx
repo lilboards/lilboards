@@ -8,12 +8,12 @@ import { useDispatch, useSelector } from '../../hooks';
 import type { Id } from '../../types';
 import CloseButton from '../CloseButton';
 
-type Props = {
+interface Props {
   boardId: Id;
   columnId: Id;
   name: string;
   placeholder: string;
-};
+}
 
 export default function ColumnName(props: Props) {
   const dispatch = useDispatch();
