@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.20.5](https://github.com/lilboards/lilboards/compare/v4.20.4...v4.20.5) (2022-10-30)
+
+
+### Bug Fixes
+
+* **Header:** don't let "Lilboards" link take full width ([e2cea4b](https://github.com/lilboards/lilboards/commit/e2cea4ba2e94772f1152b752c8a5d823fd4881f3))
+
 ## [4.20.4](https://github.com/lilboards/lilboards/compare/v4.20.3...v4.20.4) (2022-10-23)
 
 
