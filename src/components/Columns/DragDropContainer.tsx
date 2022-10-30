@@ -7,10 +7,10 @@ import { useDispatch, useSelector } from '../../hooks';
 import type { Id } from '../../types';
 import { combine, reorder } from './utils';
 
-type Props = {
+interface Props {
   boardId: Id;
   children: ReactNode;
-};
+}
 
 export default function DragDropContainer(props: Props) {
   const dispatch = useDispatch();

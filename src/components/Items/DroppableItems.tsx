@@ -6,10 +6,10 @@ import type { Id } from '../../types';
 import InnerList from './InnerList';
 import { getDroppableBackgroundColor } from './styles';
 
-type Props = {
+interface Props {
   boardId: Id;
   columnId: Id;
-};
+}
 
 export default function DroppableItems(props: Props) {
   const itemIds = useSelector(
