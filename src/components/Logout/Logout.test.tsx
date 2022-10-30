@@ -14,8 +14,10 @@ jest.mock('../../firebase', () => ({
   signOut: jest.fn(),
 }));
 
+const mockedSignOut = jest.mocked(signOut);
+
 beforeEach(() => {
-  (signOut as jest.Mock).mockResolvedValueOnce(undefined);
+  mockedSignOut.mockResolvedValueOnce(undefined);
 });
 
 it('signs user out', async () => {

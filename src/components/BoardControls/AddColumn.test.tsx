@@ -13,8 +13,10 @@ jest.mock('../../firebase', () => ({
   generateId: jest.fn(),
 }));
 
+const mockedGenerateId = jest.mocked(generateId);
+
 beforeEach(() => {
-  (generateId as jest.Mock).mockReturnValue(columnId);
+  mockedGenerateId.mockReturnValue(columnId);
 });
 
 it('renders "Add column" button when user can edit', () => {

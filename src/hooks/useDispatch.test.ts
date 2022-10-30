@@ -6,8 +6,10 @@ jest.mock('react-redux', () => ({
   useDispatch: jest.fn(),
 }));
 
+const mockedUseReactReduxDispatch = jest.mocked(useReactReduxDispatch);
+
 beforeEach(() => {
-  (useReactReduxDispatch as jest.Mock).mockClear();
+  mockedUseReactReduxDispatch.mockClear();
 });
 
 it('wraps react-redux useDispatch', () => {

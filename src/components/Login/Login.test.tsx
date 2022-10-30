@@ -25,11 +25,14 @@ jest.mock('../../firebase', () => ({
   onAuthStateChanged: jest.fn(),
 }));
 
+const mockedOnAuthStateChanged = jest.mocked(onAuthStateChanged);
+
 describe('not logged in', () => {
   beforeEach(() => {
-    (onAuthStateChanged as jest.Mock).mockImplementationOnce((callback) => {
+    mockedOnAuthStateChanged.mockImplementationOnce((callback) => {
       const user = null;
       callback(user);
+      return () => {};
     });
   });
 
@@ -58,12 +61,13 @@ describe('logged in', () => {
   } as Location;
 
   beforeEach(() => {
-    (onAuthStateChanged as jest.Mock).mockImplementationOnce((callback) => {
+    mockedOnAuthStateChanged.mockImplementationOnce((callback) => {
       const user = {
         email: userEmail,
         id: userId,
       };
-      callback(user);
+      callback(user as any);
+      return () => {};
     });
     mockedUseLocation.mockReset();
   });

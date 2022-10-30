@@ -21,9 +21,15 @@ jest.mock('firebase/database', () => ({
   onChildRemoved: jest.fn(),
 }));
 
+const mockedOnChildAdded = jest.mocked(onChildAdded);
+const mockedOnChildChanged = jest.mocked(onChildChanged);
+const mockedOnChildRemoved = jest.mocked(onChildRemoved);
+
 jest.mock('../../../firebase', () => ({
   getItemsRef: jest.fn(),
 }));
+
+const mockedGetItemsRef = jest.mocked(getItemsRef);
 
 function TestComponent() {
   useItems(boardId);
@@ -39,17 +45,20 @@ const unsubscribeOnChildRemoved = jest.fn();
 
 beforeEach(() => {
   jest.useFakeTimers();
-  (getItemsRef as jest.Mock).mockReturnValueOnce(itemsRef);
-  (onChildAdded as jest.Mock).mockImplementationOnce((query, callback) => {
-    callback({ val: () => null });
+  mockedGetItemsRef.mockReturnValueOnce(itemsRef as any);
+  mockedOnChildAdded.mockImplementationOnce((query, callback) => {
+    const dataSnapshot = { val: () => null };
+    callback(dataSnapshot as any, null);
     return unsubscribeOnChildAdded;
   });
-  (onChildChanged as jest.Mock).mockImplementationOnce((query, callback) => {
-    callback({ val: () => null });
+  mockedOnChildChanged.mockImplementationOnce((query, callback) => {
+    const dataSnapshot = { val: () => null };
+    callback(dataSnapshot as any, null);
     return unsubscribeOnChildChanged;
   });
-  (onChildRemoved as jest.Mock).mockImplementationOnce((query, callback) => {
-    callback({});
+  mockedOnChildRemoved.mockImplementationOnce((query, callback) => {
+    const dataSnapshot = {};
+    callback(dataSnapshot as any);
     return unsubscribeOnChildRemoved;
   });
   [
@@ -66,19 +75,18 @@ afterEach(() => {
 
 describe('onChildAdded', () => {
   beforeEach(() => {
-    (onChildAdded as jest.Mock)
-      .mockReset()
-      .mockImplementationOnce((query, callback) => {
-        callback({
-          val: (): Item => ({
-            createdAt: dateNow,
-            createdBy: userId,
-            text: itemText,
-          }),
-          key: itemId,
-        });
-        return unsubscribeOnChildAdded;
-      });
+    mockedOnChildAdded.mockReset().mockImplementationOnce((query, callback) => {
+      const dataSnapshot = {
+        val: (): Item => ({
+          createdAt: dateNow,
+          createdBy: userId,
+          text: itemText,
+        }),
+        key: itemId,
+      };
+      callback(dataSnapshot as any, null);
+      return unsubscribeOnChildAdded;
+    });
   });
 
   it('subscribes and unsubscribes to listener', () => {
@@ -106,15 +114,14 @@ describe('onChildAdded', () => {
   });
 
   it('does not add item when itemId is invalid', () => {
-    (onChildAdded as jest.Mock)
-      .mockReset()
-      .mockImplementationOnce((query, callback) => {
-        callback({
-          val: () => null,
-          key: null,
-        });
-        return unsubscribeOnChildAdded;
-      });
+    mockedOnChildAdded.mockReset().mockImplementationOnce((query, callback) => {
+      const dataSnapshot = {
+        val: () => null,
+        key: null,
+      };
+      callback(dataSnapshot as any, null);
+      return unsubscribeOnChildAdded;
+    });
     renderWithContext(<TestComponent />);
     jest.runAllTimers();
     expect(store.getState().items).toEqual({});
@@ -123,17 +130,18 @@ describe('onChildAdded', () => {
 
 describe('onChildChanged', () => {
   beforeEach(() => {
-    (onChildChanged as jest.Mock)
+    mockedOnChildChanged
       .mockReset()
       .mockImplementationOnce((query, callback) => {
-        callback({
+        const dataSnapshot = {
           val: (): Partial<Item> => ({
             text: itemText + 2,
             updatedAt: dateNow + 2,
             updatedBy: userId + 2,
           }),
           key: itemId,
-        });
+        };
+        callback(dataSnapshot as any, null);
         return unsubscribeOnChildChanged;
       });
   });
@@ -166,13 +174,14 @@ describe('onChildChanged', () => {
   });
 
   it('does not update item when itemId is invalid', () => {
-    (onChildChanged as jest.Mock)
+    mockedOnChildChanged
       .mockReset()
       .mockImplementationOnce((query, callback) => {
-        callback({
+        const dataSnapshot = {
           val: () => null,
           key: null,
-        });
+        };
+        callback(dataSnapshot as any, null);
         return unsubscribeOnChildChanged;
       });
     renderWithContext(<TestComponent />);
@@ -183,12 +192,13 @@ describe('onChildChanged', () => {
 
 describe('onChildRemoved', () => {
   beforeEach(() => {
-    (onChildRemoved as jest.Mock)
+    mockedOnChildRemoved
       .mockReset()
       .mockImplementationOnce((query, callback) => {
-        callback({
+        const dataSnapshot = {
           key: itemId,
-        });
+        };
+        callback(dataSnapshot as any);
         return unsubscribeOnChildRemoved;
       });
   });
