@@ -10,9 +10,12 @@ jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
 }));
 
+const mockedShallowEqual = jest.mocked(shallowEqual);
+const mockedUseReactReduxSelector = jest.mocked(useReactReduxSelector);
+
 beforeEach(() => {
-  (shallowEqual as jest.Mock).mockClear();
-  (useReactReduxSelector as jest.Mock).mockClear();
+  mockedShallowEqual.mockClear();
+  mockedUseReactReduxSelector.mockClear();
 });
 
 it('wraps react-redux useSelector with shallowEqual', () => {

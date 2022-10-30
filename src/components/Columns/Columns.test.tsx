@@ -11,10 +11,14 @@ jest.mock('./hooks', () => ({
   useLikes: jest.fn(),
 }));
 
+const mockedUseColumns = jest.mocked(useColumns);
+const mockedUseItems = jest.mocked(useItems);
+const mockedUseLikes = jest.mocked(useLikes);
+
 beforeEach(() => {
-  (useColumns as jest.Mock).mockClear();
-  (useItems as jest.Mock).mockClear();
-  (useLikes as jest.Mock).mockClear();
+  mockedUseColumns.mockClear();
+  mockedUseItems.mockClear();
+  mockedUseLikes.mockClear();
   updateStore.withColumn();
 });
 

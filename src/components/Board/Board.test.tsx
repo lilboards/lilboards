@@ -15,6 +15,8 @@ jest.mock('firebase/database', () => ({
   onValue: jest.fn(),
 }));
 
+const mockedOnValue = jest.mocked(onValue);
+
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useParams: jest.fn(),
@@ -26,6 +28,8 @@ jest.mock('../../firebase', () => ({
   getBoardDataRef: jest.fn(),
 }));
 
+const mockedGetBoardDataRef = jest.mocked(getBoardDataRef);
+
 jest.mock('../BoardControls', () => () => <p>Board Controls</p>);
 jest.mock('../Columns', () => () => <p>Columns</p>);
 
@@ -35,10 +39,9 @@ const columns = 'Columns';
 const unsubscribe = jest.fn();
 
 beforeEach(() => {
-  (onValue as jest.Mock).mockImplementationOnce((query, callback) => {
-    callback({
-      val: () => null,
-    });
+  mockedOnValue.mockImplementationOnce((query, callback) => {
+    const dataSnapshot = { val: () => null };
+    callback(dataSnapshot as any);
     return unsubscribe;
   });
   jest.clearAllMocks();
@@ -96,16 +99,13 @@ describe('with board and anonymous user', () => {
   const boardDataRef = 'boardDataRef';
 
   beforeEach(() => {
-    (getBoardDataRef as jest.Mock).mockReturnValueOnce(boardDataRef);
+    mockedGetBoardDataRef.mockReturnValueOnce(boardDataRef as any);
 
-    (onValue as jest.Mock)
-      .mockReset()
-      .mockImplementationOnce((query, callback) => {
-        callback({
-          val: (): BoardType => board,
-        });
-        return unsubscribe;
-      });
+    mockedOnValue.mockReset().mockImplementationOnce((query, callback) => {
+      const dataSnapshot = { val: (): BoardType => board };
+      callback(dataSnapshot as any);
+      return unsubscribe;
+    });
   });
 
   it('loads board', async () => {

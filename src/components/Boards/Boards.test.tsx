@@ -23,11 +23,16 @@ jest.mock('../../firebase', () => ({
   saveUserBoardId: jest.fn(),
 }));
 
+const mockedGenerateId = jest.mocked(generateId);
+const mockedGetBoardVal = jest.mocked(getBoardVal);
+const mockedGetUserBoardsVal = jest.mocked(getUserBoardsVal);
+const mockedSaveUserBoardId = jest.mocked(saveUserBoardId);
+
 beforeEach(() => {
-  (generateId as jest.Mock).mockReturnValue(boardId);
-  (getBoardVal as jest.Mock).mockResolvedValueOnce(null);
-  (getUserBoardsVal as jest.Mock).mockResolvedValueOnce(null);
-  (saveUserBoardId as jest.Mock).mockClear();
+  mockedGenerateId.mockReturnValue(boardId);
+  mockedGetBoardVal.mockResolvedValueOnce(null);
+  mockedGetUserBoardsVal.mockResolvedValueOnce(null);
+  mockedSaveUserBoardId.mockClear();
 });
 
 it('renders heading', () => {
@@ -79,16 +84,16 @@ describe('create board', () => {
 
 describe('mount', () => {
   beforeEach(() => {
-    (getUserBoardsVal as jest.Mock).mockReset().mockResolvedValueOnce({
+    mockedGetUserBoardsVal.mockReset().mockResolvedValueOnce({
       [`${boardId}1`]: true,
       [`${boardId}2`]: true,
       [`${boardId}3`]: false,
     });
 
-    (getBoardVal as jest.Mock)
+    mockedGetBoardVal
       .mockReset()
-      .mockResolvedValueOnce({ name: 'Board 1' })
-      .mockResolvedValueOnce({ name: 'Board 2' })
+      .mockResolvedValueOnce({ name: 'Board 1' } as any)
+      .mockResolvedValueOnce({ name: 'Board 2' } as any)
       .mockResolvedValueOnce(null);
   });
 

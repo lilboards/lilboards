@@ -14,9 +14,13 @@ jest.mock('firebase/database', () => ({
   onValue: jest.fn(),
 }));
 
+const mockedOnValue = jest.mocked(onValue);
+
 jest.mock('../../../firebase', () => ({
   getLikesRef: jest.fn(),
 }));
+
+const mockedGetLikesRef = jest.mocked(getLikesRef);
 
 function TestComponent() {
   useLikes(boardId);
@@ -37,8 +41,8 @@ afterEach(() => {
 
 describe('likes snapshot value is valid', () => {
   beforeEach(() => {
-    (onValue as jest.Mock).mockImplementationOnce((query, callback) => {
-      callback({
+    mockedOnValue.mockImplementationOnce((query, callback) => {
+      const dataSnapshot = {
         val: (): Likes => ({
           items: {
             [itemId]: {
@@ -46,7 +50,8 @@ describe('likes snapshot value is valid', () => {
             },
           },
         }),
-      });
+      };
+      callback(dataSnapshot as any);
       return unsubscribe;
     });
   });
@@ -79,10 +84,9 @@ describe('likes snapshot value is valid', () => {
 
 describe('likes snapshot value is null', () => {
   beforeEach(() => {
-    (onValue as jest.Mock).mockImplementationOnce((query, callback) => {
-      callback({
-        val: () => null,
-      });
+    mockedOnValue.mockImplementationOnce((query, callback) => {
+      const dataSnapshot = { val: () => null };
+      callback(dataSnapshot as any);
       return unsubscribe;
     });
   });
