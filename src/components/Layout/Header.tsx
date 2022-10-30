@@ -1,5 +1,6 @@
 import GitHubIcon from '@mui/icons-material/GitHub';
 import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
@@ -17,16 +18,18 @@ export default function Header() {
     <AppBar position="static">
       <Container>
         <Toolbar disableGutters>
-          <Link
-            color="inherit"
-            component={RouterLink}
-            sx={{ flexGrow: 1 }}
-            to="/"
-            underline="hover"
-            variant="h6"
-          >
-            Lilboards
-          </Link>
+          {/* flexGrow is on Box so Link does not take full width */}
+          <Box sx={{ flexGrow: 1 }}>
+            <Link
+              color="inherit"
+              component={RouterLink}
+              to="/"
+              underline="hover"
+              variant="h6"
+            >
+              Lilboards
+            </Link>
+          </Box>
 
           <Link
             aria-label="Open GitHub repository"
