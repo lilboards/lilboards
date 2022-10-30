@@ -86,28 +86,34 @@ export default function Item(props: Props) {
   return (
     <Box height="100%" position="relative">
       <Card raised={isEditing} style={props.cardStyle}>
-        <Box position="absolute" right={0} top={0}>
-          <CloseButton
-            aria-label={`Delete item "${props.itemId}"`}
-            onClick={deleteItem}
-            size="small"
-          />
-        </Box>
+        <CloseButton
+          aria-label={`Delete item "${props.itemId}"`}
+          onClick={deleteItem}
+          size="small"
+          sx={{
+            position: 'absolute',
+            right: 0,
+            top: 0,
+          }}
+        />
 
-        <Box component={CardContent} marginTop={1} marginBottom={1}>
-          <InputBase
-            autoFocus={isEditing}
-            fullWidth
-            inputProps={{ 'aria-label': `Edit item "${props.itemId}"` }}
-            multiline
-            onBlur={handleBlur}
-            onChange={handleChange}
-            onFocus={handleFocus}
-            value={item.text}
-          />
-        </Box>
+        <InputBase
+          autoFocus={isEditing}
+          components={{ Root: CardContent }}
+          fullWidth
+          inputProps={{ 'aria-label': `Edit item "${props.itemId}"` }}
+          multiline
+          onBlur={handleBlur}
+          onChange={handleChange}
+          onFocus={handleFocus}
+          value={item.text}
+          sx={{
+            marginTop: 1,
+            marginBottom: 1,
+          }}
+        />
 
-        <Box position="absolute" bottom={1} right={0}>
+        <Box sx={{ position: 'absolute', bottom: 1, right: 0 }}>
           <Likes boardId={props.boardId} itemId={props.itemId} />
         </Box>
       </Card>

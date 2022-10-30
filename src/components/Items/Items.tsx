@@ -1,5 +1,4 @@
 import AddIcon from '@mui/icons-material/Add';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
 import actions from '../../actions';
@@ -44,11 +43,15 @@ export default function Items(props: Props) {
 
   return (
     <>
-      <Box marginBottom={2}>
-        <Button color="primary" fullWidth onClick={addItem} variant="contained">
-          <AddIcon /> Add item
-        </Button>
-      </Box>
+      <Button
+        color="primary"
+        fullWidth
+        onClick={addItem}
+        variant="contained"
+        sx={{ marginBottom: 2 }}
+      >
+        <AddIcon /> Add item
+      </Button>
 
       <DroppableItems boardId={props.boardId} columnId={props.columnId} />
     </>

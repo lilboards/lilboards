@@ -11,17 +11,19 @@ export default function Hero() {
   const theme = useTheme();
 
   return (
-    <Box display={{ sm: 'flex' }} marginBottom={4}>
-      <Box textAlign={{ xs: 'center', sm: 'left' }}>
+    <Box sx={{ display: { sm: 'flex' }, marginBottom: 4 }}>
+      <Box sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
         <Typography
           component="h1"
-          fontSize={{
-            xs: theme.typography.h4.fontSize,
-            sm: theme.typography.h3.fontSize,
-            md: theme.typography.h2.fontSize,
-          }}
           gutterBottom
           variant="h2"
+          sx={{
+            fontSize: {
+              xs: theme.typography.h4.fontSize,
+              sm: theme.typography.h3.fontSize,
+              md: theme.typography.h2.fontSize,
+            },
+          }}
         >
           Create boards, columns, and items.
         </Typography>

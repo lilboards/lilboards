@@ -12,9 +12,11 @@ export default function Footer() {
 
       <Box
         component="footer"
-        display={{ sm: 'flex' }}
-        justifyContent="space-between"
-        textAlign={{ xs: 'center', sm: 'left' }}
+        sx={{
+          display: { sm: 'flex' },
+          justifyContent: 'space-between',
+          textAlign: { xs: 'center', sm: 'left' },
+        }}
       >
         <Typography paragraph>
           By{' '}
