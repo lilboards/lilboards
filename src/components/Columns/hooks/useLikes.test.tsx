@@ -20,8 +20,6 @@ jest.mock('../../../firebase', () => ({
   getLikesRef: jest.fn(),
 }));
 
-const mockedGetLikesRef = jest.mocked(getLikesRef);
-
 function TestComponent() {
   useLikes(boardId);
   return null;
