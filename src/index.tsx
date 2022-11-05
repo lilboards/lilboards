@@ -2,25 +2,26 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+} from 'react-router-dom';
 
 // import reportWebVitals from './reportWebVitals';
-import Layout from './components/Layout';
-import Routes from './components/Routes';
+import routes from './routes';
 import store from './store';
+
+const router = createBrowserRouter(createRoutesFromElements(routes));
 
 export const root = createRoot(document.getElementById('root')!);
 
 root.render(
   <StrictMode>
     <CssBaseline />
-    <BrowserRouter>
-      <Provider store={store}>
-        <Layout>
-          <Routes />
-        </Layout>
-      </Provider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );
 
