@@ -1,20 +1,15 @@
 import Container from '@mui/material/Container';
-import type { ReactNode } from 'react';
+import { Outlet } from 'react-router-dom';
 
 import Header from './Header';
 
-interface Props {
-  children: ReactNode;
-}
-
-const marginTopBottom = 4; // 8 * 4 = 32px
-
-export default function Layout(props: Props) {
+export default function Layout() {
   return (
     <>
       <Header />
-      <Container component="main" sx={{ my: marginTopBottom }}>
-        {props.children}
+      <Container component="main">
+        <br />
+        <Outlet />
       </Container>
     </>
   );
