@@ -3,10 +3,11 @@
 
 name: Deploy to Firebase Hosting on PR
 on:
-  push:
+  pull_request:
     branches-ignore:
       - 'dependabot/**'
-  pull_request:
+      - master
+      - 'release-please*'
 
 jobs:
   build_and_preview:
