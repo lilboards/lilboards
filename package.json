@@ -33,7 +33,7 @@
     "@types/debounce": "^1.2.1",
     "@types/jest": "^29.2.2",
     "@types/node": "^18.11.9",
-    "@types/react": "^18.0.24",
+    "@types/react": "^18.0.25",
     "@types/react-beautiful-dnd": "^13.1.2",
     "@types/react-dom": "^18.0.8",
     "@types/react-redux": "^7.1.24",
