@@ -2,7 +2,11 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on PR
-'on': pull_request
+on:
+  push:
+    branches-ignore:
+      - 'dependabot/**'
+  pull_request:
 
 jobs:
   build_and_preview:
@@ -30,20 +34,21 @@ jobs:
       - name: Build app
         run: yarn build
         env:
-          REACT_APP_FIREBASE_API_KEY: '${{ secrets.DEV_FIREBASE_API_KEY }}'
+          REACT_APP_FIREBASE_API_KEY: ${{ secrets.DEV_FIREBASE_API_KEY }}
           REACT_APP_FIREBASE_AUTH_DOMAIN: 'lilboards-dev.firebaseapp.com'
           REACT_APP_FIREBASE_DATABASE_URL: 'https://lilboards-dev-default-rtdb.firebaseio.com'
           REACT_APP_FIREBASE_PROJECT_ID: 'lilboards-dev'
           REACT_APP_FIREBASE_STORAGE_BUCKET: 'lilboards-dev.appspot.com'
-          REACT_APP_FIREBASE_MESSAGING_SENDER_ID: '${{ secrets.DEV_FIREBASE_MESSAGING_SENDER_ID }}'
-          REACT_APP_FIREBASE_APP_ID: '${{ secrets.DEV_FIREBASE_APP_ID }}'
-          REACT_APP_FIREBASE_MEASUREMENT_ID: '${{ secrets.DEV_FIREBASE_MEASUREMENT_ID }}'
+          REACT_APP_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.DEV_FIREBASE_MESSAGING_SENDER_ID }}
+          REACT_APP_FIREBASE_APP_ID: ${{ secrets.DEV_FIREBASE_APP_ID }}
+          REACT_APP_FIREBASE_MEASUREMENT_ID: ${{ secrets.DEV_FIREBASE_MEASUREMENT_ID }}
 
+      # https://github.com/FirebaseExtended/action-hosting-deploy
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.DEV_FIREBASE_SERVICE_ACCOUNT_LILBOARDS }}'
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.DEV_FIREBASE_SERVICE_ACCOUNT_LILBOARDS }}
           projectId: 'lilboards-dev'
           expires: 7d
         env:
