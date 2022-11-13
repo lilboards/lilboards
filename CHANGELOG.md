@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.22.0](https://github.com/lilboards/lilboards/compare/v4.21.0...v4.22.0) (2022-11-13)
+
+
+### Features
+
+* **pages:** render breadcrumbs in Board ([348b96d](https://github.com/lilboards/lilboards/commit/348b96dbe4993fe6d5c828b55d39ec754ad81425))
+
 ## [4.21.0](https://github.com/lilboards/lilboards/compare/v4.20.6...v4.21.0) (2022-11-13)
 
 
