@@ -1,4 +1,4 @@
-import CopyIcon from '@mui/icons-material/ContentCopy';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
@@ -19,7 +19,7 @@ export default function Export() {
   return (
     <Tooltip arrow title="Copy board as Markdown">
       <IconButton color="info" onClick={copyBoardMarkdownToClipboard}>
-        <CopyIcon />
+        <FileDownloadIcon />
       </IconButton>
     </Tooltip>
   );

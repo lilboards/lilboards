@@ -35,7 +35,7 @@ it('renders board name', () => {
 
 it('copies board link to clipboard', () => {
   render(<BoardName name={boardName} />);
-  fireEvent.click(screen.getByLabelText('Copy link to board'));
+  fireEvent.click(screen.getByLabelText('Copy board link'));
   expect(writeText).toBeCalledTimes(1);
   expect(writeText).toBeCalledWith(window.location.href);
 });
