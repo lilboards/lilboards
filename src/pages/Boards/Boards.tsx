@@ -1,10 +1,10 @@
 import Typography from '@mui/material/Typography';
 
 import actions from '../../actions';
+import AddButton from '../../components/AddButton';
 import { generateId, logEvent, saveUserBoardId } from '../../firebase';
 import { useDispatch, useSelector, useSetDocumentTitle } from '../../hooks';
 import type { Board } from '../../types';
-import AddButton from '../AddButton';
 import BoardCards from './BoardCards';
 import { useBoards } from './hooks';
 

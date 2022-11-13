@@ -1,13 +1,13 @@
 import { Route } from 'react-router-dom';
 
-import Board from './components/Board';
-import Boards from './components/Boards';
-import Home from './components/Home';
 import Layout from './components/Layout';
-import Login from './components/Login';
-import Logout from './components/Logout';
-import NotFound from './components/NotFound';
 import Protected from './components/Protected';
+import Board from './pages/Board';
+import Boards from './pages/Boards';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Logout from './pages/Logout';
+import NotFound from './pages/NotFound';
 
 const routes = (
   <Route path="/" element={<Layout />}>
