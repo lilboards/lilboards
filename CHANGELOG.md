@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.21.0](https://github.com/lilboards/lilboards/compare/v4.20.6...v4.21.0) (2022-11-13)
+
+
+### Features
+
+* **components:** update Export icon and improve copy and margin ([888c56d](https://github.com/lilboards/lilboards/commit/888c56d50e5a0186a004fbe001a3dcd985070512))
+
 ## [4.20.6](https://github.com/lilboards/lilboards/compare/v4.20.5...v4.20.6) (2022-11-13)
 
 
