@@ -6,7 +6,6 @@ on:
   pull_request:
     branches-ignore:
       - 'dependabot/**'
-      - master
       - 'release-please*'
 
 jobs:
