@@ -1,27 +1,19 @@
 import { act } from '@testing-library/react';
-import type { Root } from 'react-dom/client';
 
-let div: HTMLDivElement;
-let getElementByIdSpy: jest.SpyInstance;
-let root: Root;
-
-beforeEach(() => {
-  div = document.createElement('div');
-  getElementByIdSpy = jest
-    .spyOn(document, 'getElementById')
-    .mockReturnValueOnce(div);
+afterAll(() => {
+  jest.restoreAllMocks();
 });
 
 it('renders without crashing', () => {
-  expect(getElementByIdSpy).not.toBeCalled();
+  const getElementByIdSpy = jest
+    .spyOn(document, 'getElementById')
+    .mockReturnValueOnce(document.createElement('div'));
+
   act(() => {
-    root = require('.').root;
+    const root = require('.').root;
+    root.unmount();
   });
+
   expect(getElementByIdSpy).toBeCalledTimes(1);
   expect(getElementByIdSpy).toBeCalledWith('root');
-});
-
-afterAll(() => {
-  getElementByIdSpy.mockRestore();
-  root.unmount();
 });

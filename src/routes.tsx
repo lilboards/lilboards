@@ -29,7 +29,7 @@ const routes = (
     <Route
       path="/boards/:boardId"
       element={
-        <Protected signInAnonymously>
+        <Protected check="id" signInAnonymously>
           <Board />
         </Protected>
       }

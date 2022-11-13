@@ -7,40 +7,40 @@ it('matches snapshot', () => {
       path="/"
     >
       <Route
-        element={<Home />}
+        element={<HomeLoader />}
         index={true}
       />
       <Route
-        element={<Login />}
+        element={<LoginLoader />}
         path="/login"
       />
       <Route
-        element={<Logout />}
+        element={<LogoutLoader />}
         path="/logout"
       />
       <Route
         element={
-          <Protected
+          <ProtectedLoader
             check="email"
           >
-            <Boards />
-          </Protected>
+            <BoardsLoader />
+          </ProtectedLoader>
         }
         path="/boards"
       />
       <Route
         element={
-          <Protected
+          <ProtectedLoader
             check="id"
             signInAnonymously={true}
           >
-            <Board />
-          </Protected>
+            <BoardLoader />
+          </ProtectedLoader>
         }
         path="/boards/:boardId"
       />
       <Route
-        element={<NotFound />}
+        element={<NotFoundLoader />}
         path="*"
       />
     </Route>
