@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.20.6](https://github.com/lilboards/lilboards/compare/v4.20.5...v4.20.6) (2022-11-13)
+
+
+### Performance Improvements
+
+* **components:** code-split and lazy-load components in routes ([ba2e30c](https://github.com/lilboards/lilboards/commit/ba2e30cc5256e730f745423d2c040b6c19f1a387))
+
 ## [4.20.5](https://github.com/lilboards/lilboards/compare/v4.20.4...v4.20.5) (2022-10-30)
 
 
