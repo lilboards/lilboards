@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import BoardControls from '../../components/BoardControls';
+import Columns from '../../components/Columns';
 import { useSetDocumentTitle } from '../../hooks';
 import type { Id } from '../../types';
-import BoardControls from '../BoardControls';
-import Columns from '../Columns';
 import BoardName from './BoardName';
 import { useBoard } from './hooks/useBoard';
 

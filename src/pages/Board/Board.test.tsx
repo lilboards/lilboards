@@ -30,8 +30,8 @@ jest.mock('../../firebase', () => ({
 
 const mockedGetBoardDataRef = jest.mocked(getBoardDataRef);
 
-jest.mock('../BoardControls', () => () => <p>Board Controls</p>);
-jest.mock('../Columns', () => () => <p>Columns</p>);
+jest.mock('../../components/BoardControls', () => () => <p>Board Controls</p>);
+jest.mock('../../components/Columns', () => () => <p>Columns</p>);
 
 const boardControls = 'Board Controls';
 const columns = 'Columns';
