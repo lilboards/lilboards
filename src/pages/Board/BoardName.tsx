@@ -18,12 +18,7 @@ export default function BoardName(props: Props) {
     <Typography component="h1" gutterBottom variant="h4">
       {props.name}
 
-      <Tooltip
-        arrow
-        placement="right"
-        sx={{ marginLeft: 1 }}
-        title="Copy link to board"
-      >
+      <Tooltip arrow placement="right" title="Copy board link">
         <IconButton color="info" onClick={copyBoardLinkToClipboard}>
           <LinkIcon />
         </IconButton>
