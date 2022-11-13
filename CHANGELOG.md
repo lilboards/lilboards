@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.23.0](https://github.com/lilboards/lilboards/compare/v4.22.0...v4.23.0) (2022-11-13)
+
+
+### Features
+
+* **public:** add Open Graph meta tags to index.html ([06724a6](https://github.com/lilboards/lilboards/commit/06724a6975f89282adcce9f2cdc6bfe3b9a89986))
+
 ## [4.22.0](https://github.com/lilboards/lilboards/compare/v4.21.0...v4.22.0) (2022-11-13)
 
 
