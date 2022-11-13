@@ -1,6 +1,6 @@
 {
   "name": "lilboards",
-  "version": "4.20.5",
+  "version": "4.20.6",
   "description": "Create boards, columns, and items.",
   "author": "Mark <mark@remarkablemark.org>",
   "scripts": {
