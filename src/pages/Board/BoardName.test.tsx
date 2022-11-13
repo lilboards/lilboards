@@ -20,13 +20,12 @@ afterAll(() => {
   jest.useRealTimers();
 });
 
-it('renders nothing when there is no name', () => {
-  render(<BoardName />);
-  expect(screen.queryAllByRole('heading')).toHaveLength(0);
-});
+const props = {
+  name: boardName,
+};
 
 it('renders board name', () => {
-  render(<BoardName name={boardName} />);
+  render(<BoardName {...props} />);
   expect(screen.getByText(boardName)).toBeInTheDocument();
   expect(screen.getByRole('heading', { level: 1 })).toBe(
     screen.getByText(boardName)
@@ -34,7 +33,7 @@ it('renders board name', () => {
 });
 
 it('copies board link to clipboard', () => {
-  render(<BoardName name={boardName} />);
+  render(<BoardName {...props} />);
   fireEvent.click(screen.getByLabelText('Copy board link'));
   expect(writeText).toBeCalledTimes(1);
   expect(writeText).toBeCalledWith(window.location.href);

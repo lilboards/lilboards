@@ -1,5 +1,8 @@
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 import BoardControls from '../../components/BoardControls';
 import Columns from '../../components/Columns';
@@ -39,8 +42,21 @@ export default function Board() {
 
   return (
     <>
-      <BoardName name={board.name} />
+      <Breadcrumbs aria-label="breadcrumb">
+        <Link
+          color="inherit"
+          component={RouterLink}
+          to="/boards"
+          underline="hover"
+        >
+          Boards
+        </Link>
+      </Breadcrumbs>
+
+      {board.name ? <BoardName name={board.name} /> : <br />}
+
       <BoardControls boardId={boardId} />
+
       <Columns boardId={boardId} />
     </>
   );

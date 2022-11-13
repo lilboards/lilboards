@@ -66,27 +66,48 @@ it('redirects to "/404" when board is not found', async () => {
   await waitFor(() => expect(router.state.location.pathname).toBe('/404'));
 });
 
-it('renders board name as heading', async () => {
-  const board = updateStore.withBoard();
-  mockedUseParams.mockReturnValue({ boardId: board.id });
-  renderWithContext(<Board />);
-  expect(await screen.findByRole('heading', { level: 1 })).toBe(
-    await screen.findByText(board.name)
-  );
+describe('breadcrumbs', () => {
+  it('renders boards link', () => {
+    const board = updateStore.withBoard();
+    mockedUseParams.mockReturnValue({ boardId: board.id });
+    renderWithContext(<Board />);
+    expect(screen.getByRole('link', { name: 'Boards' })).toHaveAttribute(
+      'href',
+      '/boards'
+    );
+  });
 });
 
-it('renders <BoardControls>', async () => {
-  const board = updateStore.withBoard();
-  mockedUseParams.mockReturnValue({ boardId: board.id });
-  renderWithContext(<Board />);
-  expect(await screen.findByText(boardControls)).toBeInTheDocument();
+describe('board name', () => {
+  it('does not render board name as heading', () => {
+    const board = updateStore.withBoard({ name: '' });
+    mockedUseParams.mockReturnValue({ boardId: board.id });
+    renderWithContext(<Board />);
+    expect(screen.queryByRole('heading', { level: 1 })).not.toBeInTheDocument();
+  });
+
+  it('renders board name as heading', () => {
+    const board = updateStore.withBoard();
+    mockedUseParams.mockReturnValue({ boardId: board.id });
+    renderWithContext(<Board />);
+    expect(screen.getByRole('heading', { level: 1 })).toBe(
+      screen.getByText(board.name)
+    );
+  });
 });
 
-it('renders <Columns>', async () => {
+it('renders <BoardControls>', () => {
   const board = updateStore.withBoard();
   mockedUseParams.mockReturnValue({ boardId: board.id });
   renderWithContext(<Board />);
-  expect(await screen.findByText(columns)).toBeInTheDocument();
+  expect(screen.getByText(boardControls)).toBeInTheDocument();
+});
+
+it('renders <Columns>', () => {
+  const board = updateStore.withBoard();
+  mockedUseParams.mockReturnValue({ boardId: board.id });
+  renderWithContext(<Board />);
+  expect(screen.getByText(columns)).toBeInTheDocument();
 });
 
 describe('with board and anonymous user', () => {

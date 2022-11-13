@@ -6,14 +6,10 @@ import Typography from '@mui/material/Typography';
 import { logEvent } from '../../firebase';
 
 interface Props {
-  name?: string;
+  name: string;
 }
 
 export default function BoardName(props: Props) {
-  if (!props.name) {
-    return null;
-  }
-
   return (
     <Typography component="h1" gutterBottom variant="h4">
       {props.name}
