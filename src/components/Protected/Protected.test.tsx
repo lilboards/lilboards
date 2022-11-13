@@ -14,8 +14,9 @@ const mockedUseAuth = jest.mocked(useAuth);
 const text = 'Protected';
 
 const props = {
+  check: 'id',
   children: <>{text}</>,
-};
+} as const;
 
 beforeEach(() => {
   jest.resetAllMocks();

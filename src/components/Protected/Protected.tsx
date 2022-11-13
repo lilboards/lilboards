@@ -4,11 +4,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { REDIRECT_TO } from '../../constants';
 import { useAuth, useSelector } from '../../hooks';
-import type { User } from '../../types';
 import VerifyEmail from '../VerifyEmail';
 
-interface Props {
-  check: Extract<keyof User, 'id' | 'email'>;
+export interface Props {
+  // check user id or email
+  check: 'id' | 'email';
   children: ReactElement;
   signInAnonymously?: boolean;
 }
@@ -40,7 +40,3 @@ export default function Protected(props: Props) {
 
   return props.children;
 }
-
-Protected.defaultProps = {
-  check: 'id',
-};
