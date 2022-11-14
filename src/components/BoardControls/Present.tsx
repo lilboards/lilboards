@@ -22,6 +22,7 @@ export default function Present() {
         <Switch checked={presenting} color="primary" onChange={handleChange} />
       }
       label="Hide Likes"
+      sx={{ marginRight: 0 }}
     />
   );
 }

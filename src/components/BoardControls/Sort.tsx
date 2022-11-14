@@ -38,7 +38,7 @@ export default function Sort(props: Props) {
       color="primary"
       onClick={sortItems}
       variant="outlined"
-      sx={{ marginRight: 1 }}
+      sx={{ marginLeft: 2 }}
     >
       Sort by likes
     </Button>
