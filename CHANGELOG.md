@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.23.1](https://github.com/lilboards/lilboards/compare/v4.23.0...v4.23.1) (2022-11-14)
+
+
+### Bug Fixes
+
+* **components:** fix margins of BoardControls ([3128103](https://github.com/lilboards/lilboards/commit/31281035923083f45b8c3e25b9c574ecd4ae4d67))
+
 ## [4.23.0](https://github.com/lilboards/lilboards/compare/v4.22.0...v4.23.0) (2022-11-13)
 
 
