@@ -18,7 +18,11 @@ export default function Export() {
 
   return (
     <Tooltip arrow title="Copy board as Markdown">
-      <IconButton color="info" onClick={copyBoardMarkdownToClipboard}>
+      <IconButton
+        color="info"
+        onClick={copyBoardMarkdownToClipboard}
+        sx={{ marginLeft: 0.5 }}
+      >
         <FileDownloadIcon />
       </IconButton>
     </Tooltip>
