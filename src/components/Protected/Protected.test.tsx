@@ -1,8 +1,16 @@
 import { screen, waitFor } from '@testing-library/react';
+import { Outlet } from 'react-router-dom';
 
 import { useAuth } from '../../hooks';
 import { renderWithContext, router, updateStore } from '../../utils/test';
 import Protected from './Protected';
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  Outlet: jest.fn(),
+}));
+
+const mockedOutlet = jest.mocked(Outlet);
 
 jest.mock('../../hooks', () => ({
   ...jest.requireActual('../../hooks'),
@@ -11,28 +19,33 @@ jest.mock('../../hooks', () => ({
 
 const mockedUseAuth = jest.mocked(useAuth);
 
-const text = 'Protected';
-
-const props = {
-  check: 'id',
-  children: <>{text}</>,
-} as const;
-
 beforeEach(() => {
   jest.resetAllMocks();
   mockedUseAuth.mockReturnValue(true);
 });
 
-it('returns null when useAuth is not loaded', () => {
-  mockedUseAuth.mockReset().mockReturnValue(false);
-  renderWithContext(<Protected {...props} />);
-  expect(screen.queryByText(text)).not.toBeInTheDocument();
+describe('not loaded', () => {
+  const props = {
+    check: 'id',
+    signInAnonymously: true,
+  } as const;
+
+  it('renders progress bar', () => {
+    mockedUseAuth.mockReset().mockReturnValue(false);
+    renderWithContext(<Protected {...props} />);
+    expect(mockedOutlet).not.toBeCalled();
+    expect(screen.getByRole('progressbar')).toBeInTheDocument();
+  });
 });
 
 describe('not signed in', () => {
-  it('does not render protected element', () => {
+  const props = {
+    check: 'id',
+  } as const;
+
+  it('does not render protected outlet', () => {
     renderWithContext(<Protected {...props} />);
-    expect(screen.queryByText(text)).not.toBeInTheDocument();
+    expect(mockedOutlet).not.toBeCalled();
   });
 
   it('navigates to /login', async () => {
@@ -42,18 +55,22 @@ describe('not signed in', () => {
 });
 
 describe('signed in with unverified email', () => {
+  const props = {
+    check: 'email',
+  } as const;
+
   beforeEach(() => {
     updateStore.withUser(false, { email: 'unverified@email.com' });
   });
 
-  it('does not render protected element when email is checked', () => {
-    renderWithContext(<Protected {...props} check="email" />);
-    expect(screen.queryByText(text)).not.toBeInTheDocument();
+  it('does not render protected outlet when email is checked', () => {
+    renderWithContext(<Protected {...props} />);
+    expect(mockedOutlet).not.toBeCalled();
   });
 
   it('renders "Send verification email" button', () => {
     updateStore.withUser(false);
-    renderWithContext(<Protected {...props} check="email" />);
+    renderWithContext(<Protected {...props} />);
     expect(
       screen.getByRole('button', { name: 'Send verification email' })
     ).toBeInTheDocument();
@@ -61,30 +78,38 @@ describe('signed in with unverified email', () => {
 });
 
 describe('signed in with verified email', () => {
-  beforeEach(() => {
+  it('renders protected outlet when email is checked', () => {
     updateStore.withUser();
-  });
-
-  it('renders protected element when email is checked', () => {
-    renderWithContext(<Protected {...props} check="email" />);
-    expect(screen.getByText(text)).toBeInTheDocument();
+    renderWithContext(<Protected check="email" />);
+    expect(mockedOutlet).toBeCalledTimes(1);
   });
 });
 
 describe('props.signInAnonymously=true', () => {
+  const props = {
+    check: 'id',
+    signInAnonymously: true,
+  } as const;
+
   it('calls hook useAuth', () => {
-    renderWithContext(<Protected {...props} signInAnonymously />);
+    renderWithContext(<Protected {...props} />);
     expect(mockedUseAuth).toBeCalledTimes(1);
     expect(mockedUseAuth).toBeCalledWith(true);
   });
 
-  it('renders protected element', () => {
-    renderWithContext(<Protected {...props} signInAnonymously />);
-    expect(screen.getByText(text)).toBeInTheDocument();
+  it('does not render protected outlet if user does not exist', () => {
+    renderWithContext(<Protected {...props} />);
+    expect(mockedOutlet).not.toBeCalled();
+  });
+
+  it('renders protected outlet if user exists', () => {
+    updateStore.withUser();
+    renderWithContext(<Protected {...props} />);
+    expect(mockedOutlet).toBeCalledTimes(1);
   });
 
   it('does not navigates to /login', async () => {
-    renderWithContext(<Protected {...props} signInAnonymously />);
+    renderWithContext(<Protected {...props} />);
     await waitFor(() =>
       expect(router.state.location.pathname).not.toBe('/login')
     );

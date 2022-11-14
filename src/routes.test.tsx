@@ -22,23 +22,27 @@ it('matches snapshot', () => {
         element={
           <ProtectedLoader
             check="email"
-          >
-            <BoardsLoader />
-          </ProtectedLoader>
+          />
         }
-        path="/boards"
-      />
+      >
+        <Route
+          element={<BoardsLoader />}
+          path="/boards"
+        />
+      </Route>
       <Route
         element={
           <ProtectedLoader
             check="id"
             signInAnonymously={true}
-          >
-            <BoardLoader />
-          </ProtectedLoader>
+          />
         }
-        path="/boards/:boardId"
-      />
+      >
+        <Route
+          element={<BoardLoader />}
+          path="/boards/:boardId"
+        />
+      </Route>
       <Route
         element={<NotFoundLoader />}
         path="*"
