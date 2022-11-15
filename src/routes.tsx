@@ -13,16 +13,17 @@ const routes = (
   <Route path="/" element={<Layout />}>
     <Route index element={<Home />} />
 
-    <Route path="/login" element={<Login />} />
+    <Route path="login" element={<Login />} />
+    <Route path="logout" element={<Logout />} />
 
-    <Route path="/logout" element={<Logout />} />
+    <Route path="boards">
+      <Route element={<Protected check="email" />}>
+        <Route index element={<Boards />} />
+      </Route>
 
-    <Route element={<Protected check="email" />}>
-      <Route path="/boards" element={<Boards />} />
-    </Route>
-
-    <Route element={<Protected check="id" signInAnonymously />}>
-      <Route path="/boards/:boardId" element={<Board />} />
+      <Route element={<Protected check="id" signInAnonymously />}>
+        <Route path=":boardId" element={<Board />} />
+      </Route>
     </Route>
 
     <Route path="*" element={<NotFound />} />

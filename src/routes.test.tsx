@@ -12,36 +12,40 @@ it('matches snapshot', () => {
       />
       <Route
         element={<LoginLoader />}
-        path="/login"
+        path="login"
       />
       <Route
         element={<LogoutLoader />}
-        path="/logout"
+        path="logout"
       />
       <Route
-        element={
-          <ProtectedLoader
-            check="email"
-          />
-        }
+        path="boards"
       >
         <Route
-          element={<BoardsLoader />}
-          path="/boards"
-        />
-      </Route>
-      <Route
-        element={
-          <ProtectedLoader
-            check="id"
-            signInAnonymously={true}
+          element={
+            <ProtectedLoader
+              check="email"
+            />
+          }
+        >
+          <Route
+            element={<BoardsLoader />}
+            index={true}
           />
-        }
-      >
+        </Route>
         <Route
-          element={<BoardLoader />}
-          path="/boards/:boardId"
-        />
+          element={
+            <ProtectedLoader
+              check="id"
+              signInAnonymously={true}
+            />
+          }
+        >
+          <Route
+            element={<BoardLoader />}
+            path=":boardId"
+          />
+        </Route>
       </Route>
       <Route
         element={<NotFoundLoader />}
