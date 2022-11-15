@@ -3,8 +3,8 @@ import Box from '@mui/material/Box';
 import type { Id } from '../../types';
 import AddColumn from './AddColumn';
 import Export from './Export';
+import HideLikes from './HideLikes';
 import MaxLikes from './MaxLikes';
-import Present from './Present';
 import Sort from './Sort';
 import Timer from './Timer';
 
@@ -20,13 +20,9 @@ export default function BoardControls(props: Props) {
       </Box>
 
       <Timer boardId={props.boardId} />
-
       <MaxLikes boardId={props.boardId} />
-
-      <Present />
-
+      <HideLikes />
       <Sort boardId={props.boardId} />
-
       <Export />
     </Box>
   );

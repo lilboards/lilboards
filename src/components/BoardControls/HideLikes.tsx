@@ -5,21 +5,19 @@ import actions from '../../actions';
 import { logEvent } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 
-export default function Present() {
+export default function HideLikes() {
   const dispatch = useDispatch();
-  const presenting = useSelector((state) => state.user.presenting);
+  const hideLikes = useSelector((state) => state.user.hideLikes);
 
   function handleChange() {
-    dispatch(actions.toggleUserPresenting());
-    logEvent('user_presenting', {
-      checked: !presenting,
-    });
+    dispatch(actions.toggleUserHideLikes());
+    logEvent('hide_likes', { checked: !hideLikes });
   }
 
   return (
     <FormControlLabel
       control={
-        <Switch checked={presenting} color="primary" onChange={handleChange} />
+        <Switch checked={hideLikes} color="primary" onChange={handleChange} />
       }
       label="Hide Likes"
       sx={{ marginRight: 0 }}

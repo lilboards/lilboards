@@ -26,7 +26,7 @@ export default function LikeButton(props: Props) {
     }, 0)
   );
   const maxLikes = useMaxLikes(props.boardId);
-  const isUserPresenting = useSelector((state) => state.user.presenting);
+  const hideLikes = useSelector((state) => state.user.hideLikes);
 
   function handleClick() {
     const payload = {
@@ -49,7 +49,7 @@ export default function LikeButton(props: Props) {
       aria-label={`${isLikedByUser ? 'Unlike' : 'Like'} item`}
       onClick={handleClick}
     >
-      {isLikedByUser && !isUserPresenting ? (
+      {isLikedByUser && !hideLikes ? (
         <ThumbUpFilledIcon />
       ) : (
         <ThumbUpOutlinedIcon />

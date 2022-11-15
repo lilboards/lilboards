@@ -13,8 +13,8 @@ export const initialState: User = {
   },
   email: null,
   emailVerified: false,
+  hideLikes: false,
   id: '',
-  presenting: false,
 };
 
 export const name = USER;
@@ -43,8 +43,8 @@ const userSlice = createSlice({
       Object.assign(state.editing, action.payload);
     },
 
-    toggleUserPresenting: (state) => {
-      state.presenting = !state.presenting;
+    toggleUserHideLikes: (state) => {
+      state.hideLikes = !state.hideLikes;
     },
   },
 });
