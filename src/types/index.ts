@@ -76,8 +76,8 @@ export interface User {
   };
   email: string | null;
   emailVerified: boolean;
+  hideLikes: boolean;
   id: UserId;
-  presenting: boolean;
 }
 
 type UserId = Id;

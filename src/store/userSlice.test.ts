@@ -61,27 +61,27 @@ describe('setUserEditing', () => {
   });
 });
 
-describe('toggleUserPresenting', () => {
-  it('toggles presenting to true', () => {
+describe('toggleUserHideLikes', () => {
+  it('toggles hideLikes to true', () => {
     const state = {
       ...initialState,
     };
-    const newState = reducer(state, actions.toggleUserPresenting());
+    const newState = reducer(state, actions.toggleUserHideLikes());
     expect(newState).toEqual({
       ...initialState,
-      presenting: true,
+      hideLikes: true,
     });
   });
 
-  it('toggles presenting to false', () => {
+  it('toggles hideLikes to false', () => {
     const state = {
       ...initialState,
-      presenting: true,
+      hideLikes: true,
     };
-    const newState = reducer(state, actions.toggleUserPresenting());
+    const newState = reducer(state, actions.toggleUserHideLikes());
     expect(newState).toEqual({
       ...initialState,
-      presenting: false,
+      hideLikes: false,
     });
   });
 });
