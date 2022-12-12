@@ -1,4 +1,8 @@
 import type { Theme } from '@mui/material/styles';
+import type {
+  DraggableStateSnapshot,
+  DroppableStateSnapshot,
+} from 'react-beautiful-dnd';
 
 import { getDraggableCardStyle, getDroppableBackgroundColor } from './styles';
 
@@ -16,7 +20,7 @@ describe('getDraggableCardStyle', () => {
       combineWith: '~MhA3yYzzy6qb6iH8lMX',
       isDragging: true,
       isDropAnimating: true,
-    };
+    } as DraggableStateSnapshot;
     expect(getDraggableCardStyle(draggableSnapshot, theme)).toEqual({
       backgroundColor: theme.palette.primary.light,
     });
@@ -26,7 +30,7 @@ describe('getDraggableCardStyle', () => {
     const draggableSnapshot = {
       isDragging: true,
       isDropAnimating: true,
-    };
+    } as DraggableStateSnapshot;
     expect(getDraggableCardStyle(draggableSnapshot, theme)).toBe(undefined);
   });
 });
@@ -36,7 +40,7 @@ describe('getDroppableBackgroundColor', () => {
     const droppableSnapshot = {
       isDraggingOver: true,
       isUsingPlaceholder: true,
-    };
+    } as DroppableStateSnapshot;
     expect(
       getDroppableBackgroundColor(droppableSnapshot)
     ).toMatchInlineSnapshot(`"#eee"`);
@@ -46,7 +50,7 @@ describe('getDroppableBackgroundColor', () => {
     const droppableSnapshot = {
       isDraggingOver: false,
       isUsingPlaceholder: false,
-    };
+    } as DroppableStateSnapshot;
     expect(getDroppableBackgroundColor(droppableSnapshot)).toBe(undefined);
   });
 });
