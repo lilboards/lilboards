@@ -39,20 +39,17 @@ const likes = {
 };
 
 it('returns items to update and remove', () => {
-  const result: DropResult = {
+  const result = {
     combine: {
       draggableId: itemId2,
       droppableId: columnId,
     },
     draggableId: itemId1,
-    mode: 'FLUID',
-    reason: 'DROP',
     source: {
       droppableId: columnId,
       index: 0,
     },
-    type: 'DEFAULT',
-  };
+  } as DropResult;
 
   expect(combine(result, items, likes)).toMatchInlineSnapshot(`
     Object {
