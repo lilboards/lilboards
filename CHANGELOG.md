@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.24.1](https://github.com/lilboards/lilboards/compare/v4.24.0...v4.24.1) (2022-12-30)
+
+
+### Bug Fixes
+
+* **store:** delete board from store when firebase value is null ([1f64847](https://github.com/lilboards/lilboards/commit/1f648474c7b6b99756368f8958080758e8d3c94f))
+
 ## [4.24.0](https://github.com/lilboards/lilboards/compare/v4.23.1...v4.24.0) (2022-12-30)
 
 
