@@ -2,37 +2,25 @@ import '../../store/boardsSlice';
 
 import { fireEvent, screen } from '@testing-library/react';
 
-import {
-  BOARD_TEST_ID as boardId,
-  DATE_NOW as dateNow,
-} from '../../constants/test';
-import {
-  generateId,
-  getBoardVal,
-  getUserBoardsVal,
-  saveUserBoardId,
-} from '../../firebase';
-import { renderWithContext, store, updateStore } from '../../utils/test';
+import { BOARD_TEST_ID as boardId } from '../../constants/test';
+import { getBoardVal, getUserBoardsVal } from '../../firebase';
+import { renderWithContext, updateStore } from '../../utils/test';
 import Boards from './Boards';
 
 jest.mock('../../firebase', () => ({
-  generateId: jest.fn(),
+  ...jest.requireActual('../../firebase'),
   getBoardVal: jest.fn(),
   getUserBoardsVal: jest.fn(),
   logEvent: jest.fn(),
-  saveUserBoardId: jest.fn(),
 }));
 
-const mockedGenerateId = jest.mocked(generateId);
 const mockedGetBoardVal = jest.mocked(getBoardVal);
 const mockedGetUserBoardsVal = jest.mocked(getUserBoardsVal);
-const mockedSaveUserBoardId = jest.mocked(saveUserBoardId);
 
 beforeEach(() => {
-  mockedGenerateId.mockReturnValue(boardId);
+  jest.clearAllMocks();
   mockedGetBoardVal.mockResolvedValueOnce(null);
   mockedGetUserBoardsVal.mockResolvedValueOnce(null);
-  mockedSaveUserBoardId.mockClear();
 });
 
 it('renders heading', () => {
@@ -41,44 +29,36 @@ it('renders heading', () => {
   expect(heading).toBeInTheDocument();
 });
 
-it('renders "Create board" button', () => {
-  renderWithContext(<Boards />);
-  expect(screen.getByLabelText('Create board')).toBeInTheDocument();
-});
-
-describe('create board', () => {
-  it('renders new board', () => {
-    updateStore.withUser();
+describe('add board', () => {
+  it('renders button', () => {
     renderWithContext(<Boards />);
-    fireEvent.click(screen.getByLabelText('Create board'));
-    const boards = screen.getAllByLabelText('Board Name');
-    expect(boards).toHaveLength(1);
+    expect(
+      screen.getByRole('button', { name: 'Add board' })
+    ).toBeInTheDocument();
   });
 
-  it('focuses on new board', () => {
+  it('adds board', () => {
     updateStore.withUser();
     renderWithContext(<Boards />);
-    fireEvent.click(screen.getByLabelText('Create board'));
+    fireEvent.click(screen.getByText('Add board'));
+    expect(screen.getAllByLabelText('Board Name')).toHaveLength(1);
+  });
+
+  it('adds boards', () => {
+    updateStore.withUser();
+    renderWithContext(<Boards />);
+    const length = 2;
+    Array.from({ length }, () =>
+      fireEvent.click(screen.getByText('Add board'))
+    );
+    expect(screen.getAllByLabelText('Board Name')).toHaveLength(length);
+  });
+
+  it('focuses on board', () => {
+    updateStore.withUser();
+    renderWithContext(<Boards />);
+    fireEvent.click(screen.getByText('Add board'));
     expect(screen.getByPlaceholderText('Untitled Board')).toHaveFocus();
-  });
-
-  it('saves new board to store and database', () => {
-    const user = updateStore.withUser();
-    renderWithContext(<Boards />);
-    const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
-    fireEvent.click(screen.getByLabelText('Create board'));
-    expect(store.getState().boards).toMatchInlineSnapshot(`
-      Object {
-        "board_test_id": Object {
-          "createdAt": 1234567890,
-          "createdBy": "user_test_id",
-          "name": "",
-        },
-      }
-    `);
-    expect(saveUserBoardId).toBeCalledTimes(1);
-    expect(saveUserBoardId).toBeCalledWith(user.id, boardId);
-    dateNowSpy.mockRestore();
   });
 });
 
