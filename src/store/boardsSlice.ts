@@ -31,9 +31,8 @@ const boardsSlice = createSlice({
       const { board, boardId, debounce, skipSave } = action.payload;
       state[boardId] = state[boardId] || {};
       Object.assign(state[boardId], board);
-      const saveToDatabase = !skipSave;
 
-      if (saveToDatabase) {
+      if (!skipSave) {
         if (debounce) {
           debouncedSaveBoardData(boardId, board);
         } else {
@@ -44,12 +43,14 @@ const boardsSlice = createSlice({
 
     deleteBoard: (
       state,
-      action: PayloadAction<{ boardId: Id; userId: Id }>
+      action: PayloadAction<{ boardId: Id; userId: Id; skipSave?: boolean }>
     ) => {
-      const { boardId, userId } = action.payload;
-      removeBoard(boardId);
-      removeUserBoard(userId, boardId);
+      const { boardId, skipSave, userId } = action.payload;
       delete state[boardId];
+      if (!skipSave) {
+        removeBoard(boardId);
+        removeUserBoard(userId, boardId);
+      }
     },
 
     loadBoard: (

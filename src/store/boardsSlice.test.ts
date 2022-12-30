@@ -84,6 +84,14 @@ describe('deleteBoard', () => {
     const payload = { boardId, userId };
     expect(reducer(state, actions.deleteBoard(payload))).toEqual({});
   });
+
+  it('deletes board when skipSave is true', () => {
+    const state = {
+      [boardId]: board,
+    };
+    const payload = { boardId, userId, skipSave: true };
+    expect(reducer(state, actions.deleteBoard(payload))).toEqual({});
+  });
 });
 
 describe('loadBoard', () => {

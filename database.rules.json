@@ -2,9 +2,11 @@
   "rules": {
     "boards": {
       "$board_id": {
+        ".write": "auth.uid !== null && auth.token.email_verified === true",
+
         "board": {
           ".read": "auth.uid !== null",
-          ".write": "auth.token.email_verified === true"
+          ".write": "auth.uid !== null && auth.token.email_verified === true"
         },
 
         "columns": {
