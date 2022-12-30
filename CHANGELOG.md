@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.24.0](https://github.com/lilboards/lilboards/compare/v4.23.1...v4.24.0) (2022-12-30)
+
+
+### Features
+
+* **pages:** render text instead of label for "Add board" button ([dc78e48](https://github.com/lilboards/lilboards/commit/dc78e483f09b5e2ee350b714fd14391c47c491bb))
+
 ## [4.23.1](https://github.com/lilboards/lilboards/compare/v4.23.0...v4.23.1) (2022-11-14)
 
 
