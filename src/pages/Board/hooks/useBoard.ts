@@ -21,6 +21,7 @@ export function useBoard(boardId: Id) {
       getBoardDataRef(boardId),
       (boardSnapshot) => {
         const board = boardSnapshot.val();
+
         if (board) {
           // prevent race condition with redux reducer
           setTimeout(() => {
@@ -33,6 +34,14 @@ export function useBoard(boardId: Id) {
             setIsLoaded(true);
           });
         } else {
+          // board removed
+          dispatch(
+            actions.deleteBoard({
+              boardId,
+              skipSave: true,
+              userId: '',
+            })
+          );
           setIsLoaded(true);
         }
       }

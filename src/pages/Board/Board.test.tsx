@@ -1,4 +1,5 @@
 import { screen, waitFor } from '@testing-library/react';
+import type { DatabaseReference, DataSnapshot } from 'firebase/database';
 import { onValue } from 'firebase/database';
 import { useParams } from 'react-router-dom';
 
@@ -39,75 +40,94 @@ const columns = 'Columns';
 const unsubscribe = jest.fn();
 
 beforeEach(() => {
-  mockedOnValue.mockImplementationOnce((query, callback) => {
-    const dataSnapshot = { val: () => null };
-    callback(dataSnapshot as any);
-    return unsubscribe;
-  });
   jest.clearAllMocks();
 });
 
-it('renders nothing when there is no board id', async () => {
-  mockedUseParams.mockReturnValue({});
-  renderWithContext(<Board />);
-  await waitFor(() => expect(screen.queryByText(boardControls)).toBe(null));
-  expect(screen.queryByText(columns)).toBe(null);
+describe('no board', () => {
+  beforeEach(() => {
+    mockedOnValue.mockImplementationOnce((query, callback) => {
+      callback({ val: () => null } as DataSnapshot);
+      return unsubscribe;
+    });
+  });
+
+  it('renders nothing when there is no board id', async () => {
+    mockedUseParams.mockReturnValue({});
+    renderWithContext(<Board />);
+    await waitFor(() => expect(screen.queryByText(boardControls)).toBe(null));
+    expect(screen.queryByText(columns)).toBe(null);
+  });
+
+  it('renders nothing when there is no board', async () => {
+    mockedUseParams.mockReturnValue({ boardId: 'invalid' });
+    renderWithContext(<Board />);
+    await waitFor(() => expect(screen.queryByText(columns)).toBe(null));
+  });
+
+  it('redirects to "/404" when board is not found', async () => {
+    mockedUseParams.mockReturnValue({ boardId: 'invalid' });
+    renderWithContext(<Board />);
+    await waitFor(() => expect(router.state.location.pathname).toBe('/404'));
+  });
 });
 
-it('renders nothing when there is no board', async () => {
-  mockedUseParams.mockReturnValue({ boardId: 'invalid' });
-  renderWithContext(<Board />);
-  await waitFor(() => expect(screen.queryByText(columns)).toBe(null));
-});
-
-it('redirects to "/404" when board is not found', async () => {
-  mockedUseParams.mockReturnValue({ boardId: 'invalid' });
-  renderWithContext(<Board />);
-  await waitFor(() => expect(router.state.location.pathname).toBe('/404'));
-});
-
-describe('breadcrumbs', () => {
-  it('renders boards link', () => {
+describe('with board', () => {
+  beforeEach(() => {
     const board = updateStore.withBoard();
     mockedUseParams.mockReturnValue({ boardId: board.id });
-    renderWithContext(<Board />);
-    expect(screen.getByRole('link', { name: 'Boards' })).toHaveAttribute(
-      'href',
-      '/boards'
-    );
-  });
-});
-
-describe('board name', () => {
-  it('does not render board name as heading', () => {
-    const board = updateStore.withBoard({ name: '' });
-    mockedUseParams.mockReturnValue({ boardId: board.id });
-    renderWithContext(<Board />);
-    expect(screen.queryByRole('heading', { level: 1 })).not.toBeInTheDocument();
+    mockedOnValue.mockReset().mockImplementationOnce((query, callback) => {
+      callback({ val: () => board } as DataSnapshot);
+      return unsubscribe;
+    });
   });
 
-  it('renders board name as heading', () => {
-    const board = updateStore.withBoard();
-    mockedUseParams.mockReturnValue({ boardId: board.id });
-    renderWithContext(<Board />);
-    expect(screen.getByRole('heading', { level: 1 })).toBe(
-      screen.getByText(board.name)
-    );
+  describe('breadcrumbs', () => {
+    it('renders boards link', () => {
+      renderWithContext(<Board />);
+      expect(screen.getByRole('link', { name: 'Boards' })).toHaveAttribute(
+        'href',
+        '/boards'
+      );
+    });
   });
-});
 
-it('renders <BoardControls>', () => {
-  const board = updateStore.withBoard();
-  mockedUseParams.mockReturnValue({ boardId: board.id });
-  renderWithContext(<Board />);
-  expect(screen.getByText(boardControls)).toBeInTheDocument();
-});
+  describe('board name', () => {
+    it('does not render board name as heading', () => {
+      const board = updateStore.withBoard({ name: '' });
+      mockedUseParams.mockReturnValue({ boardId: board.id });
+      mockedOnValue.mockReset().mockImplementationOnce((query, callback) => {
+        callback({ val: () => board } as DataSnapshot);
+        return unsubscribe;
+      });
+      renderWithContext(<Board />);
+      expect(
+        screen.queryByRole('heading', { level: 1 })
+      ).not.toBeInTheDocument();
+    });
 
-it('renders <Columns>', () => {
-  const board = updateStore.withBoard();
-  mockedUseParams.mockReturnValue({ boardId: board.id });
-  renderWithContext(<Board />);
-  expect(screen.getByText(columns)).toBeInTheDocument();
+    it('renders board name as heading', () => {
+      const board = updateStore.withBoard();
+      mockedUseParams.mockReturnValue({ boardId: board.id });
+      mockedOnValue.mockReset().mockImplementationOnce((query, callback) => {
+        callback({ val: () => board } as DataSnapshot);
+        return unsubscribe;
+      });
+      renderWithContext(<Board />);
+      expect(screen.getByRole('heading', { level: 1 })).toBe(
+        screen.getByText(board.name)
+      );
+    });
+  });
+
+  it('renders <BoardControls>', () => {
+    renderWithContext(<Board />);
+    expect(screen.getByText(boardControls)).toBeInTheDocument();
+  });
+
+  it('renders <Columns>', () => {
+    renderWithContext(<Board />);
+    expect(screen.getByText(columns)).toBeInTheDocument();
+  });
 });
 
 describe('with board and anonymous user', () => {
@@ -120,11 +140,11 @@ describe('with board and anonymous user', () => {
   const boardDataRef = 'boardDataRef';
 
   beforeEach(() => {
-    mockedGetBoardDataRef.mockReturnValueOnce(boardDataRef as any);
-
+    mockedGetBoardDataRef.mockReturnValueOnce(
+      boardDataRef as unknown as DatabaseReference
+    );
     mockedOnValue.mockReset().mockImplementationOnce((query, callback) => {
-      const dataSnapshot = { val: (): BoardType => board };
-      callback(dataSnapshot as any);
+      callback({ val: (): BoardType => board } as DataSnapshot);
       return unsubscribe;
     });
   });
