@@ -41,16 +41,16 @@ it('renders heading', () => {
   expect(heading).toBeInTheDocument();
 });
 
-it('renders "Create board" button', () => {
+it('renders "Add board" button', () => {
   renderWithContext(<Boards />);
-  expect(screen.getByLabelText('Create board')).toBeInTheDocument();
+  expect(screen.getByText('Add board')).toBeInTheDocument();
 });
 
-describe('create board', () => {
+describe('add board', () => {
   it('renders new board', () => {
     updateStore.withUser();
     renderWithContext(<Boards />);
-    fireEvent.click(screen.getByLabelText('Create board'));
+    fireEvent.click(screen.getByText('Add board'));
     const boards = screen.getAllByLabelText('Board Name');
     expect(boards).toHaveLength(1);
   });
@@ -58,7 +58,7 @@ describe('create board', () => {
   it('focuses on new board', () => {
     updateStore.withUser();
     renderWithContext(<Boards />);
-    fireEvent.click(screen.getByLabelText('Create board'));
+    fireEvent.click(screen.getByText('Add board'));
     expect(screen.getByPlaceholderText('Untitled Board')).toHaveFocus();
   });
 
@@ -66,7 +66,7 @@ describe('create board', () => {
     const user = updateStore.withUser();
     renderWithContext(<Boards />);
     const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
-    fireEvent.click(screen.getByLabelText('Create board'));
+    fireEvent.click(screen.getByText('Add board'));
     expect(store.getState().boards).toMatchInlineSnapshot(`
       Object {
         "board_test_id": Object {

@@ -39,10 +39,13 @@ export default function Boards() {
       </Typography>
 
       <AddButton
-        aria-label="Create board"
         onClick={addBoard}
+        size="medium"
         sx={{ marginBottom: 2 }}
-      />
+        variant="extended"
+      >
+        Add board
+      </AddButton>
 
       <BoardCards />
     </>
