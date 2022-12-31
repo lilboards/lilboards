@@ -95,6 +95,10 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `yarn cypress:open`
+
+Opens [Cypress](https://www.cypress.io/) for E2E (end-to-end) testing.
+
 ## Assets
 
 [Logo](https://excalidraw.com/#json=5123776568098816,InQI3in09fDMlrMULQDmSQ)
