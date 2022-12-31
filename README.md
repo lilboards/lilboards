@@ -4,14 +4,14 @@
   </a>
   <p><strong>Create boards, columns, and items.</strong></p>
   <p>
+    <a href="https://github.com/lilboards/lilboards/releases">
+      <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/lilboards/lilboards">
+    </a>
     <a href="https://github.com/lilboards/lilboards/actions/workflows/build.yml">
       <img src="https://github.com/lilboards/lilboards/actions/workflows/build.yml/badge.svg" alt="Lilboards build status badge">
     </a>
     <a href="https://codecov.io/gh/lilboards/lilboards">
       <img src="https://codecov.io/gh/lilboards/lilboards/branch/master/graph/badge.svg?token=G6U7W4ZJUN" alt="Codecov coverage status">
-    </a>
-    <a href="https://github.com/lilboards/lilboards/actions/workflows/cypress.yml">
-      <img src="https://github.com/lilboards/lilboards/actions/workflows/cypress.yml/badge.svg" alt="cypress">
     </a>
   </p>
 </div>
