@@ -10,6 +10,9 @@
     <a href="https://codecov.io/gh/lilboards/lilboards">
       <img src="https://codecov.io/gh/lilboards/lilboards/branch/master/graph/badge.svg?token=G6U7W4ZJUN" alt="Codecov coverage status">
     </a>
+    <a href="https://github.com/lilboards/lilboards/actions/workflows/cypress.yml">
+      <img src="https://github.com/lilboards/lilboards/actions/workflows/cypress.yml/badge.svg" alt="cypress">
+    </a>
   </p>
 </div>
 
@@ -94,6 +97,10 @@ The build is minified and the filenames include the hashes.
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `yarn cypress:open`
+
+Opens [Cypress](https://www.cypress.io/) for E2E (end-to-end) testing.
 
 ## Assets
 

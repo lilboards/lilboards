@@ -1,0 +1,33 @@
+name: cypress
+on: push
+
+jobs:
+  cypress:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        with:
+          browser: chrome
+          start: |
+            yarn start
+            yarn firebase:emulators
+          wait-on: 'http://localhost:3000, http://localhost:4000'
+
+      - name: Record failed screenshots
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+
+      - name: Record videos
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-videos
+          path: cypress/videos

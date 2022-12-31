@@ -5,6 +5,7 @@
   "author": "Mark <mark@remarkablemark.org>",
   "scripts": {
     "build": "react-scripts build",
+    "cypress:open": "cypress open",
     "eject": "react-scripts eject",
     "firebase:deploy:database": "firebase deploy --only database",
     "firebase:emulators": "firebase emulators:start --only auth,database",
@@ -50,9 +51,13 @@
     "web-vitals": "^3.1.0"
   },
   "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^15.0.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.1.5",
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
     "@size-limit/preset-app": "^8.1.0",
+    "cypress": "^12.2.0",
+    "cypress-cucumber-steps": "^1.35.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-simple-import-sort": "^8.0.0",
     "eslint-plugin-tsdoc": "^0.2.17",
