@@ -5,6 +5,7 @@
   "author": "Mark <mark@remarkablemark.org>",
   "scripts": {
     "build": "react-scripts build",
+    "cypress:open": "cypress open",
     "eject": "react-scripts eject",
     "firebase:deploy:database": "firebase deploy --only database",
     "firebase:emulators": "firebase emulators:start --only auth,database",
