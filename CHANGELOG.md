@@ -1,5 +1,14 @@
 # Changelog
 
+## [4.25.0](https://github.com/lilboards/lilboards/compare/v4.24.1...v4.25.0) (2023-01-01)
+
+
+### Features
+
+* **Column:** improve label names ([ab85467](https://github.com/lilboards/lilboards/commit/ab854675420cf16a811a904d6301fc4574e45211))
+* **Item:** add item text to LikeButton label ([a7ccbc9](https://github.com/lilboards/lilboards/commit/a7ccbc94aff4715151110c2ce1f96181209a2b1c))
+* **Item:** use item text instead of id for label name ([517671c](https://github.com/lilboards/lilboards/commit/517671c05a2f78d7982a39ac15d3bd9e3a0c7a0c))
+
 ## [4.24.1](https://github.com/lilboards/lilboards/compare/v4.24.0...v4.24.1) (2022-12-30)
 
 
