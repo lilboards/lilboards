@@ -1,10 +1,9 @@
 import { Before, When } from '@badeball/cypress-cucumber-preprocessor';
 
+import { deleteFirebaseAccounts } from '../../support/utils';
+
 Before(() => {
-  cy.request(
-    'DELETE',
-    `http://localhost:9099/emulator/v1/projects/lilboards/accounts`
-  );
+  deleteFirebaseAccounts();
 });
 
 When('I verify email', () => {
