@@ -30,8 +30,10 @@ it('edits column', () => {
   renderWithContext(
     <Column {...props} boardId={board.id} columnId={column.id} />
   );
-  const value = 'My Column Name';
-  fireEvent.change(screen.getByLabelText('Column Name'), { target: { value } });
+  const value = 'Edited Column Name';
+  fireEvent.change(screen.getByLabelText(`Edit column "${column.name}"`), {
+    target: { value },
+  });
   expect(screen.getByDisplayValue(value)).toBeInTheDocument();
 });
 
@@ -43,7 +45,7 @@ it('resets user editing column id on blur', () => {
   renderWithContext(
     <Column {...props} boardId={board.id} columnId={column.id} />
   );
-  fireEvent.blur(screen.getByLabelText('Column Name'));
+  fireEvent.blur(screen.getByLabelText(`Edit column "${column.name}"`));
   expect(store.getState().user.editing.columnId).toBe('');
 });
 
