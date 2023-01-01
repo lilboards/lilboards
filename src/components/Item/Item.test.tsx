@@ -36,7 +36,7 @@ it('renders card style', () => {
 it('renders like button and count', () => {
   const item = updateStore.withItem();
   renderWithContext(<Item {...props} itemId={item.id} />);
-  expect(screen.getByLabelText(/Like item/)).toBeInTheDocument();
+  expect(screen.getByLabelText(`Like item "${item.text}"`)).toBeInTheDocument();
   expect(screen.getByLabelText(/0 likes/)).toBeInTheDocument();
 });
 

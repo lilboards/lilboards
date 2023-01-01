@@ -31,7 +31,13 @@ Feature: Board
       And I blur
     Then I see text "Column One, Item One"
       And I see text "0"
-    When I get element by label text "Like item"
+    When I get element by label text 'Like item "Column One, Item One"'
+      And I click
+    Then I see text "1"
+    When I get element by label text 'Unlike item "Column One, Item One"'
+      And I click
+    Then I see text "0"
+    When I get element by label text 'Like item "Column One, Item One"'
       And I click
     Then I see text "1"
     When I click on button "Add column"
@@ -68,7 +74,7 @@ Feature: Board
       And I click on button "Add item"
       And I get focused element
       And I type "Item One"
-      And I get element by label text "Like item"
+      And I get element by label text 'Like item "Item One"'
       And I click 
     Then I see text "Item One"
     When I copy board link
@@ -80,7 +86,7 @@ Feature: Board
       And I see button "Add item"
       And I see text "1"
       And I do not see text "Add column"
-    When I get element by label text "Like item"
+    When I get element by label text 'Like item "Item One"'
       And I click 
     Then I see text "2"
     When I click on button "Add item"

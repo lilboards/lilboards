@@ -15,7 +15,9 @@ const props = {
 describe('without user and item', () => {
   it('renders like button', () => {
     renderWithContext(<Likes boardId={boardId} itemId="" />);
-    expect(screen.getByRole('button')).toBe(screen.getByLabelText(/Like item/));
+    expect(screen.getByRole('button')).toBe(
+      screen.getByLabelText('Like item ""')
+    );
   });
 
   it('renders like count', () => {
@@ -35,15 +37,15 @@ describe('with user and item', () => {
 
   it('increments like count on click', () => {
     renderWithContext(<Likes {...props} itemId={item.id} />);
-    fireEvent.click(screen.getByLabelText(/Like item/));
+    fireEvent.click(screen.getByLabelText(`Like item "${item.text}"`));
     expect(screen.getByText('1')).toBeInTheDocument();
     expect(screen.getByLabelText(/1 like for item/)).toBeInTheDocument();
   });
 
   it('decrements like count on click', () => {
     renderWithContext(<Likes {...props} itemId={item.id} />);
-    fireEvent.click(screen.getByLabelText(/Like item/));
-    fireEvent.click(screen.getByLabelText(/Unlike item/));
+    fireEvent.click(screen.getByLabelText(`Like item "${item.text}"`));
+    fireEvent.click(screen.getByLabelText(`Unlike item "${item.text}"`));
     expect(screen.getByText('0')).toBeInTheDocument();
     expect(screen.getByLabelText(/0 likes for item/)).toBeInTheDocument();
   });
