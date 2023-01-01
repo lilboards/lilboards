@@ -27,11 +27,12 @@ export default function ColumnName(props: Props) {
     (state) => (state.columns[props.columnId] || {}).itemIds || []
   );
   const userId = useSelector((state) => state.user.id);
+  const columnName = props.name || props.placeholder;
 
   if (readOnly) {
     return (
       <Typography component="h2" gutterBottom variant="h5">
-        {props.name || props.placeholder}
+        {columnName}
       </Typography>
     );
   }
@@ -83,7 +84,7 @@ export default function ColumnName(props: Props) {
       <TextField
         autoFocus={isEditing}
         fullWidth
-        inputProps={{ 'aria-label': 'Column Name' }}
+        inputProps={{ 'aria-label': `Edit column "${columnName}"` }}
         placeholder={props.placeholder}
         onBlur={handleBlur}
         onChange={handleChange}
@@ -91,7 +92,7 @@ export default function ColumnName(props: Props) {
       />
 
       <CloseButton
-        aria-label={`Delete column "${props.name || props.placeholder}"`}
+        aria-label={`Delete column "${columnName}"`}
         onClick={deleteColumn}
         size="small"
         sx={{

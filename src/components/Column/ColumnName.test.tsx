@@ -14,7 +14,8 @@ const props = {
   placeholder: 'Column Placeholder',
 };
 
-describe('user cannot edit', () => {
+// user cannot edit (not board owner)
+describe('readonly', () => {
   it('renders name', () => {
     renderWithContext(<ColumnName {...props} />);
     expect(
@@ -36,8 +37,30 @@ describe('user cannot edit', () => {
   });
 });
 
-describe('user can edit', () => {
-  it('renders delete button with name', () => {
+// user can edit (board owner)
+describe('edit', () => {
+  it('renders input with name', () => {
+    const board = updateStore.withBoard();
+    updateStore.withUser();
+    renderWithContext(<ColumnName {...props} boardId={board.id} />);
+    expect(
+      screen.getByLabelText(`Edit column "${props.name}"`)
+    ).toBeInTheDocument();
+  });
+
+  it('renders input with placeholder', () => {
+    const board = updateStore.withBoard();
+    updateStore.withUser();
+    renderWithContext(<ColumnName {...props} boardId={board.id} name="" />);
+    expect(
+      screen.getByLabelText(`Edit column "${props.placeholder}"`)
+    ).toBeInTheDocument();
+  });
+});
+
+// user can delete (board owner)
+describe('delete', () => {
+  it('renders button with name', () => {
     const board = updateStore.withBoard();
     updateStore.withUser();
     renderWithContext(<ColumnName {...props} boardId={board.id} />);
@@ -46,7 +69,7 @@ describe('user can edit', () => {
     ).toBeInTheDocument();
   });
 
-  it('renders delete button with placeholder', () => {
+  it('renders button with placeholder', () => {
     const board = updateStore.withBoard();
     updateStore.withUser();
     renderWithContext(<ColumnName {...props} boardId={board.id} name="" />);
