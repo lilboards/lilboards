@@ -47,12 +47,14 @@ describe('delete item', () => {
 
   it('renders close button', () => {
     renderWithContext(<Item {...props} itemId={item.id} />);
-    expect(screen.getByLabelText(/Delete item/)).toBeInTheDocument();
+    expect(
+      screen.getByLabelText(`Delete item "${item.text}"`)
+    ).toBeInTheDocument();
   });
 
   it('deletes item', () => {
     renderWithContext(<Item {...props} itemId={item.id} />);
-    fireEvent.click(screen.getByLabelText(/Delete item/));
+    fireEvent.click(screen.getByLabelText(`Delete item "${item.text}"`));
     expect(screen.queryByLabelText(/Delete item/)).not.toBeInTheDocument();
   });
 });
@@ -65,20 +67,20 @@ describe('edit item', () => {
   it('changes item', () => {
     renderWithContext(<Item {...props} itemId={item.id} />);
     const event = { target: { value: 'Item text' } };
-    const input = screen.getByLabelText(/Edit item/);
+    const input = screen.getByLabelText(`Edit item "${item.text}"`);
     fireEvent.change(input, event);
     expect(screen.getByDisplayValue(event.target.value)).toBe(input);
   });
 
   it('focuses item', () => {
     renderWithContext(<Item {...props} itemId={item.id} />);
-    fireEvent.focus(screen.getByLabelText(/Edit item/));
+    fireEvent.focus(screen.getByLabelText(`Edit item "${item.text}"`));
     expect(store.getState().user.editing.itemId).toBe(itemId);
   });
 
   it('blurs item', () => {
     renderWithContext(<Item {...props} itemId={item.id} />);
-    fireEvent.blur(screen.getByLabelText(/Edit item/));
+    fireEvent.blur(screen.getByLabelText(`Edit item "${item.text}"`));
     expect(store.getState().user.editing.itemId).toBe('');
   });
 });
