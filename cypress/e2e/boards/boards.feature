@@ -1,5 +1,5 @@
 Feature: Boards
-  Scenario: Create board
+  Scenario: Create and delete boards
     Given I create account
       And I login
     Then I see URL "/boards"
