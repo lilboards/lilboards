@@ -51,6 +51,14 @@ Feature: Board
       And I blur
     Then I see text "Column One, Item One"
       And I see text "0"
+    When I click on button "Add item"
+      And I get focused element
+      And I type "Item to Delete"
+      And I blur
+    Then I see text "Item to Delete"
+    When I get element by label text 'Delete item "Item to Delete"'
+      And I click
+    Then I do not see text "Item to Delete"
     When I reload the page
     Then I see text "Create board, columns, and items"
       And I see text "Column One"
@@ -59,6 +67,7 @@ Feature: Board
       And I see text "Column Two, Item One"
       And I see text "1"
       And I see text "0"
+      And I do not see text "Item to Delete"
 
   Scenario: Share board with anonymous users
     Given I create account
@@ -79,7 +88,8 @@ Feature: Board
     Then I see text "Item One"
     When I copy board link
       And I click on link "Logout"
-      And I visit board
+    Then I see text "Sign In"
+    When I visit board
     Then I see text "Share board with anonymous users"
       And I see text "Column One"
       And I see text "Item One"
@@ -92,5 +102,8 @@ Feature: Board
     When I click on button "Add item"
       And I get focused element
       And I type "Item Two"
-      And I blur
+      And I click on text "Hide Likes"
     Then I see text "Item Two"
+    When I get element by label text 'Delete item "Item One"'
+      And I click 
+    Then I do not see text "Item One"
