@@ -17,6 +17,7 @@ Feature: Signup
     When I verify email
       And I click on link "Logout"
     Then I see URL "/login"
+      And I see text "Sign In"
     When I click on button "Sign in with email"
       And I get focused element
       And I type "test@example.com"
