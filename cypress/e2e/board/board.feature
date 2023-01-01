@@ -88,7 +88,8 @@ Feature: Board
     Then I see text "Item One"
     When I copy board link
       And I click on link "Logout"
-    Then I see text "Sign In"
+    Then I see URL "/login"
+      And I see text "Sign In"
     When I visit board
     Then I see text "Share board with anonymous users"
       And I see text "Column One"
