@@ -8,7 +8,7 @@ Feature: Board
       And I click on link "Open"
     Then I see URL contains "/boards/"
       And I see link "Boards"
-      And I see text "Create board, columns, and items"
+      And I see heading "Create board, columns, and items"
       And I see button "Add column"
     When I click on button "Add column"
       And I click on button "Add item"
@@ -16,8 +16,7 @@ Feature: Board
       And I type "Item 1"
       And I blur
     Then I see text "Item 1"
-    When I get element by label text 'Delete column "Column 1"'
-      And I click
+    When I click on label 'Delete column "Column 1"'
     Then I do not see text "Column 1"
       And I do not see text "Item 1"
     When I click on button "Add column"
@@ -31,14 +30,11 @@ Feature: Board
       And I blur
     Then I see text "Column One, Item One"
       And I see text "0"
-    When I get element by label text 'Like item "Column One, Item One"'
-      And I click
+    When I click on label 'Like item "Column One, Item One"'
     Then I see text "1"
-    When I get element by label text 'Unlike item "Column One, Item One"'
-      And I click
+    When I click on label 'Unlike item "Column One, Item One"'
     Then I see text "0"
-    When I get element by label text 'Like item "Column One, Item One"'
-      And I click
+    When I click on label 'Like item "Column One, Item One"'
     Then I see text "1"
     When I click on button "Add column"
       And I get focused element
@@ -56,8 +52,7 @@ Feature: Board
       And I type "Item to Delete"
       And I blur
     Then I see text "Item to Delete"
-    When I get element by label text 'Delete item "Item to Delete"'
-      And I click
+    When I click on label 'Delete item "Item to Delete"'
     Then I do not see text "Item to Delete"
     When I reload the page
     Then I see text "Create board, columns, and items"
@@ -83,8 +78,7 @@ Feature: Board
       And I click on button "Add item"
       And I get focused element
       And I type "Item One"
-      And I get element by label text 'Like item "Item One"'
-      And I click 
+      And I click on label 'Like item "Item One"'
     Then I see text "Item One"
     When I copy board link
       And I click on link "Logout"
@@ -97,14 +91,12 @@ Feature: Board
       And I see button "Add item"
       And I see text "1"
       And I do not see text "Add column"
-    When I get element by label text 'Like item "Item One"'
-      And I click 
+    When I click on label 'Like item "Item One"'
     Then I see text "2"
     When I click on button "Add item"
       And I get focused element
       And I type "Item Two"
       And I click on text "Hide Likes"
     Then I see text "Item Two"
-    When I get element by label text 'Delete item "Item One"'
-      And I click 
+    When I click on label 'Delete item "Item One"'
     Then I do not see text "Item One"
