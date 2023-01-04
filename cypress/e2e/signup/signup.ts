@@ -1,10 +1,4 @@
-import { Before, When } from '@badeball/cypress-cucumber-preprocessor';
-
-import { deleteFirebaseAccounts } from '../../support/utils';
-
-Before(() => {
-  deleteFirebaseAccounts();
-});
+import { When } from '@badeball/cypress-cucumber-preprocessor';
 
 When('I verify email', () => {
   const firebaseDebugLog = 'firebase-debug.log';

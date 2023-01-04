@@ -3,7 +3,7 @@ Feature: Boards
     Given I create account
       And I login
     Then I see URL "/boards"
-      And I see text "Boards"
+      And I see heading "Boards"
       And I see button "Add board"
     When I click on button "Add board"
       And I get focused element

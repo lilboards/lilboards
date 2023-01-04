@@ -2,18 +2,16 @@ Feature: Home
   Scenario: Header
     Given I visit "/"
     Then I see text "Lilboards"
-      And I see text "Login"
-    When I click on text "Login"
+    When I click on link "Login"
     Then I see URL "/login"
-      And I see text "Sign In"
+      And I see heading "Sign In"
 
   Scenario: Hero
     Given I visit "/"
-    Then I see text "Create boards, columns, and items."
-      And I see text "Get started"
-    When I click on text "Login"
+    Then I see heading "Create boards, columns, and items."
+    When I click on link "Get started"
     Then I see URL "/login"
-      And I see text "Sign In"
+      And I see heading "Sign In"
 
   Scenario: Footer
     Given I visit "/"
