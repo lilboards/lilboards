@@ -16,4 +16,8 @@ export default defineConfig({
       return config;
     },
   },
+
+  retries: {
+    runMode: 3,
+  },
 });
