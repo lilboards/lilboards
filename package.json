@@ -55,7 +55,7 @@
     "@bahmutov/cypress-esbuild-preprocessor": "^2.1.5",
     "@commitlint/cli": "^17.4.1",
     "@commitlint/config-conventional": "^17.4.0",
-    "@size-limit/preset-app": "^8.1.0",
+    "@size-limit/preset-app": "^8.1.1",
     "cypress": "^12.3.0",
     "cypress-cucumber-steps": "^1.48.0",
     "eslint-plugin-prettier": "^4.2.1",
