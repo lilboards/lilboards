@@ -56,7 +56,7 @@
     "@commitlint/cli": "^17.4.3",
     "@commitlint/config-conventional": "^17.4.3",
     "@size-limit/preset-app": "^8.2.4",
-    "cypress": "^12.5.1",
+    "cypress": "^12.6.0",
     "cypress-cucumber-steps": "^1.50.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-simple-import-sort": "^10.0.0",
