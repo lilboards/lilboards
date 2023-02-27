@@ -6205,10 +6205,10 @@ cypress-cucumber-steps@^1.50.0:
   resolved "https://registry.yarnpkg.com/cypress-cucumber-steps/-/cypress-cucumber-steps-1.50.0.tgz#e8f66a00c35a74148adf9fdac1914746068f8571"
   integrity sha512-jh9N1Rz/AzhhYix4miOA3Kp+Rf+rHiCsaXtZtift43xHgARmJ2XLxXChQ51psFLGStN5SyikuHzWtols0DYQpQ==
 
-cypress@^12.6.0:
-  version "12.6.0"
-  resolved "https://registry.yarnpkg.com/cypress/-/cypress-12.6.0.tgz#d71a82639756173c0682b3d467eb9f0523460e91"
-  integrity sha512-WdHSVaS1lumSd5XpVTslZd8ui9GIGphrzvXq9+3DtVhqjRZC5M70gu5SW/Y/SLPq3D1wiXGZoHC6HJ7ESVE2lw==
+cypress@^12.7.0:
+  version "12.7.0"
+  resolved "https://registry.yarnpkg.com/cypress/-/cypress-12.7.0.tgz#69900f82af76cf3ba0ddb9b59ec3b0d38222ab22"
+  integrity sha512-7rq+nmhzz0u6yabCFyPtADU2OOrYt6pvUau9qV7xyifJ/hnsaw/vkr0tnLlcuuQKUAOC1v1M1e4Z0zG7S0IAvA==
   dependencies:
     "@cypress/request" "^2.88.10"
     "@cypress/xvfb" "^1.2.4"
