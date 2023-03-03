@@ -39,7 +39,7 @@
     "@types/react-dom": "^18.0.11",
     "@types/react-redux": "^7.1.25",
     "debounce": "^1.2.1",
-    "firebase": "^9.17.1",
+    "firebase": "^9.17.2",
     "firebaseui": "^6.0.2",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",
