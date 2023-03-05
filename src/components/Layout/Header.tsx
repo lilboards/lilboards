@@ -37,6 +37,7 @@ export default function Header() {
             color="inherit"
             component={RouterLink}
             to="/support"
+            title="Support"
           >
             <SupportIcon />
           </IconButton>
@@ -48,6 +49,7 @@ export default function Header() {
             href="https://b.remarkabl.org/lilboards"
             target="_blank"
             rel="noopener noreferrer"
+            title="GitHub"
           >
             <GitHubIcon />
           </Link>
