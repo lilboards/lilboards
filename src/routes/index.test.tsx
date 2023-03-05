@@ -19,6 +19,10 @@ it('matches snapshot', () => {
         path="logout"
       />
       <Route
+        element={<SupportLoader />}
+        path="support"
+      />
+      <Route
         path="boards"
       >
         <Route

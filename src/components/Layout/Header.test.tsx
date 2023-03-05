@@ -16,6 +16,11 @@ it('renders heading link', () => {
   );
 });
 
+it('renders support link', () => {
+  renderWithContext(<Header />);
+  expect(screen.getByLabelText('Support')).toHaveAttribute('href', '/support');
+});
+
 it('renders GitHub link', () => {
   renderWithContext(<Header />);
   expect(screen.getByLabelText('Open GitHub repository')).toHaveAttribute(
