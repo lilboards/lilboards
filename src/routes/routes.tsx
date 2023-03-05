@@ -9,6 +9,7 @@ import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Logout from '../pages/Logout';
 import NotFound from '../pages/NotFound';
+import Support from '../pages/Support';
 
 const routes: ReactElement = (
   <Route path="/" element={<Layout />}>
@@ -16,6 +17,7 @@ const routes: ReactElement = (
 
     <Route path="login" element={<Login />} />
     <Route path="logout" element={<Logout />} />
+    <Route path="support" element={<Support />} />
 
     <Route path="boards">
       <Route element={<Protected check="email" />}>
