@@ -4,6 +4,8 @@ on: pull_request_target
 jobs:
   auto-assign:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     if: github.event.action == 'opened' && endsWith(github.actor, '[bot]') == false
 
     steps:
