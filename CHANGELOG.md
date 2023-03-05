@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.26.0](https://github.com/lilboards/lilboards/compare/v4.25.0...v4.26.0) (2023-03-05)
+
+
+### Features
+
+* **components:** add title to icons in Header ([f51ccd0](https://github.com/lilboards/lilboards/commit/f51ccd00ac080044c77f54a567cbd7e47ef33038))
+* **components:** render support link in Header ([e20b0b8](https://github.com/lilboards/lilboards/commit/e20b0b8984d7e85a5c6f4327c514943858699517))
+* **pages:** change to public GitHub issue & discussion links in Support ([b8b5d0c](https://github.com/lilboards/lilboards/commit/b8b5d0c2e7b0b5d0b940e58076286bd347cb0e63))
+* **pages:** create Support ([da3cb17](https://github.com/lilboards/lilboards/commit/da3cb17aea9b93fcfc03daffb76626b513705c42))
+* **routes:** add "/support" ([f703ce2](https://github.com/lilboards/lilboards/commit/f703ce28ce1ce70b17402538a7658beb347685bd))
+
 ## [4.25.0](https://github.com/lilboards/lilboards/compare/v4.24.1...v4.25.0) (2023-01-01)
 
 
