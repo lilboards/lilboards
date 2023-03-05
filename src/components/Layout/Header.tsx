@@ -1,4 +1,5 @@
 import GitHubIcon from '@mui/icons-material/GitHub';
+import SupportIcon from '@mui/icons-material/Support';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -30,6 +31,15 @@ export default function Header() {
               Lilboards
             </Link>
           </Box>
+
+          <IconButton
+            aria-label="Support"
+            color="inherit"
+            component={RouterLink}
+            to="/support"
+          >
+            <SupportIcon />
+          </IconButton>
 
           <Link
             aria-label="Open GitHub repository"
