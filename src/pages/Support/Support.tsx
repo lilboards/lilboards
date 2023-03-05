@@ -16,7 +16,7 @@ export default function Support() {
       <Typography paragraph>
         Have a question? Open an{' '}
         <Link
-          href="https://github.com/lilboards/lilboards/issues/new/choose"
+          href="https://github.com/lilboards/lilboards/issues"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -24,7 +24,7 @@ export default function Support() {
         </Link>{' '}
         or{' '}
         <Link
-          href="https://github.com/lilboards/lilboards/discussions/new/choose"
+          href="https://github.com/lilboards/lilboards/discussions"
           target="_blank"
           rel="noopener noreferrer"
         >
