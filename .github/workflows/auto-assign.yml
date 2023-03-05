@@ -1,11 +1,10 @@
 name: auto-assign
 on: pull_request_target
+permissions: write-all
 
 jobs:
   auto-assign:
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
     if: github.event.action == 'opened' && endsWith(github.actor, '[bot]') == false
 
     steps:
