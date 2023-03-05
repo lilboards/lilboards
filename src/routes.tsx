@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react';
 import { Route } from 'react-router-dom';
 
 import Layout from './components/Layout';
@@ -9,7 +10,7 @@ import Login from './pages/Login';
 import Logout from './pages/Logout';
 import NotFound from './pages/NotFound';
 
-const routes = (
+const routes: ReactElement = (
   <Route path="/" element={<Layout />}>
     <Route index element={<Home />} />
 
