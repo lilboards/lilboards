@@ -1,6 +1,7 @@
 Feature: Signup
   Scenario: Sign up with email
     Given I visit "/login"
+    Then I see document title "Login"
     When I click on button "Sign in with email"
       And I get focused element
       And I type "test@example.com"

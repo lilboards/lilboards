@@ -4,6 +4,7 @@ Feature: Support
     Then I see label "Support"
     When I click on label "Support"
     Then I see URL "/support"
+      And I see document title "Support"
 
   Scenario: Support page
     Given I visit "/support"

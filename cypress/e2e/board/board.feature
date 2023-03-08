@@ -7,6 +7,7 @@ Feature: Board
       And I type "Create board, columns, and items"
       And I click on link "Open"
     Then I see URL contains "/boards/"
+      And I see document title "Create board, columns, and items"
       And I see link "Boards"
       And I see heading "Create board, columns, and items"
       And I see button "Add column"
@@ -72,6 +73,7 @@ Feature: Board
       And I type "Share board with anonymous users"
       And I click on link "Open"
     Then I see text "Share board with anonymous users"
+      And I see document title "Share board with anonymous users"
     When I click on button "Add column"
       And I get focused element
       And I type "Column One"

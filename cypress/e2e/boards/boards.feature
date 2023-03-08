@@ -3,6 +3,7 @@ Feature: Boards
     Given I create account
       And I login
     Then I see URL "/boards"
+      And I see document title "Boards"
       And I see heading "Boards"
       And I see button "Add board"
     When I click on button "Add board"
