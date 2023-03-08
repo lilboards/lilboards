@@ -5,7 +5,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { useSetDocumentTitle } from '../../hooks';
 
 export default function NotFound() {
-  useSetDocumentTitle('404 Not Found');
+  useSetDocumentTitle('Not Found');
 
   return (
     <>
