@@ -4,6 +4,7 @@ import {
   child,
   get,
   getDatabase,
+  onValue,
   push,
   ref,
   remove,
@@ -51,6 +52,21 @@ export function generateId(): Id {
 }
 
 export const boardsRef = ref(database, BOARDS);
+
+/**
+ * Detects Firebase Realtime Database client's connection state change.
+ *
+ * @see {@link https://firebase.google.com/docs/database/web/offline-capabilities#section-connection-state}
+ *
+ * @param callback - The callback.
+ */
+export const onConnected = (callback: (isConnected: boolean) => void) => {
+  const connectedRef = ref(database, '.info/connected');
+  onValue(connectedRef, (snapshot) => {
+    const isConnected: boolean = snapshot.val();
+    callback(isConnected);
+  });
+};
 
 /**
  * Gets board ref.
