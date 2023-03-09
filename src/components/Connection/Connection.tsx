@@ -1,0 +1,34 @@
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
+import { useEffect, useState } from 'react';
+
+import { onConnected } from '../../firebase/database';
+
+export default function Connection() {
+  const [open, setOpen] = useState(true);
+  const [connected, setConnected] = useState(true);
+
+  useEffect(() => {
+    onConnected(setConnected);
+  }, []);
+
+  function handleClose(event?: React.SyntheticEvent | Event, reason?: string) {
+    /* istanbul ignore if */
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  }
+
+  return (
+    <Snackbar
+      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      onClose={handleClose}
+      open={open && !connected}
+    >
+      <Alert onClose={handleClose} severity="error">
+        Unable to connect to server. Realtime updates are paused.
+      </Alert>
+    </Snackbar>
+  );
+}
