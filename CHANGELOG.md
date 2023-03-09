@@ -1,5 +1,19 @@
 # Changelog
 
+## [4.27.0](https://github.com/lilboards/lilboards/compare/v4.26.0...v4.27.0) (2023-03-09)
+
+
+### Features
+
+* **components:** add Connection that detects Firebase Database client ([eca498d](https://github.com/lilboards/lilboards/commit/eca498d9c4e8f69d3e77dee53c0967722d44331a))
+* **firebase:** export onConnected from database ([c257ca8](https://github.com/lilboards/lilboards/commit/c257ca8031d5733ddfd694638caed21e94e2a8ac))
+* **pages:** render Connection in Board and Boards ([bfa058e](https://github.com/lilboards/lilboards/commit/bfa058eb51fc010f687dfd22e032672560faf540))
+
+
+### Bug Fixes
+
+* **components:** load app before checking Firebase connection ([1a4d633](https://github.com/lilboards/lilboards/commit/1a4d633c3dda734e25b2bdfe47328558f65df868))
+
 ## [4.26.0](https://github.com/lilboards/lilboards/compare/v4.25.0...v4.26.0) (2023-03-05)
 
 
