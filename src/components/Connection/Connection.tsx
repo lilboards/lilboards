@@ -9,7 +9,10 @@ export default function Connection() {
   const [connected, setConnected] = useState(true);
 
   useEffect(() => {
-    onConnected(setConnected);
+    // ensure app is loaded before checking Firebase connection
+    setTimeout(() => {
+      onConnected(setConnected);
+    }, 1000);
   }, []);
 
   function handleClose(event?: React.SyntheticEvent | Event, reason?: string) {

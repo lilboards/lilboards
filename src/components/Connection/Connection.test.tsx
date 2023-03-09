@@ -1,4 +1,10 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 
 import { onConnected } from '../../firebase/database';
 import Connection from './Connection';
@@ -11,6 +17,8 @@ const mockedOnConnected = jest.mocked(onConnected);
 
 const message = 'Unable to connect to server. Realtime updates are paused.';
 
+jest.useFakeTimers();
+
 describe('connected', () => {
   beforeEach(() => {
     const isConnected = true;
@@ -21,6 +29,7 @@ describe('connected', () => {
 
   it('does not render error', () => {
     render(<Connection />);
+    jest.runAllTimers();
     expect(screen.queryByText(message)).not.toBeInTheDocument();
   });
 });
@@ -35,11 +44,17 @@ describe('disconnected', () => {
 
   it('renders error when disconnected', () => {
     render(<Connection />);
+    act(() => {
+      jest.runAllTimers();
+    });
     expect(screen.getByText(message)).toBeInTheDocument();
   });
 
   it('closes snackbar when close icon button is clicked', async () => {
     render(<Connection />);
+    act(() => {
+      jest.runAllTimers();
+    });
     fireEvent.click(screen.getByLabelText('Close'));
     await waitFor(() => {
       expect(screen.queryByText(message)).not.toBeInTheDocument();
