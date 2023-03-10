@@ -7,54 +7,58 @@ it('matches snapshot', () => {
       path="/"
     >
       <Route
-        element={<HomeLoader />}
-        index={true}
-      />
-      <Route
-        element={<LoginLoader />}
-        path="login"
-      />
-      <Route
-        element={<LogoutLoader />}
-        path="logout"
-      />
-      <Route
-        element={<SupportLoader />}
-        path="support"
-      />
-      <Route
-        path="boards"
+        errorElement={<ErrorBoundary />}
       >
         <Route
-          element={
-            <ProtectedLoader
-              check="email"
-            />
-          }
+          element={<HomeLoader />}
+          index={true}
+        />
+        <Route
+          element={<LoginLoader />}
+          path="login"
+        />
+        <Route
+          element={<LogoutLoader />}
+          path="logout"
+        />
+        <Route
+          element={<SupportLoader />}
+          path="support"
+        />
+        <Route
+          path="boards"
         >
           <Route
-            element={<BoardsLoader />}
-            index={true}
-          />
+            element={
+              <ProtectedLoader
+                check="email"
+              />
+            }
+          >
+            <Route
+              element={<BoardsLoader />}
+              index={true}
+            />
+          </Route>
+          <Route
+            element={
+              <ProtectedLoader
+                check="id"
+                signInAnonymously={true}
+              />
+            }
+          >
+            <Route
+              element={<BoardLoader />}
+              path=":boardId"
+            />
+          </Route>
         </Route>
         <Route
-          element={
-            <ProtectedLoader
-              check="id"
-              signInAnonymously={true}
-            />
-          }
-        >
-          <Route
-            element={<BoardLoader />}
-            path=":boardId"
-          />
-        </Route>
+          element={<NotFoundLoader />}
+          path="*"
+        />
       </Route>
-      <Route
-        element={<NotFoundLoader />}
-        path="*"
-      />
     </Route>
   `);
 });
