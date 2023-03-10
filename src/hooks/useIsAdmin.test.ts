@@ -1,3 +1,6 @@
+import { renderHook } from '@testing-library/react';
+
+import type { RootState } from '../types';
 import { useIsAdmin } from './useIsAdmin';
 import { useSelector } from './useSelector';
 
@@ -12,9 +15,10 @@ const userId = 'user-id';
 
 it('is not admin when board id is empty', () => {
   mockedUseSelector.mockImplementationOnce((callback) =>
-    callback(undefined as any)
+    callback(undefined as unknown as RootState)
   );
-  expect(useIsAdmin('')).toBe(false);
+  const { result } = renderHook(() => useIsAdmin(''));
+  expect(result.current).toBe(false);
 });
 
 it('is not admin when board does not exist', () => {
@@ -22,9 +26,10 @@ it('is not admin when board does not exist', () => {
     boards: {},
   };
   mockedUseSelector.mockImplementationOnce((callback) =>
-    callback(state as any)
+    callback(state as RootState)
   );
-  expect(useIsAdmin(boardId)).toBe(false);
+  const { result } = renderHook(() => useIsAdmin(boardId));
+  expect(result.current).toBe(false);
 });
 
 it('is not admin when created by does not exist', () => {
@@ -34,9 +39,10 @@ it('is not admin when created by does not exist', () => {
     },
   };
   mockedUseSelector.mockImplementationOnce((callback) =>
-    callback(state as any)
+    callback(state as unknown as RootState)
   );
-  expect(useIsAdmin(boardId)).toBe(false);
+  const { result } = renderHook(() => useIsAdmin(boardId));
+  expect(result.current).toBe(false);
 });
 
 it('is not admin when user id does not exist', () => {
@@ -49,9 +55,10 @@ it('is not admin when user id does not exist', () => {
     user: {},
   };
   mockedUseSelector.mockImplementationOnce((callback) =>
-    callback(state as any)
+    callback(state as unknown as RootState)
   );
-  expect(useIsAdmin(boardId)).toBe(false);
+  const { result } = renderHook(() => useIsAdmin(boardId));
+  expect(result.current).toBe(false);
 });
 
 it('is not admin when created by does not match user id', () => {
@@ -66,9 +73,10 @@ it('is not admin when created by does not match user id', () => {
     },
   };
   mockedUseSelector.mockImplementationOnce((callback) =>
-    callback(state as any)
+    callback(state as unknown as RootState)
   );
-  expect(useIsAdmin(boardId)).toBe(false);
+  const { result } = renderHook(() => useIsAdmin(boardId));
+  expect(result.current).toBe(false);
 });
 
 it('is admin when created by matches user id', () => {
@@ -83,7 +91,8 @@ it('is admin when created by matches user id', () => {
     },
   };
   mockedUseSelector.mockImplementationOnce((callback) =>
-    callback(state as any)
+    callback(state as unknown as RootState)
   );
-  expect(useIsAdmin(boardId)).toBe(true);
+  const { result } = renderHook(() => useIsAdmin(boardId));
+  expect(result.current).toBe(true);
 });
