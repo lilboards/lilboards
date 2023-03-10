@@ -33,7 +33,7 @@
     "@testing-library/user-event": "^14.4.3",
     "@types/debounce": "^1.2.1",
     "@types/jest": "^29.4.0",
-    "@types/node": "^18.14.6",
+    "@types/node": "^18.15.0",
     "@types/react": "^18.0.28",
     "@types/react-beautiful-dnd": "^13.1.3",
     "@types/react-dom": "^18.0.11",
@@ -45,10 +45,10 @@
     "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
-    "react-router-dom": "^6.8.2",
+    "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
     "typescript": "4.9.5",
-    "web-vitals": "^3.1.1"
+    "web-vitals": "^3.3.0"
   },
   "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^15.1.4",
@@ -63,7 +63,7 @@
     "eslint-plugin-tsdoc": "^0.2.17",
     "firebase-tools": "^11.24.1",
     "husky": "^8.0.3",
-    "lint-staged": "^13.1.2",
+    "lint-staged": "^13.2.0",
     "prettier": "^2.8.4",
     "size-limit": "^8.2.4"
   },
