@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.28.0](https://github.com/lilboards/lilboards/compare/v4.27.0...v4.28.0) (2023-03-10)
+
+
+### Features
+
+* **pages:** create ErrorBoundary ([c1a29f4](https://github.com/lilboards/lilboards/commit/c1a29f4010b1d62a1565e172f79215e3373c7aec))
+* **routes:** set root Route errorElement to ErrorBoundary ([5eeabce](https://github.com/lilboards/lilboards/commit/5eeabce8966f65edb60d7febc4c1816b3e805dad))
+
 ## [4.27.0](https://github.com/lilboards/lilboards/compare/v4.26.0...v4.27.0) (2023-03-09)
 
 
