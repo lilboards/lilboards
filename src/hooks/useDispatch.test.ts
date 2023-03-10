@@ -1,3 +1,4 @@
+import { renderHook } from '@testing-library/react';
 import { useDispatch as useReactReduxDispatch } from 'react-redux';
 
 import { useDispatch } from './useDispatch';
@@ -6,13 +7,12 @@ jest.mock('react-redux', () => ({
   useDispatch: jest.fn(),
 }));
 
-const mockedUseReactReduxDispatch = jest.mocked(useReactReduxDispatch);
-
 beforeEach(() => {
-  mockedUseReactReduxDispatch.mockClear();
+  jest.clearAllMocks();
 });
 
 it('wraps react-redux useDispatch', () => {
-  useDispatch();
+  const { result } = renderHook(() => useDispatch());
+  expect(result.current).toBe(undefined);
   expect(useReactReduxDispatch).toBeCalledTimes(1);
 });

@@ -1,3 +1,4 @@
+import { renderHook } from '@testing-library/react';
 import {
   shallowEqual,
   useSelector as useReactReduxSelector,
@@ -10,17 +11,14 @@ jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
 }));
 
-const mockedShallowEqual = jest.mocked(shallowEqual);
-const mockedUseReactReduxSelector = jest.mocked(useReactReduxSelector);
-
 beforeEach(() => {
-  mockedShallowEqual.mockClear();
-  mockedUseReactReduxSelector.mockClear();
+  jest.clearAllMocks();
 });
 
 it('wraps react-redux useSelector with shallowEqual', () => {
   const selector = jest.fn();
-  useSelector(selector);
+  const { result } = renderHook(() => useSelector(selector));
+  expect(result.current).toBe(undefined);
   expect(useReactReduxSelector).toBeCalledTimes(1);
   expect(useReactReduxSelector).toBeCalledWith(selector, shallowEqual);
 });
