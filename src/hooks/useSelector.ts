@@ -4,9 +4,7 @@ import {
   useSelector as useReactReduxSelector,
 } from 'react-redux';
 
-import store from '../store';
-
-type RootState = ReturnType<typeof store.getState>;
+import type { RootState } from '../types';
 
 export const useSelector: TypedUseSelectorHook<RootState> = (
   selector,
