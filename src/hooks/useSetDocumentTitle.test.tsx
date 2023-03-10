@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { renderHook } from '@testing-library/react';
 
 import { useSetDocumentTitle } from './useSetDocumentTitle';
 
@@ -10,10 +10,7 @@ afterAll(() => {
 
 it('sets document title', () => {
   const title = 'Document Title';
-  function TestComponent() {
-    useSetDocumentTitle(title);
-    return null;
-  }
-  render(<TestComponent />);
+  const { result } = renderHook(() => useSetDocumentTitle(title));
+  expect(result.current).toBe(undefined);
   expect(document.title).toBe(title);
 });
