@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.29.0](https://github.com/lilboards/lilboards/compare/v4.28.0...v4.29.0) (2023-03-19)
+
+
+### Features
+
+* **BoardCard:** show confirmation dialog before deleting board ([ec23767](https://github.com/lilboards/lilboards/commit/ec237675091464007480eed922e101495c29f62c))
+
 ## [4.28.0](https://github.com/lilboards/lilboards/compare/v4.27.0...v4.28.0) (2023-03-10)
 
 
