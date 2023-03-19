@@ -2,17 +2,13 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import { type ChangeEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import actions from '../../actions';
+import DeleteDialog from '../../components/DeleteDialog';
 import { logEvent } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import type { Id } from '../../types';
@@ -111,36 +107,19 @@ export default function BoardCard(props: Props) {
             Delete
           </Button>
 
-          <Dialog
+          <DeleteDialog
+            content="This action cannot be undone."
+            id={props.boardId}
+            onClose={() => setIsDialogOpen(false)}
+            onDelete={() => {
+              deleteBoard();
+              setIsDialogOpen(false);
+            }}
             open={isDialogOpen}
-            onClose={/* istanbul ignore next */ () => setIsDialogOpen(false)}
-            aria-labelledby={`dialog-title-${props.boardId}`}
-            aria-describedby={`dialog-content-${props.boardId}`}
-          >
-            <DialogTitle id={`dialog-title-${props.boardId}`}>
-              {board.name ? `Delete board "${board.name}"?` : 'Delete board?'}
-            </DialogTitle>
-
-            <DialogContent>
-              <DialogContentText id={`dialog-content-${props.boardId}`}>
-                This action cannot be undone.
-              </DialogContentText>
-            </DialogContent>
-
-            <DialogActions>
-              <Button onClick={() => setIsDialogOpen(false)}>Cancel</Button>
-              <Button
-                autoFocus
-                color="error"
-                onClick={() => {
-                  deleteBoard();
-                  setIsDialogOpen(false);
-                }}
-              >
-                Delete
-              </Button>
-            </DialogActions>
-          </Dialog>
+            title={
+              board.name ? `Delete board "${board.name}"?` : 'Delete board?'
+            }
+          />
         </CardActions>
       </Card>
     </Grid>
