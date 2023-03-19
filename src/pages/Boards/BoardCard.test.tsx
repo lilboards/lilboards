@@ -58,15 +58,38 @@ describe('edit board', () => {
 
 describe('delete board', () => {
   let board: ReturnType<typeof updateStore.withBoard>;
+  const dialogContent = 'This action cannot be undone.';
 
   beforeEach(() => {
     board = updateStore.withBoard();
     updateStore.withUser();
   });
 
+  it('renders dialog', () => {
+    renderWithContext(<BoardCard boardId={board.id} />);
+    fireEvent.click(screen.getByLabelText(`Delete board "${board.name}"`));
+    expect(
+      screen.getByText(`Delete board "${board.name}"?`)
+    ).toBeInTheDocument();
+    expect(screen.getByText(dialogContent)).toBeInTheDocument();
+  });
+
+  it('does not delete board', () => {
+    board = updateStore.withBoard({ name: '' });
+    updateStore.withUser();
+    renderWithContext(<BoardCard boardId={board.id} />);
+    fireEvent.click(screen.getByLabelText('Delete board'));
+    expect(screen.getByText('Delete board?')).toBeInTheDocument();
+    fireEvent.click(screen.getByText('Cancel'));
+    expect(screen.queryByText(dialogContent)).not.toBeVisible();
+    expect(screen.getByLabelText('Board Name')).toBeInTheDocument();
+  });
+
   it('deletes board', () => {
     renderWithContext(<BoardCard boardId={board.id} />);
     fireEvent.click(screen.getByLabelText(/Delete board/));
-    expect(screen.queryByLabelText('Board Name')).not.toBeInTheDocument();
+    fireEvent.click(screen.getAllByText('Delete')[1]);
+    expect(screen.queryByText(dialogContent)).not.toBeInTheDocument();
+    expect(screen.queryByDisplayValue(board.name)).not.toBeInTheDocument();
   });
 });

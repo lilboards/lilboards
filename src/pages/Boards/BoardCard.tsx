@@ -2,9 +2,14 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import type { ChangeEvent } from 'react';
+import { type ChangeEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import actions from '../../actions';
@@ -23,6 +28,7 @@ export default function BoardCard(props: Props) {
     (state) => state.user.editing.boardId === props.boardId
   );
   const userId = useSelector((state) => state.user.id);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   if (!board) {
     return null;
@@ -95,9 +101,46 @@ export default function BoardCard(props: Props) {
             Open
           </Button>
 
-          <Button aria-label="Delete board" color="error" onClick={deleteBoard}>
+          <Button
+            aria-label={
+              board.name ? `Delete board "${board.name}"` : 'Delete board'
+            }
+            color="error"
+            onClick={() => setIsDialogOpen(true)}
+          >
             Delete
           </Button>
+
+          <Dialog
+            open={isDialogOpen}
+            onClose={/* istanbul ignore next */ () => setIsDialogOpen(false)}
+            aria-labelledby={`dialog-title-${props.boardId}`}
+            aria-describedby={`dialog-content-${props.boardId}`}
+          >
+            <DialogTitle id={`dialog-title-${props.boardId}`}>
+              {board.name ? `Delete board "${board.name}"?` : 'Delete board?'}
+            </DialogTitle>
+
+            <DialogContent>
+              <DialogContentText id={`dialog-content-${props.boardId}`}>
+                This action cannot be undone.
+              </DialogContentText>
+            </DialogContent>
+
+            <DialogActions>
+              <Button onClick={() => setIsDialogOpen(false)}>Cancel</Button>
+              <Button
+                autoFocus
+                color="error"
+                onClick={() => {
+                  deleteBoard();
+                  setIsDialogOpen(false);
+                }}
+              >
+                Delete
+              </Button>
+            </DialogActions>
+          </Dialog>
         </CardActions>
       </Card>
     </Grid>

@@ -13,8 +13,15 @@ Feature: Boards
       And I see link "Open"
       And I see button "Delete"
     When I click on button "Add board"
-      And I get focused element
-      And I type "My Board 2"
-    When I click on button "Delete"
       And I click on button "Delete"
-    Then I do not see text "Board Name"
+    Then I see text "Delete board?"
+      And I see text "This action cannot be undone."
+    When I find buttons by text "Delete"
+      And I get last element
+      And I click
+      And I find links by text "Open"
+    Then I count 1 element
+    When I click on button "Delete"
+    Then I see text 'Delete board "My Board 1"?'
+    When I click on button "Cancel"
+    Then I see text "My Board 1"
