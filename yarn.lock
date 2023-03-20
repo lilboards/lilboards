@@ -6210,10 +6210,10 @@ csv-parse@^5.0.4:
   resolved "https://registry.yarnpkg.com/csv-parse/-/csv-parse-5.0.4.tgz#97e5e654413bcf95f2714ce09bcb2be6de0eb8e3"
   integrity sha512-5AIdl8l6n3iYQYxan5djB5eKDa+vBnhfWZtRpJTcrETWfVLYN0WSj3L9RwvgYt+psoO77juUr8TG8qpfGZifVQ==
 
-cypress-cucumber-steps@^1.59.0:
-  version "1.59.0"
-  resolved "https://registry.yarnpkg.com/cypress-cucumber-steps/-/cypress-cucumber-steps-1.59.0.tgz#e14db95aecb8934043688006b2fde27d50ffe064"
-  integrity sha512-gr6qOuE99AoZ3ipD4pz+IImn/seGMG64km3a9JRncqiPmOWf5nb//vz7AL9rQQFmk79ZMrRV8vJkER7ume/9SA==
+cypress-cucumber-steps@^1.60.0:
+  version "1.60.0"
+  resolved "https://registry.yarnpkg.com/cypress-cucumber-steps/-/cypress-cucumber-steps-1.60.0.tgz#723edca1ee80541a0865f262bff84d5d9e079c2b"
+  integrity sha512-04NVVLhmkxiiHHn7TVxx87tlkZHAAsZGkGBAFw3BZ3ySMCUaYEH10eUPnJ+Kyf4SO52HV4HvyYHDv+2/YcqW5A==
 
 cypress@^12.8.1:
   version "12.8.1"
