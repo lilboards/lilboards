@@ -12,10 +12,8 @@ import type { Column, ColumnItemIds, Columns, Id } from '../types';
 
 export const initialState: Columns = {};
 
-export const name = COLUMNS;
-
-const columnsSlice = createSlice({
-  name,
+export const columnsSlice = createSlice({
+  name: COLUMNS,
   initialState,
 
   reducers: {
@@ -127,5 +125,3 @@ const columnsSlice = createSlice({
     },
   },
 });
-
-export const { actions, reducer } = columnsSlice;

@@ -1,15 +1,17 @@
-import { actions as boardsActions } from '../slices/boardsSlice';
-import { actions as columnsActions } from '../slices/columnsSlice';
-import { actions as itemsActions } from '../slices/itemsSlice';
-import { actions as likesActions } from '../slices/likesSlice';
-import { actions as userActions } from '../slices/userSlice';
+import {
+  boardsSlice,
+  columnsSlice,
+  itemsSlice,
+  likesSlice,
+  userSlice,
+} from '../slices';
 
 export const actions = {
-  ...boardsActions,
-  ...columnsActions,
-  ...itemsActions,
-  ...likesActions,
-  ...userActions,
+  ...boardsSlice.actions,
+  ...columnsSlice.actions,
+  ...itemsSlice.actions,
+  ...likesSlice.actions,
+  ...userSlice.actions,
 };
 
 export const resetActions = [

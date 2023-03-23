@@ -7,10 +7,8 @@ import type { Id, Item, Items } from '../types';
 
 export const initialState: Items = {};
 
-export const name = ITEMS;
-
-const slice = createSlice({
-  name,
+export const itemsSlice = createSlice({
+  name: ITEMS,
   initialState,
 
   reducers: {
@@ -49,5 +47,3 @@ const slice = createSlice({
     },
   },
 });
-
-export const { actions, reducer } = slice;

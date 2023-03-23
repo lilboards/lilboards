@@ -3,7 +3,9 @@ import {
   ITEM_TEST_ID as itemId,
   USER_TEST_ID as userId,
 } from '../constants/test';
-import { actions, initialState, reducer } from './itemsSlice';
+import { initialState, itemsSlice } from './itemsSlice';
+
+export const { actions, reducer } = itemsSlice;
 
 const item = {
   createdAt: Date.now(),

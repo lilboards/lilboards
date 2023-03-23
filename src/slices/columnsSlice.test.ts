@@ -5,7 +5,9 @@ import {
   ITEM_TEST_ID as itemId,
   USER_TEST_ID as userId,
 } from '../constants/test';
-import { actions, initialState, reducer } from './columnsSlice';
+import { columnsSlice, initialState } from './columnsSlice';
+
+const { actions, reducer } = columnsSlice;
 
 const column = {
   createdAt: Date.now(),

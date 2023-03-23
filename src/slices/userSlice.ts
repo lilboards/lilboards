@@ -17,10 +17,8 @@ export const initialState: User = {
   id: '',
 };
 
-export const name = USER;
-
-const userSlice = createSlice({
-  name,
+export const userSlice = createSlice({
+  name: USER,
   initialState,
 
   reducers: {
@@ -48,5 +46,3 @@ const userSlice = createSlice({
     },
   },
 });
-
-export const { actions, reducer } = userSlice;

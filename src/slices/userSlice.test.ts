@@ -5,7 +5,9 @@ import {
   USER_TEST_EMAIL as email,
   USER_TEST_ID as id,
 } from '../constants/test';
-import { actions, initialState, reducer } from './userSlice';
+import { initialState, userSlice } from './userSlice';
+
+export const { actions, reducer } = userSlice;
 
 describe('resetUser', () => {
   it('sets initialState', () => {

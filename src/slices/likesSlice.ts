@@ -14,10 +14,8 @@ export const initialState: Likes = {
   items: {},
 };
 
-export const name = LIKES;
-
-const likesSlice = createSlice({
-  name,
+export const likesSlice = createSlice({
+  name: LIKES,
   initialState,
 
   reducers: {
@@ -69,5 +67,3 @@ const likesSlice = createSlice({
     },
   },
 });
-
-export const { actions, reducer } = likesSlice;

@@ -3,7 +3,9 @@ import {
   ITEM_TEST_ID as itemId,
   USER_TEST_ID as userId,
 } from '../constants/test';
-import { actions, initialState, reducer } from './likesSlice';
+import { initialState, likesSlice } from './likesSlice';
+
+const { actions, reducer } = likesSlice;
 
 const state = {
   items: {

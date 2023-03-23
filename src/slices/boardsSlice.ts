@@ -12,10 +12,8 @@ import type { Board, Boards, Id } from '../types';
 
 export const initialState: Boards = {};
 
-export const name = BOARDS;
-
-const boardsSlice = createSlice({
-  name,
+export const boardsSlice = createSlice({
+  name: BOARDS,
   initialState,
 
   reducers: {
@@ -67,5 +65,3 @@ const boardsSlice = createSlice({
     },
   },
 });
-
-export const { actions, reducer } = boardsSlice;
