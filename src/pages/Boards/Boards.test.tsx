@@ -1,5 +1,3 @@
-import '../../store/boardsSlice';
-
 import { fireEvent, screen } from '@testing-library/react';
 
 import { BOARD_TEST_ID as boardId } from '../../constants/test';

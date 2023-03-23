@@ -3,22 +3,25 @@ import { configureStore } from '@reduxjs/toolkit';
 import {
   name as boardsReducerName,
   reducer as boardsReducer,
-} from './boardsSlice';
+} from '../slices/boardsSlice';
 import {
   name as columnsReducerName,
   reducer as columnsReducer,
-} from './columnsSlice';
+} from '../slices/columnsSlice';
 import {
   name as itemsReducerName,
   reducer as itemsReducer,
-} from './itemsSlice';
+} from '../slices/itemsSlice';
 import {
   name as likesReducerName,
   reducer as likesReducer,
-} from './likesSlice';
-import { name as userReducerName, reducer as userReducer } from './userSlice';
+} from '../slices/likesSlice';
+import {
+  name as userReducerName,
+  reducer as userReducer,
+} from '../slices/userSlice';
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
     [boardsReducerName]: boardsReducer,
     [columnsReducerName]: columnsReducer,
@@ -27,5 +30,3 @@ const store = configureStore({
     [userReducerName]: userReducer,
   },
 });
-
-export default store;

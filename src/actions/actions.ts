@@ -1,10 +1,10 @@
-import { actions as boardsActions } from '../store/boardsSlice';
-import { actions as columnsActions } from '../store/columnsSlice';
-import { actions as itemsActions } from '../store/itemsSlice';
-import { actions as likesActions } from '../store/likesSlice';
-import { actions as userActions } from '../store/userSlice';
+import { actions as boardsActions } from '../slices/boardsSlice';
+import { actions as columnsActions } from '../slices/columnsSlice';
+import { actions as itemsActions } from '../slices/itemsSlice';
+import { actions as likesActions } from '../slices/likesSlice';
+import { actions as userActions } from '../slices/userSlice';
 
-const actions = {
+export const actions = {
   ...boardsActions,
   ...columnsActions,
   ...itemsActions,
@@ -19,5 +19,3 @@ export const resetActions = [
   actions.resetLikes,
   actions.resetUser,
 ];
-
-export default actions;

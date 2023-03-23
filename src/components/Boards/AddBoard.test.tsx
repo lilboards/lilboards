@@ -1,5 +1,3 @@
-import '../../store/boardsSlice';
-
 import { fireEvent, screen } from '@testing-library/react';
 
 import {

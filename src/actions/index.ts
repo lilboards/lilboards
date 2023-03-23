@@ -1,2 +1,2 @@
 export * from './actions';
-export { default } from './actions';
+export { actions as default } from './actions';
