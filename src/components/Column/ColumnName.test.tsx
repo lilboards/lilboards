@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 
 import {
   BOARD_TEST_ID as boardId,
@@ -44,7 +44,7 @@ describe('edit', () => {
     updateStore.withUser();
     renderWithContext(<ColumnName {...props} boardId={board.id} />);
     expect(
-      screen.getByLabelText(`Edit column "${props.name}"`)
+      screen.getByLabelText(`Edit column “${props.name}”`)
     ).toBeInTheDocument();
   });
 
@@ -53,28 +53,38 @@ describe('edit', () => {
     updateStore.withUser();
     renderWithContext(<ColumnName {...props} boardId={board.id} name="" />);
     expect(
-      screen.getByLabelText(`Edit column "${props.placeholder}"`)
+      screen.getByLabelText(`Edit column “${props.placeholder}”`)
     ).toBeInTheDocument();
   });
 });
 
 // user can delete (board owner)
 describe('delete', () => {
-  it('renders button with name', () => {
-    const board = updateStore.withBoard();
+  let board: ReturnType<typeof updateStore.withBoard>;
+  const dialogContent = 'This action cannot be undone.';
+
+  beforeEach(() => {
+    board = updateStore.withBoard();
     updateStore.withUser();
-    renderWithContext(<ColumnName {...props} boardId={board.id} />);
-    expect(
-      screen.getByLabelText(`Delete column "${props.name}"`)
-    ).toBeInTheDocument();
   });
 
-  it('renders button with placeholder', () => {
-    const board = updateStore.withBoard();
-    updateStore.withUser();
-    renderWithContext(<ColumnName {...props} boardId={board.id} name="" />);
+  it('renders dialog with name', () => {
+    const columnName = props.name;
+    renderWithContext(<ColumnName {...props} boardId={board.id} />);
+    fireEvent.click(screen.getByLabelText(`Delete column “${columnName}”`));
     expect(
-      screen.getByLabelText(`Delete column "${props.placeholder}"`)
+      screen.getByText(`Delete column “${columnName}”?`)
     ).toBeInTheDocument();
+    expect(screen.getByText(dialogContent)).toBeInTheDocument();
+  });
+
+  it('renders dialog with default name', () => {
+    const columnName = props.placeholder;
+    renderWithContext(<ColumnName {...props} boardId={board.id} name="" />);
+    fireEvent.click(screen.getByLabelText(`Delete column “${columnName}”`));
+    expect(
+      screen.getByText(`Delete column “${columnName}”?`)
+    ).toBeInTheDocument();
+    expect(screen.getByText(dialogContent)).toBeInTheDocument();
   });
 });

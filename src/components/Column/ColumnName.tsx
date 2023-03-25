@@ -1,8 +1,9 @@
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import type { ChangeEvent } from 'react';
+import { type ChangeEvent, useState } from 'react';
 
 import actions from '../../actions';
+import DeleteDialog from '../../components/DeleteDialog';
 import { logEvent } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import type { Id } from '../../types';
@@ -27,6 +28,7 @@ export default function ColumnName(props: Props) {
     (state) => (state.columns[props.columnId] || {}).itemIds || []
   );
   const userId = useSelector((state) => state.user.id);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const columnName = props.name || props.placeholder;
 
   if (readOnly) {
@@ -84,7 +86,9 @@ export default function ColumnName(props: Props) {
       <TextField
         autoFocus={isEditing}
         fullWidth
-        inputProps={{ 'aria-label': `Edit column "${columnName}"` }}
+        inputProps={{
+          'aria-label': `Edit column “${columnName}”`,
+        }}
         placeholder={props.placeholder}
         onBlur={handleBlur}
         onChange={handleChange}
@@ -92,14 +96,27 @@ export default function ColumnName(props: Props) {
       />
 
       <CloseButton
-        aria-label={`Delete column "${columnName}"`}
-        onClick={deleteColumn}
+        aria-label={`Delete column “${columnName}”`}
+        onClick={() => setIsDialogOpen(true)}
         size="small"
         sx={{
           position: 'absolute',
-          right: 0,
-          top: 0,
+          right: 4,
+          top: '50%',
+          transform: 'translateY(-50%)',
         }}
+      />
+
+      <DeleteDialog
+        content="This action cannot be undone."
+        id={props.columnId}
+        onClose={() => setIsDialogOpen(false)}
+        onDelete={() => {
+          deleteColumn();
+          setIsDialogOpen(false);
+        }}
+        open={isDialogOpen}
+        title={`Delete column “${columnName}”?`}
       />
     </>
   );

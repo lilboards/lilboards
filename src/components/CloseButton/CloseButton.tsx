@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 
 export default function CloseButton(props: IconButtonProps) {
   return (
-    <IconButton {...props} size="large">
+    <IconButton size="large" {...props}>
       <CloseIcon />
     </IconButton>
   );
