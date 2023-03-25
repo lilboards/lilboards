@@ -31,7 +31,7 @@ it('edits column', () => {
     <Column {...props} boardId={board.id} columnId={column.id} />
   );
   const value = 'Edited Column Name';
-  fireEvent.change(screen.getByLabelText(`Edit column "${column.name}"`), {
+  fireEvent.change(screen.getByLabelText(`Edit column “${column.name}”`), {
     target: { value },
   });
   expect(screen.getByDisplayValue(value)).toBeInTheDocument();
@@ -45,17 +45,38 @@ it('resets user editing column id on blur', () => {
   renderWithContext(
     <Column {...props} boardId={board.id} columnId={column.id} />
   );
-  fireEvent.blur(screen.getByLabelText(`Edit column "${column.name}"`));
+  fireEvent.blur(screen.getByLabelText(`Edit column “${column.name}”`));
   expect(store.getState().user.editing.columnId).toBe('');
 });
 
-it('deletes column', () => {
-  const board = updateStore.withBoard();
-  const column = updateStore.withColumn();
-  updateStore.withUser();
-  renderWithContext(
-    <Column {...props} boardId={board.id} columnId={column.id} />
-  );
-  fireEvent.click(screen.getByLabelText(/Delete column/));
-  expect(screen.queryByText(column.name)).not.toBeInTheDocument();
+describe('delete', () => {
+  let board: ReturnType<typeof updateStore.withBoard>;
+  let column: ReturnType<typeof updateStore.withColumn>;
+  const dialogContent = 'This action cannot be undone.';
+
+  beforeEach(() => {
+    board = updateStore.withBoard();
+    column = updateStore.withColumn();
+    updateStore.withUser();
+  });
+
+  it('cancels delete', () => {
+    renderWithContext(
+      <Column {...props} boardId={board.id} columnId={column.id} />
+    );
+    fireEvent.click(screen.getByLabelText(/Delete column/));
+    fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
+    expect(screen.queryByText(dialogContent)).not.toBeVisible();
+    expect(screen.getByDisplayValue(column.name)).toBeInTheDocument();
+  });
+
+  it('deletes column', () => {
+    renderWithContext(
+      <Column {...props} boardId={board.id} columnId={column.id} />
+    );
+    fireEvent.click(screen.getByLabelText(/Delete column/));
+    fireEvent.click(screen.getByRole('button', { name: 'Delete' }));
+    expect(screen.queryByText(dialogContent)).not.toBeInTheDocument();
+    expect(screen.queryByDisplayValue(column.name)).not.toBeInTheDocument();
+  });
 });

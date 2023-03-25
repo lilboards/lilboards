@@ -17,7 +17,8 @@ Feature: Board
       And I type "Item 1"
       And I blur
     Then I see text "Item 1"
-    When I click on label 'Delete column "Column 1"'
+    When I click on label "Delete column “Column 1”"
+      And I click on button "Delete"
     Then I do not see text "Column 1"
       And I do not see text "Item 1"
     When I click on button "Add column"
