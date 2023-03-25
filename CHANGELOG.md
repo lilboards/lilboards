@@ -1,5 +1,19 @@
 # Changelog
 
+## [4.30.0](https://github.com/lilboards/lilboards/compare/v4.29.0...v4.30.0) (2023-03-25)
+
+
+### Features
+
+* **BoardCard:** replace double quotes ([434d203](https://github.com/lilboards/lilboards/commit/434d203828dc2b28373e7048c7585102984febf2))
+* **Column:** show DeleteDialog before deleting column in ColumnName ([fad2107](https://github.com/lilboards/lilboards/commit/fad21074d7685a30798853685df1503c2c30e29a))
+
+
+### Bug Fixes
+
+* **CloseButton:** override size prop on IconButton ([52f2ca0](https://github.com/lilboards/lilboards/commit/52f2ca0055a160e91450624288892fb3db58668a))
+* **ColumnName:** center the CloseButton vertically ([7602ac8](https://github.com/lilboards/lilboards/commit/7602ac87615a2eac2e872c01d53ca7db28fbef27))
+
 ## [4.29.0](https://github.com/lilboards/lilboards/compare/v4.28.0...v4.29.0) (2023-03-19)
 
 
