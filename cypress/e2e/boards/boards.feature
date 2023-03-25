@@ -22,6 +22,6 @@ Feature: Boards
       And I find links by text "Open"
     Then I count 1 element
     When I click on button "Delete"
-    Then I see text 'Delete board "My Board 1"?'
+    Then I see text "Delete board “My Board 1”?"
     When I click on button "Cancel"
     Then I see text "My Board 1"

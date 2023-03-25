@@ -99,7 +99,7 @@ export default function BoardCard(props: Props) {
 
           <Button
             aria-label={
-              board.name ? `Delete board "${board.name}"` : 'Delete board'
+              board.name ? `Delete board “${board.name}”` : 'Delete board'
             }
             color="error"
             onClick={() => setIsDialogOpen(true)}
@@ -117,7 +117,7 @@ export default function BoardCard(props: Props) {
             }}
             open={isDialogOpen}
             title={
-              board.name ? `Delete board "${board.name}"?` : 'Delete board?'
+              board.name ? `Delete board “${board.name}”?` : 'Delete board?'
             }
           />
         </CardActions>

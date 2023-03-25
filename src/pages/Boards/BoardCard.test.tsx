@@ -65,24 +65,30 @@ describe('delete board', () => {
     updateStore.withUser();
   });
 
-  it('renders dialog', () => {
+  it('renders dialog with name', () => {
     renderWithContext(<BoardCard boardId={board.id} />);
-    fireEvent.click(screen.getByLabelText(`Delete board "${board.name}"`));
+    fireEvent.click(screen.getByLabelText(`Delete board “${board.name}”`));
     expect(
-      screen.getByText(`Delete board "${board.name}"?`)
+      screen.getByText(`Delete board “${board.name}”?`)
     ).toBeInTheDocument();
     expect(screen.getByText(dialogContent)).toBeInTheDocument();
   });
 
-  it('does not delete board', () => {
+  it('renders dialog with no name', () => {
     board = updateStore.withBoard({ name: '' });
     updateStore.withUser();
     renderWithContext(<BoardCard boardId={board.id} />);
     fireEvent.click(screen.getByLabelText('Delete board'));
     expect(screen.getByText('Delete board?')).toBeInTheDocument();
-    fireEvent.click(screen.getByText('Cancel'));
+    expect(screen.getByText(dialogContent)).toBeInTheDocument();
+  });
+
+  it('cancels delete', () => {
+    renderWithContext(<BoardCard boardId={board.id} />);
+    fireEvent.click(screen.getByLabelText(/Delete board/));
+    fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
     expect(screen.queryByText(dialogContent)).not.toBeVisible();
-    expect(screen.getByLabelText('Board Name')).toBeInTheDocument();
+    expect(screen.getByDisplayValue(board.name)).toBeInTheDocument();
   });
 
   it('deletes board', () => {
