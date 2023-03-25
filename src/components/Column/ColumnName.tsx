@@ -101,8 +101,9 @@ export default function ColumnName(props: Props) {
         size="small"
         sx={{
           position: 'absolute',
-          right: 0,
-          top: 0,
+          right: 4,
+          top: '50%',
+          transform: 'translateY(-50%)',
         }}
       />
 
