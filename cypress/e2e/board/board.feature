@@ -54,7 +54,7 @@ Feature: Board
       And I type "Item to Delete"
       And I blur
     Then I see text "Item to Delete"
-    When I click on label 'Delete item "Item to Delete"'
+    When I click on label "Delete item “Item to Delete”"
     Then I do not see text "Item to Delete"
     When I reload the page
     Then I see text "Create board, columns, and items"
@@ -101,5 +101,5 @@ Feature: Board
       And I type "Item Two"
       And I click on text "Hide Likes"
     Then I see text "Item Two"
-    When I click on label 'Delete item "Item One"'
+    When I click on label "Delete item “Item One”"
     Then I do not see text "Item One"

@@ -87,7 +87,7 @@ export default function Item(props: Props) {
     <Box height="100%" position="relative">
       <Card raised={isEditing} style={props.cardStyle}>
         <CloseButton
-          aria-label={`Delete item "${item.text}"`}
+          aria-label={`Delete item “${item.text}”`}
           onClick={deleteItem}
           size="small"
           sx={{
@@ -101,7 +101,9 @@ export default function Item(props: Props) {
           autoFocus={isEditing}
           components={{ Root: CardContent }}
           fullWidth
-          inputProps={{ 'aria-label': `Edit item "${item.text}"` }}
+          inputProps={{
+            'aria-label': `Edit item “${item.text}”`,
+          }}
           multiline
           onBlur={handleBlur}
           onChange={handleChange}
