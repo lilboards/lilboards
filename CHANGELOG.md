@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.31.0](https://github.com/lilboards/lilboards/compare/v4.30.0...v4.31.0) (2023-03-26)
+
+
+### Features
+
+* **components:** replace double quotes inside Item aria-label ([eec866d](https://github.com/lilboards/lilboards/commit/eec866d9791e21a30274d24bf702e1e3c920ad39))
+
 ## [4.30.0](https://github.com/lilboards/lilboards/compare/v4.29.0...v4.30.0) (2023-03-25)
 
 
