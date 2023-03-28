@@ -34,7 +34,7 @@
     "@types/debounce": "^1.2.1",
     "@types/jest": "^29.5.0",
     "@types/node": "^18.15.10",
-    "@types/react": "^18.0.29",
+    "@types/react": "^18.0.30",
     "@types/react-beautiful-dnd": "^13.1.4",
     "@types/react-dom": "^18.0.11",
     "@types/react-redux": "^7.1.25",
