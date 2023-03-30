@@ -36,9 +36,11 @@ function wrapper(props: { children?: ReactNode }) {
     },
   ];
 
+  router = createMemoryRouter(routes);
+
   return (
     <Provider store={store}>
-      <RouterProvider router={createMemoryRouter(routes)} />
+      <RouterProvider router={router} />
     </Provider>
   );
 }
