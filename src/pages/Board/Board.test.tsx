@@ -9,7 +9,7 @@ import {
 } from '../../constants/test';
 import { getBoardDataRef } from '../../firebase';
 import { Board as BoardType } from '../../types';
-import { renderWithContext, router, updateStore } from '../../utils/test';
+import { renderWithProviders, router, updateStore } from '../../utils/test';
 import Board from './Board';
 
 jest.mock('firebase/database', () => ({
@@ -53,20 +53,20 @@ describe('no board', () => {
 
   it('renders nothing when there is no board id', async () => {
     mockedUseParams.mockReturnValue({});
-    renderWithContext(<Board />);
+    renderWithProviders(<Board />);
     await waitFor(() => expect(screen.queryByText(boardControls)).toBe(null));
     expect(screen.queryByText(columns)).toBe(null);
   });
 
   it('renders nothing when there is no board', async () => {
     mockedUseParams.mockReturnValue({ boardId: 'invalid' });
-    renderWithContext(<Board />);
+    renderWithProviders(<Board />);
     await waitFor(() => expect(screen.queryByText(columns)).toBe(null));
   });
 
   it('redirects to "/404" when board is not found', async () => {
     mockedUseParams.mockReturnValue({ boardId: 'invalid' });
-    renderWithContext(<Board />);
+    renderWithProviders(<Board />);
     await waitFor(() => expect(router.state.location.pathname).toBe('/404'));
   });
 });
@@ -83,7 +83,7 @@ describe('with board', () => {
 
   describe('breadcrumbs', () => {
     it('renders boards link', () => {
-      renderWithContext(<Board />);
+      renderWithProviders(<Board />);
       expect(screen.getByRole('link', { name: 'Boards' })).toHaveAttribute(
         'href',
         '/boards'
@@ -99,7 +99,7 @@ describe('with board', () => {
         callback({ val: () => board } as DataSnapshot);
         return unsubscribe;
       });
-      renderWithContext(<Board />);
+      renderWithProviders(<Board />);
       expect(
         screen.queryByRole('heading', { level: 1 })
       ).not.toBeInTheDocument();
@@ -112,7 +112,7 @@ describe('with board', () => {
         callback({ val: () => board } as DataSnapshot);
         return unsubscribe;
       });
-      renderWithContext(<Board />);
+      renderWithProviders(<Board />);
       expect(screen.getByRole('heading', { level: 1 })).toBe(
         screen.getByText(board.name)
       );
@@ -120,12 +120,12 @@ describe('with board', () => {
   });
 
   it('renders <BoardControls>', () => {
-    renderWithContext(<Board />);
+    renderWithProviders(<Board />);
     expect(screen.getByText(boardControls)).toBeInTheDocument();
   });
 
   it('renders <Columns>', () => {
-    renderWithContext(<Board />);
+    renderWithProviders(<Board />);
     expect(screen.getByText(columns)).toBeInTheDocument();
   });
 });
@@ -151,7 +151,7 @@ describe('with board and anonymous user', () => {
 
   it('loads board', async () => {
     mockedUseParams.mockReturnValue({ boardId });
-    renderWithContext(<Board />);
+    renderWithProviders(<Board />);
     const heading = await screen.findByRole('heading', {
       level: 1,
       name: board.name,
@@ -161,7 +161,7 @@ describe('with board and anonymous user', () => {
 
   it('attaches ref listeners', () => {
     mockedUseParams.mockReturnValue({ boardId });
-    const { unmount } = renderWithContext(<Board />);
+    const { unmount } = renderWithProviders(<Board />);
     expect(getBoardDataRef).toBeCalledTimes(1);
     expect(getBoardDataRef).toBeCalledWith(boardId);
     expect(onValue).toBeCalledTimes(1);

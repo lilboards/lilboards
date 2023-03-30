@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { useRouteError } from 'react-router-dom';
 
-import { renderWithContext } from '../../utils/test';
+import { renderWithProviders } from '../../utils/test';
 import ErrorBoundary from './ErrorBoundary';
 
 jest.mock('react-router-dom', () => ({
@@ -18,7 +18,7 @@ afterAll(() => {
 });
 
 it('renders heading', () => {
-  renderWithContext(<ErrorBoundary />);
+  renderWithProviders(<ErrorBoundary />);
   expect(
     screen.getByRole('heading', {
       level: 1,
@@ -30,14 +30,14 @@ it('renders heading', () => {
 it('renders error message', () => {
   const error = new Error('test');
   mockedUseRouteError.mockReturnValueOnce(error);
-  renderWithContext(<ErrorBoundary />);
+  renderWithProviders(<ErrorBoundary />);
   expect(screen.getByText(error.toString())).toBeInTheDocument();
   // eslint-disable-next-line no-console
   expect(console.error).toBeCalledWith(error);
 });
 
 it('renders home link', () => {
-  renderWithContext(<ErrorBoundary />);
+  renderWithProviders(<ErrorBoundary />);
   expect(
     screen.getByRole('link', {
       name: 'home',

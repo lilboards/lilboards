@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 
 import { sendEmailVerification } from '../../firebase';
-import { renderWithContext } from '../../utils/test';
+import { renderWithProviders } from '../../utils/test';
 import VerifyEmail from './VerifyEmail';
 
 jest.mock('../../firebase', () => ({
@@ -10,14 +10,14 @@ jest.mock('../../firebase', () => ({
 
 describe('send verification email', () => {
   it('renders link', () => {
-    renderWithContext(<VerifyEmail />);
+    renderWithProviders(<VerifyEmail />);
     expect(
       screen.getByRole('button', { name: 'Send verification email' })
     ).toBeInTheDocument();
   });
 
   it('sends email verification when button is clicked', () => {
-    renderWithContext(<VerifyEmail />);
+    renderWithProviders(<VerifyEmail />);
     fireEvent.click(
       screen.getByRole('button', { name: 'Send verification email' })
     );
@@ -28,7 +28,7 @@ describe('send verification email', () => {
 
 describe('logout', () => {
   it('renders button', () => {
-    renderWithContext(<VerifyEmail />);
+    renderWithProviders(<VerifyEmail />);
     expect(screen.getByRole('link', { name: 'Logout' })).toBeInTheDocument();
   });
 });

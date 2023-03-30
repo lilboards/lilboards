@@ -2,7 +2,7 @@ import { fireEvent, screen } from '@testing-library/react';
 
 import { BOARD_TEST_ID as boardId } from '../../constants/test';
 import { getBoardVal, getUserBoardsVal } from '../../firebase';
-import { renderWithContext, updateStore } from '../../utils/test';
+import { renderWithProviders, updateStore } from '../../utils/test';
 import Boards from './Boards';
 
 jest.mock('../../firebase', () => ({
@@ -22,14 +22,14 @@ beforeEach(() => {
 });
 
 it('renders heading', () => {
-  renderWithContext(<Boards />);
+  renderWithProviders(<Boards />);
   const heading = screen.getByRole('heading', { level: 1, name: 'Boards' });
   expect(heading).toBeInTheDocument();
 });
 
 describe('add board', () => {
   it('renders button', () => {
-    renderWithContext(<Boards />);
+    renderWithProviders(<Boards />);
     expect(
       screen.getByRole('button', { name: 'Add board' })
     ).toBeInTheDocument();
@@ -37,14 +37,14 @@ describe('add board', () => {
 
   it('adds board', () => {
     updateStore.withUser();
-    renderWithContext(<Boards />);
+    renderWithProviders(<Boards />);
     fireEvent.click(screen.getByText('Add board'));
     expect(screen.getAllByLabelText('Board Name')).toHaveLength(1);
   });
 
   it('adds boards', () => {
     updateStore.withUser();
-    renderWithContext(<Boards />);
+    renderWithProviders(<Boards />);
     const length = 2;
     Array.from({ length }, () =>
       fireEvent.click(screen.getByText('Add board'))
@@ -54,7 +54,7 @@ describe('add board', () => {
 
   it('focuses on board', () => {
     updateStore.withUser();
-    renderWithContext(<Boards />);
+    renderWithProviders(<Boards />);
     fireEvent.click(screen.getByText('Add board'));
     expect(screen.getByPlaceholderText('Untitled Board')).toHaveFocus();
   });
@@ -77,7 +77,7 @@ describe('mount', () => {
 
   it('loads boards', async () => {
     updateStore.withUser();
-    renderWithContext(<Boards />);
+    renderWithProviders(<Boards />);
     const boards = await screen.findAllByLabelText('Board Name');
     expect(boards).toHaveLength(2);
   });

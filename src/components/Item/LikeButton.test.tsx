@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 
-import { renderWithContext, updateStore } from '../../utils/test';
+import { renderWithProviders, updateStore } from '../../utils/test';
 import LikeButton from './LikeButton';
 
 let board: ReturnType<typeof updateStore.withBoard>;
@@ -13,7 +13,7 @@ describe('when maxLikes is 0', () => {
   });
 
   it('does not like item', () => {
-    renderWithContext(<LikeButton boardId={board.id} itemId={item.id} />);
+    renderWithProviders(<LikeButton boardId={board.id} itemId={item.id} />);
     fireEvent.click(
       screen.getByRole('button', { name: `Like item "${item.text}"` })
     );
@@ -30,7 +30,7 @@ describe('when maxLikes is 1', () => {
   });
 
   it('likes item', () => {
-    renderWithContext(<LikeButton boardId={board.id} itemId={item.id} />);
+    renderWithProviders(<LikeButton boardId={board.id} itemId={item.id} />);
     fireEvent.click(
       screen.getByRole('button', { name: `Like item "${item.text}"` })
     );

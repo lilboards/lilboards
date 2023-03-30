@@ -5,7 +5,7 @@ import {
   DATE_NOW as dateNow,
 } from '../../constants/test';
 import { generateId, logEvent } from '../../firebase';
-import { renderWithContext, store, updateStore } from '../../utils/test';
+import { renderWithProviders, store, updateStore } from '../../utils/test';
 import AddColumn from './AddColumn';
 
 jest.mock('../../firebase', () => ({
@@ -22,7 +22,7 @@ beforeEach(() => {
 it('renders "Add column" button when user can edit', () => {
   const board = updateStore.withBoard();
   updateStore.withUser();
-  renderWithContext(<AddColumn boardId={board.id} />);
+  renderWithProviders(<AddColumn boardId={board.id} />);
   expect(
     screen.getByRole('button', { name: 'Add column' })
   ).toBeInTheDocument();
@@ -30,7 +30,7 @@ it('renders "Add column" button when user can edit', () => {
 
 it('does not render "Add column" button when user cannot edit', () => {
   const board = updateStore.withBoard();
-  renderWithContext(<AddColumn boardId={board.id} />);
+  renderWithProviders(<AddColumn boardId={board.id} />);
   expect(
     screen.queryByRole('button', { name: 'Add column' })
   ).not.toBeInTheDocument();
@@ -39,7 +39,7 @@ it('does not render "Add column" button when user cannot edit', () => {
 it('adds new column', () => {
   const board = updateStore.withBoard();
   updateStore.withUser();
-  renderWithContext(<AddColumn boardId={board.id} />);
+  renderWithProviders(<AddColumn boardId={board.id} />);
   expect(store.getState().columns).toEqual({});
   const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
   fireEvent.click(screen.getByText('Add column'));

@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 
-import { renderWithContext, updateStore } from '../../utils/test';
+import { renderWithProviders, updateStore } from '../../utils/test';
 import Export from './Export';
 
 const { clipboard } = navigator;
@@ -21,7 +21,7 @@ afterAll(() => {
 });
 
 it('copies empty markdown to clipboard', () => {
-  renderWithContext(<Export />);
+  renderWithProviders(<Export />);
   fireEvent.click(screen.getByLabelText('Copy board as Markdown'));
   expect(writeText).toBeCalledTimes(1);
   expect(writeText).toBeCalledWith('');
@@ -30,7 +30,7 @@ it('copies empty markdown to clipboard', () => {
 it('copies markdown to clipboard', () => {
   updateStore.withColumn();
   updateStore.withItem();
-  renderWithContext(<Export />);
+  renderWithProviders(<Export />);
   fireEvent.click(screen.getByLabelText('Copy board as Markdown'));
   expect(writeText).toBeCalledTimes(1);
   expect(writeText.mock.calls[0][0]).toMatchInlineSnapshot(`

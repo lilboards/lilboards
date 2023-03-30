@@ -4,12 +4,12 @@ import {
   BOARD_TEST_ID as boardId,
   DATE_NOW as dateNow,
 } from '../../constants/test';
-import { renderWithContext, store, updateStore } from '../../utils/test';
+import { renderWithProviders, store, updateStore } from '../../utils/test';
 import BoardCard from './BoardCard';
 
 it('renders "Open board" link', () => {
   const board = updateStore.withBoard();
-  renderWithContext(<BoardCard boardId={board.id} />);
+  renderWithProviders(<BoardCard boardId={board.id} />);
   expect(screen.getByRole('link', { name: 'Open board' })).toHaveAttribute(
     'href',
     `/boards/${boardId}`
@@ -24,14 +24,14 @@ describe('edit board', () => {
   });
 
   it('sets user editing boardId when input is focused', () => {
-    renderWithContext(<BoardCard boardId={board.id} />);
+    renderWithProviders(<BoardCard boardId={board.id} />);
     fireEvent.focus(screen.getByPlaceholderText('Untitled Board'));
     expect(store.getState().user.editing.boardId).toBe(board.id);
   });
 
   it('edits and saves board name on change', async () => {
     updateStore.withUser();
-    renderWithContext(<BoardCard boardId={board.id} />);
+    renderWithProviders(<BoardCard boardId={board.id} />);
     const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
     const event = { target: { value: 'My Board Name' } };
     fireEvent.change(screen.getByLabelText('Board Name'), event);
@@ -50,7 +50,7 @@ describe('edit board', () => {
   });
 
   it('resets user editing boardId on blur', () => {
-    renderWithContext(<BoardCard boardId={board.id} />);
+    renderWithProviders(<BoardCard boardId={board.id} />);
     fireEvent.blur(screen.getByLabelText('Board Name'));
     expect(store.getState().user.editing.boardId).toBe('');
   });
@@ -66,7 +66,7 @@ describe('delete board', () => {
   });
 
   it('renders dialog with name', () => {
-    renderWithContext(<BoardCard boardId={board.id} />);
+    renderWithProviders(<BoardCard boardId={board.id} />);
     fireEvent.click(screen.getByLabelText(`Delete board “${board.name}”`));
     expect(
       screen.getByText(`Delete board “${board.name}”?`)
@@ -77,14 +77,14 @@ describe('delete board', () => {
   it('renders dialog with no name', () => {
     board = updateStore.withBoard({ name: '' });
     updateStore.withUser();
-    renderWithContext(<BoardCard boardId={board.id} />);
+    renderWithProviders(<BoardCard boardId={board.id} />);
     fireEvent.click(screen.getByLabelText('Delete board'));
     expect(screen.getByText('Delete board?')).toBeInTheDocument();
     expect(screen.getByText(dialogContent)).toBeInTheDocument();
   });
 
   it('cancels delete', () => {
-    renderWithContext(<BoardCard boardId={board.id} />);
+    renderWithProviders(<BoardCard boardId={board.id} />);
     fireEvent.click(screen.getByLabelText(/Delete board/));
     fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
     expect(screen.queryByText(dialogContent)).not.toBeVisible();
@@ -92,7 +92,7 @@ describe('delete board', () => {
   });
 
   it('deletes board', () => {
-    renderWithContext(<BoardCard boardId={board.id} />);
+    renderWithProviders(<BoardCard boardId={board.id} />);
     fireEvent.click(screen.getByLabelText(/Delete board/));
     fireEvent.click(screen.getAllByText('Delete')[1]);
     expect(screen.queryByText(dialogContent)).not.toBeInTheDocument();

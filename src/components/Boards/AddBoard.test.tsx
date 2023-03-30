@@ -5,7 +5,7 @@ import {
   DATE_NOW as dateNow,
 } from '../../constants/test';
 import { generateId, logEvent, saveUserBoardId } from '../../firebase';
-import { renderWithContext, store, updateStore } from '../../utils/test';
+import { renderWithProviders, store, updateStore } from '../../utils/test';
 import AddBoard from './AddBoard';
 
 jest.mock('../../firebase', () => ({
@@ -22,13 +22,13 @@ beforeEach(() => {
 });
 
 it('renders "Add board" button', () => {
-  renderWithContext(<AddBoard />);
+  renderWithProviders(<AddBoard />);
   expect(screen.getByRole('button', { name: 'Add board' })).toBeInTheDocument();
 });
 
 it('adds new board to store and database', () => {
   const user = updateStore.withUser();
-  renderWithContext(<AddBoard />);
+  renderWithProviders(<AddBoard />);
   const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
   fireEvent.click(screen.getByText('Add board'));
   expect(store.getState().boards).toMatchInlineSnapshot(`
@@ -47,7 +47,7 @@ it('adds new board to store and database', () => {
 
 it('logs add board event', () => {
   updateStore.withUser();
-  renderWithContext(<AddBoard />);
+  renderWithProviders(<AddBoard />);
   fireEvent.click(screen.getByText('Add board'));
   expect(logEvent).toBeCalledTimes(1);
   expect(logEvent).toBeCalledWith('create_board');

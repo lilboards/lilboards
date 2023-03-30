@@ -12,7 +12,7 @@ import {
 } from '../../../constants/test';
 import { getItemsRef } from '../../../firebase';
 import { Item } from '../../../types';
-import { renderWithContext, store, updateStore } from '../../../utils/test';
+import { renderWithProviders, store, updateStore } from '../../../utils/test';
 import { useItems } from './useItems';
 
 jest.mock('firebase/database', () => ({
@@ -90,7 +90,7 @@ describe('onChildAdded', () => {
   });
 
   it('subscribes and unsubscribes to listener', () => {
-    const { unmount } = renderWithContext(<TestComponent />);
+    const { unmount } = renderWithProviders(<TestComponent />);
     expect(getItemsRef).toBeCalledTimes(1);
     expect(getItemsRef).toBeCalledWith(boardId);
     expect(onChildAdded).toBeCalledTimes(1);
@@ -100,7 +100,7 @@ describe('onChildAdded', () => {
   });
 
   it('adds item to store', () => {
-    renderWithContext(<TestComponent />);
+    renderWithProviders(<TestComponent />);
     jest.runAllTimers();
     expect(store.getState().items).toMatchInlineSnapshot(`
       Object {
@@ -122,7 +122,7 @@ describe('onChildAdded', () => {
       callback(dataSnapshot as any, null);
       return unsubscribeOnChildAdded;
     });
-    renderWithContext(<TestComponent />);
+    renderWithProviders(<TestComponent />);
     jest.runAllTimers();
     expect(store.getState().items).toEqual({});
   });
@@ -147,7 +147,7 @@ describe('onChildChanged', () => {
   });
 
   it('subscribes and unsubscribes to listener', () => {
-    const { unmount } = renderWithContext(<TestComponent />);
+    const { unmount } = renderWithProviders(<TestComponent />);
     expect(getItemsRef).toBeCalledTimes(1);
     expect(getItemsRef).toBeCalledWith(boardId);
     expect(onChildChanged).toBeCalledTimes(1);
@@ -158,7 +158,7 @@ describe('onChildChanged', () => {
 
   it('updates item in store', () => {
     updateStore.withItem();
-    renderWithContext(<TestComponent />);
+    renderWithProviders(<TestComponent />);
     jest.runAllTimers();
     expect(store.getState().items).toMatchInlineSnapshot(`
       Object {
@@ -184,7 +184,7 @@ describe('onChildChanged', () => {
         callback(dataSnapshot as any, null);
         return unsubscribeOnChildChanged;
       });
-    renderWithContext(<TestComponent />);
+    renderWithProviders(<TestComponent />);
     jest.runAllTimers();
     expect(store.getState().items).toEqual({});
   });
@@ -204,7 +204,7 @@ describe('onChildRemoved', () => {
   });
 
   it('subscribes and unsubscribes to listener', () => {
-    const { unmount } = renderWithContext(<TestComponent />);
+    const { unmount } = renderWithProviders(<TestComponent />);
     expect(getItemsRef).toBeCalledTimes(1);
     expect(getItemsRef).toBeCalledWith(boardId);
     expect(onChildRemoved).toBeCalledTimes(1);
@@ -215,7 +215,7 @@ describe('onChildRemoved', () => {
 
   it('removes item from store', () => {
     updateStore.withItem();
-    renderWithContext(<TestComponent />);
+    renderWithProviders(<TestComponent />);
     jest.runAllTimers();
     expect(store.getState().items).toEqual({});
   });

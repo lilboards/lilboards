@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 
 import { BOARD_TEST_ID as boardId } from '../../constants/test';
-import { renderWithContext, updateStore } from '../../utils/test';
+import { renderWithProviders, updateStore } from '../../utils/test';
 import Columns from './Columns';
 import { useColumns, useItems, useLikes } from './hooks';
 
@@ -23,7 +23,7 @@ beforeEach(() => {
 });
 
 it('renders column', () => {
-  renderWithContext(<Columns boardId={boardId} />);
+  renderWithProviders(<Columns boardId={boardId} />);
   expect(
     screen.getByRole('heading', {
       level: 2,
@@ -33,7 +33,7 @@ it('renders column', () => {
 });
 
 it('uses hooks', async () => {
-  renderWithContext(<Columns boardId={boardId} />);
+  renderWithProviders(<Columns boardId={boardId} />);
   expect(useColumns).toBeCalledTimes(1);
   expect(useColumns).toBeCalledWith(boardId);
   expect(useItems).toBeCalledTimes(1);
@@ -44,13 +44,13 @@ it('uses hooks', async () => {
 
 it('renders item text', () => {
   const item = updateStore.withItem();
-  renderWithContext(<Columns boardId={boardId} />);
+  renderWithProviders(<Columns boardId={boardId} />);
   expect(screen.getByDisplayValue(item.text)).toBeInTheDocument();
 });
 
 it('renders liked item', () => {
   updateStore.withItem();
   updateStore.withLike();
-  renderWithContext(<Columns boardId={boardId} />);
+  renderWithProviders(<Columns boardId={boardId} />);
   expect(screen.getByLabelText(/1 like for item/)).toBeInTheDocument();
 });

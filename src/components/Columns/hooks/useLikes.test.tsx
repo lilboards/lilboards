@@ -7,7 +7,7 @@ import {
 } from '../../../constants/test';
 import { getLikesRef } from '../../../firebase';
 import { Likes } from '../../../types';
-import { renderWithContext, store, updateStore } from '../../../utils/test';
+import { renderWithProviders, store, updateStore } from '../../../utils/test';
 import { useLikes } from './useLikes';
 
 jest.mock('firebase/database', () => ({
@@ -56,7 +56,7 @@ describe('likes snapshot value is valid', () => {
 
   it('adds like to store', () => {
     updateStore.withUser();
-    const { unmount } = renderWithContext(<TestComponent />);
+    const { unmount } = renderWithProviders(<TestComponent />);
 
     expect(getLikesRef).toBeCalledTimes(1);
     expect(getLikesRef).toBeCalledWith(boardId);
@@ -91,7 +91,7 @@ describe('likes snapshot value is null', () => {
 
   it('resets likes in store', () => {
     updateStore.withUser();
-    const { unmount } = renderWithContext(<TestComponent />);
+    const { unmount } = renderWithProviders(<TestComponent />);
 
     expect(getLikesRef).toBeCalledTimes(1);
     expect(getLikesRef).toBeCalledWith(boardId);

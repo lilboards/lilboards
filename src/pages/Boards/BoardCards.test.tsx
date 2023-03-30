@@ -1,16 +1,16 @@
 import { screen } from '@testing-library/react';
 
-import { renderWithContext, updateStore } from '../../utils/test';
+import { renderWithProviders, updateStore } from '../../utils/test';
 import BoardCards from './BoardCards';
 
 it('renders nothing when there are no boards', () => {
-  renderWithContext(<BoardCards />);
+  renderWithProviders(<BoardCards />);
   expect(screen.queryByLabelText('Board Name')).not.toBeInTheDocument();
 });
 
 it('renders BoardCard', () => {
   const board = updateStore.withBoard();
-  renderWithContext(<BoardCards />);
+  renderWithProviders(<BoardCards />);
   expect(screen.getByDisplayValue(board.name)).toBe(
     screen.getByLabelText('Board Name')
   );

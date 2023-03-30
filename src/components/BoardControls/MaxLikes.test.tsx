@@ -3,7 +3,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import { BOARD_TEST_ID as boardId } from '../../constants/test';
 import { logEvent } from '../../firebase';
 import { DEFAULT_MAX_LIKES } from '../../hooks';
-import { renderWithContext, updateStore } from '../../utils/test';
+import { renderWithProviders, updateStore } from '../../utils/test';
 import MaxLikes from './MaxLikes';
 
 jest.mock('../../firebase', () => ({
@@ -11,7 +11,7 @@ jest.mock('../../firebase', () => ({
 }));
 
 it('renders default max likes value', () => {
-  renderWithContext(<MaxLikes boardId={boardId} />);
+  renderWithProviders(<MaxLikes boardId={boardId} />);
   expect(screen.getByRole('spinbutton', { name: 'Max Likes' })).toHaveValue(
     DEFAULT_MAX_LIKES
   );
@@ -19,12 +19,12 @@ it('renders default max likes value', () => {
 
 describe('when user cannot edit', () => {
   it('renders disabled input', () => {
-    renderWithContext(<MaxLikes boardId={boardId} />);
+    renderWithProviders(<MaxLikes boardId={boardId} />);
     expect(screen.getByLabelText('Max Likes')).toBeDisabled();
   });
 
   it('does not change max likes value', () => {
-    renderWithContext(<MaxLikes boardId={boardId} />);
+    renderWithProviders(<MaxLikes boardId={boardId} />);
     const input = screen.getByLabelText('Max Likes');
     const event = { target: { value: DEFAULT_MAX_LIKES + 1 } };
     fireEvent.change(input, event);
@@ -42,7 +42,7 @@ describe('when user can edit', () => {
   });
 
   it('changes max likes value', () => {
-    renderWithContext(<MaxLikes boardId={board.id} />);
+    renderWithProviders(<MaxLikes boardId={board.id} />);
     const input = screen.getByLabelText('Max Likes');
     const event = { target: { value: '0' } };
     fireEvent.change(input, event);
@@ -50,7 +50,7 @@ describe('when user can edit', () => {
   });
 
   it('logs event', () => {
-    renderWithContext(<MaxLikes boardId={board.id} />);
+    renderWithProviders(<MaxLikes boardId={board.id} />);
     const input = screen.getByLabelText('Max Likes');
     const event = { target: { value: '3.14' } };
     fireEvent.change(input, event);

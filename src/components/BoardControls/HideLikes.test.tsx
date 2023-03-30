@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 
 import { logEvent } from '../../firebase';
-import { renderWithContext, store, updateStore } from '../../utils/test';
+import { renderWithProviders, store, updateStore } from '../../utils/test';
 import HideLikes from './HideLikes';
 
 jest.mock('../../firebase', () => ({
@@ -10,7 +10,7 @@ jest.mock('../../firebase', () => ({
 
 it('toggles hide likes', () => {
   updateStore.withUser();
-  renderWithContext(<HideLikes />);
+  renderWithProviders(<HideLikes />);
   expect(store.getState().user.hideLikes).toEqual(false);
   fireEvent.click(screen.getByLabelText('Hide Likes'));
   expect(store.getState().user.hideLikes).toBe(true);

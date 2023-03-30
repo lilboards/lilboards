@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 
-import { renderWithContext, store, updateStore } from '../../utils/test';
+import { renderWithProviders, store, updateStore } from '../../utils/test';
 import Column from './Column';
 
 const props = {
@@ -10,14 +10,14 @@ const props = {
 };
 
 it('renders nothing when there is no column', () => {
-  renderWithContext(<Column {...props} />);
+  renderWithProviders(<Column {...props} />);
   expect(screen.queryByPlaceholderText(/Column/)).toBe(null);
 });
 
 it('renders column name', () => {
   const board = updateStore.withBoard();
   const column = updateStore.withColumn();
-  renderWithContext(
+  renderWithProviders(
     <Column {...props} boardId={board.id} columnId={column.id} />
   );
   expect(screen.getByText(column.name)).toBeInTheDocument();
@@ -27,7 +27,7 @@ it('edits column', () => {
   const board = updateStore.withBoard();
   const column = updateStore.withColumn();
   updateStore.withUser();
-  renderWithContext(
+  renderWithProviders(
     <Column {...props} boardId={board.id} columnId={column.id} />
   );
   const value = 'Edited Column Name';
@@ -42,7 +42,7 @@ it('resets user editing column id on blur', () => {
   const column = updateStore.withColumn();
   updateStore.withUser();
   updateStore.withUserEditing();
-  renderWithContext(
+  renderWithProviders(
     <Column {...props} boardId={board.id} columnId={column.id} />
   );
   fireEvent.blur(screen.getByLabelText(`Edit column “${column.name}”`));
@@ -61,7 +61,7 @@ describe('delete', () => {
   });
 
   it('cancels delete', () => {
-    renderWithContext(
+    renderWithProviders(
       <Column {...props} boardId={board.id} columnId={column.id} />
     );
     fireEvent.click(screen.getByLabelText(/Delete column/));
@@ -71,7 +71,7 @@ describe('delete', () => {
   });
 
   it('deletes column', () => {
-    renderWithContext(
+    renderWithProviders(
       <Column {...props} boardId={board.id} columnId={column.id} />
     );
     fireEvent.click(screen.getByLabelText(/Delete column/));

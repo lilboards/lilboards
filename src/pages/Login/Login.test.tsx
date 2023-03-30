@@ -8,7 +8,7 @@ import {
   USER_TEST_ID as userId,
 } from '../../constants/test';
 import { onAuthStateChanged } from '../../firebase';
-import { renderWithContext, router } from '../../utils/test';
+import { renderWithProviders, router } from '../../utils/test';
 import Login from './Login';
 
 jest.mock('react-router-dom', () => ({
@@ -37,7 +37,7 @@ describe('not logged in', () => {
   });
 
   it('renders "Sign In"', () => {
-    renderWithContext(<Login />);
+    renderWithProviders(<Login />);
     expect(
       screen.getByRole('heading', {
         level: 1,
@@ -47,7 +47,7 @@ describe('not logged in', () => {
   });
 
   it('renders StyledFirebaseAuth', () => {
-    renderWithContext(<Login />);
+    renderWithProviders(<Login />);
     expect(screen.getByText('StyledFirebaseAuth')).toBeInTheDocument();
   });
 });
@@ -74,7 +74,7 @@ describe('logged in', () => {
 
   it('does not render "Sign In"', () => {
     mockedUseLocation.mockReturnValueOnce(location);
-    renderWithContext(<Login />);
+    renderWithProviders(<Login />);
     expect(screen.queryAllByText('Sign In')).toHaveLength(0);
   });
 
@@ -82,7 +82,7 @@ describe('logged in', () => {
     'redirects to "/boards" when location=%p',
     async (location) => {
       mockedUseLocation.mockReturnValueOnce(location as Location);
-      renderWithContext(<Login />);
+      renderWithProviders(<Login />);
       await waitFor(() =>
         expect(router.state.location.pathname).toBe('/boards')
       );
@@ -91,7 +91,7 @@ describe('logged in', () => {
 
   it(`redirects to location.state.${REDIRECT_TO}`, async () => {
     mockedUseLocation.mockReturnValue(location);
-    renderWithContext(<Login />);
+    renderWithProviders(<Login />);
     await waitFor(() =>
       expect(router.state.location.pathname).toBe(redirectTo)
     );

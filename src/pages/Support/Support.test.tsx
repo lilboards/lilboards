@@ -1,11 +1,11 @@
 import { screen } from '@testing-library/react';
 
-import { renderWithContext } from '../../utils/test';
+import { renderWithProviders } from '../../utils/test';
 import { sponsorLinks } from './constants';
 import Support from './Support';
 
 it('renders heading', () => {
-  renderWithContext(<Support />);
+  renderWithProviders(<Support />);
   expect(
     screen.getByRole('heading', {
       level: 1,
@@ -15,7 +15,7 @@ it('renders heading', () => {
 });
 
 it('renders GitHub issue link', () => {
-  renderWithContext(<Support />);
+  renderWithProviders(<Support />);
   expect(
     screen.getByRole('link', {
       name: 'issue',
@@ -24,7 +24,7 @@ it('renders GitHub issue link', () => {
 });
 
 it('renders GitHub discussion link', () => {
-  renderWithContext(<Support />);
+  renderWithProviders(<Support />);
   expect(
     screen.getByRole('link', {
       name: 'discussion',
@@ -36,7 +36,7 @@ it('renders GitHub discussion link', () => {
 });
 
 it.each(sponsorLinks)('renders sponsor link "$text"', ({ text, href }) => {
-  renderWithContext(<Support />);
+  renderWithProviders(<Support />);
   expect(
     screen.getByRole('link', {
       name: text,

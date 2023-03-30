@@ -7,7 +7,7 @@ import {
   USER_TEST_ID as userId,
 } from '../../constants/test';
 import { logEvent } from '../../firebase';
-import { renderWithContext, store, updateStore } from '../../utils/test';
+import { renderWithProviders, store, updateStore } from '../../utils/test';
 import Sort from './Sort';
 
 jest.mock('../../firebase', () => ({
@@ -17,7 +17,7 @@ jest.mock('../../firebase', () => ({
 it('renders "Sort by likes" button when user is admin', () => {
   const board = updateStore.withBoard();
   updateStore.withUser();
-  renderWithContext(<Sort boardId={board.id} />);
+  renderWithProviders(<Sort boardId={board.id} />);
   expect(
     screen.getByRole('button', { name: 'Sort by likes' })
   ).toBeInTheDocument();
@@ -25,7 +25,7 @@ it('renders "Sort by likes" button when user is admin', () => {
 
 it('does not render "Sort by likes" button when user is not admin', () => {
   const board = updateStore.withBoard();
-  renderWithContext(<Sort boardId={board.id} />);
+  renderWithProviders(<Sort boardId={board.id} />);
   expect(
     screen.queryByRole('button', { name: 'Sort by likes' })
   ).not.toBeInTheDocument();
@@ -34,7 +34,7 @@ it('does not render "Sort by likes" button when user is not admin', () => {
 it('logs event when "Sort by likes" button is clicked', () => {
   const board = updateStore.withBoard();
   updateStore.withUser();
-  renderWithContext(<Sort boardId={board.id} />);
+  renderWithProviders(<Sort boardId={board.id} />);
   fireEvent.click(screen.getByRole('button', { name: 'Sort by likes' }));
   expect(logEvent).toBeCalledTimes(1);
   expect(logEvent).toBeCalledWith('sort_items', {
@@ -56,7 +56,7 @@ it('sorts column items by likes', () => {
     },
   });
   updateStore.withLike();
-  renderWithContext(<Sort boardId={board.id} />);
+  renderWithProviders(<Sort boardId={board.id} />);
   fireEvent.click(screen.getByRole('button', { name: 'Sort by likes' }));
   expect(store.getState().columns[columnId].itemIds).toEqual([itemId, itemId2]);
 });

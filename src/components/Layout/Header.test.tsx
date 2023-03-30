@@ -1,15 +1,15 @@
 import { screen } from '@testing-library/react';
 
-import { renderWithContext, updateStore } from '../../utils/test';
+import { renderWithProviders, updateStore } from '../../utils/test';
 import Header from './Header';
 
 it('renders header', () => {
-  renderWithContext(<Header />);
+  renderWithProviders(<Header />);
   expect(screen.getByRole('banner')).toHaveTextContent('Lilboards');
 });
 
 it('renders heading link', () => {
-  renderWithContext(<Header />);
+  renderWithProviders(<Header />);
   expect(screen.getByRole('link', { name: 'Lilboards' })).toHaveAttribute(
     'href',
     '/'
@@ -17,12 +17,12 @@ it('renders heading link', () => {
 });
 
 it('renders support link', () => {
-  renderWithContext(<Header />);
+  renderWithProviders(<Header />);
   expect(screen.getByLabelText('Support')).toHaveAttribute('href', '/support');
 });
 
 it('renders GitHub link', () => {
-  renderWithContext(<Header />);
+  renderWithProviders(<Header />);
   expect(screen.getByLabelText('Open GitHub repository')).toHaveAttribute(
     'href',
     'https://b.remarkabl.org/lilboards'
@@ -32,7 +32,7 @@ it('renders GitHub link', () => {
 describe('when not logged in', () => {
   it('renders login link', () => {
     updateStore.withUser(false);
-    renderWithContext(<Header />);
+    renderWithProviders(<Header />);
     expect(screen.getByRole('link', { name: 'Login' })).toHaveAttribute(
       'href',
       '/login'
@@ -41,7 +41,7 @@ describe('when not logged in', () => {
 
   it('does not render boards link', () => {
     updateStore.withUser(false);
-    renderWithContext(<Header />);
+    renderWithProviders(<Header />);
     expect(
       screen.queryByRole('link', { name: 'Boards' })
     ).not.toBeInTheDocument();
@@ -51,7 +51,7 @@ describe('when not logged in', () => {
 describe('when logged in', () => {
   it('renders logout link', () => {
     updateStore.withUser();
-    renderWithContext(<Header />);
+    renderWithProviders(<Header />);
     expect(screen.getByRole('link', { name: 'Logout' })).toHaveAttribute(
       'href',
       '/logout'
@@ -60,7 +60,7 @@ describe('when logged in', () => {
 
   it('renders boards link', () => {
     updateStore.withUser();
-    renderWithContext(<Header />);
+    renderWithProviders(<Header />);
     expect(screen.getByRole('link', { name: 'Boards' })).toHaveAttribute(
       'href',
       '/boards'
