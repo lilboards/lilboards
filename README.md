@@ -80,6 +80,8 @@ Then run:
 kill $(lsof -ti :9000) && yarn firebase:emulators
 ```
 
+Or replace port `9000` with a different port (e.g., `9001`) in `.env` and `firebase.json`.
+
 ### `yarn test`
 
 Launches the test runner in the interactive watch mode.
