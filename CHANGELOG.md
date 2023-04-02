@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.32.0](https://github.com/lilboards/lilboards/compare/v4.31.0...v4.32.0) (2023-04-02)
+
+
+### Features
+
+* **Item:** confirm with dialog before delete ([fb25487](https://github.com/lilboards/lilboards/commit/fb254871504cff3d1a6c4cbae316d862744b4610))
+
 ## [4.31.0](https://github.com/lilboards/lilboards/compare/v4.30.0...v4.31.0) (2023-03-26)
 
 
