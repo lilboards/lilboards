@@ -8,7 +8,7 @@ import actions from '../../actions';
 import { logEvent } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import type { Id } from '../../types';
-import CloseButton from '../CloseButton';
+import Delete from './Delete';
 import Likes from './Likes';
 
 interface Props {
@@ -28,29 +28,6 @@ export default function Item(props: Props) {
 
   if (!item) {
     return null;
-  }
-
-  function deleteItem() {
-    dispatch(
-      actions.removeItem({
-        boardId: props.boardId,
-        itemId: props.itemId,
-      })
-    );
-    dispatch(
-      actions.removeColumnItemId({
-        boardId: props.boardId,
-        columnId: props.columnId,
-        itemId: props.itemId,
-      })
-    );
-    dispatch(
-      actions.removeLikesItem({
-        boardId: props.boardId,
-        itemId: props.itemId,
-      })
-    );
-    logEvent('delete_item');
   }
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
@@ -86,15 +63,11 @@ export default function Item(props: Props) {
   return (
     <Box height="100%" position="relative">
       <Card raised={isEditing} style={props.cardStyle}>
-        <CloseButton
-          aria-label={`Delete item “${item.text}”`}
-          onClick={deleteItem}
-          size="small"
-          sx={{
-            position: 'absolute',
-            right: 0,
-            top: 0,
-          }}
+        <Delete
+          boardId={props.boardId}
+          columnId={props.columnId}
+          itemId={props.itemId}
+          itemText={item.text}
         />
 
         <InputBase

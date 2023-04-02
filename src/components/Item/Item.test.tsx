@@ -45,7 +45,7 @@ describe('delete item', () => {
     item = updateStore.withItem();
   });
 
-  it('renders close button', () => {
+  it('renders delete button', () => {
     renderWithProviders(<Item {...props} itemId={item.id} />);
     expect(
       screen.getByLabelText(`Delete item “${item.text}”`)
@@ -55,6 +55,7 @@ describe('delete item', () => {
   it('deletes item', () => {
     renderWithProviders(<Item {...props} itemId={item.id} />);
     fireEvent.click(screen.getByLabelText(`Delete item “${item.text}”`));
+    fireEvent.click(screen.getByText('Delete'));
     expect(screen.queryByLabelText(/Delete item/)).not.toBeInTheDocument();
   });
 });
