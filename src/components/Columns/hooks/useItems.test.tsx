@@ -15,12 +15,6 @@ import { Item } from '../../../types';
 import { renderWithProviders, store, updateStore } from '../../../utils/test';
 import { useItems } from './useItems';
 
-jest.mock('firebase/database', () => ({
-  onChildAdded: jest.fn(),
-  onChildChanged: jest.fn(),
-  onChildRemoved: jest.fn(),
-}));
-
 const mockedOnChildAdded = jest.mocked(onChildAdded);
 const mockedOnChildChanged = jest.mocked(onChildChanged);
 const mockedOnChildRemoved = jest.mocked(onChildRemoved);

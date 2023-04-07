@@ -15,12 +15,6 @@ import { Column } from '../../../types';
 import { renderWithProviders, store, updateStore } from '../../../utils/test';
 import { useColumns } from './useColumns';
 
-jest.mock('firebase/database', () => ({
-  onChildAdded: jest.fn(),
-  onChildChanged: jest.fn(),
-  onChildRemoved: jest.fn(),
-}));
-
 const mockedOnChildAdded = jest.mocked(onChildAdded);
 const mockedOnChildChanged = jest.mocked(onChildChanged);
 const mockedOnChildRemoved = jest.mocked(onChildRemoved);

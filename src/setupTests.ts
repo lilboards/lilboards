@@ -8,6 +8,14 @@ import { BOARD_TEST_ID as boardId } from './constants/test';
 import { removeBoard } from './firebase';
 import { resetStore } from './utils/test';
 
+jest.mock('firebase/database', () => ({
+  ...jest.requireActual('firebase/database'),
+  onChildAdded: jest.fn(),
+  onChildChanged: jest.fn(),
+  onChildRemoved: jest.fn(),
+  onValue: jest.fn(),
+}));
+
 afterEach(() => {
   resetStore();
 });

@@ -12,10 +12,6 @@ import { Board as BoardType } from '../../types';
 import { renderWithProviders, router, updateStore } from '../../utils/test';
 import Board from './Board';
 
-jest.mock('firebase/database', () => ({
-  onValue: jest.fn(),
-}));
-
 const mockedOnValue = jest.mocked(onValue);
 
 jest.mock('react-router-dom', () => ({

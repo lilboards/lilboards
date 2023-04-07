@@ -10,10 +10,6 @@ import { Likes } from '../../../types';
 import { renderWithProviders, store, updateStore } from '../../../utils/test';
 import { useLikes } from './useLikes';
 
-jest.mock('firebase/database', () => ({
-  onValue: jest.fn(),
-}));
-
 const mockedOnValue = jest.mocked(onValue);
 
 jest.mock('../../../firebase', () => ({
