@@ -31,6 +31,7 @@ This project is built with:
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/)
+- [nvm](https://github.com/nvm-sh/nvm)
 - [Yarn 1](https://classic.yarnpkg.com/)
 
 ## Install
@@ -40,6 +41,12 @@ Clone the repository:
 ```sh
 git clone https://github.com/lilboards/lilboards.git
 cd lilboards
+```
+
+Use Node.js version:
+
+```sh
+nvm use
 ```
 
 Install the dependencies:
