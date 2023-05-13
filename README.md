@@ -31,8 +31,8 @@ This project is built with:
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/)
-- [nvm](https://github.com/nvm-sh/nvm)
-- [Yarn 1](https://classic.yarnpkg.com/)
+- [nvm](https://github.com/nvm-sh/nvm#readme)
+- [Yarn 1](https://classic.yarnpkg.com/en/docs/install)
 
 ## Install
 
