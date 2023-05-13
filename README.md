@@ -26,7 +26,7 @@ This project is built with:
 - [Firebase](https://firebase.google.com/)
 - [MUI](https://mui.com/)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
-- [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)
+- [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd#readme)
 
 ## Prerequisites
 
@@ -43,7 +43,7 @@ git clone https://github.com/lilboards/lilboards.git
 cd lilboards
 ```
 
-Use Node.js version:
+Use the project's Node.js version:
 
 ```sh
 nvm use
