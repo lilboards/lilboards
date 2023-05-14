@@ -1,4 +1,3 @@
-import type { ReactElement } from 'react';
 import { Route } from 'react-router-dom';
 
 import Layout from '../components/Layout';
@@ -12,7 +11,7 @@ import Logout from '../pages/Logout';
 import NotFound from '../pages/NotFound';
 import Support from '../pages/Support';
 
-const routes: ReactElement = (
+const routes = (
   <Route path="/" element={<Layout />}>
     <Route errorElement={<ErrorBoundary />}>
       <Route index element={<Home />} />

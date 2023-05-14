@@ -1,4 +1,4 @@
-import routes from '.';
+import routes from './routes';
 
 it('matches snapshot', () => {
   expect(routes).toMatchInlineSnapshot(`
