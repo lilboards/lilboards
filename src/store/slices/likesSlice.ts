@@ -1,7 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
-import { LIKES } from '../../constants';
 import {
   likeItem,
   removeLikesItem,
@@ -15,7 +14,7 @@ export const initialState: Likes = {
 };
 
 export const likesSlice = createSlice({
-  name: LIKES,
+  name: 'likes',
   initialState,
 
   reducers: {

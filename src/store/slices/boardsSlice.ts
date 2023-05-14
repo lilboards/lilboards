@@ -1,7 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
-import { BOARDS } from '../../constants';
 import {
   debouncedSaveBoardData,
   removeBoard,
@@ -13,7 +12,7 @@ import type { Board, Boards, Id } from '../../types';
 export const initialState: Boards = {};
 
 export const boardsSlice = createSlice({
-  name: BOARDS,
+  name: 'boards',
   initialState,
 
   reducers: {

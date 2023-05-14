@@ -1,14 +1,13 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
-import { ITEMS } from '../../constants';
 import { removeItem, updateItem } from '../../firebase';
 import type { Id, Item, Items } from '../../types';
 
 export const initialState: Items = {};
 
 export const itemsSlice = createSlice({
-  name: ITEMS,
+  name: 'items',
   initialState,
 
   reducers: {
