@@ -1,10 +1,10 @@
-import { ITEM_IDS } from '../constants';
+import { ITEM_IDS } from '../../constants';
 import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
   ITEM_TEST_ID as itemId,
   USER_TEST_ID as userId,
-} from '../constants/test';
+} from '../../constants/test';
 import { columnsSlice, initialState } from './columnsSlice';
 
 const { actions, reducer } = columnsSlice;

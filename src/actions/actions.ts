@@ -4,7 +4,7 @@ import {
   itemsSlice,
   likesSlice,
   userSlice,
-} from '../slices';
+} from '../store/slices';
 
 export const actions = {
   ...boardsSlice.actions,

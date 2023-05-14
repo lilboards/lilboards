@@ -1,14 +1,14 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
-import { COLUMNS } from '../constants';
+import { COLUMNS } from '../../constants';
 import {
   debouncedUpdateColumn,
   removeColumn,
   saveColumnItemIds,
   updateColumn,
-} from '../firebase';
-import type { Column, ColumnItemIds, Columns, Id } from '../types';
+} from '../../firebase';
+import type { Column, ColumnItemIds, Columns, Id } from '../../types';
 
 export const initialState: Columns = {};
 

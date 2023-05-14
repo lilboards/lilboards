@@ -6,7 +6,7 @@ import {
   itemsSlice,
   likesSlice,
   userSlice,
-} from '../slices';
+} from './slices';
 
 export const store = configureStore({
   reducer: {

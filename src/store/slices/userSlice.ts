@@ -1,9 +1,9 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
-import { USER } from '../constants';
-import { setUserId } from '../firebase';
-import type { User } from '../types';
+import { USER } from '../../constants';
+import { setUserId } from '../../firebase';
+import type { User } from '../../types';
 
 export const initialState: User = {
   editing: {
