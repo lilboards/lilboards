@@ -11,10 +11,10 @@ jest.mock('react-router-dom', () => ({
 
 const mockedUseRouteError = jest.mocked(useRouteError);
 
-jest.spyOn(console, 'error');
+jest.spyOn(console, 'error').mockImplementation();
 
 afterAll(() => {
-  jest.resetAllMocks();
+  jest.restoreAllMocks();
 });
 
 it('renders heading', () => {
