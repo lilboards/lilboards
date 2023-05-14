@@ -1,6 +1,6 @@
-import actions from '../../actions';
 import { generateId, logEvent } from '../../firebase';
 import { useDispatch, useIsAdmin, useSelector } from '../../hooks';
+import { actions } from '../../store';
 import type { Column, Id } from '../../types';
 import AddButton from '../AddButton';
 

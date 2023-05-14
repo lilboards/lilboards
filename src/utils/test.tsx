@@ -4,7 +4,6 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import { Provider } from 'react-redux';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 
-import actions, { resetActions } from '../actions';
 import { ITEM_IDS } from '../constants';
 import {
   BOARD_TEST_ID as boardId,
@@ -14,7 +13,7 @@ import {
   USER_TEST_EMAIL as userEmail,
   USER_TEST_ID as userId,
 } from '../constants/test';
-import store from '../store';
+import { actions, resetActions, store } from '../store';
 import type { Board, Columns, Item, User } from '../types';
 
 /* istanbul ignore next */

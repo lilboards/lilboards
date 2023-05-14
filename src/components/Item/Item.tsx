@@ -4,9 +4,9 @@ import CardContent from '@mui/material/CardContent';
 import InputBase from '@mui/material/InputBase';
 import type { ChangeEvent, CSSProperties } from 'react';
 
-import actions from '../../actions';
 import { logEvent } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
+import { actions } from '../../store';
 import type { Id } from '../../types';
 import Delete from './Delete';
 import Likes from './Likes';

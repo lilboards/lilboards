@@ -2,8 +2,8 @@ import type { ReactNode } from 'react';
 import type { DropResult } from 'react-beautiful-dnd';
 import { DragDropContext } from 'react-beautiful-dnd';
 
-import actions from '../../actions';
 import { useDispatch, useSelector } from '../../hooks';
+import { actions } from '../../store';
 import type { Id } from '../../types';
 import { combine, reorder } from './utils';
 

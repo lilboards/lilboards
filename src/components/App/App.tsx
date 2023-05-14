@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 
 import routes from '../../routes';
-import store from '../../store';
+import { store } from '../../store';
 
 const router = createBrowserRouter(createRoutesFromElements(routes));
 

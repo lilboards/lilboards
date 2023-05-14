@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
-import actions from '../../../actions';
 import { getBoardVal, getUserBoardsVal } from '../../../firebase';
 import { useDispatch } from '../../../hooks';
+import { actions } from '../../../store';
 import type { Id } from '../../../types';
 
 export function useBoards(

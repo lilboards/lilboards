@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react';
 
-import actions from '../../actions';
 import DeleteDialog from '../../components/DeleteDialog';
 import { logEvent } from '../../firebase';
 import { useDispatch } from '../../hooks';
+import { actions } from '../../store';
 import type { Id } from '../../types';
 import CloseButton from '../CloseButton';
 

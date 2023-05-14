@@ -6,9 +6,9 @@ import {
 } from 'firebase/database';
 import { useEffect } from 'react';
 
-import actions from '../../../actions';
 import { getItemsRef } from '../../../firebase';
 import { useDispatch } from '../../../hooks';
+import { actions } from '../../../store';
 import { Id } from '../../../types';
 
 /**

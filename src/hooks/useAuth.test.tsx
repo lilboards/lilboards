@@ -8,7 +8,7 @@ import {
   USER_TEST_ID as userId,
 } from '../constants/test';
 import { logEvent, onAuthStateChanged, signInAnonymously } from '../firebase';
-import reduxStore from '../store';
+import { store as reduxStore } from '../store';
 import { store } from '../utils/test';
 import { useAuth } from './useAuth';
 
@@ -20,7 +20,7 @@ jest.mock('../firebase', () => ({
 
 const mockedOnAuthStateChanged = jest.mocked(onAuthStateChanged);
 
-function ContextWrapper(props: { children?: ReactNode }) {
+function wrapper(props: { children?: ReactNode }) {
   return <Provider store={reduxStore}>{props.children}</Provider>;
 }
 
@@ -38,9 +38,7 @@ describe('shouldSignInAnonymously is false', () => {
     });
 
     it('does not update user in store', () => {
-      const { result } = renderHook(() => useAuth(), {
-        wrapper: ContextWrapper,
-      });
+      const { result } = renderHook(() => useAuth(), { wrapper });
       expect(result.current).toBe(true);
       expect(logEvent).not.toBeCalled();
       expect(store.getState().user).toMatchObject({
@@ -64,9 +62,7 @@ describe('shouldSignInAnonymously is false', () => {
     });
 
     it('updates user in store', () => {
-      const { result } = renderHook(() => useAuth(), {
-        wrapper: ContextWrapper,
-      });
+      const { result } = renderHook(() => useAuth(), { wrapper });
       expect(result.current).toBe(true);
       expect(logEvent).toBeCalledTimes(1);
       expect(logEvent).toBeCalledWith('login', {
@@ -94,9 +90,7 @@ describe('shouldSignInAnonymously is false', () => {
     });
 
     it('updates user in store', () => {
-      const { result } = renderHook(() => useAuth(), {
-        wrapper: ContextWrapper,
-      });
+      const { result } = renderHook(() => useAuth(), { wrapper });
       expect(result.current).toBe(true);
       expect(logEvent).toBeCalledTimes(1);
       expect(logEvent).toBeCalledWith('login', {
@@ -122,9 +116,7 @@ describe('shouldSignInAnonymously is false', () => {
     });
 
     it('updates user in store', () => {
-      const { result } = renderHook(() => useAuth(), {
-        wrapper: ContextWrapper,
-      });
+      const { result } = renderHook(() => useAuth(), { wrapper });
       expect(result.current).toBe(true);
       expect(logEvent).toBeCalledTimes(1);
       expect(logEvent).toBeCalledWith('login', {
@@ -152,7 +144,7 @@ describe('shouldSignInAnonymously is true', () => {
 
   it('signs in anonymously', () => {
     const { result } = renderHook(() => useAuth(shouldSignInAnonymously), {
-      wrapper: ContextWrapper,
+      wrapper,
     });
     expect(result.current).toBe(false);
     expect(signInAnonymously).toBeCalledTimes(1);

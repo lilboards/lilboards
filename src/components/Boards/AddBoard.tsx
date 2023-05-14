@@ -1,7 +1,7 @@
-import actions from '../../actions';
 import AddButton from '../../components/AddButton';
 import { generateId, logEvent, saveUserBoardId } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
+import { actions } from '../../store';
 import type { Board } from '../../types';
 
 export default function AddBoard() {

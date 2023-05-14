@@ -2,9 +2,9 @@ import ThumbUpFilledIcon from '@mui/icons-material/ThumbUp';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import IconButton from '@mui/material/IconButton';
 
-import actions from '../../actions';
 import { logEvent } from '../../firebase';
 import { useDispatch, useMaxLikes, useSelector } from '../../hooks';
+import { actions } from '../../store';
 import type { Id } from '../../types';
 
 interface Props {

@@ -1,9 +1,9 @@
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
-import actions from '../../actions';
 import { logEvent } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
+import { actions } from '../../store';
 
 export default function HideLikes() {
   const dispatch = useDispatch();

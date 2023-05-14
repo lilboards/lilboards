@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { resetActions } from '../../actions';
 import { logEvent, signOut } from '../../firebase';
 import { useDispatch, useSetDocumentTitle } from '../../hooks';
+import { resetActions } from '../../store';
 
 export default function Logout() {
   const dispatch = useDispatch();

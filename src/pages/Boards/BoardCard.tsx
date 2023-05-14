@@ -7,10 +7,10 @@ import TextField from '@mui/material/TextField';
 import { type ChangeEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import actions from '../../actions';
 import DeleteDialog from '../../components/DeleteDialog';
 import { logEvent } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
+import { actions } from '../../store';
 import type { Id } from '../../types';
 
 interface Props {

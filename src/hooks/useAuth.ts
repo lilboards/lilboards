@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import actions from '../actions';
 import { logEvent, onAuthStateChanged, signInAnonymously } from '../firebase';
+import { actions } from '../store';
 import { useDispatch } from '.';
 
 /**

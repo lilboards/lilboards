@@ -1,8 +1,8 @@
 import Button from '@mui/material/Button';
 
-import actions from '../../actions';
 import { logEvent } from '../../firebase';
 import { useDispatch, useIsAdmin, useSelector } from '../../hooks';
+import { actions } from '../../store';
 import type { Id } from '../../types';
 import { sortByLikes } from './utils';
 

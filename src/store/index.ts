@@ -1,1 +1,2 @@
-export { store as default } from './store';
+export * from './actions';
+export * from './store';

@@ -1,9 +1,9 @@
 import { onValue } from 'firebase/database';
 import { useEffect, useState } from 'react';
 
-import actions from '../../../actions';
 import { getBoardDataRef } from '../../../firebase';
 import { useDispatch, useSelector } from '../../../hooks';
+import { actions } from '../../../store';
 import { Id } from '../../../types';
 
 export function useBoard(boardId: Id) {

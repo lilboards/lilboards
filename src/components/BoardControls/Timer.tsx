@@ -4,8 +4,8 @@ import TextField from '@mui/material/TextField';
 import type { ChangeEvent } from 'react';
 import { useCallback, useEffect, useState } from 'react';
 
-import actions from '../../actions';
 import { useDispatch, useIsAdmin, useSelector } from '../../hooks';
+import { actions } from '../../store';
 import type { Id } from '../../types';
 import Snackbar from '../Snackbar';
 import { loadAlarm, playAlarm } from './audio';
