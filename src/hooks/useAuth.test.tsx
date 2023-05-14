@@ -8,7 +8,6 @@ import {
   USER_TEST_ID as userId,
 } from '../constants/test';
 import { logEvent, onAuthStateChanged, signInAnonymously } from '../firebase';
-import { store as reduxStore } from '../store';
 import { store } from '../utils/test';
 import { useAuth } from './useAuth';
 
@@ -21,7 +20,7 @@ jest.mock('../firebase', () => ({
 const mockedOnAuthStateChanged = jest.mocked(onAuthStateChanged);
 
 function wrapper(props: { children?: ReactNode }) {
-  return <Provider store={reduxStore}>{props.children}</Provider>;
+  return <Provider store={store}>{props.children}</Provider>;
 }
 
 beforeEach(() => {
