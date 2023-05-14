@@ -7,7 +7,7 @@ import {
 } from '../../constants/test';
 import { initialState, userSlice } from './userSlice';
 
-export const { actions, reducer } = userSlice;
+const { actions, reducer } = userSlice;
 
 describe('resetUser', () => {
   it('sets initialState', () => {
