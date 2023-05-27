@@ -10,7 +10,7 @@ it('renders without crashing', () => {
     .mockReturnValueOnce(document.createElement('div'));
 
   act(() => {
-    const root = require('.').root;
+    const { root } = require('.');
     root.unmount();
   });
 
