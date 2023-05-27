@@ -14,7 +14,7 @@ export default function NotFound() {
       </Typography>
 
       <Typography paragraph>
-        Go to{' '}
+        Go{' '}
         <Link component={RouterLink} to="/">
           home
         </Link>
