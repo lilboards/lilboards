@@ -58,6 +58,9 @@ jobs:
           cache: yarn
           node-version-file: .nvmrc
 
+      - name: Remove before
+        run: rm cypress/support/step_definitions/before.ts
+
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
