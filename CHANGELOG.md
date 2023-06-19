@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.33.0](https://github.com/lilboards/lilboards/compare/v4.32.0...v4.33.0) (2023-06-19)
+
+
+### Features
+
+* **Header:** change the SupportIcon to the HelpIcon ([9191454](https://github.com/lilboards/lilboards/commit/91914543525ce3ed6a6006dc84a1e41f659de465))
+
 ## [4.32.0](https://github.com/lilboards/lilboards/compare/v4.31.0...v4.32.0) (2023-04-02)
 
 
