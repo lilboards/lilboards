@@ -1,5 +1,5 @@
 import GitHubIcon from '@mui/icons-material/GitHub';
-import SupportIcon from '@mui/icons-material/Support';
+import HelpIcon from '@mui/icons-material/Help';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -39,14 +39,14 @@ export default function Header() {
             to="/support"
             title="Support"
           >
-            <SupportIcon />
+            <HelpIcon />
           </IconButton>
 
           <Link
-            aria-label="Open GitHub repository"
+            aria-label="GitHub"
             color="inherit"
             component={IconButton}
-            href="https://b.remarkabl.org/lilboards"
+            href="https://github.com/lilboards/lilboards"
             target="_blank"
             rel="noopener noreferrer"
             title="GitHub"
