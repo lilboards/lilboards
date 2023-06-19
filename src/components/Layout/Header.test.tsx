@@ -23,9 +23,9 @@ it('renders support link', () => {
 
 it('renders GitHub link', () => {
   renderWithProviders(<Header />);
-  expect(screen.getByLabelText('Open GitHub repository')).toHaveAttribute(
+  expect(screen.getByLabelText('GitHub')).toHaveAttribute(
     'href',
-    'https://b.remarkabl.org/lilboards'
+    'https://github.com/lilboards/lilboards'
   );
 });
 
