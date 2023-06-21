@@ -1,13 +1,20 @@
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
+import { createSelector } from '@reduxjs/toolkit';
 
 import { logEvent } from '../../firebase';
 import { useSelector } from '../../hooks';
+import type { RootState } from '../../types';
 import { transformToMarkdown } from './utils';
 
+const selectColumns = createSelector(
+  (state: RootState) => state.columns,
+  (columns) => columns
+);
+
 export default function Export() {
-  const columns = useSelector((state) => state.columns);
+  const columns = useSelector(selectColumns);
   const items = useSelector((state) => state.items);
 
   async function copyBoardMarkdownToClipboard() {

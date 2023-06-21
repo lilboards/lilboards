@@ -8,7 +8,6 @@ const writeText = jest.fn();
 
 beforeAll(() => {
   (navigator as any).clipboard = { writeText };
-  jest.useFakeTimers();
 });
 
 beforeEach(() => {
@@ -17,7 +16,6 @@ beforeEach(() => {
 
 afterAll(() => {
   (navigator as any).clipboard = clipboard;
-  jest.useRealTimers();
 });
 
 it('copies empty markdown to clipboard', () => {
