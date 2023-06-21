@@ -3,7 +3,12 @@ import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import IconButton from '@mui/material/IconButton';
 
 import { logEvent } from '../../firebase';
-import { useDispatch, useMaxLikes, useSelector } from '../../hooks';
+import {
+  useDispatch,
+  useGetUserId,
+  useMaxLikes,
+  useSelector,
+} from '../../hooks';
 import { actions } from '../../store';
 import type { Id } from '../../types';
 
@@ -14,7 +19,7 @@ interface Props {
 
 export default function LikeButton(props: Props) {
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.user.id);
+  const userId = useGetUserId();
   const itemText = useSelector(
     (state) => state.items[props.itemId]?.text || ''
   );

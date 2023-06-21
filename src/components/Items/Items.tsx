@@ -2,7 +2,7 @@ import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
 
 import { generateId, logEvent } from '../../firebase';
-import { useDispatch, useSelector } from '../../hooks';
+import { useDispatch, useGetUserId } from '../../hooks';
 import { actions } from '../../store';
 import type { Id, Item } from '../../types';
 import DroppableItems from './DroppableItems';
@@ -14,7 +14,7 @@ interface Props {
 
 export default function Items(props: Props) {
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.user.id);
+  const userId = useGetUserId();
 
   function addItem() {
     const item: Item = {

@@ -1,13 +1,14 @@
 import Typography from '@mui/material/Typography';
 
 import AddBoard from '../../components/Boards/AddBoard';
-import { useDispatch, useSelector, useSetDocumentTitle } from '../../hooks';
+import { useDispatch, useGetUserId, useSetDocumentTitle } from '../../hooks';
 import BoardCards from './BoardCards';
 import { useBoards } from './hooks';
 
 export default function Boards() {
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.user.id);
+  const userId = useGetUserId();
+
   useBoards(dispatch, userId);
   useSetDocumentTitle('Boards');
 

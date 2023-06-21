@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import type { DropResult } from 'react-beautiful-dnd';
 import { DragDropContext } from 'react-beautiful-dnd';
 
-import { useDispatch, useSelector } from '../../hooks';
+import { useDispatch, useGetUserId, useSelector } from '../../hooks';
 import { actions } from '../../store';
 import type { Id } from '../../types';
 import { combine, reorder } from './utils';
@@ -17,7 +17,7 @@ export default function DragDropContainer(props: Props) {
   const columns = useSelector((state) => state.columns);
   const items = useSelector((state) => state.items);
   const likes = useSelector((state) => state.likes.items);
-  const userId = useSelector((state) => state.user.id);
+  const userId = useGetUserId();
 
   /* istanbul ignore next */
   function handleDragEnd(result: DropResult) {
