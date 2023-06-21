@@ -1,8 +1,9 @@
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import { createSelector } from '@reduxjs/toolkit';
 
 import { useSelector } from '../../hooks';
-import type { Id } from '../../types';
+import type { Id, RootState } from '../../types';
 import Items from '../Items';
 import ColumnName from './ColumnName';
 
@@ -12,8 +13,14 @@ interface Props {
   columnIndex: number;
 }
 
+const selectColumn = createSelector(
+  (state: RootState) => state.columns,
+  (_: unknown, columnId: Id) => columnId,
+  (columns, columnId) => columns[columnId]
+);
+
 export default function Column(props: Props) {
-  const column = useSelector((state) => state.columns[props.columnId]);
+  const column = useSelector((state) => selectColumn(state, props.columnId));
 
   if (!column) {
     return null;
