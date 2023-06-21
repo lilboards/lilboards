@@ -1,12 +1,13 @@
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { createSelector } from '@reduxjs/toolkit';
 import { type ChangeEvent, useState } from 'react';
 
 import DeleteDialog from '../../components/DeleteDialog';
 import { logEvent } from '../../firebase';
 import { useDispatch, useSelector } from '../../hooks';
 import { actions } from '../../store';
-import type { Id } from '../../types';
+import type { Id, RootState } from '../../types';
 import CloseButton from '../CloseButton';
 
 interface Props {
@@ -16,6 +17,12 @@ interface Props {
   placeholder: string;
 }
 
+const selectItemIds = createSelector(
+  (state: RootState) => state.columns,
+  (_: unknown, columnId: Id) => columnId,
+  (columns, columnId) => (columns[columnId] || {}).itemIds || []
+);
+
 export default function ColumnName(props: Props) {
   const dispatch = useDispatch();
   const isEditing = useSelector(
@@ -24,9 +31,7 @@ export default function ColumnName(props: Props) {
   const readOnly = useSelector(
     (state) => (state.boards[props.boardId] || {}).createdBy !== state.user.id
   );
-  const itemIds = useSelector(
-    (state) => (state.columns[props.columnId] || {}).itemIds || []
-  );
+  const itemIds = useSelector((state) => selectItemIds(state, props.columnId));
   const userId = useSelector((state) => state.user.id);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const columnName = props.name || props.placeholder;
