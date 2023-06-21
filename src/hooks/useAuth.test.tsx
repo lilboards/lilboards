@@ -1,14 +1,12 @@
 import { renderHook } from '@testing-library/react';
 import type { Unsubscribe, User } from 'firebase/auth';
-import type { ReactNode } from 'react';
-import { Provider } from 'react-redux';
 
 import {
   USER_TEST_EMAIL as userEmail,
   USER_TEST_ID as userId,
 } from '../constants/test';
 import { logEvent, onAuthStateChanged, signInAnonymously } from '../firebase';
-import { store } from '../utils/test';
+import { store, wrapper } from '../utils/test';
 import { useAuth } from './useAuth';
 
 jest.mock('../firebase', () => ({
@@ -18,10 +16,6 @@ jest.mock('../firebase', () => ({
 }));
 
 const mockedOnAuthStateChanged = jest.mocked(onAuthStateChanged);
-
-function wrapper(props: { children?: ReactNode }) {
-  return <Provider store={store}>{props.children}</Provider>;
-}
 
 beforeEach(() => {
   jest.resetAllMocks();
