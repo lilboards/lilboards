@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import { Droppable } from 'react-beautiful-dnd';
 
-import { useSelector } from '../../hooks';
+import { useGetItemIds } from '../../hooks';
 import type { Id } from '../../types';
 import InnerList from './InnerList';
 import { getDroppableBackgroundColor } from './styles';
@@ -12,9 +12,7 @@ interface Props {
 }
 
 export default function DroppableItems(props: Props) {
-  const itemIds = useSelector(
-    (state) => (state.columns[props.columnId] || {}).itemIds || []
-  );
+  const itemIds = useGetItemIds(props.columnId);
 
   return (
     <Droppable droppableId={props.columnId} isCombineEnabled>
