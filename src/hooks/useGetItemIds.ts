@@ -10,8 +10,10 @@ const selectItemIds = createSelector(
 );
 
 /**
- * Get item ids.
+ * Get column item ids.
+ *
+ * @param columnId - Column id.
  */
-export function useGetItemIds(columnId: Id) {
+export function useGetItemIds(columnId: Id): Id[] {
   return useSelector((state) => selectItemIds(state, columnId));
 }

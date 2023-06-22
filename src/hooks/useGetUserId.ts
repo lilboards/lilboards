@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import type { RootState } from '../types';
+import type { Id, RootState } from '../types';
 import { useSelector } from './useSelector';
 
 const selectUserId = createSelector(
@@ -11,6 +11,6 @@ const selectUserId = createSelector(
 /**
  * Get user id.
  */
-export function useGetUserId() {
+export function useGetUserId(): Id {
   return useSelector(selectUserId);
 }

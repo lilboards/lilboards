@@ -3,8 +3,10 @@ import { useSelector } from './useSelector';
 
 /**
  * Is admin hook.
+ *
+ * @param boardId - Board id.
  */
-export function useIsAdmin(boardId: Id) {
+export function useIsAdmin(boardId: Id): boolean {
   return useSelector((state) => {
     if (!boardId) {
       return false;

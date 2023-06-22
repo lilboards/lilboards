@@ -10,7 +10,9 @@ const selectLikes = createSelector(
 );
 
 /**
- * Get likes.
+ * Get item likes.
+ *
+ * @param itemId - Item id.
  */
 export function useGetLikes(itemId: Id) {
   return useSelector((state) => selectLikes(state, itemId));

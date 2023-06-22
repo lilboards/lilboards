@@ -5,11 +5,12 @@ import { actions } from '../store';
 import { useDispatch } from '.';
 
 /**
- * User authentication hook.
+ * User authentication.
  *
  * @param shouldSignInAnonymously - Should user sign in anonymously.
+ * @returns - If authentication has finished.
  */
-export function useAuth(shouldSignInAnonymously = false) {
+export function useAuth(shouldSignInAnonymously = false): boolean {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 

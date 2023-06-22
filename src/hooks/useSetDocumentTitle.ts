@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 
 /**
- * Set document title hook.
+ * Set document title.
  */
-export function useSetDocumentTitle(title: string) {
+export function useSetDocumentTitle(title: string): void {
   useEffect(() => {
     document.title = title;
   });
