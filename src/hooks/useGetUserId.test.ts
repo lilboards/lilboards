@@ -3,7 +3,7 @@ import { renderHook } from '@testing-library/react';
 import { updateStore, wrapper } from '../utils/test';
 import { useGetUserId } from './useGetUserId';
 
-describe.each([{}, { user: {} }])('when state is %p', (state) => {
+describe.each([{}, { user: {} }])('when state is %j', (state) => {
   it('returns empty string', () => {
     const { result } = renderHook(() => useGetUserId(), { wrapper });
     expect(result.current).toBe('');
