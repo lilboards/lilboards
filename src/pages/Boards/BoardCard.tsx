@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 import DeleteDialog from '../../components/DeleteDialog';
 import { logEvent } from '../../firebase';
-import { useDispatch, useSelector } from '../../hooks';
+import { useDispatch, useGetUserId, useSelector } from '../../hooks';
 import { actions } from '../../store';
 import type { Id } from '../../types';
 
@@ -23,7 +23,7 @@ export default function BoardCard(props: Props) {
   const isEditing = useSelector(
     (state) => state.user.editing.boardId === props.boardId
   );
-  const userId = useSelector((state) => state.user.id);
+  const userId = useGetUserId();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   if (!board) {

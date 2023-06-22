@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 
-import { useSelector } from '../../hooks';
+import { useGetLikes } from '../../hooks';
 import type { Id } from '../../types';
 import { countObject } from '../../utils';
 import LikeButton from './LikeButton';
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function Likes(props: Props) {
-  const likes = useSelector((state) => state.likes.items[props.itemId] || {});
+  const likes = useGetLikes(props.itemId);
   const likesCount = countObject(likes);
 
   return (

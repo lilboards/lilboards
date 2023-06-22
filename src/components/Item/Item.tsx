@@ -5,7 +5,7 @@ import InputBase from '@mui/material/InputBase';
 import type { ChangeEvent, CSSProperties } from 'react';
 
 import { logEvent } from '../../firebase';
-import { useDispatch, useSelector } from '../../hooks';
+import { useDispatch, useGetUserId, useSelector } from '../../hooks';
 import { actions } from '../../store';
 import type { Id } from '../../types';
 import Delete from './Delete';
@@ -24,7 +24,7 @@ export default function Item(props: Props) {
   const isEditing = useSelector(
     (state) => state.user.editing.itemId === props.itemId
   );
-  const userId = useSelector((state) => state.user.id);
+  const userId = useGetUserId();
 
   if (!item) {
     return null;

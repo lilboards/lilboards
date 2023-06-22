@@ -4,7 +4,12 @@ import { type ChangeEvent, useState } from 'react';
 
 import DeleteDialog from '../../components/DeleteDialog';
 import { logEvent } from '../../firebase';
-import { useDispatch, useSelector } from '../../hooks';
+import {
+  useDispatch,
+  useGetItemIds,
+  useGetUserId,
+  useSelector,
+} from '../../hooks';
 import { actions } from '../../store';
 import type { Id } from '../../types';
 import CloseButton from '../CloseButton';
@@ -24,10 +29,8 @@ export default function ColumnName(props: Props) {
   const readOnly = useSelector(
     (state) => (state.boards[props.boardId] || {}).createdBy !== state.user.id
   );
-  const itemIds = useSelector(
-    (state) => (state.columns[props.columnId] || {}).itemIds || []
-  );
-  const userId = useSelector((state) => state.user.id);
+  const itemIds = useGetItemIds(props.columnId);
+  const userId = useGetUserId();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const columnName = props.name || props.placeholder;
 
