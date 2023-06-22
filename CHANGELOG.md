@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.33.1](https://github.com/lilboards/lilboards/compare/v4.33.0...v4.33.1) (2023-06-22)
+
+
+### Performance Improvements
+
+* **BoardControls:** use createSelector in Export and fix test warning ([0cd24a7](https://github.com/lilboards/lilboards/commit/0cd24a7805d968569ba6971e44618d5d63da29a9))
+* **Boards:** use createSelector in BoardCards ([c0a409f](https://github.com/lilboards/lilboards/commit/c0a409f5b3111468a16c21f1a2011cd1c595bc90))
+* **Columns:** use createSelector in Columns ([5170a4c](https://github.com/lilboards/lilboards/commit/5170a4cb3c17392dc7c0dcc4d4cc56c20505801e))
+* **Column:** use createSelector in Column ([0e80c01](https://github.com/lilboards/lilboards/commit/0e80c0167fbad98e5725a9192a95682990028648))
+* **Column:** use createSelector in ColumnName ([73f1986](https://github.com/lilboards/lilboards/commit/73f198623fbd97908aa7242c8b37e6d673d47775))
+
 ## [4.33.0](https://github.com/lilboards/lilboards/compare/v4.32.0...v4.33.0) (2023-06-19)
 
 
