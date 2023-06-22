@@ -16,8 +16,8 @@ describe.each([{}, { columns: {} }, { columns: { [COLUMN_TEST_ID]: {} } }])(
   }
 );
 
-describe('when item exists', () => {
-  it('returns item id', () => {
+describe('when column exists', () => {
+  it('returns item ids', () => {
     updateStore.withColumn();
     const { result } = renderHook(() => useGetItemIds(COLUMN_TEST_ID), {
       wrapper,
