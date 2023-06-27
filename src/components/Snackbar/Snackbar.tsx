@@ -2,23 +2,32 @@ import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import type { SnackbarProps } from '@mui/material/Snackbar';
 import Snackbar from '@mui/material/Snackbar';
-import type { FC, SyntheticEvent } from 'react';
+import type { SyntheticEvent } from 'react';
 import { useEffect, useState } from 'react';
 
 interface Props extends SnackbarProps {
   lastOpened?: number;
 }
 
-const SimpleSnackbar: FC<Props> = (props) => {
+const SIX_SECONDS = 6e3;
+
+export default function SimpleSnackbar({
+  anchorOrigin = {
+    horizontal: 'center',
+    vertical: 'top',
+  },
+  autoHideDuration = SIX_SECONDS,
+  lastOpened,
+  ...props
+}: Props) {
   const [open, setOpen] = useState(false);
-  const { lastOpened, ...snackbarProps } = props;
 
   useEffect(() => {
     if (lastOpened) {
       setOpen(true);
-      setTimeout(() => setOpen(false), props.autoHideDuration!);
+      setTimeout(() => setOpen(false), autoHideDuration!);
     }
-  }, [lastOpened, props.autoHideDuration]);
+  }, [lastOpened, autoHideDuration]);
 
   function handleClose(event: Event | SyntheticEvent, reason?: string) {
     /* istanbul ignore else */
@@ -43,17 +52,9 @@ const SimpleSnackbar: FC<Props> = (props) => {
       action={action}
       onClose={handleClose}
       open={open}
-      {...snackbarProps}
+      anchorOrigin={anchorOrigin}
+      autoHideDuration={autoHideDuration}
+      {...props}
     />
   );
-};
-
-SimpleSnackbar.defaultProps = {
-  anchorOrigin: {
-    horizontal: 'center',
-    vertical: 'top',
-  },
-  autoHideDuration: 6e3, // 6 seconds
-};
-
-export default SimpleSnackbar;
+}
