@@ -2,14 +2,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import type { SnackbarProps } from '@mui/material/Snackbar';
 import Snackbar from '@mui/material/Snackbar';
-import type { SyntheticEvent } from 'react';
-import { useEffect, useState } from 'react';
+import { type SyntheticEvent, useCallback, useEffect, useState } from 'react';
 
 interface Props extends SnackbarProps {
   lastOpened?: number;
 }
 
-const SIX_SECONDS = 6e3;
+const SIX_SECONDS = 6000;
 
 export default function SimpleSnackbar({
   anchorOrigin = {
@@ -18,30 +17,30 @@ export default function SimpleSnackbar({
   },
   autoHideDuration = SIX_SECONDS,
   lastOpened,
+  open = false,
   ...props
 }: Props) {
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(open);
 
   useEffect(() => {
     if (lastOpened) {
-      setOpen(true);
-      setTimeout(() => setOpen(false), autoHideDuration!);
+      setIsOpen(true);
+      setTimeout(() => setIsOpen(false), autoHideDuration!);
     }
   }, [lastOpened, autoHideDuration]);
 
-  function handleClose(event: Event | SyntheticEvent, reason?: string) {
-    /* istanbul ignore else */
-    if (reason !== 'clickaway') {
-      setOpen(false);
-    }
-  }
+  const handleClose = useCallback(
+    (event: Event | SyntheticEvent, reason?: string) =>
+      reason !== 'clickaway' && setIsOpen(false),
+    [setIsOpen]
+  );
 
   const action = (
     <IconButton
-      size="small"
       aria-label="Close"
       color="inherit"
       onClick={handleClose}
+      size="small"
     >
       <CloseIcon fontSize="small" />
     </IconButton>
@@ -50,10 +49,10 @@ export default function SimpleSnackbar({
   return (
     <Snackbar
       action={action}
-      onClose={handleClose}
-      open={open}
       anchorOrigin={anchorOrigin}
       autoHideDuration={autoHideDuration}
+      onClose={handleClose}
+      open={isOpen}
       {...props}
     />
   );

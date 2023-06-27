@@ -4,12 +4,12 @@ import Snackbar from './Snackbar';
 
 const message = 'message';
 
-it('does not render snackbar when props.open=false', () => {
+it('does not render snackbar when props.open is false', () => {
   render(<Snackbar message={message} />);
   expect(screen.queryByText(message)).not.toBeInTheDocument();
 });
 
-it('renders snackbar when props.open=true', () => {
+it('renders snackbar when props.open is true', () => {
   render(<Snackbar message={message} open />);
   expect(screen.getByText(message)).toBeInTheDocument();
 });
