@@ -54,7 +54,7 @@
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
     "@commitlint/cli": "^17.6.6",
     "@commitlint/config-conventional": "^17.6.6",
-    "@size-limit/preset-app": "^8.2.4",
+    "@size-limit/preset-app": "^8.2.6",
     "cypress": "^12.16.0",
     "cypress-cucumber-steps": "^2.4.0",
     "eslint-plugin-prettier": "^4.2.1",
@@ -64,7 +64,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
     "prettier": "^2.8.8",
-    "size-limit": "^8.2.4"
+    "size-limit": "^8.2.6"
   },
   "engines": {
     "node": ">=18",
