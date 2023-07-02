@@ -43,7 +43,7 @@ exports[`[Function transformToMarkdown] transforms columns with no items 1`] = `
 `;
 
 exports[`[Function transformToMarkdown] transforms columns with no name 1`] = `
-"|  |  |
+"| Column 1 | Column 2 |
 | --- | --- |
 "
 `;
@@ -125,8 +125,8 @@ Array [
 exports[`[Function transformToRows] transforms columns with no name 1`] = `
 Array [
   Array [
-    "",
-    "",
+    "Column 1",
+    "Column 2",
   ],
 ]
 `;
