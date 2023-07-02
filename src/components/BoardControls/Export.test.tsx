@@ -34,7 +34,6 @@ it('copies markdown to clipboard', () => {
   expect(writeText.mock.calls[0][0]).toMatchInlineSnapshot(`
     "| Column One |
     | --- |
-    | Item One |
-    "
+    | Item One |"
   `);
 });

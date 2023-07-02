@@ -2,93 +2,73 @@
 
 exports[`[Function transformToCSV] transforms column with item 1`] = `
 "\\"Column Name\\"
-\\"Item 1\\"
-"
+\\"Item 1\\""
 `;
 
 exports[`[Function transformToCSV] transforms column with item with newlines 1`] = `
 "\\"Column Name\\"
-\\"Item\\\\n\\\\n1\\"
-"
+\\"Item\\\\n\\\\n1\\""
 `;
 
 exports[`[Function transformToCSV] transforms column with items 1`] = `
 "\\"Column Name\\"
 \\"Item 1\\"
-\\"Item 2\\"
-"
+\\"Item 2\\""
 `;
 
-exports[`[Function transformToCSV] transforms column with no items 1`] = `
-"\\"Column Name\\"
-"
-`;
+exports[`[Function transformToCSV] transforms column with no items 1`] = `"\\"Column Name\\""`;
 
 exports[`[Function transformToCSV] transforms columns with items 1`] = `
 "\\"Column 1\\",\\"Column 2\\"
 \\"Item 1\\",\\"Item 2\\"
-,\\"Item 3\\"
-"
+,\\"Item 3\\""
 `;
 
-exports[`[Function transformToCSV] transforms columns with no items 1`] = `
-"\\"Column Name 1\\",\\"Column Name 2\\"
-"
-`;
+exports[`[Function transformToCSV] transforms columns with no items 1`] = `"\\"Column Name 1\\",\\"Column Name 2\\""`;
 
-exports[`[Function transformToCSV] transforms columns with no name 1`] = `
-"\\"Column 1\\",\\"Column 2\\"
-"
-`;
+exports[`[Function transformToCSV] transforms columns with no name 1`] = `"\\"Column 1\\",\\"Column 2\\""`;
 
 exports[`[Function transformToCSV] transforms empty columns 1`] = `""`;
 
 exports[`[Function transformToMarkdown] transforms column with item 1`] = `
 "| Column Name |
 | --- |
-| Item 1 |
-"
+| Item 1 |"
 `;
 
 exports[`[Function transformToMarkdown] transforms column with item with newlines 1`] = `
 "| Column Name |
 | --- |
-| Item<br><br>1 |
-"
+| Item<br><br>1 |"
 `;
 
 exports[`[Function transformToMarkdown] transforms column with items 1`] = `
 "| Column Name |
 | --- |
 | Item 1 |
-| Item 2 |
-"
+| Item 2 |"
 `;
 
 exports[`[Function transformToMarkdown] transforms column with no items 1`] = `
 "| Column Name |
-| --- |
-"
+| --- |"
 `;
 
 exports[`[Function transformToMarkdown] transforms columns with items 1`] = `
 "| Column 1 | Column 2 |
 | --- | --- |
 | Item 1 | Item 2 |
-|  | Item 3 |
-"
+|  | Item 3 |"
 `;
 
 exports[`[Function transformToMarkdown] transforms columns with no items 1`] = `
 "| Column Name 1 | Column Name 2 |
-| --- | --- |
-"
+| --- | --- |"
 `;
 
 exports[`[Function transformToMarkdown] transforms columns with no name 1`] = `
 "| Column 1 | Column 2 |
-| --- | --- |
-"
+| --- | --- |"
 `;
 
 exports[`[Function transformToMarkdown] transforms empty columns 1`] = `""`;

@@ -4,6 +4,8 @@ const NEWLINE = '\n';
 
 /**
  * Transforms board data to a multidimensional array.
+ *
+ * @returns - Multidimensional array.
  */
 export function transformToRows(columns: Columns, items: Items) {
   const columnValues = Object.values(columns);
@@ -36,6 +38,10 @@ export function transformToRows(columns: Columns, items: Items) {
 
 /**
  * Transforms board data to CSV.
+ *
+ * @param columns - Columns.
+ * @param items - Items.
+ * @returns - CSV.
  */
 export function transformToCSV(columns: Columns, items: Items): string {
   const rows = transformToRows(columns, items);
@@ -54,11 +60,15 @@ export function transformToCSV(columns: Columns, items: Items): string {
     csv += NEWLINE;
   });
 
-  return csv;
+  return csv.trim();
 }
 
 /**
  * Transforms board data to Markdown.
+ *
+ * @param columns - Columns.
+ * @param items - Items.
+ * @returns - Markdown.
  */
 export function transformToMarkdown(columns: Columns, items: Items): string {
   const rows = transformToRows(columns, items);
@@ -83,5 +93,5 @@ export function transformToMarkdown(columns: Columns, items: Items): string {
     markdown += NEWLINE;
   });
 
-  return markdown;
+  return markdown.trim();
 }
