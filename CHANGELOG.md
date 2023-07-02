@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.33.2](https://github.com/lilboards/lilboards/compare/v4.33.1...v4.33.2) (2023-07-02)
+
+
+### Bug Fixes
+
+* **BoardControls:** update Export to copy columns with default name ([d88b73e](https://github.com/lilboards/lilboards/commit/d88b73ebfa7226986607ae4d95fca02cf080e4b0))
+
 ## [4.33.1](https://github.com/lilboards/lilboards/compare/v4.33.0...v4.33.1) (2023-06-22)
 
 
