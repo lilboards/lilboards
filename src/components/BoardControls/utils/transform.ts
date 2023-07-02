@@ -35,6 +35,29 @@ export function transformToRows(columns: Columns, items: Items) {
 }
 
 /**
+ * Transforms board data to CSV.
+ */
+export function transformToCSV(columns: Columns, items: Items): string {
+  const rows = transformToRows(columns, items);
+
+  if (!rows.length) {
+    return '';
+  }
+
+  let csv = '';
+  const headers = rows.shift()!;
+  csv += headers.map((header) => JSON.stringify(header)).join(',');
+  csv += NEWLINE;
+
+  rows.forEach((row) => {
+    csv += row.map((column) => JSON.stringify(column)).join(',');
+    csv += NEWLINE;
+  });
+
+  return csv;
+}
+
+/**
  * Transforms board data to Markdown.
  */
 export function transformToMarkdown(columns: Columns, items: Items): string {

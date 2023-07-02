@@ -1,5 +1,9 @@
 import type { Column, Item } from '../../../types';
-import { transformToMarkdown, transformToRows } from './transform';
+import {
+  transformToCSV,
+  transformToMarkdown,
+  transformToRows,
+} from './transform';
 
 const column: Column = {
   createdAt: Date.now(),
@@ -13,7 +17,9 @@ const item: Item = {
   text: '',
 } as const;
 
-describe.each([transformToRows, transformToMarkdown])('%p', (transform) => {
+const transforms = [transformToCSV, transformToMarkdown, transformToRows];
+
+describe.each(transforms)('%p', (transform) => {
   it('transforms empty columns', () => {
     expect(transform({}, {})).toMatchSnapshot();
   });
