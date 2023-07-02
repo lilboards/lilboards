@@ -8,12 +8,15 @@ const NEWLINE = '\n';
 export function transformToRows(columns: Columns, items: Items) {
   const columnValues = Object.values(columns);
   const columnsLength = columnValues.length;
+
   if (!columnsLength) {
     return [];
   }
-  const rows: string[][] = [];
 
-  const headers = columnValues.map((column) => column.name);
+  const rows: string[][] = [];
+  const headers = columnValues.map(
+    (column, index) => column.name || `Column ${index + 1}`
+  );
   rows.push(headers);
 
   columnValues.forEach(({ itemIds }, columnIndex) => {
@@ -36,6 +39,7 @@ export function transformToRows(columns: Columns, items: Items) {
  */
 export function transformToMarkdown(columns: Columns, items: Items): string {
   const rows = transformToRows(columns, items);
+
   if (!rows.length) {
     return '';
   }
