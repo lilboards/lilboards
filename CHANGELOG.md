@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.33.3](https://github.com/lilboards/lilboards/compare/v4.33.2...v4.33.3) (2023-07-02)
+
+
+### Bug Fixes
+
+* **BoardControls:** trim newline when copying board as markdown ([e3ea866](https://github.com/lilboards/lilboards/commit/e3ea866e3b9b9d811e39c307ca8757a48dae5bbc))
+
 ## [4.33.2](https://github.com/lilboards/lilboards/compare/v4.33.1...v4.33.2) (2023-07-02)
 
 
