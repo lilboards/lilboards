@@ -1,4 +1,5 @@
 import TextField from '@mui/material/TextField';
+import type { SxProps } from '@mui/system';
 import type { ChangeEvent } from 'react';
 
 import { logEvent } from '../../firebase';
@@ -8,6 +9,7 @@ import type { Id } from '../../types';
 
 interface Props {
   boardId: Id;
+  sx?: SxProps;
 }
 
 export default function MaxLikes(props: Props) {
@@ -46,7 +48,7 @@ export default function MaxLikes(props: Props) {
       label="Max Likes"
       onChange={handleChange}
       size="small"
-      sx={{ marginRight: 2 }}
+      sx={props.sx}
       type="number"
       value={maxLikes}
     />

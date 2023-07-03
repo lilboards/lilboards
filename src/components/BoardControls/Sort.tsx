@@ -1,4 +1,5 @@
 import Button from '@mui/material/Button';
+import type { SxProps } from '@mui/system';
 
 import { logEvent } from '../../firebase';
 import { useDispatch, useIsAdmin, useSelector } from '../../hooks';
@@ -8,6 +9,7 @@ import { sortByLikes } from './utils';
 
 interface Props {
   boardId: Id;
+  sx?: SxProps;
 }
 
 export default function Sort(props: Props) {
@@ -37,8 +39,8 @@ export default function Sort(props: Props) {
     <Button
       color="primary"
       onClick={sortItems}
+      sx={props.sx}
       variant="outlined"
-      sx={{ marginLeft: 2 }}
     >
       Sort by likes
     </Button>
