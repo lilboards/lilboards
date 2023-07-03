@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.33.4](https://github.com/lilboards/lilboards/compare/v4.33.3...v4.33.4) (2023-07-03)
+
+
+### Bug Fixes
+
+* **BoardControls:** use Popover in smaller screens for responsiveness ([fa5e474](https://github.com/lilboards/lilboards/commit/fa5e4740d77f6ad837db6ca869b2f5f6cc866fc5))
+
 ## [4.33.3](https://github.com/lilboards/lilboards/compare/v4.33.2...v4.33.3) (2023-07-02)
 
 
