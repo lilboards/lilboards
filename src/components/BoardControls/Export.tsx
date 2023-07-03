@@ -1,6 +1,7 @@
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
+import type { SxProps } from '@mui/system';
 import { createSelector } from '@reduxjs/toolkit';
 
 import { logEvent } from '../../firebase';
@@ -13,7 +14,11 @@ const selectColumns = createSelector(
   (columns) => columns
 );
 
-export default function Export() {
+interface Props {
+  sx?: SxProps;
+}
+
+export default function Export(props: Props) {
   const columns = useSelector(selectColumns);
   const items = useSelector((state) => state.items);
 
@@ -24,12 +29,8 @@ export default function Export() {
   }
 
   return (
-    <Tooltip arrow title="Copy board as Markdown">
-      <IconButton
-        color="info"
-        onClick={copyBoardMarkdownToClipboard}
-        sx={{ marginLeft: 0.5 }}
-      >
+    <Tooltip arrow sx={props.sx} title="Copy board as Markdown">
+      <IconButton color="info" onClick={copyBoardMarkdownToClipboard}>
         <FileDownloadIcon />
       </IconButton>
     </Tooltip>

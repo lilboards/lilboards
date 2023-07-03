@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import type { SxProps } from '@mui/system';
 import type { ChangeEvent } from 'react';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -20,6 +21,7 @@ const initialState = {
 
 interface Props {
   boardId: Id;
+  sx?: SxProps;
 }
 
 export default function Timer(props: Props) {
@@ -105,7 +107,7 @@ export default function Timer(props: Props) {
   }
 
   return (
-    <Box display="flex" alignItems="flex-end" marginRight={3}>
+    <Box display="flex" alignItems="flex-end" sx={props.sx}>
       <Snackbar message="⏰ Time's up!" lastOpened={state.lastOpened} />
       <TextField
         disabled={Boolean(timerEnd)}
