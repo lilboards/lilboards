@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.33.5](https://github.com/lilboards/lilboards/compare/v4.33.4...v4.33.5) (2023-07-04)
+
+
+### Bug Fixes
+
+* **BoardControls:** replace menu icon with more icon ([e99d494](https://github.com/lilboards/lilboards/commit/e99d494ff4ca27d15a8a6bd71f2cee59c33c89c7))
+
 ## [4.33.4](https://github.com/lilboards/lilboards/compare/v4.33.3...v4.33.4) (2023-07-03)
 
 
