@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import { isDevelopment } from '../config';
 import {
   boardsSlice,
   columnsSlice,
@@ -16,4 +17,5 @@ export const store = configureStore({
     [likesSlice.name]: likesSlice.reducer,
     [userSlice.name]: userSlice.reducer,
   },
+  devTools: isDevelopment,
 });
