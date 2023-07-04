@@ -34,7 +34,7 @@ export default function Support() {
       </Typography>
 
       <Typography paragraph component="section">
-        Want to sponsor the project?
+        Want to support the maintainer?
         <ul>
           {sponsorLinks.map(({ text, href }, index) => (
             <li key={index}>
