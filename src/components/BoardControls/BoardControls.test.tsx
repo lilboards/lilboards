@@ -76,7 +76,7 @@ describe('mobile', () => {
   it('toggles board controls', async () => {
     renderWithProviders(<BoardControls boardId={board.id} />);
     expect(screen.getAllByLabelText('Hide Likes')).toHaveLength(1);
-    fireEvent.click(screen.getByLabelText('Toggle board controls'));
+    fireEvent.click(screen.getByLabelText('Board Controls'));
     expect(screen.getAllByLabelText('Hide Likes')).toHaveLength(2);
     // eslint-disable-next-line testing-library/no-node-access
     fireEvent.click(screen.getByRole('presentation').firstChild!);

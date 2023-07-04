@@ -1,4 +1,4 @@
-import MenuIcon from '@mui/icons-material/Menu';
+import MoreIcon from '@mui/icons-material/MoreHoriz';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Popover from '@mui/material/Popover';
@@ -55,11 +55,11 @@ export default function BoardControls(props: Props) {
       <Box sx={{ display: { xs: 'block', md: 'none' } }}>
         <IconButton
           aria-describedby={popoverId}
-          aria-label="Toggle board controls"
+          aria-label="Board Controls"
           onClick={handleClick}
-          title="Toggle board controls"
+          title="Board Controls"
         >
-          <MenuIcon />
+          <MoreIcon />
         </IconButton>
 
         <Popover
