@@ -47,7 +47,7 @@
     "react-router-dom": "^6.14.1",
     "react-scripts": "5.0.1",
     "typescript": "5.1.6",
-    "web-vitals": "^3.3.2"
+    "web-vitals": "^3.4.0"
   },
   "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^18.0.1",
