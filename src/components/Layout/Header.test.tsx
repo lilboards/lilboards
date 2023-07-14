@@ -12,7 +12,7 @@ it('renders heading link', () => {
   renderWithProviders(<Header />);
   expect(screen.getByRole('link', { name: 'Lilboards' })).toHaveAttribute(
     'href',
-    '/'
+    '/',
   );
 });
 
@@ -25,7 +25,7 @@ it('renders GitHub link', () => {
   renderWithProviders(<Header />);
   expect(screen.getByLabelText('GitHub')).toHaveAttribute(
     'href',
-    'https://github.com/lilboards/lilboards'
+    'https://github.com/lilboards/lilboards',
   );
 });
 
@@ -35,7 +35,7 @@ describe('when not logged in', () => {
     renderWithProviders(<Header />);
     expect(screen.getByRole('link', { name: 'Login' })).toHaveAttribute(
       'href',
-      '/login'
+      '/login',
     );
   });
 
@@ -43,7 +43,7 @@ describe('when not logged in', () => {
     updateStore.withUser(false);
     renderWithProviders(<Header />);
     expect(
-      screen.queryByRole('link', { name: 'Boards' })
+      screen.queryByRole('link', { name: 'Boards' }),
     ).not.toBeInTheDocument();
   });
 });
@@ -54,7 +54,7 @@ describe('when logged in', () => {
     renderWithProviders(<Header />);
     expect(screen.getByRole('link', { name: 'Logout' })).toHaveAttribute(
       'href',
-      '/logout'
+      '/logout',
     );
   });
 
@@ -63,7 +63,7 @@ describe('when logged in', () => {
     renderWithProviders(<Header />);
     expect(screen.getByRole('link', { name: 'Boards' })).toHaveAttribute(
       'href',
-      '/boards'
+      '/boards',
     );
   });
 });

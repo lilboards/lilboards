@@ -48,7 +48,7 @@ it('starts the AuthUI', () => {
   expect(getAuthUI().start).toBeCalledTimes(1);
   expect(getAuthUI().start).toBeCalledWith(
     expect.any(HTMLDivElement),
-    uiConfig
+    uiConfig,
   );
 });
 

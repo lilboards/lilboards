@@ -28,7 +28,7 @@ it('renders card style', () => {
       {...props}
       cardStyle={{ backgroundColor: '#64b5f6' }}
       itemId={item.id}
-    />
+    />,
   );
   expect(screen.getByText(item.text)).toBeInTheDocument();
 });
@@ -48,7 +48,7 @@ describe('delete item', () => {
   it('renders delete button', () => {
     renderWithProviders(<Item {...props} itemId={item.id} />);
     expect(
-      screen.getByLabelText(`Delete item “${item.text}”`)
+      screen.getByLabelText(`Delete item “${item.text}”`),
     ).toBeInTheDocument();
   });
 

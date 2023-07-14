@@ -300,7 +300,7 @@ describe('setColumnItemIds', () => {
       columnItemIds: {},
     };
     expect(reducer(initialState, actions.setColumnItemIds(payload))).toEqual(
-      initialState
+      initialState,
     );
   });
 

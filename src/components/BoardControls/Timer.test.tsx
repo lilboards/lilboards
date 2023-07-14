@@ -124,7 +124,7 @@ describe('when user can edit', () => {
         const event = { target: { value } };
         fireEvent.change(input, event);
         expect(input).toHaveValue(value === '' ? null : value);
-      }
+      },
     );
   });
 });
@@ -138,7 +138,7 @@ describe('when user cannot edit', () => {
   it('does not render the "Start" button', () => {
     renderWithProviders(<Timer boardId={boardId} />);
     expect(
-      screen.queryByRole('button', { name: 'Start timer' })
+      screen.queryByRole('button', { name: 'Start timer' }),
     ).not.toBeInTheDocument();
   });
 });

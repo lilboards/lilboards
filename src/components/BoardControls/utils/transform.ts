@@ -17,7 +17,7 @@ export function transformToRows(columns: Columns, items: Items) {
 
   const rows: string[][] = [];
   const headers = columnValues.map(
-    (column, index) => column.name || `Column ${index + 1}`
+    (column, index) => column.name || `Column ${index + 1}`,
   );
   rows.push(headers);
 
@@ -87,7 +87,7 @@ export function transformToMarkdown(columns: Columns, items: Items): string {
   rows.forEach((row) => {
     markdown += `| ${row
       .map((text) =>
-        typeof text === 'string' ? text.replace(/\n/g, '<br>') : text
+        typeof text === 'string' ? text.replace(/\n/g, '<br>') : text,
       )
       .join(' | ')} |`;
     markdown += NEWLINE;

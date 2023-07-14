@@ -30,7 +30,7 @@ export default function Timer(props: Props) {
   const dispatch = useDispatch();
   const isAdmin = useIsAdmin(boardId);
   const timerEnd = useSelector(
-    (state) => (state.boards[boardId] || {}).timerEnd
+    (state) => (state.boards[boardId] || {}).timerEnd,
   );
   const [state, setState] = useState(initialState);
 
@@ -50,7 +50,7 @@ export default function Timer(props: Props) {
             timerEnd: 0,
           },
           skipSave: !isAdmin,
-        })
+        }),
       );
     });
   }, [boardId, dispatch, isAdmin, setState, state.minutes]);
@@ -97,7 +97,7 @@ export default function Timer(props: Props) {
           board: {
             timerEnd: Date.now() + minutesToMilliseconds(state.minutes),
           },
-        })
+        }),
       );
     }
   }

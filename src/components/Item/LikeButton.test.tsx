@@ -15,10 +15,10 @@ describe('when maxLikes is 0', () => {
   it('does not like item', () => {
     renderWithProviders(<LikeButton boardId={board.id} itemId={item.id} />);
     fireEvent.click(
-      screen.getByRole('button', { name: `Like item "${item.text}"` })
+      screen.getByRole('button', { name: `Like item "${item.text}"` }),
     );
     expect(
-      screen.getByLabelText(`Like item "${item.text}"`)
+      screen.getByLabelText(`Like item "${item.text}"`),
     ).toBeInTheDocument();
   });
 });
@@ -32,10 +32,10 @@ describe('when maxLikes is 1', () => {
   it('likes item', () => {
     renderWithProviders(<LikeButton boardId={board.id} itemId={item.id} />);
     fireEvent.click(
-      screen.getByRole('button', { name: `Like item "${item.text}"` })
+      screen.getByRole('button', { name: `Like item "${item.text}"` }),
     );
     expect(
-      screen.getByLabelText(`Unlike item "${item.text}"`)
+      screen.getByLabelText(`Unlike item "${item.text}"`),
     ).toBeInTheDocument();
   });
 });

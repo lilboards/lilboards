@@ -3,7 +3,7 @@ export const cloneArray = (array?: any[]) => (array ? [...array] : []);
 export const reorderArray = (
   array: any[],
   startIndex: number,
-  endIndex: number
+  endIndex: number,
 ) => {
   if (startIndex === endIndex) {
     return array;

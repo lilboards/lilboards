@@ -17,7 +17,7 @@ export const itemsSlice = createSlice({
         item: Partial<Item>;
         itemId: Id;
         skipSave?: boolean;
-      }>
+      }>,
     ) => {
       const { boardId, itemId, item, skipSave } = action.payload;
       state[itemId] = state[itemId] || {};
@@ -30,7 +30,7 @@ export const itemsSlice = createSlice({
 
     removeItem: (
       state,
-      action: PayloadAction<{ boardId?: Id; itemId: Id; skipSave?: boolean }>
+      action: PayloadAction<{ boardId?: Id; itemId: Id; skipSave?: boolean }>,
     ) => {
       const { boardId, itemId, skipSave } = action.payload;
       delete state[itemId];

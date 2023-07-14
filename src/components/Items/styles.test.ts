@@ -42,7 +42,7 @@ describe('getDroppableBackgroundColor', () => {
       isUsingPlaceholder: true,
     } as DroppableStateSnapshot;
     expect(
-      getDroppableBackgroundColor(droppableSnapshot)
+      getDroppableBackgroundColor(droppableSnapshot),
     ).toMatchInlineSnapshot(`"#eee"`);
   });
 

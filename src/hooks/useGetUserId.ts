@@ -5,7 +5,7 @@ import { useSelector } from './useSelector';
 
 const selectUserId = createSelector(
   (state: RootState) => state.user,
-  (user) => user?.id || ''
+  (user) => user?.id || '',
 );
 
 /**

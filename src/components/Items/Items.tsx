@@ -28,14 +28,14 @@ export default function Items(props: Props) {
         boardId: props.boardId,
         item,
         itemId,
-      })
+      }),
     );
     dispatch(
       actions.addColumnItemId({
         boardId: props.boardId,
         columnId: props.columnId,
         itemId,
-      })
+      }),
     );
     dispatch(actions.setUserEditing({ itemId }));
     logEvent('create_item');

@@ -29,7 +29,7 @@ export default function AddColumn(props: Props) {
         boardId: props.boardId,
         column,
         columnId,
-      })
+      }),
     );
     dispatch(actions.setUserEditing({ columnId }));
     logEvent('create_column');

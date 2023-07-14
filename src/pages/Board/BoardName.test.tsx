@@ -28,7 +28,7 @@ it('renders board name', () => {
   render(<BoardName {...props} />);
   expect(screen.getByText(boardName)).toBeInTheDocument();
   expect(screen.getByRole('heading', { level: 1 })).toBe(
-    screen.getByText(boardName)
+    screen.getByText(boardName),
   );
 });
 

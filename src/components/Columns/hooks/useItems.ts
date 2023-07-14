@@ -36,10 +36,10 @@ export function useItems(boardId: Id) {
               item: itemSnapshot.val(),
               itemId,
               skipSave: true,
-            })
+            }),
           );
         });
-      })
+      }),
     );
 
     // item changed
@@ -55,10 +55,10 @@ export function useItems(boardId: Id) {
               item: itemSnapshot.val(),
               itemId,
               skipSave: true,
-            })
+            }),
           );
         });
-      })
+      }),
     );
 
     // item removed
@@ -73,10 +73,10 @@ export function useItems(boardId: Id) {
             actions.removeItem({
               itemId,
               skipSave: true,
-            })
+            }),
           );
         });
-      })
+      }),
     );
 
     // unsubscribe and reset on unmount

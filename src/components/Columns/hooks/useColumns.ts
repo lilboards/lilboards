@@ -37,10 +37,10 @@ export function useColumns(boardId: Id) {
               column: columnSnapshot.val(),
               columnId,
               skipSave: true,
-            })
+            }),
           );
         });
-      })
+      }),
     );
 
     // column changed
@@ -57,10 +57,10 @@ export function useColumns(boardId: Id) {
               column: columnSnapshot.val(),
               columnId: columnSnapshot.key as Id,
               skipSave: true,
-            })
+            }),
           );
         });
-      })
+      }),
     );
 
     // column removed
@@ -76,10 +76,10 @@ export function useColumns(boardId: Id) {
               boardId,
               columnId,
               skipSave: true,
-            })
+            }),
           );
         });
-      })
+      }),
     );
 
     // unsubscribe and reset on unmount

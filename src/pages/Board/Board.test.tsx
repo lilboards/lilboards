@@ -82,7 +82,7 @@ describe('with board', () => {
       renderWithProviders(<Board />);
       expect(screen.getByRole('link', { name: 'Boards' })).toHaveAttribute(
         'href',
-        '/boards'
+        '/boards',
       );
     });
   });
@@ -97,7 +97,7 @@ describe('with board', () => {
       });
       renderWithProviders(<Board />);
       expect(
-        screen.queryByRole('heading', { level: 1 })
+        screen.queryByRole('heading', { level: 1 }),
       ).not.toBeInTheDocument();
     });
 
@@ -110,7 +110,7 @@ describe('with board', () => {
       });
       renderWithProviders(<Board />);
       expect(screen.getByRole('heading', { level: 1 })).toBe(
-        screen.getByText(board.name)
+        screen.getByText(board.name),
       );
     });
   });
@@ -137,7 +137,7 @@ describe('with board and anonymous user', () => {
 
   beforeEach(() => {
     mockedGetBoardDataRef.mockReturnValueOnce(
-      boardDataRef as unknown as DatabaseReference
+      boardDataRef as unknown as DatabaseReference,
     );
     mockedOnValue.mockReset().mockImplementationOnce((query, callback) => {
       callback({ val: (): BoardType => board } as DataSnapshot);

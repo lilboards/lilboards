@@ -21,7 +21,7 @@ export default function BoardCard(props: Props) {
   const dispatch = useDispatch();
   const board = useSelector((state) => state.boards[props.boardId]);
   const isEditing = useSelector(
-    (state) => state.user.editing.boardId === props.boardId
+    (state) => state.user.editing.boardId === props.boardId,
   );
   const userId = useGetUserId();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -31,7 +31,7 @@ export default function BoardCard(props: Props) {
   }
 
   function handleChange(
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
     dispatch(
       actions.updateBoard({
@@ -42,7 +42,7 @@ export default function BoardCard(props: Props) {
         },
         boardId: props.boardId,
         debounce: true,
-      })
+      }),
     );
   }
 
@@ -59,7 +59,7 @@ export default function BoardCard(props: Props) {
       actions.deleteBoard({
         boardId: props.boardId,
         userId,
-      })
+      }),
     );
     logEvent('delete_board');
   }

@@ -24,7 +24,7 @@ it('closes snackbar when close icon button is clicked', async () => {
 
 it('auto hides snackbar', async () => {
   render(
-    <Snackbar autoHideDuration={0} lastOpened={Date.now()} message={message} />
+    <Snackbar autoHideDuration={0} lastOpened={Date.now()} message={message} />,
   );
   await waitFor(() => {
     expect(screen.queryByText(message)).not.toBeInTheDocument();

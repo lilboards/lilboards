@@ -15,7 +15,7 @@ const userId = 'user-id';
 
 it('is not admin when board id is empty', () => {
   mockedUseSelector.mockImplementationOnce((callback) =>
-    callback(undefined as unknown as RootState)
+    callback(undefined as unknown as RootState),
   );
   const { result } = renderHook(() => useIsAdmin(''));
   expect(result.current).toBe(false);
@@ -26,7 +26,7 @@ it('is not admin when board does not exist', () => {
     boards: {},
   };
   mockedUseSelector.mockImplementationOnce((callback) =>
-    callback(state as RootState)
+    callback(state as RootState),
   );
   const { result } = renderHook(() => useIsAdmin(boardId));
   expect(result.current).toBe(false);
@@ -39,7 +39,7 @@ it('is not admin when created by does not exist', () => {
     },
   };
   mockedUseSelector.mockImplementationOnce((callback) =>
-    callback(state as unknown as RootState)
+    callback(state as unknown as RootState),
   );
   const { result } = renderHook(() => useIsAdmin(boardId));
   expect(result.current).toBe(false);
@@ -55,7 +55,7 @@ it('is not admin when user id does not exist', () => {
     user: {},
   };
   mockedUseSelector.mockImplementationOnce((callback) =>
-    callback(state as unknown as RootState)
+    callback(state as unknown as RootState),
   );
   const { result } = renderHook(() => useIsAdmin(boardId));
   expect(result.current).toBe(false);
@@ -73,7 +73,7 @@ it('is not admin when created by does not match user id', () => {
     },
   };
   mockedUseSelector.mockImplementationOnce((callback) =>
-    callback(state as unknown as RootState)
+    callback(state as unknown as RootState),
   );
   const { result } = renderHook(() => useIsAdmin(boardId));
   expect(result.current).toBe(false);
@@ -91,7 +91,7 @@ it('is admin when created by matches user id', () => {
     },
   };
   mockedUseSelector.mockImplementationOnce((callback) =>
-    callback(state as unknown as RootState)
+    callback(state as unknown as RootState),
   );
   const { result } = renderHook(() => useIsAdmin(boardId));
   expect(result.current).toBe(true);

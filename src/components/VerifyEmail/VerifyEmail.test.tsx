@@ -12,14 +12,14 @@ describe('send verification email', () => {
   it('renders link', () => {
     renderWithProviders(<VerifyEmail />);
     expect(
-      screen.getByRole('button', { name: 'Send verification email' })
+      screen.getByRole('button', { name: 'Send verification email' }),
     ).toBeInTheDocument();
   });
 
   it('sends email verification when button is clicked', () => {
     renderWithProviders(<VerifyEmail />);
     fireEvent.click(
-      screen.getByRole('button', { name: 'Send verification email' })
+      screen.getByRole('button', { name: 'Send verification email' }),
     );
     expect(sendEmailVerification).toBeCalled();
     expect(screen.getByText('Email sent')).toBeInTheDocument();

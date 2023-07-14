@@ -7,7 +7,7 @@ import type { Id } from '../../../types';
 
 export function useBoards(
   dispatch: ReturnType<typeof useDispatch>,
-  userId: Id
+  userId: Id,
 ) {
   useEffect(() => {
     (async () => {
@@ -26,7 +26,7 @@ export function useBoards(
               boardId,
             };
           }
-        })
+        }),
       );
 
       boards.forEach((board) => board && dispatch(actions.loadBoard(board)));

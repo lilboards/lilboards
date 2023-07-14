@@ -18,7 +18,7 @@ it('renders column name', () => {
   const board = updateStore.withBoard();
   const column = updateStore.withColumn();
   renderWithProviders(
-    <Column {...props} boardId={board.id} columnId={column.id} />
+    <Column {...props} boardId={board.id} columnId={column.id} />,
   );
   expect(screen.getByText(column.name)).toBeInTheDocument();
 });
@@ -28,7 +28,7 @@ it('edits column', () => {
   const column = updateStore.withColumn();
   updateStore.withUser();
   renderWithProviders(
-    <Column {...props} boardId={board.id} columnId={column.id} />
+    <Column {...props} boardId={board.id} columnId={column.id} />,
   );
   const value = 'Edited Column Name';
   fireEvent.change(screen.getByLabelText(`Edit column “${column.name}”`), {
@@ -43,7 +43,7 @@ it('resets user editing column id on blur', () => {
   updateStore.withUser();
   updateStore.withUserEditing();
   renderWithProviders(
-    <Column {...props} boardId={board.id} columnId={column.id} />
+    <Column {...props} boardId={board.id} columnId={column.id} />,
   );
   fireEvent.blur(screen.getByLabelText(`Edit column “${column.name}”`));
   expect(store.getState().user.editing.columnId).toBe('');
@@ -62,7 +62,7 @@ describe('delete', () => {
 
   it('cancels delete', () => {
     renderWithProviders(
-      <Column {...props} boardId={board.id} columnId={column.id} />
+      <Column {...props} boardId={board.id} columnId={column.id} />,
     );
     fireEvent.click(screen.getByLabelText(/Delete column/));
     fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
@@ -72,7 +72,7 @@ describe('delete', () => {
 
   it('deletes column', () => {
     renderWithProviders(
-      <Column {...props} boardId={board.id} columnId={column.id} />
+      <Column {...props} boardId={board.id} columnId={column.id} />,
     );
     fireEvent.click(screen.getByLabelText(/Delete column/));
     fireEvent.click(screen.getByRole('button', { name: 'Delete' }));

@@ -32,7 +32,7 @@ export default function SimpleSnackbar({
   const handleClose = useCallback(
     (event: Event | SyntheticEvent, reason?: string) =>
       reason !== 'clickaway' && setIsOpen(false),
-    [setIsOpen]
+    [setIsOpen],
   );
 
   const action = (

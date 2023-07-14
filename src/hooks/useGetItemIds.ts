@@ -6,7 +6,7 @@ import { useSelector } from './useSelector';
 const selectItemIds = createSelector(
   (state: RootState) => state.columns,
   (_: unknown, columnId: Id) => columnId,
-  (columns, columnId) => (columns[columnId] || {}).itemIds || []
+  (columns, columnId) => (columns[columnId] || {}).itemIds || [],
 );
 
 /**

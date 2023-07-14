@@ -13,7 +13,7 @@ interface Props {
 
 const selectColumnIds = createSelector(
   (state: RootState) => state.columns,
-  (columns) => Object.keys(columns)
+  (columns) => Object.keys(columns),
 );
 
 export default function Columns(props: Props) {

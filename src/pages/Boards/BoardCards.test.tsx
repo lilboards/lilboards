@@ -12,6 +12,6 @@ it('renders BoardCard', () => {
   const board = updateStore.withBoard();
   renderWithProviders(<BoardCards />);
   expect(screen.getByDisplayValue(board.name)).toBe(
-    screen.getByLabelText('Board Name')
+    screen.getByLabelText('Board Name'),
   );
 });

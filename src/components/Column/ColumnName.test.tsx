@@ -22,7 +22,7 @@ describe('readonly', () => {
       screen.getByRole('heading', {
         level: 2,
         name: props.name,
-      })
+      }),
     ).toBeInTheDocument();
   });
 
@@ -32,7 +32,7 @@ describe('readonly', () => {
       screen.getByRole('heading', {
         level: 2,
         name: props.placeholder,
-      })
+      }),
     ).toBeInTheDocument();
   });
 });
@@ -44,7 +44,7 @@ describe('edit', () => {
     updateStore.withUser();
     renderWithProviders(<ColumnName {...props} boardId={board.id} />);
     expect(
-      screen.getByLabelText(`Edit column “${props.name}”`)
+      screen.getByLabelText(`Edit column “${props.name}”`),
     ).toBeInTheDocument();
   });
 
@@ -53,7 +53,7 @@ describe('edit', () => {
     updateStore.withUser();
     renderWithProviders(<ColumnName {...props} boardId={board.id} name="" />);
     expect(
-      screen.getByLabelText(`Edit column “${props.placeholder}”`)
+      screen.getByLabelText(`Edit column “${props.placeholder}”`),
     ).toBeInTheDocument();
   });
 });
@@ -73,7 +73,7 @@ describe('delete', () => {
     renderWithProviders(<ColumnName {...props} boardId={board.id} />);
     fireEvent.click(screen.getByLabelText(`Delete column “${columnName}”`));
     expect(
-      screen.getByText(`Delete column “${columnName}”?`)
+      screen.getByText(`Delete column “${columnName}”?`),
     ).toBeInTheDocument();
     expect(screen.getByText(dialogContent)).toBeInTheDocument();
   });
@@ -83,7 +83,7 @@ describe('delete', () => {
     renderWithProviders(<ColumnName {...props} boardId={board.id} name="" />);
     fireEvent.click(screen.getByLabelText(`Delete column “${columnName}”`));
     expect(
-      screen.getByText(`Delete column “${columnName}”?`)
+      screen.getByText(`Delete column “${columnName}”?`),
     ).toBeInTheDocument();
     expect(screen.getByText(dialogContent)).toBeInTheDocument();
   });

@@ -27,7 +27,7 @@ describe('desktop', () => {
   it('renders "Add column" button', () => {
     renderWithProviders(<BoardControls boardId={board.id} />);
     expect(
-      screen.getByRole('button', { name: 'Add column' })
+      screen.getByRole('button', { name: 'Add column' }),
     ).toBeInTheDocument();
   });
 
@@ -51,7 +51,7 @@ describe('desktop', () => {
     updateStore.withUser();
     renderWithProviders(<BoardControls boardId={board.id} />);
     expect(
-      screen.getByRole('button', { name: 'Sort by likes' })
+      screen.getByRole('button', { name: 'Sort by likes' }),
     ).toBeInTheDocument();
   });
 
@@ -60,7 +60,7 @@ describe('desktop', () => {
     updateStore.withUser();
     renderWithProviders(<BoardControls boardId={board.id} />);
     expect(screen.getByLabelText('Copy board as Markdown')).toBe(
-      screen.getByRole('button', { name: 'Copy board as Markdown' })
+      screen.getByRole('button', { name: 'Copy board as Markdown' }),
     );
   });
 });

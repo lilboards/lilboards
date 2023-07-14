@@ -11,7 +11,7 @@ describe('add item', () => {
   it('renders "Add item" button', () => {
     renderWithProviders(<Items boardId={boardId} columnId={columnId} />);
     expect(
-      screen.getByRole('button', { name: 'Add item' })
+      screen.getByRole('button', { name: 'Add item' }),
     ).toBeInTheDocument();
   });
 

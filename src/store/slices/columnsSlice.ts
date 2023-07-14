@@ -24,7 +24,7 @@ export const columnsSlice = createSlice({
         columnId: Id;
         debounce?: boolean;
         skipSave?: boolean;
-      }>
+      }>,
     ) => {
       const { boardId, column, columnId, debounce, skipSave } = action.payload;
       state[columnId] = state[columnId] || {};
@@ -51,7 +51,7 @@ export const columnsSlice = createSlice({
         columnName: Column['name'];
         debounce?: boolean;
         userId: Column['updatedBy'];
-      }>
+      }>,
     ) => {
       const { boardId, columnId, columnName, debounce, userId } =
         action.payload;
@@ -72,7 +72,7 @@ export const columnsSlice = createSlice({
 
     removeColumn: (
       state,
-      action: PayloadAction<{ boardId: Id; columnId: Id; skipSave?: boolean }>
+      action: PayloadAction<{ boardId: Id; columnId: Id; skipSave?: boolean }>,
     ) => {
       const { boardId, columnId, skipSave } = action.payload;
       delete state[columnId];
@@ -83,7 +83,7 @@ export const columnsSlice = createSlice({
 
     addColumnItemId: (
       state,
-      action: PayloadAction<{ boardId: Id; columnId: Id; itemId: Id }>
+      action: PayloadAction<{ boardId: Id; columnId: Id; itemId: Id }>,
     ) => {
       const { boardId, columnId, itemId } = action.payload;
       const column = state[columnId];
@@ -94,7 +94,7 @@ export const columnsSlice = createSlice({
 
     removeColumnItemId: (
       state,
-      action: PayloadAction<{ boardId: Id; columnId: Id; itemId: Id }>
+      action: PayloadAction<{ boardId: Id; columnId: Id; itemId: Id }>,
     ) => {
       const { boardId, columnId, itemId } = action.payload;
       const column = state[columnId];
@@ -110,7 +110,7 @@ export const columnsSlice = createSlice({
       action: PayloadAction<{
         boardId: Id;
         columnItemIds: ColumnItemIds;
-      }>
+      }>,
     ) => {
       const { boardId, columnItemIds } = action.payload;
       Object.entries(columnItemIds).forEach(([columnId, itemIds]) => {

@@ -22,7 +22,7 @@ export default function Item(props: Props) {
   const dispatch = useDispatch();
   const item = useSelector((state) => state.items[props.itemId]);
   const isEditing = useSelector(
-    (state) => state.user.editing.itemId === props.itemId
+    (state) => state.user.editing.itemId === props.itemId,
   );
   const userId = useGetUserId();
 
@@ -40,7 +40,7 @@ export default function Item(props: Props) {
           updatedBy: userId,
         },
         itemId: props.itemId,
-      })
+      }),
     );
   }
 
@@ -55,7 +55,7 @@ export default function Item(props: Props) {
         boardId: props.boardId,
         item,
         itemId: props.itemId,
-      })
+      }),
     );
     logEvent('update_item');
   }

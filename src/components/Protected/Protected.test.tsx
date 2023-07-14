@@ -72,7 +72,7 @@ describe('signed in with unverified email', () => {
     updateStore.withUser(false);
     renderWithProviders(<Protected {...props} />);
     expect(
-      screen.getByRole('button', { name: 'Send verification email' })
+      screen.getByRole('button', { name: 'Send verification email' }),
     ).toBeInTheDocument();
   });
 });
@@ -111,7 +111,7 @@ describe('props.signInAnonymously=true', () => {
   it('does not navigates to /login', async () => {
     renderWithProviders(<Protected {...props} />);
     await waitFor(() =>
-      expect(router.state.location.pathname).not.toBe('/login')
+      expect(router.state.location.pathname).not.toBe('/login'),
     );
   });
 });

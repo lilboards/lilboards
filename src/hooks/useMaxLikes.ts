@@ -8,7 +8,7 @@ export const DEFAULT_MAX_LIKES = 5;
 const selectMaxLikes = createSelector(
   (state: RootState) => state.boards,
   (_: unknown, boardId: Id) => boardId,
-  (boards, boardId) => (boards[boardId] || {}).maxLikes
+  (boards, boardId) => (boards[boardId] || {}).maxLikes,
 );
 
 /**

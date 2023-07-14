@@ -22,7 +22,7 @@ export const boardsSlice = createSlice({
         boardId: Id;
         debounce?: boolean;
         skipSave?: boolean;
-      }>
+      }>,
     ) => {
       const { board, boardId, debounce, skipSave } = action.payload;
       state[boardId] = state[boardId] || {};
@@ -39,7 +39,7 @@ export const boardsSlice = createSlice({
 
     deleteBoard: (
       state,
-      action: PayloadAction<{ boardId: Id; userId: Id; skipSave?: boolean }>
+      action: PayloadAction<{ boardId: Id; userId: Id; skipSave?: boolean }>,
     ) => {
       const { boardId, skipSave, userId } = action.payload;
       delete state[boardId];
@@ -51,7 +51,7 @@ export const boardsSlice = createSlice({
 
     loadBoard: (
       state,
-      action: PayloadAction<{ board: Board; boardId: Id }>
+      action: PayloadAction<{ board: Board; boardId: Id }>,
     ) => {
       const { board, boardId } = action.payload;
       state[boardId] = state[boardId] || {};

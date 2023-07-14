@@ -12,7 +12,7 @@ it('renders "Open board" link', () => {
   renderWithProviders(<BoardCard boardId={board.id} />);
   expect(screen.getByRole('link', { name: 'Open board' })).toHaveAttribute(
     'href',
-    `/boards/${boardId}`
+    `/boards/${boardId}`,
   );
 });
 
@@ -69,7 +69,7 @@ describe('delete board', () => {
     renderWithProviders(<BoardCard boardId={board.id} />);
     fireEvent.click(screen.getByLabelText(`Delete board “${board.name}”`));
     expect(
-      screen.getByText(`Delete board “${board.name}”?`)
+      screen.getByText(`Delete board “${board.name}”?`),
     ).toBeInTheDocument();
     expect(screen.getByText(dialogContent)).toBeInTheDocument();
   });

@@ -19,7 +19,7 @@ it('renders "Sort by likes" button when user is admin', () => {
   updateStore.withUser();
   renderWithProviders(<Sort boardId={board.id} />);
   expect(
-    screen.getByRole('button', { name: 'Sort by likes' })
+    screen.getByRole('button', { name: 'Sort by likes' }),
   ).toBeInTheDocument();
 });
 
@@ -27,7 +27,7 @@ it('does not render "Sort by likes" button when user is not admin', () => {
   const board = updateStore.withBoard();
   renderWithProviders(<Sort boardId={board.id} />);
   expect(
-    screen.queryByRole('button', { name: 'Sort by likes' })
+    screen.queryByRole('button', { name: 'Sort by likes' }),
   ).not.toBeInTheDocument();
 });
 

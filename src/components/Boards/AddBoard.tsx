@@ -19,7 +19,7 @@ export default function AddBoard() {
       actions.updateBoard({
         board,
         boardId,
-      })
+      }),
     );
     dispatch(actions.setUserEditing({ boardId }));
     saveUserBoardId(userId, boardId);

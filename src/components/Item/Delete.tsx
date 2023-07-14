@@ -25,20 +25,20 @@ export default function Delete(props: Props) {
       actions.removeItem({
         boardId: props.boardId,
         itemId: props.itemId,
-      })
+      }),
     );
     dispatch(
       actions.removeColumnItemId({
         boardId: props.boardId,
         columnId: props.columnId,
         itemId: props.itemId,
-      })
+      }),
     );
     dispatch(
       actions.removeLikesItem({
         boardId: props.boardId,
         itemId: props.itemId,
-      })
+      }),
     );
     logEvent('delete_item');
     closeDialog();

@@ -34,7 +34,7 @@ export default function DragDropContainer(props: Props) {
             updatedBy: userId,
           },
           itemId: update.itemId,
-        })
+        }),
       );
 
       // update likes
@@ -43,14 +43,14 @@ export default function DragDropContainer(props: Props) {
           boardId: props.boardId,
           itemId: update.itemId,
           likes: update.likes,
-        })
+        }),
       );
 
       dispatch(
         actions.removeLikesItem({
           boardId: props.boardId,
           itemId: remove.itemId,
-        })
+        }),
       );
 
       // remove item
@@ -58,7 +58,7 @@ export default function DragDropContainer(props: Props) {
         actions.removeItem({
           boardId: props.boardId,
           itemId: remove.itemId,
-        })
+        }),
       );
 
       dispatch(
@@ -66,7 +66,7 @@ export default function DragDropContainer(props: Props) {
           boardId: props.boardId,
           columnId: remove.columnId,
           itemId: remove.itemId,
-        })
+        }),
       );
     }
 
@@ -89,7 +89,7 @@ export default function DragDropContainer(props: Props) {
       actions.setColumnItemIds({
         boardId: props.boardId,
         columnItemIds: reorder(source, destination, columns),
-      })
+      }),
     );
   }
 

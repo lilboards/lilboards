@@ -12,7 +12,7 @@ import type {
  */
 export const getDraggableCardStyle = (
   draggableSnapshot: DraggableStateSnapshot,
-  theme: Theme
+  theme: Theme,
 ) => {
   if (draggableSnapshot.combineWith) {
     return {
@@ -27,7 +27,7 @@ export const getDraggableCardStyle = (
  * @see {@link https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/api/droppable.md#recommended--home-list-styling}
  */
 export const getDroppableBackgroundColor = (
-  droppableSnapshot: DroppableStateSnapshot
+  droppableSnapshot: DroppableStateSnapshot,
 ) => {
   if (droppableSnapshot.isDraggingOver) {
     return '#eee';

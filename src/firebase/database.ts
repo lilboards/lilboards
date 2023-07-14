@@ -31,13 +31,13 @@ const database = getDatabase(firebaseApp);
 
 if (isDevelopment && isLocalhost) {
   const databaseUrl = new URL(
-    process.env.REACT_APP_FIREBASE_DATABASE_URL || 'localhost'
+    process.env.REACT_APP_FIREBASE_DATABASE_URL || 'localhost',
   );
   const { connectDatabaseEmulator } = require('firebase/database');
   connectDatabaseEmulator(
     database,
     databaseUrl.hostname,
-    Number(databaseUrl.port) || 9000
+    Number(databaseUrl.port) || 9000,
   );
 }
 
@@ -151,7 +151,7 @@ export const removeColumn = (boardId: Id, columnId: Id) => {
  */
 export const saveColumnItemIds = (
   boardId: Id,
-  columnItemIds: { [columnId: string]: Id[] }
+  columnItemIds: { [columnId: string]: Id[] },
 ) => {
   const columnIds = Object.keys(columnItemIds);
 
@@ -188,7 +188,7 @@ export const saveColumnItemIds = (
 export const updateColumn = (
   boardId: Id,
   columnId: Id,
-  column: Partial<Column>
+  column: Partial<Column>,
 ) => {
   update(getColumnRef(boardId, columnId), column);
 };
@@ -339,7 +339,7 @@ export const saveUserBoardId = (userId: Id, boardId: Id) => {
  * @param userId - The user id.
  */
 export const getUserBoardsVal = async (
-  userId: Id
+  userId: Id,
 ): Promise<{ [boardId: string]: boolean } | null> =>
   (await get(getUserBoardsRef(userId))).val();
 

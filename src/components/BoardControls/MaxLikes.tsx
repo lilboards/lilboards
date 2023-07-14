@@ -29,7 +29,7 @@ export default function MaxLikes(props: Props) {
             maxLikes: newMaxLikes,
           },
           debounce: true,
-        })
+        }),
       );
       logEvent('max_likes', {
         boardId,

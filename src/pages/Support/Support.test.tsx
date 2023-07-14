@@ -10,7 +10,7 @@ it('renders heading', () => {
     screen.getByRole('heading', {
       level: 1,
       name: 'Support',
-    })
+    }),
   ).toBeInTheDocument();
 });
 
@@ -19,7 +19,7 @@ it('renders GitHub issue link', () => {
   expect(
     screen.getByRole('link', {
       name: 'issue',
-    })
+    }),
   ).toHaveAttribute('href', 'https://github.com/lilboards/lilboards/issues');
 });
 
@@ -28,10 +28,10 @@ it('renders GitHub discussion link', () => {
   expect(
     screen.getByRole('link', {
       name: 'discussion',
-    })
+    }),
   ).toHaveAttribute(
     'href',
-    'https://github.com/lilboards/lilboards/discussions'
+    'https://github.com/lilboards/lilboards/discussions',
   );
 });
 
@@ -40,6 +40,6 @@ it.each(sponsorLinks)('renders sponsor link "$text"', ({ text, href }) => {
   expect(
     screen.getByRole('link', {
       name: text,
-    })
+    }),
   ).toHaveAttribute('href', href);
 });

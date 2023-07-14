@@ -19,7 +19,7 @@ export const likesSlice = createSlice({
   reducers: {
     likeItem: (
       state,
-      action: PayloadAction<{ boardId: Id; itemId: Id; userId: Id }>
+      action: PayloadAction<{ boardId: Id; itemId: Id; userId: Id }>,
     ) => {
       const { boardId, itemId, userId } = action.payload;
       state.items[itemId] = state.items[itemId] || {};
@@ -29,7 +29,7 @@ export const likesSlice = createSlice({
 
     unlikeItem: (
       state,
-      action: PayloadAction<{ boardId: Id; itemId: Id; userId: Id }>
+      action: PayloadAction<{ boardId: Id; itemId: Id; userId: Id }>,
     ) => {
       const { boardId, itemId, userId } = action.payload;
       if (state.items[itemId]) {
@@ -44,7 +44,7 @@ export const likesSlice = createSlice({
 
     removeLikesItem: (
       state,
-      action: PayloadAction<{ boardId: Id; itemId: Id }>
+      action: PayloadAction<{ boardId: Id; itemId: Id }>,
     ) => {
       const { boardId, itemId } = action.payload;
       delete state.items[itemId];
@@ -57,7 +57,7 @@ export const likesSlice = createSlice({
 
     setLikesItem: (
       state,
-      action: PayloadAction<{ boardId: Id; itemId: Id; likes: LikesItem }>
+      action: PayloadAction<{ boardId: Id; itemId: Id; likes: LikesItem }>,
     ) => {
       const { boardId, itemId, likes } = action.payload;
       state.items[itemId] = likes;

@@ -23,7 +23,7 @@ it('renders heading', () => {
     screen.getByRole('heading', {
       level: 1,
       name: 'Error',
-    })
+    }),
   ).toBeInTheDocument();
 });
 
@@ -41,6 +41,6 @@ it('renders home link', () => {
   expect(
     screen.getByRole('link', {
       name: 'home',
-    })
+    }),
   ).toHaveAttribute('href', '/');
 });

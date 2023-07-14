@@ -26,7 +26,7 @@ beforeEach(() => {
 it('renders delete button', () => {
   renderWithProviders(<Delete {...props} />);
   expect(
-    screen.getByLabelText(`Delete item “${props.itemText}”`)
+    screen.getByLabelText(`Delete item “${props.itemText}”`),
   ).toBeInTheDocument();
 });
 
@@ -43,7 +43,7 @@ it('cancels delete', () => {
   fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
   expect(screen.getByText(dialogTitle)).not.toBeVisible();
   expect(
-    screen.getByLabelText(`Delete item “${props.itemText}”`)
+    screen.getByLabelText(`Delete item “${props.itemText}”`),
   ).toBeInTheDocument();
 });
 

@@ -37,7 +37,7 @@ Given('I create account', (table?: DataTable) => {
               oobCode: string;
               oobLink: string;
               requestType: string;
-            }) => code.email === email
+            }) => code.email === email,
           ).oobCode,
         });
       });

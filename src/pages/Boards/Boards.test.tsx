@@ -31,7 +31,7 @@ describe('add board', () => {
   it('renders button', () => {
     renderWithProviders(<Boards />);
     expect(
-      screen.getByRole('button', { name: 'Add board' })
+      screen.getByRole('button', { name: 'Add board' }),
     ).toBeInTheDocument();
   });
 
@@ -47,7 +47,7 @@ describe('add board', () => {
     renderWithProviders(<Boards />);
     const length = 2;
     Array.from({ length }, () =>
-      fireEvent.click(screen.getByText('Add board'))
+      fireEvent.click(screen.getByText('Add board')),
     );
     expect(screen.getAllByLabelText('Board Name')).toHaveLength(length);
   });

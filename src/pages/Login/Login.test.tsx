@@ -42,7 +42,7 @@ describe('not logged in', () => {
       screen.getByRole('heading', {
         level: 1,
         name: 'Sign In',
-      })
+      }),
     ).toBeInTheDocument();
   });
 
@@ -84,16 +84,16 @@ describe('logged in', () => {
       mockedUseLocation.mockReturnValueOnce(location as Location);
       renderWithProviders(<Login />);
       await waitFor(() =>
-        expect(router.state.location.pathname).toBe('/boards')
+        expect(router.state.location.pathname).toBe('/boards'),
       );
-    }
+    },
   );
 
   it(`redirects to location.state.${REDIRECT_TO}`, async () => {
     mockedUseLocation.mockReturnValue(location);
     renderWithProviders(<Login />);
     await waitFor(() =>
-      expect(router.state.location.pathname).toBe(redirectTo)
+      expect(router.state.location.pathname).toBe(redirectTo),
     );
   });
 });

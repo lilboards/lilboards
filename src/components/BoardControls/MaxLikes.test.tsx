@@ -13,7 +13,7 @@ jest.mock('../../firebase', () => ({
 it('renders default max likes value', () => {
   renderWithProviders(<MaxLikes boardId={boardId} />);
   expect(screen.getByRole('spinbutton', { name: 'Max Likes' })).toHaveValue(
-    DEFAULT_MAX_LIKES
+    DEFAULT_MAX_LIKES,
   );
 });
 

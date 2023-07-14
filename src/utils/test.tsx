@@ -142,7 +142,7 @@ export const updateStore = {
       actions.setUser({
         ...user,
         ...override,
-      })
+      }),
     );
     return user;
   },

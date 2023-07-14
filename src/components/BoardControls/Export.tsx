@@ -11,7 +11,7 @@ import { transformToMarkdown } from './utils';
 
 const selectColumns = createSelector(
   (state: RootState) => state.columns,
-  (columns) => columns
+  (columns) => columns,
 );
 
 interface Props {

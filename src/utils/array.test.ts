@@ -17,7 +17,7 @@ describe('reorderArray', () => {
 
   it('does nothing if start and end indexes are the same', () => {
     items.forEach((_, index) =>
-      expect(reorderArray(items, index, index)).toBe(items)
+      expect(reorderArray(items, index, index)).toBe(items),
     );
   });
 

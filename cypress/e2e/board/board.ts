@@ -11,7 +11,7 @@ When('I copy board link', () => {
         permissions: ['clipboardReadWrite', 'clipboardSanitizedWrite'],
         origin: window.location.origin,
       },
-    })
+    }),
   );
 
   cy.get('[aria-label="Copy board link"]').click();

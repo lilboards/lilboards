@@ -28,7 +28,7 @@ it('renders column', () => {
     screen.getByRole('heading', {
       level: 2,
       name: 'Column One',
-    })
+    }),
   ).toBeInTheDocument();
 });
 

@@ -16,7 +16,7 @@ describe('without user and item', () => {
   it('renders like button', () => {
     renderWithProviders(<Likes boardId={boardId} itemId="" />);
     expect(screen.getByRole('button')).toBe(
-      screen.getByLabelText('Like item ""')
+      screen.getByLabelText('Like item ""'),
     );
   });
 

@@ -34,7 +34,7 @@ export const userSlice = createSlice({
 
     setUserEditing: (
       state,
-      action: PayloadAction<Partial<User['editing']>>
+      action: PayloadAction<Partial<User['editing']>>,
     ) => {
       Object.assign(state.editing, action.payload);
     },

@@ -26,7 +26,7 @@ describe('shouldSignInAnonymously is false', () => {
     beforeEach(() => {
       const user = null;
       mockedOnAuthStateChanged.mockImplementationOnce(
-        (callback) => callback(user) as unknown as Unsubscribe
+        (callback) => callback(user) as unknown as Unsubscribe,
       );
     });
 
@@ -50,7 +50,7 @@ describe('shouldSignInAnonymously is false', () => {
         uid: userId,
       };
       mockedOnAuthStateChanged.mockImplementationOnce(
-        (callback) => callback(user as User) as unknown as Unsubscribe
+        (callback) => callback(user as User) as unknown as Unsubscribe,
       );
     });
 
@@ -78,7 +78,7 @@ describe('shouldSignInAnonymously is false', () => {
         uid: userId,
       };
       mockedOnAuthStateChanged.mockImplementationOnce(
-        (callback) => callback(user as User) as unknown as Unsubscribe
+        (callback) => callback(user as User) as unknown as Unsubscribe,
       );
     });
 
@@ -104,7 +104,7 @@ describe('shouldSignInAnonymously is false', () => {
         uid: userId,
       };
       mockedOnAuthStateChanged.mockImplementationOnce(
-        (callback) => callback(user as User) as unknown as Unsubscribe
+        (callback) => callback(user as User) as unknown as Unsubscribe,
       );
     });
 
@@ -131,7 +131,7 @@ describe('shouldSignInAnonymously is true', () => {
   beforeEach(() => {
     const user = null;
     mockedOnAuthStateChanged.mockImplementationOnce(
-      (callback) => callback(user) as unknown as Unsubscribe
+      (callback) => callback(user) as unknown as Unsubscribe,
     );
   });
 

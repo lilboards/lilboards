@@ -24,10 +24,10 @@ interface Props {
 export default function ColumnName(props: Props) {
   const dispatch = useDispatch();
   const isEditing = useSelector(
-    (state) => state.user.editing.columnId === props.columnId
+    (state) => state.user.editing.columnId === props.columnId,
   );
   const readOnly = useSelector(
-    (state) => (state.boards[props.boardId] || {}).createdBy !== state.user.id
+    (state) => (state.boards[props.boardId] || {}).createdBy !== state.user.id,
   );
   const itemIds = useGetItemIds(props.columnId);
   const userId = useGetUserId();
@@ -43,7 +43,7 @@ export default function ColumnName(props: Props) {
   }
 
   function handleChange(
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
     dispatch(
       actions.renameColumn({
@@ -52,7 +52,7 @@ export default function ColumnName(props: Props) {
         columnName: event.target.value,
         debounce: true,
         userId,
-      })
+      }),
     );
   }
 
@@ -61,20 +61,20 @@ export default function ColumnName(props: Props) {
       actions.removeColumn({
         boardId: props.boardId,
         columnId: props.columnId,
-      })
+      }),
     );
     itemIds.forEach((itemId) => {
       dispatch(
         actions.removeItem({
           boardId: props.boardId,
           itemId,
-        })
+        }),
       );
       dispatch(
         actions.removeLikesItem({
           boardId: props.boardId,
           itemId,
-        })
+        }),
       );
     });
     logEvent('delete_column');

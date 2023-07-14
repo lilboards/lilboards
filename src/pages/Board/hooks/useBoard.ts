@@ -29,7 +29,7 @@ export function useBoard(boardId: Id) {
               actions.loadBoard({
                 board,
                 boardId,
-              })
+              }),
             );
             setIsLoaded(true);
           });
@@ -40,11 +40,11 @@ export function useBoard(boardId: Id) {
               boardId,
               skipSave: true,
               userId: '',
-            })
+            }),
           );
           setIsLoaded(true);
         }
-      }
+      },
     );
 
     // unsubscribe on unmount

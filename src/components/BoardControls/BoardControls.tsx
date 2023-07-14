@@ -19,18 +19,18 @@ interface Props {
 
 export default function BoardControls(props: Props) {
   const [anchorElement, setAnchorElement] = useState<HTMLButtonElement | null>(
-    null
+    null,
   );
 
   const handleClick = useCallback(
     (event: MouseEvent<HTMLButtonElement>) =>
       setAnchorElement(event.currentTarget),
-    [setAnchorElement]
+    [setAnchorElement],
   );
 
   const handleClose = useCallback(
     () => setAnchorElement(null),
-    [setAnchorElement]
+    [setAnchorElement],
   );
 
   const isPopoverOpen = Boolean(anchorElement);

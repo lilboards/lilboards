@@ -16,7 +16,7 @@ interface Props {
 const selectColumn = createSelector(
   (state: RootState) => state.columns,
   (_: unknown, columnId: Id) => columnId,
-  (columns, columnId) => columns[columnId]
+  (columns, columnId) => columns[columnId],
 );
 
 export default function Column(props: Props) {

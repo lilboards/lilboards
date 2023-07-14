@@ -31,8 +31,8 @@ describe.each(transforms)('%p', (transform) => {
           column1: column,
           column2: column,
         },
-        {}
-      )
+        {},
+      ),
     ).toMatchSnapshot();
   });
 
@@ -45,8 +45,8 @@ describe.each(transforms)('%p', (transform) => {
             name: 'Column Name',
           },
         },
-        {}
-      )
+        {},
+      ),
     ).toMatchSnapshot();
   });
 
@@ -64,8 +64,8 @@ describe.each(transforms)('%p', (transform) => {
             name: 'Column Name 2',
           },
         },
-        {}
-      )
+        {},
+      ),
     ).toMatchSnapshot();
   });
 
@@ -84,8 +84,8 @@ describe.each(transforms)('%p', (transform) => {
             ...item,
             text: 'Item 1',
           },
-        }
-      )
+        },
+      ),
     ).toMatchSnapshot();
   });
 
@@ -109,8 +109,8 @@ describe.each(transforms)('%p', (transform) => {
             ...item,
             text: 'Item 2',
           },
-        }
-      )
+        },
+      ),
     ).toMatchSnapshot();
   });
 
@@ -142,8 +142,8 @@ describe.each(transforms)('%p', (transform) => {
             ...item,
             text: 'Item 3',
           },
-        }
-      )
+        },
+      ),
     ).toMatchSnapshot();
   });
 
@@ -162,8 +162,8 @@ describe.each(transforms)('%p', (transform) => {
             ...item,
             text: 'Item\n\n1',
           },
-        }
-      )
+        },
+      ),
     ).toMatchSnapshot();
   });
 });

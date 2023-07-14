@@ -27,7 +27,7 @@ export default function Sort(props: Props) {
       actions.setColumnItemIds({
         boardId: props.boardId,
         columnItemIds: sortByLikes(columns, likes),
-      })
+      }),
     );
     logEvent('sort_items', {
       by: 'likes',

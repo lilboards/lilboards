@@ -7,7 +7,7 @@ import { cloneArray, reorderArray } from '../../../utils';
 export function reorder(
   source: DraggableLocation,
   destination: DraggableLocation,
-  columns: Columns
+  columns: Columns,
 ) {
   const sourceColumnId = source.droppableId;
   const sourceColumn = columns[sourceColumnId] || {};
@@ -23,7 +23,7 @@ export function reorder(
       [sourceColumnId]: reorderArray(
         sourceItemIds,
         source.index,
-        destination.index
+        destination.index,
       ),
     };
     // moving item to a different column

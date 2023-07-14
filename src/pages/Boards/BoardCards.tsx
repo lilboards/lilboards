@@ -14,9 +14,9 @@ const selectBoardIds = createSelector(
       id,
     }));
     return sort(boardsWithId, SortBy.createdAt, SortOrder.Descending).map(
-      (board) => board.id
+      (board) => board.id,
     );
-  }
+  },
 );
 
 export default function BoardCards() {

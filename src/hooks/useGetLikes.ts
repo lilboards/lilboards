@@ -6,7 +6,7 @@ import { useSelector } from './useSelector';
 const selectLikes = createSelector(
   (state: RootState) => state.likes.items,
   (_: unknown, itemId: Id) => itemId,
-  (items, itemId) => items[itemId] || {}
+  (items, itemId) => items[itemId] || {},
 );
 
 /**

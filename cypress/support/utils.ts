@@ -1,5 +1,5 @@
 export function getFirebaseAccountUrl(
-  action: 'signUp' | 'sendOobCode' | 'update'
+  action: 'signUp' | 'sendOobCode' | 'update',
 ) {
   return `http://localhost:9099/identitytoolkit.googleapis.com/v1/accounts:${action}?key=fake-api-key`;
 }
