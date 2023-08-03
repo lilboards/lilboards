@@ -39,7 +39,7 @@
     "@types/react-dom": "^18.2.7",
     "debounce": "^1.2.1",
     "firebase": "^10.1.0",
-    "firebaseui": "^6.0.2",
+    "firebaseui": "^6.1.0",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.2.0",
