@@ -32,7 +32,7 @@ This project is built with:
 
 - [Node.js](https://nodejs.org/)
 - [nvm](https://github.com/nvm-sh/nvm#readme)
-- [Yarn 1](https://classic.yarnpkg.com/en/docs/install)
+- [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 ## Install
 
@@ -52,14 +52,14 @@ nvm use
 Install the dependencies:
 
 ```sh
-yarn
+npm install
 ```
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+### `npm start`
 
 Runs the app in the development mode.
 
@@ -69,7 +69,7 @@ The page will reload if you make edits.
 
 You will also see any errors in the console.
 
-### `yarn firebase:emulators`
+### `npm run firebase:emulators`
 
 Starts the [Firebase Emulators](https://firebase.google.com/docs/rules/emulator-setup).
 
@@ -84,18 +84,18 @@ Could not start Database Emulator, port taken.
 Then run:
 
 ```sh
-kill $(lsof -ti :9000) && yarn firebase:emulators
+kill $(lsof -ti :9000) && npm run firebase:emulators
 ```
 
 Or replace port `9000` with a different port (e.g., `9001`) in `.env` and `firebase.json`.
 
-### `yarn test`
+### `npm test`
 
 Launches the test runner in the interactive watch mode.
 
 See the section about [running tests](https://create-react-app.dev/docs/running-tests/) for more information.
 
-### `yarn build`
+### `npm run build`
 
 Builds the app for production to the `build` folder.
 
@@ -107,7 +107,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://create-react-app.dev/docs/deployment/) for more information.
 
-### `yarn cypress:open`
+### `npm run cypress:open`
 
 Opens [Cypress](https://www.cypress.io/) for E2E (end-to-end) testing.
 
