@@ -12,7 +12,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          cache: yarn
+          cache: npm
           node-version-file: .nvmrc
 
       - name: Cypress run
@@ -20,8 +20,8 @@ jobs:
         with:
           browser: chrome
           start: |
-            yarn start
-            yarn firebase:emulators
+            npm start
+            npm run firebase:emulators
           wait-on: 'http://localhost:3000, http://localhost:4000'
 
       - name: Record failed screenshots

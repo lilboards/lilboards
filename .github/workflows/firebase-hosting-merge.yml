@@ -17,14 +17,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          cache: yarn
+          cache: npm
           node-version-file: .nvmrc
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile --prefer-offline
+        run: npm ci --prefer-offline
 
       - name: Build app
-        run: yarn build
+        run: npm run build
         env:
           REACT_APP_FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
           REACT_APP_FIREBASE_AUTH_DOMAIN: 'lilboards.firebaseapp.com'
@@ -55,7 +55,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          cache: yarn
+          cache: npm
           node-version-file: .nvmrc
 
       - name: Remove before
