@@ -12,15 +12,15 @@
     "firebase:init": "firebase init",
     "firebase:login": "firebase login",
     "firebase:logout": "firebase logout",
-    "lint": "yarn lint:ts && yarn lint:tsc",
-    "lint:fix": "yarn lint:ts --fix",
+    "lint": "npm run lint:ts && npm run lint:tsc",
+    "lint:fix": "npm run lint:ts -- --fix",
     "lint:ts": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "lint:tsc": "tsc --noEmit",
     "postinstall": "husky install",
     "size": "size-limit",
     "start": "react-scripts start",
     "test": "react-scripts test",
-    "test:ci": "CI=true yarn test --coverage --colors"
+    "test:ci": "CI=true npm test -- --ci --coverage --colors"
   },
   "dependencies": {
     "@emotion/react": "11.11.1",
@@ -67,8 +67,7 @@
     "size-limit": "10.0.1"
   },
   "engines": {
-    "node": ">=18",
-    "yarn": ">=1"
+    "node": "18"
   },
   "private": true,
   "license": "MIT",
