@@ -3749,26 +3749,26 @@
   dependencies:
     debug "^4.1.1"
 
-"@size-limit/file@9.0.0":
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-9.0.0.tgz#eed5415f5bcc8407979e47ffa49ffaf12d2d2378"
-  integrity sha512-oM2UaH2FRq4q22k+R+P6xCpzET10T94LFdSjb9svVu/vOD7NaB9LGcG6se8TW1BExXiyXO4GEhLsBt3uMKM3qA==
+"@size-limit/file@10.0.1":
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-10.0.1.tgz#be434e582935416c57e75cf679da7ddb0ed68324"
+  integrity sha512-xQMh/Hy8QgyHaac+DSSKcwmcJlQglDTY67L5ouUf78SlDxiKQrr8QMiYdCj7Zl5KM+gmee/eIbl6v2qbpf/Vxw==
   dependencies:
     semver "7.5.4"
 
-"@size-limit/preset-app@9.0.0":
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/@size-limit/preset-app/-/preset-app-9.0.0.tgz#4df590acdb6c827f009cf101b2b8a72bda80f9c7"
-  integrity sha512-gaHpf4EF5wKicp86HrVAMHrudN5mD22vslHwzZHiFwyN/7L+e5TiFO0yBrm12fdnmY3DNfq1XFe3rODAhtk1qw==
+"@size-limit/preset-app@10.0.1":
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/@size-limit/preset-app/-/preset-app-10.0.1.tgz#7e30c08feca81156c5dc33c81e83e56e433e4eb5"
+  integrity sha512-JpHuHsZeWgYl2tcMWVcpVguwyoDaIiAinbNnxNFeFp7MWnvaNTAqhrHI2ma8ZTXHxD5fVQDes1fBUtIdPpuvNA==
   dependencies:
-    "@size-limit/file" "9.0.0"
-    "@size-limit/time" "9.0.0"
-    size-limit "9.0.0"
+    "@size-limit/file" "10.0.1"
+    "@size-limit/time" "10.0.1"
+    size-limit "10.0.1"
 
-"@size-limit/time@9.0.0":
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/@size-limit/time/-/time-9.0.0.tgz#44ba75b3cba30736b133dbb3fd740f894a642c87"
-  integrity sha512-//Yba5fRkYqpBZ6MFtjDTSjCpQonDMqkwofpe0G1hMd/5l/3PZXVLDCAU2BW3nQFqTkpeyytFG6Y3jxUqSddiw==
+"@size-limit/time@10.0.1":
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/@size-limit/time/-/time-10.0.1.tgz#edcc8944321680d8cc80775e456bdd3111f24836"
+  integrity sha512-E6dxXD+Z+2iW07oFsGGQEFZol/bjVWlM4B8XgMqbNShOeUWn4C2zg2tYrSvuSG2Vzyf9ov7fhDjJK9vX9C2n6w==
   dependencies:
     estimo "^2.3.6"
 
@@ -8746,7 +8746,7 @@ globals@^13.6.0, globals@^13.9.0:
   dependencies:
     type-fest "^0.20.2"
 
-globby@^11.0.1, globby@^11.0.4, globby@^11.1.0:
+globby@^11.0.1, globby@^11.0.4:
   version "11.1.0"
   resolved "https://registry.yarnpkg.com/globby/-/globby-11.1.0.tgz#bd4be98bb042f83d796f7e3811991fbe82a0d34b"
   integrity sha512-jhIXaOzy1sb8IyocaruWSn1TjmnBVs8Ayhcy83rmxNJ8q2uWKCAj3CnJY+KpGSXCueAPc0i05kVvVKtP1t9S3g==
@@ -8757,6 +8757,17 @@ globby@^11.0.1, globby@^11.0.4, globby@^11.1.0:
     ignore "^5.2.0"
     merge2 "^1.4.1"
     slash "^3.0.0"
+
+globby@^13.2.2:
+  version "13.2.2"
+  resolved "https://registry.yarnpkg.com/globby/-/globby-13.2.2.tgz#63b90b1bf68619c2135475cbd4e71e66aa090592"
+  integrity sha512-Y1zNGV+pzQdh7H39l9zgB4PJqjRNqydvdYCDG4HFXM4XuvSaQQlEc91IU1yALL8gUTDomgBAfz3XJdmUS+oo0w==
+  dependencies:
+    dir-glob "^3.0.1"
+    fast-glob "^3.3.0"
+    ignore "^5.2.4"
+    merge2 "^1.4.1"
+    slash "^4.0.0"
 
 google-auth-library@^7.11.0:
   version "7.14.1"
@@ -9257,6 +9268,11 @@ ignore@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.2.0.tgz#6d3bac8fa7fe0d45d9f9be7bac2fc279577e345a"
   integrity sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==
+
+ignore@^5.2.4:
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.2.4.tgz#a291c0c6178ff1b960befe47fcdec301674a6324"
+  integrity sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==
 
 immer@^9.0.21, immer@^9.0.7:
   version "9.0.21"
@@ -13974,14 +13990,14 @@ sisteransi@^1.0.5:
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.5.tgz#134d681297756437cc05ca01370d3a7a571075ed"
   integrity sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==
 
-size-limit@9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-9.0.0.tgz#203c47303462a8351976eb26175acea5f4e80447"
-  integrity sha512-DrA7o2DeRN3s+vwCA9nn7Ck9Y4pn9t0GNUwQRpKqBtBmNkl6LA2s/NlNCdtKHrEkRTeYA1ZQ65mnYveo9rUqgA==
+size-limit@10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-10.0.1.tgz#50f8208a883a961c948b8379e074aa0a00a76528"
+  integrity sha512-lANGZsG+kk5P9zv84J/ratfT6LPTbWR8IitFXNfy41OyfnxoDBHqsl5+JVcG4YSU1UYcmShbp99O/SEPlDs1ZA==
   dependencies:
     bytes-iec "^3.1.1"
     chokidar "^3.5.3"
-    globby "^11.1.0"
+    globby "^13.2.2"
     lilconfig "^2.1.0"
     nanospinner "^1.1.0"
     picocolors "^1.0.0"
@@ -15023,12 +15039,7 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@5.1.6:
-  version "5.1.6"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.1.6.tgz#02f8ac202b6dad2c0dd5e0913745b47a37998274"
-  integrity sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==
-
-typescript@^5.2.2:
+typescript@5.2.2, typescript@^5.2.2:
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.2.2.tgz#5ebb5e5a5b75f085f22bc3f8460fba308310fa78"
   integrity sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==
