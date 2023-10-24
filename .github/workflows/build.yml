@@ -13,20 +13,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          cache: yarn
+          cache: npm
           node-version-file: .nvmrc
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile --prefer-offline
+        run: npm ci --prefer-offline
 
       - name: Lint commit message
-        run: yarn commitlint --from=HEAD~1
+        run: npx commitlint --from=HEAD~1
 
       - name: Lint files
-        run: yarn lint
+        run: npm run lint
 
       - name: Run tests
-        run: yarn test:ci
+        run: npm run test:ci
 
       - name: Codecov
         uses: codecov/codecov-action@v3
