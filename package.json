@@ -52,7 +52,7 @@
   "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "19.1.0",
     "@bahmutov/cypress-esbuild-preprocessor": "2.2.0",
-    "@commitlint/cli": "18.2.0",
+    "@commitlint/cli": "18.4.1",
     "@commitlint/config-conventional": "18.4.0",
     "@size-limit/preset-app": "11.0.0",
     "cypress": "13.5.0",
