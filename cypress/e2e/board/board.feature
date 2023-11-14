@@ -51,12 +51,12 @@ Feature: Board
       And I see text "0"
     When I click on button "Add item"
       And I get focused element
-      And I type "Item to Delete"
+      And I type "Item to Remove"
       And I blur
-    Then I see text "Item to Delete"
-    When I click on label "Delete item “Item to Delete”"
+    Then I see text "Item to Remove"
+    When I click on label "Delete item “Item to Remove”"
       And I click on button "Delete"
-    Then I do not see text "Item to Delete"
+    Then I do not see text "Item to Remove"
     When I reload the page
     Then I see text "Create board, columns, and items"
       And I see text "Column One"
