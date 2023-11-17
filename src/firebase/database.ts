@@ -1,5 +1,5 @@
 /* istanbul ignore file */
-import { debounce } from 'debounce';
+import debounce from 'debounce';
 import {
   child,
   get,
