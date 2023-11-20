@@ -1,250 +1,223 @@
 # Changelog
 
-## [4.33.5](https://github.com/lilboards/lilboards/compare/v4.33.4...v4.33.5) (2023-07-04)
+## [4.33.6](https://github.com/lilboards/lilboards/compare/v4.33.5...v4.33.6) (2023-11-20)
 
+### Miscellaneous Chores
+
+- release 4.33.6 ([5334f53](https://github.com/lilboards/lilboards/commit/5334f53e5fa3fea247cf0a05db84ac3417e266c8))
+
+## [4.33.5](https://github.com/lilboards/lilboards/compare/v4.33.4...v4.33.5) (2023-07-04)
 
 ### Bug Fixes
 
-* **BoardControls:** replace menu icon with more icon ([e99d494](https://github.com/lilboards/lilboards/commit/e99d494ff4ca27d15a8a6bd71f2cee59c33c89c7))
+- **BoardControls:** replace menu icon with more icon ([e99d494](https://github.com/lilboards/lilboards/commit/e99d494ff4ca27d15a8a6bd71f2cee59c33c89c7))
 
 ## [4.33.4](https://github.com/lilboards/lilboards/compare/v4.33.3...v4.33.4) (2023-07-03)
 
-
 ### Bug Fixes
 
-* **BoardControls:** use Popover in smaller screens for responsiveness ([fa5e474](https://github.com/lilboards/lilboards/commit/fa5e4740d77f6ad837db6ca869b2f5f6cc866fc5))
+- **BoardControls:** use Popover in smaller screens for responsiveness ([fa5e474](https://github.com/lilboards/lilboards/commit/fa5e4740d77f6ad837db6ca869b2f5f6cc866fc5))
 
 ## [4.33.3](https://github.com/lilboards/lilboards/compare/v4.33.2...v4.33.3) (2023-07-02)
 
-
 ### Bug Fixes
 
-* **BoardControls:** trim newline when copying board as markdown ([e3ea866](https://github.com/lilboards/lilboards/commit/e3ea866e3b9b9d811e39c307ca8757a48dae5bbc))
+- **BoardControls:** trim newline when copying board as markdown ([e3ea866](https://github.com/lilboards/lilboards/commit/e3ea866e3b9b9d811e39c307ca8757a48dae5bbc))
 
 ## [4.33.2](https://github.com/lilboards/lilboards/compare/v4.33.1...v4.33.2) (2023-07-02)
 
-
 ### Bug Fixes
 
-* **BoardControls:** update Export to copy columns with default name ([d88b73e](https://github.com/lilboards/lilboards/commit/d88b73ebfa7226986607ae4d95fca02cf080e4b0))
+- **BoardControls:** update Export to copy columns with default name ([d88b73e](https://github.com/lilboards/lilboards/commit/d88b73ebfa7226986607ae4d95fca02cf080e4b0))
 
 ## [4.33.1](https://github.com/lilboards/lilboards/compare/v4.33.0...v4.33.1) (2023-06-22)
 
-
 ### Performance Improvements
 
-* **BoardControls:** use createSelector in Export and fix test warning ([0cd24a7](https://github.com/lilboards/lilboards/commit/0cd24a7805d968569ba6971e44618d5d63da29a9))
-* **Boards:** use createSelector in BoardCards ([c0a409f](https://github.com/lilboards/lilboards/commit/c0a409f5b3111468a16c21f1a2011cd1c595bc90))
-* **Columns:** use createSelector in Columns ([5170a4c](https://github.com/lilboards/lilboards/commit/5170a4cb3c17392dc7c0dcc4d4cc56c20505801e))
-* **Column:** use createSelector in Column ([0e80c01](https://github.com/lilboards/lilboards/commit/0e80c0167fbad98e5725a9192a95682990028648))
-* **Column:** use createSelector in ColumnName ([73f1986](https://github.com/lilboards/lilboards/commit/73f198623fbd97908aa7242c8b37e6d673d47775))
+- **BoardControls:** use createSelector in Export and fix test warning ([0cd24a7](https://github.com/lilboards/lilboards/commit/0cd24a7805d968569ba6971e44618d5d63da29a9))
+- **Boards:** use createSelector in BoardCards ([c0a409f](https://github.com/lilboards/lilboards/commit/c0a409f5b3111468a16c21f1a2011cd1c595bc90))
+- **Columns:** use createSelector in Columns ([5170a4c](https://github.com/lilboards/lilboards/commit/5170a4cb3c17392dc7c0dcc4d4cc56c20505801e))
+- **Column:** use createSelector in Column ([0e80c01](https://github.com/lilboards/lilboards/commit/0e80c0167fbad98e5725a9192a95682990028648))
+- **Column:** use createSelector in ColumnName ([73f1986](https://github.com/lilboards/lilboards/commit/73f198623fbd97908aa7242c8b37e6d673d47775))
 
 ## [4.33.0](https://github.com/lilboards/lilboards/compare/v4.32.0...v4.33.0) (2023-06-19)
 
-
 ### Features
 
-* **Header:** change the SupportIcon to the HelpIcon ([9191454](https://github.com/lilboards/lilboards/commit/91914543525ce3ed6a6006dc84a1e41f659de465))
+- **Header:** change the SupportIcon to the HelpIcon ([9191454](https://github.com/lilboards/lilboards/commit/91914543525ce3ed6a6006dc84a1e41f659de465))
 
 ## [4.32.0](https://github.com/lilboards/lilboards/compare/v4.31.0...v4.32.0) (2023-04-02)
 
-
 ### Features
 
-* **Item:** confirm with dialog before delete ([fb25487](https://github.com/lilboards/lilboards/commit/fb254871504cff3d1a6c4cbae316d862744b4610))
+- **Item:** confirm with dialog before delete ([fb25487](https://github.com/lilboards/lilboards/commit/fb254871504cff3d1a6c4cbae316d862744b4610))
 
 ## [4.31.0](https://github.com/lilboards/lilboards/compare/v4.30.0...v4.31.0) (2023-03-26)
 
-
 ### Features
 
-* **components:** replace double quotes inside Item aria-label ([eec866d](https://github.com/lilboards/lilboards/commit/eec866d9791e21a30274d24bf702e1e3c920ad39))
+- **components:** replace double quotes inside Item aria-label ([eec866d](https://github.com/lilboards/lilboards/commit/eec866d9791e21a30274d24bf702e1e3c920ad39))
 
 ## [4.30.0](https://github.com/lilboards/lilboards/compare/v4.29.0...v4.30.0) (2023-03-25)
 
-
 ### Features
 
-* **BoardCard:** replace double quotes ([434d203](https://github.com/lilboards/lilboards/commit/434d203828dc2b28373e7048c7585102984febf2))
-* **Column:** show DeleteDialog before deleting column in ColumnName ([fad2107](https://github.com/lilboards/lilboards/commit/fad21074d7685a30798853685df1503c2c30e29a))
-
+- **BoardCard:** replace double quotes ([434d203](https://github.com/lilboards/lilboards/commit/434d203828dc2b28373e7048c7585102984febf2))
+- **Column:** show DeleteDialog before deleting column in ColumnName ([fad2107](https://github.com/lilboards/lilboards/commit/fad21074d7685a30798853685df1503c2c30e29a))
 
 ### Bug Fixes
 
-* **CloseButton:** override size prop on IconButton ([52f2ca0](https://github.com/lilboards/lilboards/commit/52f2ca0055a160e91450624288892fb3db58668a))
-* **ColumnName:** center the CloseButton vertically ([7602ac8](https://github.com/lilboards/lilboards/commit/7602ac87615a2eac2e872c01d53ca7db28fbef27))
+- **CloseButton:** override size prop on IconButton ([52f2ca0](https://github.com/lilboards/lilboards/commit/52f2ca0055a160e91450624288892fb3db58668a))
+- **ColumnName:** center the CloseButton vertically ([7602ac8](https://github.com/lilboards/lilboards/commit/7602ac87615a2eac2e872c01d53ca7db28fbef27))
 
 ## [4.29.0](https://github.com/lilboards/lilboards/compare/v4.28.0...v4.29.0) (2023-03-19)
 
-
 ### Features
 
-* **BoardCard:** show confirmation dialog before deleting board ([ec23767](https://github.com/lilboards/lilboards/commit/ec237675091464007480eed922e101495c29f62c))
+- **BoardCard:** show confirmation dialog before deleting board ([ec23767](https://github.com/lilboards/lilboards/commit/ec237675091464007480eed922e101495c29f62c))
 
 ## [4.28.0](https://github.com/lilboards/lilboards/compare/v4.27.0...v4.28.0) (2023-03-10)
 
-
 ### Features
 
-* **pages:** create ErrorBoundary ([c1a29f4](https://github.com/lilboards/lilboards/commit/c1a29f4010b1d62a1565e172f79215e3373c7aec))
-* **routes:** set root Route errorElement to ErrorBoundary ([5eeabce](https://github.com/lilboards/lilboards/commit/5eeabce8966f65edb60d7febc4c1816b3e805dad))
+- **pages:** create ErrorBoundary ([c1a29f4](https://github.com/lilboards/lilboards/commit/c1a29f4010b1d62a1565e172f79215e3373c7aec))
+- **routes:** set root Route errorElement to ErrorBoundary ([5eeabce](https://github.com/lilboards/lilboards/commit/5eeabce8966f65edb60d7febc4c1816b3e805dad))
 
 ## [4.27.0](https://github.com/lilboards/lilboards/compare/v4.26.0...v4.27.0) (2023-03-09)
 
-
 ### Features
 
-* **components:** add Connection that detects Firebase Database client ([eca498d](https://github.com/lilboards/lilboards/commit/eca498d9c4e8f69d3e77dee53c0967722d44331a))
-* **firebase:** export onConnected from database ([c257ca8](https://github.com/lilboards/lilboards/commit/c257ca8031d5733ddfd694638caed21e94e2a8ac))
-* **pages:** render Connection in Board and Boards ([bfa058e](https://github.com/lilboards/lilboards/commit/bfa058eb51fc010f687dfd22e032672560faf540))
-
+- **components:** add Connection that detects Firebase Database client ([eca498d](https://github.com/lilboards/lilboards/commit/eca498d9c4e8f69d3e77dee53c0967722d44331a))
+- **firebase:** export onConnected from database ([c257ca8](https://github.com/lilboards/lilboards/commit/c257ca8031d5733ddfd694638caed21e94e2a8ac))
+- **pages:** render Connection in Board and Boards ([bfa058e](https://github.com/lilboards/lilboards/commit/bfa058eb51fc010f687dfd22e032672560faf540))
 
 ### Bug Fixes
 
-* **components:** load app before checking Firebase connection ([1a4d633](https://github.com/lilboards/lilboards/commit/1a4d633c3dda734e25b2bdfe47328558f65df868))
+- **components:** load app before checking Firebase connection ([1a4d633](https://github.com/lilboards/lilboards/commit/1a4d633c3dda734e25b2bdfe47328558f65df868))
 
 ## [4.26.0](https://github.com/lilboards/lilboards/compare/v4.25.0...v4.26.0) (2023-03-05)
 
-
 ### Features
 
-* **components:** add title to icons in Header ([f51ccd0](https://github.com/lilboards/lilboards/commit/f51ccd00ac080044c77f54a567cbd7e47ef33038))
-* **components:** render support link in Header ([e20b0b8](https://github.com/lilboards/lilboards/commit/e20b0b8984d7e85a5c6f4327c514943858699517))
-* **pages:** change to public GitHub issue & discussion links in Support ([b8b5d0c](https://github.com/lilboards/lilboards/commit/b8b5d0c2e7b0b5d0b940e58076286bd347cb0e63))
-* **pages:** create Support ([da3cb17](https://github.com/lilboards/lilboards/commit/da3cb17aea9b93fcfc03daffb76626b513705c42))
-* **routes:** add "/support" ([f703ce2](https://github.com/lilboards/lilboards/commit/f703ce28ce1ce70b17402538a7658beb347685bd))
+- **components:** add title to icons in Header ([f51ccd0](https://github.com/lilboards/lilboards/commit/f51ccd00ac080044c77f54a567cbd7e47ef33038))
+- **components:** render support link in Header ([e20b0b8](https://github.com/lilboards/lilboards/commit/e20b0b8984d7e85a5c6f4327c514943858699517))
+- **pages:** change to public GitHub issue & discussion links in Support ([b8b5d0c](https://github.com/lilboards/lilboards/commit/b8b5d0c2e7b0b5d0b940e58076286bd347cb0e63))
+- **pages:** create Support ([da3cb17](https://github.com/lilboards/lilboards/commit/da3cb17aea9b93fcfc03daffb76626b513705c42))
+- **routes:** add "/support" ([f703ce2](https://github.com/lilboards/lilboards/commit/f703ce28ce1ce70b17402538a7658beb347685bd))
 
 ## [4.25.0](https://github.com/lilboards/lilboards/compare/v4.24.1...v4.25.0) (2023-01-01)
 
-
 ### Features
 
-* **Column:** improve label names ([ab85467](https://github.com/lilboards/lilboards/commit/ab854675420cf16a811a904d6301fc4574e45211))
-* **Item:** add item text to LikeButton label ([a7ccbc9](https://github.com/lilboards/lilboards/commit/a7ccbc94aff4715151110c2ce1f96181209a2b1c))
-* **Item:** use item text instead of id for label name ([517671c](https://github.com/lilboards/lilboards/commit/517671c05a2f78d7982a39ac15d3bd9e3a0c7a0c))
+- **Column:** improve label names ([ab85467](https://github.com/lilboards/lilboards/commit/ab854675420cf16a811a904d6301fc4574e45211))
+- **Item:** add item text to LikeButton label ([a7ccbc9](https://github.com/lilboards/lilboards/commit/a7ccbc94aff4715151110c2ce1f96181209a2b1c))
+- **Item:** use item text instead of id for label name ([517671c](https://github.com/lilboards/lilboards/commit/517671c05a2f78d7982a39ac15d3bd9e3a0c7a0c))
 
 ## [4.24.1](https://github.com/lilboards/lilboards/compare/v4.24.0...v4.24.1) (2022-12-30)
 
-
 ### Bug Fixes
 
-* **store:** delete board from store when firebase value is null ([1f64847](https://github.com/lilboards/lilboards/commit/1f648474c7b6b99756368f8958080758e8d3c94f))
+- **store:** delete board from store when firebase value is null ([1f64847](https://github.com/lilboards/lilboards/commit/1f648474c7b6b99756368f8958080758e8d3c94f))
 
 ## [4.24.0](https://github.com/lilboards/lilboards/compare/v4.23.1...v4.24.0) (2022-12-30)
 
-
 ### Features
 
-* **pages:** render text instead of label for "Add board" button ([dc78e48](https://github.com/lilboards/lilboards/commit/dc78e483f09b5e2ee350b714fd14391c47c491bb))
+- **pages:** render text instead of label for "Add board" button ([dc78e48](https://github.com/lilboards/lilboards/commit/dc78e483f09b5e2ee350b714fd14391c47c491bb))
 
 ## [4.23.1](https://github.com/lilboards/lilboards/compare/v4.23.0...v4.23.1) (2022-11-14)
 
-
 ### Bug Fixes
 
-* **components:** fix margins of BoardControls ([3128103](https://github.com/lilboards/lilboards/commit/31281035923083f45b8c3e25b9c574ecd4ae4d67))
+- **components:** fix margins of BoardControls ([3128103](https://github.com/lilboards/lilboards/commit/31281035923083f45b8c3e25b9c574ecd4ae4d67))
 
 ## [4.23.0](https://github.com/lilboards/lilboards/compare/v4.22.0...v4.23.0) (2022-11-13)
 
-
 ### Features
 
-* **public:** add Open Graph meta tags to index.html ([06724a6](https://github.com/lilboards/lilboards/commit/06724a6975f89282adcce9f2cdc6bfe3b9a89986))
+- **public:** add Open Graph meta tags to index.html ([06724a6](https://github.com/lilboards/lilboards/commit/06724a6975f89282adcce9f2cdc6bfe3b9a89986))
 
 ## [4.22.0](https://github.com/lilboards/lilboards/compare/v4.21.0...v4.22.0) (2022-11-13)
 
-
 ### Features
 
-* **pages:** render breadcrumbs in Board ([348b96d](https://github.com/lilboards/lilboards/commit/348b96dbe4993fe6d5c828b55d39ec754ad81425))
+- **pages:** render breadcrumbs in Board ([348b96d](https://github.com/lilboards/lilboards/commit/348b96dbe4993fe6d5c828b55d39ec754ad81425))
 
 ## [4.21.0](https://github.com/lilboards/lilboards/compare/v4.20.6...v4.21.0) (2022-11-13)
 
-
 ### Features
 
-* **components:** update Export icon and improve copy and margin ([888c56d](https://github.com/lilboards/lilboards/commit/888c56d50e5a0186a004fbe001a3dcd985070512))
+- **components:** update Export icon and improve copy and margin ([888c56d](https://github.com/lilboards/lilboards/commit/888c56d50e5a0186a004fbe001a3dcd985070512))
 
 ## [4.20.6](https://github.com/lilboards/lilboards/compare/v4.20.5...v4.20.6) (2022-11-13)
 
-
 ### Performance Improvements
 
-* **components:** code-split and lazy-load components in routes ([ba2e30c](https://github.com/lilboards/lilboards/commit/ba2e30cc5256e730f745423d2c040b6c19f1a387))
+- **components:** code-split and lazy-load components in routes ([ba2e30c](https://github.com/lilboards/lilboards/commit/ba2e30cc5256e730f745423d2c040b6c19f1a387))
 
 ## [4.20.5](https://github.com/lilboards/lilboards/compare/v4.20.4...v4.20.5) (2022-10-30)
 
-
 ### Bug Fixes
 
-* **Header:** don't let "Lilboards" link take full width ([e2cea4b](https://github.com/lilboards/lilboards/commit/e2cea4ba2e94772f1152b752c8a5d823fd4881f3))
+- **Header:** don't let "Lilboards" link take full width ([e2cea4b](https://github.com/lilboards/lilboards/commit/e2cea4ba2e94772f1152b752c8a5d823fd4881f3))
 
 ## [4.20.4](https://github.com/lilboards/lilboards/compare/v4.20.3...v4.20.4) (2022-10-23)
 
-
 ### Performance Improvements
 
-* replace react-dom with react-dom/client and use React 18 ([c88774d](https://github.com/lilboards/lilboards/commit/c88774d8ee6f93269dd13e8d5096c602491d121f))
+- replace react-dom with react-dom/client and use React 18 ([c88774d](https://github.com/lilboards/lilboards/commit/c88774d8ee6f93269dd13e8d5096c602491d121f))
 
 ## [4.20.3](https://github.com/lilboards/lilboards/compare/v4.20.2...v4.20.3) (2022-10-23)
 
-
 ### Code Refactoring
 
-* **components:** replace firebaseui-web-react with firebaseui ([c18c6df](https://github.com/lilboards/lilboards/commit/c18c6df1da6d675a748590a74a75376eaca6b15c))
+- **components:** replace firebaseui-web-react with firebaseui ([c18c6df](https://github.com/lilboards/lilboards/commit/c18c6df1da6d675a748590a74a75376eaca6b15c))
 
 ## [4.20.2](https://github.com/lilboards/lilboards/compare/v4.20.1...v4.20.2) (2022-10-16)
 
-
 ### Bug Fixes
 
-* **utils:** change `replaceAll` to `replace` in transform.ts ([9860027](https://github.com/lilboards/lilboards/commit/9860027b4c8f8971f729433f356a0aa2629a447a))
+- **utils:** change `replaceAll` to `replace` in transform.ts ([9860027](https://github.com/lilboards/lilboards/commit/9860027b4c8f8971f729433f356a0aa2629a447a))
 
 ## [4.20.1](https://github.com/lilboards/lilboards/compare/v4.20.0...v4.20.1) (2022-07-17)
 
-
 ### Bug Fixes
 
-* don't make column items temporarily disappear during rename ([47e1cec](https://github.com/lilboards/lilboards/commit/47e1cec9c7af3c80611bc14d9ddd515613c65b48))
+- don't make column items temporarily disappear during rename ([47e1cec](https://github.com/lilboards/lilboards/commit/47e1cec9c7af3c80611bc14d9ddd515613c65b48))
 
 ## [4.20.0](https://github.com/lilboards/lilboards/compare/v4.19.0...v4.20.0) (2022-05-20)
 
-
 ### Features
 
-* **BoardControls:** replace alert with snackbar in Timer ([0cc2725](https://github.com/lilboards/lilboards/commit/0cc272502401be3db5a8d098be94aa8b0052d34c))
+- **BoardControls:** replace alert with snackbar in Timer ([0cc2725](https://github.com/lilboards/lilboards/commit/0cc272502401be3db5a8d098be94aa8b0052d34c))
 
 ## [4.19.0](https://www.github.com/lilboards/lilboards/compare/v4.18.0...v4.19.0) (2022-05-20)
 
-
 ### Features
 
-* **BoardControls:** change copy & tooltip for export board button ([f90acc1](https://www.github.com/lilboards/lilboards/commit/f90acc15b3dbd47fbe7f34cd22e3670f3547699f))
-* **BoardControls:** replace "Export" text with icon button ([d378895](https://www.github.com/lilboards/lilboards/commit/d378895c98cca8dc0f442bcfcb29ad26cd13cef8))
+- **BoardControls:** change copy & tooltip for export board button ([f90acc1](https://www.github.com/lilboards/lilboards/commit/f90acc15b3dbd47fbe7f34cd22e3670f3547699f))
+- **BoardControls:** replace "Export" text with icon button ([d378895](https://www.github.com/lilboards/lilboards/commit/d378895c98cca8dc0f442bcfcb29ad26cd13cef8))
 
 ## [4.18.0](https://www.github.com/lilboards/lilboards/compare/v4.17.0...v4.18.0) (2022-05-06)
 
-
 ### Features
 
-* **Board:** add icon button to copy board link to clipboard ([7ac6b89](https://www.github.com/lilboards/lilboards/commit/7ac6b89310bb0f72a72cfa61b3a63e8c69529aca))
+- **Board:** add icon button to copy board link to clipboard ([7ac6b89](https://www.github.com/lilboards/lilboards/commit/7ac6b89310bb0f72a72cfa61b3a63e8c69529aca))
 
 ## [4.17.0](https://www.github.com/lilboards/lilboards/compare/v4.16.0...v4.17.0) (2022-03-25)
 
-
 ### Features
 
-* **components:** set document title for all routes ([d8ef8ad](https://www.github.com/lilboards/lilboards/commit/d8ef8ad1819864403e68ca00b8ed65a1b2ccfeaa))
-* **hooks:** create set document title helper ([34bdee4](https://www.github.com/lilboards/lilboards/commit/34bdee4bfa62910989b0174bb0584c02fb4ca5f9))
-* **public:** update document title ([8219a4b](https://www.github.com/lilboards/lilboards/commit/8219a4bdbee79014e254c438b8b6930430dc5da7))
+- **components:** set document title for all routes ([d8ef8ad](https://www.github.com/lilboards/lilboards/commit/d8ef8ad1819864403e68ca00b8ed65a1b2ccfeaa))
+- **hooks:** create set document title helper ([34bdee4](https://www.github.com/lilboards/lilboards/commit/34bdee4bfa62910989b0174bb0584c02fb4ca5f9))
+- **public:** update document title ([8219a4b](https://www.github.com/lilboards/lilboards/commit/8219a4bdbee79014e254c438b8b6930430dc5da7))
 
 ## [4.16.0](https://www.github.com/lilboards/lilboards/compare/v4.15.1...v4.16.0) (2022-03-11)
 
-
 ### Features
 
-* **Item:** save item to firebase onChange instead of onBlur ([106061e](https://www.github.com/lilboards/lilboards/commit/106061e8a9ba860a2c2e5bb8d1079144f10767ec))
-* **Login:** add Twitter as an auth provider ([f8bce55](https://www.github.com/lilboards/lilboards/commit/f8bce552a6bf761a4948d13e7e8ec85bb68ba134))
+- **Item:** save item to firebase onChange instead of onBlur ([106061e](https://www.github.com/lilboards/lilboards/commit/106061e8a9ba860a2c2e5bb8d1079144f10767ec))
+- **Login:** add Twitter as an auth provider ([f8bce55](https://www.github.com/lilboards/lilboards/commit/f8bce552a6bf761a4948d13e7e8ec85bb68ba134))
 
 ## [4.15.1](https://www.github.com/lilboards/lilboards/compare/v4.15.0...v4.15.1) (2022-02-26)
 
