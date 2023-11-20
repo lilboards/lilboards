@@ -1,5 +1,34 @@
 # Changelog
 
+## 4.33.6 (2023-11-20)
+
+
+### Features
+
+* **Header:** change the SupportIcon to the HelpIcon ([9191454](https://github.com/lilboards/lilboards/commit/91914543525ce3ed6a6006dc84a1e41f659de465))
+
+
+### Bug Fixes
+
+* **BoardControls:** replace menu icon with more icon ([e99d494](https://github.com/lilboards/lilboards/commit/e99d494ff4ca27d15a8a6bd71f2cee59c33c89c7))
+* **BoardControls:** trim newline when copying board as markdown ([e3ea866](https://github.com/lilboards/lilboards/commit/e3ea866e3b9b9d811e39c307ca8757a48dae5bbc))
+* **BoardControls:** update Export to copy columns with default name ([d88b73e](https://github.com/lilboards/lilboards/commit/d88b73ebfa7226986607ae4d95fca02cf080e4b0))
+* **BoardControls:** use Popover in smaller screens for responsiveness ([fa5e474](https://github.com/lilboards/lilboards/commit/fa5e4740d77f6ad837db6ca869b2f5f6cc866fc5))
+
+
+### Performance Improvements
+
+* **BoardControls:** use createSelector in Export and fix test warning ([0cd24a7](https://github.com/lilboards/lilboards/commit/0cd24a7805d968569ba6971e44618d5d63da29a9))
+* **Boards:** use createSelector in BoardCards ([c0a409f](https://github.com/lilboards/lilboards/commit/c0a409f5b3111468a16c21f1a2011cd1c595bc90))
+* **Columns:** use createSelector in Columns ([5170a4c](https://github.com/lilboards/lilboards/commit/5170a4cb3c17392dc7c0dcc4d4cc56c20505801e))
+* **Column:** use createSelector in Column ([0e80c01](https://github.com/lilboards/lilboards/commit/0e80c0167fbad98e5725a9192a95682990028648))
+* **Column:** use createSelector in ColumnName ([73f1986](https://github.com/lilboards/lilboards/commit/73f198623fbd97908aa7242c8b37e6d673d47775))
+
+
+### Miscellaneous Chores
+
+* release 4.33.6 ([5334f53](https://github.com/lilboards/lilboards/commit/5334f53e5fa3fea247cf0a05db84ac3417e266c8))
+
 ## [4.33.5](https://github.com/lilboards/lilboards/compare/v4.33.4...v4.33.5) (2023-07-04)
 
 
