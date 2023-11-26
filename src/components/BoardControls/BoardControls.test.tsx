@@ -78,7 +78,6 @@ describe('mobile', () => {
     expect(screen.getAllByLabelText('Hide Likes')).toHaveLength(1);
     fireEvent.click(screen.getByLabelText('Board Controls'));
     expect(screen.getAllByLabelText('Hide Likes')).toHaveLength(2);
-    // eslint-disable-next-line testing-library/no-node-access
     fireEvent.click(screen.getByRole('presentation').firstChild!);
     await waitFor(() => {
       expect(screen.getAllByLabelText('Hide Likes')).toHaveLength(1);

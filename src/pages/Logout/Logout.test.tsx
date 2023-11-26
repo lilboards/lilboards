@@ -31,6 +31,5 @@ it('signs user out', async () => {
   expect(logEvent).toBeCalledTimes(1);
   expect(logEvent).toBeCalledWith('logout');
 
-  // eslint-disable-next-line testing-library/no-node-access
   expect(baseElement.firstElementChild).toBeEmptyDOMElement();
 });

@@ -52,7 +52,7 @@ describe('updateColumn', () => {
         updatedAt: Date.now() + 1000,
       },
       columnId,
-      debounce: true,
+      debounce,
     };
     const newState = reducer(state, actions.updateColumn(payload));
     expect(newState).toEqual({

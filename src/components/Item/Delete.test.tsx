@@ -6,7 +6,7 @@ import Delete from './Delete';
 const dialogTitle = 'Are you sure you want to delete?';
 const dialogContent = 'This action cannot be undone.';
 
-let props = {
+const props = {
   boardId: '',
   columnId: '',
   itemId: '',
