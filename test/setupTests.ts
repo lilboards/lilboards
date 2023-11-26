@@ -4,6 +4,8 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 
+require('jest-fetch-mock').enableMocks();
+
 import { BOARD_TEST_ID as boardId } from '../src/constants/test';
 import { removeBoard } from '../src/firebase';
 import { resetStore } from '../src/utils/test';
