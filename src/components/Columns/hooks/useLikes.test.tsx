@@ -31,6 +31,7 @@ beforeEach(() => {
 afterEach(() => {
   jest.runOnlyPendingTimers();
   jest.useRealTimers();
+  jest.clearAllMocks();
 });
 
 describe('likes snapshot value is valid', () => {

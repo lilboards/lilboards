@@ -10,6 +10,10 @@ jest.mock('../../firebase', () => ({
   logEvent: jest.fn(),
 }));
 
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
 it('renders default max likes value', () => {
   renderWithProviders(<MaxLikes boardId={boardId} />);
   expect(screen.getByRole('spinbutton', { name: 'Max Likes' })).toHaveValue(
