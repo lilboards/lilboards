@@ -61,15 +61,13 @@ describe('likes snapshot value is valid', () => {
     expect(onValue).toBeCalledTimes(1);
     expect(onValue).toBeCalledWith(undefined, expect.any(Function));
 
-    expect(store.getState().likes).toMatchInlineSnapshot(`
-      Object {
-        "items": Object {
-          "item_test_id": Object {
-            "user_test_id": true,
-          },
+    expect(store.getState().likes).toEqual({
+      items: {
+        item_test_id: {
+          user_test_id: true,
         },
-      }
-    `);
+      },
+    });
 
     unmount();
     expect(unsubscribe).toBeCalledTimes(1);

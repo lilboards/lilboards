@@ -1,32 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`[Function transformToCSV] transforms column with item 1`] = `
-"\\"Column Name\\"
-\\"Item 1\\""
+""Column Name"
+"Item 1""
 `;
 
 exports[`[Function transformToCSV] transforms column with item with newlines 1`] = `
-"\\"Column Name\\"
-\\"Item\\\\n\\\\n1\\""
+""Column Name"
+"Item\\n\\n1""
 `;
 
 exports[`[Function transformToCSV] transforms column with items 1`] = `
-"\\"Column Name\\"
-\\"Item 1\\"
-\\"Item 2\\""
+""Column Name"
+"Item 1"
+"Item 2""
 `;
 
-exports[`[Function transformToCSV] transforms column with no items 1`] = `"\\"Column Name\\""`;
+exports[`[Function transformToCSV] transforms column with no items 1`] = `""Column Name""`;
 
 exports[`[Function transformToCSV] transforms columns with items 1`] = `
-"\\"Column 1\\",\\"Column 2\\"
-\\"Item 1\\",\\"Item 2\\"
-,\\"Item 3\\""
+""Column 1","Column 2"
+"Item 1","Item 2"
+,"Item 3""
 `;
 
-exports[`[Function transformToCSV] transforms columns with no items 1`] = `"\\"Column Name 1\\",\\"Column Name 2\\""`;
+exports[`[Function transformToCSV] transforms columns with no items 1`] = `""Column Name 1","Column Name 2""`;
 
-exports[`[Function transformToCSV] transforms columns with no name 1`] = `"\\"Column 1\\",\\"Column 2\\""`;
+exports[`[Function transformToCSV] transforms columns with no name 1`] = `""Column 1","Column 2""`;
 
 exports[`[Function transformToCSV] transforms empty columns 1`] = `""`;
 
@@ -74,22 +74,22 @@ exports[`[Function transformToMarkdown] transforms columns with no name 1`] = `
 exports[`[Function transformToMarkdown] transforms empty columns 1`] = `""`;
 
 exports[`[Function transformToRows] transforms column with item 1`] = `
-Array [
-  Array [
+[
+  [
     "Column Name",
   ],
-  Array [
+  [
     "Item 1",
   ],
 ]
 `;
 
 exports[`[Function transformToRows] transforms column with item with newlines 1`] = `
-Array [
-  Array [
+[
+  [
     "Column Name",
   ],
-  Array [
+  [
     "Item
 
 1",
@@ -98,38 +98,38 @@ Array [
 `;
 
 exports[`[Function transformToRows] transforms column with items 1`] = `
-Array [
-  Array [
+[
+  [
     "Column Name",
   ],
-  Array [
+  [
     "Item 1",
   ],
-  Array [
+  [
     "Item 2",
   ],
 ]
 `;
 
 exports[`[Function transformToRows] transforms column with no items 1`] = `
-Array [
-  Array [
+[
+  [
     "Column Name",
   ],
 ]
 `;
 
 exports[`[Function transformToRows] transforms columns with items 1`] = `
-Array [
-  Array [
+[
+  [
     "Column 1",
     "Column 2",
   ],
-  Array [
+  [
     "Item 1",
     "Item 2",
   ],
-  Array [
+  [
     undefined,
     "Item 3",
   ],
@@ -137,8 +137,8 @@ Array [
 `;
 
 exports[`[Function transformToRows] transforms columns with no items 1`] = `
-Array [
-  Array [
+[
+  [
     "Column Name 1",
     "Column Name 2",
   ],
@@ -146,12 +146,12 @@ Array [
 `;
 
 exports[`[Function transformToRows] transforms columns with no name 1`] = `
-Array [
-  Array [
+[
+  [
     "Column 1",
     "Column 2",
   ],
 ]
 `;
 
-exports[`[Function transformToRows] transforms empty columns 1`] = `Array []`;
+exports[`[Function transformToRows] transforms empty columns 1`] = `[]`;

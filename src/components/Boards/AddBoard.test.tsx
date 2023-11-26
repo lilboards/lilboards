@@ -31,15 +31,13 @@ it('adds new board to store and database', () => {
   renderWithProviders(<AddBoard />);
   const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
   fireEvent.click(screen.getByText('Add board'));
-  expect(store.getState().boards).toMatchInlineSnapshot(`
-      Object {
-        "board_test_id": Object {
-          "createdAt": 1234567890,
-          "createdBy": "user_test_id",
-          "name": "",
-        },
-      }
-    `);
+  expect(store.getState().boards).toEqual({
+    board_test_id: {
+      createdAt: 1234567890,
+      createdBy: 'user_test_id',
+      name: '',
+    },
+  });
   expect(saveUserBoardId).toBeCalledTimes(1);
   expect(saveUserBoardId).toBeCalledWith(user.id, boardId);
   dateNowSpy.mockRestore();

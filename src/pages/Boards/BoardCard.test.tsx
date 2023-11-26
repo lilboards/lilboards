@@ -35,17 +35,15 @@ describe('edit board', () => {
     const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
     const event = { target: { value: 'My Board Name' } };
     fireEvent.change(screen.getByLabelText('Board Name'), event);
-    expect(store.getState().boards).toMatchInlineSnapshot(`
-      Object {
-        "board_test_id": Object {
-          "createdAt": 1234567890,
-          "createdBy": "user_test_id",
-          "name": "My Board Name",
-          "updatedAt": 1234567890,
-          "updatedBy": "user_test_id",
-        },
-      }
-    `);
+    expect(store.getState().boards).toEqual({
+      board_test_id: {
+        createdAt: 1234567890,
+        createdBy: 'user_test_id',
+        name: 'My Board Name',
+        updatedAt: 1234567890,
+        updatedBy: 'user_test_id',
+      },
+    });
     dateNowSpy.mockRestore();
   });
 

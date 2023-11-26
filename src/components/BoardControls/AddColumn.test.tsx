@@ -43,15 +43,13 @@ it('adds new column', () => {
   expect(store.getState().columns).toEqual({});
   const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
   fireEvent.click(screen.getByText('Add column'));
-  expect(store.getState().columns).toMatchInlineSnapshot(`
-      Object {
-        "column_test_id": Object {
-          "createdAt": 1234567890,
-          "createdBy": "user_test_id",
-          "name": "",
-        },
-      }
-    `);
+  expect(store.getState().columns).toEqual({
+    column_test_id: {
+      createdAt: 1234567890,
+      createdBy: 'user_test_id',
+      name: '',
+    },
+  });
   expect(logEvent).toBeCalledTimes(1);
   expect(logEvent).toBeCalledWith('create_column');
   dateNowSpy.mockRestore();

@@ -51,24 +51,5 @@ it('returns items to update and remove', () => {
     },
   } as DropResult;
 
-  expect(combine(result, items, likes)).toMatchInlineSnapshot(`
-    Object {
-      "remove": Object {
-        "columnId": "column_test_id",
-        "itemId": "item_test_id1",
-      },
-      "update": Object {
-        "itemId": "item_test_id2",
-        "likes": Object {
-          "user_test_id": true,
-          "user_test_id2": true,
-        },
-        "text": "Item 2 text
-
-    ---
-
-    Item 1 text",
-      },
-    }
-  `);
+  expect(combine(result, items, likes)).toMatchSnapshot();
 });

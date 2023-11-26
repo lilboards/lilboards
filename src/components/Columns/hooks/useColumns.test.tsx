@@ -100,15 +100,13 @@ describe('onChildAdded', () => {
   it('adds column to store', () => {
     renderWithProviders(<TestComponent />);
     jest.runAllTimers();
-    expect(store.getState().columns).toMatchInlineSnapshot(`
-      Object {
-        "column_test_id": Object {
-          "createdAt": 1234567890,
-          "createdBy": "user_test_id",
-          "name": "Column name",
-        },
-      }
-    `);
+    expect(store.getState().columns).toEqual({
+      column_test_id: {
+        createdAt: 1234567890,
+        createdBy: 'user_test_id',
+        name: 'Column name',
+      },
+    });
   });
 
   it('does not add column when columnId is invalid', () => {
@@ -158,17 +156,15 @@ describe('onChildChanged', () => {
     updateStore.withColumn();
     renderWithProviders(<TestComponent />);
     jest.runAllTimers();
-    expect(store.getState().columns).toMatchInlineSnapshot(`
-      Object {
-        "column_test_id": Object {
-          "createdAt": 1234567890,
-          "createdBy": "user_test_id",
-          "name": "Column name2",
-          "updatedAt": 1234567892,
-          "updatedBy": "user_test_id2",
-        },
-      }
-    `);
+    expect(store.getState().columns).toEqual({
+      column_test_id: {
+        createdAt: 1234567890,
+        createdBy: 'user_test_id',
+        name: 'Column name2',
+        updatedAt: 1234567892,
+        updatedBy: 'user_test_id2',
+      },
+    });
   });
 
   it('does not update column when columnId is invalid', () => {

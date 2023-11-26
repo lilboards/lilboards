@@ -14,35 +14,31 @@ describe('sort', () => {
 
   it(`sorts objects by key "${id}" and order ascending`, () => {
     const objects = [{ [id]: 3 }, { [id]: 2 }, { [id]: 1 }];
-    expect(sort(objects, id, SortOrder.Ascending)).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "id": 1,
-        },
-        Object {
-          "id": 2,
-        },
-        Object {
-          "id": 3,
-        },
-      ]
-    `);
+    expect(sort(objects, id, SortOrder.Ascending)).toEqual([
+      {
+        id: 1,
+      },
+      {
+        id: 2,
+      },
+      {
+        id: 3,
+      },
+    ]);
   });
 
   it(`sorts objects by key "${key}" and order descending`, () => {
     const objects = [{ [key]: 1 }, { [key]: 2 }, { [key]: 3 }];
-    expect(sort(objects, key, SortOrder.Descending)).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "key": 3,
-        },
-        Object {
-          "key": 2,
-        },
-        Object {
-          "key": 1,
-        },
-      ]
-    `);
+    expect(sort(objects, key, SortOrder.Descending)).toEqual([
+      {
+        key: 3,
+      },
+      {
+        key: 2,
+      },
+      {
+        key: 1,
+      },
+    ]);
   });
 });

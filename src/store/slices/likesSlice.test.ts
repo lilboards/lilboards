@@ -19,15 +19,13 @@ describe('likeItem', () => {
   it('likes item', () => {
     const payload = { boardId, itemId, userId };
     const newState = reducer(initialState, actions.likeItem(payload));
-    expect(newState).toMatchInlineSnapshot(`
-      Object {
-        "items": Object {
-          "item_test_id": Object {
-            "user_test_id": true,
-          },
+    expect(newState).toEqual({
+      items: {
+        item_test_id: {
+          user_test_id: true,
         },
-      }
-    `);
+      },
+    });
   });
 });
 
@@ -35,13 +33,11 @@ describe('unlikeItem', () => {
   it('unlikes item', () => {
     const payload = { boardId, itemId, userId };
     const newState = reducer(state, actions.unlikeItem(payload));
-    expect(newState).toMatchInlineSnapshot(`
-      Object {
-        "items": Object {
-          "item_test_id": Object {},
-        },
-      }
-    `);
+    expect(newState).toEqual({
+      items: {
+        item_test_id: {},
+      },
+    });
   });
 
   it('cannot unlike item not found', () => {
@@ -82,14 +78,12 @@ describe('setLikesItem', () => {
       },
     };
     const newState = reducer(state, actions.setLikesItem(payload));
-    expect(newState).toMatchInlineSnapshot(`
-      Object {
-        "items": Object {
-          "item_test_id": Object {
-            "user_test_id2": true,
-          },
+    expect(newState).toEqual({
+      items: {
+        item_test_id: {
+          user_test_id2: true,
         },
-      }
-    `);
+      },
+    });
   });
 });
