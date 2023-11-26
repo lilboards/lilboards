@@ -77,18 +77,5 @@
     "node": "18"
   },
   "private": true,
-  "license": "MIT",
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{ts,tsx}"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 100,
-        "functions": 100,
-        "lines": 100,
-        "statements": 100
-      }
-    }
-  }
+  "license": "MIT"
 }
