@@ -3,7 +3,7 @@ import Divider from '@mui/material/Divider';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 
-const version = process.env.REACT_APP_PROJECT_VERSION;
+import { PROJECT_VERSION } from '../../../config';
 
 export default function Footer() {
   return (
@@ -29,11 +29,11 @@ export default function Footer() {
           </Link>
           . Version{' '}
           <Link
-            href={`https://github.com/lilboards/lilboards/releases/tag/v${version}`}
+            href={`https://github.com/lilboards/lilboards/releases/tag/v${PROJECT_VERSION}`}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {version}
+            {PROJECT_VERSION}
           </Link>
           .
         </Typography>

@@ -1,5 +1,6 @@
 import { screen } from '@testing-library/react';
 
+import { PROJECT_VERSION } from '../../config';
 import { renderWithProviders } from '../../utils/test';
 import Home from './Home';
 
@@ -35,10 +36,9 @@ it('renders remarkablemark link', () => {
 });
 
 it('renders version link', () => {
-  const version = process.env.REACT_APP_PROJECT_VERSION as string;
   renderWithProviders(<Home />);
-  expect(screen.getByText(version)).toHaveAttribute(
+  expect(screen.getByText(PROJECT_VERSION)).toHaveAttribute(
     'href',
-    `https://github.com/lilboards/lilboards/releases/tag/v${version}`,
+    `https://github.com/lilboards/lilboards/releases/tag/v${PROJECT_VERSION}`,
   );
 });

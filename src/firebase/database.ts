@@ -14,6 +14,7 @@ import {
 } from 'firebase/database';
 
 import { isDevelopment, isLocalhost } from '../config';
+import { FIREBASE_DATABASE_URL } from '../config';
 import {
   BOARD,
   BOARDS,
@@ -30,9 +31,7 @@ import { firebaseApp } from './app';
 const database = getDatabase(firebaseApp);
 
 if (isDevelopment && isLocalhost) {
-  const databaseUrl = new URL(
-    process.env.REACT_APP_FIREBASE_DATABASE_URL || 'localhost',
-  );
+  const databaseUrl = new URL(FIREBASE_DATABASE_URL);
   const { connectDatabaseEmulator } = require('firebase/database');
   connectDatabaseEmulator(
     database,
