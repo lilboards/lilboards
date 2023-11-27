@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.33.8](https://github.com/lilboards/lilboards/compare/v4.33.7...v4.33.8) (2023-11-27)
+
+
+### Bug Fixes
+
+* fix paths in index.html and remove comments ([ed2b858](https://github.com/lilboards/lilboards/commit/ed2b8588ea15fdcc35c560de5b205e30cf52451d))
+
 ## [4.33.7](https://github.com/lilboards/lilboards/compare/v4.33.6...v4.33.7) (2023-11-27)
 
 
