@@ -2,7 +2,7 @@ import {
   BOARD_TEST_ID as boardId,
   ITEM_TEST_ID as itemId,
   USER_TEST_ID as userId,
-} from '../../constants/test';
+} from '../../../test/constants';
 import { initialState, itemsSlice } from './itemsSlice';
 
 export const { actions, reducer } = itemsSlice;

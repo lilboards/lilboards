@@ -41,9 +41,7 @@ describe('getDroppableBackgroundColor', () => {
       isDraggingOver: true,
       isUsingPlaceholder: true,
     } as DroppableStateSnapshot;
-    expect(
-      getDroppableBackgroundColor(droppableSnapshot),
-    ).toMatchInlineSnapshot(`"#eee"`);
+    expect(getDroppableBackgroundColor(droppableSnapshot)).toBe('#eee');
   });
 
   it('returns no color when not dragging over', () => {

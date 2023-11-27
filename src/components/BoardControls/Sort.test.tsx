@@ -5,9 +5,9 @@ import {
   DATE_NOW as dateNow,
   ITEM_TEST_ID as itemId,
   USER_TEST_ID as userId,
-} from '../../constants/test';
+} from '../../../test/constants';
+import { renderWithProviders, store, updateStore } from '../../../test/utils';
 import { logEvent } from '../../firebase';
-import { renderWithProviders, store, updateStore } from '../../utils/test';
 import Sort from './Sort';
 
 jest.mock('../../firebase', () => ({

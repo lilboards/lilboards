@@ -1,12 +1,12 @@
 import { waitFor } from '@testing-library/react';
 
-import { logEvent, signOut } from '../../firebase';
 import {
   renderWithProviders,
   router,
   store,
   updateStore,
-} from '../../utils/test';
+} from '../../../test/utils';
+import { logEvent, signOut } from '../../firebase';
 import Logout from './Logout';
 
 jest.mock('../../firebase', () => ({
@@ -31,6 +31,5 @@ it('signs user out', async () => {
   expect(logEvent).toBeCalledTimes(1);
   expect(logEvent).toBeCalledWith('logout');
 
-  // eslint-disable-next-line testing-library/no-node-access
   expect(baseElement.firstElementChild).toBeEmptyDOMElement();
 });

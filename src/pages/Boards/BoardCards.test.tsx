@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 
-import { renderWithProviders, updateStore } from '../../utils/test';
+import { renderWithProviders, updateStore } from '../../../test/utils';
 import BoardCards from './BoardCards';
 
 it('renders nothing when there are no boards', () => {

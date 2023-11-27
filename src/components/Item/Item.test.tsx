@@ -4,8 +4,8 @@ import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
   ITEM_TEST_ID as itemId,
-} from '../../constants/test';
-import { renderWithProviders, store, updateStore } from '../../utils/test';
+} from '../../../test/constants';
+import { renderWithProviders, store, updateStore } from '../../../test/utils';
 import Item from './Item';
 
 const props = {

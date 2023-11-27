@@ -5,7 +5,7 @@ import {
   DATE_NOW as dateNow,
   ITEM_TEST_ID as itemId,
   USER_TEST_ID as userId,
-} from '../../../constants/test';
+} from '../../../../test/constants';
 import { combine } from './combine';
 
 const itemId1 = `${itemId}1`;
@@ -51,24 +51,5 @@ it('returns items to update and remove', () => {
     },
   } as DropResult;
 
-  expect(combine(result, items, likes)).toMatchInlineSnapshot(`
-    Object {
-      "remove": Object {
-        "columnId": "column_test_id",
-        "itemId": "item_test_id1",
-      },
-      "update": Object {
-        "itemId": "item_test_id2",
-        "likes": Object {
-          "user_test_id": true,
-          "user_test_id2": true,
-        },
-        "text": "Item 2 text
-
-    ---
-
-    Item 1 text",
-      },
-    }
-  `);
+  expect(combine(result, items, likes)).toMatchSnapshot();
 });

@@ -2,13 +2,13 @@ import { screen, waitFor } from '@testing-library/react';
 import type { Location } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
-import { REDIRECT_TO } from '../../constants';
 import {
   USER_TEST_EMAIL as userEmail,
   USER_TEST_ID as userId,
-} from '../../constants/test';
+} from '../../../test/constants';
+import { renderWithProviders, router } from '../../../test/utils';
+import { REDIRECT_TO } from '../../constants';
 import { onAuthStateChanged } from '../../firebase';
-import { renderWithProviders, router } from '../../utils/test';
 import Login from './Login';
 
 jest.mock('react-router-dom', () => ({

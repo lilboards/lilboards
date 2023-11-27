@@ -1,4 +1,5 @@
 /* istanbul ignore file */
+
 import alarm from './alarm.ogg';
 
 let alarmAudio: HTMLAudioElement;

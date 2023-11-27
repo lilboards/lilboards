@@ -3,8 +3,8 @@ import { fireEvent, screen } from '@testing-library/react';
 import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
-} from '../../constants/test';
-import { renderWithProviders, updateStore } from '../../utils/test';
+} from '../../../test/constants';
+import { renderWithProviders, updateStore } from '../../../test/utils';
 import ColumnName from './ColumnName';
 
 const props = {

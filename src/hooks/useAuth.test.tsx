@@ -4,9 +4,9 @@ import type { Unsubscribe, User } from 'firebase/auth';
 import {
   USER_TEST_EMAIL as userEmail,
   USER_TEST_ID as userId,
-} from '../constants/test';
+} from '../../test/constants';
+import { store, wrapper } from '../../test/utils';
 import { logEvent, onAuthStateChanged, signInAnonymously } from '../firebase';
-import { store, wrapper } from '../utils/test';
 import { useAuth } from './useAuth';
 
 jest.mock('../firebase', () => ({

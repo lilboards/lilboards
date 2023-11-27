@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 
-import { updateStore, wrapper } from '../utils/test';
+import { updateStore, wrapper } from '../../test/utils';
 import { useGetUserId } from './useGetUserId';
 
 describe('when state is empty', () => {

@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 
-import { renderWithProviders, updateStore } from '../../utils/test';
+import { renderWithProviders, updateStore } from '../../../test/utils';
 import Export from './Export';
 
 const { clipboard } = navigator;
@@ -31,9 +31,9 @@ it('copies markdown to clipboard', () => {
   renderWithProviders(<Export />);
   fireEvent.click(screen.getByLabelText('Copy board as Markdown'));
   expect(writeText).toBeCalledTimes(1);
-  expect(writeText.mock.calls[0][0]).toMatchInlineSnapshot(`
-    "| Column One |
-    | --- |
-    | Item One |"
-  `);
+  expect(writeText.mock.calls[0][0]).toBe(
+    `| Column One |
+| --- |
+| Item One |`,
+  );
 });

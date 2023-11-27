@@ -9,10 +9,14 @@ import {
   DATE_NOW as dateNow,
   ITEM_TEST_ID as itemId,
   USER_TEST_ID as userId,
-} from '../../../constants/test';
+} from '../../../../test/constants';
+import {
+  renderWithProviders,
+  store,
+  updateStore,
+} from '../../../../test/utils';
 import { getItemsRef } from '../../../firebase';
 import { Item } from '../../../types';
-import { renderWithProviders, store, updateStore } from '../../../utils/test';
 import { useItems } from './useItems';
 
 const mockedOnChildAdded = jest.mocked(onChildAdded);
@@ -65,6 +69,7 @@ beforeEach(() => {
 afterEach(() => {
   jest.runOnlyPendingTimers();
   jest.useRealTimers();
+  jest.clearAllMocks();
 });
 
 describe('onChildAdded', () => {
@@ -96,15 +101,13 @@ describe('onChildAdded', () => {
   it('adds item to store', () => {
     renderWithProviders(<TestComponent />);
     jest.runAllTimers();
-    expect(store.getState().items).toMatchInlineSnapshot(`
-      Object {
-        "item_test_id": Object {
-          "createdAt": 1234567890,
-          "createdBy": "user_test_id",
-          "text": "Item text",
-        },
-      }
-    `);
+    expect(store.getState().items).toEqual({
+      item_test_id: {
+        createdAt: 1234567890,
+        createdBy: 'user_test_id',
+        text: 'Item text',
+      },
+    });
   });
 
   it('does not add item when itemId is invalid', () => {
@@ -154,17 +157,15 @@ describe('onChildChanged', () => {
     updateStore.withItem();
     renderWithProviders(<TestComponent />);
     jest.runAllTimers();
-    expect(store.getState().items).toMatchInlineSnapshot(`
-      Object {
-        "item_test_id": Object {
-          "createdAt": 1234567890,
-          "createdBy": "user_test_id",
-          "text": "Item text2",
-          "updatedAt": 1234567892,
-          "updatedBy": "user_test_id2",
-        },
-      }
-    `);
+    expect(store.getState().items).toEqual({
+      item_test_id: {
+        createdAt: 1234567890,
+        createdBy: 'user_test_id',
+        text: 'Item text2',
+        updatedAt: 1234567892,
+        updatedBy: 'user_test_id2',
+      },
+    });
   });
 
   it('does not update item when itemId is invalid', () => {

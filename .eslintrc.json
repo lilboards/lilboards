@@ -1,8 +1,16 @@
 {
-  "extends": ["react-app", "react-app/jest"],
+  "env": {
+    "browser": true,
+    "jest": true,
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   "plugins": ["prettier", "simple-import-sort", "tsdoc"],
   "rules": {
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-var-requires": "off",
     "no-console": "error",
     "no-debugger": "error",
     "prettier/prettier": "error",

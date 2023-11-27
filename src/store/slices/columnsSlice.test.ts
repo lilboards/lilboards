@@ -1,10 +1,10 @@
-import { ITEM_IDS } from '../../constants';
 import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
   ITEM_TEST_ID as itemId,
   USER_TEST_ID as userId,
-} from '../../constants/test';
+} from '../../../test/constants';
+import { ITEM_IDS } from '../../constants';
 import { columnsSlice, initialState } from './columnsSlice';
 
 const { actions, reducer } = columnsSlice;
@@ -52,7 +52,7 @@ describe('updateColumn', () => {
         updatedAt: Date.now() + 1000,
       },
       columnId,
-      debounce: true,
+      debounce,
     };
     const newState = reducer(state, actions.updateColumn(payload));
     expect(newState).toEqual({

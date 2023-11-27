@@ -4,7 +4,7 @@ import { Given } from '@badeball/cypress-cucumber-preprocessor';
 import account from '../../fixtures/account.json';
 
 Given('I login', (table?: DataTable) => {
-  let [{ email, password }] = table?.hashes() || [account];
+  const [{ email, password }] = table?.hashes() || [account];
   cy.visit('/login');
   cy.contains('button', 'Sign in with email').click();
   cy.focused().type(email);

@@ -6,10 +6,10 @@ import { useParams } from 'react-router-dom';
 import {
   BOARD_TEST_ID as boardId,
   USER_TEST_ID as userId,
-} from '../../constants/test';
+} from '../../../test/constants';
+import { renderWithProviders, router, updateStore } from '../../../test/utils';
 import { getBoardDataRef } from '../../firebase';
 import { Board as BoardType } from '../../types';
-import { renderWithProviders, router, updateStore } from '../../utils/test';
 import Board from './Board';
 
 const mockedOnValue = jest.mocked(onValue);

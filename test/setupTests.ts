@@ -4,9 +4,11 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 
-import { BOARD_TEST_ID as boardId } from './constants/test';
-import { removeBoard } from './firebase';
-import { resetStore } from './utils/test';
+require('jest-fetch-mock').enableMocks();
+
+import { removeBoard } from '../src/firebase';
+import { BOARD_TEST_ID as boardId } from '../test/constants';
+import { resetStore } from './utils';
 
 jest.mock('firebase/database', () => ({
   ...jest.requireActual('firebase/database'),
@@ -15,6 +17,8 @@ jest.mock('firebase/database', () => ({
   onChildRemoved: jest.fn(),
   onValue: jest.fn(),
 }));
+
+jest.mock('../src/config');
 
 afterEach(() => {
   resetStore();

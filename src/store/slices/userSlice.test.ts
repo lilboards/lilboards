@@ -4,7 +4,7 @@ import {
   ITEM_TEST_ID as itemId,
   USER_TEST_EMAIL as email,
   USER_TEST_ID as id,
-} from '../../constants/test';
+} from '../../../test/constants';
 import { initialState, userSlice } from './userSlice';
 
 const { actions, reducer } = userSlice;

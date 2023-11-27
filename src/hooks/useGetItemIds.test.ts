@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react';
 
-import { COLUMN_TEST_ID, ITEM_TEST_ID } from '../constants/test';
-import { updateStore, wrapper } from '../utils/test';
+import { COLUMN_TEST_ID, ITEM_TEST_ID } from '../../test/constants';
+import { updateStore, wrapper } from '../../test/utils';
 import { useGetItemIds } from './useGetItemIds';
 
 describe('when state is empty', () => {

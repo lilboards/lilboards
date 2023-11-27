@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`returns items to update and remove 1`] = `
+{
+  "remove": {
+    "columnId": "column_test_id",
+    "itemId": "item_test_id1",
+  },
+  "update": {
+    "itemId": "item_test_id2",
+    "likes": {
+      "user_test_id": true,
+      "user_test_id2": true,
+    },
+    "text": "Item 2 text
+
+---
+
+Item 1 text",
+  },
+}
+`;

@@ -1,14 +1,18 @@
 import { fireEvent, screen } from '@testing-library/react';
 
-import { BOARD_TEST_ID as boardId } from '../../constants/test';
+import { BOARD_TEST_ID as boardId } from '../../../test/constants';
+import { renderWithProviders, updateStore } from '../../../test/utils';
 import { logEvent } from '../../firebase';
 import { DEFAULT_MAX_LIKES } from '../../hooks';
-import { renderWithProviders, updateStore } from '../../utils/test';
 import MaxLikes from './MaxLikes';
 
 jest.mock('../../firebase', () => ({
   logEvent: jest.fn(),
 }));
+
+afterEach(() => {
+  jest.clearAllMocks();
+});
 
 it('renders default max likes value', () => {
   renderWithProviders(<MaxLikes boardId={boardId} />);

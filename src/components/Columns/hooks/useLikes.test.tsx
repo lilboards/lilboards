@@ -4,10 +4,14 @@ import {
   BOARD_TEST_ID as boardId,
   ITEM_TEST_ID as itemId,
   USER_TEST_ID as userId,
-} from '../../../constants/test';
+} from '../../../../test/constants';
+import {
+  renderWithProviders,
+  store,
+  updateStore,
+} from '../../../../test/utils';
 import { getLikesRef } from '../../../firebase';
 import { Likes } from '../../../types';
-import { renderWithProviders, store, updateStore } from '../../../utils/test';
 import { useLikes } from './useLikes';
 
 const mockedOnValue = jest.mocked(onValue);
@@ -31,6 +35,7 @@ beforeEach(() => {
 afterEach(() => {
   jest.runOnlyPendingTimers();
   jest.useRealTimers();
+  jest.clearAllMocks();
 });
 
 describe('likes snapshot value is valid', () => {
@@ -61,15 +66,13 @@ describe('likes snapshot value is valid', () => {
     expect(onValue).toBeCalledTimes(1);
     expect(onValue).toBeCalledWith(undefined, expect.any(Function));
 
-    expect(store.getState().likes).toMatchInlineSnapshot(`
-      Object {
-        "items": Object {
-          "item_test_id": Object {
-            "user_test_id": true,
-          },
+    expect(store.getState().likes).toEqual({
+      items: {
+        item_test_id: {
+          user_test_id: true,
         },
-      }
-    `);
+      },
+    });
 
     unmount();
     expect(unsubscribe).toBeCalledTimes(1);

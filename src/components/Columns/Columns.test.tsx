@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 
-import { BOARD_TEST_ID as boardId } from '../../constants/test';
-import { renderWithProviders, updateStore } from '../../utils/test';
+import { BOARD_TEST_ID as boardId } from '../../../test/constants';
+import { renderWithProviders, updateStore } from '../../../test/utils';
 import Columns from './Columns';
 import { useColumns, useItems, useLikes } from './hooks';
 

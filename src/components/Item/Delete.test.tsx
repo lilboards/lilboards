@@ -1,12 +1,12 @@
 import { fireEvent, screen } from '@testing-library/react';
 
-import { renderWithProviders, store, updateStore } from '../../utils/test';
+import { renderWithProviders, store, updateStore } from '../../../test/utils';
 import Delete from './Delete';
 
 const dialogTitle = 'Are you sure you want to delete?';
 const dialogContent = 'This action cannot be undone.';
 
-let props = {
+const props = {
   boardId: '',
   columnId: '',
   itemId: '',

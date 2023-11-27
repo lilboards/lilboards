@@ -22,7 +22,7 @@ Go to [lilboards.org](https://lilboards.org/) to create boards, columns, and ite
 
 This project is built with:
 
-- [Create React App](https://create-react-app.dev/)
+- [Vite](https://vitejs.dev/)
 - [Firebase](https://firebase.google.com/)
 - [MUI](https://mui.com/)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
@@ -30,9 +30,7 @@ This project is built with:
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/)
 - [nvm](https://github.com/nvm-sh/nvm#readme)
-- [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 ## Install
 
@@ -63,7 +61,7 @@ In the project directory, you can run:
 
 Runs the app in the development mode.
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
 
 The page will reload if you make edits.
 
@@ -97,7 +95,7 @@ See the section about [running tests](https://create-react-app.dev/docs/running-
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.
+Builds the app for production to the `dist` folder.
 
 It correctly bundles React in production mode and optimizes the build for the best performance.
 

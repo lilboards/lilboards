@@ -1,4 +1,5 @@
 /* istanbul ignore file */
+
 import type { User } from 'firebase/auth';
 import {
   getAuth,
@@ -15,11 +16,11 @@ export const firebaseAuth = getAuth(firebaseApp);
 
 if (isDevelopment && isLocalhost) {
   /**
-   * {@link https://firebase.google.com/docs/emulator-suite/connect_auth#web-version-9}
+   * @see https://firebase.google.com/docs/emulator-suite/connect_auth#web-modular-api
    */
-  const emulatorHost = 'http://localhost:9099';
+  const emulatorHost = 'http://127.0.0.1:9099';
   const { connectAuthEmulator } = require('firebase/auth');
-  connectAuthEmulator(firebaseAuth, emulatorHost);
+  connectAuthEmulator(firebaseAuth, emulatorHost, { disableWarnings: true });
 }
 
 /**
