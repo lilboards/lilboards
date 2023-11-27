@@ -1,15 +1,15 @@
 import { onValue } from 'firebase/database';
 
 import {
+  BOARD_TEST_ID as boardId,
+  ITEM_TEST_ID as itemId,
+  USER_TEST_ID as userId,
+} from '../../../../test/constants';
+import {
   renderWithProviders,
   store,
   updateStore,
 } from '../../../../test/utils';
-import {
-  BOARD_TEST_ID as boardId,
-  ITEM_TEST_ID as itemId,
-  USER_TEST_ID as userId,
-} from '../../../constants/test';
 import { getLikesRef } from '../../../firebase';
 import { Likes } from '../../../types';
 import { useLikes } from './useLikes';

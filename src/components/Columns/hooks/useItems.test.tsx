@@ -5,16 +5,16 @@ import {
 } from 'firebase/database';
 
 import {
-  renderWithProviders,
-  store,
-  updateStore,
-} from '../../../../test/utils';
-import {
   BOARD_TEST_ID as boardId,
   DATE_NOW as dateNow,
   ITEM_TEST_ID as itemId,
   USER_TEST_ID as userId,
-} from '../../../constants/test';
+} from '../../../../test/constants';
+import {
+  renderWithProviders,
+  store,
+  updateStore,
+} from '../../../../test/utils';
 import { getItemsRef } from '../../../firebase';
 import { Item } from '../../../types';
 import { useItems } from './useItems';

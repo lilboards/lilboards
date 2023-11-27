@@ -1,10 +1,10 @@
 import { fireEvent, screen } from '@testing-library/react';
 
-import { renderWithProviders, store, updateStore } from '../../../test/utils';
 import {
   COLUMN_TEST_ID as columnId,
   DATE_NOW as dateNow,
-} from '../../constants/test';
+} from '../../../test/constants';
+import { renderWithProviders, store, updateStore } from '../../../test/utils';
 import { generateId, logEvent } from '../../firebase';
 import AddColumn from './AddColumn';
 

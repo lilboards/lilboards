@@ -6,8 +6,8 @@ import '@testing-library/jest-dom';
 
 require('jest-fetch-mock').enableMocks();
 
-import { BOARD_TEST_ID as boardId } from '../src/constants/test';
 import { removeBoard } from '../src/firebase';
+import { BOARD_TEST_ID as boardId } from '../test/constants';
 import { resetStore } from './utils';
 
 jest.mock('firebase/database', () => ({

@@ -1,5 +1,5 @@
+import { USER_TEST_ID as userId } from '../../../../test/constants';
 import { ITEM_IDS } from '../../../constants';
-import { USER_TEST_ID as userId } from '../../../constants/test';
 import { reorderArray } from '../../../utils';
 import { reorder } from './reorder';
 

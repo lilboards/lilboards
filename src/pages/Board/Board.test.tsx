@@ -3,11 +3,11 @@ import type { DatabaseReference, DataSnapshot } from 'firebase/database';
 import { onValue } from 'firebase/database';
 import { useParams } from 'react-router-dom';
 
-import { renderWithProviders, router, updateStore } from '../../../test/utils';
 import {
   BOARD_TEST_ID as boardId,
   USER_TEST_ID as userId,
-} from '../../constants/test';
+} from '../../../test/constants';
+import { renderWithProviders, router, updateStore } from '../../../test/utils';
 import { getBoardDataRef } from '../../firebase';
 import { Board as BoardType } from '../../types';
 import Board from './Board';

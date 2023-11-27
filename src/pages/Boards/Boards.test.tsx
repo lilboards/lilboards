@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 
+import { BOARD_TEST_ID as boardId } from '../../../test/constants';
 import { renderWithProviders, updateStore } from '../../../test/utils';
-import { BOARD_TEST_ID as boardId } from '../../constants/test';
 import { getBoardVal, getUserBoardsVal } from '../../firebase';
 import Boards from './Boards';
 

@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 
+import { BOARD_TEST_ID as boardId } from '../../../test/constants';
 import { renderWithProviders, updateStore } from '../../../test/utils';
-import { BOARD_TEST_ID as boardId } from '../../constants/test';
 import { logEvent } from '../../firebase';
 import { DEFAULT_MAX_LIKES } from '../../hooks';
 import MaxLikes from './MaxLikes';

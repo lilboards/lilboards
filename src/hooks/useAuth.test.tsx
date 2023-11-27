@@ -1,11 +1,11 @@
 import { renderHook } from '@testing-library/react';
 import type { Unsubscribe, User } from 'firebase/auth';
 
-import { store, wrapper } from '../../test/utils';
 import {
   USER_TEST_EMAIL as userEmail,
   USER_TEST_ID as userId,
-} from '../constants/test';
+} from '../../test/constants';
+import { store, wrapper } from '../../test/utils';
 import { logEvent, onAuthStateChanged, signInAnonymously } from '../firebase';
 import { useAuth } from './useAuth';
 

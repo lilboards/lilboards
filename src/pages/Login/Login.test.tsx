@@ -2,12 +2,12 @@ import { screen, waitFor } from '@testing-library/react';
 import type { Location } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
-import { renderWithProviders, router } from '../../../test/utils';
-import { REDIRECT_TO } from '../../constants';
 import {
   USER_TEST_EMAIL as userEmail,
   USER_TEST_ID as userId,
-} from '../../constants/test';
+} from '../../../test/constants';
+import { renderWithProviders, router } from '../../../test/utils';
+import { REDIRECT_TO } from '../../constants';
 import { onAuthStateChanged } from '../../firebase';
 import Login from './Login';
 

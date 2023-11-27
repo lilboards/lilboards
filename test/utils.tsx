@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 
 import { ITEM_IDS } from '../src/constants';
+import { actions, resetActions, store } from '../src/store';
+import type { Board, Columns, Item, User } from '../src/types';
 import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
@@ -12,9 +14,7 @@ import {
   ITEM_TEST_ID as itemId,
   USER_TEST_EMAIL as userEmail,
   USER_TEST_ID as userId,
-} from '../src/constants/test';
-import { actions, resetActions, store } from '../src/store';
-import type { Board, Columns, Item, User } from '../src/types';
+} from './constants';
 
 function noop() {}
 

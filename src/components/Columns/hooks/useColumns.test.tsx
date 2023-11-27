@@ -5,16 +5,16 @@ import {
 } from 'firebase/database';
 
 import {
-  renderWithProviders,
-  store,
-  updateStore,
-} from '../../../../test/utils';
-import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
   DATE_NOW as dateNow,
   USER_TEST_ID as userId,
-} from '../../../constants/test';
+} from '../../../../test/constants';
+import {
+  renderWithProviders,
+  store,
+  updateStore,
+} from '../../../../test/utils';
 import { getColumnsRef } from '../../../firebase';
 import { Column } from '../../../types';
 import { useColumns } from './useColumns';

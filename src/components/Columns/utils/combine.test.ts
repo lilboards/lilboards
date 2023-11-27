@@ -5,7 +5,7 @@ import {
   DATE_NOW as dateNow,
   ITEM_TEST_ID as itemId,
   USER_TEST_ID as userId,
-} from '../../../constants/test';
+} from '../../../../test/constants';
 import { combine } from './combine';
 
 const itemId1 = `${itemId}1`;
