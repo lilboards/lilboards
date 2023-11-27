@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.33.7](https://github.com/lilboards/lilboards/compare/v4.33.6...v4.33.7) (2023-11-27)
+
+
+### Build System
+
+* migrate from Create React App (CRA) to Vite ([33b1da4](https://github.com/lilboards/lilboards/commit/33b1da4456caabca241bfe2e59189bad4ad15d88)), closes [#1542](https://github.com/lilboards/lilboards/issues/1542)
+
 ## [4.33.6](https://github.com/lilboards/lilboards/compare/v4.33.5...v4.33.6) (2023-11-20)
 
 ### Miscellaneous Chores
