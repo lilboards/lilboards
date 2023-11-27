@@ -18,7 +18,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/",
+  "start_url": "https://lilboards.org",
   "display": "standalone",
   "theme_color": "#364fc7",
   "background_color": "#ffffff"
