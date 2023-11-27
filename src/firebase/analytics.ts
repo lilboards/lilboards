@@ -1,4 +1,5 @@
 /* istanbul ignore file */
+
 import type { Analytics } from 'firebase/analytics';
 import {
   getAnalytics,

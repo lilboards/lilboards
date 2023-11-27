@@ -1,4 +1,5 @@
 /* istanbul ignore file */
+
 import type { User } from 'firebase/auth';
 import {
   getAuth,
