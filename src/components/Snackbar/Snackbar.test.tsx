@@ -5,7 +5,15 @@ import Snackbar from './Snackbar';
 const message = 'message';
 
 it('does not render snackbar when props.open is false', () => {
-  render(<Snackbar message={message} />);
+  render(
+    <Snackbar
+      message={message}
+      anchorOrigin={{
+        horizontal: 'center',
+        vertical: 'top',
+      }}
+    />,
+  );
   expect(screen.queryByText(message)).not.toBeInTheDocument();
 });
 
