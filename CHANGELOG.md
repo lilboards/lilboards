@@ -1,5 +1,14 @@
 # Changelog
 
+## [4.33.9](https://github.com/lilboards/lilboards/compare/v4.33.8...v4.33.9) (2023-11-27)
+
+
+### Bug Fixes
+
+* **public:** fix manifest.json property 'start_url' ([393d351](https://github.com/lilboards/lilboards/commit/393d351c1e1ebaabc5e1587135013af83a3451fc))
+* **public:** set manifest.json property 'src' to absolute url ([92769d6](https://github.com/lilboards/lilboards/commit/92769d6e4c4c253a3cd92ebcf6ff3a11f748dfed))
+* **public:** set manifest.json property 'start_url' to absolute url ([16f8b8b](https://github.com/lilboards/lilboards/commit/16f8b8b056c2e7bc66f7083f6265ebc1423b524d))
+
 ## [4.33.8](https://github.com/lilboards/lilboards/compare/v4.33.7...v4.33.8) (2023-11-27)
 
 
