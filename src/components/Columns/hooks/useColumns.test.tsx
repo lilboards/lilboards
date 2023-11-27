@@ -5,6 +5,11 @@ import {
 } from 'firebase/database';
 
 import {
+  renderWithProviders,
+  store,
+  updateStore,
+} from '../../../../test/utils';
+import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
   DATE_NOW as dateNow,
@@ -12,7 +17,6 @@ import {
 } from '../../../constants/test';
 import { getColumnsRef } from '../../../firebase';
 import { Column } from '../../../types';
-import { renderWithProviders, store, updateStore } from '../../../utils/test';
 import { useColumns } from './useColumns';
 
 const mockedOnChildAdded = jest.mocked(onChildAdded);

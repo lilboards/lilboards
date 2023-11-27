@@ -1,6 +1,6 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 
-import { renderWithProviders, updateStore } from '../../utils/test';
+import { renderWithProviders, updateStore } from '../../../test/utils';
 import BoardControls from './BoardControls';
 
 jest.mock('../../firebase', () => ({

@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 
+import { renderWithProviders } from '../../../test/utils';
 import { sendEmailVerification } from '../../firebase';
-import { renderWithProviders } from '../../utils/test';
 import VerifyEmail from './VerifyEmail';
 
 jest.mock('../../firebase', () => ({

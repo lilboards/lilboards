@@ -5,6 +5,11 @@ import {
 } from 'firebase/database';
 
 import {
+  renderWithProviders,
+  store,
+  updateStore,
+} from '../../../../test/utils';
+import {
   BOARD_TEST_ID as boardId,
   DATE_NOW as dateNow,
   ITEM_TEST_ID as itemId,
@@ -12,7 +17,6 @@ import {
 } from '../../../constants/test';
 import { getItemsRef } from '../../../firebase';
 import { Item } from '../../../types';
-import { renderWithProviders, store, updateStore } from '../../../utils/test';
 import { useItems } from './useItems';
 
 const mockedOnChildAdded = jest.mocked(onChildAdded);

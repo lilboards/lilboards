@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 
-import { renderWithProviders } from '../../utils/test';
+import { renderWithProviders } from '../../../test/utils';
 import NotFound from './NotFound';
 
 it('renders not found', () => {

@@ -1,9 +1,9 @@
 import { fireEvent, screen } from '@testing-library/react';
 
+import { renderWithProviders, updateStore } from '../../../test/utils';
 import { BOARD_TEST_ID as boardId } from '../../constants/test';
 import { logEvent } from '../../firebase';
 import { DEFAULT_MAX_LIKES } from '../../hooks';
-import { renderWithProviders, updateStore } from '../../utils/test';
 import MaxLikes from './MaxLikes';
 
 jest.mock('../../firebase', () => ({

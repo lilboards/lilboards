@@ -1,11 +1,11 @@
 import { fireEvent, screen } from '@testing-library/react';
 
+import { renderWithProviders, store, updateStore } from '../../../test/utils';
 import {
   BOARD_TEST_ID as boardId,
   DATE_NOW as dateNow,
 } from '../../constants/test';
 import { generateId, logEvent, saveUserBoardId } from '../../firebase';
-import { renderWithProviders, store, updateStore } from '../../utils/test';
 import AddBoard from './AddBoard';
 
 jest.mock('../../firebase', () => ({

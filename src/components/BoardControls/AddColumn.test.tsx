@@ -1,11 +1,11 @@
 import { fireEvent, screen } from '@testing-library/react';
 
+import { renderWithProviders, store, updateStore } from '../../../test/utils';
 import {
   COLUMN_TEST_ID as columnId,
   DATE_NOW as dateNow,
 } from '../../constants/test';
 import { generateId, logEvent } from '../../firebase';
-import { renderWithProviders, store, updateStore } from '../../utils/test';
 import AddColumn from './AddColumn';
 
 jest.mock('../../firebase', () => ({

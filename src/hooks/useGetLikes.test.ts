@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react';
 
+import { updateStore, wrapper } from '../../test/utils';
 import { ITEM_TEST_ID, USER_TEST_ID } from '../constants/test';
-import { updateStore, wrapper } from '../utils/test';
 import { useGetLikes } from './useGetLikes';
 
 describe('when state is empty', () => {

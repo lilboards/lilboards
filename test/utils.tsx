@@ -4,7 +4,7 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import { Provider } from 'react-redux';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 
-import { ITEM_IDS } from '../constants';
+import { ITEM_IDS } from '../src/constants';
 import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
@@ -12,11 +12,10 @@ import {
   ITEM_TEST_ID as itemId,
   USER_TEST_EMAIL as userEmail,
   USER_TEST_ID as userId,
-} from '../constants/test';
-import { actions, resetActions, store } from '../store';
-import type { Board, Columns, Item, User } from '../types';
+} from '../src/constants/test';
+import { actions, resetActions, store } from '../src/store';
+import type { Board, Columns, Item, User } from '../src/types';
 
-/* istanbul ignore next */
 function noop() {}
 
 export let router: ReturnType<typeof createMemoryRouter>;

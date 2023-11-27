@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react';
 
+import { updateStore, wrapper } from '../../test/utils';
 import { BOARD_TEST_ID } from '../constants/test';
-import { updateStore, wrapper } from '../utils/test';
 import { DEFAULT_MAX_LIKES, useMaxLikes } from './useMaxLikes';
 
 describe('when state is empty', () => {

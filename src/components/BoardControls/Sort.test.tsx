@@ -1,5 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 
+import { renderWithProviders, store, updateStore } from '../../../test/utils';
 import {
   COLUMN_TEST_ID as columnId,
   DATE_NOW as dateNow,
@@ -7,7 +8,6 @@ import {
   USER_TEST_ID as userId,
 } from '../../constants/test';
 import { logEvent } from '../../firebase';
-import { renderWithProviders, store, updateStore } from '../../utils/test';
 import Sort from './Sort';
 
 jest.mock('../../firebase', () => ({

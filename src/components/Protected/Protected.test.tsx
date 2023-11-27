@@ -1,8 +1,8 @@
 import { screen, waitFor } from '@testing-library/react';
 import { Outlet } from 'react-router-dom';
 
+import { renderWithProviders, router, updateStore } from '../../../test/utils';
 import { useAuth } from '../../hooks';
-import { renderWithProviders, router, updateStore } from '../../utils/test';
 import Protected from './Protected';
 
 jest.mock('react-router-dom', () => ({

@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 
+import { renderWithProviders } from '../../../test/utils';
 import { PROJECT_VERSION } from '../../config';
-import { renderWithProviders } from '../../utils/test';
 import Home from './Home';
 
 it('renders home', () => {
