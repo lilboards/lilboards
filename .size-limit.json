@@ -1,6 +1,6 @@
 [
   {
     "limit": "60 s",
-    "path": "build/**/*.js"
+    "path": "dist/**/*.js"
   }
 ]
