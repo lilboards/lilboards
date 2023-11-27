@@ -46,7 +46,7 @@ export default function Header() {
             aria-label="GitHub"
             color="inherit"
             component={Link}
-            href="https://github.com/lilboards/lilboards"
+            href="https://b.remarkabl.org/lilboards"
             target="_blank"
             rel="noopener noreferrer"
             title="GitHub"
