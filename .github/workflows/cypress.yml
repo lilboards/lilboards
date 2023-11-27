@@ -20,9 +20,9 @@ jobs:
         with:
           browser: chrome
           start: |
-            npm start
+            npx vite --host
             npm run firebase:emulators
-          wait-on: 'http://localhost:3000, http://localhost:4000'
+          wait-on: 'http://localhost:5173, http://localhost:4000'
 
       - name: Record failed screenshots
         if: failure()
