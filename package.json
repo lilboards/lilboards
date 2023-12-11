@@ -57,7 +57,7 @@
     "@typescript-eslint/parser": "6.13.2",
     "@vitejs/plugin-react-swc": "3.5.0",
     "cypress": "13.6.1",
-    "cypress-cucumber-steps": "3.49.0",
+    "cypress-cucumber-steps": "3.50.0",
     "eslint": "8.55.0",
     "eslint-plugin-prettier": "5.0.1",
     "eslint-plugin-simple-import-sort": "10.0.0",
