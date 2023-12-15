@@ -72,7 +72,7 @@
     "size-limit": "11.0.1",
     "ts-jest": "29.1.1",
     "ts-node": "10.9.2",
-    "vite": "5.0.8",
+    "vite": "5.0.9",
     "vite-plugin-commonjs": "0.10.1"
   },
   "engines": {
