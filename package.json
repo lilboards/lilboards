@@ -22,7 +22,7 @@
     "test:ci": "CI=true jest --ci --coverage --colors"
   },
   "dependencies": {
-    "@emotion/react": "11.11.1",
+    "@emotion/react": "11.11.3",
     "@emotion/styled": "11.11.0",
     "@mui/icons-material": "5.15.1",
     "@mui/material": "5.15.1",
@@ -57,9 +57,9 @@
     "@typescript-eslint/parser": "6.15.0",
     "@vitejs/plugin-react-swc": "3.5.0",
     "cypress": "13.6.1",
-    "cypress-cucumber-steps": "3.52.0",
+    "cypress-cucumber-steps": "3.54.0",
     "eslint": "8.56.0",
-    "eslint-plugin-prettier": "5.1.1",
+    "eslint-plugin-prettier": "5.1.2",
     "eslint-plugin-simple-import-sort": "10.0.0",
     "eslint-plugin-tsdoc": "0.2.17",
     "firebase-tools": "13.0.2",
