@@ -27,7 +27,7 @@
     "@mui/icons-material": "5.15.2",
     "@mui/material": "5.15.2",
     "@reduxjs/toolkit": "2.0.1",
-    "@testing-library/jest-dom": "6.1.5",
+    "@testing-library/jest-dom": "6.1.6",
     "@testing-library/react": "14.1.2",
     "@testing-library/user-event": "14.5.1",
     "@types/debounce": "1.2.4",
