@@ -2,7 +2,6 @@ import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import type { SxProps } from '@mui/system';
-import { createSelector } from '@reduxjs/toolkit';
 
 import { logEvent } from '../../firebase';
 import { useSelector } from '../../hooks';
