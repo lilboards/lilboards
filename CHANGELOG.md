@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.33.10](https://github.com/lilboards/lilboards/compare/v4.33.9...v4.33.10) (2023-12-31)
+
+
+### Performance Improvements
+
+* **components:** remove inefficient createSelector in Export ([3583e1e](https://github.com/lilboards/lilboards/commit/3583e1e32f7aff36fb3be4ccec2388b773abd343))
+
 ## [4.33.9](https://github.com/lilboards/lilboards/compare/v4.33.8...v4.33.9) (2023-11-27)
 
 
