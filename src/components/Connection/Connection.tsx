@@ -30,7 +30,7 @@ export default function Connection() {
       open={open && !connected}
     >
       <Alert onClose={handleClose} severity="error">
-        Unable to connect to server. Realtime updates are paused.
+        Unable to connect to the server. Real-time updates are paused.
       </Alert>
     </Snackbar>
   );
