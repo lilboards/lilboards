@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.34.0](https://github.com/lilboards/lilboards/compare/v4.33.11...v4.34.0) (2024-01-01)
+
+
+### Features
+
+* **Item:** render links with Linkify ([a068dec](https://github.com/lilboards/lilboards/commit/a068dec412e3e84dbf8cc429ce4d7a223b9dc7d9))
+
 ## [4.33.11](https://github.com/lilboards/lilboards/compare/v4.33.10...v4.33.11) (2024-01-01)
 
 
