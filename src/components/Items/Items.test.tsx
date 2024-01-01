@@ -19,7 +19,7 @@ describe('add item', () => {
     const column = updateStore.withColumn();
     renderWithProviders(<Items boardId={boardId} columnId={column.id} />);
     fireEvent.click(screen.getByText('Add item'));
-    expect(screen.getByLabelText(/Edit item/)).toBeInTheDocument();
+    expect(screen.getByLabelText('Edit item “”')).toBeInTheDocument();
   });
 
   it('focuses on new item', () => {

@@ -14,9 +14,10 @@ Feature: Board
     When I click on button "Add column"
       And I click on button "Add item"
       And I get focused element
-      And I type "Item 1"
+      And I type "Item 1 https://example.com"
       And I blur
     Then I see text "Item 1"
+      And I see link "https://example.com"
     When I click on label "Delete column “Column 1”"
       And I click on button "Delete"
     Then I do not see text "Column 1"
