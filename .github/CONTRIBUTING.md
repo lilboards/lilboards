@@ -4,6 +4,8 @@
 <summary>Table of Contents</summary>
 
 - [Fork](#fork)
+- [Install](#install)
+- [Develop](#develop)
 - [Available Scripts](#available-scripts)
   - [`npm start`](#npm-start)
   - [`npm run firebase:emulators`](#npm-run-firebaseemulators)
@@ -25,8 +27,13 @@ agree to abide by our [code of conduct](https://github.com/lilboards/.github/blo
 ```sh
 # replace <USER> with your username
 git clone git@github.com:<USER>/lilboards.git
+```
+
+```sh
 cd lilboards
 ```
+
+## Install
 
 Set the Node.js version with [nvm](https://github.com/nvm-sh/nvm#intro):
 
@@ -39,6 +46,8 @@ Install the dependencies:
 ```sh
 npm install
 ```
+
+## Develop
 
 Make your changes, add tests/documentation, and ensure tests and lint pass:
 
