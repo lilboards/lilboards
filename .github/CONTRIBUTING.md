@@ -9,22 +9,18 @@
   - [`npm run firebase:emulators`](#npm-run-firebaseemulators)
   - [`npm test`](#npm-test)
   - [`npm run build`](#npm-run-build)
-- [`npm run lint`](#npm-run-lint)
+  - [`npm run lint`](#npm-run-lint)
   - [`npm run cypress:open`](#npm-run-cypressopen)
 - [Release](#release)
 
 </details>
 
 Pull requests are welcome! By participating in this project, you
-agree to abide by our **[code of conduct]**.
-
-[code of conduct]: https://github.com/lilboards/.github/blob/master/CODE_OF_CONDUCT.md
+agree to abide by our [code of conduct](https://github.com/lilboards/.github/blob/master/CODE_OF_CONDUCT.md).
 
 ## Fork
 
-[Fork], then clone the repository:
-
-[fork]: https://github.com/lilboards/lilboards/fork
+[Fork](https://github.com/lilboards/lilboards/fork) and then clone the repository:
 
 ```sh
 # replace <USER> with your username
@@ -32,7 +28,7 @@ git clone git@github.com:<USER>/lilboards.git
 cd lilboards
 ```
 
-Use [nvm](https://github.com/nvm-sh/nvm#intro) to set the Node.js version:
+Set the Node.js version with [nvm](https://github.com/nvm-sh/nvm#intro):
 
 ```sh
 nvm use
@@ -54,7 +50,7 @@ npm run test:ci
 npm run lint:fix
 ```
 
-Write a commit message that follows the [Conventional Commits][commit] specification:
+Write a commit message that follows the [Conventional Commits](https://www.conventionalcommits.org/) specification:
 
 - **feat**: A new feature
 - **fix**: A bug fix
@@ -72,21 +68,16 @@ To manually lint the most recent commit message:
 git log -1 --pretty=format:"%s" | npx commitlint
 ```
 
-Push to your fork and [create a pull request][pr].
-
-[pr]: https://github.com/lilboards/lilboards/compare/
+Push to your fork and create a [pull request](https://github.com/lilboards/lilboards/compare/).
 
 At this point, wait for us to review your pull request. We'll try to review pull requests within
 1-3 business days. We may suggest changes, improvements, and/or alternatives.
 
 Things that will improve the chance that your pull request will be accepted:
 
-- [ ] Write tests that pass [CI].
+- [ ] Write tests that pass [CI](https://github.com/lilboards/lilboards/actions/workflows/build.yml).
 - [ ] Write good documentation.
-- [ ] Write a [good commit message][commit].
-
-[ci]: https://github.com/lilboards/lilboards/actions/workflows/build.yml
-[commit]: https://github.com/angular/angular/blob/main/CONTRIBUTING.md#commit
+- [ ] Write a good [commit message](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#commit).
 
 ## Available Scripts
 
@@ -152,9 +143,9 @@ The build is minified and the filenames include the hashes.
 
 Your app is ready to be deployed!
 
-## `npm run lint`
+### `npm run lint`
 
-Run ESLint:
+Lints the codebase for ESLint errors:
 
 ```sh
 npm run lint
@@ -194,6 +185,4 @@ npx vite --host
 
 ## Release
 
-Release is automated with [Release Please].
-
-[release please]: https://github.com/googleapis/release-please
+Release is automated with [Release Please](https://github.com/googleapis/release-please).
