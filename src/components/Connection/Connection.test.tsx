@@ -15,7 +15,8 @@ jest.mock('../../firebase/database', () => ({
 
 const mockedOnConnected = jest.mocked(onConnected);
 
-const message = 'Unable to connect to server. Realtime updates are paused.';
+const message =
+  'Unable to connect to the server. Real-time updates are paused.';
 
 jest.useFakeTimers();
 

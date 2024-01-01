@@ -16,7 +16,7 @@ export const features = [
   {
     icon: BoltIcon,
     heading: 'Fast',
-    description: 'Work in realtime with others—online and offline.',
+    description: 'Work in real-time with others—online and offline.',
   },
 
   {
