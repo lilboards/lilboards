@@ -17,7 +17,7 @@
     "lint:tsc": "tsc --noEmit",
     "postinstall": "husky install",
     "size": "size-limit",
-    "start": "vite --open",
+    "start": "vite --host --open",
     "test": "jest --watch",
     "test:ci": "CI=true jest --ci --coverage --colors"
   },

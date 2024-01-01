@@ -109,6 +109,22 @@ See the section about [deployment](https://create-react-app.dev/docs/deployment/
 
 Opens [Cypress](https://www.cypress.io/) for E2E (end-to-end) testing.
 
+If you get the error:
+
+```
+We attempted to make an http request to this URL but the request failed without a response.
+
+We received this error at the network level:
+
+  > Error: connect ECONNREFUSED 127.0.0.1:5173
+```
+
+Then expose the Vite server:
+
+```sh
+npx vite --host
+```
+
 ## Assets
 
 [Logo](https://excalidraw.com/#json=5123776568098816,InQI3in09fDMlrMULQDmSQ)
