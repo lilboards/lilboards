@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.33.11](https://github.com/lilboards/lilboards/compare/v4.33.10...v4.33.11) (2024-01-01)
+
+
+### Bug Fixes
+
+* rename `realtime` to `real-time` ([d270375](https://github.com/lilboards/lilboards/commit/d2703758a2c4bbc41b927a3fe1053c71001eeee5))
+
 ## [4.33.10](https://github.com/lilboards/lilboards/compare/v4.33.9...v4.33.10) (2023-12-31)
 
 
