@@ -103,11 +103,18 @@ export const updateStore = {
     });
   },
 
-  withItem() {
-    const item: Item = {
+  withItem(
+    item: Partial<Item> = {
       createdAt: dateNow,
       createdBy: userId,
       text: 'Item One',
+    },
+  ) {
+    item = {
+      createdAt: dateNow,
+      createdBy: userId,
+      text: 'Item One',
+      ...item,
     };
     const payload = {
       item,
@@ -115,7 +122,7 @@ export const updateStore = {
     };
     store.dispatch(actions.updateItem(payload));
     return {
-      ...item,
+      ...(item as Item),
       id: itemId,
     };
   },
