@@ -2,7 +2,9 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import InputBase from '@mui/material/InputBase';
-import type { ChangeEvent, CSSProperties } from 'react';
+import type { Theme } from '@mui/material/styles';
+import Linkify from 'linkify-react';
+import type React from 'react';
 
 import { logEvent } from '../../firebase';
 import { useDispatch, useGetUserId, useSelector } from '../../hooks';
@@ -11,9 +13,15 @@ import type { Id } from '../../types';
 import Delete from './Delete';
 import Likes from './Likes';
 
+const textareaSx = {
+  minHeight: (theme: Theme) => theme.spacing(3),
+  marginTop: 1,
+  marginBottom: 1,
+};
+
 interface Props {
   boardId: Id;
-  cardStyle?: CSSProperties;
+  cardStyle?: React.CSSProperties;
   columnId: Id;
   itemId: Id;
 }
@@ -30,7 +38,7 @@ export default function Item(props: Props) {
     return null;
   }
 
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     dispatch(
       actions.updateItem({
         boardId: props.boardId,
@@ -44,8 +52,16 @@ export default function Item(props: Props) {
     );
   }
 
-  function handleFocus() {
+  function handleEdit() {
     dispatch(actions.setUserEditing({ itemId: props.itemId }));
+  }
+
+  function handleFocus({
+    target: textarea,
+  }: React.FocusEvent<HTMLTextAreaElement>) {
+    handleEdit();
+    // set cursor at the end
+    textarea.selectionStart = textarea.value.length;
   }
 
   function handleBlur() {
@@ -70,23 +86,39 @@ export default function Item(props: Props) {
           itemText={item.text}
         />
 
-        <InputBase
-          autoFocus={isEditing}
-          components={{ Root: CardContent }}
-          fullWidth
-          inputProps={{
-            'aria-label': `Edit item “${item.text}”`,
-          }}
-          multiline
-          onBlur={handleBlur}
-          onChange={handleChange}
-          onFocus={handleFocus}
-          value={item.text}
-          sx={{
-            marginTop: 1,
-            marginBottom: 1,
-          }}
-        />
+        {isEditing ? (
+          <InputBase
+            autoFocus={isEditing}
+            fullWidth
+            inputProps={{
+              'aria-label': `Edit item “${item.text}”`,
+              sx: textareaSx,
+            }}
+            multiline
+            onBlur={handleBlur}
+            onChange={handleChange}
+            onFocus={handleFocus}
+            slots={{ root: CardContent }}
+            value={item.text}
+          />
+        ) : (
+          <Linkify
+            options={{
+              nl2br: true,
+              rel: 'noopener noreferrer',
+              target: '_blank',
+            }}
+          >
+            <CardContent
+              aria-label={`Edit item “${item.text}”`}
+              aria-multiline
+              onClick={handleEdit}
+              role="textbox"
+            >
+              <Box sx={textareaSx}>{item.text}</Box>
+            </CardContent>
+          </Linkify>
+        )}
 
         <Box sx={{ position: 'absolute', bottom: 1, right: 0 }}>
           <Likes boardId={props.boardId} itemId={props.itemId} />

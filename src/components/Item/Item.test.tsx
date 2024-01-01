@@ -40,6 +40,18 @@ it('renders like button and count', () => {
   expect(screen.getByLabelText(/0 likes/)).toBeInTheDocument();
 });
 
+it('renders accessible textbox', () => {
+  const item = updateStore.withItem();
+  renderWithProviders(<Item {...props} itemId={item.id} />);
+  expect(screen.getByRole('textbox')).toHaveTextContent(item.text);
+});
+
+it('renders link', () => {
+  item = updateStore.withItem({ text: 'https://example.com/' });
+  renderWithProviders(<Item {...props} itemId={item.id} />);
+  expect(screen.getByRole('link')).toHaveTextContent(item.text);
+});
+
 describe('delete item', () => {
   beforeEach(() => {
     item = updateStore.withItem();
@@ -65,23 +77,31 @@ describe('edit item', () => {
     item = updateStore.withItem();
   });
 
-  it('changes item', () => {
+  it('clicks and focuses item', () => {
     renderWithProviders(<Item {...props} itemId={item.id} />);
-    const event = { target: { value: 'Item text' } };
-    const input = screen.getByLabelText(`Edit item “${item.text}”`);
-    fireEvent.change(input, event);
-    expect(screen.getByDisplayValue(event.target.value)).toBe(input);
+    const textbox = screen.getByLabelText(`Edit item “${item.text}”`);
+    fireEvent.click(textbox);
+    expect(store.getState().user.editing.itemId).toBe(itemId);
   });
 
-  it('focuses item', () => {
+  it('changes item', () => {
     renderWithProviders(<Item {...props} itemId={item.id} />);
-    fireEvent.focus(screen.getByLabelText(`Edit item “${item.text}”`));
-    expect(store.getState().user.editing.itemId).toBe(itemId);
+    const labelText = `Edit item “${item.text}”`;
+    const textbox = screen.getByLabelText(labelText);
+    fireEvent.click(textbox);
+    const textarea = screen.getByLabelText(labelText);
+    const event = { target: { value: 'Item text' } };
+    fireEvent.change(textarea, event);
+    expect(screen.getByDisplayValue(event.target.value)).toBe(textarea);
   });
 
   it('blurs item', () => {
     renderWithProviders(<Item {...props} itemId={item.id} />);
-    fireEvent.blur(screen.getByLabelText(`Edit item “${item.text}”`));
+    const labelText = `Edit item “${item.text}”`;
+    const textbox = screen.getByLabelText(labelText);
+    fireEvent.click(textbox);
+    const textarea = screen.getByLabelText(labelText);
+    fireEvent.blur(textarea);
     expect(store.getState().user.editing.itemId).toBe('');
   });
 });

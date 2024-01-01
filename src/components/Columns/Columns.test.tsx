@@ -45,7 +45,7 @@ it('uses hooks', async () => {
 it('renders item text', () => {
   const item = updateStore.withItem();
   renderWithProviders(<Columns boardId={boardId} />);
-  expect(screen.getByDisplayValue(item.text)).toBeInTheDocument();
+  expect(screen.getByText(item.text)).toBeInTheDocument();
 });
 
 it('renders liked item', () => {
