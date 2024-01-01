@@ -15,7 +15,7 @@
 
 </details>
 
-All pull requests are welcome! By participating in this project, you
+Pull requests are welcome! By participating in this project, you
 agree to abide by our **[code of conduct]**.
 
 [code of conduct]: https://github.com/lilboards/.github/blob/master/CODE_OF_CONDUCT.md
