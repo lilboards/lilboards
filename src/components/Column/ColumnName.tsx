@@ -1,6 +1,6 @@
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { type ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 
 import DeleteDialog from '../../components/DeleteDialog';
 import { logEvent } from '../../firebase';
@@ -43,7 +43,7 @@ export default function ColumnName(props: Props) {
   }
 
   function handleChange(
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
     dispatch(
       actions.renameColumn({

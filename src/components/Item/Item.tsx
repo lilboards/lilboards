@@ -4,7 +4,6 @@ import CardContent from '@mui/material/CardContent';
 import InputBase from '@mui/material/InputBase';
 import type { Theme } from '@mui/material/styles';
 import Linkify from 'linkify-react';
-import type React from 'react';
 
 import { logEvent } from '../../firebase';
 import { useDispatch, useGetUserId, useSelector } from '../../hooks';

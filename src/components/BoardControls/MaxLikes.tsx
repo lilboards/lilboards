@@ -1,6 +1,5 @@
 import TextField from '@mui/material/TextField';
 import type { SxProps } from '@mui/system';
-import type { ChangeEvent } from 'react';
 
 import { logEvent } from '../../firebase';
 import { useDispatch, useIsAdmin, useMaxLikes } from '../../hooks';
@@ -19,7 +18,7 @@ export default function MaxLikes(props: Props) {
   const canEdit = useIsAdmin(boardId);
   const maxLikes = useMaxLikes(boardId);
 
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const newMaxLikes = Math.floor(Number(event.target.value));
     if (canEdit && maxLikes !== newMaxLikes && newMaxLikes >= 0) {
       dispatch(

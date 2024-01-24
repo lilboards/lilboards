@@ -2,7 +2,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import type { SxProps } from '@mui/system';
-import type { ChangeEvent } from 'react';
 import { useCallback, useEffect, useState } from 'react';
 
 import { useDispatch, useIsAdmin, useSelector } from '../../hooks';
@@ -79,7 +78,7 @@ export default function Timer(props: Props) {
     };
   }, [setState, state, stopTimer, timerEnd]);
 
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value } = event.target;
     setState({
       minutes: Number(value),

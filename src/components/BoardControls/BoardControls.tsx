@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Popover from '@mui/material/Popover';
 import Stack from '@mui/material/Stack';
-import { type MouseEvent, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import type { Id } from '../../types';
 import AddColumn from './AddColumn';
@@ -23,7 +23,7 @@ export default function BoardControls(props: Props) {
   );
 
   const handleClick = useCallback(
-    (event: MouseEvent<HTMLButtonElement>) =>
+    (event: React.MouseEvent<HTMLButtonElement>) =>
       setAnchorElement(event.currentTarget),
     [setAnchorElement],
   );

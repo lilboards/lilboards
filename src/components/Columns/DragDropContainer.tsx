@@ -1,4 +1,3 @@
-import type { ReactNode } from 'react';
 import type { DropResult } from 'react-beautiful-dnd';
 import { DragDropContext } from 'react-beautiful-dnd';
 
@@ -9,7 +8,7 @@ import { combine, reorder } from './utils';
 
 interface Props {
   boardId: Id;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export default function DragDropContainer(props: Props) {

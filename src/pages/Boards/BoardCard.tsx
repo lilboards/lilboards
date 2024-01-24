@@ -4,7 +4,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import { type ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import DeleteDialog from '../../components/DeleteDialog';
@@ -31,7 +31,7 @@ export default function BoardCard(props: Props) {
   }
 
   function handleChange(
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
     dispatch(
       actions.updateBoard({

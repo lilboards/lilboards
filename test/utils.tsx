@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-import type { ReactElement, ReactNode } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { Provider } from 'react-redux';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
@@ -20,7 +19,7 @@ function noop() {}
 
 export let router: ReturnType<typeof createMemoryRouter>;
 
-export function wrapper(props: { children?: ReactNode }) {
+export function wrapper(props: { children?: React.ReactNode }) {
   const routes = [
     {
       path: '/',
@@ -46,7 +45,7 @@ export function wrapper(props: { children?: ReactNode }) {
 /**
  * @see {@link https://redux.js.org/usage/writing-tests#setting-up-a-reusable-test-render-function}
  */
-export function renderWithProviders(ui: ReactElement) {
+export function renderWithProviders(ui: React.ReactElement) {
   return render(ui, { wrapper });
 }
 

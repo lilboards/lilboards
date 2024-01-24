@@ -4,15 +4,14 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import type { ReactNode } from 'react';
 
 interface Props {
-  content: ReactNode;
+  content: React.ReactNode;
   id: string;
   onClose: () => void;
   onDelete: () => void;
   open?: boolean;
-  title: ReactNode;
+  title: React.ReactNode;
 }
 
 export default function DeleteDialog(props: Props) {
