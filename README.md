@@ -18,7 +18,7 @@
 
 ## Try It
 
-Go to [lilboards.org](https://lilboards.org/) to create boards, columns, and items.
+📝 Go to [lilboards.org](https://lilboards.org/) to create boards, columns, and items.
 
 This project is built with:
 
@@ -30,7 +30,7 @@ This project is built with:
 
 ## Contributing
 
-See [contributing](.github/CONTRIBUTING.md).
+Learn how to [contribute](.github/CONTRIBUTING.md).
 
 ## Assets
 
