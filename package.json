@@ -15,7 +15,7 @@
     "lint:fix": "npm run lint:ts -- --fix",
     "lint:ts": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "lint:tsc": "tsc --noEmit",
-    "postinstall": "husky install",
+    "prepare": "husky",
     "size": "size-limit",
     "start": "vite --host --open",
     "test": "jest --watch",
