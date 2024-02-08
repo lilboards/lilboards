@@ -35,7 +35,7 @@
     "@types/node": "20.11.16",
     "@types/react": "18.2.55",
     "@types/react-beautiful-dnd": "13.1.8",
-    "@types/react-dom": "18.2.18",
+    "@types/react-dom": "18.2.19",
     "debounce": "2.0.0",
     "firebase": "10.8.0",
     "firebaseui": "6.1.0",
