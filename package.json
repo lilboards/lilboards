@@ -50,7 +50,7 @@
     "web-vitals": "3.5.2"
   },
   "devDependencies": {
-    "@badeball/cypress-cucumber-preprocessor": "20.0.3",
+    "@badeball/cypress-cucumber-preprocessor": "20.0.4",
     "@bahmutov/cypress-esbuild-preprocessor": "2.2.0",
     "@commitlint/cli": "19.2.2",
     "@commitlint/config-conventional": "19.2.2",
