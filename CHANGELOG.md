@@ -1,48 +1,48 @@
 # Changelog
 
-## [4.34.0](https://github.com/lilboards/lilboards/compare/v4.33.11...v4.34.0) (2024-01-01)
+## [4.34.1](https://github.com/lilboards/lilboards/compare/v4.34.0...v4.34.1) (2024-04-22)
 
+### Miscellaneous Chores
+
+- release 4.34.1 ([7c01783](https://github.com/lilboards/lilboards/commit/7c017835e545af785ae2462c2687e11d367e8bb7))
+
+## [4.34.0](https://github.com/lilboards/lilboards/compare/v4.33.11...v4.34.0) (2024-01-01)
 
 ### Features
 
-* **Item:** render links with Linkify ([a068dec](https://github.com/lilboards/lilboards/commit/a068dec412e3e84dbf8cc429ce4d7a223b9dc7d9))
+- **Item:** render links with Linkify ([a068dec](https://github.com/lilboards/lilboards/commit/a068dec412e3e84dbf8cc429ce4d7a223b9dc7d9))
 
 ## [4.33.11](https://github.com/lilboards/lilboards/compare/v4.33.10...v4.33.11) (2024-01-01)
 
-
 ### Bug Fixes
 
-* rename `realtime` to `real-time` ([d270375](https://github.com/lilboards/lilboards/commit/d2703758a2c4bbc41b927a3fe1053c71001eeee5))
+- rename `realtime` to `real-time` ([d270375](https://github.com/lilboards/lilboards/commit/d2703758a2c4bbc41b927a3fe1053c71001eeee5))
 
 ## [4.33.10](https://github.com/lilboards/lilboards/compare/v4.33.9...v4.33.10) (2023-12-31)
 
-
 ### Performance Improvements
 
-* **components:** remove inefficient createSelector in Export ([3583e1e](https://github.com/lilboards/lilboards/commit/3583e1e32f7aff36fb3be4ccec2388b773abd343))
+- **components:** remove inefficient createSelector in Export ([3583e1e](https://github.com/lilboards/lilboards/commit/3583e1e32f7aff36fb3be4ccec2388b773abd343))
 
 ## [4.33.9](https://github.com/lilboards/lilboards/compare/v4.33.8...v4.33.9) (2023-11-27)
 
-
 ### Bug Fixes
 
-* **public:** fix manifest.json property 'start_url' ([393d351](https://github.com/lilboards/lilboards/commit/393d351c1e1ebaabc5e1587135013af83a3451fc))
-* **public:** set manifest.json property 'src' to absolute url ([92769d6](https://github.com/lilboards/lilboards/commit/92769d6e4c4c253a3cd92ebcf6ff3a11f748dfed))
-* **public:** set manifest.json property 'start_url' to absolute url ([16f8b8b](https://github.com/lilboards/lilboards/commit/16f8b8b056c2e7bc66f7083f6265ebc1423b524d))
+- **public:** fix manifest.json property 'start_url' ([393d351](https://github.com/lilboards/lilboards/commit/393d351c1e1ebaabc5e1587135013af83a3451fc))
+- **public:** set manifest.json property 'src' to absolute url ([92769d6](https://github.com/lilboards/lilboards/commit/92769d6e4c4c253a3cd92ebcf6ff3a11f748dfed))
+- **public:** set manifest.json property 'start_url' to absolute url ([16f8b8b](https://github.com/lilboards/lilboards/commit/16f8b8b056c2e7bc66f7083f6265ebc1423b524d))
 
 ## [4.33.8](https://github.com/lilboards/lilboards/compare/v4.33.7...v4.33.8) (2023-11-27)
 
-
 ### Bug Fixes
 
-* fix paths in index.html and remove comments ([ed2b858](https://github.com/lilboards/lilboards/commit/ed2b8588ea15fdcc35c560de5b205e30cf52451d))
+- fix paths in index.html and remove comments ([ed2b858](https://github.com/lilboards/lilboards/commit/ed2b8588ea15fdcc35c560de5b205e30cf52451d))
 
 ## [4.33.7](https://github.com/lilboards/lilboards/compare/v4.33.6...v4.33.7) (2023-11-27)
 
-
 ### Build System
 
-* migrate from Create React App (CRA) to Vite ([33b1da4](https://github.com/lilboards/lilboards/commit/33b1da4456caabca241bfe2e59189bad4ad15d88)), closes [#1542](https://github.com/lilboards/lilboards/issues/1542)
+- migrate from Create React App (CRA) to Vite ([33b1da4](https://github.com/lilboards/lilboards/commit/33b1da4456caabca241bfe2e59189bad4ad15d88)), closes [#1542](https://github.com/lilboards/lilboards/issues/1542)
 
 ## [4.33.6](https://github.com/lilboards/lilboards/compare/v4.33.5...v4.33.6) (2023-11-20)
 
