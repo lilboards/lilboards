@@ -33,6 +33,7 @@ const database = getDatabase(firebaseApp);
 
 if (isDevelopment && isLocalhost) {
   const databaseUrl = new URL(FIREBASE_DATABASE_URL);
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { connectDatabaseEmulator } = require('firebase/database');
   connectDatabaseEmulator(
     database,
