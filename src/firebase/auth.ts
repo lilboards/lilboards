@@ -19,6 +19,7 @@ if (isDevelopment && isLocalhost) {
    * @see https://firebase.google.com/docs/emulator-suite/connect_auth#web-modular-api
    */
   const emulatorHost = 'http://127.0.0.1:9099';
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { connectAuthEmulator } = require('firebase/auth');
   connectAuthEmulator(firebaseAuth, emulatorHost, { disableWarnings: true });
 }
