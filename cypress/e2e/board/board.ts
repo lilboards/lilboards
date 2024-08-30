@@ -19,7 +19,7 @@ When('I copy board link', () => {
     }),
   );
 
-  // https://github.com/cypress-io/cypress/issues/18198
+  // https://github.com/cypress-io/cypress/issues/18198#issuecomment-1867783412
   When_I_find_element_by_label_text('Copy board link');
   When_I_focus();
   When_I_double_click();
