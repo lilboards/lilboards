@@ -1,6 +1,6 @@
 import { When } from '@badeball/cypress-cucumber-preprocessor';
 import {
-  When_I_click,
+  When_I_double_click,
   When_I_find_element_by_label_text,
   When_I_focus,
 } from 'cypress-cucumber-steps';
@@ -19,9 +19,10 @@ When('I copy board link', () => {
     }),
   );
 
+  // https://github.com/cypress-io/cypress/issues/18198
   When_I_find_element_by_label_text('Copy board link');
   When_I_focus();
-  When_I_click();
+  When_I_double_click();
 
   cy.url().then((url) => {
     cy.window().then(({ navigator }) => {
