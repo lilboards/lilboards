@@ -1,5 +1,9 @@
 import { When } from '@badeball/cypress-cucumber-preprocessor';
-import { When_I_click_on_label } from 'cypress-cucumber-steps';
+import {
+  When_I_click,
+  When_I_find_element_by_label_text,
+  When_I_focus,
+} from 'cypress-cucumber-steps';
 
 let boardUrl: string;
 
@@ -15,7 +19,9 @@ When('I copy board link', () => {
     }),
   );
 
-  When_I_click_on_label('Copy board link');
+  When_I_find_element_by_label_text('Copy board link');
+  When_I_focus();
+  When_I_click();
 
   cy.url().then((url) => {
     cy.window().then(({ navigator }) => {
