@@ -20,7 +20,6 @@ When('I copy board link', () => {
 
   // https://github.com/cypress-io/cypress/issues/18198#issuecomment-1613998336
   When_I_find_element_by_label_text('Copy board link');
-  cy.window().focus();
   getCypressElement().realClick();
 
   cy.url().then((url) => {
