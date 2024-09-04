@@ -2,7 +2,7 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "target": "es2021",
-    "types": ["cypress"]
+    "types": ["cypress", "node", "cypress-real-events"]
   },
   "include": ["../node_modules/cypress", "./**/*.ts"],
   "exclude": ["node_modules"]

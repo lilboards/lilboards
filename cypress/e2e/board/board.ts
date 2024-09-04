@@ -1,8 +1,7 @@
 import { When } from '@badeball/cypress-cucumber-preprocessor';
 import {
-  When_I_double_click,
+  getCypressElement,
   When_I_find_element_by_label_text,
-  When_I_focus,
 } from 'cypress-cucumber-steps';
 
 let boardUrl: string;
@@ -19,10 +18,10 @@ When('I copy board link', () => {
     }),
   );
 
-  // https://github.com/cypress-io/cypress/issues/18198#issuecomment-1867783412
+  // https://github.com/cypress-io/cypress/issues/18198#issuecomment-1613998336
   When_I_find_element_by_label_text('Copy board link');
-  When_I_focus();
-  When_I_double_click();
+  cy.window().focus();
+  getCypressElement().realClick();
 
   cy.url().then((url) => {
     cy.window().then(({ navigator }) => {
