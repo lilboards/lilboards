@@ -2,6 +2,7 @@ import { When } from '@badeball/cypress-cucumber-preprocessor';
 import {
   getCypressElement,
   When_I_find_element_by_label_text,
+  When_I_wait_milliseconds,
 } from 'cypress-cucumber-steps';
 
 let boardUrl: string;
@@ -21,6 +22,7 @@ When('I copy board link', () => {
   // https://github.com/cypress-io/cypress/issues/18198#issuecomment-1613998336
   When_I_find_element_by_label_text('Copy board link');
   getCypressElement().realClick();
+  When_I_wait_milliseconds(100);
 
   cy.url().then((url) => {
     cy.window().then(({ navigator }) => {
