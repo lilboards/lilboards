@@ -57,7 +57,7 @@
     "@eslint/compat": "1.1.1",
     "@eslint/eslintrc": "3.1.0",
     "@eslint/js": "9.11.1",
-    "@size-limit/preset-app": "11.1.5",
+    "@size-limit/preset-app": "11.1.6",
     "@typescript-eslint/eslint-plugin": "8.8.0",
     "@typescript-eslint/parser": "8.8.0",
     "@vitejs/plugin-react-swc": "3.7.1",
