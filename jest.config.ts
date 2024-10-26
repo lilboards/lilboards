@@ -29,6 +29,10 @@ const jestConfig: JestConfigWithTsJest = {
       : undefined,
   setupFilesAfterEnv: ['<rootDir>/test/setupTests.ts'],
   testEnvironment: 'jsdom',
+  watchPlugins: [
+    'jest-watch-typeahead/filename',
+    'jest-watch-typeahead/testname',
+  ],
 };
 
 export default jestConfig;
