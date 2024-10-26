@@ -1,3 +1,4 @@
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import { useEffect } from 'react';
@@ -46,9 +47,11 @@ export default function Board() {
         <Link
           color="inherit"
           component={RouterLink}
+          sx={{ alignItems: 'center', display: 'flex' }}
           to="/boards"
           underline="hover"
         >
+          <ArrowBackIosIcon fontSize="inherit" />
           Boards
         </Link>
       </Breadcrumbs>
