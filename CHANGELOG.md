@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.35.1](https://github.com/lilboards/lilboards/compare/v4.35.0...v4.35.1) (2024-10-26)
+
+
+### Bug Fixes
+
+* **database:** use attribute-based access for Firebase Security Rules ([adbb4de](https://github.com/lilboards/lilboards/commit/adbb4de5668daeb7699811de0b8b3725121a912a))
+
 ## [4.35.0](https://github.com/lilboards/lilboards/compare/v4.34.2...v4.35.0) (2024-10-26)
 
 
