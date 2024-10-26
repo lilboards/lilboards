@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.35.0](https://github.com/lilboards/lilboards/compare/v4.34.2...v4.35.0) (2024-10-26)
+
+
+### Features
+
+* **pages:** add Lists placeholder ([5152cee](https://github.com/lilboards/lilboards/commit/5152cee19e1ee6fa24f8567cad0f6edd43e8307d))
+
 ## [4.34.2](https://github.com/lilboards/lilboards/compare/v4.34.1...v4.34.2) (2024-09-20)
 
 ### Miscellaneous Chores
