@@ -6,7 +6,7 @@
 
         "board": {
           ".read": "auth.uid !== null",
-          ".write": "auth.uid !== null && auth.token.email_verified === true"
+          ".write": "auth.uid === root.child('boards').child($board_id).child('board').child('createdBy').val() && auth.token.email_verified === true"
         },
 
         "columns": {
@@ -20,6 +20,27 @@
         },
 
         "likes": {
+          ".read": "auth.uid !== null",
+          ".write": "auth.uid !== null"
+        }
+      }
+    },
+
+    "lists": {
+      "$list_id": {
+        ".write": "auth.uid !== null && auth.token.email_verified === true",
+
+        "list": {
+          ".read": "auth.uid !== null",
+          ".write": "auth.uid === root.child('lists').child($list_id).child('list').child('createdBy').val() && auth.token.email_verified === true"
+        },
+
+        "rows": {
+          ".read": "auth.uid !== null",
+          ".write": "auth.uid !== null"
+        },
+
+        "items": {
           ".read": "auth.uid !== null",
           ".write": "auth.uid !== null"
         }
