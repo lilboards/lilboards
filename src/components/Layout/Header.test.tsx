@@ -39,12 +39,10 @@ describe('when not logged in', () => {
     );
   });
 
-  it('does not render boards link', () => {
+  it.each(['Boards', 'Lists'])('does not render %s link', (name) => {
     updateStore.withUser(false);
     renderWithProviders(<Header />);
-    expect(
-      screen.queryByRole('link', { name: 'Boards' }),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name })).not.toBeInTheDocument();
   });
 });
 
@@ -58,12 +56,21 @@ describe('when logged in', () => {
     );
   });
 
-  it('renders boards link', () => {
+  it('renders Boards link', () => {
     updateStore.withUser();
     renderWithProviders(<Header />);
     expect(screen.getByRole('link', { name: 'Boards' })).toHaveAttribute(
       'href',
       '/boards',
+    );
+  });
+
+  it('renders Lists link', () => {
+    updateStore.withUser();
+    renderWithProviders(<Header />);
+    expect(screen.getByRole('link', { name: 'Lists' })).toHaveAttribute(
+      'href',
+      '/lists',
     );
   });
 });
