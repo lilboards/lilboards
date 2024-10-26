@@ -1,7 +1,7 @@
 import Typography from '@mui/material/Typography';
+import AddBoard from 'src/components/AddBoard';
+import { useDispatch, useGetUserId, useSetDocumentTitle } from 'src/hooks';
 
-import AddBoard from '../../components/Boards/AddBoard';
-import { useDispatch, useGetUserId, useSetDocumentTitle } from '../../hooks';
 import BoardCards from './BoardCards';
 import { useBoards } from './hooks';
 
