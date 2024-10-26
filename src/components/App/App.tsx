@@ -6,9 +6,8 @@ import {
   createRoutesFromElements,
   RouterProvider,
 } from 'react-router-dom';
-
-import routes from '../../routes';
-import { store } from '../../store';
+import routes from 'src/routes';
+import { store } from 'src/store';
 
 const router = createBrowserRouter(createRoutesFromElements(routes));
 
