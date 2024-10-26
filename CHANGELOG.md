@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.36.0](https://github.com/lilboards/lilboards/compare/v4.35.1...v4.36.0) (2024-10-26)
+
+
+### Features
+
+* **pages:** render back icon in breadcrumb in Board ([d41e26d](https://github.com/lilboards/lilboards/commit/d41e26d1f7d3f6c992171d24b3f67b0923f2293e))
+
 ## [4.35.1](https://github.com/lilboards/lilboards/compare/v4.35.0...v4.35.1) (2024-10-26)
 
 
