@@ -6,6 +6,7 @@ import Board from '../pages/Board';
 import Boards from '../pages/Boards';
 import ErrorBoundary from '../pages/ErrorBoundary';
 import Home from '../pages/Home';
+import Lists from '../pages/Lists';
 import Login from '../pages/Login';
 import Logout from '../pages/Logout';
 import NotFound from '../pages/NotFound';
@@ -27,6 +28,12 @@ const routes = (
 
         <Route element={<Protected check="id" signInAnonymously />}>
           <Route path=":boardId" element={<Board />} />
+        </Route>
+      </Route>
+
+      <Route path="lists">
+        <Route element={<Protected check="email" />}>
+          <Route index element={<Lists />} />
         </Route>
       </Route>
 

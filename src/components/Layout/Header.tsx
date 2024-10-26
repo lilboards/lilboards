@@ -32,6 +32,18 @@ export default function Header() {
             </Link>
           </Box>
 
+          {isLoggedIn && (
+            <Button color="inherit" component={RouterLink} to="/boards">
+              Boards
+            </Button>
+          )}
+
+          {isLoggedIn && (
+            <Button color="inherit" component={RouterLink} to="/lists">
+              Lists
+            </Button>
+          )}
+
           <IconButton
             aria-label="Support"
             color="inherit"
@@ -53,12 +65,6 @@ export default function Header() {
           >
             <GitHubIcon />
           </IconButton>
-
-          {isLoggedIn && (
-            <Button color="inherit" component={RouterLink} to="/boards">
-              Boards
-            </Button>
-          )}
 
           <Button
             color="inherit"

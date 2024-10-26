@@ -54,6 +54,22 @@ exports[`matches snapshot 1`] = `
       </Route>
     </Route>
     <Route
+      path="lists"
+    >
+      <Route
+        element={
+          <ProtectedLoader
+            check="email"
+          />
+        }
+      >
+        <Route
+          element={<ListsLoader />}
+          index={true}
+        />
+      </Route>
+    </Route>
+    <Route
       element={<NotFoundLoader />}
       path="*"
     />
