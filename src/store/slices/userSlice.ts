@@ -1,13 +1,13 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-
-import { setUserId } from '../../firebase';
-import type { User } from '../../types';
+import { setUserId } from 'src/firebase';
+import type { User } from 'src/types';
 
 export const initialState: User = {
   editing: {
     boardId: '',
     columnId: '',
     itemId: '',
+    listId: '',
   },
   email: null,
   emailVerified: false,
@@ -20,9 +20,7 @@ export const userSlice = createSlice({
   initialState,
 
   reducers: {
-    resetUser: () => {
-      return initialState;
-    },
+    resetUser: () => initialState,
 
     setUser: (state, action: PayloadAction<Partial<User>>) => {
       const user = action.payload;

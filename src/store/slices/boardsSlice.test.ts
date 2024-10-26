@@ -1,7 +1,8 @@
 import {
   BOARD_TEST_ID as boardId,
   USER_TEST_ID as userId,
-} from '../../../test/constants';
+} from 'test/constants';
+
 import { boardsSlice, initialState } from './boardsSlice';
 
 const { actions, reducer } = boardsSlice;

@@ -1,10 +1,11 @@
+import { DatabaseKey } from 'src/constants';
 import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
   ITEM_TEST_ID as itemId,
   USER_TEST_ID as userId,
-} from '../../../test/constants';
-import { ITEM_IDS } from '../../constants';
+} from 'test/constants';
+
 import { columnsSlice, initialState } from './columnsSlice';
 
 const { actions, reducer } = columnsSlice;
@@ -245,7 +246,7 @@ describe('removeColumnItemId', () => {
     expect(newState).toEqual({
       [columnId]: {
         ...column,
-        [ITEM_IDS]: [],
+        [DatabaseKey.itemIds]: [],
       },
     });
   });
@@ -254,7 +255,7 @@ describe('removeColumnItemId', () => {
     const state = {
       [columnId]: {
         ...column,
-        [ITEM_IDS]: [itemId, itemId2],
+        [DatabaseKey.itemIds]: [itemId, itemId2],
       },
     };
     const payload = {
@@ -266,7 +267,7 @@ describe('removeColumnItemId', () => {
     expect(newState).toEqual({
       [columnId]: {
         ...column,
-        [ITEM_IDS]: [itemId2],
+        [DatabaseKey.itemIds]: [itemId2],
       },
     });
   });
@@ -275,7 +276,7 @@ describe('removeColumnItemId', () => {
     const state = {
       [columnId]: {
         ...column,
-        [ITEM_IDS]: [itemId],
+        [DatabaseKey.itemIds]: [itemId],
       },
     };
     const payload = {
@@ -287,7 +288,7 @@ describe('removeColumnItemId', () => {
     expect(newState).toEqual({
       [columnId]: {
         ...column,
-        [ITEM_IDS]: [],
+        [DatabaseKey.itemIds]: [],
       },
     });
   });
@@ -317,7 +318,7 @@ describe('setColumnItemIds', () => {
     expect(reducer(state, actions.setColumnItemIds(payload))).toEqual({
       [columnId]: {
         ...column,
-        [ITEM_IDS]: [itemId],
+        [DatabaseKey.itemIds]: [itemId],
       },
     });
   });
@@ -328,7 +329,7 @@ describe('setColumnItemIds', () => {
       [columnId]: column,
       [columnId2]: {
         ...column,
-        [ITEM_IDS]: [itemId],
+        [DatabaseKey.itemIds]: [itemId],
       },
     };
     const payload = {
@@ -341,11 +342,11 @@ describe('setColumnItemIds', () => {
     expect(reducer(state, actions.setColumnItemIds(payload))).toEqual({
       [columnId]: {
         ...column,
-        [ITEM_IDS]: [itemId],
+        [DatabaseKey.itemIds]: [itemId],
       },
       [columnId2]: {
         ...column,
-        [ITEM_IDS]: [],
+        [DatabaseKey.itemIds]: [],
       },
     });
   });

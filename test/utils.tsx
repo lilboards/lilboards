@@ -2,10 +2,10 @@ import { render } from '@testing-library/react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { Provider } from 'react-redux';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
+import { DatabaseKey } from 'src/constants';
+import { actions, resetActions, store } from 'src/store';
+import type { Board, Columns, Item, User } from 'src/types';
 
-import { ITEM_IDS } from '../src/constants';
-import { actions, resetActions, store } from '../src/store';
-import type { Board, Columns, Item, User } from '../src/types';
 import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
@@ -76,7 +76,7 @@ export const updateStore = {
       createdAt: dateNow,
       createdBy: userId,
       name: 'Column One',
-      [ITEM_IDS]: [itemId],
+      [DatabaseKey.itemIds]: [itemId],
     };
     const id = columnId;
     const payload = {

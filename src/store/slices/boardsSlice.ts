@@ -1,12 +1,11 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-
 import {
   debouncedSaveBoardData,
   removeBoard,
   removeUserBoard,
   saveBoardData,
-} from '../../firebase';
-import type { Board, Boards, Id } from '../../types';
+} from 'src/firebase';
+import type { Board, Boards, Id } from 'src/types';
 
 export const initialState: Boards = {};
 

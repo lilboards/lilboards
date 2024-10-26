@@ -1,12 +1,11 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-
 import {
   likeItem,
   removeLikesItem,
   setLikesItem,
   unlikeItem,
-} from '../../firebase';
-import type { Id, Likes, LikesItem } from '../../types';
+} from 'src/firebase';
+import type { Id, Likes, LikesItem } from 'src/types';
 
 export const initialState: Likes = {
   items: {},

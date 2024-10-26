@@ -1,7 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-
-import { removeItem, updateItem } from '../../firebase';
-import type { Id, Item, Items } from '../../types';
+import { removeItem, updateItem } from 'src/firebase';
+import type { Id, Item, Items } from 'src/types';
 
 export const initialState: Items = {};
 

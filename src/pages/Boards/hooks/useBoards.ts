@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
-
-import { getBoardVal, getUserBoardsVal } from '../../../firebase';
-import { useDispatch } from '../../../hooks';
-import { actions } from '../../../store';
-import type { Id } from '../../../types';
+import { getBoardVal, getUserBoardsVal } from 'src/firebase';
+import { useDispatch } from 'src/hooks';
+import { actions } from 'src/store';
+import type { Id } from 'src/types';
 
 export function useBoards(
   dispatch: ReturnType<typeof useDispatch>,

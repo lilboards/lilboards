@@ -1,6 +1,7 @@
-import { USER_TEST_ID as userId } from '../../../../test/constants';
-import { ITEM_IDS } from '../../../constants';
-import { reorderArray } from '../../../utils';
+import { DatabaseKey } from 'src/constants';
+import { reorderArray } from 'src/utils';
+import { USER_TEST_ID as userId } from 'test/constants';
+
 import { reorder } from './reorder';
 
 const column = {
@@ -16,7 +17,7 @@ const itemIds = ['item1', 'item2', 'item3'];
 const columns = {
   [columnId1]: {
     ...column,
-    [ITEM_IDS]: itemIds,
+    [DatabaseKey.itemIds]: itemIds,
   },
 };
 

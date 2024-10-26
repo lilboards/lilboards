@@ -1,9 +1,9 @@
 import Grid from '@mui/material/Grid';
 import { createSelector } from '@reduxjs/toolkit';
+import { useSelector } from 'src/hooks';
+import { RootState, SortBy, SortOrder } from 'src/types';
+import { sort } from 'src/utils';
 
-import { useSelector } from '../../hooks';
-import { RootState, SortBy, SortOrder } from '../../types';
-import { sort } from '../../utils';
 import BoardCard from './BoardCard';
 
 const selectBoardIds = createSelector(
