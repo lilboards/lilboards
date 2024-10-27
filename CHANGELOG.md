@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.37.0](https://github.com/lilboards/lilboards/compare/v4.36.0...v4.37.0) (2024-10-27)
+
+
+### Features
+
+* **pages:** add and show lists ([737750b](https://github.com/lilboards/lilboards/commit/737750b61099ccedb945ed842960a89ae2b4c706))
+* **pages:** render placeholder List ([be3ef90](https://github.com/lilboards/lilboards/commit/be3ef900f236f42ad0d2f41ffc9cc52a25c48142))
+
 ## [4.36.0](https://github.com/lilboards/lilboards/compare/v4.35.1...v4.36.0) (2024-10-26)
 
 
