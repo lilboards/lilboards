@@ -5,6 +5,7 @@ import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { DatabaseKey } from 'src/constants';
 import { actions, resetActions, store } from 'src/store';
 import type { Board, Columns, Item, List, User } from 'src/types';
+import { noop } from 'src/utils';
 
 import {
   BOARD_TEST_ID as boardId,
@@ -15,8 +16,6 @@ import {
   USER_TEST_EMAIL as userEmail,
   USER_TEST_ID as userId,
 } from './constants';
-
-function noop() {}
 
 export let router: ReturnType<typeof createMemoryRouter>;
 
