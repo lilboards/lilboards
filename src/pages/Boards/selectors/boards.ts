@@ -9,6 +9,7 @@ export const selectBoardIds = createSelector(
       ...boards[id],
       id,
     }));
+
     return sort(boardsWithId, SortBy.createdAt, SortOrder.Descending).map(
       (board) => board.id,
     );

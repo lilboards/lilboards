@@ -1,10 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
+import { BOARD_TEST_ID as boardId, DATE_NOW as dateNow } from 'test/constants';
+import { renderWithProviders, store, updateStore } from 'test/utils';
 
-import {
-  BOARD_TEST_ID as boardId,
-  DATE_NOW as dateNow,
-} from '../../../test/constants';
-import { renderWithProviders, store, updateStore } from '../../../test/utils';
 import BoardCard from './BoardCard';
 
 it('renders "Open board" link', () => {

@@ -6,12 +6,11 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-
-import DeleteDialog from '../../components/DeleteDialog';
-import { logEvent } from '../../firebase';
-import { useDispatch, useGetUserId, useSelector } from '../../hooks';
-import { actions } from '../../store';
-import type { Id } from '../../types';
+import DeleteDialog from 'src/components/DeleteDialog';
+import { logEvent } from 'src/firebase';
+import { useDispatch, useGetUserId, useSelector } from 'src/hooks';
+import { actions } from 'src/store';
+import type { Id } from 'src/types';
 
 interface Props {
   boardId: Id;
