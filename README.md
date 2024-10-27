@@ -22,11 +22,11 @@
 
 This project is built with:
 
-- [Vite](https://vitejs.dev/)
+- [@hello-pangea/dnd](https://github.com/hello-pangea/dnd)
 - [Firebase](https://firebase.google.com/)
 - [MUI](https://mui.com/)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
-- [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd#readme)
+- [Vite](https://vite.dev/)
 
 ## Contributing
 

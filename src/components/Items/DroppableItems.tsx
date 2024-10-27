@@ -1,8 +1,8 @@
+import { Droppable } from '@hello-pangea/dnd';
 import Box from '@mui/material/Box';
-import { Droppable } from 'react-beautiful-dnd';
+import { useGetItemIds } from 'src/hooks';
+import type { Id } from 'src/types';
 
-import { useGetItemIds } from '../../hooks';
-import type { Id } from '../../types';
 import InnerList from './InnerList';
 import { getDroppableBackgroundColor } from './styles';
 

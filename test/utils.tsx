@@ -1,5 +1,5 @@
+import { DragDropContext } from '@hello-pangea/dnd';
 import { render } from '@testing-library/react';
-import { DragDropContext } from 'react-beautiful-dnd';
 import { Provider } from 'react-redux';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { DatabaseKey } from 'src/constants';

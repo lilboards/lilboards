@@ -1,6 +1,6 @@
 import { memo } from 'react';
+import type { Id } from 'src/types';
 
-import type { Id } from '../../types';
 import DraggableItem from './DraggableItem';
 
 interface Props {
@@ -25,5 +25,7 @@ function InnerList(props: Props) {
   );
 }
 
-// https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/api/droppable.md#recommended-droppable--performance-optimisation
+/**
+ * @see {@link https://github.com/hello-pangea/dnd/blob/main/docs/api/droppable.md#recommended-droppable--performance-optimisation}
+ */
 export default memo(InnerList);

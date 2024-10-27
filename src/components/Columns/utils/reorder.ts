@@ -1,4 +1,4 @@
-import type { DraggableLocation } from 'react-beautiful-dnd';
+import type { DraggableLocation } from '@hello-pangea/dnd';
 import { DatabaseKey } from 'src/constants';
 import type { Columns } from 'src/types';
 import { cloneArray, reorderArray } from 'src/utils';

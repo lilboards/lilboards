@@ -1,11 +1,11 @@
-import type { DropResult } from 'react-beautiful-dnd';
-
+import type { DropResult } from '@hello-pangea/dnd';
 import {
   COLUMN_TEST_ID as columnId,
   DATE_NOW as dateNow,
   ITEM_TEST_ID as itemId,
   USER_TEST_ID as userId,
-} from '../../../../test/constants';
+} from 'test/constants';
+
 import { combine } from './combine';
 
 const itemId1 = `${itemId}1`;
