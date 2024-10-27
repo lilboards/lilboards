@@ -1,8 +1,8 @@
-import type { Theme } from '@mui/material/styles';
 import type {
   DraggableStateSnapshot,
   DroppableStateSnapshot,
-} from 'react-beautiful-dnd';
+} from '@hello-pangea/dnd';
+import type { Theme } from '@mui/material/styles';
 
 import { getDraggableCardStyle, getDroppableBackgroundColor } from './styles';
 

@@ -1,8 +1,8 @@
+import { Draggable } from '@hello-pangea/dnd';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
-import { Draggable } from 'react-beautiful-dnd';
+import type { Id } from 'src/types';
 
-import type { Id } from '../../types';
 import Item from '../Item';
 import { getDraggableCardStyle } from './styles';
 

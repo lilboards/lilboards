@@ -1,11 +1,10 @@
-import type { DropResult } from 'react-beautiful-dnd';
-
-import type { Items, LikesItems } from '../../../types';
+import type { DropResult } from '@hello-pangea/dnd';
+import type { Items, LikesItems } from 'src/types';
 
 const separator = '\n\n---\n\n';
 
 /**
- * @see https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/guides/combining.md
+ * @see {@link https://github.com/hello-pangea/dnd/blob/main/docs/guides/combining.md}
  */
 export function combine(result: DropResult, items: Items, likes: LikesItems) {
   const sourceItemId = result.draggableId;

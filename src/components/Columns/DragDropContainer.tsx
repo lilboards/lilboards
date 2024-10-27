@@ -1,9 +1,8 @@
-import type { DropResult } from 'react-beautiful-dnd';
-import { DragDropContext } from 'react-beautiful-dnd';
+import { DragDropContext, type DropResult } from '@hello-pangea/dnd';
+import { useDispatch, useGetUserId, useSelector } from 'src/hooks';
+import { actions } from 'src/store';
+import type { Id } from 'src/types';
 
-import { useDispatch, useGetUserId, useSelector } from '../../hooks';
-import { actions } from '../../store';
-import type { Id } from '../../types';
 import { combine, reorder } from './utils';
 
 interface Props {
