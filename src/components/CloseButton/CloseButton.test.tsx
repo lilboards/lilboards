@@ -17,5 +17,5 @@ it('handles onClick event', () => {
   const onClick = jest.fn();
   render(<CloseButton onClick={onClick} />);
   fireEvent.click(screen.getByRole('button'));
-  expect(onClick).toBeCalledTimes(1);
+  expect(onClick).toHaveBeenCalledTimes(1);
 });

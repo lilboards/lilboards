@@ -14,5 +14,5 @@ beforeEach(() => {
 it('wraps react-redux useDispatch', () => {
   const { result } = renderHook(() => useDispatch());
   expect(result.current).toBe(undefined);
-  expect(useReactReduxDispatch).toBeCalledTimes(1);
+  expect(useReactReduxDispatch).toHaveBeenCalledTimes(1);
 });

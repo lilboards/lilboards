@@ -33,7 +33,7 @@ it('renders error message', () => {
   renderWithProviders(<ErrorBoundary />);
   expect(screen.getByText(error.toString())).toBeInTheDocument();
   // eslint-disable-next-line no-console
-  expect(console.error).toBeCalledWith(error);
+  expect(console.error).toHaveBeenCalledWith(error);
 });
 
 it('renders home link', () => {

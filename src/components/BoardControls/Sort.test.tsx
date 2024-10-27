@@ -36,8 +36,8 @@ it('logs event when "Sort by likes" button is clicked', () => {
   updateStore.withUser();
   renderWithProviders(<Sort boardId={board.id} />);
   fireEvent.click(screen.getByRole('button', { name: 'Sort by likes' }));
-  expect(logEvent).toBeCalledTimes(1);
-  expect(logEvent).toBeCalledWith('sort_items', {
+  expect(logEvent).toHaveBeenCalledTimes(1);
+  expect(logEvent).toHaveBeenCalledWith('sort_items', {
     by: 'likes',
     order: 'descending',
   });

@@ -33,7 +33,7 @@ describe('not loaded', () => {
   it('renders progress bar', () => {
     mockedUseAuth.mockReset().mockReturnValue(false);
     renderWithProviders(<Protected {...props} />);
-    expect(mockedOutlet).not.toBeCalled();
+    expect(mockedOutlet).not.toHaveBeenCalled();
     expect(screen.getByRole('progressbar')).toBeInTheDocument();
   });
 });
@@ -45,7 +45,7 @@ describe('not signed in', () => {
 
   it('does not render protected outlet', () => {
     renderWithProviders(<Protected {...props} />);
-    expect(mockedOutlet).not.toBeCalled();
+    expect(mockedOutlet).not.toHaveBeenCalled();
   });
 
   it('navigates to /login', async () => {
@@ -65,7 +65,7 @@ describe('signed in with unverified email', () => {
 
   it('does not render protected outlet when email is checked', () => {
     renderWithProviders(<Protected {...props} />);
-    expect(mockedOutlet).not.toBeCalled();
+    expect(mockedOutlet).not.toHaveBeenCalled();
   });
 
   it('renders "Send verification email" button', () => {
@@ -81,7 +81,7 @@ describe('signed in with verified email', () => {
   it('renders protected outlet when email is checked', () => {
     updateStore.withUser();
     renderWithProviders(<Protected check="email" />);
-    expect(mockedOutlet).toBeCalledTimes(1);
+    expect(mockedOutlet).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -93,19 +93,19 @@ describe('props.signInAnonymously=true', () => {
 
   it('calls hook useAuth', () => {
     renderWithProviders(<Protected {...props} />);
-    expect(mockedUseAuth).toBeCalledTimes(1);
-    expect(mockedUseAuth).toBeCalledWith(true);
+    expect(mockedUseAuth).toHaveBeenCalledTimes(1);
+    expect(mockedUseAuth).toHaveBeenCalledWith(true);
   });
 
   it('does not render protected outlet if user does not exist', () => {
     renderWithProviders(<Protected {...props} />);
-    expect(mockedOutlet).not.toBeCalled();
+    expect(mockedOutlet).not.toHaveBeenCalled();
   });
 
   it('renders protected outlet if user exists', () => {
     updateStore.withUser();
     renderWithProviders(<Protected {...props} />);
-    expect(mockedOutlet).toBeCalledTimes(1);
+    expect(mockedOutlet).toHaveBeenCalledTimes(1);
   });
 
   it('does not navigates to /login', async () => {

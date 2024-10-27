@@ -50,7 +50,7 @@ it('adds new column', () => {
       name: '',
     },
   });
-  expect(logEvent).toBeCalledTimes(1);
-  expect(logEvent).toBeCalledWith('create_column');
+  expect(logEvent).toHaveBeenCalledTimes(1);
+  expect(logEvent).toHaveBeenCalledWith('create_column');
   dateNowSpy.mockRestore();
 });

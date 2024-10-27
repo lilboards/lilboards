@@ -21,7 +21,7 @@ describe('send verification email', () => {
     fireEvent.click(
       screen.getByRole('button', { name: 'Send verification email' }),
     );
-    expect(sendEmailVerification).toBeCalled();
+    expect(sendEmailVerification).toHaveBeenCalled();
     expect(screen.getByText('Email sent')).toBeInTheDocument();
   });
 });

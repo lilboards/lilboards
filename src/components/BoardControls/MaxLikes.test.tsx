@@ -33,7 +33,7 @@ describe('when user cannot edit', () => {
     const event = { target: { value: DEFAULT_MAX_LIKES + 1 } };
     fireEvent.change(input, event);
     expect(input).toHaveValue(DEFAULT_MAX_LIKES);
-    expect(logEvent).not.toBeCalled();
+    expect(logEvent).not.toHaveBeenCalled();
   });
 });
 
@@ -58,8 +58,8 @@ describe('when user can edit', () => {
     const input = screen.getByLabelText('Max Likes');
     const event = { target: { value: '3.14' } };
     fireEvent.change(input, event);
-    expect(logEvent).toBeCalledTimes(1);
-    expect(logEvent).toBeCalledWith('max_likes', {
+    expect(logEvent).toHaveBeenCalledTimes(1);
+    expect(logEvent).toHaveBeenCalledWith('max_likes', {
       boardId: board.id,
       maxLikes: 3,
     });

@@ -136,12 +136,12 @@ describe('with list and anonymous user', () => {
   it('attaches ref listeners', () => {
     mockedUseParams.mockReturnValue({ listId });
     const { unmount } = renderWithProviders(<List />);
-    expect(getListDataRef).toBeCalledTimes(1);
-    expect(getListDataRef).toBeCalledWith(listId);
-    expect(onValue).toBeCalledTimes(1);
-    expect(onValue).toBeCalledWith(listDataRef, expect.any(Function));
+    expect(getListDataRef).toHaveBeenCalledTimes(1);
+    expect(getListDataRef).toHaveBeenCalledWith(listId);
+    expect(onValue).toHaveBeenCalledTimes(1);
+    expect(onValue).toHaveBeenCalledWith(listDataRef, expect.any(Function));
 
     unmount();
-    expect(unsubscribe).toBeCalledTimes(1);
+    expect(unsubscribe).toHaveBeenCalledTimes(1);
   });
 });

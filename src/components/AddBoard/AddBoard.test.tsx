@@ -35,8 +35,8 @@ it('adds new board to store and database', () => {
       name: '',
     },
   });
-  expect(saveUserBoardId).toBeCalledTimes(1);
-  expect(saveUserBoardId).toBeCalledWith(user.id, boardId);
+  expect(saveUserBoardId).toHaveBeenCalledTimes(1);
+  expect(saveUserBoardId).toHaveBeenCalledWith(user.id, boardId);
   dateNowSpy.mockRestore();
 });
 
@@ -44,6 +44,6 @@ it('logs add board event', () => {
   updateStore.withUser();
   renderWithProviders(<AddBoard />);
   fireEvent.click(screen.getByText('Add board'));
-  expect(logEvent).toBeCalledTimes(1);
-  expect(logEvent).toBeCalledWith('create_board');
+  expect(logEvent).toHaveBeenCalledTimes(1);
+  expect(logEvent).toHaveBeenCalledWith('create_board');
 });

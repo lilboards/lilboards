@@ -17,6 +17,6 @@ afterAll(() => {
 
 it('copies link to clipboard', () => {
   copyLinkToClipboard();
-  expect(writeText).toBeCalledTimes(1);
-  expect(writeText).toBeCalledWith(window.location.href);
+  expect(writeText).toHaveBeenCalledTimes(1);
+  expect(writeText).toHaveBeenCalledWith(window.location.href);
 });

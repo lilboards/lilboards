@@ -21,8 +21,8 @@ afterAll(() => {
 it('copies empty markdown to clipboard', () => {
   renderWithProviders(<Export />);
   fireEvent.click(screen.getByLabelText('Copy board as Markdown'));
-  expect(writeText).toBeCalledTimes(1);
-  expect(writeText).toBeCalledWith('');
+  expect(writeText).toHaveBeenCalledTimes(1);
+  expect(writeText).toHaveBeenCalledWith('');
 });
 
 it('copies markdown to clipboard', () => {
@@ -30,7 +30,7 @@ it('copies markdown to clipboard', () => {
   updateStore.withItem();
   renderWithProviders(<Export />);
   fireEvent.click(screen.getByLabelText('Copy board as Markdown'));
-  expect(writeText).toBeCalledTimes(1);
+  expect(writeText).toHaveBeenCalledTimes(1);
   expect(writeText.mock.calls[0][0]).toBe(
     `| Column One |
 | --- |

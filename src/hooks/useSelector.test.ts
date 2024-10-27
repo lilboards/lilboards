@@ -15,6 +15,6 @@ it('returns react-redux useSelector', () => {
   const selector = jest.fn();
   const { result } = renderHook(() => useSelector(selector));
   expect(result.current).toBe(undefined);
-  expect(useReactReduxSelector).toBeCalledTimes(1);
-  expect(useReactReduxSelector).toBeCalledWith(selector);
+  expect(useReactReduxSelector).toHaveBeenCalledTimes(1);
+  expect(useReactReduxSelector).toHaveBeenCalledWith(selector);
 });

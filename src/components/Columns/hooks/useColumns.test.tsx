@@ -94,12 +94,12 @@ describe('onChildAdded', () => {
 
   it('subscribes and unsubscribes to listener', () => {
     const { unmount } = renderWithProviders(<TestComponent />);
-    expect(getColumnsRef).toBeCalledTimes(1);
-    expect(getColumnsRef).toBeCalledWith(boardId);
-    expect(onChildAdded).toBeCalledTimes(1);
-    expect(onChildAdded).toBeCalledWith(columnsRef, expect.any(Function));
+    expect(getColumnsRef).toHaveBeenCalledTimes(1);
+    expect(getColumnsRef).toHaveBeenCalledWith(boardId);
+    expect(onChildAdded).toHaveBeenCalledTimes(1);
+    expect(onChildAdded).toHaveBeenCalledWith(columnsRef, expect.any(Function));
     unmount();
-    expect(unsubscribeOnChildAdded).toBeCalledTimes(1);
+    expect(unsubscribeOnChildAdded).toHaveBeenCalledTimes(1);
   });
 
   it('adds column to store', () => {
@@ -149,12 +149,15 @@ describe('onChildChanged', () => {
 
   it('subscribes and unsubscribes to listener', () => {
     const { unmount } = renderWithProviders(<TestComponent />);
-    expect(getColumnsRef).toBeCalledTimes(1);
-    expect(getColumnsRef).toBeCalledWith(boardId);
-    expect(onChildChanged).toBeCalledTimes(1);
-    expect(onChildChanged).toBeCalledWith(columnsRef, expect.any(Function));
+    expect(getColumnsRef).toHaveBeenCalledTimes(1);
+    expect(getColumnsRef).toHaveBeenCalledWith(boardId);
+    expect(onChildChanged).toHaveBeenCalledTimes(1);
+    expect(onChildChanged).toHaveBeenCalledWith(
+      columnsRef,
+      expect.any(Function),
+    );
     unmount();
-    expect(unsubscribeOnChildChanged).toBeCalledTimes(1);
+    expect(unsubscribeOnChildChanged).toHaveBeenCalledTimes(1);
   });
 
   it('updates column in store', () => {
@@ -202,12 +205,15 @@ describe('onChildRemoved', () => {
 
   it('subscribes and unsubscribes to listener', () => {
     const { unmount } = renderWithProviders(<TestComponent />);
-    expect(getColumnsRef).toBeCalledTimes(1);
-    expect(getColumnsRef).toBeCalledWith(boardId);
-    expect(onChildChanged).toBeCalledTimes(1);
-    expect(onChildChanged).toBeCalledWith(columnsRef, expect.any(Function));
+    expect(getColumnsRef).toHaveBeenCalledTimes(1);
+    expect(getColumnsRef).toHaveBeenCalledWith(boardId);
+    expect(onChildChanged).toHaveBeenCalledTimes(1);
+    expect(onChildChanged).toHaveBeenCalledWith(
+      columnsRef,
+      expect.any(Function),
+    );
     unmount();
-    expect(unsubscribeOnChildChanged).toBeCalledTimes(1);
+    expect(unsubscribeOnChildChanged).toHaveBeenCalledTimes(1);
   });
 
   it('removes column from store', () => {

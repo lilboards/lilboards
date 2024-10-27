@@ -90,12 +90,12 @@ describe('onChildAdded', () => {
 
   it('subscribes and unsubscribes to listener', () => {
     const { unmount } = renderWithProviders(<TestComponent />);
-    expect(getItemsRef).toBeCalledTimes(1);
-    expect(getItemsRef).toBeCalledWith(boardId);
-    expect(onChildAdded).toBeCalledTimes(1);
-    expect(onChildAdded).toBeCalledWith(itemsRef, expect.any(Function));
+    expect(getItemsRef).toHaveBeenCalledTimes(1);
+    expect(getItemsRef).toHaveBeenCalledWith(boardId);
+    expect(onChildAdded).toHaveBeenCalledTimes(1);
+    expect(onChildAdded).toHaveBeenCalledWith(itemsRef, expect.any(Function));
     unmount();
-    expect(unsubscribeOnChildAdded).toBeCalledTimes(1);
+    expect(unsubscribeOnChildAdded).toHaveBeenCalledTimes(1);
   });
 
   it('adds item to store', () => {
@@ -145,12 +145,12 @@ describe('onChildChanged', () => {
 
   it('subscribes and unsubscribes to listener', () => {
     const { unmount } = renderWithProviders(<TestComponent />);
-    expect(getItemsRef).toBeCalledTimes(1);
-    expect(getItemsRef).toBeCalledWith(boardId);
-    expect(onChildChanged).toBeCalledTimes(1);
-    expect(onChildChanged).toBeCalledWith(itemsRef, expect.any(Function));
+    expect(getItemsRef).toHaveBeenCalledTimes(1);
+    expect(getItemsRef).toHaveBeenCalledWith(boardId);
+    expect(onChildChanged).toHaveBeenCalledTimes(1);
+    expect(onChildChanged).toHaveBeenCalledWith(itemsRef, expect.any(Function));
     unmount();
-    expect(unsubscribeOnChildChanged).toBeCalledTimes(1);
+    expect(unsubscribeOnChildChanged).toHaveBeenCalledTimes(1);
   });
 
   it('updates item in store', () => {
@@ -200,12 +200,12 @@ describe('onChildRemoved', () => {
 
   it('subscribes and unsubscribes to listener', () => {
     const { unmount } = renderWithProviders(<TestComponent />);
-    expect(getItemsRef).toBeCalledTimes(1);
-    expect(getItemsRef).toBeCalledWith(boardId);
-    expect(onChildRemoved).toBeCalledTimes(1);
-    expect(onChildRemoved).toBeCalledWith(itemsRef, expect.any(Function));
+    expect(getItemsRef).toHaveBeenCalledTimes(1);
+    expect(getItemsRef).toHaveBeenCalledWith(boardId);
+    expect(onChildRemoved).toHaveBeenCalledTimes(1);
+    expect(onChildRemoved).toHaveBeenCalledWith(itemsRef, expect.any(Function));
     unmount();
-    expect(unsubscribeOnChildRemoved).toBeCalledTimes(1);
+    expect(unsubscribeOnChildRemoved).toHaveBeenCalledTimes(1);
   });
 
   it('removes item from store', () => {

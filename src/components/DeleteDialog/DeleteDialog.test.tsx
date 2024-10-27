@@ -26,11 +26,11 @@ it('does not render title and content when dialog is not open', () => {
 it('calls onClose when "Cancel" is clicked', () => {
   render(<DeleteDialog {...props} />);
   fireEvent.click(screen.getByText('Cancel'));
-  expect(props.onClose).toBeCalledTimes(1);
+  expect(props.onClose).toHaveBeenCalledTimes(1);
 });
 
 it('calls onDelete when "Delete" is clicked', () => {
   render(<DeleteDialog {...props} />);
   fireEvent.click(screen.getByText('Delete'));
-  expect(props.onDelete).toBeCalledTimes(1);
+  expect(props.onDelete).toHaveBeenCalledTimes(1);
 });

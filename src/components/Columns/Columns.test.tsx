@@ -34,12 +34,12 @@ it('renders column', () => {
 
 it('uses hooks', async () => {
   renderWithProviders(<Columns boardId={boardId} />);
-  expect(useColumns).toBeCalledTimes(1);
-  expect(useColumns).toBeCalledWith(boardId);
-  expect(useItems).toBeCalledTimes(1);
-  expect(useItems).toBeCalledWith(boardId);
-  expect(useLikes).toBeCalledTimes(1);
-  expect(useLikes).toBeCalledWith(boardId);
+  expect(useColumns).toHaveBeenCalledTimes(1);
+  expect(useColumns).toHaveBeenCalledWith(boardId);
+  expect(useItems).toHaveBeenCalledTimes(1);
+  expect(useItems).toHaveBeenCalledWith(boardId);
+  expect(useLikes).toHaveBeenCalledTimes(1);
+  expect(useLikes).toHaveBeenCalledWith(boardId);
 });
 
 it('renders item text', () => {

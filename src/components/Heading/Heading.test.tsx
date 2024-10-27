@@ -28,5 +28,5 @@ it('does not render link', () => {
 it('copies link to clipboard', () => {
   render(<Heading {...props} link />);
   fireEvent.click(screen.getByLabelText('Copy link'));
-  expect(copyLinkToClipboard).toBeCalledTimes(1);
+  expect(copyLinkToClipboard).toHaveBeenCalledTimes(1);
 });

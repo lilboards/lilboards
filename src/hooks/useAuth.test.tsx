@@ -33,7 +33,7 @@ describe('shouldSignInAnonymously is false', () => {
     it('does not update user in store', () => {
       const { result } = renderHook(() => useAuth(), { wrapper });
       expect(result.current).toBe(true);
-      expect(logEvent).not.toBeCalled();
+      expect(logEvent).not.toHaveBeenCalled();
       expect(store.getState().user).toMatchObject({
         email: null,
         emailVerified: false,
@@ -57,8 +57,8 @@ describe('shouldSignInAnonymously is false', () => {
     it('updates user in store', () => {
       const { result } = renderHook(() => useAuth(), { wrapper });
       expect(result.current).toBe(true);
-      expect(logEvent).toBeCalledTimes(1);
-      expect(logEvent).toBeCalledWith('login', {
+      expect(logEvent).toHaveBeenCalledTimes(1);
+      expect(logEvent).toHaveBeenCalledWith('login', {
         type: 'authenticated',
         email_verified: false,
       });
@@ -85,8 +85,8 @@ describe('shouldSignInAnonymously is false', () => {
     it('updates user in store', () => {
       const { result } = renderHook(() => useAuth(), { wrapper });
       expect(result.current).toBe(true);
-      expect(logEvent).toBeCalledTimes(1);
-      expect(logEvent).toBeCalledWith('login', {
+      expect(logEvent).toHaveBeenCalledTimes(1);
+      expect(logEvent).toHaveBeenCalledWith('login', {
         type: 'authenticated',
         email_verified: true,
       });
@@ -111,8 +111,8 @@ describe('shouldSignInAnonymously is false', () => {
     it('updates user in store', () => {
       const { result } = renderHook(() => useAuth(), { wrapper });
       expect(result.current).toBe(true);
-      expect(logEvent).toBeCalledTimes(1);
-      expect(logEvent).toBeCalledWith('login', {
+      expect(logEvent).toHaveBeenCalledTimes(1);
+      expect(logEvent).toHaveBeenCalledWith('login', {
         type: 'authenticated',
         email_verified: undefined,
       });
@@ -140,9 +140,9 @@ describe('shouldSignInAnonymously is true', () => {
       wrapper,
     });
     expect(result.current).toBe(false);
-    expect(signInAnonymously).toBeCalledTimes(1);
-    expect(logEvent).toBeCalledTimes(1);
-    expect(logEvent).toBeCalledWith('login', {
+    expect(signInAnonymously).toHaveBeenCalledTimes(1);
+    expect(logEvent).toHaveBeenCalledTimes(1);
+    expect(logEvent).toHaveBeenCalledWith('login', {
       type: 'anonymous',
     });
     expect(store.getState().user).toMatchObject({

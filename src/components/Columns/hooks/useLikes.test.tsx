@@ -59,12 +59,12 @@ describe('likes snapshot value is valid', () => {
     updateStore.withUser();
     const { unmount } = renderWithProviders(<TestComponent />);
 
-    expect(getLikesRef).toBeCalledTimes(1);
-    expect(getLikesRef).toBeCalledWith(boardId);
+    expect(getLikesRef).toHaveBeenCalledTimes(1);
+    expect(getLikesRef).toHaveBeenCalledWith(boardId);
 
     jest.runAllTimers();
-    expect(onValue).toBeCalledTimes(1);
-    expect(onValue).toBeCalledWith(undefined, expect.any(Function));
+    expect(onValue).toHaveBeenCalledTimes(1);
+    expect(onValue).toHaveBeenCalledWith(undefined, expect.any(Function));
 
     expect(store.getState().likes).toEqual({
       items: {
@@ -75,7 +75,7 @@ describe('likes snapshot value is valid', () => {
     });
 
     unmount();
-    expect(unsubscribe).toBeCalledTimes(1);
+    expect(unsubscribe).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -92,17 +92,17 @@ describe('likes snapshot value is null', () => {
     updateStore.withUser();
     const { unmount } = renderWithProviders(<TestComponent />);
 
-    expect(getLikesRef).toBeCalledTimes(1);
-    expect(getLikesRef).toBeCalledWith(boardId);
+    expect(getLikesRef).toHaveBeenCalledTimes(1);
+    expect(getLikesRef).toHaveBeenCalledWith(boardId);
 
     jest.runAllTimers();
-    expect(onValue).toBeCalledTimes(1);
-    expect(onValue).toBeCalledWith(undefined, expect.any(Function));
+    expect(onValue).toHaveBeenCalledTimes(1);
+    expect(onValue).toHaveBeenCalledWith(undefined, expect.any(Function));
     expect(store.getState().likes).toEqual({
       items: {},
     });
 
     unmount();
-    expect(unsubscribe).toBeCalledTimes(1);
+    expect(unsubscribe).toHaveBeenCalledTimes(1);
   });
 });

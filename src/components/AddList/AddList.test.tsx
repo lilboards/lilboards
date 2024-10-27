@@ -35,8 +35,8 @@ it('adds new list to store and database', () => {
       name: '',
     },
   });
-  expect(saveUserListId).toBeCalledTimes(1);
-  expect(saveUserListId).toBeCalledWith(user.id, listId);
+  expect(saveUserListId).toHaveBeenCalledTimes(1);
+  expect(saveUserListId).toHaveBeenCalledWith(user.id, listId);
   dateNowSpy.mockRestore();
 });
 
@@ -44,6 +44,6 @@ it('logs add list event', () => {
   updateStore.withUser();
   renderWithProviders(<AddList />);
   fireEvent.click(screen.getByText('Add list'));
-  expect(logEvent).toBeCalledTimes(1);
-  expect(logEvent).toBeCalledWith('create_list');
+  expect(logEvent).toHaveBeenCalledTimes(1);
+  expect(logEvent).toHaveBeenCalledWith('create_list');
 });

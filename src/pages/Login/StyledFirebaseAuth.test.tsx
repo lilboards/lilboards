@@ -40,13 +40,13 @@ it('gets existing AuthUI', () => {
 
 it('resets the AuthUI', () => {
   render(<StyledFirebaseAuth />);
-  expect(getAuthUI().reset).toBeCalledTimes(1);
+  expect(getAuthUI().reset).toHaveBeenCalledTimes(1);
 });
 
 it('starts the AuthUI', () => {
   render(<StyledFirebaseAuth />);
-  expect(getAuthUI().start).toBeCalledTimes(1);
-  expect(getAuthUI().start).toBeCalledWith(
+  expect(getAuthUI().start).toHaveBeenCalledTimes(1);
+  expect(getAuthUI().start).toHaveBeenCalledWith(
     expect.any(HTMLDivElement),
     uiConfig,
   );
@@ -63,8 +63,8 @@ describe('user signs in', () => {
 
   it('calls onAuthStateChanged and resets AuthUI', () => {
     render(<StyledFirebaseAuth />);
-    expect(mockedOnAuthStateChanged).toBeCalledTimes(2);
-    expect(getAuthUI().reset).toBeCalledTimes(3);
+    expect(mockedOnAuthStateChanged).toHaveBeenCalledTimes(2);
+    expect(getAuthUI().reset).toHaveBeenCalledTimes(3);
     jest.clearAllMocks();
   });
 });
@@ -80,8 +80,8 @@ describe('user signs out', () => {
 
   it('calls onAuthStateChanged and resets AuthUI', () => {
     render(<StyledFirebaseAuth />);
-    expect(mockedOnAuthStateChanged).toBeCalledTimes(1);
-    expect(getAuthUI().reset).toBeCalledTimes(1);
+    expect(mockedOnAuthStateChanged).toHaveBeenCalledTimes(1);
+    expect(getAuthUI().reset).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -103,8 +103,8 @@ describe('user signs in and out', () => {
 
   it('calls onAuthStateChanged and resets AuthUI', () => {
     render(<StyledFirebaseAuth />);
-    expect(mockedOnAuthStateChanged).toBeCalledTimes(3);
-    expect(getAuthUI().reset).toBeCalledTimes(6);
+    expect(mockedOnAuthStateChanged).toHaveBeenCalledTimes(3);
+    expect(getAuthUI().reset).toHaveBeenCalledTimes(6);
   });
 });
 
@@ -113,7 +113,7 @@ describe('unmount', () => {
     const { unmount } = render(<StyledFirebaseAuth />);
     jest.clearAllMocks();
     unmount();
-    expect(mockedOnAuthStateChanged).toBeCalledTimes(0);
-    expect(getAuthUI().reset).toBeCalledTimes(1);
+    expect(mockedOnAuthStateChanged).toHaveBeenCalledTimes(0);
+    expect(getAuthUI().reset).toHaveBeenCalledTimes(1);
   });
 });

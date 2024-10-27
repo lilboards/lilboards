@@ -79,7 +79,7 @@ describe('timer', () => {
     });
 
     expect(screen.getByText("⏰ Time's up!")).toBeInTheDocument();
-    expect(playAlarm).toBeCalledTimes(1);
+    expect(playAlarm).toHaveBeenCalledTimes(1);
     expect(button).toHaveAttribute('aria-label', 'Start timer');
     expect(button).toHaveTextContent('Start');
     expect(input).toHaveProperty('type', 'number');

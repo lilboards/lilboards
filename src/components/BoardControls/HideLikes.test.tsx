@@ -14,6 +14,6 @@ it('toggles hide likes', () => {
   expect(store.getState().user.hideLikes).toEqual(false);
   fireEvent.click(screen.getByLabelText('Hide Likes'));
   expect(store.getState().user.hideLikes).toBe(true);
-  expect(logEvent).toBeCalledTimes(1);
-  expect(logEvent).toBeCalledWith('hide_likes', { checked: true });
+  expect(logEvent).toHaveBeenCalledTimes(1);
+  expect(logEvent).toHaveBeenCalledWith('hide_likes', { checked: true });
 });

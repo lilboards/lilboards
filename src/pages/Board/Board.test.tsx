@@ -156,12 +156,12 @@ describe('with board and anonymous user', () => {
   it('attaches ref listeners', () => {
     mockedUseParams.mockReturnValue({ boardId });
     const { unmount } = renderWithProviders(<Board />);
-    expect(getBoardDataRef).toBeCalledTimes(1);
-    expect(getBoardDataRef).toBeCalledWith(boardId);
-    expect(onValue).toBeCalledTimes(1);
-    expect(onValue).toBeCalledWith(boardDataRef, expect.any(Function));
+    expect(getBoardDataRef).toHaveBeenCalledTimes(1);
+    expect(getBoardDataRef).toHaveBeenCalledWith(boardId);
+    expect(onValue).toHaveBeenCalledTimes(1);
+    expect(onValue).toHaveBeenCalledWith(boardDataRef, expect.any(Function));
 
     unmount();
-    expect(unsubscribe).toBeCalledTimes(1);
+    expect(unsubscribe).toHaveBeenCalledTimes(1);
   });
 });

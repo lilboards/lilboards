@@ -25,11 +25,11 @@ it('signs user out', async () => {
   const { baseElement } = renderWithProviders(<Logout />);
 
   await waitFor(() => expect(router.state.location.pathname).toBe('/login'));
-  expect(signOut).toBeCalledTimes(1);
+  expect(signOut).toHaveBeenCalledTimes(1);
   expect(store.getState().user.id).toBe('');
 
-  expect(logEvent).toBeCalledTimes(1);
-  expect(logEvent).toBeCalledWith('logout');
+  expect(logEvent).toHaveBeenCalledTimes(1);
+  expect(logEvent).toHaveBeenCalledWith('logout');
 
   expect(baseElement.firstElementChild).toBeEmptyDOMElement();
 });
