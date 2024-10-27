@@ -1,10 +1,7 @@
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Link as RouterLink } from 'react-router-dom';
+import Breadcrumb from 'src/components/Breadcrumb';
 import { useSetDocumentTitle } from 'src/hooks';
 import type { Id } from 'src/types';
 
@@ -41,18 +38,7 @@ export default function List() {
 
   return (
     <>
-      <Breadcrumbs aria-label="breadcrumb">
-        <Link
-          color="inherit"
-          component={RouterLink}
-          sx={{ alignItems: 'center', display: 'flex' }}
-          to="/lists"
-          underline="hover"
-        >
-          <ArrowBackIosIcon fontSize="inherit" />
-          Lists
-        </Link>
-      </Breadcrumbs>
+      <Breadcrumb to="/lists">Lists</Breadcrumb>
 
       <Typography component="h1" gutterBottom variant="h4">
         {list.name}

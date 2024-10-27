@@ -1,10 +1,7 @@
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Link from '@mui/material/Link';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Link as RouterLink } from 'react-router-dom';
 import BoardControls from 'src/components/BoardControls';
+import Breadcrumb from 'src/components/Breadcrumb';
 import Columns from 'src/components/Columns';
 import { useSetDocumentTitle } from 'src/hooks';
 import type { Id } from 'src/types';
@@ -43,18 +40,7 @@ export default function Board() {
 
   return (
     <>
-      <Breadcrumbs aria-label="breadcrumb">
-        <Link
-          color="inherit"
-          component={RouterLink}
-          sx={{ alignItems: 'center', display: 'flex' }}
-          to="/boards"
-          underline="hover"
-        >
-          <ArrowBackIosIcon fontSize="inherit" />
-          Boards
-        </Link>
-      </Breadcrumbs>
+      <Breadcrumb to="/boards">Boards</Breadcrumb>
 
       {board.name ? <BoardName name={board.name} /> : <br />}
 
