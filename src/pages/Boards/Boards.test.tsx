@@ -1,12 +1,13 @@
 import { fireEvent, screen } from '@testing-library/react';
+import { getBoardVal, getUserBoardsVal } from 'src/firebase';
+import { Board } from 'src/types';
+import { BOARD_TEST_ID as boardId } from 'test/constants';
+import { renderWithProviders, updateStore } from 'test/utils';
 
-import { BOARD_TEST_ID as boardId } from '../../../test/constants';
-import { renderWithProviders, updateStore } from '../../../test/utils';
-import { getBoardVal, getUserBoardsVal } from '../../firebase';
 import Boards from './Boards';
 
-jest.mock('../../firebase', () => ({
-  ...jest.requireActual('../../firebase'),
+jest.mock('src/firebase', () => ({
+  ...jest.requireActual('src/firebase'),
   getBoardVal: jest.fn(),
   getUserBoardsVal: jest.fn(),
   logEvent: jest.fn(),
@@ -70,8 +71,8 @@ describe('mount', () => {
 
     mockedGetBoardVal
       .mockReset()
-      .mockResolvedValueOnce({ name: 'Board 1' } as any)
-      .mockResolvedValueOnce({ name: 'Board 2' } as any)
+      .mockResolvedValueOnce({ name: 'Board 1' } as Board)
+      .mockResolvedValueOnce({ name: 'Board 2' } as Board)
       .mockResolvedValueOnce(null);
   });
 

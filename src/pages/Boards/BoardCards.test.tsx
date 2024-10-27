@@ -1,7 +1,13 @@
 import { screen } from '@testing-library/react';
+import { renderWithProviders, updateStore } from 'test/utils';
 
-import { renderWithProviders, updateStore } from '../../../test/utils';
 import BoardCards from './BoardCards';
+
+jest.mock('src/firebase', () => ({
+  ...jest.requireActual('src/firebase'),
+  getBoardVal: jest.fn(),
+  getUserBoardsVal: jest.fn(),
+}));
 
 it('renders nothing when there are no boards', () => {
   renderWithProviders(<BoardCards />);
