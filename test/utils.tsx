@@ -4,13 +4,14 @@ import { Provider } from 'react-redux';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { DatabaseKey } from 'src/constants';
 import { actions, resetActions, store } from 'src/store';
-import type { Board, Columns, Item, User } from 'src/types';
+import type { Board, Columns, Item, List, User } from 'src/types';
 
 import {
   BOARD_TEST_ID as boardId,
   COLUMN_TEST_ID as columnId,
   DATE_NOW as dateNow,
   ITEM_TEST_ID as itemId,
+  LIST_TEST_ID as listId,
   USER_TEST_EMAIL as userEmail,
   USER_TEST_ID as userId,
 } from './constants';
@@ -133,6 +134,23 @@ export const updateStore = {
       userId,
     };
     store.dispatch(actions.likeItem(payload));
+  },
+
+  withList(list?: Partial<List>) {
+    const payload = {
+      list: {
+        createdAt: dateNow,
+        createdBy: userId,
+        name: 'List One',
+        ...list,
+      },
+      listId,
+    };
+    store.dispatch(actions.loadList(payload));
+    return {
+      ...payload.list,
+      id: listId,
+    };
   },
 
   withUser(email = true, override?: Partial<User>) {

@@ -2,14 +2,14 @@ import { screen, waitFor } from '@testing-library/react';
 import type { DatabaseReference, DataSnapshot } from 'firebase/database';
 import { onValue } from 'firebase/database';
 import { useParams } from 'react-router-dom';
-
+import { getBoardDataRef } from 'src/firebase';
+import { Board as BoardType } from 'src/types';
 import {
   BOARD_TEST_ID as boardId,
   USER_TEST_ID as userId,
-} from '../../../test/constants';
-import { renderWithProviders, router, updateStore } from '../../../test/utils';
-import { getBoardDataRef } from '../../firebase';
-import { Board as BoardType } from '../../types';
+} from 'test/constants';
+import { renderWithProviders, router, updateStore } from 'test/utils';
+
 import Board from './Board';
 
 const mockedOnValue = jest.mocked(onValue);
@@ -21,14 +21,14 @@ jest.mock('react-router-dom', () => ({
 
 const mockedUseParams = jest.mocked(useParams);
 
-jest.mock('../../firebase', () => ({
+jest.mock('src/firebase', () => ({
   getBoardDataRef: jest.fn(),
 }));
 
 const mockedGetBoardDataRef = jest.mocked(getBoardDataRef);
 
-jest.mock('../../components/BoardControls', () => () => <p>Board Controls</p>);
-jest.mock('../../components/Columns', () => () => <p>Columns</p>);
+jest.mock('src/components/BoardControls', () => () => <p>Board Controls</p>);
+jest.mock('src/components/Columns', () => () => <p>Columns</p>);
 
 const boardControls = 'Board Controls';
 const columns = 'Columns';

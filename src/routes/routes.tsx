@@ -1,16 +1,16 @@
 import { Route } from 'react-router-dom';
-
-import Layout from '../components/Layout';
-import Protected from '../components/Protected';
-import Board from '../pages/Board';
-import Boards from '../pages/Boards';
-import ErrorBoundary from '../pages/ErrorBoundary';
-import Home from '../pages/Home';
-import Lists from '../pages/Lists';
-import Login from '../pages/Login';
-import Logout from '../pages/Logout';
-import NotFound from '../pages/NotFound';
-import Support from '../pages/Support';
+import Layout from 'src/components/Layout';
+import Protected from 'src/components/Protected';
+import Board from 'src/pages/Board';
+import Boards from 'src/pages/Boards';
+import ErrorBoundary from 'src/pages/ErrorBoundary';
+import Home from 'src/pages/Home';
+import List from 'src/pages/List';
+import Lists from 'src/pages/Lists';
+import Login from 'src/pages/Login';
+import Logout from 'src/pages/Logout';
+import NotFound from 'src/pages/NotFound';
+import Support from 'src/pages/Support';
 
 const routes = (
   <Route path="/" element={<Layout />}>
@@ -34,6 +34,10 @@ const routes = (
       <Route path="lists">
         <Route element={<Protected check="email" />}>
           <Route index element={<Lists />} />
+        </Route>
+
+        <Route element={<Protected check="id" signInAnonymously />}>
+          <Route path=":listId" element={<List />} />
         </Route>
       </Route>
 

@@ -68,6 +68,19 @@ exports[`matches snapshot 1`] = `
           index={true}
         />
       </Route>
+      <Route
+        element={
+          <ProtectedLoader
+            check="id"
+            signInAnonymously={true}
+          />
+        }
+      >
+        <Route
+          element={<ListLoader />}
+          path=":listId"
+        />
+      </Route>
     </Route>
     <Route
       element={<NotFoundLoader />}
