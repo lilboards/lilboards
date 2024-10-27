@@ -96,9 +96,7 @@ describe('with board', () => {
         return unsubscribe;
       });
       renderWithProviders(<Board />);
-      expect(
-        screen.queryByRole('heading', { level: 1 }),
-      ).not.toBeInTheDocument();
+      expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('');
     });
 
     it('renders board name as heading', () => {

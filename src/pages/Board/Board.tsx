@@ -3,10 +3,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 import BoardControls from 'src/components/BoardControls';
 import Breadcrumb from 'src/components/Breadcrumb';
 import Columns from 'src/components/Columns';
+import Heading from 'src/components/Heading';
 import { useSetDocumentTitle } from 'src/hooks';
 import type { Id } from 'src/types';
 
-import BoardName from './BoardName';
 import { useBoard } from './hooks/useBoard';
 
 export default function Board() {
@@ -42,7 +42,7 @@ export default function Board() {
     <>
       <Breadcrumb to="/boards">Boards</Breadcrumb>
 
-      {board.name ? <BoardName name={board.name} /> : <br />}
+      <Heading link>{board.name}</Heading>
 
       <BoardControls boardId={boardId} />
 

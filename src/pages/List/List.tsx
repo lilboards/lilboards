@@ -2,6 +2,7 @@ import Typography from '@mui/material/Typography';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Breadcrumb from 'src/components/Breadcrumb';
+import Heading from 'src/components/Heading';
 import { useSetDocumentTitle } from 'src/hooks';
 import type { Id } from 'src/types';
 
@@ -40,9 +41,7 @@ export default function List() {
     <>
       <Breadcrumb to="/lists">Lists</Breadcrumb>
 
-      <Typography component="h1" gutterBottom variant="h4">
-        {list.name}
-      </Typography>
+      <Heading link>{list.name}</Heading>
 
       <Typography>Coming soon.</Typography>
     </>

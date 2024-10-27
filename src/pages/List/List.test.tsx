@@ -86,7 +86,7 @@ describe('with list', () => {
         return unsubscribe;
       });
       renderWithProviders(<List />);
-      expect(screen.getByRole('heading', { level: 1 })).toBeEmptyDOMElement();
+      expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('');
     });
 
     it('renders list name as heading', () => {
