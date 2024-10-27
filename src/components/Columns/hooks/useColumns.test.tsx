@@ -3,27 +3,18 @@ import {
   onChildChanged,
   onChildRemoved,
 } from 'firebase/database';
+import { getColumnsRef } from 'src/firebase';
+import { Column } from 'src/types';
+import { boardId, columnId, dateNow, userId } from 'test/constants';
+import { renderWithProviders, store, updateStore } from 'test/utils';
 
-import {
-  BOARD_TEST_ID as boardId,
-  COLUMN_TEST_ID as columnId,
-  DATE_NOW as dateNow,
-  USER_TEST_ID as userId,
-} from '../../../../test/constants';
-import {
-  renderWithProviders,
-  store,
-  updateStore,
-} from '../../../../test/utils';
-import { getColumnsRef } from '../../../firebase';
-import { Column } from '../../../types';
 import { useColumns } from './useColumns';
 
 const mockedOnChildAdded = jest.mocked(onChildAdded);
 const mockedOnChildChanged = jest.mocked(onChildChanged);
 const mockedOnChildRemoved = jest.mocked(onChildRemoved);
 
-jest.mock('../../../firebase', () => ({
+jest.mock('src/firebase', () => ({
   getColumnsRef: jest.fn(),
 }));
 

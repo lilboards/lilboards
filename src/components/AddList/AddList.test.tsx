@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { generateId, logEvent, saveUserListId } from 'src/firebase';
-import { DATE_NOW as dateNow, LIST_TEST_ID as listId } from 'test/constants';
+import { dateNow, listId } from 'test/constants';
 import { renderWithProviders, store, updateStore } from 'test/utils';
 
 import AddList from './AddList';

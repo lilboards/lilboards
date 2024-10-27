@@ -8,13 +8,13 @@ import type { Board, Columns, Item, List, User } from 'src/types';
 import { noop } from 'src/utils';
 
 import {
-  BOARD_TEST_ID as boardId,
-  COLUMN_TEST_ID as columnId,
-  DATE_NOW as dateNow,
-  ITEM_TEST_ID as itemId,
-  LIST_TEST_ID as listId,
-  USER_TEST_EMAIL as userEmail,
-  USER_TEST_ID as userId,
+  boardId,
+  columnId,
+  dateNow,
+  email as userEmail,
+  itemId,
+  listId,
+  userId,
 } from './constants';
 
 export let router: ReturnType<typeof createMemoryRouter>;

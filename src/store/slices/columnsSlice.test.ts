@@ -1,10 +1,5 @@
 import { DatabaseKey } from 'src/constants';
-import {
-  BOARD_TEST_ID as boardId,
-  COLUMN_TEST_ID as columnId,
-  ITEM_TEST_ID as itemId,
-  USER_TEST_ID as userId,
-} from 'test/constants';
+import { boardId, columnId, itemId, userId } from 'test/constants';
 
 import { columnsSlice, initialState } from './columnsSlice';
 

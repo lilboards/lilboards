@@ -1,11 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
+import { boardId, columnId, itemId } from 'test/constants';
+import { renderWithProviders, store, updateStore } from 'test/utils';
 
-import {
-  BOARD_TEST_ID as boardId,
-  COLUMN_TEST_ID as columnId,
-  ITEM_TEST_ID as itemId,
-} from '../../../test/constants';
-import { renderWithProviders, store, updateStore } from '../../../test/utils';
 import Item from './Item';
 
 const props = {

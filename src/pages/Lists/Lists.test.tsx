@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { getListVal, getUserListsVal } from 'src/firebase';
 import { List } from 'src/types';
-import { LIST_TEST_ID as listId } from 'test/constants';
+import { listId } from 'test/constants';
 import { renderWithProviders, updateStore } from 'test/utils';
 
 import Lists from './Lists';

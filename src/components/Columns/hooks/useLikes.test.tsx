@@ -1,17 +1,9 @@
 import { onValue } from 'firebase/database';
+import { getLikesRef } from 'src/firebase';
+import { Likes } from 'src/types';
+import { boardId, itemId, userId } from 'test/constants';
+import { renderWithProviders, store, updateStore } from 'test/utils';
 
-import {
-  BOARD_TEST_ID as boardId,
-  ITEM_TEST_ID as itemId,
-  USER_TEST_ID as userId,
-} from '../../../../test/constants';
-import {
-  renderWithProviders,
-  store,
-  updateStore,
-} from '../../../../test/utils';
-import { getLikesRef } from '../../../firebase';
-import { Likes } from '../../../types';
 import { useLikes } from './useLikes';
 
 const mockedOnValue = jest.mocked(onValue);

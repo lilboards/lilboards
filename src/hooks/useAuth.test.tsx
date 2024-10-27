@@ -1,15 +1,12 @@
 import { renderHook } from '@testing-library/react';
 import type { Unsubscribe, User } from 'firebase/auth';
+import { logEvent, onAuthStateChanged, signInAnonymously } from 'src/firebase';
+import { email, userId } from 'test/constants';
+import { store, wrapper } from 'test/utils';
 
-import {
-  USER_TEST_EMAIL as userEmail,
-  USER_TEST_ID as userId,
-} from '../../test/constants';
-import { store, wrapper } from '../../test/utils';
-import { logEvent, onAuthStateChanged, signInAnonymously } from '../firebase';
 import { useAuth } from './useAuth';
 
-jest.mock('../firebase', () => ({
+jest.mock('src/firebase', () => ({
   logEvent: jest.fn(),
   onAuthStateChanged: jest.fn(),
   signInAnonymously: jest.fn(),
@@ -45,7 +42,7 @@ describe('shouldSignInAnonymously is false', () => {
   describe('user is signed in with unverified email', () => {
     beforeEach(() => {
       const user = {
-        email: userEmail,
+        email,
         emailVerified: false,
         uid: userId,
       };
@@ -63,7 +60,7 @@ describe('shouldSignInAnonymously is false', () => {
         email_verified: false,
       });
       expect(store.getState().user).toMatchObject({
-        email: userEmail,
+        email,
         emailVerified: false,
         id: userId,
       });
@@ -73,7 +70,7 @@ describe('shouldSignInAnonymously is false', () => {
   describe('user is signed in with verified email', () => {
     beforeEach(() => {
       const user = {
-        email: userEmail,
+        email,
         emailVerified: true,
         uid: userId,
       };
@@ -91,7 +88,7 @@ describe('shouldSignInAnonymously is false', () => {
         email_verified: true,
       });
       expect(store.getState().user).toMatchObject({
-        email: userEmail,
+        email,
         emailVerified: true,
         id: userId,
       });

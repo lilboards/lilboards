@@ -3,27 +3,18 @@ import {
   onChildChanged,
   onChildRemoved,
 } from 'firebase/database';
+import { getItemsRef } from 'src/firebase';
+import { Item } from 'src/types';
+import { boardId, dateNow, itemId, userId } from 'test/constants';
+import { renderWithProviders, store, updateStore } from 'test/utils';
 
-import {
-  BOARD_TEST_ID as boardId,
-  DATE_NOW as dateNow,
-  ITEM_TEST_ID as itemId,
-  USER_TEST_ID as userId,
-} from '../../../../test/constants';
-import {
-  renderWithProviders,
-  store,
-  updateStore,
-} from '../../../../test/utils';
-import { getItemsRef } from '../../../firebase';
-import { Item } from '../../../types';
 import { useItems } from './useItems';
 
 const mockedOnChildAdded = jest.mocked(onChildAdded);
 const mockedOnChildChanged = jest.mocked(onChildChanged);
 const mockedOnChildRemoved = jest.mocked(onChildRemoved);
 
-jest.mock('../../../firebase', () => ({
+jest.mock('src/firebase', () => ({
   getItemsRef: jest.fn(),
 }));
 

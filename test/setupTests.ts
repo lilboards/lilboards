@@ -7,8 +7,9 @@ import '@testing-library/jest-dom';
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 require('jest-fetch-mock').enableMocks();
 
-import { removeBoard } from '../src/firebase';
-import { BOARD_TEST_ID as boardId } from '../test/constants';
+import { removeBoard } from 'src/firebase';
+import { boardId } from 'test/constants';
+
 import { resetStore } from './utils';
 
 jest.mock('firebase/database', () => ({

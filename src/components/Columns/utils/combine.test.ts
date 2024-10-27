@@ -1,10 +1,5 @@
 import type { DropResult } from '@hello-pangea/dnd';
-import {
-  COLUMN_TEST_ID as columnId,
-  DATE_NOW as dateNow,
-  ITEM_TEST_ID as itemId,
-  USER_TEST_ID as userId,
-} from 'test/constants';
+import { columnId, dateNow, itemId, userId } from 'test/constants';
 
 import { combine } from './combine';
 

@@ -4,10 +4,7 @@ import { onValue } from 'firebase/database';
 import { useParams } from 'react-router-dom';
 import { getBoardDataRef } from 'src/firebase';
 import { Board as BoardType } from 'src/types';
-import {
-  BOARD_TEST_ID as boardId,
-  USER_TEST_ID as userId,
-} from 'test/constants';
+import { boardId, userId } from 'test/constants';
 import { renderWithProviders, router, updateStore } from 'test/utils';
 
 import Board from './Board';

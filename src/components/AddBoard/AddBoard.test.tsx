@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { generateId, logEvent, saveUserBoardId } from 'src/firebase';
-import { BOARD_TEST_ID as boardId, DATE_NOW as dateNow } from 'test/constants';
+import { boardId, dateNow } from 'test/constants';
 import { renderWithProviders, store, updateStore } from 'test/utils';
 
 import AddBoard from './AddBoard';

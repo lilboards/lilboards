@@ -1,4 +1,4 @@
-import { LIST_TEST_ID as listId, USER_TEST_ID as userId } from 'test/constants';
+import { listId, userId } from 'test/constants';
 
 import { initialState, listsSlice } from './listsSlice';
 

@@ -1,16 +1,11 @@
 import { fireEvent, screen } from '@testing-library/react';
+import { logEvent } from 'src/firebase';
+import { columnId, dateNow, itemId, userId } from 'test/constants';
+import { renderWithProviders, store, updateStore } from 'test/utils';
 
-import {
-  COLUMN_TEST_ID as columnId,
-  DATE_NOW as dateNow,
-  ITEM_TEST_ID as itemId,
-  USER_TEST_ID as userId,
-} from '../../../test/constants';
-import { renderWithProviders, store, updateStore } from '../../../test/utils';
-import { logEvent } from '../../firebase';
 import Sort from './Sort';
 
-jest.mock('../../firebase', () => ({
+jest.mock('src/firebase', () => ({
   logEvent: jest.fn(),
 }));
 

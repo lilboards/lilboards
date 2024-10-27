@@ -1,7 +1,4 @@
-import {
-  BOARD_TEST_ID as boardId,
-  USER_TEST_ID as userId,
-} from 'test/constants';
+import { boardId, userId } from 'test/constants';
 
 import { boardsSlice, initialState } from './boardsSlice';
 

@@ -1,4 +1,5 @@
-import { USER_TEST_ID as userId } from '../../../../test/constants';
+import { userId } from 'test/constants';
+
 import { sortByLikes } from './sortByLikes';
 
 const column = {

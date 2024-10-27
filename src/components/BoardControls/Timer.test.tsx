@@ -1,7 +1,7 @@
 import { act, fireEvent, screen } from '@testing-library/react';
+import { boardId } from 'test/constants';
+import { renderWithProviders, updateStore } from 'test/utils';
 
-import { BOARD_TEST_ID as boardId } from '../../../test/constants';
-import { renderWithProviders, updateStore } from '../../../test/utils';
 import { playAlarm } from './audio';
 import {
   DEFAULT_MINUTES,

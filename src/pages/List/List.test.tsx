@@ -4,7 +4,7 @@ import { onValue } from 'firebase/database';
 import { useParams } from 'react-router-dom';
 import { getListDataRef } from 'src/firebase';
 import { List as ListType } from 'src/types';
-import { LIST_TEST_ID as listId, USER_TEST_ID as userId } from 'test/constants';
+import { listId, userId } from 'test/constants';
 import { renderWithProviders, router, updateStore } from 'test/utils';
 
 import List from './List';

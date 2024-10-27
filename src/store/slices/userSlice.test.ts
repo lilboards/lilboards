@@ -1,10 +1,4 @@
-import {
-  BOARD_TEST_ID as boardId,
-  COLUMN_TEST_ID as columnId,
-  ITEM_TEST_ID as itemId,
-  USER_TEST_EMAIL as email,
-  USER_TEST_ID as id,
-} from 'test/constants';
+import { boardId, columnId, email, itemId, userId as id } from 'test/constants';
 
 import { initialState, userSlice } from './userSlice';
 

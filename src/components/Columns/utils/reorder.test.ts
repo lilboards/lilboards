@@ -1,6 +1,6 @@
 import { DatabaseKey } from 'src/constants';
 import { reorderArray } from 'src/utils';
-import { USER_TEST_ID as userId } from 'test/constants';
+import { userId } from 'test/constants';
 
 import { reorder } from './reorder';
 
