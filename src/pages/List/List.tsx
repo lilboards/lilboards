@@ -1,43 +1,41 @@
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Link as RouterLink } from 'react-router-dom';
-import BoardControls from 'src/components/BoardControls';
-import Columns from 'src/components/Columns';
 import { useSetDocumentTitle } from 'src/hooks';
 import type { Id } from 'src/types';
 
-import BoardName from './BoardName';
-import { useBoard } from './hooks/useBoard';
+import { useList } from './hooks/useList';
 
-export default function Board() {
-  const params = useParams<{ boardId: Id }>();
-  const boardId = params.boardId || '';
-  const { board, isLoaded } = useBoard(boardId);
-  useSetDocumentTitle(board?.name || 'Untitled Board');
+export default function List() {
+  const params = useParams<{ listId: Id }>();
+  const listId = params.listId || '';
+  const { list, isLoaded } = useList(listId);
+  useSetDocumentTitle(list?.name || 'Untitled List');
   const navigate = useNavigate();
 
   useEffect(() => {
-    // board not found
-    if (boardId && !board && isLoaded) {
+    // list not found
+    if (listId && !list && isLoaded) {
       navigate('/404');
     }
-  }, [boardId, board, isLoaded, navigate]);
+  }, [listId, list, isLoaded, navigate]);
 
-  // no board id
-  if (!boardId) {
+  // no list id
+  if (!listId) {
     return null;
   }
 
-  // board not found
-  if (boardId && !board && isLoaded) {
+  // list not found
+  if (listId && !list && isLoaded) {
     return null;
   }
 
-  // no board
-  if (!board) {
+  // no list
+  if (!list) {
     return null;
   }
 
@@ -48,19 +46,19 @@ export default function Board() {
           color="inherit"
           component={RouterLink}
           sx={{ alignItems: 'center', display: 'flex' }}
-          to="/boards"
+          to="/lists"
           underline="hover"
         >
           <ArrowBackIosIcon fontSize="inherit" />
-          Boards
+          Lists
         </Link>
       </Breadcrumbs>
 
-      {board.name ? <BoardName name={board.name} /> : <br />}
+      <Typography component="h1" gutterBottom variant="h4">
+        {list.name}
+      </Typography>
 
-      <BoardControls boardId={boardId} />
-
-      <Columns boardId={boardId} />
+      <Typography>Coming soon.</Typography>
     </>
   );
 }
