@@ -1,6 +1,8 @@
 import Typography from '@mui/material/Typography';
+import AddList from 'src/components/AddList';
+import { useSetDocumentTitle } from 'src/hooks';
 
-import { useSetDocumentTitle } from '../../hooks';
+import ListCards from './ListCards';
 
 export default function Lists() {
   useSetDocumentTitle('Lists');
@@ -11,7 +13,9 @@ export default function Lists() {
         Lists
       </Typography>
 
-      <Typography>Coming soon.</Typography>
+      <AddList />
+
+      <ListCards />
     </>
   );
 }
