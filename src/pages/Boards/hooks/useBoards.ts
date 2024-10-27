@@ -11,14 +11,17 @@ export function useBoards(
   useEffect(() => {
     (async () => {
       const userBoards = await getUserBoardsVal(userId);
+
       if (!userBoards) {
         return;
       }
 
       const boardIds = Object.keys(userBoards);
+
       const boards = await Promise.all(
         boardIds.map(async (boardId) => {
           const board = await getBoardVal(boardId);
+
           if (board) {
             return {
               board,

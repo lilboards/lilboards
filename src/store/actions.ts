@@ -3,6 +3,7 @@ import {
   columnsSlice,
   itemsSlice,
   likesSlice,
+  listsSlice,
   userSlice,
 } from '../store/slices';
 
@@ -11,6 +12,7 @@ export const actions = {
   ...columnsSlice.actions,
   ...itemsSlice.actions,
   ...likesSlice.actions,
+  ...listsSlice.actions,
   ...userSlice.actions,
 };
 
@@ -19,5 +21,6 @@ export const resetActions = [
   actions.resetColumns,
   actions.resetItems,
   actions.resetLikes,
+  actions.resetLists,
   actions.resetUser,
 ];
