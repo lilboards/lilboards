@@ -1,5 +1,6 @@
 import { onValue } from 'firebase/database';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getListDataRef } from 'src/firebase';
 import { useDispatch, useSelector } from 'src/hooks';
 import { actions } from 'src/store';
@@ -9,6 +10,13 @@ export function useList(listId: Id) {
   const dispatch = useDispatch();
   const list = useSelector((state) => state.lists[listId]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (listId && !list && isLoaded) {
+      navigate('/404');
+    }
+  }, [listId, list, isLoaded, navigate]);
 
   useEffect(() => {
     if (!listId) {
@@ -53,8 +61,5 @@ export function useList(listId: Id) {
     };
   }, [listId, dispatch, setIsLoaded]);
 
-  return {
-    list,
-    isLoaded,
-  };
+  return list;
 }

@@ -37,8 +37,8 @@ export default function BoardControls(props: Props) {
   const popoverId = isPopoverOpen ? 'board-controls-popover' : undefined;
 
   return (
-    <Box display="flex" marginBottom={4}>
-      <Box flexGrow={1}>
+    <Box sx={{ display: 'flex', marginBottom: 4 }}>
+      <Box sx={{ flexGrow: 1 }}>
         <AddColumn boardId={props.boardId} />
       </Box>
 

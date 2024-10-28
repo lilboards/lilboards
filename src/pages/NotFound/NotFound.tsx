@@ -1,8 +1,7 @@
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { Link as RouterLink } from 'react-router-dom';
-
-import { useSetDocumentTitle } from '../../hooks';
+import { useSetDocumentTitle } from 'src/hooks';
 
 export default function NotFound() {
   useSetDocumentTitle('Not Found');
