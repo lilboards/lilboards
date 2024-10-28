@@ -5,11 +5,11 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
+import { onConnected } from 'src/firebase/database';
 
-import { onConnected } from '../../firebase/database';
 import Connection from './Connection';
 
-jest.mock('../../firebase/database', () => ({
+jest.mock('src/firebase/database', () => ({
   onConnected: jest.fn(),
 }));
 

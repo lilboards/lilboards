@@ -1,8 +1,7 @@
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import { useEffect, useState } from 'react';
-
-import { onConnected } from '../../firebase/database';
+import { onConnected } from 'src/firebase/database';
 
 export default function Connection() {
   const [open, setOpen] = useState(true);
