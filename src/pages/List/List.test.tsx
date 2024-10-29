@@ -68,7 +68,15 @@ describe('with list', () => {
   });
 
   describe('breadcrumbs', () => {
-    it('renders lists link', () => {
+    it('does not render link when logged out', () => {
+      renderWithProviders(<List />);
+      expect(
+        screen.queryByRole('link', { name: 'Lists' }),
+      ).not.toBeInTheDocument();
+    });
+
+    it('renders link when logged in', () => {
+      updateStore.withUser();
       renderWithProviders(<List />);
       expect(screen.getByRole('link', { name: 'Lists' })).toHaveAttribute(
         'href',
