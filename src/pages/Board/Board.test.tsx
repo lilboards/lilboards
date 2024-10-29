@@ -75,7 +75,15 @@ describe('with board', () => {
   });
 
   describe('breadcrumbs', () => {
-    it('renders boards link', () => {
+    it('does not render link when logged out', () => {
+      renderWithProviders(<Board />);
+      expect(
+        screen.queryByRole('link', { name: 'Boards' }),
+      ).not.toBeInTheDocument();
+    });
+
+    it('renders link when logged in', () => {
+      updateStore.withUser();
       renderWithProviders(<Board />);
       expect(screen.getByRole('link', { name: 'Boards' })).toHaveAttribute(
         'href',
