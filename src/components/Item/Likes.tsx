@@ -1,8 +1,8 @@
 import Box from '@mui/material/Box';
+import { useGetLikes } from 'src/hooks';
+import type { Id } from 'src/types';
+import { countObject } from 'src/utils';
 
-import { useGetLikes } from '../../hooks';
-import type { Id } from '../../types';
-import { countObject } from '../../utils';
 import LikeButton from './LikeButton';
 
 interface Props {

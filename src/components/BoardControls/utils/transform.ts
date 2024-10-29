@@ -1,4 +1,4 @@
-import type { Columns, Items } from '../../../types';
+import type { Columns, Items } from 'src/types';
 
 const NEWLINE = '\n';
 

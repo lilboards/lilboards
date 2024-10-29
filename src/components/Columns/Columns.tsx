@@ -1,8 +1,8 @@
 import Grid from '@mui/material/Grid';
 import { createSelector } from '@reduxjs/toolkit';
+import { useSelector } from 'src/hooks';
+import type { Id, RootState } from 'src/types';
 
-import { useSelector } from '../../hooks';
-import type { Id, RootState } from '../../types';
 import Column from '../Column';
 import DragDropContainer from './DragDropContainer';
 import { useColumns, useItems, useLikes } from './hooks';

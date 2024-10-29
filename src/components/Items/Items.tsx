@@ -1,10 +1,10 @@
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
+import { generateId, logEvent } from 'src/firebase';
+import { useDispatch, useGetUserId } from 'src/hooks';
+import { actions } from 'src/store';
+import type { Id, Item } from 'src/types';
 
-import { generateId, logEvent } from '../../firebase';
-import { useDispatch, useGetUserId } from '../../hooks';
-import { actions } from '../../store';
-import type { Id, Item } from '../../types';
 import DroppableItems from './DroppableItems';
 
 interface Props {

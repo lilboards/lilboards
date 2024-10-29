@@ -1,17 +1,16 @@
 import ThumbUpFilledIcon from '@mui/icons-material/ThumbUp';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import IconButton from '@mui/material/IconButton';
-
-import { logEvent } from '../../firebase';
+import { logEvent } from 'src/firebase';
 import {
   useDispatch,
   useGetLikes,
   useGetUserId,
   useMaxLikes,
   useSelector,
-} from '../../hooks';
-import { actions } from '../../store';
-import type { Id } from '../../types';
+} from 'src/hooks';
+import { actions } from 'src/store';
+import type { Id } from 'src/types';
 
 interface Props {
   boardId: Id;

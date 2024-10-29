@@ -1,7 +1,7 @@
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
+import { useSetDocumentTitle } from 'src/hooks';
 
-import { useSetDocumentTitle } from '../../hooks';
 import { sponsorLinks } from './constants';
 
 export default function Support() {

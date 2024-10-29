@@ -1,5 +1,5 @@
-import type { ColumnItemIds, Columns, Likes } from '../../../types';
-import { cloneArray, countObject } from '../../../utils';
+import type { ColumnItemIds, Columns, Likes } from 'src/types';
+import { cloneArray, countObject } from 'src/utils';
 
 export function sortByLikes(columns: Columns, likes: Likes): ColumnItemIds {
   const columnItemIds: ColumnItemIds = {};

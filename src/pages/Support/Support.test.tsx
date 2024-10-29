@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
+import { renderWithProviders } from 'test/utils';
 
-import { renderWithProviders } from '../../../test/utils';
 import { sponsorLinks } from './constants';
 import Support from './Support';
 

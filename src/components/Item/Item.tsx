@@ -4,11 +4,11 @@ import CardContent from '@mui/material/CardContent';
 import InputBase from '@mui/material/InputBase';
 import type { Theme } from '@mui/material/styles';
 import Linkify from 'linkify-react';
+import { logEvent } from 'src/firebase';
+import { useDispatch, useGetUserId, useSelector } from 'src/hooks';
+import { actions } from 'src/store';
+import type { Id } from 'src/types';
 
-import { logEvent } from '../../firebase';
-import { useDispatch, useGetUserId, useSelector } from '../../hooks';
-import { actions } from '../../store';
-import type { Id } from '../../types';
 import Delete from './Delete';
 import Likes from './Likes';
 

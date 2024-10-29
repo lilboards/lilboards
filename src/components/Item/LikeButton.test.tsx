@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
+import { renderWithProviders, updateStore } from 'test/utils';
 
-import { renderWithProviders, updateStore } from '../../../test/utils';
 import LikeButton from './LikeButton';
 
 let board: ReturnType<typeof updateStore.withBoard>;

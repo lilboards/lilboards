@@ -4,8 +4,8 @@ import IconButton from '@mui/material/IconButton';
 import Popover from '@mui/material/Popover';
 import Stack from '@mui/material/Stack';
 import { useCallback, useState } from 'react';
+import type { Id } from 'src/types';
 
-import type { Id } from '../../types';
 import AddColumn from './AddColumn';
 import Export from './Export';
 import HideLikes from './HideLikes';

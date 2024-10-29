@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
+import { renderWithProviders, store, updateStore } from 'test/utils';
 
-import { renderWithProviders, store, updateStore } from '../../../test/utils';
 import Column from './Column';
 
 const props = {

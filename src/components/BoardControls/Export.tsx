@@ -2,9 +2,9 @@ import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import type { SxProps } from '@mui/system';
+import { logEvent } from 'src/firebase';
+import { useSelector } from 'src/hooks';
 
-import { logEvent } from '../../firebase';
-import { useSelector } from '../../hooks';
 import { transformToMarkdown } from './utils';
 
 interface Props {

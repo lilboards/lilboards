@@ -1,17 +1,17 @@
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
-
-import DeleteDialog from '../../components/DeleteDialog';
-import { logEvent } from '../../firebase';
+import DeleteDialog from 'src/components/DeleteDialog';
+import { logEvent } from 'src/firebase';
 import {
   useDispatch,
   useGetItemIds,
   useGetUserId,
   useSelector,
-} from '../../hooks';
-import { actions } from '../../store';
-import type { Id } from '../../types';
+} from 'src/hooks';
+import { actions } from 'src/store';
+import type { Id } from 'src/types';
+
 import CloseButton from '../CloseButton';
 
 interface Props {

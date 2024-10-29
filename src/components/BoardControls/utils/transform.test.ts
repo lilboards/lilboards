@@ -1,4 +1,5 @@
-import type { Column, Item } from '../../../types';
+import type { Column, Item } from 'src/types';
+
 import {
   transformToCSV,
   transformToMarkdown,

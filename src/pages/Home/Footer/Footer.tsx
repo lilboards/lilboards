@@ -2,8 +2,7 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-
-import { PROJECT_VERSION } from '../../../config';
+import { PROJECT_VERSION } from 'src/config';
 
 export default function Footer() {
   return (

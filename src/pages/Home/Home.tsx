@@ -1,4 +1,5 @@
-import { useSetDocumentTitle } from '../../hooks';
+import { useSetDocumentTitle } from 'src/hooks';
+
 import Features from './Features';
 import Footer from './Footer';
 import Hero from './Hero';

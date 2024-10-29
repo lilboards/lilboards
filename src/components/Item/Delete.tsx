@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
+import DeleteDialog from 'src/components/DeleteDialog';
+import { logEvent } from 'src/firebase';
+import { useDispatch } from 'src/hooks';
+import { actions } from 'src/store';
+import type { Id } from 'src/types';
 
-import DeleteDialog from '../../components/DeleteDialog';
-import { logEvent } from '../../firebase';
-import { useDispatch } from '../../hooks';
-import { actions } from '../../store';
-import type { Id } from '../../types';
 import CloseButton from '../CloseButton';
 
 interface Props {

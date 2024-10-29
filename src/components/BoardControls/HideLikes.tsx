@@ -1,10 +1,9 @@
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import type { SxProps } from '@mui/system';
-
-import { logEvent } from '../../firebase';
-import { useDispatch, useSelector } from '../../hooks';
-import { actions } from '../../store';
+import { logEvent } from 'src/firebase';
+import { useDispatch, useSelector } from 'src/hooks';
+import { actions } from 'src/store';
 
 interface Props {
   sx?: SxProps;

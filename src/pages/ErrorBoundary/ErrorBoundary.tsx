@@ -3,8 +3,7 @@ import AlertTitle from '@mui/material/AlertTitle';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { Link as RouterLink, useRouteError } from 'react-router-dom';
-
-import { useSetDocumentTitle } from '../../hooks';
+import { useSetDocumentTitle } from 'src/hooks';
 
 export default function ErrorBoundary() {
   useSetDocumentTitle('Error');

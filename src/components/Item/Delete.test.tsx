@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
+import { renderWithProviders, store, updateStore } from 'test/utils';
 
-import { renderWithProviders, store, updateStore } from '../../../test/utils';
 import Delete from './Delete';
 
 const dialogTitle = 'Are you sure you want to delete?';

@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
+import { renderWithProviders, updateStore } from 'test/utils';
 
-import { renderWithProviders, updateStore } from '../../../test/utils';
 import Header from './Header';
 
 it('renders header', () => {
