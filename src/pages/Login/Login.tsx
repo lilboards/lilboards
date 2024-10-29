@@ -1,13 +1,13 @@
 import Typography from '@mui/material/Typography';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { REDIRECT_TO } from 'src/constants';
+import { useAuth, useSelector, useSetDocumentTitle } from 'src/hooks';
 
-import { REDIRECT_TO } from '../../constants';
-import { useAuth, useSelector, useSetDocumentTitle } from '../../hooks';
 import StyledFirebaseAuth from './StyledFirebaseAuth';
 
 /**
- * {@link https://github.com/firebase/firebaseui-web-react}
+ * @see {@link https://github.com/firebase/firebaseui-web-react}
  */
 export default function Login() {
   useAuth();

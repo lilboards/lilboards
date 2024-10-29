@@ -20,7 +20,7 @@ jest.mock('firebase/database', () => ({
   onValue: jest.fn(),
 }));
 
-jest.mock('../src/config');
+jest.mock('src/config');
 
 afterEach(() => {
   resetStore();

@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import * as firebaseui from 'firebaseui';
+import { onAuthStateChanged } from 'src/firebase/auth';
 
-import { onAuthStateChanged } from '../../firebase/auth';
 import StyledFirebaseAuth from './StyledFirebaseAuth';
 import uiConfig from './uiConfig';
 
@@ -18,7 +18,7 @@ jest.mock('firebaseui', () => {
 
 const mockedFirebaseui = jest.mocked(firebaseui);
 
-jest.mock('../../firebase/auth', () => ({
+jest.mock('src/firebase/auth', () => ({
   onAuthStateChanged: jest.fn(),
 }));
 

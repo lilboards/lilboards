@@ -8,7 +8,7 @@ import { useLikes } from './useLikes';
 
 const mockedOnValue = jest.mocked(onValue);
 
-jest.mock('../../../firebase', () => ({
+jest.mock('src/firebase', () => ({
   getLikesRef: jest.fn(),
 }));
 

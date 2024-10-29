@@ -5,16 +5,13 @@ import {
   onChildRemoved,
 } from 'firebase/database';
 import { useEffect } from 'react';
-
-import { getColumnsRef } from '../../../firebase';
-import { useDispatch } from '../../../hooks';
-import { actions } from '../../../store';
-import { Id } from '../../../types';
+import { getColumnsRef } from 'src/firebase';
+import { useDispatch } from 'src/hooks';
+import { actions } from 'src/store';
+import { Id } from 'src/types';
 
 /**
  * Listens to column changes.
- *
- * @param boardId - Board id.
  */
 export function useColumns(boardId: Id) {
   const dispatch = useDispatch();
@@ -27,9 +24,11 @@ export function useColumns(boardId: Id) {
     unsubscribes.push(
       onChildAdded(columnsRef, (columnSnapshot) => {
         const columnId = columnSnapshot.key;
+
         if (!columnId) {
           return;
         }
+
         setTimeout(() => {
           dispatch(
             actions.updateColumn({
@@ -47,9 +46,11 @@ export function useColumns(boardId: Id) {
     unsubscribes.push(
       onChildChanged(columnsRef, (columnSnapshot) => {
         const columnId = columnSnapshot.key;
+
         if (!columnId) {
           return;
         }
+
         setTimeout(() => {
           dispatch(
             actions.updateColumn({
@@ -67,9 +68,11 @@ export function useColumns(boardId: Id) {
     unsubscribes.push(
       onChildRemoved(columnsRef, (columnSnapshot) => {
         const columnId = columnSnapshot.key;
+
         if (!columnId) {
           return;
         }
+
         setTimeout(() => {
           dispatch(
             actions.removeColumn({

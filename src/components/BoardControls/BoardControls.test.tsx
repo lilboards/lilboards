@@ -1,9 +1,9 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { renderWithProviders, updateStore } from 'test/utils';
 
-import { renderWithProviders, updateStore } from '../../../test/utils';
 import BoardControls from './BoardControls';
 
-jest.mock('../../firebase', () => ({
+jest.mock('src/firebase', () => ({
   firebaseAnalytics: {
     logEvent: jest.fn(),
   },

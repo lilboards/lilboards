@@ -1,10 +1,10 @@
 import { fireEvent, screen } from '@testing-library/react';
+import { logEvent } from 'src/firebase';
+import { renderWithProviders, store, updateStore } from 'test/utils';
 
-import { renderWithProviders, store, updateStore } from '../../../test/utils';
-import { logEvent } from '../../firebase';
 import HideLikes from './HideLikes';
 
-jest.mock('../../firebase', () => ({
+jest.mock('src/firebase', () => ({
   logEvent: jest.fn(),
 }));
 

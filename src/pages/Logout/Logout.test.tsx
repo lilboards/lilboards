@@ -1,15 +1,10 @@
 import { waitFor } from '@testing-library/react';
+import { logEvent, signOut } from 'src/firebase';
+import { renderWithProviders, router, store, updateStore } from 'test/utils';
 
-import {
-  renderWithProviders,
-  router,
-  store,
-  updateStore,
-} from '../../../test/utils';
-import { logEvent, signOut } from '../../firebase';
 import Logout from './Logout';
 
-jest.mock('../../firebase', () => ({
+jest.mock('src/firebase', () => ({
   logEvent: jest.fn(),
   signOut: jest.fn(),
 }));

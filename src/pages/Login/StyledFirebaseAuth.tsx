@@ -2,8 +2,8 @@ import 'firebaseui/dist/firebaseui.css';
 
 import * as firebaseui from 'firebaseui';
 import { useEffect, useRef, useState } from 'react';
+import { firebaseAuth, onAuthStateChanged } from 'src/firebase/auth';
 
-import { firebaseAuth, onAuthStateChanged } from '../../firebase/auth';
 import uiConfig from './uiConfig';
 
 /**

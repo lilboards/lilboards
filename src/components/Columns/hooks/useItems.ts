@@ -5,16 +5,13 @@ import {
   onChildRemoved,
 } from 'firebase/database';
 import { useEffect } from 'react';
-
-import { getItemsRef } from '../../../firebase';
-import { useDispatch } from '../../../hooks';
-import { actions } from '../../../store';
-import { Id } from '../../../types';
+import { getItemsRef } from 'src/firebase';
+import { useDispatch } from 'src/hooks';
+import { actions } from 'src/store';
+import { Id } from 'src/types';
 
 /**
  * Listens to item changes.
- *
- * @param boardId - Board id.
  */
 export function useItems(boardId: Id) {
   const dispatch = useDispatch();
@@ -27,9 +24,11 @@ export function useItems(boardId: Id) {
     unsubscribes.push(
       onChildAdded(itemsRef, (itemSnapshot) => {
         const itemId = itemSnapshot.key;
+
         if (!itemId) {
           return;
         }
+
         setTimeout(() => {
           dispatch(
             actions.updateItem({
@@ -46,9 +45,11 @@ export function useItems(boardId: Id) {
     unsubscribes.push(
       onChildChanged(itemsRef, (itemSnapshot) => {
         const itemId = itemSnapshot.key;
+
         if (!itemId) {
           return;
         }
+
         setTimeout(() => {
           dispatch(
             actions.updateItem({
@@ -65,9 +66,11 @@ export function useItems(boardId: Id) {
     unsubscribes.push(
       onChildRemoved(itemsRef, (itemSnapshot) => {
         const itemId = itemSnapshot.key;
+
         if (!itemId) {
           return;
         }
+
         setTimeout(() => {
           dispatch(
             actions.removeItem({

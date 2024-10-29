@@ -17,7 +17,7 @@ const mockedUseLocation = jest.mocked(useLocation);
 
 jest.mock('./StyledFirebaseAuth', () => () => <>StyledFirebaseAuth</>);
 
-jest.mock('../../firebase', () => ({
+jest.mock('src/firebase', () => ({
   logEvent: jest.fn(),
   onAuthStateChanged: jest.fn(),
 }));

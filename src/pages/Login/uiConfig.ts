@@ -1,7 +1,7 @@
 /**
  * Configure FirebaseUI.
  *
- * {@link https://github.com/firebase/firebaseui-web-react}
+ * @see {@link https://github.com/firebase/firebaseui-web-react}
  */
 const uiConfig = {
   // Popup sign-in flow rather than redirect flow.
