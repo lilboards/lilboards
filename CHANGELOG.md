@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.38.0](https://github.com/lilboards/lilboards/compare/v4.37.0...v4.38.0) (2024-10-29)
+
+
+### Features
+
+* **pages:** render breadcrumb in Board and List when logged in ([26fa4a6](https://github.com/lilboards/lilboards/commit/26fa4a691f97dfb6b03a25db96cb78d71d8ec3cb))
+
 ## [4.37.0](https://github.com/lilboards/lilboards/compare/v4.36.0...v4.37.0) (2024-10-27)
 
 
