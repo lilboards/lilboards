@@ -1,9 +1,9 @@
 import CircularProgress from '@mui/material/CircularProgress';
 import { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { REDIRECT_TO } from 'src/constants';
+import { useAuth, useSelector } from 'src/hooks';
 
-import { REDIRECT_TO } from '../../constants';
-import { useAuth, useSelector } from '../../hooks';
 import VerifyEmail from '../VerifyEmail';
 
 export interface Props {

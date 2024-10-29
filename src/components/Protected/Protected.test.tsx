@@ -1,8 +1,8 @@
 import { screen, waitFor } from '@testing-library/react';
 import { Outlet } from 'react-router-dom';
+import { useAuth } from 'src/hooks';
+import { renderWithProviders, router, updateStore } from 'test/utils';
 
-import { renderWithProviders, router, updateStore } from '../../../test/utils';
-import { useAuth } from '../../hooks';
 import Protected from './Protected';
 
 jest.mock('react-router-dom', () => ({
@@ -12,8 +12,8 @@ jest.mock('react-router-dom', () => ({
 
 const mockedOutlet = jest.mocked(Outlet);
 
-jest.mock('../../hooks', () => ({
-  ...jest.requireActual('../../hooks'),
+jest.mock('src/hooks', () => ({
+  ...jest.requireActual('src/hooks'),
   useAuth: jest.fn(),
 }));
 

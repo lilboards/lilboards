@@ -4,6 +4,7 @@ export * from './useGetItemIds';
 export * from './useGetLikes';
 export * from './useGetUserId';
 export * from './useIsAdmin';
+export * from './useIsLoggedIn';
 export * from './useMaxLikes';
 export * from './useSelector';
 export * from './useSetDocumentTitle';
