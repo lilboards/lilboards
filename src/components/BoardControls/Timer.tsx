@@ -3,10 +3,11 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import type { SxProps } from '@mui/system';
 import { useCallback, useEffect, useState } from 'react';
+import { DatabaseKey } from 'src/constants';
+import { useDispatch, useIsAdmin, useSelector } from 'src/hooks';
+import { actions } from 'src/store';
+import type { Id } from 'src/types';
 
-import { useDispatch, useIsAdmin, useSelector } from '../../hooks';
-import { actions } from '../../store';
-import type { Id } from '../../types';
 import Snackbar from '../Snackbar';
 import { loadAlarm, playAlarm } from './audio';
 import { DEFAULT_MINUTES, SECOND_IN_MILLISECONDS } from './constants';
@@ -27,7 +28,7 @@ export default function Timer(props: Props) {
   const { boardId } = props;
 
   const dispatch = useDispatch();
-  const isAdmin = useIsAdmin(boardId);
+  const isAdmin = useIsAdmin(DatabaseKey.boards, boardId);
   const timerEnd = useSelector(
     (state) => (state.boards[boardId] || {}).timerEnd,
   );

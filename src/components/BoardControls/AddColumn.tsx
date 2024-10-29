@@ -1,8 +1,9 @@
-import { generateId, logEvent } from '../../firebase';
-import { useDispatch, useGetUserId, useIsAdmin } from '../../hooks';
-import { actions } from '../../store';
-import type { Column, Id } from '../../types';
-import AddButton from '../AddButton';
+import AddButton from 'src/components/AddButton';
+import { DatabaseKey } from 'src/constants';
+import { generateId, logEvent } from 'src/firebase';
+import { useDispatch, useGetUserId, useIsAdmin } from 'src/hooks';
+import { actions } from 'src/store';
+import type { Column, Id } from 'src/types';
 
 interface Props {
   boardId: Id;
@@ -10,7 +11,7 @@ interface Props {
 
 export default function AddColumn(props: Props) {
   const dispatch = useDispatch();
-  const canEdit = useIsAdmin(props.boardId);
+  const canEdit = useIsAdmin(DatabaseKey.boards, props.boardId);
   const userId = useGetUserId();
 
   if (!canEdit) {
@@ -24,6 +25,7 @@ export default function AddColumn(props: Props) {
       name: '',
     };
     const columnId = generateId();
+
     dispatch(
       actions.updateColumn({
         boardId: props.boardId,
@@ -31,6 +33,7 @@ export default function AddColumn(props: Props) {
         columnId,
       }),
     );
+
     dispatch(actions.setUserEditing({ columnId }));
     logEvent('create_column');
   }

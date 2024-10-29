@@ -1,27 +1,34 @@
-import type { Id } from '../types';
+import { DatabaseKey } from 'src/constants';
+import type { Id } from 'src/types';
+
 import { useSelector } from './useSelector';
 
 /**
  * Is admin hook.
  *
- * @param boardId - Board id.
+ * @param type - Boards or lists.
+ * @param id - Board or list id.
+ * @returns - Whether user is the creator of the board or list.
  */
-export function useIsAdmin(boardId: Id): boolean {
+export function useIsAdmin(
+  type: DatabaseKey.boards | DatabaseKey.lists,
+  id: Id,
+): boolean {
   return useSelector((state) => {
-    if (!boardId) {
+    if (!id) {
       return false;
     }
 
-    const board = state.boards[boardId];
+    const data = state[type][id];
 
-    if (!board) {
+    if (!data) {
       return false;
     }
 
-    if (!board.createdBy || !state.user.id) {
+    if (!data.createdBy || !state.user.id) {
       return false;
     }
 
-    return board.createdBy === state.user.id;
+    return data.createdBy === state.user.id;
   });
 }
