@@ -8,6 +8,8 @@ export interface User {
     columnId: Id;
     itemId: Id;
     listId: Id;
+    listItemId: Id;
+    rowId: Id;
   };
   email: string | null;
   emailVerified: boolean;

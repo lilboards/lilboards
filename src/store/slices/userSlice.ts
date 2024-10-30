@@ -8,6 +8,8 @@ export const initialState: User = {
     columnId: '',
     itemId: '',
     listId: '',
+    listItemId: '',
+    rowId: '',
   },
   email: null,
   emailVerified: false,

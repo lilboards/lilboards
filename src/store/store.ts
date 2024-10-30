@@ -6,7 +6,9 @@ import {
   columnsSlice,
   itemsSlice,
   likesSlice,
+  listItemsSlice,
   listsSlice,
+  rowsSlice,
   userSlice,
 } from './slices';
 
@@ -16,7 +18,9 @@ export const store = configureStore({
     [columnsSlice.name]: columnsSlice.reducer,
     [itemsSlice.name]: itemsSlice.reducer,
     [likesSlice.name]: likesSlice.reducer,
+    [listItemsSlice.name]: listItemsSlice.reducer,
     [listsSlice.name]: listsSlice.reducer,
+    [rowsSlice.name]: rowsSlice.reducer,
     [userSlice.name]: userSlice.reducer,
   },
   devTools: isDevelopment,

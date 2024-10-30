@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { DatabaseKey } from 'src/constants';
 import { actions, resetActions, store } from 'src/store';
-import type { Board, Columns, Item, List, User } from 'src/types';
+import type { Board, Columns, Item, List, Rows, User } from 'src/types';
 import { noop } from 'src/utils';
 
 import {
@@ -14,6 +14,8 @@ import {
   email as userEmail,
   itemId,
   listId,
+  listItemId,
+  rowId,
   userId,
 } from './constants';
 
@@ -65,6 +67,7 @@ export const updateStore = {
       boardId,
     };
     store.dispatch(actions.loadBoard(payload));
+
     return {
       ...payload.board,
       id: boardId,
@@ -78,6 +81,7 @@ export const updateStore = {
       name: 'Column One',
       [DatabaseKey.itemIds]: [itemId],
     };
+
     const id = columnId;
     const payload = {
       column,
@@ -85,6 +89,7 @@ export const updateStore = {
       skipSave: true,
     };
     store.dispatch(actions.updateColumn(payload));
+
     return {
       ...column,
       id,
@@ -120,6 +125,7 @@ export const updateStore = {
       itemId,
     };
     store.dispatch(actions.updateItem(payload));
+
     return {
       ...(item as Item),
       id: itemId,
@@ -146,26 +152,63 @@ export const updateStore = {
       listId,
     };
     store.dispatch(actions.loadList(payload));
+
     return {
       ...payload.list,
       id: listId,
     };
   },
 
+  withRow() {
+    const row = {
+      createdAt: dateNow,
+      createdBy: userId,
+      name: 'Row One',
+      [DatabaseKey.itemIds]: [listItemId],
+    };
+
+    const id = rowId;
+    const payload = {
+      row,
+      rowId,
+      skipSave: true,
+    };
+    store.dispatch(actions.updateRow(payload));
+
+    return {
+      ...row,
+      id,
+    };
+  },
+
+  withRows(rows: Rows) {
+    Object.entries(rows).forEach(([rowId, row]) => {
+      const payload = {
+        row,
+        rowId,
+        skipSave: true,
+      };
+      store.dispatch(actions.updateRow(payload));
+    });
+  },
+
   withUser(email = true, override?: Partial<User>) {
     const user: Partial<User> = {
       id: userId,
     };
+
     if (email) {
       user.email = userEmail;
       user.emailVerified = true;
     }
+
     store.dispatch(
       actions.setUser({
         ...user,
         ...override,
       }),
     );
+
     return user;
   },
 
