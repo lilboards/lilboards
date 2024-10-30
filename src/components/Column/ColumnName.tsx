@@ -2,6 +2,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import DeleteDialog from 'src/components/DeleteDialog';
+import { DatabaseKey } from 'src/constants';
 import { logEvent } from 'src/firebase';
 import {
   useDispatch,
@@ -29,7 +30,7 @@ export default function ColumnName(props: Props) {
   const readOnly = useSelector(
     (state) => (state.boards[props.boardId] || {}).createdBy !== state.user.id,
   );
-  const itemIds = useGetItemIds(props.columnId);
+  const itemIds = useGetItemIds(DatabaseKey.columns, props.columnId);
   const userId = useGetUserId();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const columnName = props.name || props.placeholder;

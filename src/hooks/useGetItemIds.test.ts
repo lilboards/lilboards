@@ -1,24 +1,62 @@
 import { renderHook } from '@testing-library/react';
-import { columnId, itemId } from 'test/constants';
+import { DatabaseKey } from 'src/constants';
+import { columnId, itemId, listItemId, rowId } from 'test/constants';
 import { updateStore, wrapper } from 'test/utils';
 
 import { useGetItemIds } from './useGetItemIds';
 
-describe('when state is empty', () => {
-  it('returns empty array', () => {
-    const { result } = renderHook(() => useGetItemIds(columnId), {
+it('returns empty array if key is invalid', () => {
+  const { result } = renderHook(
+    () => useGetItemIds('invalid' as DatabaseKey.columns, columnId),
+    {
       wrapper,
-    });
+    },
+  );
+  expect(result.current).toEqual([]);
+});
+
+describe('columns', () => {
+  it('returns empty array when column is empty', () => {
+    const { result } = renderHook(
+      () => useGetItemIds(DatabaseKey.columns, columnId),
+      {
+        wrapper,
+      },
+    );
     expect(result.current).toEqual([]);
+  });
+
+  it('returns item ids when column exists', () => {
+    updateStore.withColumn();
+    const { result } = renderHook(
+      () => useGetItemIds(DatabaseKey.columns, columnId),
+      {
+        wrapper,
+      },
+    );
+    expect(result.current).toEqual([itemId]);
   });
 });
 
-describe('when column exists', () => {
-  it('returns item ids', () => {
-    updateStore.withColumn();
-    const { result } = renderHook(() => useGetItemIds(columnId), {
-      wrapper,
-    });
-    expect(result.current).toEqual([itemId]);
+describe('rows', () => {
+  it('returns empty array when row is empty', () => {
+    const { result } = renderHook(
+      () => useGetItemIds(DatabaseKey.rows, rowId),
+      {
+        wrapper,
+      },
+    );
+    expect(result.current).toEqual([]);
+  });
+
+  it('returns item ids when row exists', () => {
+    updateStore.withRow();
+    const { result } = renderHook(
+      () => useGetItemIds(DatabaseKey.rows, rowId),
+      {
+        wrapper,
+      },
+    );
+    expect(result.current).toEqual([listItemId]);
   });
 });

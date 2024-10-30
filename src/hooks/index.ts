@@ -2,6 +2,8 @@ export * from './useAuth';
 export * from './useDispatch';
 export * from './useGetItemIds';
 export * from './useGetLikes';
+export * from './useGetRow';
+export * from './useGetRowIds';
 export * from './useGetUserId';
 export * from './useIsAdmin';
 export * from './useIsLoggedIn';
