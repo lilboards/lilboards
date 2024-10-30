@@ -1,11 +1,19 @@
 import CloseIcon from '@mui/icons-material/Close';
 import type { IconButtonProps } from '@mui/material/IconButton';
 import IconButton from '@mui/material/IconButton';
+import type { SvgIconProps } from '@mui/material/SvgIcon';
 
-export default function CloseButton(props: IconButtonProps) {
+interface Props extends IconButtonProps {
+  svgIconProps?: SvgIconProps;
+}
+
+export default function CloseButton({
+  svgIconProps,
+  ...iconButtonProps
+}: Props) {
   return (
-    <IconButton size="large" {...props}>
-      <CloseIcon />
+    <IconButton size="large" {...iconButtonProps}>
+      <CloseIcon {...svgIconProps} />
     </IconButton>
   );
 }

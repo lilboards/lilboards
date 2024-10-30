@@ -19,3 +19,9 @@ it('handles onClick event', () => {
   fireEvent.click(screen.getByRole('button'));
   expect(onClick).toHaveBeenCalledTimes(1);
 });
+
+it('renders SVG icon props', () => {
+  const titleAccess = 'title';
+  render(<CloseButton svgIconProps={{ fontSize: 'small', titleAccess }} />);
+  expect(screen.getByTitle(titleAccess)).toBeInTheDocument();
+});
