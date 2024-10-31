@@ -1,12 +1,12 @@
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import Box from '@mui/material/Box';
-import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
 import { logEvent } from 'src/firebase';
 import { useDispatch, useGetUserId, useSelector } from 'src/hooks';
 import { actions } from 'src/store';
 import type { Id } from 'src/types';
 
+import Checkbox from './Checkbox';
 import Delete, { CLASSNAME_DELETE_ICON } from './Delete';
 
 const CLASSNAME_DRAG_ICON = 'drag-icon';
@@ -85,13 +85,7 @@ export default function ListItem(props: Props) {
         sx={{ marginRight: 1, visibility: 'hidden' }}
       />
 
-      <Checkbox
-        checked={item.checked}
-        edge="start"
-        inputProps={{ 'aria-label': `Checkbox “${item.text}”` }}
-        size="small"
-        sx={{ padding: 1 }}
-      />
+      <Checkbox {...props} />
 
       <TextField
         variant="standard"
