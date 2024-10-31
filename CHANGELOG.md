@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.39.0](https://github.com/lilboards/lilboards/compare/v4.38.0...v4.39.0) (2024-10-31)
+
+
+### Features
+
+* **pages:** enable List ([cf87a98](https://github.com/lilboards/lilboards/commit/cf87a98dc6ab25e368214f972fbbc125cc3a25f8))
+
 ## [4.38.0](https://github.com/lilboards/lilboards/compare/v4.37.0...v4.38.0) (2024-10-29)
 
 
