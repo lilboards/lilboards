@@ -12,59 +12,46 @@ const props = {
 
 let item: ReturnType<typeof updateStore.withItem>;
 
-it('does not render for undefined item', () => {
-  renderWithProviders(<Item {...props} />);
-  expect(screen.queryByLabelText(/item/)).toBe(null);
+describe('invalid', () => {
+  it('does not render for undefined item', () => {
+    renderWithProviders(<Item {...props} />);
+    expect(screen.queryByLabelText(/item/)).toBe(null);
+  });
 });
 
-it('renders card style', () => {
-  const item = updateStore.withItem();
-  renderWithProviders(
-    <Item
-      {...props}
-      cardStyle={{ backgroundColor: '#64b5f6' }}
-      itemId={item.id}
-    />,
-  );
-  expect(screen.getByText(item.text)).toBeInTheDocument();
-});
-
-it('renders like button and count', () => {
-  const item = updateStore.withItem();
-  renderWithProviders(<Item {...props} itemId={item.id} />);
-  expect(screen.getByLabelText(`Like item "${item.text}"`)).toBeInTheDocument();
-  expect(screen.getByLabelText(/0 likes/)).toBeInTheDocument();
-});
-
-it('renders accessible textbox', () => {
-  const item = updateStore.withItem();
-  renderWithProviders(<Item {...props} itemId={item.id} />);
-  expect(screen.getByRole('textbox')).toHaveTextContent(item.text);
-});
-
-it('renders link', () => {
-  item = updateStore.withItem({ text: 'https://example.com/' });
-  renderWithProviders(<Item {...props} itemId={item.id} />);
-  expect(screen.getByRole('link')).toHaveTextContent(item.text);
-});
-
-describe('delete item', () => {
+describe('item', () => {
   beforeEach(() => {
     item = updateStore.withItem();
   });
 
-  it('renders delete button', () => {
-    renderWithProviders(<Item {...props} itemId={item.id} />);
-    expect(
-      screen.getByLabelText(`Delete item “${item.text}”`),
-    ).toBeInTheDocument();
+  it('renders card style', () => {
+    renderWithProviders(
+      <Item
+        {...props}
+        cardStyle={{ backgroundColor: '#64b5f6' }}
+        itemId={item.id}
+      />,
+    );
+    expect(screen.getByText(item.text)).toBeInTheDocument();
   });
 
-  it('deletes item', () => {
+  it('renders like button and count', () => {
     renderWithProviders(<Item {...props} itemId={item.id} />);
-    fireEvent.click(screen.getByLabelText(`Delete item “${item.text}”`));
-    fireEvent.click(screen.getByText('Delete'));
-    expect(screen.queryByLabelText(/Delete item/)).not.toBeInTheDocument();
+    expect(
+      screen.getByLabelText(`Like item "${item.text}"`),
+    ).toBeInTheDocument();
+    expect(screen.getByLabelText(/0 likes/)).toBeInTheDocument();
+  });
+
+  it('renders accessible textbox', () => {
+    renderWithProviders(<Item {...props} itemId={item.id} />);
+    expect(screen.getByRole('textbox')).toHaveTextContent(item.text);
+  });
+
+  it('renders link', () => {
+    const item = updateStore.withItem({ text: 'https://example.com/' });
+    renderWithProviders(<Item {...props} itemId={item.id} />);
+    expect(screen.getByRole('link')).toHaveTextContent(item.text);
   });
 });
 
@@ -99,5 +86,25 @@ describe('edit item', () => {
     const textarea = screen.getByLabelText(labelText);
     fireEvent.blur(textarea);
     expect(store.getState().user.editing.itemId).toBe('');
+  });
+});
+
+describe('delete item', () => {
+  beforeEach(() => {
+    item = updateStore.withItem();
+  });
+
+  it('renders delete button', () => {
+    renderWithProviders(<Item {...props} itemId={item.id} />);
+    expect(
+      screen.getByLabelText(`Delete item “${item.text}”`),
+    ).toBeInTheDocument();
+  });
+
+  it('deletes item', () => {
+    renderWithProviders(<Item {...props} itemId={item.id} />);
+    fireEvent.click(screen.getByLabelText(`Delete item “${item.text}”`));
+    fireEvent.click(screen.getByText('Delete'));
+    expect(screen.queryByLabelText(/Delete item/)).not.toBeInTheDocument();
   });
 });

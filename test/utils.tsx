@@ -4,7 +4,15 @@ import { Provider } from 'react-redux';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { DatabaseKey } from 'src/constants';
 import { actions, resetActions, store } from 'src/store';
-import type { Board, Columns, Item, List, Rows, User } from 'src/types';
+import type {
+  Board,
+  Columns,
+  Item,
+  List,
+  ListItem,
+  Rows,
+  User,
+} from 'src/types';
 import { noop } from 'src/utils';
 
 import {
@@ -14,7 +22,6 @@ import {
   email as userEmail,
   itemId,
   listId,
-  listItemId,
   rowId,
   userId,
 } from './constants';
@@ -66,6 +73,7 @@ export const updateStore = {
       },
       boardId,
     };
+
     store.dispatch(actions.loadBoard(payload));
 
     return {
@@ -83,11 +91,13 @@ export const updateStore = {
     };
 
     const id = columnId;
+
     const payload = {
       column,
       columnId,
       skipSave: true,
     };
+
     store.dispatch(actions.updateColumn(payload));
 
     return {
@@ -103,6 +113,7 @@ export const updateStore = {
         columnId,
         skipSave: true,
       };
+
       store.dispatch(actions.updateColumn(payload));
     });
   },
@@ -120,10 +131,12 @@ export const updateStore = {
       text: 'Item One',
       ...item,
     };
+
     const payload = {
       item,
       itemId,
     };
+
     store.dispatch(actions.updateItem(payload));
 
     return {
@@ -138,6 +151,7 @@ export const updateStore = {
       itemId,
       userId,
     };
+
     store.dispatch(actions.likeItem(payload));
   },
 
@@ -151,6 +165,7 @@ export const updateStore = {
       },
       listId,
     };
+
     store.dispatch(actions.loadList(payload));
 
     return {
@@ -159,20 +174,49 @@ export const updateStore = {
     };
   },
 
+  withListItem(
+    item: Partial<ListItem> = {
+      createdAt: dateNow,
+      createdBy: userId,
+      text: 'List Item One',
+    },
+  ) {
+    item = {
+      createdAt: dateNow,
+      createdBy: userId,
+      text: 'List Item One',
+      ...item,
+    };
+
+    const payload = {
+      item,
+      itemId,
+    };
+
+    store.dispatch(actions.updateListItem(payload));
+
+    return {
+      ...(item as ListItem),
+      id: itemId,
+    };
+  },
+
   withRow() {
     const row = {
       createdAt: dateNow,
       createdBy: userId,
       name: 'Row One',
-      [DatabaseKey.itemIds]: [listItemId],
+      [DatabaseKey.itemIds]: [itemId],
     };
 
     const id = rowId;
+
     const payload = {
       row,
       rowId,
       skipSave: true,
     };
+
     store.dispatch(actions.updateRow(payload));
 
     return {
@@ -188,6 +232,7 @@ export const updateStore = {
         rowId,
         skipSave: true,
       };
+
       store.dispatch(actions.updateRow(payload));
     });
   },
@@ -218,7 +263,9 @@ export const updateStore = {
       columnId,
       itemId,
     };
+
     store.dispatch(actions.setUserEditing(userEditing));
+
     return userEditing;
   },
 };

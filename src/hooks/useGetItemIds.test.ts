@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { DatabaseKey } from 'src/constants';
-import { columnId, itemId, listItemId, rowId } from 'test/constants';
+import { columnId, itemId, rowId } from 'test/constants';
 import { updateStore, wrapper } from 'test/utils';
 
 import { useGetItemIds } from './useGetItemIds';
@@ -57,6 +57,6 @@ describe('rows', () => {
         wrapper,
       },
     );
-    expect(result.current).toEqual([listItemId]);
+    expect(result.current).toEqual([itemId]);
   });
 });
