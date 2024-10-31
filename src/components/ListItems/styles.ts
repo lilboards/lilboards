@@ -1,4 +1,5 @@
 import type { DroppableStateSnapshot } from '@hello-pangea/dnd';
+import { grey } from '@mui/material/colors';
 
 /**
  * Gets droppable background color.
@@ -9,6 +10,6 @@ export const getDroppableBackgroundColor = (
   droppableSnapshot: DroppableStateSnapshot,
 ) => {
   if (droppableSnapshot.isDraggingOver) {
-    return '#eee';
+    return grey[100];
   }
 };
