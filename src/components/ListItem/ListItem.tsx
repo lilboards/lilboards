@@ -13,7 +13,6 @@ const CLASSNAME_DRAG_ICON = 'drag-icon';
 
 interface Props {
   listId: Id;
-  cardStyle?: React.CSSProperties;
   rowId: Id;
   itemId: Id;
 }
@@ -72,7 +71,6 @@ export default function ListItem(props: Props) {
     <Box
       height="100%"
       position="relative"
-      style={props.cardStyle}
       sx={{
         alignItems: 'center',
         display: 'flex',

@@ -24,19 +24,8 @@ describe('item', () => {
     item = updateStore.withListItem();
   });
 
-  it('renders card style', () => {
-    const item = updateStore.withListItem({ checked: true });
-    renderWithProviders(
-      <ListItem
-        {...props}
-        cardStyle={{ backgroundColor: '#64b5f6' }}
-        itemId={item.id}
-      />,
-    );
-    expect(screen.getByText(item.text)).toBeInTheDocument();
-  });
-
   it('renders checkbox', () => {
+    const item = updateStore.withListItem({ checked: true });
     renderWithProviders(<ListItem {...props} itemId={item.id} />);
     expect(
       screen.getByLabelText(`Checkbox “${item.text}”`),
