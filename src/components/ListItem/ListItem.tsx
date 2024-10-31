@@ -82,7 +82,7 @@ export default function ListItem(props: Props) {
         className={CLASSNAME_DRAG_ICON}
         color="disabled"
         fontSize="small"
-        sx={{ marginRight: 1, visibility: 'hidden' }}
+        sx={{ cursor: 'grab', marginRight: 1, visibility: 'hidden' }}
       />
 
       <Checkbox {...props} />
