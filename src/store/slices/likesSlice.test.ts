@@ -18,7 +18,7 @@ describe('likeItem', () => {
     const newState = reducer(initialState, actions.likeItem(payload));
     expect(newState).toEqual({
       items: {
-        item_test_id: {
+        [itemId]: {
           user_test_id: true,
         },
       },
@@ -32,7 +32,7 @@ describe('unlikeItem', () => {
     const newState = reducer(state, actions.unlikeItem(payload));
     expect(newState).toEqual({
       items: {
-        item_test_id: {},
+        [itemId]: {},
       },
     });
   });
@@ -77,7 +77,7 @@ describe('setLikesItem', () => {
     const newState = reducer(state, actions.setLikesItem(payload));
     expect(newState).toEqual({
       items: {
-        item_test_id: {
+        [itemId]: {
           user_test_id2: true,
         },
       },

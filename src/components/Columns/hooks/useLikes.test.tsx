@@ -60,7 +60,7 @@ describe('likes snapshot value is valid', () => {
 
     expect(store.getState().likes).toEqual({
       items: {
-        item_test_id: {
+        [itemId]: {
           user_test_id: true,
         },
       },

@@ -93,7 +93,7 @@ describe('onChildAdded', () => {
     renderWithProviders(<TestComponent />);
     jest.runAllTimers();
     expect(store.getState().items).toEqual({
-      item_test_id: {
+      [itemId]: {
         createdAt: 1234567890,
         createdBy: 'user_test_id',
         text: 'Item text',
@@ -149,7 +149,7 @@ describe('onChildChanged', () => {
     renderWithProviders(<TestComponent />);
     jest.runAllTimers();
     expect(store.getState().items).toEqual({
-      item_test_id: {
+      [itemId]: {
         createdAt: 1234567890,
         createdBy: 'user_test_id',
         text: 'Item text2',
