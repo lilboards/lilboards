@@ -27,12 +27,19 @@ describe('add item', () => {
   });
 });
 
-describe('delete row', () => {
+describe('admin', () => {
+  let list: ReturnType<typeof updateStore.withList>;
+  let row: ReturnType<typeof updateStore.withRow>;
   const dialogContent = 'This action cannot be undone.';
 
+  beforeEach(() => {
+    updateStore.withUser();
+    list = updateStore.withList();
+    row = updateStore.withRow();
+  });
+
   it('cancels delete', () => {
-    const row = updateStore.withRow();
-    renderWithProviders(<ListItems listId={listId} rowId={row.id} />);
+    renderWithProviders(<ListItems listId={list.id} rowId={row.id} />);
     fireEvent.click(screen.getByText('Delete'));
     expect(screen.getByText('Delete row?')).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
@@ -40,12 +47,20 @@ describe('delete row', () => {
   });
 
   it('deletes row', () => {
-    const row = updateStore.withRow();
-    renderWithProviders(<ListItems listId={listId} rowId={row.id} />);
+    renderWithProviders(<ListItems listId={list.id} rowId={row.id} />);
     fireEvent.click(screen.getByText('Delete'));
     expect(screen.getByText('Delete row?')).toBeInTheDocument();
     fireEvent.click(screen.getAllByText('Delete')[1]);
     expect(screen.queryByText(dialogContent)).not.toBeVisible();
     expect(screen.queryByDisplayValue(row.name)).not.toBeInTheDocument();
+  });
+});
+
+describe('non-admin', () => {
+  it('does not see delete button', () => {
+    const row = updateStore.withRow();
+    renderWithProviders(<ListItems listId={listId} rowId={row.id} />);
+    expect(screen.queryByText('Delete')).not.toBeInTheDocument();
+    expect(screen.queryByText('Delete row?')).not.toBeInTheDocument();
   });
 });

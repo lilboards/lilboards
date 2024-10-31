@@ -5,7 +5,12 @@ import { useState } from 'react';
 import DeleteDialog from 'src/components/DeleteDialog';
 import { DatabaseKey } from 'src/constants';
 import { generateId, logEvent } from 'src/firebase';
-import { useDispatch, useGetItemIds, useGetUserId } from 'src/hooks';
+import {
+  useDispatch,
+  useGetItemIds,
+  useGetUserId,
+  useIsAdmin,
+} from 'src/hooks';
 import { actions } from 'src/store';
 import type { Id, ListItem } from 'src/types';
 
@@ -21,6 +26,7 @@ export default function Items(props: Props) {
   const userId = useGetUserId();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const itemIds = useGetItemIds(DatabaseKey.rows, props.rowId);
+  const isAdmin = useIsAdmin(DatabaseKey.lists, props.listId);
 
   function addItem() {
     const item: ListItem = {
@@ -87,22 +93,26 @@ export default function Items(props: Props) {
           <AddIcon /> Add item
         </Button>
 
-        <Button color="error" onClick={() => setIsDialogOpen(true)}>
-          Delete
-        </Button>
+        {isAdmin && (
+          <Button color="error" onClick={() => setIsDialogOpen(true)}>
+            Delete
+          </Button>
+        )}
       </Box>
 
-      <DeleteDialog
-        content="This action cannot be undone."
-        id={props.rowId}
-        onClose={() => setIsDialogOpen(false)}
-        onDelete={() => {
-          deleteRow();
-          setIsDialogOpen(false);
-        }}
-        open={isDialogOpen}
-        title="Delete row?"
-      />
+      {isAdmin && (
+        <DeleteDialog
+          content="This action cannot be undone."
+          id={props.rowId}
+          onClose={() => setIsDialogOpen(false)}
+          onDelete={() => {
+            deleteRow();
+            setIsDialogOpen(false);
+          }}
+          open={isDialogOpen}
+          title="Delete row?"
+        />
+      )}
     </>
   );
 }
