@@ -1,7 +1,8 @@
-import Typography from '@mui/material/Typography';
 import { useParams } from 'react-router-dom';
+import AddRow from 'src/components/AddRow';
 import Breadcrumb from 'src/components/Breadcrumb';
 import Heading from 'src/components/Heading';
+import Rows from 'src/components/Rows';
 import { useIsLoggedIn, useSetDocumentTitle } from 'src/hooks';
 import type { Id } from 'src/types';
 
@@ -24,7 +25,9 @@ export default function List() {
 
       <Heading link>{list.name}</Heading>
 
-      <Typography>Coming soon.</Typography>
+      <AddRow listId={listId} />
+
+      <Rows listId={listId} />
     </>
   );
 }

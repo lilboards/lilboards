@@ -24,7 +24,10 @@ jest.mock('src/firebase', () => ({
 
 const mockedGetListDataRef = jest.mocked(getListDataRef);
 
+const mockRows = 'Rows';
 const unsubscribe = jest.fn();
+
+jest.mock('src/components/Rows', () => () => <p>{mockRows}</p>);
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -41,13 +44,13 @@ describe('no list', () => {
   it('renders nothing when there is no list id', async () => {
     mockedUseParams.mockReturnValue({});
     renderWithProviders(<List />);
-    await waitFor(() => expect(screen.queryByText('Coming soon.')).toBe(null));
+    await waitFor(() => expect(screen.queryByText(mockRows)).toBe(null));
   });
 
   it('renders nothing when there is no list', async () => {
     mockedUseParams.mockReturnValue({ listId: 'invalid' });
     renderWithProviders(<List />);
-    await waitFor(() => expect(screen.queryByText('Coming soon.')).toBe(null));
+    await waitFor(() => expect(screen.queryByText(mockRows)).toBe(null));
   });
 
   it('redirects to "/404" when list is not found', async () => {
@@ -109,6 +112,11 @@ describe('with list', () => {
         screen.getByText(list.name),
       );
     });
+  });
+
+  it('renders <Rows>', () => {
+    renderWithProviders(<List />);
+    expect(screen.getByText(mockRows)).toBeInTheDocument();
   });
 });
 
