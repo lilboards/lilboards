@@ -2,8 +2,9 @@ import { DragDropContext, type DropResult } from '@hello-pangea/dnd';
 import { useDispatch, useGetUserId, useSelector } from 'src/hooks';
 import { actions } from 'src/store';
 import type { Id } from 'src/types';
+import { reorder } from 'src/utils';
 
-import { combine, reorder } from './utils';
+import { combine } from './utils';
 
 interface Props {
   boardId: Id;
