@@ -24,13 +24,14 @@ jest.mock('src/firebase', () => ({
 
 const mockedGetBoardDataRef = jest.mocked(getBoardDataRef);
 
-jest.mock('src/components/BoardControls', () => () => <p>Board Controls</p>);
-jest.mock('src/components/Columns', () => () => <p>Columns</p>);
-
-const boardControls = 'Board Controls';
-const columns = 'Columns';
-
+const mockBoardControls = 'Board Controls';
+const mockColumns = 'Columns';
 const unsubscribe = jest.fn();
+
+jest.mock('src/components/BoardControls', () => () => (
+  <p>{mockBoardControls}</p>
+));
+jest.mock('src/components/Columns', () => () => <p>{mockColumns}</p>);
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -47,14 +48,16 @@ describe('no board', () => {
   it('renders nothing when there is no board id', async () => {
     mockedUseParams.mockReturnValue({});
     renderWithProviders(<Board />);
-    await waitFor(() => expect(screen.queryByText(boardControls)).toBe(null));
-    expect(screen.queryByText(columns)).toBe(null);
+    await waitFor(() =>
+      expect(screen.queryByText(mockBoardControls)).toBe(null),
+    );
+    expect(screen.queryByText(mockColumns)).toBe(null);
   });
 
   it('renders nothing when there is no board', async () => {
     mockedUseParams.mockReturnValue({ boardId: 'invalid' });
     renderWithProviders(<Board />);
-    await waitFor(() => expect(screen.queryByText(columns)).toBe(null));
+    await waitFor(() => expect(screen.queryByText(mockColumns)).toBe(null));
   });
 
   it('redirects to "/404" when board is not found', async () => {
@@ -120,12 +123,12 @@ describe('with board', () => {
 
   it('renders <BoardControls>', () => {
     renderWithProviders(<Board />);
-    expect(screen.getByText(boardControls)).toBeInTheDocument();
+    expect(screen.getByText(mockBoardControls)).toBeInTheDocument();
   });
 
   it('renders <Columns>', () => {
     renderWithProviders(<Board />);
-    expect(screen.getByText(columns)).toBeInTheDocument();
+    expect(screen.getByText(mockColumns)).toBeInTheDocument();
   });
 });
 
