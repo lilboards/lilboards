@@ -5,6 +5,7 @@ export * from './useGetLikes';
 export * from './useGetRow';
 export * from './useGetRowIds';
 export * from './useGetUserId';
+export * from './useGetUserPhotoURL';
 export * from './useIsAdmin';
 export * from './useIsLoggedIn';
 export * from './useMaxLikes';

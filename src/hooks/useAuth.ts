@@ -22,6 +22,7 @@ export function useAuth(shouldSignInAnonymously = false): boolean {
             email: user.email,
             emailVerified: user.emailVerified,
             id: user.uid,
+            photoURL: user.photoURL,
           }),
         );
 

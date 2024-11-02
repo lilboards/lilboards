@@ -15,6 +15,7 @@ export const initialState: User = {
   emailVerified: false,
   hideLikes: false,
   id: '',
+  photoURL: null,
 };
 
 export const userSlice = createSlice({
@@ -24,7 +25,7 @@ export const userSlice = createSlice({
   reducers: {
     resetUser: () => initialState,
 
-    setUser: (state, action: PayloadAction<Partial<User>>) => {
+    setUser(state, action: PayloadAction<Partial<User>>) {
       const user = action.payload;
       Object.assign(state, user);
       if (user.id) {
@@ -32,14 +33,11 @@ export const userSlice = createSlice({
       }
     },
 
-    setUserEditing: (
-      state,
-      action: PayloadAction<Partial<User['editing']>>,
-    ) => {
+    setUserEditing(state, action: PayloadAction<Partial<User['editing']>>) {
       Object.assign(state.editing, action.payload);
     },
 
-    toggleUserHideLikes: (state) => {
+    toggleUserHideLikes(state) {
       state.hideLikes = !state.hideLikes;
     },
   },

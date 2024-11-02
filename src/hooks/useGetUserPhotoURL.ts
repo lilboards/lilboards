@@ -1,16 +1,16 @@
 import { createSelector } from '@reduxjs/toolkit';
-import type { Id, RootState } from 'src/types';
+import type { RootState } from 'src/types';
 
 import { useSelector } from './useSelector';
 
 const selectUserId = createSelector(
   (state: RootState) => state.user,
-  (user) => /* istanbul ignore next */ user?.id || '',
+  (user) => /* istanbul ignore next */ user?.photoURL,
 );
 
 /**
- * Get user id.
+ * Get user's photo URL.
  */
-export function useGetUserId(): Id {
+export function useGetUserPhotoURL() {
   return useSelector(selectUserId);
 }
