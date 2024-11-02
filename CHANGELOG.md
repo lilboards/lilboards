@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.40.0](https://github.com/lilboards/lilboards/compare/v4.39.0...v4.40.0) (2024-11-02)
+
+
+### Features
+
+* **components:** show user photo in ListItem if they are the creator ([0d0ae3d](https://github.com/lilboards/lilboards/commit/0d0ae3d0874f08513f700bf6602a3062f4c93f5d))
+
 ## [4.39.0](https://github.com/lilboards/lilboards/compare/v4.38.0...v4.39.0) (2024-10-31)
 
 
