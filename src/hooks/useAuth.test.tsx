@@ -22,6 +22,7 @@ describe('shouldSignInAnonymously is false', () => {
   describe('user is not signed in', () => {
     beforeEach(() => {
       const user = null;
+
       mockedOnAuthStateChanged.mockImplementationOnce(
         (callback) => callback(user) as unknown as Unsubscribe,
       );
@@ -45,9 +46,10 @@ describe('shouldSignInAnonymously is false', () => {
         email,
         emailVerified: false,
         uid: userId,
-      };
+      } as User;
+
       mockedOnAuthStateChanged.mockImplementationOnce(
-        (callback) => callback(user as User) as unknown as Unsubscribe,
+        (callback) => callback(user) as unknown as Unsubscribe,
       );
     });
 
@@ -73,9 +75,11 @@ describe('shouldSignInAnonymously is false', () => {
         email,
         emailVerified: true,
         uid: userId,
-      };
+        photoURL: 'https://example.com/photo.png',
+      } as User;
+
       mockedOnAuthStateChanged.mockImplementationOnce(
-        (callback) => callback(user as User) as unknown as Unsubscribe,
+        (callback) => callback(user) as unknown as Unsubscribe,
       );
     });
 
@@ -91,6 +95,7 @@ describe('shouldSignInAnonymously is false', () => {
         email,
         emailVerified: true,
         id: userId,
+        photoURL: 'https://example.com/photo.png',
       });
     });
   });
@@ -99,9 +104,11 @@ describe('shouldSignInAnonymously is false', () => {
     beforeEach(() => {
       const user = {
         uid: userId,
-      };
+        photoURL: null,
+      } as User;
+
       mockedOnAuthStateChanged.mockImplementationOnce(
-        (callback) => callback(user as User) as unknown as Unsubscribe,
+        (callback) => callback(user) as unknown as Unsubscribe,
       );
     });
 
@@ -117,6 +124,7 @@ describe('shouldSignInAnonymously is false', () => {
         email: undefined,
         emailVerified: undefined,
         id: userId,
+        photoURL: null,
       });
     });
   });
@@ -127,6 +135,7 @@ describe('shouldSignInAnonymously is true', () => {
 
   beforeEach(() => {
     const user = null;
+
     mockedOnAuthStateChanged.mockImplementationOnce(
       (callback) => callback(user) as unknown as Unsubscribe,
     );

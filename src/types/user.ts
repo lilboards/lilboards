@@ -15,4 +15,5 @@ export interface User {
   emailVerified: boolean;
   hideLikes: boolean;
   id: UserId;
+  photoURL: string | null;
 }

@@ -56,6 +56,25 @@ describe('item', () => {
   });
 });
 
+describe('item avatar', () => {
+  beforeEach(() => {
+    item = updateStore.withListItem();
+  });
+
+  it('does not render user photo', () => {
+    renderWithProviders(<ListItem {...props} itemId={item.id} />);
+    expect(screen.queryByAltText('User Photo')).not.toBeInTheDocument();
+  });
+
+  it('renders user photo', () => {
+    updateStore.withUser(undefined, {
+      photoURL: 'https://example.com/photo.png',
+    });
+    renderWithProviders(<ListItem {...props} itemId={item.id} />);
+    expect(screen.getByAltText('User Photo')).toBeInTheDocument();
+  });
+});
+
 describe('delete item', () => {
   beforeEach(() => {
     item = updateStore.withListItem();

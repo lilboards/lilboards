@@ -1,8 +1,14 @@
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
-import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { logEvent } from 'src/firebase';
-import { useDispatch, useGetUserId, useSelector } from 'src/hooks';
+import {
+  useDispatch,
+  useGetUserId,
+  useGetUserPhotoURL,
+  useSelector,
+} from 'src/hooks';
 import { actions } from 'src/store';
 import type { Id } from 'src/types';
 
@@ -24,6 +30,7 @@ export default function ListItem(props: Props) {
     (state) => state.user.editing.listItemId === props.itemId,
   );
   const userId = useGetUserId();
+  const userPhotoURL = useGetUserPhotoURL();
 
   if (!item) {
     return null;
@@ -68,12 +75,10 @@ export default function ListItem(props: Props) {
   }
 
   return (
-    <Box
-      height="100%"
-      position="relative"
+    <Stack
+      direction="row"
       sx={{
         alignItems: 'center',
-        display: 'flex',
         [`&:hover .${CLASSNAME_DRAG_ICON}`]: { visibility: 'visible' },
         [`&:hover .${CLASSNAME_DELETE_ICON}`]: { visibility: 'visible' },
       }}
@@ -106,12 +111,20 @@ export default function ListItem(props: Props) {
         value={item.text}
       />
 
+      {userPhotoURL && item.createdBy === userId && (
+        <Avatar
+          alt="User Photo"
+          src={userPhotoURL}
+          sx={{ width: 24, height: 24 }}
+        />
+      )}
+
       <Delete
         listId={props.listId}
         rowId={props.rowId}
         itemId={props.itemId}
         itemText={item.text}
       />
-    </Box>
+    </Stack>
   );
 }
