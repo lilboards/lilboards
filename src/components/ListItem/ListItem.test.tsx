@@ -15,7 +15,7 @@ let item: ReturnType<typeof updateStore.withListItem>;
 describe('invalid', () => {
   it('does not render for undefined item', () => {
     renderWithProviders(<ListItem {...props} />);
-    expect(screen.queryByLabelText(/Checkbox/)).toBe(null);
+    expect(screen.queryByLabelText(/Check/)).toBe(null);
   });
 });
 
@@ -27,9 +27,7 @@ describe('item', () => {
   it('renders checkbox', () => {
     const item = updateStore.withListItem({ checked: true });
     renderWithProviders(<ListItem {...props} itemId={item.id} />);
-    expect(
-      screen.getByLabelText(`Checkbox “${item.text}”`),
-    ).toBeInTheDocument();
+    expect(screen.getByLabelText(`Check “${item.text}”`)).toBeInTheDocument();
   });
 
   it('renders value', () => {

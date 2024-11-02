@@ -23,19 +23,19 @@ beforeEach(() => {
 
 it('renders checkbox', () => {
   renderWithProviders(<Checkbox {...props} />);
-  expect(screen.getByLabelText(`Checkbox “${item.text}”`)).toBeInTheDocument();
+  expect(screen.getByLabelText(`Check “${item.text}”`)).toBeInTheDocument();
 });
 
 it('defaults to unchecked', () => {
   renderWithProviders(<Checkbox {...props} itemId={item.id} />);
-  const checkbox = screen.getByLabelText<HTMLInputElement>(/Checkbox/);
+  const checkbox = screen.getByLabelText<HTMLInputElement>(/Check/);
   expect(store.getState().listItems[item.id].checked).toBe(undefined);
   expect(checkbox.checked).toBe(false);
 });
 
 it('is checked', () => {
   renderWithProviders(<Checkbox {...props} itemId={item.id} />);
-  const checkbox = screen.getByLabelText<HTMLInputElement>(/Checkbox/);
+  const checkbox = screen.getByLabelText<HTMLInputElement>(/Check/);
   fireEvent.click(checkbox);
   expect(checkbox.checked).toBe(true);
   expect(store.getState().listItems[item.id].checked).toBe(true);

@@ -39,7 +39,7 @@ export default function ListItemCheckbox(props: Props) {
     <Checkbox
       checked={Boolean(item.checked)}
       edge="start"
-      inputProps={{ 'aria-label': `Checkbox “${item.text}”` }}
+      inputProps={{ 'aria-label': `Check “${item.text}”` }}
       onChange={handleChange}
       size="small"
       sx={{ padding: 1 }}
