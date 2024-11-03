@@ -39,7 +39,7 @@ export default function Delete(props: Props) {
 
   return (
     <CloseButton
-      aria-label={`Delete item “${props.itemText}”`}
+      aria-label={`Delete “${props.itemText}”`}
       className={CLASSNAME_DELETE_ICON}
       onClick={deleteItem}
       size="small"

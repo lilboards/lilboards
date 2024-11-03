@@ -82,14 +82,12 @@ describe('delete item', () => {
 
   it('renders delete button', () => {
     renderWithProviders(<ListItem {...props} itemId={item.id} />);
-    expect(
-      screen.getByLabelText(`Delete item “${item.text}”`),
-    ).toBeInTheDocument();
+    expect(screen.getByLabelText(`Delete “${item.text}”`)).toBeInTheDocument();
   });
 
   it('deletes item', () => {
     renderWithProviders(<ListItem {...props} itemId={item.id} />);
-    fireEvent.click(screen.getByLabelText(`Delete item “${item.text}”`));
-    expect(screen.queryByLabelText(/Delete item/)).not.toBeInTheDocument();
+    fireEvent.click(screen.getByLabelText(`Delete “${item.text}”`));
+    expect(screen.queryByLabelText(/Delete “(.*)”/)).not.toBeInTheDocument();
   });
 });

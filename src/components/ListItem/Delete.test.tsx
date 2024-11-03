@@ -28,13 +28,13 @@ beforeEach(() => {
 it('renders delete button', () => {
   renderWithProviders(<Delete {...props} />);
   expect(
-    screen.getByLabelText(`Delete item “${props.itemText}”`),
+    screen.getByLabelText(`Delete “${props.itemText}”`),
   ).toBeInTheDocument();
 });
 
 it('deletes item', () => {
   renderWithProviders(<Delete {...props} />);
-  fireEvent.click(screen.getByLabelText(`Delete item “${props.itemText}”`));
+  fireEvent.click(screen.getByLabelText(`Delete “${props.itemText}”`));
   const state = store.getState();
   expect(state).toMatchObject({
     listItems: {},
