@@ -7,8 +7,14 @@ import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import DeleteDialog from 'src/components/DeleteDialog';
+import { DatabaseKey } from 'src/constants';
 import { logEvent } from 'src/firebase';
-import { useDispatch, useGetBoard, useGetUserId, useSelector } from 'src/hooks';
+import {
+  useDispatch,
+  useGetBoardOrList,
+  useGetUserId,
+  useSelector,
+} from 'src/hooks';
 import { actions } from 'src/store';
 import type { Id } from 'src/types';
 
@@ -18,7 +24,7 @@ interface Props {
 
 export default function BoardCard(props: Props) {
   const dispatch = useDispatch();
-  const board = useGetBoard(props.boardId);
+  const board = useGetBoardOrList(DatabaseKey.boards, props.boardId);
   const isEditing = useSelector(
     (state) => state.user.editing.boardId === props.boardId,
   );
