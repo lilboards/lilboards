@@ -2,13 +2,13 @@ import { onValue } from 'firebase/database';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getBoardDataRef } from 'src/firebase';
-import { useDispatch, useSelector } from 'src/hooks';
+import { useDispatch, useGetBoard } from 'src/hooks';
 import { actions } from 'src/store';
 import { Id } from 'src/types';
 
 export function useBoard(boardId: Id) {
   const dispatch = useDispatch();
-  const board = useSelector((state) => state.boards[boardId]);
+  const board = useGetBoard(boardId);
   const [isLoaded, setIsLoaded] = useState(false);
   const navigate = useNavigate();
 

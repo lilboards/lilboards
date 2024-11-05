@@ -1,5 +1,6 @@
 export * from './useAuth';
 export * from './useDispatch';
+export * from './useGetBoard';
 export * from './useGetItemIds';
 export * from './useGetLikes';
 export * from './useGetRow';
