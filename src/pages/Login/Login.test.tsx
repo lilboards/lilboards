@@ -1,4 +1,5 @@
 import { screen, waitFor } from '@testing-library/react';
+import type { Unsubscribe, User } from 'firebase/auth';
 import type { Location } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { REDIRECT_TO } from 'src/constants';
@@ -26,11 +27,9 @@ const mockedOnAuthStateChanged = jest.mocked(onAuthStateChanged);
 
 describe('not logged in', () => {
   beforeEach(() => {
-    mockedOnAuthStateChanged.mockImplementationOnce((callback) => {
-      const user = null;
-      callback(user);
-      return () => {};
-    });
+    mockedOnAuthStateChanged.mockImplementationOnce(
+      (callback) => callback(null) as unknown as Unsubscribe,
+    );
   });
 
   it('renders "Sign In"', () => {
@@ -62,9 +61,8 @@ describe('logged in', () => {
       const user = {
         email,
         id: userId,
-      };
-      callback(user as any);
-      return () => {};
+      } as unknown as User;
+      return callback(user) as unknown as Unsubscribe;
     });
     mockedUseLocation.mockReset();
   });
