@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { boardId, dateNow } from 'test/constants';
-import { renderWithProviders, store, updateStore } from 'test/utils';
+import { renderWithProviders, router, store, updateStore } from 'test/utils';
 
 import BoardCard from './BoardCard';
 
@@ -11,7 +11,7 @@ describe('open board', () => {
     board = updateStore.withBoard();
   });
 
-  it('renders "Open board" link', () => {
+  it('renders link to open board', () => {
     renderWithProviders(<BoardCard boardId={board.id} />);
     expect(screen.getByRole('link', { name: 'Open board' })).toHaveAttribute(
       'href',
@@ -19,9 +19,10 @@ describe('open board', () => {
     );
   });
 
-  it('handles submit', () => {
+  it('navigates to board on submit', () => {
     renderWithProviders(<BoardCard boardId={board.id} />);
     fireEvent.submit(screen.getByRole('form', { name: '' }));
+    expect(router.state.location.pathname).toBe(`/boards/${board.id}`);
   });
 });
 
