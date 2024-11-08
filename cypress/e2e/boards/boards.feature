@@ -7,13 +7,21 @@ Feature: Boards
       And I see heading "Boards"
       And I see button "Add board"
     When I click on button "Add board"
-      And I get focused element
-      And I type "My Board 1"
-    Then I see text "Board Name"
+    Then I see label "Board Name"
+    When I get focused element
+      And I type "Board 1"
+      And I wait 300 milliseconds
+      And I type "{enter}"
+    Then I see URL contains "/boards/"
+      And I see heading "Board 1"
+    When I go back
+    Then I see URL "/boards"
       And I see link "Open"
       And I see button "Delete"
     When I click on button "Add board"
-      And I click on button "Delete"
+      And I find links by text "Open"
+    Then I count 2 elements
+    When I click on button "Delete"
     Then I see text "Delete board?"
       And I see text "This action cannot be undone."
     When I find buttons by text "Delete"
@@ -22,6 +30,6 @@ Feature: Boards
       And I find links by text "Open"
     Then I count 1 element
     When I click on button "Delete"
-    Then I see text "Delete board “My Board 1”?"
+    Then I see text "Delete board “Board 1”?"
     When I click on button "Cancel"
-    Then I see text "My Board 1"
+    Then I see text "Board 1"
