@@ -4,7 +4,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import DeleteDialog from 'src/components/DeleteDialog';
 import { DatabaseKey } from 'src/constants';
@@ -31,35 +31,32 @@ export default function BoardCard(props: Props) {
   const userId = useGetUserId();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  if (!board) {
-    return null;
-  }
+  const handleChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      dispatch(
+        actions.updateBoard({
+          board: {
+            name: event.target.value,
+            updatedAt: Date.now(),
+            updatedBy: userId,
+          },
+          boardId: props.boardId,
+          debounce: true,
+        }),
+      );
+    },
+    [dispatch, props, userId],
+  );
 
-  function handleChange(
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) {
-    dispatch(
-      actions.updateBoard({
-        board: {
-          name: event.target.value,
-          updatedAt: Date.now(),
-          updatedBy: userId,
-        },
-        boardId: props.boardId,
-        debounce: true,
-      }),
-    );
-  }
-
-  function handleBlur() {
+  const handleBlur = useCallback(() => {
     dispatch(actions.setUserEditing({ boardId: '' }));
-  }
+  }, [dispatch]);
 
-  function handleFocus() {
+  const handleFocus = useCallback(() => {
     dispatch(actions.setUserEditing({ boardId: props.boardId }));
-  }
+  }, [dispatch, props]);
 
-  function deleteBoard() {
+  const deleteBoard = useCallback(() => {
     dispatch(
       actions.deleteBoard({
         boardId: props.boardId,
@@ -67,11 +64,27 @@ export default function BoardCard(props: Props) {
       }),
     );
     logEvent('delete_board');
+  }, [dispatch, props, userId]);
+
+  const handleSubmit = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+    },
+    [],
+  );
+
+  if (!board) {
+    return null;
   }
 
   return (
     <Grid item xs={12} sm={6} md={3}>
-      <Card raised={isEditing}>
+      <Card
+        component="form"
+        name="board"
+        onSubmit={handleSubmit}
+        raised={isEditing}
+      >
         <CardContent sx={{ paddingBottom: 0 }}>
           <TextField
             autoFocus={isEditing}

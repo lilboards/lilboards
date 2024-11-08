@@ -4,13 +4,25 @@ import { renderWithProviders, store, updateStore } from 'test/utils';
 
 import BoardCard from './BoardCard';
 
-it('renders "Open board" link', () => {
-  const board = updateStore.withBoard();
-  renderWithProviders(<BoardCard boardId={board.id} />);
-  expect(screen.getByRole('link', { name: 'Open board' })).toHaveAttribute(
-    'href',
-    `/boards/${boardId}`,
-  );
+describe('open board', () => {
+  let board: ReturnType<typeof updateStore.withBoard>;
+
+  beforeEach(() => {
+    board = updateStore.withBoard();
+  });
+
+  it('renders "Open board" link', () => {
+    renderWithProviders(<BoardCard boardId={board.id} />);
+    expect(screen.getByRole('link', { name: 'Open board' })).toHaveAttribute(
+      'href',
+      `/boards/${boardId}`,
+    );
+  });
+
+  it('handles submit', () => {
+    renderWithProviders(<BoardCard boardId={board.id} />);
+    fireEvent.submit(screen.getByRole('form', { name: '' }));
+  });
 });
 
 describe('edit board', () => {
