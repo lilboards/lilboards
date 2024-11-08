@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.41.0](https://github.com/lilboards/lilboards/compare/v4.40.0...v4.41.0) (2024-11-08)
+
+
+### Features
+
+* **pages:** navigate to board on submit in BoardCard ([cf11a7d](https://github.com/lilboards/lilboards/commit/cf11a7dea966bff1f0ef586ca1d02a3c58fff604))
+
 ## [4.40.0](https://github.com/lilboards/lilboards/compare/v4.39.0...v4.40.0) (2024-11-02)
 
 
