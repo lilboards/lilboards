@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import DeleteDialog from 'src/components/DeleteDialog';
 import { DatabaseKey } from 'src/constants';
 import { logEvent } from 'src/firebase';
@@ -30,6 +31,8 @@ export default function BoardCard(props: Props) {
   );
   const userId = useGetUserId();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const navigate = useNavigate();
+  const boardUrl = `/boards/${props.boardId}`;
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -69,8 +72,9 @@ export default function BoardCard(props: Props) {
   const handleSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
+      navigate(boardUrl);
     },
-    [],
+    [boardUrl, navigate],
   );
 
   if (!board) {
@@ -107,11 +111,7 @@ export default function BoardCard(props: Props) {
             marginRight: 1,
           }}
         >
-          <Button
-            aria-label="Open board"
-            component={Link}
-            to={`/boards/${props.boardId}`}
-          >
+          <Button aria-label="Open board" component={Link} to={boardUrl}>
             Open
           </Button>
 
