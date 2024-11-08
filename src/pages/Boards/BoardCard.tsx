@@ -35,7 +35,7 @@ export default function BoardCard(props: Props) {
   const boardUrl = `/boards/${props.boardId}`;
 
   const handleChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    (event: React.ChangeEvent<HTMLInputElement>) => {
       dispatch(
         actions.updateBoard({
           board: {

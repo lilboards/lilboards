@@ -9,9 +9,8 @@ Feature: Boards
     When I click on button "Add board"
     Then I see label "Board Name"
     When I get focused element
-      And I type "Board 1"
-      And I wait 300 milliseconds
-      And I type "{enter}"
+      And I type "Board 1{enter}"
+      And I wait 500 milliseconds
     Then I see URL contains "/boards/"
       And I see heading "Board 1"
     When I go back
