@@ -4,7 +4,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import DeleteDialog from 'src/components/DeleteDialog';
 import { DatabaseKey } from 'src/constants';
@@ -23,50 +23,54 @@ interface Props {
 }
 
 export default function ListCard(props: Props) {
+  const { listId } = props;
+  const listUrl = `/lists/${listId}`;
+
   const dispatch = useDispatch();
-  const list = useGetBoardOrList(DatabaseKey.lists, props.listId);
+  const list = useGetBoardOrList(DatabaseKey.lists, listId);
   const isEditing = useSelector(
-    (state) => state.user.editing.listId === props.listId,
+    (state) => state.user.editing.listId === listId,
   );
   const userId = useGetUserId();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  if (!list) {
-    return null;
-  }
+  const handleChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch(
+        actions.updateList({
+          list: {
+            name: event.target.value,
+            updatedAt: Date.now(),
+            updatedBy: userId,
+          },
+          listId,
+          debounce: true,
+        }),
+      );
+    },
+    [dispatch, listId],
+  );
 
-  function handleChange(
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) {
-    dispatch(
-      actions.updateList({
-        list: {
-          name: event.target.value,
-          updatedAt: Date.now(),
-          updatedBy: userId,
-        },
-        listId: props.listId,
-        debounce: true,
-      }),
-    );
-  }
-
-  function handleBlur() {
+  const handleBlur = useCallback(() => {
     dispatch(actions.setUserEditing({ listId: '' }));
-  }
+  }, [dispatch, listId]);
 
-  function handleFocus() {
-    dispatch(actions.setUserEditing({ listId: props.listId }));
-  }
+  const handleFocus = useCallback(() => {
+    dispatch(actions.setUserEditing({ listId }));
+  }, [dispatch, listId]);
 
-  function deleteList() {
+  const deleteList = useCallback(() => {
     dispatch(
       actions.deleteList({
-        listId: props.listId,
+        listId,
         userId,
       }),
     );
     logEvent('delete_list');
+  }, [dispatch, listId, userId]);
+
+  if (!list) {
+    return null;
   }
 
   return (
@@ -76,7 +80,7 @@ export default function ListCard(props: Props) {
           <TextField
             autoFocus={isEditing}
             fullWidth
-            id={props.listId}
+            id={listId}
             label="List Name"
             placeholder="Untitled List"
             onBlur={handleBlur}
@@ -94,11 +98,7 @@ export default function ListCard(props: Props) {
             marginRight: 1,
           }}
         >
-          <Button
-            aria-label="Open list"
-            component={Link}
-            to={`/lists/${props.listId}`}
-          >
+          <Button aria-label="Open list" component={Link} to={listUrl}>
             Open
           </Button>
 
@@ -114,7 +114,7 @@ export default function ListCard(props: Props) {
 
           <DeleteDialog
             content="This action cannot be undone."
-            id={props.listId}
+            id={listId}
             onClose={() => setIsDialogOpen(false)}
             onDelete={() => {
               deleteList();
