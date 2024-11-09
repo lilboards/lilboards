@@ -24,15 +24,17 @@ interface Props {
 }
 
 export default function BoardCard(props: Props) {
+  const { boardId } = props;
+  const boardUrl = `/boards/${boardId}`;
+
   const dispatch = useDispatch();
-  const board = useGetBoardOrList(DatabaseKey.boards, props.boardId);
+  const board = useGetBoardOrList(DatabaseKey.boards, boardId);
   const isEditing = useSelector(
-    (state) => state.user.editing.boardId === props.boardId,
+    (state) => state.user.editing.boardId === boardId,
   );
   const userId = useGetUserId();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const navigate = useNavigate();
-  const boardUrl = `/boards/${props.boardId}`;
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,12 +45,12 @@ export default function BoardCard(props: Props) {
             updatedAt: Date.now(),
             updatedBy: userId,
           },
-          boardId: props.boardId,
+          boardId,
           debounce: true,
         }),
       );
     },
-    [dispatch, props, userId],
+    [boardId, dispatch, userId],
   );
 
   const handleBlur = useCallback(() => {
@@ -56,18 +58,18 @@ export default function BoardCard(props: Props) {
   }, [dispatch]);
 
   const handleFocus = useCallback(() => {
-    dispatch(actions.setUserEditing({ boardId: props.boardId }));
-  }, [dispatch, props]);
+    dispatch(actions.setUserEditing({ boardId }));
+  }, [boardId, dispatch]);
 
   const deleteBoard = useCallback(() => {
     dispatch(
       actions.deleteBoard({
-        boardId: props.boardId,
+        boardId,
         userId,
       }),
     );
     logEvent('delete_board');
-  }, [dispatch, props, userId]);
+  }, [boardId, dispatch, userId]);
 
   const handleSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
@@ -93,7 +95,7 @@ export default function BoardCard(props: Props) {
           <TextField
             autoFocus={isEditing}
             fullWidth
-            id={props.boardId}
+            id={boardId}
             label="Board Name"
             placeholder="Untitled Board"
             onBlur={handleBlur}
@@ -127,7 +129,7 @@ export default function BoardCard(props: Props) {
 
           <DeleteDialog
             content="This action cannot be undone."
-            id={props.boardId}
+            id={boardId}
             onClose={() => setIsDialogOpen(false)}
             onDelete={() => {
               deleteBoard();
