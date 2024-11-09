@@ -6,12 +6,12 @@ import { useSelector } from './useSelector';
 /**
  * Is admin hook.
  *
- * @param type - Boards or lists.
+ * @param key - Boards or lists.
  * @param id - Board or list id.
  * @returns - Whether user is the creator of the board or list.
  */
 export function useIsAdmin(
-  type: DatabaseKey.boards | DatabaseKey.lists,
+  key: DatabaseKey.boards | DatabaseKey.lists,
   id: Id,
 ): boolean {
   return useSelector((state) => {
@@ -19,7 +19,7 @@ export function useIsAdmin(
       return false;
     }
 
-    const data = state[type][id];
+    const data = state[key][id];
 
     if (!data) {
       return false;

@@ -10,6 +10,8 @@ const selectRowIds = createSelector(
 
 /**
  * Get row ids.
+ *
+ * @returns - Row ids.
  */
 export function useGetRowIds(): Id[] {
   return useSelector(selectRowIds);

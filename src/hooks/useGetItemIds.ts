@@ -9,12 +9,12 @@ const selectColumnItemIds = createSelector(
     (state: RootState) => state.columns,
     (state: RootState, columnId: Id) => columnId,
   ],
-  (columns, columnId) => (columns[columnId] || {}).itemIds || [],
+  (columns, columnId) => columns[columnId]?.itemIds || [],
 );
 
 const selectRowItemIds = createSelector(
   [(state: RootState) => state.rows, (state: RootState, rowId: Id) => rowId],
-  (rows, rowId) => (rows[rowId] || {}).itemIds || [],
+  (rows, rowId) => rows[rowId]?.itemIds || [],
 );
 
 /**

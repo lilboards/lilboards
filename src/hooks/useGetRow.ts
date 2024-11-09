@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import type { Id, RootState } from 'src/types';
+import type { Id, RootState, Row } from 'src/types';
 
 import { useSelector } from './useSelector';
 
@@ -10,7 +10,10 @@ const selectRow = createSelector(
 
 /**
  * Get row by id.
+ *
+ * @param rowId - Row id.
+ * @returns - Row data.
  */
-export function useGetRow(rowId: Id) {
+export function useGetRow(rowId: Id): Row {
   return useSelector((state) => selectRow(state, rowId));
 }

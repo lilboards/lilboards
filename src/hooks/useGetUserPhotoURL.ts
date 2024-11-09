@@ -4,13 +4,15 @@ import type { RootState } from 'src/types';
 import { useSelector } from './useSelector';
 
 const selectUserId = createSelector(
-  (state: RootState) => state.user,
+  [(state: RootState) => state.user],
   (user) => /* istanbul ignore next */ user?.photoURL,
 );
 
 /**
  * Get user's photo URL.
+ *
+ * @returns - User photo URL.
  */
-export function useGetUserPhotoURL() {
+export function useGetUserPhotoURL(): string | null {
   return useSelector(selectUserId);
 }

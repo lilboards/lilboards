@@ -4,7 +4,7 @@ import type { RootState } from 'src/types';
 import { useSelector } from './useSelector';
 
 const selectUserEmail = createSelector(
-  (state: RootState) => state.user,
+  [(state: RootState) => state.user],
   (user) => Boolean(/* istanbul ignore next */ user?.email),
 );
 

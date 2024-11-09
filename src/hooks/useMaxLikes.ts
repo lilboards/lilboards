@@ -6,8 +6,10 @@ import { useSelector } from '.';
 export const DEFAULT_MAX_LIKES = 5;
 
 const selectMaxLikes = createSelector(
-  (state: RootState) => state.boards,
-  (_: unknown, boardId: Id) => boardId,
+  [
+    (state: RootState) => state.boards,
+    (state: RootState, boardId: Id) => boardId,
+  ],
   (boards, boardId) => (boards[boardId] || {}).maxLikes,
 );
 
@@ -15,6 +17,7 @@ const selectMaxLikes = createSelector(
  * Get board max likes.
  *
  * @param boardId - Board id.
+ * @returns - Board max likes.
  */
 export function useMaxLikes(boardId: Id): number {
   const maxLikes = useSelector((state) => selectMaxLikes(state, boardId));

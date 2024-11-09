@@ -1,6 +1,6 @@
 import type { Id } from './id';
 
-export type UserId = string;
+export type UserId = Id;
 
 export interface User {
   editing: {
