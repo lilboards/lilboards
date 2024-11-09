@@ -13,7 +13,7 @@ import {
   useDispatch,
   useGetBoardOrList,
   useGetUserId,
-  useSelector,
+  useIsEditing,
 } from 'src/hooks';
 import { actions } from 'src/store';
 import type { Id } from 'src/types';
@@ -28,9 +28,7 @@ export default function ListCard(props: Props) {
 
   const dispatch = useDispatch();
   const list = useGetBoardOrList(DatabaseKey.lists, listId);
-  const isEditing = useSelector(
-    (state) => state.user.editing.listId === listId,
-  );
+  const isEditing = useIsEditing('listId', listId);
   const userId = useGetUserId();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const navigate = useNavigate();

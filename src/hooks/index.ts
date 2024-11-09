@@ -8,6 +8,7 @@ export * from './useGetRowIds';
 export * from './useGetUserId';
 export * from './useGetUserPhotoURL';
 export * from './useIsAdmin';
+export * from './useIsEditing';
 export * from './useIsLoggedIn';
 export * from './useMaxLikes';
 export * from './useSelector';

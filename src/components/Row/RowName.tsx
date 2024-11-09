@@ -1,6 +1,7 @@
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { useDispatch, useGetUserId, useSelector } from 'src/hooks';
+import { DatabaseKey } from 'src/constants';
+import { useDispatch, useGetUserId, useIsAdmin, useIsEditing } from 'src/hooks';
 import { actions } from 'src/store';
 import type { Id } from 'src/types';
 
@@ -13,16 +14,12 @@ interface Props {
 
 export default function RowName(props: Props) {
   const dispatch = useDispatch();
-  const isEditing = useSelector(
-    (state) => state.user.editing.rowId === props.rowId,
-  );
-  const readOnly = useSelector(
-    (state) => (state.lists[props.listId] || {}).createdBy !== state.user.id,
-  );
+  const isEditing = useIsEditing('rowId', props.rowId);
+  const isAdmin = useIsAdmin(DatabaseKey.lists, props.listId);
   const userId = useGetUserId();
   const rowName = props.name || props.placeholder;
 
-  if (readOnly) {
+  if (!isAdmin) {
     return (
       <Typography component="h2" gutterBottom variant="h5">
         {rowName}

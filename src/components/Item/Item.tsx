@@ -5,7 +5,12 @@ import InputBase from '@mui/material/InputBase';
 import type { Theme } from '@mui/material/styles';
 import Linkify from 'linkify-react';
 import { logEvent } from 'src/firebase';
-import { useDispatch, useGetUserId, useSelector } from 'src/hooks';
+import {
+  useDispatch,
+  useGetUserId,
+  useIsEditing,
+  useSelector,
+} from 'src/hooks';
 import { actions } from 'src/store';
 import type { Id } from 'src/types';
 
@@ -28,9 +33,7 @@ interface Props {
 export default function Item(props: Props) {
   const dispatch = useDispatch();
   const item = useSelector((state) => state.items[props.itemId]);
-  const isEditing = useSelector(
-    (state) => state.user.editing.itemId === props.itemId,
-  );
+  const isEditing = useIsEditing('itemId', props.itemId);
   const userId = useGetUserId();
 
   if (!item) {

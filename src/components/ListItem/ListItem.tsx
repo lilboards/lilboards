@@ -7,6 +7,7 @@ import {
   useDispatch,
   useGetUserId,
   useGetUserPhotoURL,
+  useIsEditing,
   useSelector,
 } from 'src/hooks';
 import { actions } from 'src/store';
@@ -26,9 +27,7 @@ interface Props {
 export default function ListItem(props: Props) {
   const dispatch = useDispatch();
   const item = useSelector((state) => state.listItems[props.itemId]);
-  const isEditing = useSelector(
-    (state) => state.user.editing.listItemId === props.itemId,
-  );
+  const isEditing = useIsEditing('listItemId', props.itemId);
   const userId = useGetUserId();
   const userPhotoURL = useGetUserPhotoURL();
 

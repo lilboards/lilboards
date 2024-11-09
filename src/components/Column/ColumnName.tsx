@@ -8,7 +8,8 @@ import {
   useDispatch,
   useGetItemIds,
   useGetUserId,
-  useSelector,
+  useIsAdmin,
+  useIsEditing,
 } from 'src/hooks';
 import { actions } from 'src/store';
 import type { Id } from 'src/types';
@@ -24,18 +25,14 @@ interface Props {
 
 export default function ColumnName(props: Props) {
   const dispatch = useDispatch();
-  const isEditing = useSelector(
-    (state) => state.user.editing.columnId === props.columnId,
-  );
-  const readOnly = useSelector(
-    (state) => (state.boards[props.boardId] || {}).createdBy !== state.user.id,
-  );
+  const isEditing = useIsEditing('columnId', props.columnId);
+  const isAdmin = useIsAdmin(DatabaseKey.boards, props.boardId);
   const itemIds = useGetItemIds(DatabaseKey.columns, props.columnId);
   const userId = useGetUserId();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const columnName = props.name || props.placeholder;
 
-  if (readOnly) {
+  if (!isAdmin) {
     return (
       <Typography component="h2" gutterBottom variant="h5">
         {columnName}
@@ -43,9 +40,7 @@ export default function ColumnName(props: Props) {
     );
   }
 
-  function handleChange(
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     dispatch(
       actions.renameColumn({
         boardId: props.boardId,
@@ -90,9 +85,7 @@ export default function ColumnName(props: Props) {
       <TextField
         autoFocus={isEditing}
         fullWidth
-        inputProps={{
-          'aria-label': `Edit column “${columnName}”`,
-        }}
+        inputProps={{ 'aria-label': `Edit column “${columnName}”` }}
         placeholder={props.placeholder}
         onBlur={handleBlur}
         onChange={handleChange}
