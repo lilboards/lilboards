@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.42.0](https://github.com/lilboards/lilboards/compare/v4.41.0...v4.42.0) (2024-11-09)
+
+
+### Features
+
+* **pages:** navigate to list on submit in ListCard ([eeccf20](https://github.com/lilboards/lilboards/commit/eeccf208f5c6049ec02f5df8909bba6d5f410c05))
+
 ## [4.41.0](https://github.com/lilboards/lilboards/compare/v4.40.0...v4.41.0) (2024-11-08)
 
 
