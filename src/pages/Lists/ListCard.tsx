@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import { useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import DeleteDialog from 'src/components/DeleteDialog';
 import { DatabaseKey } from 'src/constants';
 import { logEvent } from 'src/firebase';
@@ -33,6 +33,7 @@ export default function ListCard(props: Props) {
   );
   const userId = useGetUserId();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,13 +70,26 @@ export default function ListCard(props: Props) {
     logEvent('delete_list');
   }, [dispatch, listId, userId]);
 
+  const handleSubmit = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      navigate(listUrl);
+    },
+    [listUrl, navigate],
+  );
+
   if (!list) {
     return null;
   }
 
   return (
     <Grid item xs={12} sm={6} md={3}>
-      <Card raised={isEditing}>
+      <Card
+        component="form"
+        name="board"
+        onSubmit={handleSubmit}
+        raised={isEditing}
+      >
         <CardContent sx={{ paddingBottom: 0 }}>
           <TextField
             autoFocus={isEditing}

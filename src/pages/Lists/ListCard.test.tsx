@@ -1,16 +1,29 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { dateNow, listId } from 'test/constants';
-import { renderWithProviders, store, updateStore } from 'test/utils';
+import { renderWithProviders, router, store, updateStore } from 'test/utils';
 
 import ListCard from './ListCard';
 
-it('renders "Open list" link', () => {
-  const list = updateStore.withList();
-  renderWithProviders(<ListCard listId={list.id} />);
-  expect(screen.getByRole('link', { name: 'Open list' })).toHaveAttribute(
-    'href',
-    `/lists/${listId}`,
-  );
+describe('open list', () => {
+  let list: ReturnType<typeof updateStore.withList>;
+
+  beforeEach(() => {
+    list = updateStore.withList();
+  });
+
+  it('renders link to open list', () => {
+    renderWithProviders(<ListCard listId={list.id} />);
+    expect(screen.getByRole('link', { name: 'Open list' })).toHaveAttribute(
+      'href',
+      `/lists/${listId}`,
+    );
+  });
+
+  it('navigates to list on submit', () => {
+    renderWithProviders(<ListCard listId={list.id} />);
+    fireEvent.submit(screen.getByRole('form', { name: '' }));
+    expect(router.state.location.pathname).toBe(`/lists/${list.id}`);
+  });
 });
 
 describe('edit list', () => {
