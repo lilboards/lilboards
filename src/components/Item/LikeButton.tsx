@@ -4,8 +4,8 @@ import IconButton from '@mui/material/IconButton';
 import { logEvent } from 'src/firebase';
 import {
   useDispatch,
-  useGetLikes,
   useGetUserId,
+  useLikes,
   useMaxLikes,
   useSelector,
 } from 'src/hooks';
@@ -23,7 +23,7 @@ export default function LikeButton(props: Props) {
   const itemText = useSelector(
     (state) => state.items[props.itemId]?.text || '',
   );
-  const likes = useGetLikes(props.itemId);
+  const likes = useLikes(props.itemId);
   const isLikedByUser = likes[userId];
   const totalLikes = useSelector((state) =>
     Object.values(state.likes.items).reduce(
