@@ -1,7 +1,6 @@
 export * from './useAuth';
 export * from './useBoardOrList';
 export * from './useDispatch';
-export * from './useGetUserPhotoURL';
 export * from './useIsAdmin';
 export * from './useIsEditing';
 export * from './useIsLoggedIn';
@@ -14,3 +13,4 @@ export * from './useRowIds';
 export * from './useSelector';
 export * from './useSetDocumentTitle';
 export * from './useUserId';
+export * from './useUserPhotoURL';

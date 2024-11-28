@@ -13,6 +13,6 @@ const selectUserId = createSelector(
  *
  * @returns - User photo URL.
  */
-export function useGetUserPhotoURL(): string | null {
+export function useUserPhotoURL(): string | null {
   return useSelector(selectUserId);
 }

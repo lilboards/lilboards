@@ -5,10 +5,10 @@ import TextField from '@mui/material/TextField';
 import { logEvent } from 'src/firebase';
 import {
   useDispatch,
-  useGetUserPhotoURL,
   useIsEditing,
   useSelector,
   useUserId,
+  useUserPhotoURL,
 } from 'src/hooks';
 import { actions } from 'src/store';
 import type { Id } from 'src/types';
@@ -29,7 +29,7 @@ export default function ListItem(props: Props) {
   const item = useSelector((state) => state.listItems[props.itemId]);
   const isEditing = useIsEditing('listItemId', props.itemId);
   const userId = useUserId();
-  const userPhotoURL = useGetUserPhotoURL();
+  const userPhotoURL = useUserPhotoURL();
 
   if (!item) {
     return null;
