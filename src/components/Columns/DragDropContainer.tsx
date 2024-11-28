@@ -1,5 +1,5 @@
 import { DragDropContext, type DropResult } from '@hello-pangea/dnd';
-import { useDispatch, useGetUserId, useSelector } from 'src/hooks';
+import { useDispatch, useSelector, useUserId } from 'src/hooks';
 import { actions } from 'src/store';
 import type { Id } from 'src/types';
 import { reorder } from 'src/utils';
@@ -16,7 +16,7 @@ export default function DragDropContainer(props: Props) {
   const columns = useSelector((state) => state.columns);
   const items = useSelector((state) => state.items);
   const likes = useSelector((state) => state.likes.items);
-  const userId = useGetUserId();
+  const userId = useUserId();
 
   /* istanbul ignore next */
   function handleDragEnd(result: DropResult) {

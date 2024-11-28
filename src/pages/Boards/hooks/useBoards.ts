@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { getBoardVal, getUserBoardsVal } from 'src/firebase';
-import { useDispatch, useGetUserId } from 'src/hooks';
+import { useDispatch, useUserId } from 'src/hooks';
 import { actions } from 'src/store';
 
 export function useBoards() {
   const dispatch = useDispatch();
-  const userId = useGetUserId();
+  const userId = useUserId();
 
   useEffect(() => {
     (async () => {

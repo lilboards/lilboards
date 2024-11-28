@@ -7,9 +7,9 @@ import { logEvent } from 'src/firebase';
 import {
   useDispatch,
   useGetItemIds,
-  useGetUserId,
   useIsAdmin,
   useIsEditing,
+  useUserId,
 } from 'src/hooks';
 import { actions } from 'src/store';
 import type { Id } from 'src/types';
@@ -28,7 +28,7 @@ export default function ColumnName(props: Props) {
   const isEditing = useIsEditing('columnId', props.columnId);
   const isAdmin = useIsAdmin(DatabaseKey.boards, props.boardId);
   const itemIds = useGetItemIds(DatabaseKey.columns, props.columnId);
-  const userId = useGetUserId();
+  const userId = useUserId();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const columnName = props.name || props.placeholder;
 

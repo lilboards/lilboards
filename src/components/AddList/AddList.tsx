@@ -1,12 +1,12 @@
 import AddButton from 'src/components/AddButton';
 import { generateId, logEvent, saveUserListId } from 'src/firebase';
-import { useDispatch, useGetUserId } from 'src/hooks';
+import { useDispatch, useUserId } from 'src/hooks';
 import { actions } from 'src/store';
 import type { List } from 'src/types';
 
 export default function AddList() {
   const dispatch = useDispatch();
-  const userId = useGetUserId();
+  const userId = useUserId();
 
   function addList() {
     const list: List = {

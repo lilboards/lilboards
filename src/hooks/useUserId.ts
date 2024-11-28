@@ -13,6 +13,6 @@ const selectUserId = createSelector(
  *
  * @returns - User id.
  */
-export function useGetUserId(): Id {
+export function useUserId(): Id {
   return useSelector(selectUserId);
 }

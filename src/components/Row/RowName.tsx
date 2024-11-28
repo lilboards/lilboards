@@ -1,7 +1,7 @@
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { DatabaseKey } from 'src/constants';
-import { useDispatch, useGetUserId, useIsAdmin, useIsEditing } from 'src/hooks';
+import { useDispatch, useIsAdmin, useIsEditing, useUserId } from 'src/hooks';
 import { actions } from 'src/store';
 import type { Id } from 'src/types';
 
@@ -16,7 +16,7 @@ export default function RowName(props: Props) {
   const dispatch = useDispatch();
   const isEditing = useIsEditing('rowId', props.rowId);
   const isAdmin = useIsAdmin(DatabaseKey.lists, props.listId);
-  const userId = useGetUserId();
+  const userId = useUserId();
   const rowName = props.name || props.placeholder;
 
   if (!isAdmin) {

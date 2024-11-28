@@ -1,12 +1,12 @@
 import AddButton from 'src/components/AddButton';
 import { generateId, logEvent, saveUserBoardId } from 'src/firebase';
-import { useDispatch, useGetUserId } from 'src/hooks';
+import { useDispatch, useUserId } from 'src/hooks';
 import { actions } from 'src/store';
 import type { Board } from 'src/types';
 
 export default function AddBoard() {
   const dispatch = useDispatch();
-  const userId = useGetUserId();
+  const userId = useUserId();
 
   function addBoard() {
     const board: Board = {

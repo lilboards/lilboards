@@ -1,7 +1,7 @@
 import Checkbox from '@mui/material/Checkbox';
 import { useCallback } from 'react';
 import { logEvent } from 'src/firebase';
-import { useDispatch, useGetUserId, useSelector } from 'src/hooks';
+import { useDispatch, useSelector, useUserId } from 'src/hooks';
 import { actions } from 'src/store';
 import type { Id } from 'src/types';
 
@@ -14,7 +14,7 @@ interface Props {
 export default function ListItemCheckbox(props: Props) {
   const dispatch = useDispatch();
   const item = useSelector((state) => state.listItems[props.itemId]);
-  const userId = useGetUserId();
+  const userId = useUserId();
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {

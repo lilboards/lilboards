@@ -4,10 +4,10 @@ import IconButton from '@mui/material/IconButton';
 import { logEvent } from 'src/firebase';
 import {
   useDispatch,
-  useGetUserId,
   useLikes,
   useMaxLikes,
   useSelector,
+  useUserId,
 } from 'src/hooks';
 import { actions } from 'src/store';
 import type { Id } from 'src/types';
@@ -19,7 +19,7 @@ interface Props {
 
 export default function LikeButton(props: Props) {
   const dispatch = useDispatch();
-  const userId = useGetUserId();
+  const userId = useUserId();
   const itemText = useSelector(
     (state) => state.items[props.itemId]?.text || '',
   );

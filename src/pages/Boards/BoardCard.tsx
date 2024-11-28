@@ -12,8 +12,8 @@ import { logEvent } from 'src/firebase';
 import {
   useDispatch,
   useGetBoardOrList,
-  useGetUserId,
   useIsEditing,
+  useUserId,
 } from 'src/hooks';
 import { actions } from 'src/store';
 import type { Id } from 'src/types';
@@ -29,7 +29,7 @@ export default function BoardCard(props: Props) {
   const dispatch = useDispatch();
   const board = useGetBoardOrList(DatabaseKey.boards, boardId);
   const isEditing = useIsEditing('boardId', boardId);
-  const userId = useGetUserId();
+  const userId = useUserId();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const navigate = useNavigate();
 

@@ -1,7 +1,7 @@
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
 import { generateId, logEvent } from 'src/firebase';
-import { useDispatch, useGetUserId } from 'src/hooks';
+import { useDispatch, useUserId } from 'src/hooks';
 import { actions } from 'src/store';
 import type { Id, Item } from 'src/types';
 
@@ -14,7 +14,7 @@ interface Props {
 
 export default function Items(props: Props) {
   const dispatch = useDispatch();
-  const userId = useGetUserId();
+  const userId = useUserId();
 
   function addItem() {
     const item: Item = {
