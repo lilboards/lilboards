@@ -1,5 +1,5 @@
 import Row from 'src/components/Row';
-import { useGetRowIds } from 'src/hooks';
+import { useRowIds } from 'src/hooks';
 import type { Id } from 'src/types';
 
 import DragDropContainer from './DragDropContainer';
@@ -12,7 +12,7 @@ interface Props {
 export default function Rows(props: Props) {
   useRows(props.listId);
   useItems(props.listId);
-  const rowIds = useGetRowIds();
+  const rowIds = useRowIds();
 
   return (
     <DragDropContainer listId={props.listId}>

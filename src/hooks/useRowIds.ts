@@ -13,6 +13,6 @@ const selectRowIds = createSelector(
  *
  * @returns - Row ids.
  */
-export function useGetRowIds(): Id[] {
+export function useRowIds(): Id[] {
   return useSelector(selectRowIds);
 }
