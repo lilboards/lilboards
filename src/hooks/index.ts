@@ -10,6 +10,7 @@ export * from './useGetUserPhotoURL';
 export * from './useIsAdmin';
 export * from './useIsEditing';
 export * from './useIsLoggedIn';
+export * from './useItem';
 export * from './useMaxLikes';
 export * from './useSelector';
 export * from './useSetDocumentTitle';

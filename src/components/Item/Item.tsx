@@ -6,12 +6,7 @@ import type { Theme } from '@mui/material/styles';
 import Linkify from 'linkify-react';
 import { useCallback } from 'react';
 import { logEvent } from 'src/firebase';
-import {
-  useDispatch,
-  useGetUserId,
-  useIsEditing,
-  useSelector,
-} from 'src/hooks';
+import { useDispatch, useGetUserId, useIsEditing, useItem } from 'src/hooks';
 import { actions } from 'src/store';
 import type { Id } from 'src/types';
 
@@ -34,7 +29,7 @@ interface Props {
 export default function Item(props: Props) {
   const { boardId, itemId } = props;
   const dispatch = useDispatch();
-  const item = useSelector((state) => state.items[itemId]);
+  const item = useItem(itemId);
   const isEditing = useIsEditing('itemId', itemId);
   const userId = useGetUserId();
 
