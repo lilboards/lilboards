@@ -14,6 +14,6 @@ const selectRow = createSelector(
  * @param rowId - Row id.
  * @returns - Row data.
  */
-export function useGetRow(rowId: Id): Row {
+export function useRow(rowId: Id): Row {
   return useSelector((state) => selectRow(state, rowId));
 }

@@ -1,7 +1,7 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
-import { useGetRow } from 'src/hooks';
+import { useRow } from 'src/hooks';
 import type { Id } from 'src/types';
 
 import ListItems from '../ListItems';
@@ -14,7 +14,7 @@ interface Props {
 }
 
 export default function Row(props: Props) {
-  const row = useGetRow(props.rowId);
+  const row = useRow(props.rowId);
   const rowPlaceholder = `Row ${props.rowIndex + 1}`;
 
   if (!row) {
