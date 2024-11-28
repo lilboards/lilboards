@@ -24,7 +24,7 @@ const selectRowItemIds = createSelector(
  * @param id - Column or row id.
  * @returns - Item ids.
  */
-export function useGetItemIds(
+export function useItemIds(
   key: DatabaseKey.columns | DatabaseKey.rows,
   id: Id,
 ): Id[] {

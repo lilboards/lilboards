@@ -1,7 +1,7 @@
 import { Droppable } from '@hello-pangea/dnd';
 import Box from '@mui/material/Box';
 import { DatabaseKey } from 'src/constants';
-import { useGetItemIds } from 'src/hooks';
+import { useItemIds } from 'src/hooks';
 import type { Id } from 'src/types';
 
 import InnerList from './InnerList';
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function DroppableItems(props: Props) {
-  const itemIds = useGetItemIds(DatabaseKey.columns, props.columnId);
+  const itemIds = useItemIds(DatabaseKey.columns, props.columnId);
 
   return (
     <Droppable droppableId={props.columnId} isCombineEnabled>

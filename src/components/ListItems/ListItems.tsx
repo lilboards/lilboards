@@ -5,7 +5,7 @@ import { useState } from 'react';
 import DeleteDialog from 'src/components/DeleteDialog';
 import { DatabaseKey } from 'src/constants';
 import { generateId, logEvent } from 'src/firebase';
-import { useDispatch, useGetItemIds, useIsAdmin, useUserId } from 'src/hooks';
+import { useDispatch, useIsAdmin, useItemIds, useUserId } from 'src/hooks';
 import { actions } from 'src/store';
 import type { Id, ListItem } from 'src/types';
 
@@ -20,7 +20,7 @@ export default function Items(props: Props) {
   const dispatch = useDispatch();
   const userId = useUserId();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const itemIds = useGetItemIds(DatabaseKey.rows, props.rowId);
+  const itemIds = useItemIds(DatabaseKey.rows, props.rowId);
   const isAdmin = useIsAdmin(DatabaseKey.lists, props.listId);
 
   function addItem() {
