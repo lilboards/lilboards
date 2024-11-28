@@ -1,6 +1,6 @@
 export * from './useAuth';
+export * from './useBoardOrList';
 export * from './useDispatch';
-export * from './useGetBoardOrList';
 export * from './useGetUserPhotoURL';
 export * from './useIsAdmin';
 export * from './useIsEditing';

@@ -10,8 +10,8 @@ import DeleteDialog from 'src/components/DeleteDialog';
 import { DatabaseKey } from 'src/constants';
 import { logEvent } from 'src/firebase';
 import {
+  useBoardOrList,
   useDispatch,
-  useGetBoardOrList,
   useIsEditing,
   useUserId,
 } from 'src/hooks';
@@ -27,7 +27,7 @@ export default function ListCard(props: Props) {
   const listUrl = `/lists/${listId}`;
 
   const dispatch = useDispatch();
-  const list = useGetBoardOrList(DatabaseKey.lists, listId);
+  const list = useBoardOrList(DatabaseKey.lists, listId);
   const isEditing = useIsEditing('listId', listId);
   const userId = useUserId();
   const [isDialogOpen, setIsDialogOpen] = useState(false);

@@ -24,7 +24,7 @@ const selectList = createSelector(
  * @param id - Board or list id.
  * @returns - Board or list.
  */
-export function useGetBoardOrList(
+export function useBoardOrList(
   key: DatabaseKey.boards | DatabaseKey.lists,
   id: Id,
 ) {

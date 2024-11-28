@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DatabaseKey } from 'src/constants';
 import { getListDataRef } from 'src/firebase';
-import { useDispatch, useGetBoardOrList } from 'src/hooks';
+import { useBoardOrList, useDispatch } from 'src/hooks';
 import { actions } from 'src/store';
 import { Id } from 'src/types';
 
 export function useList(listId: Id) {
   const dispatch = useDispatch();
-  const list = useGetBoardOrList(DatabaseKey.lists, listId);
+  const list = useBoardOrList(DatabaseKey.lists, listId);
   const [isLoaded, setIsLoaded] = useState(false);
   const navigate = useNavigate();
 

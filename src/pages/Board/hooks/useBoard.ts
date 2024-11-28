@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DatabaseKey } from 'src/constants';
 import { getBoardDataRef } from 'src/firebase';
-import { useDispatch, useGetBoardOrList } from 'src/hooks';
+import { useBoardOrList, useDispatch } from 'src/hooks';
 import { actions } from 'src/store';
 import { Id } from 'src/types';
 
 export function useBoard(boardId: Id) {
   const dispatch = useDispatch();
-  const board = useGetBoardOrList(DatabaseKey.boards, boardId);
+  const board = useBoardOrList(DatabaseKey.boards, boardId);
   const [isLoaded, setIsLoaded] = useState(false);
   const navigate = useNavigate();
 
