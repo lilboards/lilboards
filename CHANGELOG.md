@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.42.1](https://github.com/lilboards/lilboards/compare/v4.42.0...v4.42.1) (2024-11-28)
+
+
+### Performance Improvements
+
+* **Item:** replace function with useCallback ([1b8fcdf](https://github.com/lilboards/lilboards/commit/1b8fcdfa994e15c056db2407a3bf0cd47218f18c))
+
 ## [4.42.0](https://github.com/lilboards/lilboards/compare/v4.41.0...v4.42.0) (2024-11-09)
 
 
