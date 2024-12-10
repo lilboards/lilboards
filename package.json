@@ -23,7 +23,7 @@
     "test:ci": "CI=true jest --ci --coverage --colors"
   },
   "dependencies": {
-    "@emotion/react": "11.13.5",
+    "@emotion/react": "11.14.0",
     "@emotion/styled": "11.13.5",
     "@hello-pangea/dnd": "17.0.0",
     "@mui/icons-material": "6.1.10",
