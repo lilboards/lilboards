@@ -27,7 +27,7 @@
     "@emotion/styled": "11.14.0",
     "@hello-pangea/dnd": "17.0.0",
     "@mui/icons-material": "6.2.1",
-    "@mui/material": "6.2.1",
+    "@mui/material": "6.3.0",
     "@reduxjs/toolkit": "2.5.0",
     "debounce": "2.2.0",
     "firebase": "11.1.0",
