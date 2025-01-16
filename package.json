@@ -64,7 +64,7 @@
     "cypress-cucumber-steps": "3.63.0",
     "cypress-real-events": "1.13.0",
     "eslint": "9.18.0",
-    "eslint-plugin-prettier": "5.2.1",
+    "eslint-plugin-prettier": "5.2.2",
     "eslint-plugin-simple-import-sort": "12.1.1",
     "eslint-plugin-tsdoc": "0.4.0",
     "firebase-tools": "13.29.1",
