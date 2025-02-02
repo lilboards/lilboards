@@ -27,7 +27,8 @@ const jestConfig: JestConfigWithTsJest = {
     process.env.CI === 'true'
       ? [['github-actions', { silent: false }], 'summary']
       : undefined,
-  setupFilesAfterEnv: ['<rootDir>/test/setupTests.ts'],
+  setupFiles: ['<rootDir>/test/setupFiles.ts'],
+  setupFilesAfterEnv: ['<rootDir>/test/setupFilesAfterEnv.ts'],
   testEnvironment: 'jsdom',
   watchPlugins: [
     'jest-watch-typeahead/filename',
