@@ -5,6 +5,7 @@
   "author": "Mark <mark@remarkablemark.org>",
   "scripts": {
     "build": "vite build",
+    "clean": "rm -rf *.log coverage dist",
     "cypress:open": "cypress open",
     "dev": "vite --host --open",
     "firebase:deploy:database": "firebase deploy --only database",
