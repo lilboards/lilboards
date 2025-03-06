@@ -27,7 +27,7 @@
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.0",
     "@hello-pangea/dnd": "18.0.1",
-    "@mui/icons-material": "6.4.6",
+    "@mui/icons-material": "6.4.7",
     "@mui/material": "6.4.7",
     "@reduxjs/toolkit": "2.6.0",
     "debounce": "2.2.0",
