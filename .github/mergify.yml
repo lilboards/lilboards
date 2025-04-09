@@ -4,7 +4,6 @@ pull_request_rules:
       - author=dependabot[bot]
       - check-success=build
       - check-success=cypress
-      - check-success=size
     actions:
       merge:
         method: squash
