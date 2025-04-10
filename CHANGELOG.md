@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.42.2](https://github.com/lilboards/lilboards/compare/v4.42.1...v4.42.2) (2025-04-10)
+
+
+### Build System
+
+* upgrade to React v19 ([e07b67d](https://github.com/lilboards/lilboards/commit/e07b67dbe5169e41ff54e36f365b75aeb292a858))
+
 ## [4.42.1](https://github.com/lilboards/lilboards/compare/v4.42.0...v4.42.1) (2024-11-28)
 
 
