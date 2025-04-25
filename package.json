@@ -79,7 +79,7 @@
     "prettier": "3.5.3",
     "ts-jest": "29.3.2",
     "ts-node": "10.9.2",
-    "vite": "6.3.2",
+    "vite": "6.3.3",
     "vite-plugin-commonjs": "0.10.4",
     "web-vitals": "4.2.4"
   },
