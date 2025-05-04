@@ -27,7 +27,7 @@ export default function Column(props: Props) {
   }
 
   return (
-    <Grid item xs>
+    <Grid size="grow">
       <Box marginBottom={2} position="relative">
         <ColumnName
           boardId={props.boardId}
@@ -36,7 +36,6 @@ export default function Column(props: Props) {
           placeholder={`Column ${props.columnIndex + 1}`}
         />
       </Box>
-
       <Items boardId={props.boardId} columnId={props.columnId} />
     </Grid>
   );

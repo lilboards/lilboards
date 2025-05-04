@@ -81,7 +81,13 @@ export default function BoardCard(props: Props) {
   }
 
   return (
-    <Grid item xs={12} sm={6} md={3}>
+    <Grid
+      size={{
+        xs: 12,
+        sm: 6,
+        md: 3,
+      }}
+    >
       <Card
         component="form"
         name="board"
