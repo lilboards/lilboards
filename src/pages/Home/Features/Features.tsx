@@ -12,7 +12,15 @@ export default function Features() {
       sx={{ marginBottom: 2, textAlign: 'center' }}
     >
       {features.map(({ icon: Icon, heading, description }, index) => (
-        <Grid role="listitem" item key={index} xs={12} sm={6} md={4}>
+        <Grid
+          role="listitem"
+          key={index}
+          size={{
+            xs: 12,
+            sm: 6,
+            md: 4,
+          }}
+        >
           <Icon color="primary" fontSize="large" />
 
           <Typography component="h2" variant="h5" gutterBottom>
