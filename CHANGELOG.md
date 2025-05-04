@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.42.3](https://github.com/lilboards/lilboards/compare/v4.42.2...v4.42.3) (2025-05-04)
+
+
+### Miscellaneous Chores
+
+* release 4.42.3 ([9f4be99](https://github.com/lilboards/lilboards/commit/9f4be99047a2dc8aa173d0be1001715abe12830c))
+
 ## [4.42.2](https://github.com/lilboards/lilboards/compare/v4.42.1...v4.42.2) (2025-04-10)
 
 
