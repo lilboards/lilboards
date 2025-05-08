@@ -81,7 +81,7 @@
     "ts-node": "10.9.2",
     "vite": "6.3.5",
     "vite-plugin-commonjs": "0.10.4",
-    "web-vitals": "4.2.4"
+    "web-vitals": "5.0.0"
   },
   "overrides": {
     "firebase": "$firebase",
