@@ -32,7 +32,7 @@
     "debounce": "2.2.0",
     "firebase": "11.6.1",
     "firebaseui": "6.1.0",
-    "linkify-react": "4.2.0",
+    "linkify-react": "4.3.1",
     "linkifyjs": "4.2.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
