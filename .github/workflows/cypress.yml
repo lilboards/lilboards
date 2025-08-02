@@ -1,6 +1,9 @@
 name: cypress
 on: push
 
+permissions:
+  contents: read
+
 jobs:
   cypress:
     runs-on: ubuntu-latest
