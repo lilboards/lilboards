@@ -35,7 +35,7 @@
     "linkify-react": "4.3.2",
     "linkifyjs": "4.3.2",
     "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "react-dom": "19.1.1",
     "react-redux": "9.2.0",
     "react-router-dom": "7.7.1",
     "typescript": "5.8.3"
@@ -55,7 +55,7 @@
     "@types/jest": "30.0.0",
     "@types/node": "24.2.0",
     "@types/react": "19.1.8",
-    "@types/react-dom": "19.1.6",
+    "@types/react-dom": "19.1.7",
     "@typescript-eslint/eslint-plugin": "8.39.0",
     "@typescript-eslint/parser": "8.39.0",
     "@vitejs/plugin-react-swc": "3.11.0",
