@@ -23,6 +23,10 @@ updates:
         patterns:
           - prettier
           - eslint-plugin-prettier
+      react:
+        patterns:
+          - react
+          - react-dom
       typescript-eslint:
         patterns:
           - '@typescript-eslint/*'
