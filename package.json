@@ -58,7 +58,7 @@
     "@types/react-dom": "19.1.9",
     "@typescript-eslint/eslint-plugin": "8.44.0",
     "@typescript-eslint/parser": "8.44.0",
-    "@vitejs/plugin-react-swc": "4.0.1",
+    "@vitejs/plugin-react-swc": "4.1.0",
     "cypress": "15.2.0",
     "cypress-cucumber-steps": "3.64.0",
     "cypress-real-events": "1.15.0",
