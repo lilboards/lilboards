@@ -1,89 +1,83 @@
 # Changelog
 
-## [4.42.3](https://github.com/lilboards/lilboards/compare/v4.42.2...v4.42.3) (2025-05-04)
-
+## [4.42.4](https://github.com/lilboards/lilboards/compare/v4.42.3...v4.42.4) (2025-09-23)
 
 ### Miscellaneous Chores
 
-* release 4.42.3 ([9f4be99](https://github.com/lilboards/lilboards/commit/9f4be99047a2dc8aa173d0be1001715abe12830c))
+- release 4.42.4 ([33c8c6d](https://github.com/lilboards/lilboards/commit/33c8c6d68f4f895f50c416abfc4e05db0b3465b7))
+
+## [4.42.3](https://github.com/lilboards/lilboards/compare/v4.42.2...v4.42.3) (2025-05-04)
+
+### Miscellaneous Chores
+
+- release 4.42.3 ([9f4be99](https://github.com/lilboards/lilboards/commit/9f4be99047a2dc8aa173d0be1001715abe12830c))
 
 ## [4.42.2](https://github.com/lilboards/lilboards/compare/v4.42.1...v4.42.2) (2025-04-10)
 
-
 ### Build System
 
-* upgrade to React v19 ([e07b67d](https://github.com/lilboards/lilboards/commit/e07b67dbe5169e41ff54e36f365b75aeb292a858))
+- upgrade to React v19 ([e07b67d](https://github.com/lilboards/lilboards/commit/e07b67dbe5169e41ff54e36f365b75aeb292a858))
 
 ## [4.42.1](https://github.com/lilboards/lilboards/compare/v4.42.0...v4.42.1) (2024-11-28)
 
-
 ### Performance Improvements
 
-* **Item:** replace function with useCallback ([1b8fcdf](https://github.com/lilboards/lilboards/commit/1b8fcdfa994e15c056db2407a3bf0cd47218f18c))
+- **Item:** replace function with useCallback ([1b8fcdf](https://github.com/lilboards/lilboards/commit/1b8fcdfa994e15c056db2407a3bf0cd47218f18c))
 
 ## [4.42.0](https://github.com/lilboards/lilboards/compare/v4.41.0...v4.42.0) (2024-11-09)
 
-
 ### Features
 
-* **pages:** navigate to list on submit in ListCard ([eeccf20](https://github.com/lilboards/lilboards/commit/eeccf208f5c6049ec02f5df8909bba6d5f410c05))
+- **pages:** navigate to list on submit in ListCard ([eeccf20](https://github.com/lilboards/lilboards/commit/eeccf208f5c6049ec02f5df8909bba6d5f410c05))
 
 ## [4.41.0](https://github.com/lilboards/lilboards/compare/v4.40.0...v4.41.0) (2024-11-08)
 
-
 ### Features
 
-* **pages:** navigate to board on submit in BoardCard ([cf11a7d](https://github.com/lilboards/lilboards/commit/cf11a7dea966bff1f0ef586ca1d02a3c58fff604))
+- **pages:** navigate to board on submit in BoardCard ([cf11a7d](https://github.com/lilboards/lilboards/commit/cf11a7dea966bff1f0ef586ca1d02a3c58fff604))
 
 ## [4.40.0](https://github.com/lilboards/lilboards/compare/v4.39.0...v4.40.0) (2024-11-02)
 
-
 ### Features
 
-* **components:** show user photo in ListItem if they are the creator ([0d0ae3d](https://github.com/lilboards/lilboards/commit/0d0ae3d0874f08513f700bf6602a3062f4c93f5d))
+- **components:** show user photo in ListItem if they are the creator ([0d0ae3d](https://github.com/lilboards/lilboards/commit/0d0ae3d0874f08513f700bf6602a3062f4c93f5d))
 
 ## [4.39.0](https://github.com/lilboards/lilboards/compare/v4.38.0...v4.39.0) (2024-10-31)
 
-
 ### Features
 
-* **pages:** enable List ([cf87a98](https://github.com/lilboards/lilboards/commit/cf87a98dc6ab25e368214f972fbbc125cc3a25f8))
+- **pages:** enable List ([cf87a98](https://github.com/lilboards/lilboards/commit/cf87a98dc6ab25e368214f972fbbc125cc3a25f8))
 
 ## [4.38.0](https://github.com/lilboards/lilboards/compare/v4.37.0...v4.38.0) (2024-10-29)
 
-
 ### Features
 
-* **pages:** render breadcrumb in Board and List when logged in ([26fa4a6](https://github.com/lilboards/lilboards/commit/26fa4a691f97dfb6b03a25db96cb78d71d8ec3cb))
+- **pages:** render breadcrumb in Board and List when logged in ([26fa4a6](https://github.com/lilboards/lilboards/commit/26fa4a691f97dfb6b03a25db96cb78d71d8ec3cb))
 
 ## [4.37.0](https://github.com/lilboards/lilboards/compare/v4.36.0...v4.37.0) (2024-10-27)
 
-
 ### Features
 
-* **pages:** add and show lists ([737750b](https://github.com/lilboards/lilboards/commit/737750b61099ccedb945ed842960a89ae2b4c706))
-* **pages:** render placeholder List ([be3ef90](https://github.com/lilboards/lilboards/commit/be3ef900f236f42ad0d2f41ffc9cc52a25c48142))
+- **pages:** add and show lists ([737750b](https://github.com/lilboards/lilboards/commit/737750b61099ccedb945ed842960a89ae2b4c706))
+- **pages:** render placeholder List ([be3ef90](https://github.com/lilboards/lilboards/commit/be3ef900f236f42ad0d2f41ffc9cc52a25c48142))
 
 ## [4.36.0](https://github.com/lilboards/lilboards/compare/v4.35.1...v4.36.0) (2024-10-26)
 
-
 ### Features
 
-* **pages:** render back icon in breadcrumb in Board ([d41e26d](https://github.com/lilboards/lilboards/commit/d41e26d1f7d3f6c992171d24b3f67b0923f2293e))
+- **pages:** render back icon in breadcrumb in Board ([d41e26d](https://github.com/lilboards/lilboards/commit/d41e26d1f7d3f6c992171d24b3f67b0923f2293e))
 
 ## [4.35.1](https://github.com/lilboards/lilboards/compare/v4.35.0...v4.35.1) (2024-10-26)
 
-
 ### Bug Fixes
 
-* **database:** use attribute-based access for Firebase Security Rules ([adbb4de](https://github.com/lilboards/lilboards/commit/adbb4de5668daeb7699811de0b8b3725121a912a))
+- **database:** use attribute-based access for Firebase Security Rules ([adbb4de](https://github.com/lilboards/lilboards/commit/adbb4de5668daeb7699811de0b8b3725121a912a))
 
 ## [4.35.0](https://github.com/lilboards/lilboards/compare/v4.34.2...v4.35.0) (2024-10-26)
 
-
 ### Features
 
-* **pages:** add Lists placeholder ([5152cee](https://github.com/lilboards/lilboards/commit/5152cee19e1ee6fa24f8567cad0f6edd43e8307d))
+- **pages:** add Lists placeholder ([5152cee](https://github.com/lilboards/lilboards/commit/5152cee19e1ee6fa24f8567cad0f6edd43e8307d))
 
 ## [4.34.2](https://github.com/lilboards/lilboards/compare/v4.34.1...v4.34.2) (2024-09-20)
 
