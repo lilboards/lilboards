@@ -12,6 +12,14 @@ export const sponsorLinks = [
     href: 'https://b.remarkabl.org/ko-fi',
   },
   {
+    text: 'Buy Me a Coffee',
+    href: 'https://buymeacoffee.com/remarkablemark',
+  },
+  {
+    text: 'Thanks.Dev',
+    href: 'https://thanks.dev/u/gh/remarkablemark',
+  },
+  {
     text: 'Liberapay',
     href: 'https://b.remarkabl.org/liberapay',
   },
