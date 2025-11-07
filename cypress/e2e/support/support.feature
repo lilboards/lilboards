@@ -13,5 +13,7 @@ Feature: Support
       And I see link "GitHub Sponsors"
       And I see link "Patreon"
       And I see link "Ko-fi"
+      And I see link "Buy Me a Coffee"
+      And I see link "Thanks.Dev"
       And I see link "Liberapay"
       And I see link "Teespring"
