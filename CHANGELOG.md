@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.43.0](https://github.com/lilboards/lilboards/compare/v4.42.4...v4.43.0) (2025-11-07)
+
+
+### Features
+
+* **pages:** add 2 additional support links ([d6369dd](https://github.com/lilboards/lilboards/commit/d6369dda95f3e1e75d402252bb77b5b338034361))
+
 ## [4.42.4](https://github.com/lilboards/lilboards/compare/v4.42.3...v4.42.4) (2025-09-23)
 
 ### Miscellaneous Chores
