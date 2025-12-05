@@ -37,7 +37,7 @@
     "react": "19.2.1",
     "react-dom": "19.2.1",
     "react-redux": "9.2.0",
-    "react-router-dom": "7.10.0",
+    "react-router-dom": "7.10.1",
     "typescript": "5.9.3"
   },
   "devDependencies": {
