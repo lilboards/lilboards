@@ -28,7 +28,7 @@
     "@hello-pangea/dnd": "18.0.1",
     "@mui/icons-material": "7.3.6",
     "@mui/material": "7.3.6",
-    "@reduxjs/toolkit": "2.11.0",
+    "@reduxjs/toolkit": "2.11.1",
     "debounce": "2.2.0",
     "firebase": "12.6.0",
     "firebaseui": "6.1.0",
