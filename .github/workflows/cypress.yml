@@ -18,6 +18,12 @@ jobs:
           cache: npm
           node-version-file: .nvmrc
 
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
