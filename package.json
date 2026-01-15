@@ -30,7 +30,7 @@
     "@mui/material": "7.3.7",
     "@reduxjs/toolkit": "2.11.2",
     "debounce": "2.2.0",
-    "firebase": "12.7.0",
+    "firebase": "12.8.0",
     "firebaseui": "6.1.0",
     "linkify-react": "4.3.2",
     "linkifyjs": "4.3.2",
