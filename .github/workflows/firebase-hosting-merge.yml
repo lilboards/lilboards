@@ -62,7 +62,7 @@ jobs:
         run: rm cypress/support/step_definitions/before.ts
 
       - name: Cypress run
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         with:
           config: 'baseUrl=https://lilboards.org'
           spec: |
