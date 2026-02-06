@@ -54,7 +54,7 @@
     "@types/debounce": "1.2.4",
     "@types/jest": "30.0.0",
     "@types/node": "25.2.1",
-    "@types/react": "19.2.11",
+    "@types/react": "19.2.13",
     "@types/react-dom": "19.2.3",
     "@typescript-eslint/eslint-plugin": "8.54.0",
     "@typescript-eslint/parser": "8.54.0",
