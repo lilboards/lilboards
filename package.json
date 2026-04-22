@@ -59,7 +59,7 @@
     "@typescript-eslint/eslint-plugin": "8.59.0",
     "@typescript-eslint/parser": "8.59.0",
     "@vitejs/plugin-react-swc": "4.3.0",
-    "cypress": "15.14.0",
+    "cypress": "15.14.1",
     "cypress-cucumber-steps": "3.64.2",
     "cypress-real-events": "1.15.0",
     "eslint": "10.2.1",
