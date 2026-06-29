@@ -62,7 +62,7 @@
     "cypress": "15.18.0",
     "cypress-cucumber-steps": "3.64.3",
     "cypress-real-events": "1.15.0",
-    "eslint": "10.5.0",
+    "eslint": "10.6.0",
     "eslint-plugin-prettier": "5.5.6",
     "eslint-plugin-simple-import-sort": "13.0.0",
     "eslint-plugin-tsdoc": "0.5.2",
