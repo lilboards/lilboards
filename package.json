@@ -34,8 +34,8 @@
     "firebaseui": "6.1.0",
     "linkify-react": "4.3.3",
     "linkifyjs": "4.3.3",
-    "react": "19.2.7",
-    "react-dom": "19.2.7",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
     "react-redux": "9.3.0",
     "react-router-dom": "7.18.1",
     "typescript": "5.9.3"
