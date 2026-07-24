@@ -1,5 +1,17 @@
 # Changelog
 
+## 4.42.4 (2026-07-24)
+
+
+### Features
+
+* **pages:** add 2 additional support links ([d6369dd](https://github.com/lilboards/lilboards/commit/d6369dda95f3e1e75d402252bb77b5b338034361))
+
+
+### Miscellaneous Chores
+
+* release 4.42.4 ([33c8c6d](https://github.com/lilboards/lilboards/commit/33c8c6d68f4f895f50c416abfc4e05db0b3465b7))
+
 ## [4.43.0](https://github.com/lilboards/lilboards/compare/v4.42.4...v4.43.0) (2025-11-07)
 
 
