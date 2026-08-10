@@ -40,9 +40,11 @@ export default function MaxLikes(props: Props) {
   return (
     <TextField
       disabled={!canEdit}
-      inputProps={{
-        min: 0,
-        max: 1000,
+      slotProps={{
+        htmlInput: {
+          min: 0,
+          max: 1000,
+        },
       }}
       label="Max Likes"
       onChange={handleChange}

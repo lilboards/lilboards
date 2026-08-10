@@ -19,21 +19,21 @@ export default function VerifyEmail() {
     <>
       <Snackbar message="Email sent" lastOpened={emailSentTime} />
 
-      <Typography paragraph>
+      <Typography component="p" gutterBottom>
         To use Lilboards, please verify your email:
       </Typography>
 
-      <Typography paragraph>
+      <Typography component="p" gutterBottom>
         <Button color="primary" onClick={sendEmail} variant="outlined">
           Send verification email
         </Button>
       </Typography>
 
-      <Typography paragraph>
+      <Typography component="p" gutterBottom>
         Once your email is verified, please log out and log back in:
       </Typography>
 
-      <Typography paragraph>
+      <Typography component="p" gutterBottom>
         <Button
           color="secondary"
           component={Link}

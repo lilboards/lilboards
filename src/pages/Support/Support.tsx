@@ -9,11 +9,11 @@ export default function Support() {
 
   return (
     <>
-      <Typography component="h1" paragraph variant="h4">
+      <Typography component="h1" gutterBottom variant="h4">
         Support
       </Typography>
 
-      <Typography paragraph>
+      <Typography component="p" gutterBottom>
         Have a question? Open an{' '}
         <Link
           href="https://github.com/lilboards/lilboards/issues"
@@ -33,7 +33,7 @@ export default function Support() {
         .
       </Typography>
 
-      <Typography paragraph component="section">
+      <Typography component="section" gutterBottom>
         Sponsor this project:
         <ul>
           {sponsorLinks.map(({ text, href }, index) => (

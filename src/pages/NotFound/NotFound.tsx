@@ -8,11 +8,11 @@ export default function NotFound() {
 
   return (
     <>
-      <Typography component="h1" paragraph variant="h4">
+      <Typography component="h1" gutterBottom variant="h4">
         Not Found
       </Typography>
 
-      <Typography paragraph>
+      <Typography component="p" gutterBottom>
         Go{' '}
         <Link component={RouterLink} to="/">
           home
