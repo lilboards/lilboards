@@ -11,4 +11,9 @@ export default defineConfig({
       test: resolve(__dirname, 'test'),
     },
   },
+  server: {
+    watch: {
+      ignored: ['**/coverage/**', '**/dist/**'],
+    },
+  },
 });
