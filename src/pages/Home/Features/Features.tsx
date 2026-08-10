@@ -27,7 +27,9 @@ export default function Features() {
             {heading}
           </Typography>
 
-          <Typography paragraph>{description}</Typography>
+          <Typography component="p" gutterBottom>
+            {description}
+          </Typography>
         </Grid>
       ))}
     </Grid>

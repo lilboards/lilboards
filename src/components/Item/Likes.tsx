@@ -23,8 +23,7 @@ export default function Likes(props: Props) {
           likesCount === 1 ? 'like' : 'likes'
         } for item`}
         component="span"
-        marginLeft={0.5}
-        marginRight={1}
+        sx={{ marginLeft: 0.5, marginRight: 1 }}
       >
         {likesCount}
       </Box>

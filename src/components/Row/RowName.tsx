@@ -49,8 +49,10 @@ export default function RowName(props: Props) {
     <TextField
       autoFocus={isEditing}
       fullWidth
-      inputProps={{
-        'aria-label': `Edit row “${rowName}”`,
+      slotProps={{
+        htmlInput: {
+          'aria-label': `Edit row “${rowName}”`,
+        },
       }}
       placeholder={props.placeholder}
       onBlur={handleBlur}

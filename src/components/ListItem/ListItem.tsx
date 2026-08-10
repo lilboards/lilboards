@@ -95,11 +95,15 @@ export default function ListItem(props: Props) {
         variant="standard"
         autoFocus={isEditing}
         fullWidth
-        inputProps={{
-          'aria-label': `Edit item “${item.text}”`,
-          sx: {
-            flexGrow: 1,
-            textDecoration: item.checked ? 'line-through' : 'initial',
+        slotProps={{
+          htmlInput: {
+            'aria-label': `Edit item “${item.text}”`,
+          },
+          input: {
+            sx: {
+              flexGrow: 1,
+              textDecoration: item.checked ? 'line-through' : 'initial',
+            },
           },
         }}
         multiline

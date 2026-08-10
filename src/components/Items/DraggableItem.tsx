@@ -24,7 +24,7 @@ export default function DraggableItem(props: Props) {
           {...draggableProvided.dragHandleProps}
           ref={draggableProvided.innerRef}
         >
-          <Box paddingBottom={2}>
+          <Box sx={{ paddingBottom: 2 }}>
             <Item
               boardId={props.boardId}
               cardStyle={getDraggableCardStyle(draggableSnapshot, theme)}

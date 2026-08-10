@@ -22,7 +22,7 @@ export default function DroppableItems(props: Props) {
           {...droppableProvided.droppableProps}
           ref={droppableProvided.innerRef}
         >
-          <Box bgcolor={getDroppableBackgroundColor(droppableSnapshot)}>
+          <Box sx={{ bgcolor: getDroppableBackgroundColor(droppableSnapshot) }}>
             <InnerList
               boardId={props.boardId}
               columnId={props.columnId}

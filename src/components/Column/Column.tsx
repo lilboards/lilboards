@@ -28,7 +28,7 @@ export default function Column(props: Props) {
 
   return (
     <Grid size="grow">
-      <Box marginBottom={2} position="relative">
+      <Box sx={{ marginBottom: 2, position: 'relative' }}>
         <ColumnName
           boardId={props.boardId}
           columnId={props.columnId}

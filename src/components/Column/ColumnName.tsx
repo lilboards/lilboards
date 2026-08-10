@@ -85,7 +85,9 @@ export default function ColumnName(props: Props) {
       <TextField
         autoFocus={isEditing}
         fullWidth
-        inputProps={{ 'aria-label': `Edit column “${columnName}”` }}
+        slotProps={{
+          htmlInput: { 'aria-label': `Edit column “${columnName}”` },
+        }}
         placeholder={props.placeholder}
         onBlur={handleBlur}
         onChange={handleChange}

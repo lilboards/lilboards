@@ -80,7 +80,7 @@ export default function Item(props: Props) {
   }
 
   return (
-    <Box position="relative">
+    <Box sx={{ position: 'relative' }}>
       <Card raised={isEditing} style={props.cardStyle}>
         <Delete
           boardId={boardId}

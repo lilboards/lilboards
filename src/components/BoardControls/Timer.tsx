@@ -107,15 +107,17 @@ export default function Timer(props: Props) {
   }
 
   return (
-    <Box display="flex" alignItems="flex-end" sx={props.sx}>
+    <Box style={{ display: 'flex', alignItems: 'flex-end' }} sx={props.sx}>
       <Snackbar message="⏰ Time's up!" lastOpened={state.lastOpened} />
       <TextField
         disabled={Boolean(timerEnd)}
-        inputProps={{
-          'aria-label': 'Timer in minutes',
-          min: 1,
-          max: 100,
-          size: 5,
+        slotProps={{
+          htmlInput: {
+            'aria-label': 'Timer in minutes',
+            min: 1,
+            max: 100,
+            size: 5,
+          },
         }}
         label="Timer"
         onChange={handleChange}

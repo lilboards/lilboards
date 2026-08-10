@@ -13,7 +13,7 @@ export default function ErrorBoundary() {
 
   return (
     <>
-      <Typography component="h1" paragraph variant="h4">
+      <Typography component="h1" gutterBottom variant="h4">
         Error
       </Typography>
 
@@ -26,7 +26,7 @@ export default function ErrorBoundary() {
 
       <br />
 
-      <Typography paragraph>
+      <Typography component="p" gutterBottom>
         Refresh the page or go to{' '}
         <Link component={RouterLink} to="/">
           home

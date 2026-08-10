@@ -17,7 +17,7 @@ export default function Footer() {
           textAlign: { xs: 'center', sm: 'left' },
         }}
       >
-        <Typography paragraph>
+        <Typography component="p" gutterBottom>
           By{' '}
           <Link
             href="https://b.remarkabl.org/mark"
@@ -37,7 +37,7 @@ export default function Footer() {
           .
         </Typography>
 
-        <Typography paragraph>
+        <Typography component="p" gutterBottom>
           Copyright © {new Date().getFullYear()}. All rights reserved.
         </Typography>
       </Box>
