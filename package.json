@@ -53,7 +53,7 @@
     "@types/jest": "30.0.0",
     "@types/node": "26.2.0",
     "@types/react": "19.2.18",
-    "@types/react-dom": "19.2.4",
+    "@types/react-dom": "19.2.5",
     "@vitejs/plugin-react-swc": "4.3.3",
     "cypress": "15.21.0",
     "cypress-cucumber-steps": "3.64.3",
