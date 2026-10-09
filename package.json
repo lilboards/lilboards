@@ -1,6 +1,6 @@
 {
   "name": "lilboards",
-  "version": "4.43.0",
+  "version": "1.0.0",
   "description": "Create boards, columns, and items.",
   "author": "Mark <mark@remarkablemark.org>",
   "scripts": {
@@ -75,7 +75,7 @@
     "prettier": "3.9.9",
     "ts-jest": "29.4.14",
     "ts-node": "10.9.2",
-    "typescript-eslint": "8.71.1",
+    "typescript-eslint": "8.71.0",
     "vite": "8.3.2",
     "vite-plugin-commonjs": "0.10.4",
     "web-vitals": "6.2.3"
