@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.0 (2026-10-09)
+
+
+### Reverts
+
+* **vite:** restore vite-plugin-commonjs ([aa93409](https://github.com/lilboards/lilboards/commit/aa93409de78dc26f5e51a72e04179df82386b2ab))
+
 ## [4.43.0](https://github.com/lilboards/lilboards/compare/v4.42.4...v4.43.0) (2025-11-07)
 
 
