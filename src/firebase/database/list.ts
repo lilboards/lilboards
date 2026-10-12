@@ -1,15 +1,7 @@
 /* istanbul ignore file */
 
 import debounce from 'debounce';
-import {
-  child,
-  get,
-  ref,
-  remove,
-  runTransaction,
-  set,
-  update,
-} from 'firebase/database';
+import { child, get, ref, remove, set, update } from 'firebase/database';
 import { DatabaseKey, HALF_SECOND } from 'src/constants';
 import type { Id, Item, List, Row } from 'src/types';
 
@@ -74,33 +66,17 @@ export const removeRow = (listId: Id, rowId: Id) => {
 
 /**
  * Updates row item ids.
+ *
+ * Writes are made to each row's `itemIds` path so that security rules can
+ * let collaborators reorder items without granting write access to rows.
  */
 export const saveRowItemIds = (
   listId: Id,
   rowItemIds: { [rowId: string]: Id[] },
 ) => {
-  const rowIds = Object.keys(rowItemIds);
-
-  if (rowIds.length === 1) {
-    const rowId = rowIds[0];
+  Object.entries(rowItemIds).forEach(([rowId, itemIds]) => {
     const rowItemIdsRef = child(getRowRef(listId, rowId), DatabaseKey.itemIds);
-    set(rowItemIdsRef, rowItemIds[rowId]);
-    return;
-  }
-
-  const rowsRef = getRowsRef(listId);
-
-  /**
-   * {@link https://firebase.google.com/docs/database/web/read-and-write#save_data_as_transactions}
-   */
-  runTransaction(rowsRef, (rows) => {
-    if (rows) {
-      Object.entries(rowItemIds).forEach(([rowId, itemIds]) => {
-        rows[rowId] = rows[rowId] || {};
-        rows[rowId][DatabaseKey.itemIds] = itemIds;
-      });
-      return rows;
-    }
+    set(rowItemIdsRef, itemIds);
   });
 };
 
