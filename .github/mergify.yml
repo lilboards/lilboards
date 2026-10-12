@@ -2,10 +2,6 @@ pull_request_rules:
   - name: automatic merge for Dependabot pull requests
     conditions:
       - author=dependabot[bot]
-      - check-success=build
-      - check-success=cypress
     actions:
       merge:
         method: squash
-merge_protections_settings:
-  reporting_method: check-runs
