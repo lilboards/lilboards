@@ -1,5 +1,5 @@
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import HelpIcon from '@mui/icons-material/Help';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -50,7 +50,7 @@ export default function Header() {
             to="/support"
             title="Support"
           >
-            <HelpIcon />
+            <FavoriteIcon />
           </IconButton>
 
           <IconButton
