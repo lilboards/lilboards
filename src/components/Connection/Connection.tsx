@@ -14,7 +14,10 @@ export default function Connection() {
     }, 1000);
   }, []);
 
-  function handleClose(event?: React.SyntheticEvent | Event, reason?: string) {
+  function handleClose(
+    event?: React.SyntheticEvent | Event | null,
+    reason?: string,
+  ) {
     /* istanbul ignore if */
     if (reason === 'clickaway') {
       return;
