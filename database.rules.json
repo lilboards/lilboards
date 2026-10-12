@@ -2,51 +2,55 @@
   "rules": {
     "boards": {
       "$board_id": {
-        ".write": "auth.uid !== null && auth.token.email_verified === true",
-
+        ".read": "auth != null",
+        ".write": "auth != null && !newData.exists() && auth.uid === root.child('boards').child($board_id).child('board').child('createdBy').val()",
         "board": {
-          ".read": "auth.uid !== null",
-          ".write": "auth.uid === root.child('boards').child($board_id).child('board').child('createdBy').val() && auth.token.email_verified === true"
+          ".write": "auth != null && auth.token.email_verified === true && newData.child('createdBy').val() === auth.uid && (!data.exists() || data.child('createdBy').val() === auth.uid)"
         },
-
         "columns": {
-          ".read": "auth.uid !== null",
-          ".write": "auth.uid !== null"
+          "$column_id": {
+            ".write": "auth != null && auth.uid === root.child('boards').child($board_id).child('board').child('createdBy').val()",
+            "itemIds": {
+              ".write": "auth != null"
+            }
+          }
         },
-
         "items": {
-          ".read": "auth.uid !== null",
-          ".write": "auth.uid !== null"
+          "$item_id": {
+            ".write": "auth != null"
+          }
         },
-
         "likes": {
-          ".read": "auth.uid !== null",
-          ".write": "auth.uid !== null"
+          "items": {
+            "$item_id": {
+              ".write": "auth != null"
+            }
+          }
         }
       }
     },
-
     "lists": {
       "$list_id": {
-        ".write": "auth.uid !== null && auth.token.email_verified === true",
-
+        ".read": "auth != null",
+        ".write": "auth != null && !newData.exists() && auth.uid === root.child('lists').child($list_id).child('list').child('createdBy').val()",
         "list": {
-          ".read": "auth.uid !== null",
-          ".write": "auth.uid === root.child('lists').child($list_id).child('list').child('createdBy').val() && auth.token.email_verified === true"
+          ".write": "auth != null && auth.token.email_verified === true && newData.child('createdBy').val() === auth.uid && (!data.exists() || data.child('createdBy').val() === auth.uid)"
         },
-
         "rows": {
-          ".read": "auth.uid !== null",
-          ".write": "auth.uid !== null"
+          "$row_id": {
+            ".write": "auth != null && auth.uid === root.child('lists').child($list_id).child('list').child('createdBy').val()",
+            "itemIds": {
+              ".write": "auth != null"
+            }
+          }
         },
-
         "items": {
-          ".read": "auth.uid !== null",
-          ".write": "auth.uid !== null"
+          "$item_id": {
+            ".write": "auth != null"
+          }
         }
       }
     },
-
     "users": {
       "$uid": {
         ".read": "$uid === auth.uid && auth.token.email_verified === true",

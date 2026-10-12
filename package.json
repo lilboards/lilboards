@@ -20,6 +20,7 @@
     "start": "run-p firebase:emulators dev",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "test:ci": "CI=true npm test -- --ci --coverage --colors",
+    "test:rules": "firebase emulators:exec --only database --project test-lilboards 'npm test -- --config jest.rules.config.ts --runInBand'",
     "test:watch": "npm test -- --watch"
   },
   "dependencies": {
@@ -46,6 +47,7 @@
     "@commitlint/cli": "21.2.3",
     "@commitlint/config-conventional": "21.2.3",
     "@eslint/js": "10.0.1",
+    "@firebase/rules-unit-testing": "5.0.2",
     "@testing-library/jest-dom": "7.0.1",
     "@testing-library/react": "16.3.3",
     "@testing-library/user-event": "14.6.7",

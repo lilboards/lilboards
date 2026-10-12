@@ -1,15 +1,7 @@
 /* istanbul ignore file */
 
 import debounce from 'debounce';
-import {
-  child,
-  get,
-  ref,
-  remove,
-  runTransaction,
-  set,
-  update,
-} from 'firebase/database';
+import { child, get, ref, remove, set, update } from 'firebase/database';
 import { DatabaseKey, HALF_SECOND } from 'src/constants';
 import type { Board, Column, Id, Item, LikesItem } from 'src/types';
 
@@ -74,36 +66,20 @@ export const removeColumn = (boardId: Id, columnId: Id) => {
 
 /**
  * Updates column item ids.
+ *
+ * Writes are made to each column's `itemIds` path so that security rules can
+ * let collaborators reorder items without granting write access to columns.
  */
 export const saveColumnItemIds = (
   boardId: Id,
   columnItemIds: { [columnId: string]: Id[] },
 ) => {
-  const columnIds = Object.keys(columnItemIds);
-
-  if (columnIds.length === 1) {
-    const columnId = columnIds[0];
+  Object.entries(columnItemIds).forEach(([columnId, itemIds]) => {
     const columnItemIdsRef = child(
       getColumnRef(boardId, columnId),
       DatabaseKey.itemIds,
     );
-    set(columnItemIdsRef, columnItemIds[columnId]);
-    return;
-  }
-
-  const columnsRef = getColumnsRef(boardId);
-
-  /**
-   * {@link https://firebase.google.com/docs/database/web/read-and-write#save_data_as_transactions}
-   */
-  runTransaction(columnsRef, (columns) => {
-    if (columns) {
-      Object.entries(columnItemIds).forEach(([columnId, itemIds]) => {
-        columns[columnId] = columns[columnId] || {};
-        columns[columnId][DatabaseKey.itemIds] = itemIds;
-      });
-      return columns;
-    }
+    set(columnItemIdsRef, itemIds);
   });
 };
 

@@ -23,6 +23,7 @@ const jestConfig: JestConfigWithTsJest = {
   },
   modulePathIgnorePatterns: ['<rootDir>/src/config'],
   preset: 'ts-jest',
+  testPathIgnorePatterns: ['/node_modules/', '<rootDir>/test/rules/'],
   reporters:
     process.env.CI === 'true'
       ? [['github-actions', { silent: false }], 'summary']
