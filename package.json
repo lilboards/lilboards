@@ -18,8 +18,9 @@
     "lint:tsc": "tsc",
     "prepare": "husky",
     "start": "run-p firebase:emulators dev",
-    "test": "jest --watch",
-    "test:ci": "CI=true jest --ci --coverage --colors"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "test:ci": "CI=true npm test -- --ci --coverage --colors",
+    "test:watch": "npm test -- --watch"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
@@ -28,7 +29,7 @@
     "@mui/icons-material": "9.4.0",
     "@mui/material": "9.4.0",
     "@reduxjs/toolkit": "2.13.0",
-    "debounce": "2.2.0",
+    "debounce": "3.0.0",
     "firebase": "13.0.0",
     "firebaseui": "6.1.0",
     "linkify-react": "4.3.3",
@@ -48,7 +49,6 @@
     "@testing-library/jest-dom": "7.0.1",
     "@testing-library/react": "16.3.3",
     "@testing-library/user-event": "14.6.7",
-    "@types/debounce": "1.2.4",
     "@types/jest": "30.0.0",
     "@types/node": "26.6.4",
     "@types/react": "19.3.0",

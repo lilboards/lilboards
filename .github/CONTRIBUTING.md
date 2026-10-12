@@ -124,13 +124,19 @@ Or replace port `9000` with a different port (e.g., `9001`) in `.env` and `fireb
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode:
+Runs the tests:
 
 ```sh
 npm test
 ```
 
-Run tests with coverage:
+Launches the test runner in interactive watch mode:
+
+```sh
+npm run test:watch
+```
+
+Run the tests with coverage:
 
 ```sh
 npm run test:ci
