@@ -15,7 +15,7 @@
     "firebase:logout": "firebase logout",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
-    "lint:tsc": "tsc --noEmit",
+    "lint:tsc": "tsc",
     "prepare": "husky",
     "start": "run-p firebase:emulators dev",
     "test": "jest --watch",
@@ -37,7 +37,7 @@
     "react-dom": "19.3.0",
     "react-redux": "9.3.0",
     "react-router-dom": "7.18.4",
-    "typescript": "5.9.3"
+    "typescript": "6.0.3"
   },
   "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "28.0.0",
