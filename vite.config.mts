@@ -5,21 +5,38 @@ import { defineConfig } from 'vite';
 import commonjs from 'vite-plugin-commonjs';
 
 export default defineConfig({
+  build: {
+    rolldownOptions: {
+      output: {
+        codeSplitting: {
+          groups: [
+            {
+              name: 'react',
+              test: /node_modules\/(react|react-dom)\//,
+            },
+          ],
+        },
+      },
+    },
+  },
+
   plugins: [
     react(),
     // vite-plugin-commonjs is needed because firebaseui's CJS build uses
     // `require('dialog-polyfill')`, which Vite doesn't transform by default
     commonjs(),
   ],
+
   resolve: {
     alias: {
       src: resolve(import.meta.dirname, 'src'),
       test: resolve(import.meta.dirname, 'test'),
     },
   },
+
   server: {
     watch: {
-      ignored: ['**/coverage/**', '**/dist/**'],
+      ignored: ['**/coverage/**'],
     },
   },
 });
