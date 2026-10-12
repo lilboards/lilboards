@@ -25,8 +25,11 @@ jobs:
       - name: Lint commit message
         run: npx commitlint --from=HEAD~1
 
-      - name: Lint files
+      - name: Run ESLint
         run: npm run lint
+
+      - name: Type check
+        run: npm run lint:tsc
 
       - name: Run tests
         run: npm run test:ci
