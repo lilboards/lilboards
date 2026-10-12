@@ -1,11 +1,16 @@
 # Changelog
 
-## [4.43.0](https://github.com/lilboards/lilboards/compare/v4.42.4...v4.43.0) (2025-11-07)
+## [4.43.1](https://github.com/lilboards/lilboards/compare/v4.43.0...v4.43.1) (2026-10-12)
 
+### Bug Fixes
+
+- **database:** restrict management writes to board and list creators ([46d5739](https://github.com/lilboards/lilboards/commit/46d57398a88537418e754598d9997784ec52e23f))
+
+## [4.43.0](https://github.com/lilboards/lilboards/compare/v4.42.4...v4.43.0) (2025-11-07)
 
 ### Features
 
-* **pages:** add 2 additional support links ([d6369dd](https://github.com/lilboards/lilboards/commit/d6369dda95f3e1e75d402252bb77b5b338034361))
+- **pages:** add 2 additional support links ([d6369dd](https://github.com/lilboards/lilboards/commit/d6369dda95f3e1e75d402252bb77b5b338034361))
 
 ## [4.42.4](https://github.com/lilboards/lilboards/compare/v4.42.3...v4.42.4) (2025-09-23)
 
