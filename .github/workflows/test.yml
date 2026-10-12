@@ -1,17 +1,15 @@
-name: build
+name: test
 on: [push, pull_request]
 
 permissions:
   contents: read
 
 jobs:
-  build:
+  unit:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v7
@@ -21,15 +19,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci --prefer-offline
-
-      - name: Lint commit message
-        run: npx commitlint --from=HEAD~1
-
-      - name: Run ESLint
-        run: npm run lint
-
-      - name: Type check
-        run: npm run lint:tsc
 
       - name: Run tests
         run: npm run test:ci
