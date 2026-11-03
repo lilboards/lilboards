@@ -1,7 +1,5 @@
 import { addCucumberPreprocessorPlugin } from '@badeball/cypress-cucumber-preprocessor';
-// @ts-expect-error Cannot find module or its corresponding type declarations.
 import { createEsbuildPlugin } from '@badeball/cypress-cucumber-preprocessor/esbuild';
-// @ts-expect-error Module can only be default-imported using the 'esModuleInterop' flag
 import createBundler from '@bahmutov/cypress-esbuild-preprocessor';
 import { defineConfig } from 'cypress';
 
