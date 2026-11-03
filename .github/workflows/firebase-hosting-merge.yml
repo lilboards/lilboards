@@ -42,6 +42,8 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_LILBOARDS }}
           channelId: live
           projectId: 'lilboards'
+          # https://github.com/firebase/firebase-tools/issues/11335#issuecomment-6576308195
+          firebaseToolsVersion: v15.34.0
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
 

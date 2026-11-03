@@ -42,5 +42,7 @@ jobs:
           firebaseServiceAccount: ${{ secrets.DEV_FIREBASE_SERVICE_ACCOUNT_LILBOARDS }}
           projectId: 'lilboards-dev'
           expires: 7d
+          # https://github.com/firebase/firebase-tools/issues/11335#issuecomment-6576308195
+          firebaseToolsVersion: v15.34.0
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
