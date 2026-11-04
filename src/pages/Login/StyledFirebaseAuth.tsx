@@ -15,34 +15,34 @@ export default function StyledFirebaseAuth() {
 
   useEffect(() => {
     // get or create a FirebaseUI instance
-    const authUI = firebaseui.auth.AuthUI.getInstance();
-
-    /* istanbul ignore next */
-    new firebaseui.auth.AuthUI(firebaseAuth);
+    const authUI =
+      firebaseui.auth.AuthUI.getInstance() ??
+      /* istanbul ignore next */
+      new firebaseui.auth.AuthUI(firebaseAuth);
 
     /* istanbul ignore next */
     if (uiConfig.signInFlow === 'popup') {
-      authUI?.reset();
+      authUI.reset();
     }
 
     // track the auth state to reset FirebaseUI if the user signs out
     const unregisterAuthObserver = onAuthStateChanged((user) => {
       if (!user && userSignedIn) {
         /* istanbul ignore next */
-        authUI?.reset();
+        authUI.reset();
       }
       setUserSignedIn(Boolean(user));
     });
 
     // render the FirebaseUI widget
     /* istanbul ignore next */
-    authUI?.start(ref.current as HTMLElement, uiConfig);
+    authUI.start(ref.current as HTMLElement, uiConfig);
 
     return () => {
       /* istanbul ignore next */
       unregisterAuthObserver();
       /* istanbul ignore next */
-      authUI?.reset();
+      authUI.reset();
     };
   }, [userSignedIn]);
 
