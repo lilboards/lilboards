@@ -1,16 +1,12 @@
 import { SortOrder } from '../types';
 
-export const sort = <Type, Key extends keyof Type>(
-  objects: Type[],
-  by: Key,
-  order: SortOrder,
-) =>
-  objects.slice().sort((a: any, b: any) => {
+export const sort = <Type>(objects: Type[], by: keyof Type, order: SortOrder) =>
+  objects.slice().sort((a: Type, b: Type) => {
     switch (order) {
       case SortOrder.Ascending:
-        return a[by] - b[by];
+        return Number(a[by]) - Number(b[by]);
       case SortOrder.Descending:
-        return b[by] - a[by];
+        return Number(b[by]) - Number(a[by]);
       default:
         return 0;
     }

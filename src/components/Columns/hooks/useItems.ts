@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { getItemsRef } from 'src/firebase';
 import { useDispatch } from 'src/hooks';
 import { actions } from 'src/store';
-import { Id } from 'src/types';
+import { Id, Item } from 'src/types';
 
 /**
  * Listens to item changes.
@@ -32,7 +32,7 @@ export function useItems(boardId: Id) {
         setTimeout(() => {
           dispatch(
             actions.updateItem({
-              item: itemSnapshot.val(),
+              item: itemSnapshot.val() as Partial<Item>,
               itemId,
               skipSave: true,
             }),
@@ -53,7 +53,7 @@ export function useItems(boardId: Id) {
         setTimeout(() => {
           dispatch(
             actions.updateItem({
-              item: itemSnapshot.val(),
+              item: itemSnapshot.val() as Partial<Item>,
               itemId,
               skipSave: true,
             }),
@@ -84,7 +84,9 @@ export function useItems(boardId: Id) {
 
     // unsubscribe and reset on unmount
     return () => {
-      unsubscribes.forEach((unsubscribe) => unsubscribe());
+      unsubscribes.forEach((unsubscribe) => {
+        unsubscribe();
+      });
       dispatch(actions.resetItems());
     };
   }, [boardId, dispatch]);

@@ -117,7 +117,7 @@ describe('renameColumn', () => {
     expect(newState).toEqual({
       [columnId]: {
         name: payload.columnName,
-        updatedAt: expect.any(Number),
+        updatedAt: expect.any(Number) as number,
         updatedBy: payload.userId,
       },
     });
@@ -138,7 +138,7 @@ describe('renameColumn', () => {
       [columnId]: {
         ...column,
         name: payload.columnName,
-        updatedAt: expect.any(Number),
+        updatedAt: expect.any(Number) as number,
         updatedBy: payload.userId,
       },
     });

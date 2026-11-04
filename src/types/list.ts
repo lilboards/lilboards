@@ -10,9 +10,7 @@ export interface List {
   updatedBy?: UserId;
 }
 
-export interface Lists {
-  [listId: string]: List;
-}
+export type Lists = Record<string, List>;
 
 export interface Row {
   createdAt: Time;
@@ -23,13 +21,9 @@ export interface Row {
   updatedBy?: UserId;
 }
 
-export interface Rows {
-  [rowId: string]: Row;
-}
+export type Rows = Record<string, Row>;
 
-export interface RowItemIds {
-  [rowId: string]: ItemId[];
-}
+export type RowItemIds = Record<string, ItemId[]>;
 
 export interface ListItem {
   checked?: boolean;
@@ -40,6 +34,4 @@ export interface ListItem {
   updatedBy?: UserId;
 }
 
-export interface ListItems {
-  [listItemId: string]: ListItem;
-}
+export type ListItems = Record<string, ListItem>;

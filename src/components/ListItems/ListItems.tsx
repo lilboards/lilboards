@@ -89,7 +89,12 @@ export default function Items(props: Props) {
         </Button>
 
         {isAdmin && (
-          <Button color="error" onClick={() => setIsDialogOpen(true)}>
+          <Button
+            color="error"
+            onClick={() => {
+              setIsDialogOpen(true);
+            }}
+          >
             Delete
           </Button>
         )}
@@ -99,7 +104,9 @@ export default function Items(props: Props) {
         <DeleteDialog
           content="This action cannot be undone."
           id={props.rowId}
-          onClose={() => setIsDialogOpen(false)}
+          onClose={() => {
+            setIsDialogOpen(false);
+          }}
           onDelete={() => {
             deleteRow();
             setIsDialogOpen(false);

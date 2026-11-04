@@ -19,7 +19,7 @@ export default function Likes(props: Props) {
       <LikeButton boardId={props.boardId} itemId={props.itemId} />
 
       <Box
-        aria-label={`${likesCount} ${
+        aria-label={`${String(likesCount)} ${
           likesCount === 1 ? 'like' : 'likes'
         } for item`}
         component="span"

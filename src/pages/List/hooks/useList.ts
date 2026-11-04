@@ -5,7 +5,7 @@ import { DatabaseKey } from 'src/constants';
 import { getListDataRef } from 'src/firebase';
 import { useBoardOrList, useDispatch } from 'src/hooks';
 import { actions } from 'src/store';
-import { Id } from 'src/types';
+import { Id, List } from 'src/types';
 
 export function useList(listId: Id) {
   const dispatch = useDispatch();
@@ -14,8 +14,9 @@ export function useList(listId: Id) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (listId && !list && isLoaded) {
-      navigate('/404');
+      void navigate('/404');
     }
   }, [listId, list, isLoaded, navigate]);
 
@@ -28,7 +29,7 @@ export function useList(listId: Id) {
     const unsubscribeOnValue = onValue(
       getListDataRef(listId),
       (listSnapshot) => {
-        const list = listSnapshot.val();
+        const list = listSnapshot.val() as List | null;
 
         if (list) {
           // prevent race condition with redux reducer

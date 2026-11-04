@@ -4,7 +4,7 @@ const { clipboard } = navigator;
 const writeText = jest.fn();
 
 beforeAll(() => {
-  (navigator as any).clipboard = { writeText };
+  Object.assign(navigator, { clipboard: { writeText } });
 });
 
 beforeEach(() => {
@@ -12,11 +12,11 @@ beforeEach(() => {
 });
 
 afterAll(() => {
-  (navigator as any).clipboard = clipboard;
+  Object.assign(navigator, { clipboard });
 });
 
 it('copies link to clipboard', () => {
-  copyLinkToClipboard();
+  void copyLinkToClipboard();
   expect(writeText).toHaveBeenCalledTimes(1);
   expect(writeText).toHaveBeenCalledWith(window.location.href);
 });

@@ -3,7 +3,9 @@ import { createRoot } from 'react-dom/client';
 // import reportWebVitals from './reportWebVitals';
 import App from './components/App';
 
-export const root = createRoot(document.getElementById('root')!);
+const element = document.getElementById('root') as HTMLDivElement;
+
+export const root = createRoot(element);
 
 root.render(<App />);
 

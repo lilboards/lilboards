@@ -24,20 +24,20 @@ export const getBoardDataRef = (boardId: Id) =>
  * Gets board value.
  */
 export const getBoardVal = async (boardId: Id): Promise<Board | null> =>
-  (await get(getBoardDataRef(boardId))).val();
+  (await get(getBoardDataRef(boardId))).val() as Board | null;
 
 /**
  * Removes board.
  */
 export const removeBoard = (boardId: Id) => {
-  remove(getBoardRef(boardId));
+  void remove(getBoardRef(boardId));
 };
 
 /**
  * Updates board data.
  */
 export const saveBoardData = (boardId: Id, board: Partial<Board>) => {
-  update(getBoardDataRef(boardId), board);
+  void update(getBoardDataRef(boardId), board);
 };
 
 /**
@@ -61,7 +61,7 @@ export const getColumnRef = (boardId: Id, columnId: Id) =>
  * Removes column.
  */
 export const removeColumn = (boardId: Id, columnId: Id) => {
-  remove(getColumnRef(boardId, columnId));
+  void remove(getColumnRef(boardId, columnId));
 };
 
 /**
@@ -72,14 +72,14 @@ export const removeColumn = (boardId: Id, columnId: Id) => {
  */
 export const saveColumnItemIds = (
   boardId: Id,
-  columnItemIds: { [columnId: string]: Id[] },
+  columnItemIds: Record<string, Id[]>,
 ) => {
   Object.entries(columnItemIds).forEach(([columnId, itemIds]) => {
     const columnItemIdsRef = child(
       getColumnRef(boardId, columnId),
       DatabaseKey.itemIds,
     );
-    set(columnItemIdsRef, itemIds);
+    void set(columnItemIdsRef, itemIds);
   });
 };
 
@@ -91,7 +91,7 @@ export const updateColumn = (
   columnId: Id,
   column: Partial<Column>,
 ) => {
-  update(getColumnRef(boardId, columnId), column);
+  void update(getColumnRef(boardId, columnId), column);
 };
 
 /**
@@ -115,14 +115,14 @@ export const getItemRef = (boardId: Id, itemId: Id) =>
  * Removes item.
  */
 export const removeItem = (boardId: Id, itemId: Id) => {
-  remove(getItemRef(boardId, itemId));
+  void remove(getItemRef(boardId, itemId));
 };
 
 /**
  * Updates item.
  */
 export const updateItem = (boardId: Id, itemId: Id, item: Partial<Item>) => {
-  update(getItemRef(boardId, itemId), item);
+  void update(getItemRef(boardId, itemId), item);
 };
 
 /**
@@ -147,21 +147,21 @@ const getLikesItemRef = (boardId: Id, itemId: Id) =>
  * Likes item.
  */
 export const likeItem = (boardId: Id, itemId: Id, userId: Id) => {
-  update(getLikesItemRef(boardId, itemId), { [userId]: true });
+  void update(getLikesItemRef(boardId, itemId), { [userId]: true });
 };
 
 /**
  * Sets likes item.
  */
 export const setLikesItem = (boardId: Id, itemId: Id, likes: LikesItem) => {
-  set(getLikesItemRef(boardId, itemId), likes);
+  void set(getLikesItemRef(boardId, itemId), likes);
 };
 
 /**
  * Removes likes item.
  */
 export const removeLikesItem = (boardId: Id, itemId: Id) => {
-  remove(getLikesItemRef(boardId, itemId));
+  void remove(getLikesItemRef(boardId, itemId));
 };
 
 /**
@@ -169,5 +169,5 @@ export const removeLikesItem = (boardId: Id, itemId: Id) => {
  */
 export const unlikeItem = (boardId: Id, itemId: Id, userId: Id) => {
   const ref = child(getLikesItemRef(boardId, itemId), userId);
-  remove(ref);
+  void remove(ref);
 };

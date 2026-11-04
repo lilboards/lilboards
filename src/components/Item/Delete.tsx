@@ -17,8 +17,12 @@ interface Props {
 export default function Delete(props: Props) {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const openDialog = useCallback(() => setOpen(true), [setOpen]);
-  const closeDialog = useCallback(() => setOpen(false), [setOpen]);
+  const openDialog = useCallback(() => {
+    setOpen(true);
+  }, [setOpen]);
+  const closeDialog = useCallback(() => {
+    setOpen(false);
+  }, [setOpen]);
 
   const deleteItem = useCallback(() => {
     dispatch(

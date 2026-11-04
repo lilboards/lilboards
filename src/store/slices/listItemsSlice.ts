@@ -19,7 +19,8 @@ export const listItemsSlice = createSlice({
       }>,
     ) => {
       const { listId, itemId, item, skipSave } = action.payload;
-      state[itemId] = state[itemId] || {};
+
+      state[itemId] = state[itemId] ?? {};
       Object.assign(state[itemId], item);
 
       if (!skipSave && listId) {
@@ -32,6 +33,7 @@ export const listItemsSlice = createSlice({
       action: PayloadAction<{ listId?: Id; itemId: Id; skipSave?: boolean }>,
     ) => {
       const { listId, itemId, skipSave } = action.payload;
+      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
       delete state[itemId];
 
       if (!skipSave && listId) {

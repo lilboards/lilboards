@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { getColumnsRef } from 'src/firebase';
 import { useDispatch } from 'src/hooks';
 import { actions } from 'src/store';
-import { Id } from 'src/types';
+import { Column, Id } from 'src/types';
 
 /**
  * Listens to column changes.
@@ -33,7 +33,7 @@ export function useColumns(boardId: Id) {
           dispatch(
             actions.updateColumn({
               boardId,
-              column: columnSnapshot.val(),
+              column: columnSnapshot.val() as Partial<Column>,
               columnId,
               skipSave: true,
             }),
@@ -55,8 +55,8 @@ export function useColumns(boardId: Id) {
           dispatch(
             actions.updateColumn({
               boardId,
-              column: columnSnapshot.val(),
-              columnId: columnSnapshot.key as Id,
+              column: columnSnapshot.val() as Partial<Column>,
+              columnId,
               skipSave: true,
             }),
           );
@@ -87,7 +87,9 @@ export function useColumns(boardId: Id) {
 
     // unsubscribe and reset on unmount
     return () => {
-      unsubscribes.forEach((unsubscribe) => unsubscribe());
+      unsubscribes.forEach((unsubscribe) => {
+        unsubscribe();
+      });
       dispatch(actions.resetColumns());
     };
   }, [boardId, dispatch]);

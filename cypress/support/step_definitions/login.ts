@@ -10,7 +10,7 @@ import {
 import account from '../../fixtures/account.json';
 
 Given('I login', (table?: DataTable) => {
-  const [{ email, password }] = table?.hashes() || [account];
+  const [{ email, password }] = table?.hashes() ?? [account];
   When_I_visit_URL('/login');
   When_I_click_on_button('Sign in with email');
   When_I_get_focused_element();

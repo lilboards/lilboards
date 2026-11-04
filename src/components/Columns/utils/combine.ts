@@ -11,7 +11,7 @@ export function combine(result: DropResult, items: Items, likes: LikesItems) {
   const sourceColumnId = result.source.droppableId;
   const sourceText = items[sourceItemId].text.trim();
 
-  const targetItemId = result.combine!.draggableId;
+  const targetItemId = (result.combine as { draggableId: string }).draggableId;
   const targetText = items[targetItemId].text.trim();
 
   const combinedText = [targetText, sourceText].join(separator);

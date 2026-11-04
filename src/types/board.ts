@@ -12,9 +12,7 @@ export interface Board {
   updatedBy?: UserId;
 }
 
-export interface Boards {
-  [boardId: string]: Board;
-}
+export type Boards = Record<string, Board>;
 
 export interface Column {
   createdAt: Time;
@@ -25,13 +23,9 @@ export interface Column {
   updatedBy?: UserId;
 }
 
-export interface Columns {
-  [columnId: string]: Column;
-}
+export type Columns = Record<string, Column>;
 
-export interface ColumnItemIds {
-  [columnId: string]: ItemId[];
-}
+export type ColumnItemIds = Record<string, ItemId[]>;
 
 export interface Item {
   createdAt: Time;
@@ -41,17 +35,11 @@ export interface Item {
   updatedBy?: UserId;
 }
 
-export interface Items {
-  [itemId: string]: Item;
-}
+export type Items = Record<string, Item>;
 
-export interface LikesItem {
-  [userId: string]: boolean;
-}
+export type LikesItem = Record<string, boolean>;
 
-export interface LikesItems {
-  [itemId: string]: LikesItem;
-}
+export type LikesItems = Record<string, LikesItem>;
 
 export interface Likes {
   items: LikesItems;

@@ -15,8 +15,9 @@ interface Props {
 
 export default function Row(props: Props) {
   const row = useRow(props.rowId);
-  const rowPlaceholder = `Row ${props.rowIndex + 1}`;
+  const rowPlaceholder = `Row ${String(props.rowIndex + 1)}`;
 
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!row) {
     return null;
   }

@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react';
+import type { User } from 'firebase/auth';
 import * as firebaseui from 'firebaseui';
 import { onAuthStateChanged } from 'src/firebase/auth';
 
@@ -6,13 +7,25 @@ import StyledFirebaseAuth from './StyledFirebaseAuth';
 import uiConfig from './uiConfig';
 
 jest.mock('firebaseui', () => {
-  class AuthUI {
-    static getInstance() {
-      return this;
-    }
-    static reset = jest.fn();
-    static start = jest.fn();
+  interface AuthUI {
+    new (firebaseAuth: unknown): void;
+    getInstance: () => AuthUI;
+    reset: jest.Mock;
+    start: jest.Mock;
   }
+
+  const AuthUI: AuthUI = Object.assign(
+    function AuthUI() {
+      return;
+    } as unknown as AuthUI,
+    {
+      getInstance() {
+        return this;
+      },
+      reset: jest.fn(),
+      start: jest.fn(),
+    },
+  );
   return { auth: { AuthUI } };
 });
 
@@ -25,7 +38,10 @@ jest.mock('src/firebase/auth', () => ({
 const mockedOnAuthStateChanged = jest.mocked(onAuthStateChanged);
 
 function getAuthUI() {
-  return mockedFirebaseui.auth.AuthUI.getInstance()!;
+  return mockedFirebaseui.auth.AuthUI.getInstance() as unknown as {
+    reset: jest.Mock;
+    start: jest.Mock;
+  };
 }
 
 beforeEach(() => {
@@ -56,7 +72,7 @@ describe('user signs in', () => {
   beforeEach(() => {
     mockedOnAuthStateChanged.mockReset().mockImplementation((callback) => {
       const user = {};
-      callback(user as any);
+      callback(user as User);
       return jest.fn();
     });
   });
@@ -91,7 +107,7 @@ describe('user signs in and out', () => {
       .mockReset()
       .mockImplementationOnce((callback) => {
         const user = {};
-        callback(user as any);
+        callback(user as User);
         return jest.fn();
       })
       .mockImplementation((callback) => {

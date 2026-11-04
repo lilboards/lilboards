@@ -23,15 +23,15 @@ export default function BoardControls(props: Props) {
   );
 
   const handleClick = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>) =>
-      setAnchorElement(event.currentTarget),
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      setAnchorElement(event.currentTarget);
+    },
     [setAnchorElement],
   );
 
-  const handleClose = useCallback(
-    () => setAnchorElement(null),
-    [setAnchorElement],
-  );
+  const handleClose = useCallback(() => {
+    setAnchorElement(null);
+  }, [setAnchorElement]);
 
   const isPopoverOpen = Boolean(anchorElement);
   const popoverId = isPopoverOpen ? 'board-controls-popover' : undefined;

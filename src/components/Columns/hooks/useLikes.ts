@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { getLikesRef } from 'src/firebase';
 import { useDispatch } from 'src/hooks';
 import { actions } from 'src/store';
-import { Id } from 'src/types';
+import { Id, Likes } from 'src/types';
 
 /**
  * Listens to like changes.
@@ -16,7 +16,7 @@ export function useLikes(boardId: Id) {
 
     // subscribe on mount
     const unsubscribe = onValue(likesRef, (likesSnapshot) => {
-      const likes = likesSnapshot.val();
+      const likes = likesSnapshot.val() as Likes | null;
 
       setTimeout(() => {
         if (likes) {

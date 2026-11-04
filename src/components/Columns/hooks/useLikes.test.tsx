@@ -1,3 +1,4 @@
+import type { DataSnapshot } from 'firebase/database';
 import { onValue } from 'firebase/database';
 import { getLikesRef } from 'src/firebase';
 import { Likes } from 'src/types';
@@ -42,7 +43,7 @@ describe('likes snapshot value is valid', () => {
           },
         }),
       };
-      callback(dataSnapshot as any);
+      callback(dataSnapshot as unknown as DataSnapshot);
       return unsubscribe;
     });
   });
@@ -75,7 +76,7 @@ describe('likes snapshot value is null', () => {
   beforeEach(() => {
     mockedOnValue.mockImplementationOnce((query, callback) => {
       const dataSnapshot = { val: () => null };
-      callback(dataSnapshot as any);
+      callback(dataSnapshot as unknown as DataSnapshot);
       return unsubscribe;
     });
   });

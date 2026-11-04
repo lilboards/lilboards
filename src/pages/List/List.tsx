@@ -10,11 +10,13 @@ import { useList } from './hooks/useList';
 
 export default function List() {
   const params = useParams<{ listId: Id }>();
-  const listId = params.listId || '';
+  const listId = params.listId ?? '';
   const list = useList(listId);
-  useSetDocumentTitle(list?.name || 'Untitled List');
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  useSetDocumentTitle(list?.name ?? 'Untitled List');
   const isLoggedIn = useIsLoggedIn();
 
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!listId || !list) {
     return null;
   }

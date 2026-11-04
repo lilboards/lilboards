@@ -9,11 +9,13 @@ export function reorder(
   columns: Columns,
 ) {
   const sourceColumnId = source.droppableId;
-  const sourceColumn = columns[sourceColumnId] || {};
+
+  const sourceColumn = columns[sourceColumnId] ?? {};
   const sourceItemIds = cloneArray(sourceColumn[DatabaseKey.itemIds]);
 
   const destinationColumnId = destination.droppableId;
-  const destinationColumn = columns[destinationColumnId] || {};
+
+  const destinationColumn = columns[destinationColumnId] ?? {};
   const destinationItemIds = cloneArray(destinationColumn[DatabaseKey.itemIds]);
 
   // moving item to the same column

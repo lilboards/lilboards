@@ -8,7 +8,7 @@ export function useLists() {
   const userId = useUserId();
 
   useEffect(() => {
-    (async () => {
+    void (async () => {
       const userLists = await getUserListsVal(userId);
 
       if (!userLists) {

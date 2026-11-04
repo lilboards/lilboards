@@ -21,7 +21,7 @@ exports[`[Function transformToCSV] transforms column with no items 1`] = `""Colu
 exports[`[Function transformToCSV] transforms columns with items 1`] = `
 ""Column 1","Column 2"
 "Item 1","Item 2"
-,"Item 3""
+"","Item 3""
 `;
 
 exports[`[Function transformToCSV] transforms columns with no items 1`] = `""Column Name 1","Column Name 2""`;
@@ -130,7 +130,7 @@ exports[`[Function transformToRows] transforms columns with items 1`] = `
     "Item 2",
   ],
   [
-    undefined,
+    "",
     "Item 3",
   ],
 ]

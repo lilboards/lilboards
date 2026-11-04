@@ -117,7 +117,7 @@ describe('renameRow', () => {
     expect(newState).toEqual({
       [rowId]: {
         name: payload.rowName,
-        updatedAt: expect.any(Number),
+        updatedAt: expect.any(Number) as number,
         updatedBy: payload.userId,
       },
     });
@@ -138,7 +138,7 @@ describe('renameRow', () => {
       [rowId]: {
         ...row,
         name: payload.rowName,
-        updatedAt: expect.any(Number),
+        updatedAt: expect.any(Number) as number,
         updatedBy: payload.userId,
       },
     });

@@ -7,7 +7,7 @@ export function formatTimeRemaining(milliseconds: number) {
   let seconds = Math.round(milliseconds / SECOND_IN_MILLISECONDS);
   const minutes = Math.floor(seconds / MINUTE_IN_SECONDS);
   seconds = seconds % MINUTE_IN_SECONDS;
-  return `${minutes || '00'}:${String(seconds).padStart(2, '0')}`;
+  return `${minutes === 0 ? '00' : String(minutes)}:${String(seconds).padStart(2, '0')}`;
 }
 
 /**

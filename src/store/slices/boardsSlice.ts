@@ -24,7 +24,8 @@ export const boardsSlice = createSlice({
       }>,
     ) => {
       const { board, boardId, debounce, skipSave } = action.payload;
-      state[boardId] = state[boardId] || {};
+
+      state[boardId] = state[boardId] ?? {};
       Object.assign(state[boardId], board);
 
       if (!skipSave) {
@@ -41,6 +42,7 @@ export const boardsSlice = createSlice({
       action: PayloadAction<{ boardId: Id; userId: Id; skipSave?: boolean }>,
     ) => {
       const { boardId, skipSave, userId } = action.payload;
+      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
       delete state[boardId];
       if (!skipSave) {
         removeBoard(boardId);
@@ -53,7 +55,8 @@ export const boardsSlice = createSlice({
       action: PayloadAction<{ board: Board; boardId: Id }>,
     ) => {
       const { board, boardId } = action.payload;
-      state[boardId] = state[boardId] || {};
+
+      state[boardId] = state[boardId] ?? {};
       Object.assign(state[boardId], board);
     },
 

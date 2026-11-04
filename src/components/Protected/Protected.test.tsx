@@ -6,14 +6,14 @@ import { renderWithProviders, router, updateStore } from 'test/utils';
 import Protected from './Protected';
 
 jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+  ...jest.requireActual<Record<string, unknown>>('react-router-dom'),
   Outlet: jest.fn(),
 }));
 
 const mockedOutlet = jest.mocked(Outlet);
 
 jest.mock('src/hooks', () => ({
-  ...jest.requireActual('src/hooks'),
+  ...jest.requireActual<Record<string, unknown>>('src/hooks'),
   useAuth: jest.fn(),
 }));
 
@@ -50,7 +50,9 @@ describe('not signed in', () => {
 
   it('navigates to /login', async () => {
     renderWithProviders(<Protected {...props} />);
-    await waitFor(() => expect(router.state.location.pathname).toBe('/login'));
+    await waitFor(() => {
+      expect(router.state.location.pathname).toBe('/login');
+    });
   });
 });
 
@@ -110,8 +112,8 @@ describe('props.signInAnonymously=true', () => {
 
   it('does not navigates to /login', async () => {
     renderWithProviders(<Protected {...props} />);
-    await waitFor(() =>
-      expect(router.state.location.pathname).not.toBe('/login'),
-    );
+    await waitFor(() => {
+      expect(router.state.location.pathname).not.toBe('/login');
+    });
   });
 });

@@ -19,7 +19,11 @@ export default defineConfig([
       tsdoc,
     },
 
-    extends: [js.configs.recommended, tseslint.configs.recommended],
+    extends: [
+      js.configs.recommended,
+      tseslint.configs.strictTypeChecked,
+      tseslint.configs.stylisticTypeChecked,
+    ],
 
     languageOptions: {
       parserOptions: {
@@ -29,9 +33,6 @@ export default defineConfig([
     },
 
     rules: {
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-unused-vars': 'error',
-      '@typescript-eslint/no-var-requires': 'off',
       'no-console': 'error',
       'prettier/prettier': 'error',
       'simple-import-sort/exports': 'error',

@@ -17,18 +17,19 @@ export function transformToRows(columns: Columns, items: Items) {
 
   const rows: string[][] = [];
   const headers = columnValues.map(
-    (column, index) => column.name || `Column ${index + 1}`,
+    (column, index) => column.name || `Column ${String(index + 1)}`,
   );
   rows.push(headers);
 
   columnValues.forEach(({ itemIds }, columnIndex) => {
-    if (!itemIds || !itemIds.length) {
+    if (!itemIds?.length) {
       return;
     }
 
     itemIds.forEach((itemId, rowIndex) => {
       rowIndex++; // don't override headers
-      rows[rowIndex] = rows[rowIndex] || [...Array(columnsLength)];
+      rows[rowIndex] =
+        rows[rowIndex] || Array.from({ length: columnsLength }, () => '');
       rows[rowIndex][columnIndex] = items[itemId].text;
     });
   });
@@ -51,7 +52,8 @@ export function transformToCSV(columns: Columns, items: Items): string {
   }
 
   let csv = '';
-  const headers = rows.shift()!;
+  /* istanbul ignore next */
+  const headers = rows.shift() ?? [];
   csv += headers.map((header) => JSON.stringify(header)).join(',');
   csv += NEWLINE;
 
@@ -78,7 +80,8 @@ export function transformToMarkdown(columns: Columns, items: Items): string {
   }
 
   let markdown = '';
-  const headers = rows.shift()!;
+  /* istanbul ignore next */
+  const headers = rows.shift() ?? [];
   markdown += `| ${headers.join(' | ')} |`;
   markdown += NEWLINE;
   markdown += `|${headers.map(() => ' --- |').join('')}`;
@@ -87,6 +90,7 @@ export function transformToMarkdown(columns: Columns, items: Items): string {
   rows.forEach((row) => {
     markdown += `| ${row
       .map((text) =>
+        /* istanbul ignore next */
         typeof text === 'string' ? text.replace(/\n/g, '<br>') : text,
       )
       .join(' | ')} |`;

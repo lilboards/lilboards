@@ -23,7 +23,7 @@ export const getUserBoardsRef = (userId: Id) =>
  * Updates user board id.
  */
 export const saveUserBoardId = (userId: Id, boardId: Id) => {
-  update(getUserBoardsRef(userId), { [boardId]: true });
+  void update(getUserBoardsRef(userId), { [boardId]: true });
 };
 
 /**
@@ -31,8 +31,8 @@ export const saveUserBoardId = (userId: Id, boardId: Id) => {
  */
 export const getUserBoardsVal = async (
   userId: Id,
-): Promise<{ [boardId: string]: boolean } | null> =>
-  (await get(getUserBoardsRef(userId))).val();
+): Promise<Record<string, boolean> | null> =>
+  (await get(getUserBoardsRef(userId))).val() as Record<string, boolean> | null;
 
 /**
  * Gets user board ref.
@@ -44,7 +44,7 @@ export const getUserBoardRef = (userId: Id, boardId: Id) =>
  * Removes user board.
  */
 export const removeUserBoard = (userId: Id, boardId: Id) => {
-  remove(getUserBoardRef(userId, boardId));
+  void remove(getUserBoardRef(userId, boardId));
 };
 
 /**
@@ -57,7 +57,7 @@ export const getUserListsRef = (userId: Id) =>
  * Updates user list id.
  */
 export const saveUserListId = (userId: Id, listId: Id) => {
-  update(getUserListsRef(userId), { [listId]: true });
+  void update(getUserListsRef(userId), { [listId]: true });
 };
 
 /**
@@ -65,8 +65,8 @@ export const saveUserListId = (userId: Id, listId: Id) => {
  */
 export const getUserListsVal = async (
   userId: Id,
-): Promise<{ [listId: string]: boolean } | null> =>
-  (await get(getUserListsRef(userId))).val();
+): Promise<Record<string, boolean> | null> =>
+  (await get(getUserListsRef(userId))).val() as Record<string, boolean> | null;
 
 /**
  * Gets user list ref.
@@ -78,5 +78,5 @@ export const getUserListRef = (userId: Id, listId: Id) =>
  * Removes user list.
  */
 export const removeUserList = (userId: Id, listId: Id) => {
-  remove(getUserListRef(userId, listId));
+  void remove(getUserListRef(userId, listId));
 };

@@ -12,7 +12,7 @@ import List from './List';
 const mockedOnValue = jest.mocked(onValue);
 
 jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+  ...jest.requireActual<Record<string, unknown>>('react-router-dom'),
   useParams: jest.fn(),
 }));
 
@@ -44,19 +44,25 @@ describe('no list', () => {
   it('renders nothing when there is no list id', async () => {
     mockedUseParams.mockReturnValue({});
     renderWithProviders(<List />);
-    await waitFor(() => expect(screen.queryByText(mockRows)).toBe(null));
+    await waitFor(() => {
+      expect(screen.queryByText(mockRows)).toBe(null);
+    });
   });
 
   it('renders nothing when there is no list', async () => {
     mockedUseParams.mockReturnValue({ listId: 'invalid' });
     renderWithProviders(<List />);
-    await waitFor(() => expect(screen.queryByText(mockRows)).toBe(null));
+    await waitFor(() => {
+      expect(screen.queryByText(mockRows)).toBe(null);
+    });
   });
 
   it('redirects to "/404" when list is not found', async () => {
     mockedUseParams.mockReturnValue({ listId: 'invalid' });
     renderWithProviders(<List />);
-    await waitFor(() => expect(router.state.location.pathname).toBe('/404'));
+    await waitFor(() => {
+      expect(router.state.location.pathname).toBe('/404');
+    });
   });
 });
 

@@ -10,7 +10,7 @@ import { boardId } from 'test/constants';
 import { resetStore } from './utils';
 
 jest.mock('firebase/database', () => ({
-  ...jest.requireActual('firebase/database'),
+  ...jest.requireActual<Record<string, unknown>>('firebase/database'),
   onChildAdded: jest.fn(),
   onChildChanged: jest.fn(),
   onChildRemoved: jest.fn(),

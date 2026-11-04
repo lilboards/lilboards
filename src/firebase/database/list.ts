@@ -24,20 +24,20 @@ export const getListDataRef = (listId: Id) =>
  * Gets list value.
  */
 export const getListVal = async (listId: Id): Promise<List | null> =>
-  (await get(getListDataRef(listId))).val();
+  (await get(getListDataRef(listId))).val() as List | null;
 
 /**
  * Removes list.
  */
 export const removeList = (listId: Id) => {
-  remove(getListRef(listId));
+  void remove(getListRef(listId));
 };
 
 /**
  * Updates list data.
  */
 export const saveListData = (listId: Id, list: Partial<List>) => {
-  update(getListDataRef(listId), list);
+  void update(getListDataRef(listId), list);
 };
 
 /**
@@ -61,7 +61,7 @@ export const getRowRef = (listId: Id, rowId: Id) =>
  * Removes row.
  */
 export const removeRow = (listId: Id, rowId: Id) => {
-  remove(getRowRef(listId, rowId));
+  void remove(getRowRef(listId, rowId));
 };
 
 /**
@@ -72,11 +72,11 @@ export const removeRow = (listId: Id, rowId: Id) => {
  */
 export const saveRowItemIds = (
   listId: Id,
-  rowItemIds: { [rowId: string]: Id[] },
+  rowItemIds: Record<string, Id[]>,
 ) => {
   Object.entries(rowItemIds).forEach(([rowId, itemIds]) => {
     const rowItemIdsRef = child(getRowRef(listId, rowId), DatabaseKey.itemIds);
-    set(rowItemIdsRef, itemIds);
+    void set(rowItemIdsRef, itemIds);
   });
 };
 
@@ -84,7 +84,7 @@ export const saveRowItemIds = (
  * Updates row.
  */
 export const updateRow = (listId: Id, rowId: Id, row: Partial<Row>) => {
-  update(getRowRef(listId, rowId), row);
+  void update(getRowRef(listId, rowId), row);
 };
 
 /**
@@ -108,12 +108,12 @@ export const getListItemRef = (listId: Id, itemId: Id) =>
  * Removes list item.
  */
 export const removeListItem = (listId: Id, itemId: Id) => {
-  remove(getListItemRef(listId, itemId));
+  void remove(getListItemRef(listId, itemId));
 };
 
 /**
  * Updates list item.
  */
 export const updateListItem = (listId: Id, itemId: Id, item: Partial<Item>) => {
-  update(getListItemRef(listId, itemId), item);
+  void update(getListItemRef(listId, itemId), item);
 };

@@ -29,9 +29,8 @@ export default function Timer(props: Props) {
 
   const dispatch = useDispatch();
   const isAdmin = useIsAdmin(DatabaseKey.boards, boardId);
-  const timerEnd = useSelector(
-    (state) => (state.boards[boardId] || {}).timerEnd,
-  );
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  const timerEnd = useSelector((state) => state.boards[boardId]?.timerEnd);
   const [state, setState] = useState(initialState);
 
   const stopTimer = useCallback(() => {

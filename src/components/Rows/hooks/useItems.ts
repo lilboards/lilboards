@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { getListItemsRef } from 'src/firebase';
 import { useDispatch } from 'src/hooks';
 import { actions } from 'src/store';
-import { Id } from 'src/types';
+import { Id, ListItem } from 'src/types';
 
 /**
  * Listens to list item changes.
@@ -32,7 +32,7 @@ export function useItems(listId: Id) {
         setTimeout(() => {
           dispatch(
             actions.updateListItem({
-              item: itemSnapshot.val(),
+              item: itemSnapshot.val() as Partial<ListItem>,
               itemId,
               skipSave: true,
             }),
@@ -53,7 +53,7 @@ export function useItems(listId: Id) {
         setTimeout(() => {
           dispatch(
             actions.updateListItem({
-              item: itemSnapshot.val(),
+              item: itemSnapshot.val() as Partial<ListItem>,
               itemId,
               skipSave: true,
             }),
@@ -84,7 +84,9 @@ export function useItems(listId: Id) {
 
     // unsubscribe and reset on unmount
     return () => {
-      unsubscribes.forEach((unsubscribe) => unsubscribe());
+      unsubscribes.forEach((unsubscribe) => {
+        unsubscribe();
+      });
       dispatch(actions.resetListItems());
     };
   }, [listId, dispatch]);

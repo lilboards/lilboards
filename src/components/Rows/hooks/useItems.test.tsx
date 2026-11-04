@@ -1,3 +1,4 @@
+import type { DatabaseReference, DataSnapshot } from 'firebase/database';
 import {
   onChildAdded,
   onChildChanged,
@@ -34,20 +35,22 @@ const unsubscribeOnChildRemoved = jest.fn();
 
 beforeEach(() => {
   jest.useFakeTimers();
-  mockedGetItemsRef.mockReturnValueOnce(itemsRef as any);
+  mockedGetItemsRef.mockReturnValueOnce(
+    itemsRef as unknown as DatabaseReference,
+  );
   mockedOnChildAdded.mockImplementationOnce((query, callback) => {
     const dataSnapshot = { val: () => null };
-    callback(dataSnapshot as any, null);
+    callback(dataSnapshot as unknown as DataSnapshot, null);
     return unsubscribeOnChildAdded;
   });
   mockedOnChildChanged.mockImplementationOnce((query, callback) => {
     const dataSnapshot = { val: () => null };
-    callback(dataSnapshot as any, null);
+    callback(dataSnapshot as unknown as DataSnapshot, null);
     return unsubscribeOnChildChanged;
   });
   mockedOnChildRemoved.mockImplementationOnce((query, callback) => {
     const dataSnapshot = {};
-    callback(dataSnapshot as any);
+    callback(dataSnapshot as unknown as DataSnapshot);
     return unsubscribeOnChildRemoved;
   });
   [
@@ -74,7 +77,7 @@ describe('onChildAdded', () => {
         }),
         key: itemId,
       };
-      callback(dataSnapshot as any, null);
+      callback(dataSnapshot as unknown as DataSnapshot, null);
       return unsubscribeOnChildAdded;
     });
   });
@@ -107,7 +110,7 @@ describe('onChildAdded', () => {
         val: () => null,
         key: null,
       };
-      callback(dataSnapshot as any, null);
+      callback(dataSnapshot as unknown as DataSnapshot, null);
       return unsubscribeOnChildAdded;
     });
     renderWithProviders(<TestComponent />);
@@ -123,13 +126,13 @@ describe('onChildChanged', () => {
       .mockImplementationOnce((query, callback) => {
         const dataSnapshot = {
           val: (): Partial<ListItem> => ({
-            text: itemText + 2,
+            text: itemText + String(2),
             updatedAt: dateNow + 2,
-            updatedBy: userId + 2,
+            updatedBy: userId + String(2),
           }),
           key: itemId,
         };
-        callback(dataSnapshot as any, null);
+        callback(dataSnapshot as unknown as DataSnapshot, null);
         return unsubscribeOnChildChanged;
       });
   });
@@ -167,7 +170,7 @@ describe('onChildChanged', () => {
           val: () => null,
           key: null,
         };
-        callback(dataSnapshot as any, null);
+        callback(dataSnapshot as unknown as DataSnapshot, null);
         return unsubscribeOnChildChanged;
       });
     renderWithProviders(<TestComponent />);
@@ -184,7 +187,7 @@ describe('onChildRemoved', () => {
         const dataSnapshot = {
           key: itemId,
         };
-        callback(dataSnapshot as any);
+        callback(dataSnapshot as unknown as DataSnapshot);
         return unsubscribeOnChildRemoved;
       });
   });

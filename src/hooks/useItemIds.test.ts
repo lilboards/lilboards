@@ -7,7 +7,11 @@ import { useItemIds } from './useItemIds';
 
 it('returns empty array if key is invalid', () => {
   const { result } = renderHook(
-    () => useItemIds('invalid' as DatabaseKey.columns, columnId),
+    () =>
+      useItemIds(
+        'invalid' as unknown as DatabaseKey.columns | DatabaseKey.rows,
+        columnId,
+      ),
     {
       wrapper,
     },

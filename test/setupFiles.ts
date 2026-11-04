@@ -5,5 +5,5 @@ fetchMock.enableMocks();
 import { TextEncoder } from 'util';
 
 if (typeof global.TextEncoder !== 'function') {
-  global.TextEncoder = TextEncoder as typeof global.TextEncoder;
+  global.TextEncoder = TextEncoder;
 }

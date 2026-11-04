@@ -7,8 +7,8 @@ it('renders without crashing', () => {
 
   act(() => {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { root } = require('.');
-    root.unmount();
+    const rootModule = require('.') as { root: { unmount: () => void } };
+    rootModule.root.unmount();
   });
 
   expect(getElementByIdSpy).toHaveBeenCalledTimes(1);

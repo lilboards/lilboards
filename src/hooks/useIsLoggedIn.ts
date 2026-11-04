@@ -5,6 +5,7 @@ import { useSelector } from './useSelector';
 
 const selectUserEmail = createSelector(
   [(state: RootState) => state.user],
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   (user) => Boolean(/* istanbul ignore next */ user?.email),
 );
 

@@ -29,7 +29,7 @@ it('renders row', () => {
   ).toBeInTheDocument();
 });
 
-it('uses hooks', async () => {
+it('uses hooks', () => {
   renderWithProviders(<Rows listId={listId} />);
   expect(useRows).toHaveBeenCalledTimes(1);
   expect(useRows).toHaveBeenCalledWith(listId);

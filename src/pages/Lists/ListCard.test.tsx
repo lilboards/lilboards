@@ -39,7 +39,7 @@ describe('edit list', () => {
     expect(store.getState().user.editing.listId).toBe(list.id);
   });
 
-  it('edits and saves list name on change', async () => {
+  it('edits and saves list name on change', () => {
     updateStore.withUser();
     renderWithProviders(<ListCard listId={list.id} />);
     const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);

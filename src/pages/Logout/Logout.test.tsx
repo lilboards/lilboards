@@ -19,7 +19,9 @@ it('signs user out', async () => {
   updateStore.withUser();
   const { baseElement } = renderWithProviders(<Logout />);
 
-  await waitFor(() => expect(router.state.location.pathname).toBe('/login'));
+  await waitFor(() => {
+    expect(router.state.location.pathname).toBe('/login');
+  });
   expect(signOut).toHaveBeenCalledTimes(1);
   expect(store.getState().user.id).toBe('');
 

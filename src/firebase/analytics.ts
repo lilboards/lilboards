@@ -22,7 +22,7 @@ if (isProduction) {
  * @param event - Event name.
  * @param parameters - Event parameters.
  */
-export function logEvent(event: string, parameters?: Record<string, any>) {
+export function logEvent(event: string, parameters?: Record<string, unknown>) {
   if (isProduction) {
     firebaseLogEvent(analytics, event, parameters);
   }

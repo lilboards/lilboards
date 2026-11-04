@@ -20,9 +20,9 @@ import {
   type RulesTestEnvironment,
 } from '@firebase/rules-unit-testing';
 
-const projectId = process.env.GCLOUD_PROJECT || 'test-lilboards';
+const projectId = process.env.GCLOUD_PROJECT ?? 'test-lilboards';
 const [host = '127.0.0.1', port = '9000'] = (
-  process.env.FIREBASE_DATABASE_EMULATOR_HOST || '127.0.0.1:9000'
+  process.env.FIREBASE_DATABASE_EMULATOR_HOST ?? '127.0.0.1:9000'
 ).split(':');
 
 let testEnv: RulesTestEnvironment;

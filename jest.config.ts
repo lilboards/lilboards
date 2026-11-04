@@ -4,6 +4,7 @@ const jestConfig: JestConfigWithTsJest = {
   collectCoverageFrom: [
     '<rootDir>/src/**/*.{ts,tsx}',
     '!<rootDir>/src/types/**',
+    '!<rootDir>/src/react-app-env.d.ts',
   ],
   coverageThreshold: {
     global: {

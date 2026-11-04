@@ -33,7 +33,7 @@ export function useAuth(shouldSignInAnonymously = false): boolean {
           email_verified: user.emailVerified,
         });
       } else if (shouldSignInAnonymously) {
-        signInAnonymously();
+        void signInAnonymously();
 
         logEvent('login', {
           type: 'anonymous',

@@ -7,7 +7,7 @@ import { renderWithProviders, updateStore } from 'test/utils';
 import Lists from './Lists';
 
 jest.mock('src/firebase', () => ({
-  ...jest.requireActual('src/firebase'),
+  ...jest.requireActual<Record<string, unknown>>('src/firebase'),
   getListVal: jest.fn(),
   getUserListsVal: jest.fn(),
   logEvent: jest.fn(),

@@ -21,13 +21,14 @@ export default function LikeButton(props: Props) {
   const dispatch = useDispatch();
   const userId = useUserId();
   const itemText = useSelector(
-    (state) => state.items[props.itemId]?.text || '',
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    (state) => state.items[props.itemId]?.text ?? '',
   );
   const likes = useLikes(props.itemId);
   const isLikedByUser = likes[userId];
   const totalLikes = useSelector((state) =>
     Object.values(state.likes.items).reduce(
-      (sum, item) => sum + Number(Boolean(item[userId])),
+      (sum, item) => sum + Number(item[userId]),
       0,
     ),
   );
