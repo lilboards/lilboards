@@ -38,3 +38,10 @@ it('auto hides snackbar', async () => {
     expect(screen.queryByText(message)).not.toBeInTheDocument();
   });
 });
+
+it('does not close snackbar when clicking away', () => {
+  render(<Snackbar lastOpened={Date.now()} message={message} open />);
+  expect(screen.getByText(message)).toBeInTheDocument();
+  fireEvent.mouseDown(document.body);
+  expect(screen.getByText(message)).toBeInTheDocument();
+});

@@ -8,7 +8,7 @@ import {
 } from '../../support/utils';
 
 Given('I create account', (table?: DataTable) => {
-  const accounts = table?.hashes() || [account];
+  const accounts = table?.hashes() ?? [account];
 
   accounts.forEach(({ email, password }) => {
     cy.request('POST', getFirebaseAccountUrl('signUp'), {
@@ -17,7 +17,7 @@ Given('I create account', (table?: DataTable) => {
       returnSecureToken: true,
     })
       .then((response) => {
-        const { idToken } = response.body;
+        const { idToken } = response.body as { idToken: string };
 
         return cy.request('POST', getFirebaseAccountUrl('sendOobCode'), {
           requestType: 'VERIFY_EMAIL',
@@ -28,7 +28,14 @@ Given('I create account', (table?: DataTable) => {
         return cy.request(getFirebaseProjectUrl('oobCodes'));
       })
       .then((response) => {
-        const { oobCodes } = response.body;
+        const { oobCodes } = response.body as {
+          oobCodes: {
+            email: string;
+            oobCode: string;
+            oobLink: string;
+            requestType: string;
+          }[];
+        };
 
         cy.request('POST', getFirebaseAccountUrl('update'), {
           oobCode: oobCodes.find(

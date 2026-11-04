@@ -96,7 +96,9 @@ export default function ColumnName(props: Props) {
 
       <CloseButton
         aria-label={`Delete column “${columnName}”`}
-        onClick={() => setIsDialogOpen(true)}
+        onClick={() => {
+          setIsDialogOpen(true);
+        }}
         size="small"
         sx={{
           position: 'absolute',
@@ -109,7 +111,9 @@ export default function ColumnName(props: Props) {
       <DeleteDialog
         content="This action cannot be undone."
         id={props.columnId}
-        onClose={() => setIsDialogOpen(false)}
+        onClose={() => {
+          setIsDialogOpen(false);
+        }}
         onDelete={() => {
           deleteColumn();
           setIsDialogOpen(false);

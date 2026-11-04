@@ -75,6 +75,7 @@ export default function Item(props: Props) {
     logEvent('update_item');
   }, [boardId, dispatch, item, itemId]);
 
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!item) {
     return null;
   }

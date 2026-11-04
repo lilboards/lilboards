@@ -22,7 +22,7 @@ export default function Protected(props: Props) {
 
   useEffect(() => {
     if (!isLoggedIn && !props.signInAnonymously) {
-      navigate('/login', {
+      void navigate('/login', {
         state: {
           [REDIRECT_TO]: location.pathname,
         },

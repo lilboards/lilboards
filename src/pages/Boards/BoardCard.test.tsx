@@ -39,7 +39,7 @@ describe('edit board', () => {
     expect(store.getState().user.editing.boardId).toBe(board.id);
   });
 
-  it('edits and saves board name on change', async () => {
+  it('edits and saves board name on change', () => {
     updateStore.withUser();
     renderWithProviders(<BoardCard boardId={board.id} />);
     const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);

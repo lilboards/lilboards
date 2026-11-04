@@ -12,7 +12,7 @@ import Board from './Board';
 const mockedOnValue = jest.mocked(onValue);
 
 jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+  ...jest.requireActual<Record<string, unknown>>('react-router-dom'),
   useParams: jest.fn(),
 }));
 
@@ -48,22 +48,26 @@ describe('no board', () => {
   it('renders nothing when there is no board id', async () => {
     mockedUseParams.mockReturnValue({});
     renderWithProviders(<Board />);
-    await waitFor(() =>
-      expect(screen.queryByText(mockBoardControls)).toBe(null),
-    );
+    await waitFor(() => {
+      expect(screen.queryByText(mockBoardControls)).toBe(null);
+    });
     expect(screen.queryByText(mockColumns)).toBe(null);
   });
 
   it('renders nothing when there is no board', async () => {
     mockedUseParams.mockReturnValue({ boardId: 'invalid' });
     renderWithProviders(<Board />);
-    await waitFor(() => expect(screen.queryByText(mockColumns)).toBe(null));
+    await waitFor(() => {
+      expect(screen.queryByText(mockColumns)).toBe(null);
+    });
   });
 
   it('redirects to "/404" when board is not found', async () => {
     mockedUseParams.mockReturnValue({ boardId: 'invalid' });
     renderWithProviders(<Board />);
-    await waitFor(() => expect(router.state.location.pathname).toBe('/404'));
+    await waitFor(() => {
+      expect(router.state.location.pathname).toBe('/404');
+    });
   });
 });
 

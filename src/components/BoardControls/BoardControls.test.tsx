@@ -78,7 +78,9 @@ describe('mobile', () => {
     expect(screen.getAllByLabelText('Hide Likes')).toHaveLength(1);
     fireEvent.click(screen.getByLabelText('Board Controls'));
     expect(screen.getAllByLabelText('Hide Likes')).toHaveLength(2);
-    fireEvent.click(screen.getByRole('presentation').firstChild!);
+    fireEvent.click(
+      screen.getByRole('presentation').firstChild as unknown as HTMLElement,
+    );
     await waitFor(() => {
       expect(screen.getAllByLabelText('Hide Likes')).toHaveLength(1);
     });

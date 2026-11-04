@@ -4,7 +4,7 @@ import { renderWithProviders, updateStore } from 'test/utils';
 import BoardCards from './BoardCards';
 
 jest.mock('src/firebase', () => ({
-  ...jest.requireActual('src/firebase'),
+  ...jest.requireActual<Record<string, unknown>>('src/firebase'),
   getBoardVal: jest.fn(),
   getUserBoardsVal: jest.fn(),
 }));

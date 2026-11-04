@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { getRowsRef } from 'src/firebase';
 import { useDispatch } from 'src/hooks';
 import { actions } from 'src/store';
-import { Id } from 'src/types';
+import { Id, Row } from 'src/types';
 
 /**
  * Listens to row changes.
@@ -33,7 +33,7 @@ export function useRows(listId: Id) {
           dispatch(
             actions.updateRow({
               listId,
-              row: rowSnapshot.val(),
+              row: rowSnapshot.val() as Partial<Row>,
               rowId,
               skipSave: true,
             }),
@@ -55,8 +55,8 @@ export function useRows(listId: Id) {
           dispatch(
             actions.updateRow({
               listId,
-              row: rowSnapshot.val(),
-              rowId: rowSnapshot.key as Id,
+              row: rowSnapshot.val() as Partial<Row>,
+              rowId,
               skipSave: true,
             }),
           );
@@ -87,7 +87,9 @@ export function useRows(listId: Id) {
 
     // unsubscribe and reset on unmount
     return () => {
-      unsubscribes.forEach((unsubscribe) => unsubscribe());
+      unsubscribes.forEach((unsubscribe) => {
+        unsubscribe();
+      });
       dispatch(actions.resetRows());
     };
   }, [listId, dispatch]);

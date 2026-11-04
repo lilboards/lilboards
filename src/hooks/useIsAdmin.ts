@@ -21,6 +21,7 @@ export function useIsAdmin(
 
     const data = state[key][id];
 
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!data) {
       return false;
     }

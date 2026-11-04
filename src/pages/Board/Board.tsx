@@ -10,11 +10,13 @@ import { useBoard } from './hooks/useBoard';
 
 export default function Board() {
   const params = useParams<{ boardId: Id }>();
-  const boardId = params.boardId || '';
+  const boardId = params.boardId ?? '';
   const board = useBoard(boardId);
-  useSetDocumentTitle(board?.name || 'Untitled Board');
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  useSetDocumentTitle(board?.name ?? 'Untitled Board');
   const isLoggedIn = useIsLoggedIn();
 
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!boardId || !board) {
     return null;
   }

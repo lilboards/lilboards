@@ -25,7 +25,8 @@ export const rowsSlice = createSlice({
       }>,
     ) => {
       const { listId, row, rowId, debounce, skipSave } = action.payload;
-      state[rowId] = state[rowId] || {};
+
+      state[rowId] = state[rowId] ?? {};
       Object.assign(state[rowId], row);
 
       if (!row.itemIds) {
@@ -52,7 +53,8 @@ export const rowsSlice = createSlice({
       }>,
     ) => {
       const { listId, rowId, rowName, debounce, userId } = action.payload;
-      state[rowId] = state[rowId] || {};
+
+      state[rowId] = state[rowId] ?? {};
       const row = {
         name: rowName,
         updatedAt: Date.now(),
@@ -72,6 +74,7 @@ export const rowsSlice = createSlice({
       action: PayloadAction<{ listId: Id; rowId: Id; skipSave?: boolean }>,
     ) => {
       const { listId, rowId, skipSave } = action.payload;
+      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
       delete state[rowId];
 
       if (!skipSave) {
@@ -86,7 +89,7 @@ export const rowsSlice = createSlice({
       const { listId, rowId, itemId } = action.payload;
       const row = state[rowId];
 
-      row.itemIds = row.itemIds || [];
+      row.itemIds = row.itemIds ?? [];
       row.itemIds.push(itemId);
 
       saveRowItemIds(listId, { [rowId]: row.itemIds });
@@ -99,8 +102,9 @@ export const rowsSlice = createSlice({
       const { listId, rowId, itemId } = action.payload;
       const row = state[rowId];
 
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (row) {
-        const itemIds = (row.itemIds || []).filter((id) => id !== itemId);
+        const itemIds = (row.itemIds ?? []).filter((id) => id !== itemId);
         row.itemIds = itemIds;
         saveRowItemIds(listId, { [rowId]: itemIds });
       }

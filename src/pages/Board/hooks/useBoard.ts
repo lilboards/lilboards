@@ -5,7 +5,7 @@ import { DatabaseKey } from 'src/constants';
 import { getBoardDataRef } from 'src/firebase';
 import { useBoardOrList, useDispatch } from 'src/hooks';
 import { actions } from 'src/store';
-import { Id } from 'src/types';
+import { Board, Id } from 'src/types';
 
 export function useBoard(boardId: Id) {
   const dispatch = useDispatch();
@@ -14,8 +14,9 @@ export function useBoard(boardId: Id) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (boardId && !board && isLoaded) {
-      navigate('/404');
+      void navigate('/404');
     }
   }, [boardId, board, isLoaded, navigate]);
 
@@ -28,7 +29,7 @@ export function useBoard(boardId: Id) {
     const unsubscribeOnValue = onValue(
       getBoardDataRef(boardId),
       (boardSnapshot) => {
-        const board = boardSnapshot.val();
+        const board = boardSnapshot.val() as Board | null;
 
         if (board) {
           // prevent race condition with redux reducer

@@ -25,7 +25,8 @@ export const columnsSlice = createSlice({
       }>,
     ) => {
       const { boardId, column, columnId, debounce, skipSave } = action.payload;
-      state[columnId] = state[columnId] || {};
+
+      state[columnId] = state[columnId] ?? {};
       Object.assign(state[columnId], column);
 
       if (!column.itemIds) {
@@ -53,7 +54,8 @@ export const columnsSlice = createSlice({
     ) => {
       const { boardId, columnId, columnName, debounce, userId } =
         action.payload;
-      state[columnId] = state[columnId] || {};
+
+      state[columnId] = state[columnId] ?? {};
       const column = {
         name: columnName,
         updatedAt: Date.now(),
@@ -73,6 +75,7 @@ export const columnsSlice = createSlice({
       action: PayloadAction<{ boardId: Id; columnId: Id; skipSave?: boolean }>,
     ) => {
       const { boardId, columnId, skipSave } = action.payload;
+      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
       delete state[columnId];
       if (!skipSave) {
         removeColumn(boardId, columnId);
@@ -85,7 +88,7 @@ export const columnsSlice = createSlice({
     ) => {
       const { boardId, columnId, itemId } = action.payload;
       const column = state[columnId];
-      column.itemIds = column.itemIds || [];
+      column.itemIds = column.itemIds ?? [];
       column.itemIds.push(itemId);
       saveColumnItemIds(boardId, { [columnId]: column.itemIds });
     },
@@ -96,8 +99,9 @@ export const columnsSlice = createSlice({
     ) => {
       const { boardId, columnId, itemId } = action.payload;
       const column = state[columnId];
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (column) {
-        const itemIds = (column.itemIds || []).filter((id) => id !== itemId);
+        const itemIds = (column.itemIds ?? []).filter((id) => id !== itemId);
         column.itemIds = itemIds;
         saveColumnItemIds(boardId, { [columnId]: itemIds });
       }

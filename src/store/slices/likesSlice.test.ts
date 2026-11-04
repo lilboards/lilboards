@@ -24,6 +24,19 @@ describe('likeItem', () => {
       },
     });
   });
+
+  it('likes item that already has likes', () => {
+    const payload = { boardId, itemId, userId: 'user2' };
+    const newState = reducer(state, actions.likeItem(payload));
+    expect(newState).toEqual({
+      items: {
+        [itemId]: {
+          [userId]: true,
+          user2: true,
+        },
+      },
+    });
+  });
 });
 
 describe('unlikeItem', () => {

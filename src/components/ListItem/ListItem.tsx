@@ -31,6 +31,7 @@ export default function ListItem(props: Props) {
   const userId = useUserId();
   const userPhotoURL = useUserPhotoURL();
 
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!item) {
     return null;
   }

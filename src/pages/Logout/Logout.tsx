@@ -12,8 +12,8 @@ export default function Logout() {
   useEffect(() => {
     resetActions.forEach((resetAction) => dispatch(resetAction()));
 
-    signOut().then(() => {
-      navigate('/login');
+    void signOut().then(() => {
+      void navigate('/login');
       logEvent('logout');
     });
   }, [dispatch, navigate]);

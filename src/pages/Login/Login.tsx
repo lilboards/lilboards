@@ -18,14 +18,15 @@ export default function Login() {
 
   useEffect(() => {
     if (email) {
-      const state = (location?.state || {}) as Record<string, string>;
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      const state = (location?.state ?? {}) as Record<string, string>;
       let redirectTo = state[REDIRECT_TO];
 
       if (!redirectTo || redirectTo === '/' || redirectTo === '/logout') {
         redirectTo = '/boards';
       }
 
-      navigate(redirectTo);
+      void navigate(redirectTo);
     }
   }, [email, location, navigate]);
 

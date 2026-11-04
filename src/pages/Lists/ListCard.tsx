@@ -69,13 +69,14 @@ export default function ListCard(props: Props) {
   }, [dispatch, listId, userId]);
 
   const handleSubmit = useCallback(
-    (event: React.FormEvent<HTMLFormElement>) => {
+    (event: React.SyntheticEvent<HTMLFormElement>) => {
       event.preventDefault();
-      navigate(listUrl);
+      void navigate(listUrl);
     },
     [listUrl, navigate],
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!list) {
     return null;
   }
@@ -125,7 +126,9 @@ export default function ListCard(props: Props) {
               list.name ? `Delete list “${list.name}”` : 'Delete list'
             }
             color="error"
-            onClick={() => setIsDialogOpen(true)}
+            onClick={() => {
+              setIsDialogOpen(true);
+            }}
           >
             Delete
           </Button>
@@ -133,7 +136,9 @@ export default function ListCard(props: Props) {
           <DeleteDialog
             content="This action cannot be undone."
             id={listId}
-            onClose={() => setIsDialogOpen(false)}
+            onClose={() => {
+              setIsDialogOpen(false);
+            }}
             onDelete={() => {
               deleteList();
               setIsDialogOpen(false);

@@ -9,12 +9,14 @@ const selectColumnItemIds = createSelector(
     (state: RootState) => state.columns,
     (state: RootState, columnId: Id) => columnId,
   ],
-  (columns, columnId) => columns[columnId]?.itemIds || [],
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  (columns, columnId) => columns[columnId]?.itemIds ?? [],
 );
 
 const selectRowItemIds = createSelector(
   [(state: RootState) => state.rows, (state: RootState, rowId: Id) => rowId],
-  (rows, rowId) => rows[rowId]?.itemIds || [],
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  (rows, rowId) => rows[rowId]?.itemIds ?? [],
 );
 
 /**

@@ -15,10 +15,11 @@ export default function Export(props: Props) {
   const columns = useSelector((state) => state.columns);
   const items = useSelector((state) => state.items);
 
-  async function copyBoardMarkdownToClipboard() {
+  function copyBoardMarkdownToClipboard() {
     const markdown = transformToMarkdown(columns, items);
-    await navigator.clipboard.writeText(markdown);
-    logEvent('copy', { board: 'markdown' });
+    void navigator.clipboard.writeText(markdown).then(() => {
+      logEvent('copy', { board: 'markdown' });
+    });
   }
 
   return (

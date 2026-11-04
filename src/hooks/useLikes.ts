@@ -8,7 +8,7 @@ const selectLikes = createSelector(
     (state: RootState) => state.likes.items,
     (state: RootState, itemId: Id) => itemId,
   ],
-  (items, itemId) => items[itemId] || {},
+  (items, itemId) => items[itemId] ?? {},
 );
 
 /**

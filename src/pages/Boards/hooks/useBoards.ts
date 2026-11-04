@@ -8,7 +8,7 @@ export function useBoards() {
   const userId = useUserId();
 
   useEffect(() => {
-    (async () => {
+    void (async () => {
       const userBoards = await getUserBoardsVal(userId);
 
       if (!userBoards) {

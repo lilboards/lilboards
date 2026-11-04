@@ -5,7 +5,7 @@ import { renderWithProviders } from 'test/utils';
 import ErrorBoundary from './ErrorBoundary';
 
 jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+  ...jest.requireActual<Record<string, unknown>>('react-router-dom'),
   useRouteError: jest.fn(),
 }));
 

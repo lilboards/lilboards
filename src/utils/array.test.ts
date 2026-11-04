@@ -16,9 +16,9 @@ describe('reorderArray', () => {
   const items = ['1', '2', '3'];
 
   it('does nothing if start and end indexes are the same', () => {
-    items.forEach((_, index) =>
-      expect(reorderArray(items, index, index)).toBe(items),
-    );
+    items.forEach((_, index) => {
+      expect(reorderArray(items, index, index)).toBe(items);
+    });
   });
 
   it('moves 1st item to 2nd position', () => {

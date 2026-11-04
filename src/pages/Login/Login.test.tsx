@@ -10,7 +10,7 @@ import { renderWithProviders, router } from 'test/utils';
 import Login from './Login';
 
 jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+  ...jest.requireActual<Record<string, unknown>>('react-router-dom'),
   useLocation: jest.fn(),
 }));
 
@@ -27,9 +27,10 @@ const mockedOnAuthStateChanged = jest.mocked(onAuthStateChanged);
 
 describe('not logged in', () => {
   beforeEach(() => {
-    mockedOnAuthStateChanged.mockImplementationOnce(
-      (callback) => callback(null) as unknown as Unsubscribe,
-    );
+    mockedOnAuthStateChanged.mockImplementationOnce((callback) => {
+      callback(null);
+      return undefined as unknown as Unsubscribe;
+    });
   });
 
   it('renders "Sign In"', () => {
@@ -62,7 +63,8 @@ describe('logged in', () => {
         email,
         id: userId,
       } as unknown as User;
-      return callback(user) as unknown as Unsubscribe;
+      callback(user);
+      return undefined as unknown as Unsubscribe;
     });
     mockedUseLocation.mockReset();
   });
@@ -78,17 +80,17 @@ describe('logged in', () => {
     async (location) => {
       mockedUseLocation.mockReturnValueOnce(location as Location);
       renderWithProviders(<Login />);
-      await waitFor(() =>
-        expect(router.state.location.pathname).toBe('/boards'),
-      );
+      await waitFor(() => {
+        expect(router.state.location.pathname).toBe('/boards');
+      });
     },
   );
 
   it(`redirects to location.state.${REDIRECT_TO}`, async () => {
     mockedUseLocation.mockReturnValue(location);
     renderWithProviders(<Login />);
-    await waitFor(() =>
-      expect(router.state.location.pathname).toBe(redirectTo),
-    );
+    await waitFor(() => {
+      expect(router.state.location.pathname).toBe(redirectTo);
+    });
   });
 });

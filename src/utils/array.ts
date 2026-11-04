@@ -1,7 +1,8 @@
-export const cloneArray = (array?: any[]) => (array ? [...array] : []);
+export const cloneArray = <Type>(array?: Type[]): Type[] =>
+  array ? [...array] : [];
 
-export const reorderArray = (
-  array: any[],
+export const reorderArray = <Type>(
+  array: Type[],
   startIndex: number,
   endIndex: number,
 ) => {

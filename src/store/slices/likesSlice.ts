@@ -21,7 +21,8 @@ export const likesSlice = createSlice({
       action: PayloadAction<{ boardId: Id; itemId: Id; userId: Id }>,
     ) => {
       const { boardId, itemId, userId } = action.payload;
-      state.items[itemId] = state.items[itemId] || {};
+
+      state.items[itemId] = state.items[itemId] ?? {};
       state.items[itemId][userId] = true;
       likeItem(boardId, itemId, userId);
     },
@@ -31,7 +32,9 @@ export const likesSlice = createSlice({
       action: PayloadAction<{ boardId: Id; itemId: Id; userId: Id }>,
     ) => {
       const { boardId, itemId, userId } = action.payload;
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (state.items[itemId]) {
+        // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
         delete state.items[itemId][userId];
         unlikeItem(boardId, itemId, userId);
       }
@@ -46,6 +49,7 @@ export const likesSlice = createSlice({
       action: PayloadAction<{ boardId: Id; itemId: Id }>,
     ) => {
       const { boardId, itemId } = action.payload;
+      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
       delete state.items[itemId];
       removeLikesItem(boardId, itemId);
     },

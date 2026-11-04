@@ -16,7 +16,7 @@ export default function Heading(props: Props) {
 
       {props.link && (
         <Tooltip arrow placement="right" title="Copy link">
-          <IconButton color="info" onClick={copyLinkToClipboard}>
+          <IconButton color="info" onClick={() => void copyLinkToClipboard()}>
             <LinkIcon />
           </IconButton>
         </Tooltip>

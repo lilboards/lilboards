@@ -69,13 +69,14 @@ export default function BoardCard(props: Props) {
   }, [boardId, dispatch, userId]);
 
   const handleSubmit = useCallback(
-    (event: React.FormEvent<HTMLFormElement>) => {
+    (event: React.SyntheticEvent<HTMLFormElement>) => {
       event.preventDefault();
-      navigate(boardUrl);
+      void navigate(boardUrl);
     },
     [boardUrl, navigate],
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!board) {
     return null;
   }
@@ -125,7 +126,9 @@ export default function BoardCard(props: Props) {
               board.name ? `Delete board “${board.name}”` : 'Delete board'
             }
             color="error"
-            onClick={() => setIsDialogOpen(true)}
+            onClick={() => {
+              setIsDialogOpen(true);
+            }}
           >
             Delete
           </Button>
@@ -133,7 +136,9 @@ export default function BoardCard(props: Props) {
           <DeleteDialog
             content="This action cannot be undone."
             id={boardId}
-            onClose={() => setIsDialogOpen(false)}
+            onClose={() => {
+              setIsDialogOpen(false);
+            }}
             onDelete={() => {
               deleteBoard();
               setIsDialogOpen(false);

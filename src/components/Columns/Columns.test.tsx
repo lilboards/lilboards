@@ -32,7 +32,7 @@ it('renders column', () => {
   ).toBeInTheDocument();
 });
 
-it('uses hooks', async () => {
+it('uses hooks', () => {
   renderWithProviders(<Columns boardId={boardId} />);
   expect(useColumns).toHaveBeenCalledTimes(1);
   expect(useColumns).toHaveBeenCalledWith(boardId);

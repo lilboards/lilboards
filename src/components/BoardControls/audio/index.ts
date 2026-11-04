@@ -8,9 +8,8 @@ let alarmAudio: HTMLAudioElement;
  * Loads alarm audio.
  */
 export function loadAlarm() {
-  if (!alarmAudio) {
-    alarmAudio = new Audio(alarm);
-  }
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  alarmAudio ??= new Audio(alarm);
 }
 
 /**
@@ -18,5 +17,5 @@ export function loadAlarm() {
  */
 export function playAlarm() {
   loadAlarm();
-  alarmAudio.play();
+  void alarmAudio.play();
 }

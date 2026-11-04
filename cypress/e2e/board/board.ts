@@ -26,7 +26,7 @@ When('I copy board link', () => {
 
   cy.url().then((url) => {
     cy.window().then(({ navigator }) => {
-      navigator.clipboard.readText().then((text) => {
+      void navigator.clipboard.readText().then((text) => {
         // TODO: harden flaky assertion
         try {
           expect(text).to.equal(url);

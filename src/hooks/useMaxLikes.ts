@@ -10,7 +10,8 @@ const selectMaxLikes = createSelector(
     (state: RootState) => state.boards,
     (state: RootState, boardId: Id) => boardId,
   ],
-  (boards, boardId) => (boards[boardId] || {}).maxLikes,
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  (boards, boardId) => boards[boardId]?.maxLikes,
 );
 
 /**

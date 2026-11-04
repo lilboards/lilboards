@@ -22,6 +22,7 @@ const selectColumn = createSelector(
 export default function Column(props: Props) {
   const column = useSelector((state) => selectColumn(state, props.columnId));
 
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!column) {
     return null;
   }
@@ -33,7 +34,7 @@ export default function Column(props: Props) {
           boardId={props.boardId}
           columnId={props.columnId}
           name={column.name}
-          placeholder={`Column ${props.columnIndex + 1}`}
+          placeholder={`Column ${String(props.columnIndex + 1)}`}
         />
       </Box>
       <Items boardId={props.boardId} columnId={props.columnId} />

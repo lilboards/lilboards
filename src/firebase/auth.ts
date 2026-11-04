@@ -20,7 +20,13 @@ if (isDevelopment && isLocalhost) {
    */
   const emulatorHost = 'http://127.0.0.1:9099';
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { connectAuthEmulator } = require('firebase/auth');
+  const { connectAuthEmulator } = require('firebase/auth') as {
+    connectAuthEmulator: (
+      auth: typeof firebaseAuth,
+      host: string,
+      options?: { disableWarnings?: boolean },
+    ) => void;
+  };
   connectAuthEmulator(firebaseAuth, emulatorHost, { disableWarnings: true });
 }
 
@@ -53,6 +59,6 @@ export function signOut() {
 export function sendEmailVerification() {
   const { currentUser } = firebaseAuth;
   if (currentUser) {
-    firebaseSendEmailVerification(currentUser);
+    void firebaseSendEmailVerification(currentUser);
   }
 }

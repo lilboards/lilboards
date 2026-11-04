@@ -25,13 +25,20 @@ export default function SimpleSnackbar({
   useEffect(() => {
     if (lastOpened) {
       setIsOpen(true);
-      setTimeout(() => setIsOpen(false), autoHideDuration!);
+      /* istanbul ignore next */
+      setTimeout(() => {
+        setIsOpen(false);
+      }, autoHideDuration ?? undefined);
     }
   }, [lastOpened, autoHideDuration]);
 
   const handleClose = useCallback(
-    (event: Event | SyntheticEvent, reason?: string) =>
-      reason !== 'clickaway' && setIsOpen(false),
+    (event: Event | SyntheticEvent, reason?: string) => {
+      /* istanbul ignore next */
+      if (reason !== 'clickaway') {
+        setIsOpen(false);
+      }
+    },
     [setIsOpen],
   );
 
