@@ -28,7 +28,8 @@ export default function LikeButton(props: Props) {
   const isLikedByUser = likes[userId];
   const totalLikes = useSelector((state) =>
     Object.values(state.likes.items).reduce(
-      (sum, item) => sum + Number(item[userId]),
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-conversion
+      (sum, item) => sum + Number(Boolean(item[userId])),
       0,
     ),
   );
