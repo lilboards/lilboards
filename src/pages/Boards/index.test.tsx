@@ -1,8 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import { expect, it, vi } from 'vitest';
 
 import BoardsLoader from '.';
 
-jest.mock('./Boards', () => () => <>Boards</>);
+vi.mock('./Boards', () => ({
+  default: () => <>Boards</>,
+}));
 
 it('lazy loads Boards', async () => {
   render(<BoardsLoader />);

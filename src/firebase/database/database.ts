@@ -1,4 +1,4 @@
-/* istanbul ignore file */
+// v8 ignore file
 
 import { type Database, getDatabase, onValue, ref } from 'firebase/database';
 import { FIREBASE_DATABASE_URL, isDevelopment, isLocalhost } from 'src/config';

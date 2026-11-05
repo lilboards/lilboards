@@ -6,24 +6,24 @@ import { REDIRECT_TO } from 'src/constants';
 import { onAuthStateChanged } from 'src/firebase';
 import { email, userId } from 'test/constants';
 import { renderWithProviders, router } from 'test/utils';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import Login from './Login';
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual<Record<string, unknown>>('react-router-dom'),
-  useLocation: jest.fn(),
+vi.mock('react-router-dom', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('react-router-dom')>()),
+  useLocation: vi.fn(),
 }));
 
-const mockedUseLocation = jest.mocked(useLocation);
+const mockedUseLocation = vi.mocked(useLocation);
 
-jest.mock('./StyledFirebaseAuth', () => () => <>StyledFirebaseAuth</>);
-
-jest.mock('src/firebase', () => ({
-  logEvent: jest.fn(),
-  onAuthStateChanged: jest.fn(),
+vi.mock('./StyledFirebaseAuth', () => ({
+  default: () => <>StyledFirebaseAuth</>,
 }));
 
-const mockedOnAuthStateChanged = jest.mocked(onAuthStateChanged);
+vi.mock('src/firebase');
+
+const mockedOnAuthStateChanged = vi.mocked(onAuthStateChanged);
 
 describe('not logged in', () => {
   beforeEach(() => {
@@ -76,7 +76,7 @@ describe('logged in', () => {
   });
 
   it.each([undefined, { state: {} }, { state: { [REDIRECT_TO]: '/' } }])(
-    'redirects to "/boards" when location=%p',
+    'redirects to "/boards" when location=%s',
     async (location) => {
       mockedUseLocation.mockReturnValueOnce(location as Location);
       renderWithProviders(<Login />);

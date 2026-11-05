@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { formatTimeRemaining, minutesToMilliseconds } from './timer';
 
 describe('formatTimeRemaining', () => {

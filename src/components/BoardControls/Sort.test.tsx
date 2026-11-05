@@ -2,12 +2,11 @@ import { fireEvent, screen } from '@testing-library/react';
 import { logEvent } from 'src/firebase';
 import { columnId, dateNow, itemId, userId } from 'test/constants';
 import { renderWithProviders, store, updateStore } from 'test/utils';
+import { expect, it, vi } from 'vitest';
 
 import Sort from './Sort';
 
-jest.mock('src/firebase', () => ({
-  logEvent: jest.fn(),
-}));
+vi.mock('src/firebase');
 
 it('renders "Sort by likes" button when user is admin', () => {
   const board = updateStore.withBoard();

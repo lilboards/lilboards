@@ -1,8 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import { expect, it, vi } from 'vitest';
 
 import ProtectedLoader from '.';
 
-jest.mock('./Protected', () => () => <>Protected</>);
+vi.mock('./Protected', () => ({
+  default: () => <>Protected</>,
+}));
 
 it('lazy loads Protected', async () => {
   render(<ProtectedLoader check="email" />);

@@ -1,5 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { updateStore, wrapper } from 'test/utils';
+import { expect, it } from 'vitest';
 
 import { useUserPhotoURL } from './useUserPhotoURL';
 

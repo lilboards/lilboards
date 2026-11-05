@@ -2,16 +2,19 @@ import { render } from '@testing-library/react';
 import type { User } from 'firebase/auth';
 import * as firebaseui from 'firebaseui';
 import { onAuthStateChanged } from 'src/firebase/auth';
+import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest';
 
 import StyledFirebaseAuth from './StyledFirebaseAuth';
 import uiConfig from './uiConfig';
 
-jest.mock('firebaseui', () => {
+vi.mock('firebaseui', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('firebaseui')>();
+
   interface AuthUI {
     new (firebaseAuth: unknown): void;
     getInstance: () => AuthUI;
-    reset: jest.Mock;
-    start: jest.Mock;
+    reset: Mock;
+    start: Mock;
   }
 
   const AuthUI: AuthUI = Object.assign(
@@ -22,31 +25,33 @@ jest.mock('firebaseui', () => {
       getInstance() {
         return this;
       },
-      reset: jest.fn(),
-      start: jest.fn(),
+      reset: vi.fn(),
+      start: vi.fn(),
     },
   );
-  return { auth: { AuthUI } };
+
+  return {
+    ...actual,
+    auth: { AuthUI },
+  };
 });
 
-const mockedFirebaseui = jest.mocked(firebaseui);
+const mockedFirebaseui = vi.mocked(firebaseui);
 
-jest.mock('src/firebase/auth', () => ({
-  onAuthStateChanged: jest.fn(),
-}));
+vi.mock('src/firebase/auth');
 
-const mockedOnAuthStateChanged = jest.mocked(onAuthStateChanged);
+const mockedOnAuthStateChanged = vi.mocked(onAuthStateChanged);
 
 function getAuthUI() {
   return mockedFirebaseui.auth.AuthUI.getInstance() as unknown as {
-    reset: jest.Mock;
-    start: jest.Mock;
+    reset: Mock;
+    start: Mock;
   };
 }
 
 beforeEach(() => {
-  jest.clearAllMocks();
-  mockedOnAuthStateChanged.mockReturnValue(jest.fn());
+  vi.clearAllMocks();
+  mockedOnAuthStateChanged.mockReturnValue(vi.fn());
 });
 
 it('gets existing AuthUI', () => {
@@ -73,7 +78,7 @@ describe('user signs in', () => {
     mockedOnAuthStateChanged.mockReset().mockImplementation((callback) => {
       const user = {};
       callback(user as User);
-      return jest.fn();
+      return vi.fn();
     });
   });
 
@@ -81,7 +86,7 @@ describe('user signs in', () => {
     render(<StyledFirebaseAuth />);
     expect(mockedOnAuthStateChanged).toHaveBeenCalledTimes(2);
     expect(getAuthUI().reset).toHaveBeenCalledTimes(3);
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 });
 
@@ -90,7 +95,7 @@ describe('user signs out', () => {
     mockedOnAuthStateChanged.mockReset().mockImplementation((callback) => {
       const user = null;
       callback(user);
-      return jest.fn();
+      return vi.fn();
     });
   });
 
@@ -108,12 +113,12 @@ describe('user signs in and out', () => {
       .mockImplementationOnce((callback) => {
         const user = {};
         callback(user as User);
-        return jest.fn();
+        return vi.fn();
       })
       .mockImplementation((callback) => {
         const user = null;
         callback(user);
-        return jest.fn();
+        return vi.fn();
       });
   });
 
@@ -127,7 +132,7 @@ describe('user signs in and out', () => {
 describe('unmount', () => {
   it('resets AuthUI', () => {
     const { unmount } = render(<StyledFirebaseAuth />);
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     unmount();
     expect(mockedOnAuthStateChanged).toHaveBeenCalledTimes(0);
     expect(getAuthUI().reset).toHaveBeenCalledTimes(1);

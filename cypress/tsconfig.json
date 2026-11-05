@@ -1,9 +1,10 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.cypress.tsbuildinfo",
     "target": "es2021",
     "types": ["cypress", "node", "cypress-real-events"]
   },
-  "include": ["../node_modules/cypress", "./**/*.ts"],
+  "include": ["cypress", "./**/*.ts"],
   "exclude": ["node_modules"]
 }

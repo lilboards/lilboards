@@ -1,6 +1,7 @@
 import { screen } from '@testing-library/react';
 import { listId, rowId } from 'test/constants';
 import { renderWithProviders, updateStore } from 'test/utils';
+import { describe, expect, it } from 'vitest';
 
 import RowName from './RowName';
 

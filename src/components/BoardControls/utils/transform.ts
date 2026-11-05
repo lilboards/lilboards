@@ -52,7 +52,7 @@ export function transformToCSV(columns: Columns, items: Items): string {
   }
 
   let csv = '';
-  /* istanbul ignore next */
+  // v8 ignore next
   const headers = rows.shift() ?? [];
   csv += headers.map((header) => JSON.stringify(header)).join(',');
   csv += NEWLINE;
@@ -80,7 +80,7 @@ export function transformToMarkdown(columns: Columns, items: Items): string {
   }
 
   let markdown = '';
-  /* istanbul ignore next */
+  // v8 ignore next
   const headers = rows.shift() ?? [];
   markdown += `| ${headers.join(' | ')} |`;
   markdown += NEWLINE;
@@ -90,7 +90,7 @@ export function transformToMarkdown(columns: Columns, items: Items): string {
   rows.forEach((row) => {
     markdown += `| ${row
       .map((text) =>
-        /* istanbul ignore next */
+        // v8 ignore next
         typeof text === 'string' ? text.replace(/\n/g, '<br>') : text,
       )
       .join(' | ')} |`;

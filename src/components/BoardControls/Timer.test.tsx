@@ -1,6 +1,15 @@
 import { act, fireEvent, screen } from '@testing-library/react';
 import { boardId } from 'test/constants';
 import { renderWithProviders, updateStore } from 'test/utils';
+import {
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 
 import { playAlarm } from './audio';
 import {
@@ -10,10 +19,7 @@ import {
 } from './constants';
 import Timer from './Timer';
 
-jest.mock('./audio', () => ({
-  loadAlarm: jest.fn(),
-  playAlarm: jest.fn(),
-}));
+vi.mock('./audio');
 
 const defaultMilliseconds =
   DEFAULT_MINUTES * MINUTE_IN_SECONDS * SECOND_IN_MILLISECONDS;
@@ -21,7 +27,7 @@ const defaultMilliseconds =
 let board: ReturnType<typeof updateStore.withBoard>;
 
 beforeAll(() => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 });
 
 describe('timer', () => {
@@ -34,11 +40,11 @@ describe('timer', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
-    jest.clearAllTimers();
+    vi.clearAllMocks();
+    vi.clearAllTimers();
   });
 
-  it('starts and stops the timer', async () => {
+  it('starts and stops the timer', () => {
     renderWithProviders(<Timer boardId={board.id} />);
     input = screen.getByLabelText('Timer in minutes');
     button = screen.getByLabelText('Start timer');
@@ -46,8 +52,8 @@ describe('timer', () => {
     // start
     fireEvent.click(button);
     act(() => {
-      jest.setSystemTime(Date.now() + SECOND_IN_MILLISECONDS);
-      jest.advanceTimersByTime(SECOND_IN_MILLISECONDS);
+      vi.setSystemTime(Date.now() + SECOND_IN_MILLISECONDS);
+      vi.advanceTimersByTime(SECOND_IN_MILLISECONDS);
     });
 
     expect(button).toHaveAttribute('aria-label', 'Stop timer');
@@ -58,7 +64,10 @@ describe('timer', () => {
 
     // stop
     fireEvent.click(button);
-    await screen.findByLabelText('Start timer');
+    act(() => {
+      vi.runAllTimers();
+    });
+    expect(screen.getByLabelText('Start timer')).toBeInTheDocument();
 
     expect(button).toHaveAttribute('aria-label', 'Start timer');
     expect(button).toHaveTextContent('Start');
@@ -74,8 +83,8 @@ describe('timer', () => {
 
     fireEvent.click(button);
     act(() => {
-      jest.setSystemTime(Date.now() + defaultMilliseconds);
-      jest.advanceTimersByTime(defaultMilliseconds);
+      vi.setSystemTime(Date.now() + defaultMilliseconds);
+      vi.advanceTimersByTime(defaultMilliseconds);
     });
 
     expect(screen.getByText("⏰ Time's up!")).toBeInTheDocument();

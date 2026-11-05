@@ -18,7 +18,7 @@ export default function DragDropContainer(props: Props) {
   const likes = useSelector((state) => state.likes.items);
   const userId = useUserId();
 
-  /* istanbul ignore next */
+  // v8 ignore next
   function handleDragEnd(result: DropResult) {
     if (result.combine) {
       const { remove, update } = combine(result, items, likes);

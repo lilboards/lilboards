@@ -1,6 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import { boardId } from 'test/constants';
 import { updateStore, wrapper } from 'test/utils';
+import { describe, expect, it } from 'vitest';
 
 import { DEFAULT_MAX_LIKES, useMaxLikes } from './useMaxLikes';
 

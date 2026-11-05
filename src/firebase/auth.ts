@@ -1,4 +1,4 @@
-/* istanbul ignore file */
+// v8 ignore file
 
 import type { User } from 'firebase/auth';
 import {

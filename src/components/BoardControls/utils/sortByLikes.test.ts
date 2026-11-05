@@ -1,4 +1,5 @@
 import { userId } from 'test/constants';
+import { expect, it } from 'vitest';
 
 import { sortByLikes } from './sortByLikes';
 

@@ -3,21 +3,23 @@ import { getBoardVal, getUserBoardsVal } from 'src/firebase';
 import { Board } from 'src/types';
 import { boardId } from 'test/constants';
 import { renderWithProviders, updateStore } from 'test/utils';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import Boards from './Boards';
 
-jest.mock('src/firebase', () => ({
-  ...jest.requireActual<Record<string, unknown>>('src/firebase'),
-  getBoardVal: jest.fn(),
-  getUserBoardsVal: jest.fn(),
-  logEvent: jest.fn(),
+vi.mock('src/firebase/analytics');
+
+vi.mock('src/firebase', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('src/firebase')>()),
+  getBoardVal: vi.fn(),
+  getUserBoardsVal: vi.fn(),
 }));
 
-const mockedGetBoardVal = jest.mocked(getBoardVal);
-const mockedGetUserBoardsVal = jest.mocked(getUserBoardsVal);
+const mockedGetBoardVal = vi.mocked(getBoardVal);
+const mockedGetUserBoardsVal = vi.mocked(getUserBoardsVal);
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
   mockedGetBoardVal.mockResolvedValueOnce(null);
   mockedGetUserBoardsVal.mockResolvedValueOnce(null);
 });

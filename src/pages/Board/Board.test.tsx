@@ -6,35 +6,38 @@ import { getBoardDataRef } from 'src/firebase';
 import { Board as BoardType } from 'src/types';
 import { boardId, userId } from 'test/constants';
 import { renderWithProviders, router, updateStore } from 'test/utils';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import Board from './Board';
 
-const mockedOnValue = jest.mocked(onValue);
+const mockedOnValue = vi.mocked(onValue);
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual<Record<string, unknown>>('react-router-dom'),
-  useParams: jest.fn(),
+vi.mock('react-router-dom', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('react-router-dom')>()),
+  useParams: vi.fn(),
 }));
 
-const mockedUseParams = jest.mocked(useParams);
+const mockedUseParams = vi.mocked(useParams);
 
-jest.mock('src/firebase', () => ({
-  getBoardDataRef: jest.fn(),
+vi.mock('src/firebase', () => ({
+  getBoardDataRef: vi.fn(),
 }));
 
-const mockedGetBoardDataRef = jest.mocked(getBoardDataRef);
+const mockedGetBoardDataRef = vi.mocked(getBoardDataRef);
 
 const mockBoardControls = 'Board Controls';
 const mockColumns = 'Columns';
-const unsubscribe = jest.fn();
+const unsubscribe = vi.fn();
 
-jest.mock('src/components/BoardControls', () => () => (
-  <p>{mockBoardControls}</p>
-));
-jest.mock('src/components/Columns', () => () => <p>{mockColumns}</p>);
+vi.mock('src/components/BoardControls', () => ({
+  default: () => <p>{mockBoardControls}</p>,
+}));
+vi.mock('src/components/Columns', () => ({
+  default: () => <p>{mockColumns}</p>,
+}));
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 describe('no board', () => {

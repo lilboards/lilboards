@@ -2,19 +2,16 @@ import { fireEvent, screen } from '@testing-library/react';
 import { generateId, logEvent, saveUserBoardId } from 'src/firebase';
 import { boardId, dateNow } from 'test/constants';
 import { renderWithProviders, store, updateStore } from 'test/utils';
+import { beforeEach, expect, it, vi } from 'vitest';
 
 import AddBoard from './AddBoard';
 
-jest.mock('src/firebase', () => ({
-  generateId: jest.fn(),
-  logEvent: jest.fn(),
-  saveUserBoardId: jest.fn(),
-}));
+vi.mock('src/firebase');
 
-const mockedGenerateId = jest.mocked(generateId);
+const mockedGenerateId = vi.mocked(generateId);
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
   mockedGenerateId.mockReturnValue(boardId);
 });
 
@@ -26,7 +23,7 @@ it('renders "Add board" button', () => {
 it('adds new board to store and database', () => {
   const user = updateStore.withUser();
   renderWithProviders(<AddBoard />);
-  const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
+  const dateNowSpy = vi.spyOn(Date, 'now').mockReturnValue(dateNow);
   fireEvent.click(screen.getByText('Add board'));
   expect(store.getState().boards).toEqual({
     board_test_id: {

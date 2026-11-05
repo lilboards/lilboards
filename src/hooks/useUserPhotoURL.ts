@@ -6,7 +6,7 @@ import { useSelector } from './useSelector';
 const selectUserId = createSelector(
   [(state: RootState) => state.user],
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  (user) => /* istanbul ignore next */ user?.photoURL,
+  (user) => /* v8 ignore next */ user?.photoURL,
 );
 
 /**

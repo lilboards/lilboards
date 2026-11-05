@@ -1,8 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import { expect, it, vi } from 'vitest';
 
 import LoginLoader from '.';
 
-jest.mock('./Login', () => () => <>Login</>);
+vi.mock('./Login', () => ({
+  default: () => <>Login</>,
+}));
 
 it('lazy loads Login', async () => {
   render(<LoginLoader />);

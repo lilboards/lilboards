@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import { expect, it, vi } from 'vitest';
 
 import CloseButton from './CloseButton';
 
@@ -14,7 +15,7 @@ it('renders aria-label', () => {
 });
 
 it('handles onClick event', () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   render(<CloseButton onClick={onClick} />);
   fireEvent.click(screen.getByRole('button'));
   expect(onClick).toHaveBeenCalledTimes(1);

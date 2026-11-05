@@ -1,7 +1,9 @@
+import { afterAll, beforeAll, beforeEach, expect, it, vi } from 'vitest';
+
 import { copyLinkToClipboard } from './copy-link-to-clipboard';
 
 const { clipboard } = navigator;
-const writeText = jest.fn();
+const writeText = vi.fn();
 
 beforeAll(() => {
   Object.assign(navigator, { clipboard: { writeText } });

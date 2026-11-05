@@ -19,6 +19,7 @@ import {
   type RulesTestContext,
   type RulesTestEnvironment,
 } from '@firebase/rules-unit-testing';
+import { afterAll, beforeAll, beforeEach, describe, it } from 'vitest';
 
 const projectId = process.env.GCLOUD_PROJECT ?? 'test-lilboards';
 const [host = '127.0.0.1', port = '9000'] = (

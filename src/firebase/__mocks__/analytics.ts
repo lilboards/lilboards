@@ -1,15 +1,14 @@
-const app = {};
-const logEvent = jest.fn();
-const setAnalyticsCollectionEnabled = jest.fn();
-const setCurrentScreen = jest.fn();
-const setUserId = jest.fn();
-const setUserProperties = jest.fn();
+// v8 ignore file
+import { vi } from 'vitest';
+
+export const logEvent = vi.fn();
+export const setUserId = vi.fn();
 
 export const firebaseAnalytics = {
-  app,
+  app: {},
   logEvent,
-  setAnalyticsCollectionEnabled,
-  setCurrentScreen,
+  setAnalyticsCollectionEnabled: vi.fn(),
+  setCurrentScreen: vi.fn(),
   setUserId,
-  setUserProperties,
+  setUserProperties: vi.fn(),
 };

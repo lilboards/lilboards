@@ -2,15 +2,13 @@ import { fireEvent, screen } from '@testing-library/react';
 import { generateId, logEvent } from 'src/firebase';
 import { dateNow, rowId } from 'test/constants';
 import { renderWithProviders, store, updateStore } from 'test/utils';
+import { beforeEach, expect, it, vi } from 'vitest';
 
 import AddRow from '.';
 
-jest.mock('src/firebase', () => ({
-  logEvent: jest.fn(),
-  generateId: jest.fn(),
-}));
+vi.mock('src/firebase');
 
-const mockedGenerateId = jest.mocked(generateId);
+const mockedGenerateId = vi.mocked(generateId);
 
 beforeEach(() => {
   mockedGenerateId.mockReturnValue(rowId);
@@ -36,7 +34,7 @@ it('adds new row', () => {
   updateStore.withUser();
   renderWithProviders(<AddRow listId={list.id} />);
   expect(store.getState().rows).toEqual({});
-  const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
+  const dateNowSpy = vi.spyOn(Date, 'now').mockReturnValue(dateNow);
   fireEvent.click(screen.getByText('Add row'));
   expect(store.getState().rows).toEqual({
     row_test_id: {

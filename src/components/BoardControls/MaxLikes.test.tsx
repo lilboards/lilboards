@@ -3,15 +3,14 @@ import { logEvent } from 'src/firebase';
 import { DEFAULT_MAX_LIKES } from 'src/hooks';
 import { boardId } from 'test/constants';
 import { renderWithProviders, updateStore } from 'test/utils';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import MaxLikes from './MaxLikes';
 
-jest.mock('src/firebase', () => ({
-  logEvent: jest.fn(),
-}));
+vi.mock('src/firebase');
 
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 it('renders default max likes value', () => {

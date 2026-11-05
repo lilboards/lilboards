@@ -1,4 +1,5 @@
 import { boardId, columnId, email, itemId, userId as id } from 'test/constants';
+import { describe, expect, it } from 'vitest';
 
 import { initialState, userSlice } from './userSlice';
 

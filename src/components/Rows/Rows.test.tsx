@@ -1,17 +1,15 @@
 import { screen } from '@testing-library/react';
 import { listId } from 'test/constants';
 import { renderWithProviders, updateStore } from 'test/utils';
+import { beforeEach, expect, it, vi } from 'vitest';
 
 import Rows from '.';
 import { useItems, useRows } from './hooks';
 
-jest.mock('./hooks', () => ({
-  useRows: jest.fn(),
-  useItems: jest.fn(),
-}));
+vi.mock('./hooks');
 
-const mockedUseRows = jest.mocked(useRows);
-const mockedUseItems = jest.mocked(useItems);
+const mockedUseRows = vi.mocked(useRows);
+const mockedUseItems = vi.mocked(useItems);
 
 beforeEach(() => {
   mockedUseRows.mockClear();

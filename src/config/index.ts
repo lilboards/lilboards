@@ -1,3 +1,4 @@
+// v8 ignore file
 export const isDevelopment = import.meta.env.DEV;
 export const isLocalhost = location.hostname === 'localhost';
 export const isProduction = import.meta.env.PROD;

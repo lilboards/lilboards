@@ -2,25 +2,26 @@ import { screen, waitFor } from '@testing-library/react';
 import { Outlet } from 'react-router-dom';
 import { useAuth } from 'src/hooks';
 import { renderWithProviders, router, updateStore } from 'test/utils';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import Protected from './Protected';
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual<Record<string, unknown>>('react-router-dom'),
-  Outlet: jest.fn(),
+vi.mock('react-router-dom', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('react-router-dom')>()),
+  Outlet: vi.fn(),
 }));
 
-const mockedOutlet = jest.mocked(Outlet);
+const mockedOutlet = vi.mocked(Outlet);
 
-jest.mock('src/hooks', () => ({
-  ...jest.requireActual<Record<string, unknown>>('src/hooks'),
-  useAuth: jest.fn(),
+vi.mock('src/hooks', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('src/hooks')>()),
+  useAuth: vi.fn(),
 }));
 
-const mockedUseAuth = jest.mocked(useAuth);
+const mockedUseAuth = vi.mocked(useAuth);
 
 beforeEach(() => {
-  jest.resetAllMocks();
+  vi.resetAllMocks();
   mockedUseAuth.mockReturnValue(true);
 });
 

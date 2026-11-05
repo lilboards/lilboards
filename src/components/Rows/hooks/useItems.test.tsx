@@ -8,18 +8,17 @@ import { getListItemsRef } from 'src/firebase';
 import { ListItem } from 'src/types';
 import { dateNow, itemId, listId, userId } from 'test/constants';
 import { renderWithProviders, store, updateStore } from 'test/utils';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useItems } from './useItems';
 
-const mockedOnChildAdded = jest.mocked(onChildAdded);
-const mockedOnChildChanged = jest.mocked(onChildChanged);
-const mockedOnChildRemoved = jest.mocked(onChildRemoved);
+const mockedOnChildAdded = vi.mocked(onChildAdded);
+const mockedOnChildChanged = vi.mocked(onChildChanged);
+const mockedOnChildRemoved = vi.mocked(onChildRemoved);
 
-jest.mock('src/firebase', () => ({
-  getListItemsRef: jest.fn(),
-}));
+vi.mock('src/firebase');
 
-const mockedGetItemsRef = jest.mocked(getListItemsRef);
+const mockedGetItemsRef = vi.mocked(getListItemsRef);
 
 function TestComponent() {
   useItems(listId);
@@ -29,12 +28,12 @@ function TestComponent() {
 const itemText = 'Item text';
 const itemsRef = 'itemsRef';
 
-const unsubscribeOnChildAdded = jest.fn();
-const unsubscribeOnChildChanged = jest.fn();
-const unsubscribeOnChildRemoved = jest.fn();
+const unsubscribeOnChildAdded = vi.fn();
+const unsubscribeOnChildChanged = vi.fn();
+const unsubscribeOnChildRemoved = vi.fn();
 
 beforeEach(() => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
   mockedGetItemsRef.mockReturnValueOnce(
     itemsRef as unknown as DatabaseReference,
   );
@@ -61,9 +60,9 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  jest.runOnlyPendingTimers();
-  jest.useRealTimers();
-  jest.clearAllMocks();
+  vi.runOnlyPendingTimers();
+  vi.useRealTimers();
+  vi.clearAllMocks();
 });
 
 describe('onChildAdded', () => {
@@ -94,7 +93,7 @@ describe('onChildAdded', () => {
 
   it('adds item to store', () => {
     renderWithProviders(<TestComponent />);
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(store.getState().listItems).toEqual({
       [itemId]: {
         createdAt: 1234567890,
@@ -114,7 +113,7 @@ describe('onChildAdded', () => {
       return unsubscribeOnChildAdded;
     });
     renderWithProviders(<TestComponent />);
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(store.getState().listItems).toEqual({});
   });
 });
@@ -150,7 +149,7 @@ describe('onChildChanged', () => {
   it('updates item in store', () => {
     updateStore.withListItem();
     renderWithProviders(<TestComponent />);
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(store.getState().listItems).toEqual({
       [itemId]: {
         createdAt: 1234567890,
@@ -174,7 +173,7 @@ describe('onChildChanged', () => {
         return unsubscribeOnChildChanged;
       });
     renderWithProviders(<TestComponent />);
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(store.getState().listItems).toEqual({});
   });
 });
@@ -205,7 +204,7 @@ describe('onChildRemoved', () => {
   it('removes item from store', () => {
     updateStore.withListItem();
     renderWithProviders(<TestComponent />);
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(store.getState().listItems).toEqual({});
   });
 });

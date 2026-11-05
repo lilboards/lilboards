@@ -25,7 +25,7 @@ export default function SimpleSnackbar({
   useEffect(() => {
     if (lastOpened) {
       setIsOpen(true);
-      /* istanbul ignore next */
+      // v8 ignore next
       setTimeout(() => {
         setIsOpen(false);
       }, autoHideDuration ?? undefined);
@@ -34,7 +34,7 @@ export default function SimpleSnackbar({
 
   const handleClose = useCallback(
     (event: Event | SyntheticEvent, reason?: string) => {
-      /* istanbul ignore next */
+      // v8 ignore if
       if (reason !== 'clickaway') {
         setIsOpen(false);
       }

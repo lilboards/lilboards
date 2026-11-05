@@ -1,5 +1,6 @@
 import type { DropResult } from '@hello-pangea/dnd';
 import { columnId, dateNow, itemId, userId } from 'test/constants';
+import { expect, it } from 'vitest';
 
 import { combine } from './combine';
 

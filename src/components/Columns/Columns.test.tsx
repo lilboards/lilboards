@@ -1,19 +1,16 @@
 import { screen } from '@testing-library/react';
 import { boardId } from 'test/constants';
 import { renderWithProviders, updateStore } from 'test/utils';
+import { beforeEach, expect, it, vi } from 'vitest';
 
 import Columns from './Columns';
 import { useColumns, useItems, useLikes } from './hooks';
 
-jest.mock('./hooks', () => ({
-  useColumns: jest.fn(),
-  useItems: jest.fn(),
-  useLikes: jest.fn(),
-}));
+vi.mock('./hooks');
 
-const mockedUseColumns = jest.mocked(useColumns);
-const mockedUseItems = jest.mocked(useItems);
-const mockedUseLikes = jest.mocked(useLikes);
+const mockedUseColumns = vi.mocked(useColumns);
+const mockedUseItems = vi.mocked(useItems);
+const mockedUseLikes = vi.mocked(useLikes);
 
 beforeEach(() => {
   mockedUseColumns.mockClear();

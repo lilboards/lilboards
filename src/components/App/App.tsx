@@ -1,7 +1,7 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import { StrictMode } from 'react';
 import { Provider } from 'react-redux';
-import { RouterProvider } from 'react-router';
+import { RouterProvider } from 'react-router-dom';
 import {
   createBrowserRouter,
   createRoutesFromElements,

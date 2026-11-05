@@ -1,4 +1,4 @@
-/* istanbul ignore file */
+// v8 ignore file
 
 import { child, get, ref, remove, update } from 'firebase/database';
 import { DatabaseKey } from 'src/constants';

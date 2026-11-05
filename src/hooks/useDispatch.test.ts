@@ -1,14 +1,13 @@
 import { renderHook } from '@testing-library/react';
 import { useDispatch as useReactReduxDispatch } from 'react-redux';
+import { beforeEach, expect, it, vi } from 'vitest';
 
 import { useDispatch } from './useDispatch';
 
-jest.mock('react-redux', () => ({
-  useDispatch: jest.fn(),
-}));
+vi.mock('react-redux');
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 it('wraps react-redux useDispatch', () => {

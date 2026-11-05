@@ -1,12 +1,13 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import { expect, it, vi } from 'vitest';
 
 import DeleteDialog from './DeleteDialog';
 
 const props = {
   content: 'content',
   id: 'id',
-  onClose: jest.fn(),
-  onDelete: jest.fn(),
+  onClose: vi.fn(),
+  onDelete: vi.fn(),
   open: true,
   title: 'title',
 };

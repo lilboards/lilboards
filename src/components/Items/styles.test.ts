@@ -4,6 +4,7 @@ import type {
 } from '@hello-pangea/dnd';
 import { grey } from '@mui/material/colors';
 import type { Theme } from '@mui/material/styles';
+import { describe, expect, it } from 'vitest';
 
 import { getDraggableCardStyle, getDroppableBackgroundColor } from './styles';
 

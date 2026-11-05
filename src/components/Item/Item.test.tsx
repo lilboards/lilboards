@@ -1,6 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { boardId, columnId, itemId } from 'test/constants';
 import { renderWithProviders, store, updateStore } from 'test/utils';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import Item from './Item';
 

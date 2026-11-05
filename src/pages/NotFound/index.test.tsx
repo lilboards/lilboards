@@ -1,8 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import { expect, it, vi } from 'vitest';
 
 import NotFoundLoader from '.';
 
-jest.mock('./NotFound', () => () => <>NotFound</>);
+vi.mock('./NotFound', () => ({
+  default: () => <>NotFound</>,
+}));
 
 it('lazy loads NotFound', async () => {
   render(<NotFoundLoader />);

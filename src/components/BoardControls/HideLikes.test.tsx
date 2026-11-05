@@ -1,12 +1,11 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { logEvent } from 'src/firebase';
 import { renderWithProviders, store, updateStore } from 'test/utils';
+import { expect, it, vi } from 'vitest';
 
 import HideLikes from './HideLikes';
 
-jest.mock('src/firebase', () => ({
-  logEvent: jest.fn(),
-}));
+vi.mock('src/firebase');
 
 it('toggles hide likes', () => {
   updateStore.withUser();

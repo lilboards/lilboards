@@ -8,18 +8,17 @@ import { getColumnsRef } from 'src/firebase';
 import { Column } from 'src/types';
 import { boardId, columnId, dateNow, userId } from 'test/constants';
 import { renderWithProviders, store, updateStore } from 'test/utils';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useColumns } from './useColumns';
 
-const mockedOnChildAdded = jest.mocked(onChildAdded);
-const mockedOnChildChanged = jest.mocked(onChildChanged);
-const mockedOnChildRemoved = jest.mocked(onChildRemoved);
+const mockedOnChildAdded = vi.mocked(onChildAdded);
+const mockedOnChildChanged = vi.mocked(onChildChanged);
+const mockedOnChildRemoved = vi.mocked(onChildRemoved);
 
-jest.mock('src/firebase', () => ({
-  getColumnsRef: jest.fn(),
-}));
+vi.mock('src/firebase');
 
-const mockedGetColumnsRef = jest.mocked(getColumnsRef);
+const mockedGetColumnsRef = vi.mocked(getColumnsRef);
 
 function TestComponent() {
   useColumns(boardId);
@@ -29,12 +28,12 @@ function TestComponent() {
 const columnsRef = 'columnsRef';
 const columnName = 'Column name';
 
-const unsubscribeOnChildAdded = jest.fn();
-const unsubscribeOnChildChanged = jest.fn();
-const unsubscribeOnChildRemoved = jest.fn();
+const unsubscribeOnChildAdded = vi.fn();
+const unsubscribeOnChildChanged = vi.fn();
+const unsubscribeOnChildRemoved = vi.fn();
 
 beforeEach(() => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
   mockedGetColumnsRef.mockReturnValueOnce(
     columnsRef as unknown as DatabaseReference,
   );
@@ -65,9 +64,9 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  jest.runOnlyPendingTimers();
-  jest.useRealTimers();
-  jest.clearAllMocks();
+  vi.runOnlyPendingTimers();
+  vi.useRealTimers();
+  vi.clearAllMocks();
 });
 
 describe('onChildAdded', () => {
@@ -98,7 +97,7 @@ describe('onChildAdded', () => {
 
   it('adds column to store', () => {
     renderWithProviders(<TestComponent />);
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(store.getState().columns).toEqual({
       column_test_id: {
         createdAt: 1234567890,
@@ -118,7 +117,7 @@ describe('onChildAdded', () => {
       return unsubscribeOnChildAdded;
     });
     renderWithProviders(<TestComponent />);
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(store.getState().columns).toEqual({});
   });
 });
@@ -157,7 +156,7 @@ describe('onChildChanged', () => {
   it('updates column in store', () => {
     updateStore.withColumn();
     renderWithProviders(<TestComponent />);
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(store.getState().columns).toEqual({
       column_test_id: {
         createdAt: 1234567890,
@@ -181,7 +180,7 @@ describe('onChildChanged', () => {
         return unsubscribeOnChildChanged;
       });
     renderWithProviders(<TestComponent />);
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(store.getState().columns).toEqual({});
   });
 });
@@ -213,7 +212,7 @@ describe('onChildRemoved', () => {
   it('removes column from store', () => {
     updateStore.withColumn();
     renderWithProviders(<TestComponent />);
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(store.getState().columns).toEqual({});
   });
 });

@@ -1,5 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithProviders, store, updateStore } from 'test/utils';
+import { beforeEach, expect, it } from 'vitest';
 
 import Delete from './Delete';
 

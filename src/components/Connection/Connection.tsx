@@ -18,7 +18,7 @@ export default function Connection() {
     event?: React.SyntheticEvent | Event | null,
     reason?: string,
   ) {
-    /* istanbul ignore if */
+    // v8 ignore if
     if (reason === 'clickaway') {
       return;
     }
