@@ -23,8 +23,4 @@ export const sponsorLinks = [
     text: 'Liberapay',
     href: 'https://b.remarkabl.org/liberapay',
   },
-  {
-    text: 'Teespring',
-    href: 'https://b.remarkabl.org/teespring',
-  },
 ] as const;
