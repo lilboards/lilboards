@@ -1,3 +1,5 @@
+import { expect, it } from 'vitest';
+
 import uiConfig from './uiConfig';
 
 it('matches FirebaseUI config', () => {

@@ -1,12 +1,11 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { sendEmailVerification } from 'src/firebase';
 import { renderWithProviders } from 'test/utils';
+import { describe, expect, it, vi } from 'vitest';
 
 import VerifyEmail from './VerifyEmail';
 
-jest.mock('src/firebase', () => ({
-  sendEmailVerification: jest.fn(),
-}));
+vi.mock('src/firebase');
 
 describe('send verification email', () => {
   it('renders link', () => {

@@ -3,21 +3,23 @@ import { getListVal, getUserListsVal } from 'src/firebase';
 import { List } from 'src/types';
 import { listId } from 'test/constants';
 import { renderWithProviders, updateStore } from 'test/utils';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import Lists from './Lists';
 
-jest.mock('src/firebase', () => ({
-  ...jest.requireActual<Record<string, unknown>>('src/firebase'),
-  getListVal: jest.fn(),
-  getUserListsVal: jest.fn(),
-  logEvent: jest.fn(),
+vi.mock('src/firebase/analytics');
+
+vi.mock('src/firebase', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('src/firebase')>()),
+  getListVal: vi.fn(),
+  getUserListsVal: vi.fn(),
 }));
 
-const mockedGetListVal = jest.mocked(getListVal);
-const mockedGetUserListsVal = jest.mocked(getUserListsVal);
+const mockedGetListVal = vi.mocked(getListVal);
+const mockedGetUserListsVal = vi.mocked(getUserListsVal);
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
   mockedGetListVal.mockResolvedValueOnce(null);
   mockedGetUserListsVal.mockResolvedValueOnce(null);
 });

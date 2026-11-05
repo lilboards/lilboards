@@ -1,5 +1,6 @@
 import { DatabaseKey } from 'src/constants';
 import { itemId, listId, rowId, userId } from 'test/constants';
+import { describe, expect, it } from 'vitest';
 
 import { initialState, rowsSlice } from './rowsSlice';
 
@@ -37,7 +38,7 @@ describe('updateRow', () => {
     });
   });
 
-  it.each([true, false])('updates row with debounce=%p', (debounce) => {
+  it.each([true, false])('updates row with debounce=%s', (debounce) => {
     const state = {
       [rowId]: row,
     };
@@ -123,7 +124,7 @@ describe('renameRow', () => {
     });
   });
 
-  it.each([true, false])('updates row name with debounce=%p', (debounce) => {
+  it.each([true, false])('updates row name with debounce=%s', (debounce) => {
     const state = {
       [rowId]: row,
     };

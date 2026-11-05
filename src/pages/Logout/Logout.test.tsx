@@ -1,15 +1,13 @@
 import { waitFor } from '@testing-library/react';
 import { logEvent, signOut } from 'src/firebase';
 import { renderWithProviders, router, store, updateStore } from 'test/utils';
+import { beforeEach, expect, it, vi } from 'vitest';
 
 import Logout from './Logout';
 
-jest.mock('src/firebase', () => ({
-  logEvent: jest.fn(),
-  signOut: jest.fn(),
-}));
+vi.mock('src/firebase');
 
-const mockedSignOut = jest.mocked(signOut);
+const mockedSignOut = vi.mocked(signOut);
 
 beforeEach(() => {
   mockedSignOut.mockResolvedValueOnce(undefined);

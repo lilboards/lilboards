@@ -1,18 +1,17 @@
 import { renderHook } from '@testing-library/react';
 import { useSelector as useReactReduxSelector } from 'react-redux';
+import { beforeEach, expect, it, vi } from 'vitest';
 
 import { useSelector } from './useSelector';
 
-jest.mock('react-redux', () => ({
-  useSelector: jest.fn(),
-}));
+vi.mock('react-redux');
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 it('returns react-redux useSelector', () => {
-  const selector = jest.fn();
+  const selector = vi.fn();
   const { result } = renderHook(
     () => useSelector(selector) as unknown as undefined,
   );

@@ -1,6 +1,7 @@
 import { screen } from '@testing-library/react';
 import { PROJECT_VERSION } from 'src/config';
 import { renderWithProviders } from 'test/utils';
+import { expect, it } from 'vitest';
 
 import Home from './Home';
 

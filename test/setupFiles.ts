@@ -1,9 +1,27 @@
-import fetchMock from 'jest-fetch-mock';
-fetchMock.enableMocks();
+import '@testing-library/jest-dom/vitest';
 
-// https://github.com/remix-run/react-router/issues/12363
-import { TextEncoder } from 'util';
+import { cleanup } from '@testing-library/react';
+import { removeBoard } from 'src/firebase';
+import { boardId } from 'test/constants';
+import { afterAll, afterEach, vi } from 'vitest';
 
-if (typeof global.TextEncoder !== 'function') {
-  global.TextEncoder = TextEncoder;
-}
+import { resetStore } from './utils';
+
+vi.mock('firebase/database', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('firebase/database')>()),
+  onChildAdded: vi.fn(),
+  onChildChanged: vi.fn(),
+  onChildRemoved: vi.fn(),
+  onValue: vi.fn(),
+}));
+
+vi.mock('src/config');
+
+afterEach(() => {
+  cleanup();
+  resetStore();
+});
+
+afterAll(() => {
+  removeBoard(boardId);
+});

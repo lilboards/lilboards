@@ -2,15 +2,14 @@ import { renderHook } from '@testing-library/react';
 import { DatabaseKey } from 'src/constants';
 import type { RootState } from 'src/types';
 import { userId } from 'test/constants';
+import { describe, expect, it, vi } from 'vitest';
 
 import { useIsAdmin } from './useIsAdmin';
 import { useSelector } from './useSelector';
 
-jest.mock('./useSelector', () => ({
-  useSelector: jest.fn(),
-}));
+vi.mock('./useSelector');
 
-const mockedUseSelector = jest.mocked(useSelector);
+const mockedUseSelector = vi.mocked(useSelector);
 
 const dataId = 'dataId';
 

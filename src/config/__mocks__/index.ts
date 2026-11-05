@@ -1,5 +1,5 @@
 export const isDevelopment = true;
-export const isLocalhost = true;
+export const isLocalhost = false;
 export const isProduction = false;
 
 export const FIREBASE_API_KEY = 'apiKey';

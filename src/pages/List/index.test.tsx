@@ -1,8 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import { expect, it, vi } from 'vitest';
 
 import ListLoader from '.';
 
-jest.mock('./List', () => () => <>List</>);
+vi.mock('./List', () => ({
+  default: () => <>List</>,
+}));
 
 it('lazy loads List', async () => {
   render(<ListLoader />);

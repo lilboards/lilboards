@@ -2,12 +2,11 @@ import { fireEvent, screen } from '@testing-library/react';
 import { logEvent } from 'src/firebase';
 import { itemId, listId, rowId } from 'test/constants';
 import { renderWithProviders, store, updateStore } from 'test/utils';
+import { beforeEach, expect, it, vi } from 'vitest';
 
 import Checkbox from './Checkbox';
 
-jest.mock('src/firebase', () => ({
-  logEvent: jest.fn(),
-}));
+vi.mock('src/firebase');
 
 const props = {
   listId,

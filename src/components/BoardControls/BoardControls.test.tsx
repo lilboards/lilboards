@@ -1,14 +1,10 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { renderWithProviders, updateStore } from 'test/utils';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import BoardControls from './BoardControls';
 
-jest.mock('src/firebase', () => ({
-  firebaseAnalytics: {
-    logEvent: jest.fn(),
-  },
-  generateId: jest.fn(),
-}));
+vi.mock('src/firebase');
 
 it('does not throw error when board is invalid', () => {
   expect(() => {

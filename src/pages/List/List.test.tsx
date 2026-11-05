@@ -6,31 +6,32 @@ import { getListDataRef } from 'src/firebase';
 import { List as ListType } from 'src/types';
 import { listId, userId } from 'test/constants';
 import { renderWithProviders, router, updateStore } from 'test/utils';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import List from './List';
 
-const mockedOnValue = jest.mocked(onValue);
+const mockedOnValue = vi.mocked(onValue);
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual<Record<string, unknown>>('react-router-dom'),
-  useParams: jest.fn(),
+vi.mock('react-router-dom', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('react-router-dom')>()),
+  useParams: vi.fn(),
 }));
 
-const mockedUseParams = jest.mocked(useParams);
+const mockedUseParams = vi.mocked(useParams);
 
-jest.mock('src/firebase', () => ({
-  getListDataRef: jest.fn(),
-}));
+vi.mock('src/firebase');
 
-const mockedGetListDataRef = jest.mocked(getListDataRef);
+const mockedGetListDataRef = vi.mocked(getListDataRef);
 
 const mockRows = 'Rows';
-const unsubscribe = jest.fn();
+const unsubscribe = vi.fn();
 
-jest.mock('src/components/Rows', () => () => <p>{mockRows}</p>);
+vi.mock('src/components/Rows', () => ({
+  default: () => <p>{mockRows}</p>,
+}));
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 describe('no list', () => {

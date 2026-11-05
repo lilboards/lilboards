@@ -1,5 +1,6 @@
 import type { DroppableStateSnapshot } from '@hello-pangea/dnd';
 import { grey } from '@mui/material/colors';
+import { describe, expect, it } from 'vitest';
 
 import { getDroppableBackgroundColor } from './styles';
 

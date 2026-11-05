@@ -1,5 +1,6 @@
 import { DatabaseKey } from 'src/constants';
 import { boardId, columnId, itemId, userId } from 'test/constants';
+import { describe, expect, it } from 'vitest';
 
 import { columnsSlice, initialState } from './columnsSlice';
 
@@ -37,7 +38,7 @@ describe('updateColumn', () => {
     });
   });
 
-  it.each([true, false])('updates column with debounce=%p', (debounce) => {
+  it.each([true, false])('updates column with debounce=%s', (debounce) => {
     const state = {
       [columnId]: column,
     };
@@ -123,7 +124,7 @@ describe('renameColumn', () => {
     });
   });
 
-  it.each([true, false])('updates column name with debounce=%p', (debounce) => {
+  it.each([true, false])('updates column name with debounce=%s', (debounce) => {
     const state = {
       [columnId]: column,
     };

@@ -1,5 +1,6 @@
 import { screen } from '@testing-library/react';
 import { renderWithProviders } from 'test/utils';
+import { expect, it } from 'vitest';
 
 import { sponsorLinks } from './constants';
 import Support from './Support';

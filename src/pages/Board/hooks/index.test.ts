@@ -1,3 +1,5 @@
+import { expect, it } from 'vitest';
+
 import * as hooks from '.';
 
 it.each(['useBoard'] as const)('exports %s', (hookName) => {

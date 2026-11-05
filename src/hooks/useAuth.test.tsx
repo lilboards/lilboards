@@ -3,19 +3,16 @@ import type { Unsubscribe, User } from 'firebase/auth';
 import { logEvent, onAuthStateChanged, signInAnonymously } from 'src/firebase';
 import { email, userId } from 'test/constants';
 import { store, wrapper } from 'test/utils';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useAuth } from './useAuth';
 
-jest.mock('src/firebase', () => ({
-  logEvent: jest.fn(),
-  onAuthStateChanged: jest.fn(),
-  signInAnonymously: jest.fn(),
-}));
+vi.mock('src/firebase');
 
-const mockedOnAuthStateChanged = jest.mocked(onAuthStateChanged);
+const mockedOnAuthStateChanged = vi.mocked(onAuthStateChanged);
 
 beforeEach(() => {
-  jest.resetAllMocks();
+  vi.resetAllMocks();
 });
 
 describe('shouldSignInAnonymously is false', () => {

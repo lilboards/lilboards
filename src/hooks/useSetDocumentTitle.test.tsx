@@ -1,4 +1,5 @@
 import { renderHook } from '@testing-library/react';
+import { afterAll, expect, it } from 'vitest';
 
 import { useSetDocumentTitle } from './useSetDocumentTitle';
 

@@ -1,6 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { boardId, columnId } from 'test/constants';
 import { renderWithProviders, updateStore } from 'test/utils';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import ColumnName from './ColumnName';
 

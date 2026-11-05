@@ -1,8 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import { expect, it, vi } from 'vitest';
 
 import LogoutLoader from '.';
 
-jest.mock('./Logout', () => () => <>Logout</>);
+vi.mock('./Logout', () => ({
+  default: () => <>Logout</>,
+}));
 
 it('lazy loads Logout', async () => {
   render(<LogoutLoader />);

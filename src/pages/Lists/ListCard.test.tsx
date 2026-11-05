@@ -1,6 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { dateNow, listId } from 'test/constants';
 import { renderWithProviders, router, store, updateStore } from 'test/utils';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import ListCard from './ListCard';
 
@@ -42,7 +43,7 @@ describe('edit list', () => {
   it('edits and saves list name on change', () => {
     updateStore.withUser();
     renderWithProviders(<ListCard listId={list.id} />);
-    const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
+    const dateNowSpy = vi.spyOn(Date, 'now').mockReturnValue(dateNow);
     const event = { target: { value: 'My List Name' } };
     fireEvent.change(screen.getByLabelText('List Name'), event);
     expect(store.getState().lists).toEqual({

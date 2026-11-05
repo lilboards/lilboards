@@ -1,8 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import { expect, it, vi } from 'vitest';
 
 import HomeLoader from '.';
 
-jest.mock('./Home', () => () => <>Home</>);
+vi.mock('./Home', () => ({
+  default: () => <>Home</>,
+}));
 
 it('lazy loads Home', async () => {
   render(<HomeLoader />);

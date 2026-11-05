@@ -1,20 +1,21 @@
 import { screen } from '@testing-library/react';
 import { useRouteError } from 'react-router-dom';
 import { renderWithProviders } from 'test/utils';
+import { afterAll, expect, it, vi } from 'vitest';
 
 import ErrorBoundary from './ErrorBoundary';
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual<Record<string, unknown>>('react-router-dom'),
-  useRouteError: jest.fn(),
+vi.mock('react-router-dom', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('react-router-dom')>()),
+  useRouteError: vi.fn(),
 }));
 
-const mockedUseRouteError = jest.mocked(useRouteError);
+const mockedUseRouteError = vi.mocked(useRouteError);
 
-jest.spyOn(console, 'error').mockImplementation();
+vi.spyOn(console, 'error').mockImplementation(vi.fn());
 
 afterAll(() => {
-  jest.restoreAllMocks();
+  vi.restoreAllMocks();
 });
 
 it('renders heading', () => {

@@ -1,8 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import { expect, it, vi } from 'vitest';
 
 import SupportLoader from '.';
 
-jest.mock('./Support', () => () => <>Support</>);
+vi.mock('./Support', () => ({
+  default: () => <>Support</>,
+}));
 
 it('lazy loads Support', async () => {
   render(<SupportLoader />);

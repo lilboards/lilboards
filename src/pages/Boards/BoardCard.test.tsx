@@ -1,6 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { boardId, dateNow } from 'test/constants';
 import { renderWithProviders, router, store, updateStore } from 'test/utils';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import BoardCard from './BoardCard';
 
@@ -42,7 +43,7 @@ describe('edit board', () => {
   it('edits and saves board name on change', () => {
     updateStore.withUser();
     renderWithProviders(<BoardCard boardId={board.id} />);
-    const dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(dateNow);
+    const dateNowSpy = vi.spyOn(Date, 'now').mockReturnValue(dateNow);
     const event = { target: { value: 'My Board Name' } };
     fireEvent.change(screen.getByLabelText('Board Name'), event);
     expect(store.getState().boards).toEqual({

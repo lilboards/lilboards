@@ -1,4 +1,5 @@
 import type { Column, Item } from 'src/types';
+import { describe, expect, it } from 'vitest';
 
 import {
   transformToCSV,
@@ -18,9 +19,13 @@ const item: Item = {
   text: '',
 } as const;
 
-const transforms = [transformToCSV, transformToMarkdown, transformToRows];
+const transforms = [
+  ['transformToCSV', transformToCSV],
+  ['transformToMarkdown', transformToMarkdown],
+  ['transformToRows', transformToRows],
+] as const;
 
-describe.each(transforms)('%p', (transform) => {
+describe.each(transforms)('%s', (_, transform) => {
   it('transforms empty columns', () => {
     expect(transform({}, {})).toMatchSnapshot();
   });

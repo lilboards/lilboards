@@ -1,13 +1,15 @@
 import { act } from '@testing-library/react';
+import { expect, it, vi } from 'vitest';
 
-it('renders without crashing', () => {
-  const getElementByIdSpy = jest
+it('renders without crashing', async () => {
+  const getElementByIdSpy = vi
     .spyOn(document, 'getElementById')
     .mockReturnValueOnce(document.createElement('div'));
 
-  act(() => {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const rootModule = require('.') as { root: { unmount: () => void } };
+  await act(async () => {
+    const rootModule = (await import('.')) as {
+      root: { unmount: () => void };
+    };
     rootModule.root.unmount();
   });
 

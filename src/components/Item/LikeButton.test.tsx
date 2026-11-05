@@ -1,5 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithProviders, updateStore } from 'test/utils';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import LikeButton from './LikeButton';
 

@@ -1,22 +1,21 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { logEvent } from 'src/firebase';
 import { renderWithProviders, updateStore } from 'test/utils';
+import { afterAll, beforeAll, beforeEach, expect, it, vi } from 'vitest';
 
 import Export from './Export';
 
-jest.mock('src/firebase', () => ({
-  logEvent: jest.fn(),
-}));
+vi.mock('src/firebase');
 
 const { clipboard } = navigator;
-const writeText = jest.fn();
+const writeText = vi.fn();
 
 beforeAll(() => {
   Object.assign(navigator, { clipboard: { writeText } });
 });
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 afterAll(() => {

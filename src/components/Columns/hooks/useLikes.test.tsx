@@ -4,31 +4,30 @@ import { getLikesRef } from 'src/firebase';
 import { Likes } from 'src/types';
 import { boardId, itemId, userId } from 'test/constants';
 import { renderWithProviders, store, updateStore } from 'test/utils';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useLikes } from './useLikes';
 
-const mockedOnValue = jest.mocked(onValue);
+const mockedOnValue = vi.mocked(onValue);
 
-jest.mock('src/firebase', () => ({
-  getLikesRef: jest.fn(),
-}));
+vi.mock('src/firebase');
 
 function TestComponent() {
   useLikes(boardId);
   return null;
 }
 
-const unsubscribe = jest.fn();
+const unsubscribe = vi.fn();
 
 beforeEach(() => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
   unsubscribe.mockClear();
 });
 
 afterEach(() => {
-  jest.runOnlyPendingTimers();
-  jest.useRealTimers();
-  jest.clearAllMocks();
+  vi.runOnlyPendingTimers();
+  vi.useRealTimers();
+  vi.clearAllMocks();
 });
 
 describe('likes snapshot value is valid', () => {
@@ -55,7 +54,7 @@ describe('likes snapshot value is valid', () => {
     expect(getLikesRef).toHaveBeenCalledTimes(1);
     expect(getLikesRef).toHaveBeenCalledWith(boardId);
 
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(onValue).toHaveBeenCalledTimes(1);
     expect(onValue).toHaveBeenCalledWith(undefined, expect.any(Function));
 
@@ -88,7 +87,7 @@ describe('likes snapshot value is null', () => {
     expect(getLikesRef).toHaveBeenCalledTimes(1);
     expect(getLikesRef).toHaveBeenCalledWith(boardId);
 
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(onValue).toHaveBeenCalledTimes(1);
     expect(onValue).toHaveBeenCalledWith(undefined, expect.any(Function));
     expect(store.getState().likes).toEqual({

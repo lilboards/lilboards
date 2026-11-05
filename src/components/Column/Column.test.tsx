@@ -1,5 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithProviders, store, updateStore } from 'test/utils';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import Column from './Column';
 
