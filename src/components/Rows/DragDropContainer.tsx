@@ -13,7 +13,7 @@ export default function DragDropContainer(props: Props) {
   const dispatch = useDispatch();
   const rows = useSelector((state) => state.rows);
 
-  /* istanbul ignore next */
+  // v8 ignore next
   function handleDragEnd(result: DropResult) {
     const { destination, source } = result;
 

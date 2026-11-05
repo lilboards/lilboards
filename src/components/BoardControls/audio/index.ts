@@ -1,4 +1,4 @@
-/* istanbul ignore file */
+// v8 ignore file
 
 import alarm from './alarm.ogg';
 

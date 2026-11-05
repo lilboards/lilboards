@@ -1,4 +1,4 @@
-/* istanbul ignore file */
+// v8 ignore file
 
 import { MetricType } from 'web-vitals';
 

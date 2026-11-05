@@ -1,4 +1,4 @@
-/* istanbul ignore file */
+// v8 ignore file
 
 import debounce from 'debounce';
 import { child, get, ref, remove, set, update } from 'firebase/database';
