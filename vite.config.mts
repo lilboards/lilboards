@@ -14,6 +14,18 @@ export default defineConfig({
               name: 'react',
               test: /node_modules\/(react|react-dom)\//,
             },
+            {
+              name: 'mui',
+              test: /node_modules\/(@mui|@emotion)\//,
+            },
+            {
+              name: 'router',
+              test: /node_modules\/react-router-dom\//,
+            },
+            {
+              name: 'firebase',
+              test: /node_modules\/(firebase|firebaseui)\//,
+            },
           ],
         },
       },
