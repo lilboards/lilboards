@@ -33,15 +33,13 @@ describe('item', () => {
         itemId={item.id}
       />,
     );
-    expect(screen.getByText(item.text)).toBeInTheDocument();
+    expect(screen.getByText(item.text)).toBeVisible();
   });
 
   it('renders like button and count', () => {
     renderWithProviders(<Item {...props} itemId={item.id} />);
-    expect(
-      screen.getByLabelText(`Like item "${item.text}"`),
-    ).toBeInTheDocument();
-    expect(screen.getByLabelText(/0 likes/)).toBeInTheDocument();
+    expect(screen.getByLabelText(`Like item "${item.text}"`)).toBeVisible();
+    expect(screen.getByLabelText(/0 likes/)).toBeVisible();
   });
 
   it('renders accessible textbox', () => {
@@ -97,9 +95,7 @@ describe('delete item', () => {
 
   it('renders delete button', () => {
     renderWithProviders(<Item {...props} itemId={item.id} />);
-    expect(
-      screen.getByLabelText(`Delete item “${item.text}”`),
-    ).toBeInTheDocument();
+    expect(screen.getByLabelText(`Delete item “${item.text}”`)).toBeVisible();
   });
 
   it('deletes item', () => {

@@ -18,7 +18,7 @@ it('renders "Add row" button when user can edit', () => {
   const list = updateStore.withList();
   updateStore.withUser();
   renderWithProviders(<AddRow listId={list.id} />);
-  expect(screen.getByRole('button', { name: 'Add row' })).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Add row' })).toBeVisible();
 });
 
 it('does not render "Add row" button when user cannot edit', () => {

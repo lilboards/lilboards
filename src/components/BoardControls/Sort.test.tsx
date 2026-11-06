@@ -12,9 +12,7 @@ it('renders "Sort by likes" button when user is admin', () => {
   const board = updateStore.withBoard();
   updateStore.withUser();
   renderWithProviders(<Sort boardId={board.id} />);
-  expect(
-    screen.getByRole('button', { name: 'Sort by likes' }),
-  ).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Sort by likes' })).toBeVisible();
 });
 
 it('does not render "Sort by likes" button when user is not admin', () => {

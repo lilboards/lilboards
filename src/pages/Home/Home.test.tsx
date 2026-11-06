@@ -7,9 +7,7 @@ import Home from './Home';
 
 it('renders home', () => {
   renderWithProviders(<Home />);
-  expect(
-    screen.getByText('Create boards, columns, and items.'),
-  ).toBeInTheDocument();
+  expect(screen.getByText('Create boards, columns, and items.')).toBeVisible();
 });
 
 it('renders hero call-to-action', () => {

@@ -21,7 +21,7 @@ it('renders column name', () => {
   renderWithProviders(
     <Column {...props} boardId={board.id} columnId={column.id} />,
   );
-  expect(screen.getByText(column.name)).toBeInTheDocument();
+  expect(screen.getByText(column.name)).toBeVisible();
 });
 
 it('edits column', () => {
@@ -35,7 +35,7 @@ it('edits column', () => {
   fireEvent.change(screen.getByLabelText(`Edit column “${column.name}”`), {
     target: { value },
   });
-  expect(screen.getByDisplayValue(value)).toBeInTheDocument();
+  expect(screen.getByDisplayValue(value)).toBeVisible();
 });
 
 it('resets user editing column id on blur', () => {
@@ -68,7 +68,7 @@ describe('delete', () => {
     fireEvent.click(screen.getByLabelText(/Delete column/));
     fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
     expect(screen.queryByText(dialogContent)).not.toBeVisible();
-    expect(screen.getByDisplayValue(column.name)).toBeInTheDocument();
+    expect(screen.getByDisplayValue(column.name)).toBeVisible();
   });
 
   it('deletes column', () => {

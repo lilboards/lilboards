@@ -41,7 +41,7 @@ describe('disconnected', () => {
     act(() => {
       vi.runAllTimers();
     });
-    expect(screen.getByText(message)).toBeInTheDocument();
+    expect(screen.getByText(message)).toBeVisible();
   });
 
   it('closes snackbar when close icon button is clicked', () => {

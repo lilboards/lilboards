@@ -20,7 +20,7 @@ it('does not render snackbar when props.open is false', () => {
 
 it('renders snackbar when props.open is true', () => {
   render(<Snackbar message={message} open />);
-  expect(screen.getByText(message)).toBeInTheDocument();
+  expect(screen.getByText(message)).toBeVisible();
 });
 
 it('closes snackbar when close icon button is clicked', async () => {
@@ -42,7 +42,7 @@ it('auto hides snackbar', async () => {
 
 it('does not close snackbar when clicking away', () => {
   render(<Snackbar lastOpened={Date.now()} message={message} open />);
-  expect(screen.getByText(message)).toBeInTheDocument();
+  expect(screen.getByText(message)).toBeVisible();
   fireEvent.mouseDown(document.body);
-  expect(screen.getByText(message)).toBeInTheDocument();
+  expect(screen.getByText(message)).toBeVisible();
 });

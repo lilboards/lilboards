@@ -12,7 +12,7 @@ it('renders heading', () => {
       level: 1,
       name: 'Support',
     }),
-  ).toBeInTheDocument();
+  ).toBeVisible();
 });
 
 it('renders GitHub issue link', () => {

@@ -123,7 +123,7 @@ describe('with list', () => {
 
   it('renders <Rows>', () => {
     renderWithProviders(<List />);
-    expect(screen.getByText(mockRows)).toBeInTheDocument();
+    expect(screen.getByText(mockRows)).toBeVisible();
   });
 });
 
@@ -153,7 +153,7 @@ describe('with list and anonymous user', () => {
       level: 1,
       name: list.name,
     });
-    expect(heading).toBeInTheDocument();
+    expect(heading).toBeVisible();
   });
 
   it('attaches ref listeners', () => {

@@ -24,7 +24,7 @@ it('renders row', () => {
       level: 2,
       name: 'Row One',
     }),
-  ).toBeInTheDocument();
+  ).toBeVisible();
 });
 
 it('uses hooks', () => {
@@ -38,5 +38,5 @@ it('uses hooks', () => {
 it('renders item text', () => {
   const item = updateStore.withListItem();
   renderWithProviders(<Rows listId={listId} />);
-  expect(screen.getByText(item.text)).toBeInTheDocument();
+  expect(screen.getByText(item.text)).toBeVisible();
 });

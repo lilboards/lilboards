@@ -9,9 +9,9 @@ vi.mock('./Home', () => ({
 
 it('lazy loads Home', async () => {
   render(<HomeLoader />);
-  expect(screen.getByRole('progressbar')).toBeInTheDocument();
+  expect(screen.getByRole('progressbar')).toBeVisible();
   await waitFor(() => {
     expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
   });
-  expect(screen.getByText('Home')).toBeInTheDocument();
+  expect(screen.getByText('Home')).toBeVisible();
 });

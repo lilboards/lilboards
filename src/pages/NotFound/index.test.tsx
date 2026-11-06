@@ -9,9 +9,9 @@ vi.mock('./NotFound', () => ({
 
 it('lazy loads NotFound', async () => {
   render(<NotFoundLoader />);
-  expect(screen.getByRole('progressbar')).toBeInTheDocument();
+  expect(screen.getByRole('progressbar')).toBeVisible();
   await waitFor(() => {
     expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
   });
-  expect(screen.getByText('NotFound')).toBeInTheDocument();
+  expect(screen.getByText('NotFound')).toBeVisible();
 });

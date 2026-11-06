@@ -28,7 +28,7 @@ it('renders delete button', () => {
   renderWithProviders(<Delete {...props} />);
   expect(
     screen.getByLabelText(`Delete item “${props.itemText}”`),
-  ).toBeInTheDocument();
+  ).toBeVisible();
 });
 
 it('renders delete dialog', () => {
@@ -45,7 +45,7 @@ it('cancels delete', () => {
   expect(screen.getByText(dialogTitle)).not.toBeVisible();
   expect(
     screen.getByLabelText(`Delete item “${props.itemText}”`),
-  ).toBeInTheDocument();
+  ).toBeVisible();
 });
 
 it('confirms delete', () => {

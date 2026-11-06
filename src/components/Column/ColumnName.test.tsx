@@ -21,7 +21,7 @@ describe('readonly', () => {
         level: 2,
         name: props.name,
       }),
-    ).toBeInTheDocument();
+    ).toBeVisible();
   });
 
   it('renders placeholder', () => {
@@ -31,7 +31,7 @@ describe('readonly', () => {
         level: 2,
         name: props.placeholder,
       }),
-    ).toBeInTheDocument();
+    ).toBeVisible();
   });
 });
 
@@ -41,9 +41,7 @@ describe('edit', () => {
     const board = updateStore.withBoard();
     updateStore.withUser();
     renderWithProviders(<ColumnName {...props} boardId={board.id} />);
-    expect(
-      screen.getByLabelText(`Edit column “${props.name}”`),
-    ).toBeInTheDocument();
+    expect(screen.getByLabelText(`Edit column “${props.name}”`)).toBeVisible();
   });
 
   it('renders input with placeholder', () => {
@@ -52,7 +50,7 @@ describe('edit', () => {
     renderWithProviders(<ColumnName {...props} boardId={board.id} name="" />);
     expect(
       screen.getByLabelText(`Edit column “${props.placeholder}”`),
-    ).toBeInTheDocument();
+    ).toBeVisible();
   });
 });
 
@@ -70,19 +68,15 @@ describe('delete', () => {
     const columnName = props.name;
     renderWithProviders(<ColumnName {...props} boardId={board.id} />);
     fireEvent.click(screen.getByLabelText(`Delete column “${columnName}”`));
-    expect(
-      screen.getByText(`Delete column “${columnName}”?`),
-    ).toBeInTheDocument();
-    expect(screen.getByText(dialogContent)).toBeInTheDocument();
+    expect(screen.getByText(`Delete column “${columnName}”?`)).toBeVisible();
+    expect(screen.getByText(dialogContent)).toBeVisible();
   });
 
   it('renders dialog with default name', () => {
     const columnName = props.placeholder;
     renderWithProviders(<ColumnName {...props} boardId={board.id} name="" />);
     fireEvent.click(screen.getByLabelText(`Delete column “${columnName}”`));
-    expect(
-      screen.getByText(`Delete column “${columnName}”?`),
-    ).toBeInTheDocument();
-    expect(screen.getByText(dialogContent)).toBeInTheDocument();
+    expect(screen.getByText(`Delete column “${columnName}”?`)).toBeVisible();
+    expect(screen.getByText(dialogContent)).toBeVisible();
   });
 });

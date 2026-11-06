@@ -17,7 +17,7 @@ beforeEach(() => {
 
 it('renders "Add list" button', () => {
   renderWithProviders(<AddList />);
-  expect(screen.getByRole('button', { name: 'Add list' })).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Add list' })).toBeVisible();
 });
 
 it('adds new list to store and database', () => {

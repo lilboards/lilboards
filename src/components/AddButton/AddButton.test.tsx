@@ -5,15 +5,15 @@ import AddButton from './AddButton';
 
 it('renders button', () => {
   render(<AddButton />);
-  expect(screen.getByRole('button')).toBeInTheDocument();
+  expect(screen.getByRole('button')).toBeVisible();
 });
 
 it('renders aria-label', () => {
   render(<AddButton aria-label="label" />);
-  expect(screen.getByLabelText('label')).toBeInTheDocument();
+  expect(screen.getByLabelText('label')).toBeVisible();
 });
 
 it('renders text', () => {
   render(<AddButton>text</AddButton>);
-  expect(screen.getByText('text')).toBeInTheDocument();
+  expect(screen.getByText('text')).toBeVisible();
 });

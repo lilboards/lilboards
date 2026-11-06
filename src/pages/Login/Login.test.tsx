@@ -40,12 +40,12 @@ describe('not logged in', () => {
         level: 1,
         name: 'Sign In',
       }),
-    ).toBeInTheDocument();
+    ).toBeVisible();
   });
 
   it('renders StyledFirebaseAuth', () => {
     renderWithProviders(<Login />);
-    expect(screen.getByText('StyledFirebaseAuth')).toBeInTheDocument();
+    expect(screen.getByText('StyledFirebaseAuth')).toBeVisible();
   });
 });
 

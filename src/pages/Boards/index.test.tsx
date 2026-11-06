@@ -9,9 +9,9 @@ vi.mock('./Boards', () => ({
 
 it('lazy loads Boards', async () => {
   render(<BoardsLoader />);
-  expect(screen.getByRole('progressbar')).toBeInTheDocument();
+  expect(screen.getByRole('progressbar')).toBeVisible();
   await waitFor(() => {
     expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
   });
-  expect(screen.getByText('Boards')).toBeInTheDocument();
+  expect(screen.getByText('Boards')).toBeVisible();
 });

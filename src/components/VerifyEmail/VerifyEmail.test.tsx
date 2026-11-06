@@ -12,7 +12,7 @@ describe('send verification email', () => {
     renderWithProviders(<VerifyEmail />);
     expect(
       screen.getByRole('button', { name: 'Send verification email' }),
-    ).toBeInTheDocument();
+    ).toBeVisible();
   });
 
   it('sends email verification when button is clicked', () => {
@@ -21,13 +21,13 @@ describe('send verification email', () => {
       screen.getByRole('button', { name: 'Send verification email' }),
     );
     expect(sendEmailVerification).toHaveBeenCalled();
-    expect(screen.getByText('Email sent')).toBeInTheDocument();
+    expect(screen.getByText('Email sent')).toBeVisible();
   });
 });
 
 describe('logout', () => {
   it('renders button', () => {
     renderWithProviders(<VerifyEmail />);
-    expect(screen.getByRole('link', { name: 'Logout' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Logout' })).toBeVisible();
   });
 });

@@ -33,7 +33,7 @@ describe('item', () => {
 
   it('renders value', () => {
     renderWithProviders(<ListItem {...props} itemId={item.id} />);
-    expect(screen.getByDisplayValue(item.text)).toBeInTheDocument();
+    expect(screen.getByDisplayValue(item.text)).toBeVisible();
   });
 
   it('focuses and blurs item', () => {
@@ -72,7 +72,7 @@ describe('item avatar', () => {
       photoURL: 'https://example.com/photo.png',
     });
     renderWithProviders(<ListItem {...props} itemId={item.id} />);
-    expect(screen.getByAltText('User Photo')).toBeInTheDocument();
+    expect(screen.getByAltText('User Photo')).toBeVisible();
   });
 });
 

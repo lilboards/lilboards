@@ -8,16 +8,14 @@ import ListItems from '.';
 describe('add item', () => {
   it('renders "Add item" button', () => {
     renderWithProviders(<ListItems listId={listId} rowId={rowId} />);
-    expect(
-      screen.getByRole('button', { name: 'Add item' }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Add item' })).toBeVisible();
   });
 
   it('renders new item', () => {
     const row = updateStore.withRow();
     renderWithProviders(<ListItems listId={listId} rowId={row.id} />);
     fireEvent.click(screen.getByText('Add item'));
-    expect(screen.getByLabelText('Edit item “”')).toBeInTheDocument();
+    expect(screen.getByLabelText('Edit item “”')).toBeVisible();
   });
 
   it('focuses on new item', () => {
@@ -42,7 +40,7 @@ describe('admin', () => {
   it('cancels delete', () => {
     renderWithProviders(<ListItems listId={list.id} rowId={row.id} />);
     fireEvent.click(screen.getByText('Delete'));
-    expect(screen.getByText('Delete row?')).toBeInTheDocument();
+    expect(screen.getByText('Delete row?')).toBeVisible();
     fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
     expect(screen.queryByText(dialogContent)).not.toBeVisible();
   });
@@ -50,7 +48,7 @@ describe('admin', () => {
   it('deletes row', () => {
     renderWithProviders(<ListItems listId={list.id} rowId={row.id} />);
     fireEvent.click(screen.getByText('Delete'));
-    expect(screen.getByText('Delete row?')).toBeInTheDocument();
+    expect(screen.getByText('Delete row?')).toBeVisible();
     fireEvent.click(screen.getAllByText('Delete')[1]);
     expect(screen.queryByText(dialogContent)).not.toBeVisible();
     expect(screen.queryByDisplayValue(row.name)).not.toBeInTheDocument();

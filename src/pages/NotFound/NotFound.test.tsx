@@ -11,7 +11,7 @@ it('renders not found', () => {
       level: 1,
       name: 'Not Found',
     }),
-  ).toBeInTheDocument();
+  ).toBeVisible();
 });
 
 it('renders home link', () => {

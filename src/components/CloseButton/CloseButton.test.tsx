@@ -5,13 +5,13 @@ import CloseButton from './CloseButton';
 
 it('renders button', () => {
   render(<CloseButton />);
-  expect(screen.getByRole('button')).toBeInTheDocument();
+  expect(screen.getByRole('button')).toBeVisible();
 });
 
 it('renders aria-label', () => {
   const label = 'label';
   render(<CloseButton aria-label={label} />);
-  expect(screen.getByLabelText(label)).toBeInTheDocument();
+  expect(screen.getByLabelText(label)).toBeVisible();
 });
 
 it('handles onClick event', () => {
@@ -24,5 +24,5 @@ it('handles onClick event', () => {
 it('renders SVG icon props', () => {
   const titleAccess = 'title';
   render(<CloseButton svgIconProps={{ fontSize: 'small', titleAccess }} />);
-  expect(screen.getByTitle(titleAccess)).toBeInTheDocument();
+  expect(screen.getByTitle(titleAccess)).toBeVisible();
 });
