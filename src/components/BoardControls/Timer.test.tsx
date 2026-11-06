@@ -67,7 +67,7 @@ describe('timer', () => {
     act(() => {
       vi.runAllTimers();
     });
-    expect(screen.getByLabelText('Start timer')).toBeInTheDocument();
+    expect(screen.getByLabelText('Start timer')).toBeVisible();
 
     expect(button).toHaveAttribute('aria-label', 'Start timer');
     expect(button).toHaveTextContent('Start');
@@ -87,7 +87,7 @@ describe('timer', () => {
       vi.advanceTimersByTime(defaultMilliseconds);
     });
 
-    expect(screen.getByText("⏰ Time's up!")).toBeInTheDocument();
+    expect(screen.getByText("⏰ Time's up!")).toBeVisible();
     expect(playAlarm).toHaveBeenCalledTimes(1);
     expect(button).toHaveAttribute('aria-label', 'Start timer');
     expect(button).toHaveTextContent('Start');

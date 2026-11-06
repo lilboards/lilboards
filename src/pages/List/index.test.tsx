@@ -9,9 +9,9 @@ vi.mock('./List', () => ({
 
 it('lazy loads List', async () => {
   render(<ListLoader />);
-  expect(screen.getByRole('progressbar')).toBeInTheDocument();
+  expect(screen.getByRole('progressbar')).toBeVisible();
   await waitFor(() => {
     expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
   });
-  expect(screen.getByText('List')).toBeInTheDocument();
+  expect(screen.getByText('List')).toBeVisible();
 });

@@ -25,14 +25,14 @@ it('renders heading', () => {
       level: 1,
       name: 'Error',
     }),
-  ).toBeInTheDocument();
+  ).toBeVisible();
 });
 
 it('renders error message', () => {
   const error = new Error('test');
   mockedUseRouteError.mockReturnValueOnce(error);
   renderWithProviders(<ErrorBoundary />);
-  expect(screen.getByText(error.toString())).toBeInTheDocument();
+  expect(screen.getByText(error.toString())).toBeVisible();
   // eslint-disable-next-line no-console
   expect(console.error).toHaveBeenCalledWith(error);
 });

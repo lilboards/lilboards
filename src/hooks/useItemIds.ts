@@ -4,19 +4,21 @@ import type { Id, RootState } from 'src/types';
 
 import { useSelector } from './useSelector';
 
+const emptyItemIds: Id[] = [];
+
 const selectColumnItemIds = createSelector(
   [
     (state: RootState) => state.columns,
     (state: RootState, columnId: Id) => columnId,
   ],
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  (columns, columnId) => columns[columnId]?.itemIds ?? [],
+  (columns, columnId) => columns[columnId]?.itemIds ?? emptyItemIds,
 );
 
 const selectRowItemIds = createSelector(
   [(state: RootState) => state.rows, (state: RootState, rowId: Id) => rowId],
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  (rows, rowId) => rows[rowId]?.itemIds ?? [],
+  (rows, rowId) => rows[rowId]?.itemIds ?? emptyItemIds,
 );
 
 /**
@@ -39,7 +41,7 @@ export function useItemIds(
         return selectRowItemIds(state, id);
 
       default:
-        return [];
+        return emptyItemIds;
     }
   });
 }

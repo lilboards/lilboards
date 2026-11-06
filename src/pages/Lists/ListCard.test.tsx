@@ -77,8 +77,8 @@ describe('delete list', () => {
   it('renders dialog with name', () => {
     renderWithProviders(<ListCard listId={list.id} />);
     fireEvent.click(screen.getByLabelText(`Delete list “${list.name}”`));
-    expect(screen.getByText(`Delete list “${list.name}”?`)).toBeInTheDocument();
-    expect(screen.getByText(dialogContent)).toBeInTheDocument();
+    expect(screen.getByText(`Delete list “${list.name}”?`)).toBeVisible();
+    expect(screen.getByText(dialogContent)).toBeVisible();
   });
 
   it('renders dialog with no name', () => {
@@ -86,8 +86,8 @@ describe('delete list', () => {
     updateStore.withUser();
     renderWithProviders(<ListCard listId={list.id} />);
     fireEvent.click(screen.getByLabelText('Delete list'));
-    expect(screen.getByText('Delete list?')).toBeInTheDocument();
-    expect(screen.getByText(dialogContent)).toBeInTheDocument();
+    expect(screen.getByText('Delete list?')).toBeVisible();
+    expect(screen.getByText(dialogContent)).toBeVisible();
   });
 
   it('cancels delete', () => {
@@ -95,7 +95,7 @@ describe('delete list', () => {
     fireEvent.click(screen.getByLabelText(/Delete list/));
     fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
     expect(screen.queryByText(dialogContent)).not.toBeVisible();
-    expect(screen.getByDisplayValue(list.name)).toBeInTheDocument();
+    expect(screen.getByDisplayValue(list.name)).toBeVisible();
   });
 
   it('deletes list', () => {

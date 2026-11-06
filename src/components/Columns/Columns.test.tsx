@@ -26,7 +26,7 @@ it('renders column', () => {
       level: 2,
       name: 'Column One',
     }),
-  ).toBeInTheDocument();
+  ).toBeVisible();
 });
 
 it('uses hooks', () => {
@@ -42,12 +42,12 @@ it('uses hooks', () => {
 it('renders item text', () => {
   const item = updateStore.withItem();
   renderWithProviders(<Columns boardId={boardId} />);
-  expect(screen.getByText(item.text)).toBeInTheDocument();
+  expect(screen.getByText(item.text)).toBeVisible();
 });
 
 it('renders liked item', () => {
   updateStore.withItem();
   updateStore.withLike();
   renderWithProviders(<Columns boardId={boardId} />);
-  expect(screen.getByLabelText(/1 like for item/)).toBeInTheDocument();
+  expect(screen.getByLabelText(/1 like for item/)).toBeVisible();
 });

@@ -12,7 +12,7 @@ const props = {
 
 it('renders children', () => {
   render(<Heading {...props} />);
-  expect(screen.getByText(props.children)).toBeInTheDocument();
+  expect(screen.getByText(props.children)).toBeVisible();
   expect(screen.getByRole('heading', { level: 1 })).toBe(
     screen.getByText(props.children),
   );
@@ -20,13 +20,13 @@ it('renders children', () => {
 
 it('does not render link', () => {
   render(<Heading {...props} />);
-  expect(screen.getByText(props.children)).toBeInTheDocument();
+  expect(screen.getByText(props.children)).toBeVisible();
   expect(screen.queryByRole('link')).not.toBeInTheDocument();
 });
 
 it('does not copy link to clipboard', () => {
   render(<Heading {...props} link />);
-  expect(screen.getByLabelText('Copy link')).toBeInTheDocument();
+  expect(screen.getByLabelText('Copy link')).toBeVisible();
   expect(copyLinkToClipboard).not.toHaveBeenCalled();
 });
 

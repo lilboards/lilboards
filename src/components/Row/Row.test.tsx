@@ -19,7 +19,7 @@ it('renders row name', () => {
   const list = updateStore.withList();
   const row = updateStore.withRow();
   renderWithProviders(<Row {...props} listId={list.id} rowId={row.id} />);
-  expect(screen.getByText(row.name)).toBeInTheDocument();
+  expect(screen.getByText(row.name)).toBeVisible();
 });
 
 it('edits row', () => {
@@ -31,7 +31,7 @@ it('edits row', () => {
   fireEvent.change(screen.getByLabelText(`Edit row “${row.name}”`), {
     target: { value },
   });
-  expect(screen.getByDisplayValue(value)).toBeInTheDocument();
+  expect(screen.getByDisplayValue(value)).toBeVisible();
 });
 
 it('resets user editing row id on blur', () => {
@@ -60,7 +60,7 @@ describe('delete', () => {
     fireEvent.click(screen.getByText('Delete'));
     fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
     expect(screen.queryByText(dialogContent)).not.toBeVisible();
-    expect(screen.getByDisplayValue(row.name)).toBeInTheDocument();
+    expect(screen.getByDisplayValue(row.name)).toBeVisible();
   });
 
   it('deletes row', () => {

@@ -21,7 +21,7 @@ describe('readonly', () => {
         level: 2,
         name: props.name,
       }),
-    ).toBeInTheDocument();
+    ).toBeVisible();
   });
 
   it('renders placeholder', () => {
@@ -31,7 +31,7 @@ describe('readonly', () => {
         level: 2,
         name: props.placeholder,
       }),
-    ).toBeInTheDocument();
+    ).toBeVisible();
   });
 });
 
@@ -41,9 +41,7 @@ describe('edit', () => {
     const list = updateStore.withList();
     updateStore.withUser();
     renderWithProviders(<RowName {...props} listId={list.id} />);
-    expect(
-      screen.getByLabelText(`Edit row “${props.name}”`),
-    ).toBeInTheDocument();
+    expect(screen.getByLabelText(`Edit row “${props.name}”`)).toBeVisible();
   });
 
   it('renders input with placeholder', () => {
@@ -52,6 +50,6 @@ describe('edit', () => {
     renderWithProviders(<RowName {...props} listId={list.id} name="" />);
     expect(
       screen.getByLabelText(`Edit row “${props.placeholder}”`),
-    ).toBeInTheDocument();
+    ).toBeVisible();
   });
 });

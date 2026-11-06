@@ -27,15 +27,13 @@ beforeEach(() => {
 it('renders heading', () => {
   renderWithProviders(<Boards />);
   const heading = screen.getByRole('heading', { level: 1, name: 'Boards' });
-  expect(heading).toBeInTheDocument();
+  expect(heading).toBeVisible();
 });
 
 describe('add board', () => {
   it('renders button', () => {
     renderWithProviders(<Boards />);
-    expect(
-      screen.getByRole('button', { name: 'Add board' }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Add board' })).toBeVisible();
   });
 
   it('adds board', () => {

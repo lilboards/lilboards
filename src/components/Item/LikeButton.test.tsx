@@ -18,9 +18,7 @@ describe('when maxLikes is 0', () => {
     fireEvent.click(
       screen.getByRole('button', { name: `Like item "${item.text}"` }),
     );
-    expect(
-      screen.getByLabelText(`Like item "${item.text}"`),
-    ).toBeInTheDocument();
+    expect(screen.getByLabelText(`Like item "${item.text}"`)).toBeVisible();
   });
 });
 
@@ -35,8 +33,6 @@ describe('when maxLikes is 1', () => {
     fireEvent.click(
       screen.getByRole('button', { name: `Like item "${item.text}"` }),
     );
-    expect(
-      screen.getByLabelText(`Unlike item "${item.text}"`),
-    ).toBeInTheDocument();
+    expect(screen.getByLabelText(`Unlike item "${item.text}"`)).toBeVisible();
   });
 });

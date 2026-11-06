@@ -9,9 +9,9 @@ vi.mock('./Support', () => ({
 
 it('lazy loads Support', async () => {
   render(<SupportLoader />);
-  expect(screen.getByRole('progressbar')).toBeInTheDocument();
+  expect(screen.getByRole('progressbar')).toBeVisible();
   await waitFor(() => {
     expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
   });
-  expect(screen.getByText('Support')).toBeInTheDocument();
+  expect(screen.getByText('Support')).toBeVisible();
 });

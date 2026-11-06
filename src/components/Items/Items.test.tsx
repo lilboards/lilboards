@@ -8,16 +8,14 @@ import Items from './Items';
 describe('add item', () => {
   it('renders "Add item" button', () => {
     renderWithProviders(<Items boardId={boardId} columnId={columnId} />);
-    expect(
-      screen.getByRole('button', { name: 'Add item' }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Add item' })).toBeVisible();
   });
 
   it('renders new item', () => {
     const column = updateStore.withColumn();
     renderWithProviders(<Items boardId={boardId} columnId={column.id} />);
     fireEvent.click(screen.getByText('Add item'));
-    expect(screen.getByLabelText('Edit item “”')).toBeInTheDocument();
+    expect(screen.getByLabelText('Edit item “”')).toBeVisible();
   });
 
   it('focuses on new item', () => {

@@ -17,7 +17,7 @@ beforeEach(() => {
 
 it('renders "Add board" button', () => {
   renderWithProviders(<AddBoard />);
-  expect(screen.getByRole('button', { name: 'Add board' })).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Add board' })).toBeVisible();
 });
 
 it('adds new board to store and database', () => {

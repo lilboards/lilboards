@@ -9,9 +9,9 @@ vi.mock('./Logout', () => ({
 
 it('lazy loads Logout', async () => {
   render(<LogoutLoader />);
-  expect(screen.getByRole('progressbar')).toBeInTheDocument();
+  expect(screen.getByRole('progressbar')).toBeVisible();
   await waitFor(() => {
     expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
   });
-  expect(screen.getByText('Logout')).toBeInTheDocument();
+  expect(screen.getByText('Logout')).toBeVisible();
 });

@@ -22,17 +22,15 @@ describe('desktop', () => {
 
   it('renders "Add column" button', () => {
     renderWithProviders(<BoardControls boardId={board.id} />);
-    expect(
-      screen.getByRole('button', { name: 'Add column' }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Add column' })).toBeVisible();
   });
 
   it('renders "Timer" input and "Start" button', () => {
     const board = updateStore.withBoard();
     updateStore.withUser();
     renderWithProviders(<BoardControls boardId={board.id} />);
-    expect(screen.getByLabelText('Timer in minutes')).toBeInTheDocument();
-    expect(screen.getByLabelText('Start timer')).toBeInTheDocument();
+    expect(screen.getByLabelText('Timer in minutes')).toBeVisible();
+    expect(screen.getByLabelText('Start timer')).toBeVisible();
   });
 
   it('renders "Hide Likes" switch', () => {
@@ -46,9 +44,7 @@ describe('desktop', () => {
     const board = updateStore.withBoard();
     updateStore.withUser();
     renderWithProviders(<BoardControls boardId={board.id} />);
-    expect(
-      screen.getByRole('button', { name: 'Sort by likes' }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Sort by likes' })).toBeVisible();
   });
 
   it('renders copy board button', () => {

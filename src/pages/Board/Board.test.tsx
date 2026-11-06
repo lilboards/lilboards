@@ -130,12 +130,12 @@ describe('with board', () => {
 
   it('renders <BoardControls>', () => {
     renderWithProviders(<Board />);
-    expect(screen.getByText(mockBoardControls)).toBeInTheDocument();
+    expect(screen.getByText(mockBoardControls)).toBeVisible();
   });
 
   it('renders <Columns>', () => {
     renderWithProviders(<Board />);
-    expect(screen.getByText(mockColumns)).toBeInTheDocument();
+    expect(screen.getByText(mockColumns)).toBeVisible();
   });
 });
 
@@ -165,7 +165,7 @@ describe('with board and anonymous user', () => {
       level: 1,
       name: board.name,
     });
-    expect(heading).toBeInTheDocument();
+    expect(heading).toBeVisible();
   });
 
   it('attaches ref listeners', () => {

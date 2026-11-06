@@ -18,9 +18,7 @@ it('renders "Add column" button when user can edit', () => {
   const board = updateStore.withBoard();
   updateStore.withUser();
   renderWithProviders(<AddColumn boardId={board.id} />);
-  expect(
-    screen.getByRole('button', { name: 'Add column' }),
-  ).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Add column' })).toBeVisible();
 });
 
 it('does not render "Add column" button when user cannot edit', () => {

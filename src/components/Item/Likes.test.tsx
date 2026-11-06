@@ -21,8 +21,8 @@ describe('without user and item', () => {
 
   it('renders like count', () => {
     renderWithProviders(<Likes boardId={boardId} itemId="" />);
-    expect(screen.getByText('0')).toBeInTheDocument();
-    expect(screen.getByLabelText(/0 likes/)).toBeInTheDocument();
+    expect(screen.getByText('0')).toBeVisible();
+    expect(screen.getByLabelText(/0 likes/)).toBeVisible();
   });
 });
 
@@ -37,16 +37,16 @@ describe('with user and item', () => {
   it('increments like count on click', () => {
     renderWithProviders(<Likes {...props} itemId={item.id} />);
     fireEvent.click(screen.getByLabelText(`Like item "${item.text}"`));
-    expect(screen.getByText('1')).toBeInTheDocument();
-    expect(screen.getByLabelText(/1 like for item/)).toBeInTheDocument();
+    expect(screen.getByText('1')).toBeVisible();
+    expect(screen.getByLabelText(/1 like for item/)).toBeVisible();
   });
 
   it('decrements like count on click', () => {
     renderWithProviders(<Likes {...props} itemId={item.id} />);
     fireEvent.click(screen.getByLabelText(`Like item "${item.text}"`));
     fireEvent.click(screen.getByLabelText(`Unlike item "${item.text}"`));
-    expect(screen.getByText('0')).toBeInTheDocument();
-    expect(screen.getByLabelText(/0 likes for item/)).toBeInTheDocument();
+    expect(screen.getByText('0')).toBeVisible();
+    expect(screen.getByLabelText(/0 likes for item/)).toBeVisible();
   });
 });
 
@@ -70,7 +70,7 @@ describe('with another user already liking an item', () => {
   it('allows current user to like an item when another user has already liked an item', () => {
     renderWithProviders(<Likes {...props} itemId={item.id} />);
     fireEvent.click(screen.getByLabelText(`Like item "${item.text}"`));
-    expect(screen.getByText('1')).toBeInTheDocument();
-    expect(screen.getByLabelText(/1 like for item/)).toBeInTheDocument();
+    expect(screen.getByText('1')).toBeVisible();
+    expect(screen.getByLabelText(/1 like for item/)).toBeVisible();
   });
 });

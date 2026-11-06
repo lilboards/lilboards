@@ -14,8 +14,8 @@ const props = {
 
 it('renders title and content when dialog is open', () => {
   render(<DeleteDialog {...props} />);
-  expect(screen.getByText(props.title)).toBeInTheDocument();
-  expect(screen.getByText(props.content)).toBeInTheDocument();
+  expect(screen.getByText(props.title)).toBeVisible();
+  expect(screen.getByText(props.content)).toBeVisible();
 });
 
 it('does not render title and content when dialog is not open', () => {

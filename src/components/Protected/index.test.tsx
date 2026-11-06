@@ -9,9 +9,9 @@ vi.mock('./Protected', () => ({
 
 it('lazy loads Protected', async () => {
   render(<ProtectedLoader check="email" />);
-  expect(screen.getByRole('progressbar')).toBeInTheDocument();
+  expect(screen.getByRole('progressbar')).toBeVisible();
   await waitFor(() => {
     expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
   });
-  expect(screen.getByText('Protected')).toBeInTheDocument();
+  expect(screen.getByText('Protected')).toBeVisible();
 });

@@ -8,7 +8,7 @@ import Export from './Export';
 vi.mock('src/firebase');
 
 const { clipboard } = navigator;
-const writeText = vi.fn();
+const writeText = vi.fn().mockResolvedValue(undefined);
 
 beforeAll(() => {
   Object.assign(navigator, { clipboard: { writeText } });

@@ -35,7 +35,7 @@ describe('not loaded', () => {
     mockedUseAuth.mockReset().mockReturnValue(false);
     renderWithProviders(<Protected {...props} />);
     expect(mockedOutlet).not.toHaveBeenCalled();
-    expect(screen.getByRole('progressbar')).toBeInTheDocument();
+    expect(screen.getByRole('progressbar')).toBeVisible();
   });
 });
 
@@ -76,7 +76,7 @@ describe('signed in with unverified email', () => {
     renderWithProviders(<Protected {...props} />);
     expect(
       screen.getByRole('button', { name: 'Send verification email' }),
-    ).toBeInTheDocument();
+    ).toBeVisible();
   });
 });
 
