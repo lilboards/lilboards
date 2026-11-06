@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.43.2](https://github.com/lilboards/lilboards/compare/v4.43.1...v4.43.2) (2026-11-06)
+
+
+### Bug Fixes
+
+* **hooks:** return stable empty array from useItemIds selector ([c5b5d78](https://github.com/lilboards/lilboards/commit/c5b5d78966dfff44b58252236fd767310c9cf148))
+
+
+### Performance Improvements
+
+* **vite:** code split mui, router, and firebase ([970179c](https://github.com/lilboards/lilboards/commit/970179c2f905d21de9b20d84b6856674e0cf568f))
+
 ## [4.43.1](https://github.com/lilboards/lilboards/compare/v4.43.0...v4.43.1) (2026-10-12)
 
 ### Bug Fixes
