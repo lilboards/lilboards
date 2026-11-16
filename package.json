@@ -55,7 +55,7 @@
     "@types/react-dom": "19.3.0",
     "@vitejs/plugin-react-swc": "4.3.3",
     "@vitest/coverage-v8": "5.1.0",
-    "cypress": "16.2.1",
+    "cypress": "16.3.0",
     "cypress-cucumber-steps": "3.64.3",
     "cypress-real-events": "1.15.1",
     "eslint": "10.14.0",
