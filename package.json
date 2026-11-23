@@ -54,7 +54,7 @@
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "@vitejs/plugin-react-swc": "4.3.3",
-    "@vitest/coverage-v8": "5.1.0",
+    "@vitest/coverage-v8": "5.1.1",
     "cypress": "16.3.0",
     "cypress-cucumber-steps": "4.0.0",
     "cypress-real-events": "1.15.1",
@@ -73,7 +73,7 @@
     "typescript-eslint": "8.72.2",
     "vite": "8.3.8",
     "vite-plugin-commonjs": "0.10.4",
-    "vitest": "5.1.0",
+    "vitest": "5.1.1",
     "web-vitals": "6.2.3"
   },
   "overrides": {
