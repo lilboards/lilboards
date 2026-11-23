@@ -62,7 +62,7 @@
     "eslint-plugin-prettier": "5.5.7",
     "eslint-plugin-simple-import-sort": "14.0.0",
     "eslint-plugin-tsdoc": "0.5.4",
-    "firebase-tools": "15.36.0",
+    "firebase-tools": "15.37.0",
     "husky": "9.1.7",
     "identity-obj-proxy": "3.0.0",
     "jsdom": "31.0.1",
